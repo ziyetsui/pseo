@@ -1,13 +1,16 @@
-import Link from "next/link";
-
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Button, buttonClassName } from "@/components/ui/Button";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
+import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
+import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { Panel } from "@/components/ui/Panel";
 import { Section } from "@/components/ui/Section";
+import { cx } from "@/components/ui/class-names";
+import { dividerClassName } from "@/components/ui/dividers";
+import { displayTitleClassName, microLabelClassName } from "@/components/ui/type-scale";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
 import { queryHref } from "@/features/search/query-links";
 import {
@@ -51,6 +54,15 @@ const PROMPT_TEXT_ID = "prompt-text";
  */
 const PLATFORM_LABEL = "Higgsfield";
 
+/**
+ * One key/value line of the 原帖信息 record: a `row`-tier hairline, the
+ * lightest of the three tiers, because four of them stacked is precisely the
+ * density that tier is drawn light for.
+ */
+const SOURCE_ROW = dividerClassName("row", "top", {
+  className: "flex items-baseline justify-between gap-4 py-2",
+});
+
 /** The generator the prototype's CTA card sends readers to. Not built yet. */
 const GENERATOR_NAME = "bo";
 const GENERATOR_DISABLED_REASON = "生成功能尚未接入";
@@ -92,41 +104,83 @@ interface RelatedLink {
   note?: string;
 }
 
-function RelatedColumn({ title, items }: { title: string; items: readonly RelatedLink[] }) {
+/**
+ * 必需输入 / 可选输入: a dense list of literals, so it is set as one — each
+ * item on the lightest divider tier, the last one without a rule. It is not a
+ * `HairlineList`: nothing here navigates, and a row that carries a chevron but
+ * no destination promises something it cannot do.
+ */
+function InputList({ title, items }: { title: string; items: readonly string[] }) {
   return (
     <div>
-      <h3 className="text-xs font-bold tracking-widest uppercase">{title}</h3>
+      <h3 className={microLabelClassName()}>{title}</h3>
       {items.length === 0 ? (
-        <p className="mt-2 text-sm font-medium">这条提示词还没有可归类的同类条目。</p>
+        <p className="mt-2 text-sm font-medium">无</p>
       ) : (
-        <ul className="mt-2 flex flex-col">
-          {items.map((item) => (
-            <li key={item.label} className="border-b-2 border-foreground/20">
-              {item.href === null ? (
-                <span className="flex min-h-11 items-center py-1 text-sm font-medium">
-                  {item.label}
-                  {item.note === undefined ? null : <span>{item.note}</span>}
-                </span>
-              ) : item.external === true ? (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  className="flex min-h-11 items-center py-1 text-sm font-bold underline"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="flex min-h-11 items-center py-1 text-sm font-bold underline"
-                >
-                  {item.label}
-                </Link>
+        <ul className="mt-2 flex flex-col text-sm font-medium">
+          {items.map((input, index) => (
+            <li
+              key={input}
+              className={cx(
+                "py-2",
+                index === items.length - 1 ? undefined : dividerClassName("row", "bottom"),
               )}
+            >
+              {input}
             </li>
           ))}
         </ul>
+      )}
+    </div>
+  );
+}
+
+/**
+ * `相关` is a dense text index, so it is deliberately NOT made of cards.
+ *
+ * Thirty bordered boxes holding one phrase each is noise that competes with
+ * the prompt itself; demoted to hairline rows (the lightest divider tier, no
+ * frame, no shadow, no fill, a chevron that only appears on hover OR focus)
+ * the same index takes a quarter of the space and the page's real cards go
+ * back to being its only heavy objects. Same links, same labels, same order.
+ */
+function RelatedColumn({ title, items }: { title: string; items: readonly RelatedLink[] }) {
+  return (
+    <div>
+      <h3 className={microLabelClassName()}>{title}</h3>
+      {items.length === 0 ? (
+        <p className="mt-2 text-sm font-medium">这条提示词还没有可归类的同类条目。</p>
+      ) : (
+        <HairlineList className="mt-2">
+          {items.map((item, index) => {
+            const last = index === items.length - 1;
+            // No destination in this phase: plain text, never a `#` link
+            // (constraint 5). `HairlineRow` requires a real href, so the
+            // non-link row is built here from the same tier and the same
+            // 44px floor, minus the chevron — an arrow on something that
+            // navigates nowhere is a lie.
+            if (item.href === null) {
+              return (
+                <li key={item.label} className="flex flex-col">
+                  <span
+                    className={cx(
+                      "flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium",
+                      last ? undefined : dividerClassName("row", "bottom"),
+                    )}
+                  >
+                    {item.label}
+                    {item.note === undefined ? null : <span>{item.note}</span>}
+                  </span>
+                </li>
+              );
+            }
+            return (
+              <HairlineRow key={item.label} href={item.href} external={item.external} last={last}>
+                {item.label}
+              </HairlineRow>
+            );
+          })}
+        </HairlineList>
       )}
     </div>
   );
@@ -255,13 +309,21 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
 
           <p className="mt-5 text-sm font-medium">
             由{" "}
+            {/*
+              Hover expression ④: the underline grows from zero rather than
+              sitting there. `no-underline` suppresses the document-wide hover
+              underline so the two never draw at once; the link stays bold
+              against `font-medium` prose, so weight — not colour and not the
+              bar — is what marks it as a link at rest, and the bar answers
+              focus as well as hover.
+            */}
             <a
               href={prompt.creator.url}
               target="_blank"
               rel="noopener nofollow"
-              className="font-bold underline"
+              className="group font-bold no-underline"
             >
-              {creatorHandle}
+              <GrowingUnderline>{creatorHandle}</GrowingUnderline>
             </a>{" "}
             发布于 {platformName} ·{" "}
             {prompt.source.publishedAt === null ? (
@@ -368,8 +430,14 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
         <Section id="prompt-steps" title="使用步骤">
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {prompt.steps.map((step) => (
-              <li key={step.order} className="border-t-2 border-foreground pt-3 md:border-t-4">
-                <p className="font-mono text-xs font-bold tabular-nums">
+              <li
+                key={step.order}
+                className={dividerClassName("card", "top", {
+                  desktopThick: true,
+                  className: "pt-3",
+                })}
+              >
+                <p className={microLabelClassName("font-mono tabular-nums")}>
                   {step.order.toString().padStart(2, "0")}
                 </p>
                 <p className="mt-2 font-bold">{step.title}</p>
@@ -417,7 +485,7 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
                   <GeometricMark shape="square" color="blue" className="size-4" />
                   <GeometricMark shape="circle" color="red" className="size-4" />
                 </span>
-                <p className="text-xs font-bold tracking-wider uppercase">待生成</p>
+                <p className={microLabelClassName()}>待生成</p>
                 <p className="font-bold">{variation.title}</p>
                 <p className="font-mono text-xs font-bold">
                   {primary === undefined
@@ -433,32 +501,36 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
       {/* ---------------------------------------------------------- source */}
       <Section id="prompt-source-info" title="来源">
         <div className="grid gap-4 md:grid-cols-2">
+          {/* 原帖信息 reads as a dense RECORD: micro-label keys over
+              row-tier hairlines, the lightest of the three divider tiers,
+              because a stack of four of them is exactly the density that tier
+              exists for. */}
           <Panel>
-            <h3 className="text-xs font-bold tracking-widest uppercase">原帖信息</h3>
+            <h3 className={microLabelClassName()}>原帖信息</h3>
             <dl className="mt-3">
-              <div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground/20 py-2 first:border-t-0 first:pt-0">
-                <dt>创作者</dt>
+              <div className={cx(SOURCE_ROW, "first:border-t-0 first:pt-0")}>
+                <dt className={microLabelClassName()}>创作者</dt>
                 <dd>
                   <a
                     href={prompt.creator.url}
                     target="_blank"
                     rel="noopener nofollow"
-                    className="font-bold underline"
+                    className="group font-bold no-underline"
                   >
-                    {creatorHandle}
+                    <GrowingUnderline>{creatorHandle}</GrowingUnderline>
                   </a>
                 </dd>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground/20 py-2">
-                <dt>粉丝</dt>
+              <div className={SOURCE_ROW}>
+                <dt className={microLabelClassName()}>粉丝</dt>
                 <dd className="font-bold tabular-nums">
                   {prompt.creator.followers === null
                     ? "未收录"
                     : formatCount(prompt.creator.followers)}
                 </dd>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground/20 py-2">
-                <dt>发布时间</dt>
+              <div className={SOURCE_ROW}>
+                <dt className={microLabelClassName()}>发布时间</dt>
                 <dd className="font-bold">
                   {prompt.source.publishedAt === null ? (
                     "日期未收录"
@@ -467,14 +539,14 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
                   )}
                 </dd>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground/20 py-2">
-                <dt>平台</dt>
+              <div className={SOURCE_ROW}>
+                <dt className={microLabelClassName()}>平台</dt>
                 {/* Uppercased as text, not by CSS, so the accessible name and a
                     copied selection read "X" like the platform's own branding. */}
                 <dd className="font-bold">{platformName}</dd>
               </div>
             </dl>
-            <p className="mt-4 border-t-2 border-foreground/20 pt-4">
+            <p className={dividerClassName("row", "top", { className: "mt-4 pt-4" })}>
               提示词由作者在原帖中公开分享，本页逐字保留。
             </p>
             <p className="mt-4">
@@ -489,16 +561,22 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
             </p>
           </Panel>
 
+          {/* 互动数据 reads as FIGURES: the display tier on the numbers and
+              the micro tier on their captions, so the same Panel chrome no
+              longer produces the same block twice. Two columns before `sm`
+              keeps a five-glyph mono numeral inside a 320px viewport — the
+              display tier is only allowed where it cannot force the page to
+              scroll sideways. */}
           <Panel>
-            <h3 className="text-xs font-bold tracking-widest uppercase">互动数据</h3>
-            <ul className="mt-3 grid grid-cols-3 gap-3">
+            <h3 className={microLabelClassName()}>互动数据</h3>
+            <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {metrics.map((metric) => (
-                <li key={metric.label} className="text-center">
-                  <p className="font-mono text-xl font-black tabular-nums">
+                <li key={metric.label} className="min-w-0 text-center">
+                  <p className={displayTitleClassName("font-mono tabular-nums")}>
                     {metric.value === null ? "—" : formatCount(metric.value)}
                     {metric.value === null ? <span className="sr-only">未收录</span> : null}
                   </p>
-                  <p className="text-xs font-bold tracking-wider uppercase">{metric.label}</p>
+                  <p className={microLabelClassName("mt-1")}>{metric.label}</p>
                 </li>
               ))}
             </ul>
@@ -511,47 +589,27 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
       {!showInputsBlock ? null : (
         <Section id="prompt-inputs" title="输入 / 参数">
           <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="text-xs font-bold tracking-widest uppercase">必需输入</h3>
-              {prompt.requiredInputs.length === 0 ? (
-                <p className="mt-2 text-sm font-medium">无</p>
-              ) : (
-                <ul className="mt-2 flex flex-col gap-1 text-sm font-medium">
-                  {prompt.requiredInputs.map((input) => (
-                    <li key={input}>{input}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            <div>
-              <h3 className="text-xs font-bold tracking-widest uppercase">可选输入</h3>
-              {prompt.optionalInputs.length === 0 ? (
-                <p className="mt-2 text-sm font-medium">无</p>
-              ) : (
-                <ul className="mt-2 flex flex-col gap-1 text-sm font-medium">
-                  {prompt.optionalInputs.map((input) => (
-                    <li key={input}>{input}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <InputList title="必需输入" items={prompt.requiredInputs} />
+            <InputList title="可选输入" items={prompt.optionalInputs} />
           </div>
 
           {prompt.parameters.length === 0 ? null : (
             <div className="mt-6">
-              <h3 className="text-xs font-bold tracking-widest uppercase">参数</h3>
+              <h3 className={microLabelClassName()}>参数</h3>
               <p className="mt-2 text-sm font-medium">
                 提示词尾部已经写死的渲染参数，复制时不要删。
               </p>
+              {/* Kept as framed value chips rather than demoted to hairlines:
+                  a parameter is a literal you must not retype wrong, so it
+                  gets a box the way the prompt payload does. That is what
+                  keeps it distinct from the input lists above it. */}
               <dl className="mt-3 grid gap-3 sm:grid-cols-2">
                 {prompt.parameters.map((parameter) => (
                   <div
                     key={`${parameter.label}-${parameter.value}`}
                     className="border-2 border-foreground bg-surface p-3"
                   >
-                    <dt className="text-xs font-bold tracking-wider uppercase">
-                      {parameter.label}
-                    </dt>
+                    <dt className={microLabelClassName()}>{parameter.label}</dt>
                     <dd className="mt-1 font-mono text-sm font-bold">{parameter.value}</dd>
                   </div>
                 ))}

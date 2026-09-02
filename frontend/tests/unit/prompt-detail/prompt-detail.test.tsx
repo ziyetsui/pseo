@@ -306,8 +306,13 @@ describe("PromptDetailView — golden record", () => {
       "href",
       "/zh-CN/prompts?technique=miniature-photography",
     );
+    // The creator's own profile is off-site, so the hairline row carries the
+    // same sr-only "（外部链接，新窗口打开）" notice every other external link
+    // on the site does — the visible label is unchanged.
     expect(
-      within(section).getByRole("link", { name: `${formatCreatorHandle(golden.source.handle)} 的主页` }),
+      within(section).getByRole("link", {
+        name: new RegExp(`^${formatCreatorHandle(golden.source.handle)} 的主页`),
+      }),
     ).toHaveAttribute("href", golden.creator.url);
     expect(within(section).getByRole("link", { name: "该作者其他提示词" })).toHaveAttribute(
       "href",
@@ -436,5 +441,86 @@ describe("formatStepBody", () => {
     expect(formatStepBody("", "9 处全部替换为同一国家名。", promptText)).toBe(
       "1 处全部替换为同一国家名。",
     );
+  });
+});
+
+describe("PromptDetailView — the shared card-system tiers", () => {
+  it("demotes 相关 from boxes to hairline rows with a hover-revealed chevron", () => {
+    renderGolden();
+    const section = screen.getByRole("region", { name: "相关" });
+    const rows = within(section).getAllByRole("listitem");
+    expect(rows.length).toBeGreaterThan(0);
+
+    for (const row of rows) {
+      const line = row.firstElementChild as HTMLElement;
+      // Row tier — the lightest of the three — and never a card frame.
+      expect(line.className).not.toContain("border-2 border-foreground ");
+      expect(line.className).not.toContain("shadow-hard");
+      // The 44px floor survives the demotion: a hairline row is visually
+      // slight but must not be a slight target.
+      expect(line.className).toContain("min-h-11");
+    }
+
+    // Every row except the last of its column carries the rule.
+    const ruled = rows.filter((row) =>
+      (row.firstElementChild?.className ?? "").includes("border-foreground/15"),
+    );
+    expect(ruled.length).toBe(rows.length - 3);
+
+    const chevrons = section.querySelectorAll("[aria-hidden='true'].rotate-45");
+    expect(chevrons.length).toBeGreaterThan(0);
+    for (const chevron of chevrons) {
+      // Transparent until hover OR focus — a chevron that only ever appears
+      // under a mouse is information a keyboard never receives.
+      expect(chevron.className).toContain("opacity-0");
+      expect(chevron.className).toContain("group-hover:opacity-100");
+      expect(chevron.className).toContain("group-focus-visible:opacity-100");
+    }
+  });
+
+  it("keeps a 相关 group with no entries as its explanatory sentence, not an empty list", () => {
+    renderDetail({ ...golden, useCases: [], subjects: [], techniques: [] });
+    const section = screen.getByRole("region", { name: "相关" });
+    expect(
+      within(section).getByText("这条提示词还没有可归类的同类条目。"),
+    ).toBeInTheDocument();
+    expect(
+      within(section)
+        .getAllByRole("heading", { level: 3 })
+        .map((node) => node.textContent),
+    ).toEqual(["同模型", "同用途", "同创作者"]);
+  });
+
+  it("sets every block label in the shared micro-label tier", () => {
+    renderGolden();
+    for (const label of ["原帖信息", "互动数据", "必需输入", "参数", "同模型"]) {
+      expect(screen.getByRole("heading", { level: 3, name: label }).className).toContain(
+        "tracking-micro",
+      );
+    }
+  });
+
+  it("sets the interaction figures in the display tier and their captions in the micro tier", () => {
+    renderGolden();
+    const section = screen.getByRole("region", { name: "来源" });
+    const caption = within(section).getByText("点赞");
+    expect(caption.className).toContain("tracking-micro");
+    const figure = caption.previousElementSibling as HTMLElement;
+    expect(figure.className).toContain("text-2xl");
+    expect(figure.className).toContain("font-black");
+  });
+
+  it("grows the underline on the byline link instead of painting a standing one", () => {
+    renderGolden();
+    const byline = screen.getAllByRole("link", {
+      name: formatCreatorHandle(golden.source.handle),
+    })[0] as HTMLElement;
+    // Weight, not colour, is what marks it as a link at rest; the bar answers
+    // focus as well as hover, and only `width` animates.
+    expect(byline.className).toContain("font-bold");
+    expect(byline.className).toContain("group");
+    const bar = byline.querySelector("[aria-hidden='true']");
+    expect(bar?.className).toContain("group-hover:w-full");
+    expect(bar?.className).toContain("group-focus-visible:w-full");
   });
 });

@@ -342,3 +342,92 @@ describe("PromptCard — compact variant (L2/L3)", () => {
     Object.defineProperty(navigator, "clipboard", { value: undefined, configurable: true });
   });
 });
+
+describe("PromptCard — the media-card variant of the card system", () => {
+  it.each(["hub", "compact"] as const)(
+    "sets the title in the single-line tier, so a long title can never grow the card (%s)",
+    (variant) => {
+      const title = "一个长到足以在任何栅格里换行两次的提示词标题，用来证明它不会把这张卡撑高";
+      render(
+        <PromptCard prompt={makePromptSummary({ title })} locale="zh-CN" variant={variant} />,
+      );
+      const link = within(screen.getByRole("heading", { level: 3 })).getByRole("link");
+      // The tier truncates rather than wraps; the full string stays in the DOM
+      // (accessible name, find-in-page), only the painted line is cut.
+      expect(link).toHaveClass("truncate");
+      expect(link).toHaveTextContent(title);
+      // Hover expression ②: the colour answers the CARD's hover, not the
+      // title's, so the whole object replies as one thing.
+      expect(link).toHaveClass("group-hover:text-accent-red");
+    },
+  );
+
+  it.each(["hub", "compact"] as const)(
+    "hangs the body under a full-bleed card-tier rule below the media (%s)",
+    (variant) => {
+      const { container } = render(
+        <PromptCard prompt={makePromptSummary()} locale="zh-CN" variant={variant} />,
+      );
+      const media = container.querySelector("img")?.closest("[style*='aspect-ratio']");
+      expect(media).not.toBeNull();
+      // Card tier, full bleed, stepping to the 4px desktop frame: media and
+      // body read as two compartments of one object rather than as a picture
+      // with words loose underneath it.
+      expect(media?.className).toContain("border-b-2");
+      expect(media?.className).toContain("border-foreground");
+      expect(media?.className).toContain("md:border-b-4");
+    },
+  );
+
+  it.each(["hub", "compact"] as const)(
+    "falls back to the handle's first character when the creator has no picture (%s)",
+    (variant) => {
+      const { container } = render(
+        <PromptCard prompt={makePromptSummary()} locale="zh-CN" variant={variant} />,
+      );
+      const metrics = screen.getByTestId("prompt-card-metrics");
+      expect(within(metrics).getByText("A")).toBeInTheDocument();
+      // Decoration only: the handle it stands for is written right beside it,
+      // so a screen reader hears "@azed_ai" once, not "A @azed_ai".
+      expect(within(metrics).getByText("A")).toHaveAttribute("aria-hidden", "true");
+      expect(container.querySelector("img[src*='avatar']")).toBeNull();
+    },
+  );
+
+  it.each(["hub", "compact"] as const)(
+    "shows the creator's picture when there is one, and never as a named image (%s)",
+    (variant) => {
+      render(
+        <PromptCard
+          prompt={makePromptSummary({
+            creator: makeCreator({ avatarUrl: "https://example.invalid/avatar.jpg" }),
+          })}
+          locale="zh-CN"
+          variant={variant}
+        />,
+      );
+      const metrics = screen.getByTestId("prompt-card-metrics");
+      // `alt=""` inside an aria-hidden wrapper: it adds nothing to the
+      // accessible tree, which is what the handle beside it is for.
+      expect(within(metrics).queryByRole("img")).not.toBeInTheDocument();
+      expect(within(metrics).queryByText("A")).not.toBeInTheDocument();
+    },
+  );
+
+  it.each(["hub", "compact"] as const)(
+    "gives the counted facts the micro-label tier but never the handle (%s)",
+    (variant) => {
+      render(<PromptCard prompt={makePromptSummary()} locale="zh-CN" variant={variant} />);
+      const metrics = screen.getByTestId("prompt-card-metrics");
+
+      const likes = within(metrics).getByText(/赞/);
+      expect(likes.className).toContain("tracking-micro");
+
+      // The tier carries `uppercase`, a no-op on 赞 / 藏 but one that would
+      // rewrite a Latin handle into something its owner never wrote.
+      const handle = within(metrics).getByText("@azed_ai");
+      expect(handle.className).not.toContain("uppercase");
+      expect(handle.className).not.toContain("tracking-micro");
+    },
+  );
+});

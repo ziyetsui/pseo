@@ -5,8 +5,12 @@ import { cardClassName } from "@/components/ui/Card";
 import { CardMedia } from "@/components/ui/CardMedia";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
+import { Avatar } from "@/components/ui/IdentityMark";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { dividerClassName } from "@/components/ui/dividers";
+import { hoverTitleClassName } from "@/components/ui/hover";
 import { MEDIA_SIZES } from "@/components/ui/media-sizes";
+import { microLabelClassName, singleLineTitleClassName } from "@/components/ui/type-scale";
 import { formatCreatorHandle } from "@/lib/content";
 import type { Locale, Media, PromptSummary, Taxonomy } from "@/lib/content/types";
 import { formatCompactCount, formatThousands } from "@/lib/format/numbers";
@@ -33,6 +37,13 @@ const EXTERNAL = { target: "_blank", rel: "noopener nofollow" } as const;
  *   badge and the source link, and a `复制 / 展开 / 详情 →` action row.
  *
  * Both put the prompt's FULL text in the DOM and copy exactly that.
+ *
+ * Both are the same VARIANT of the card system — the media card: picture, then
+ * the full-bleed card-tier rule `CardMedia` draws, then a body compartment of
+ * single-line title → (chips) → prompt → avatar creator line → actions. What
+ * differs between them is what the wireframe puts in that compartment, not how
+ * the compartment is built, which is why they read as one family rather than
+ * as two designs.
  */
 export type PromptCardVariant = "hub" | "compact";
 
@@ -142,8 +153,22 @@ export function PromptCard({
       )}
 
       <div className="flex min-w-0 flex-1 flex-col gap-4 p-4 md:p-5">
-        <h3 className="wrap-anywhere text-lg font-black tracking-tight md:text-xl">
-          <Link href={prompt.href} className="underline decoration-accent-red decoration-2">
+        {/*
+          Tier 2 — the single-line title. It lives on the `<a>` rather than on
+          the `<h3>` so the truncation's `overflow: hidden` clips the label but
+          never the link's own 2px focus ring (an outline is painted outside
+          the box that owns it, so an ANCESTOR with `overflow: hidden` would
+          eat it). The full string stays in the DOM for the accessible name and
+          for find-in-page; only the painted line is cut, which is what keeps a
+          long title from making one card in a grid row taller than the rest.
+        */}
+        <h3 className="min-w-0">
+          <Link
+            href={prompt.href}
+            className={hoverTitleClassName(
+              singleLineTitleClassName("block underline decoration-accent-red decoration-2"),
+            )}
+          >
             {prompt.title}
           </Link>
         </h3>
@@ -273,7 +298,36 @@ function PromptBody({ prompt, textId, expandable, variant, tags }: PromptBodyPro
   );
 }
 
-/** L1 meta: `@handle` · date · `2,512 赞` · `6,127 藏`. */
+/**
+ * The creator line, shared by both variants: the 28px avatar, then the handle.
+ *
+ * The avatar is the card's only identity slot, and it is decoration — the
+ * handle it stands for is written immediately beside it, so `Avatar` stays
+ * `aria-hidden` and a screen reader hears the handle once. A creator with no
+ * picture falls back to the first character of the handle rather than to an
+ * empty circle, so the line never changes height between records.
+ */
+function CreatorMark({ prompt }: { prompt: PromptSummary }) {
+  return (
+    <>
+      <Avatar name={prompt.creator.handle} src={prompt.creator.avatarUrl} />
+      <span>{formatCreatorHandle(prompt.creator.handle)}</span>
+    </>
+  );
+}
+
+/**
+ * The rule above the meta line, and the row it sits on.
+ *
+ * `card` tier: inside a card there is exactly one internal rule strength, the
+ * same one `CardMedia` draws between the picture and the body — a second,
+ * lighter weight here would read as an accident rather than as a decision.
+ */
+const META_ROW = dividerClassName("card", "top", {
+  className: "flex flex-wrap items-center gap-x-4 gap-y-2 pt-3 text-xs font-medium",
+});
+
+/** L1 meta: avatar `@handle` · date · `2,512 赞` · `6,127 藏`. */
 function HubMeta({ prompt }: { prompt: PromptSummary }) {
   const { likes, bookmarks } = prompt.metrics;
   const publishedAt = prompt.source.publishedAt;
@@ -286,23 +340,35 @@ function HubMeta({ prompt }: { prompt: PromptSummary }) {
       // Global constraint 4 is met once per data region instead — see
       // `MetricsSnapshotNote`, the trending panel's note, the L2 statline and
       // the footer's `数据更新于`.
-      className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t-2 border-foreground pt-3 text-xs font-medium"
+      className={META_ROW}
     >
       <a
         {...EXTERNAL}
         href={prompt.creator.url}
-        className="inline-flex min-h-11 items-center underline"
+        className="inline-flex min-h-11 items-center gap-2 underline"
       >
-        {formatCreatorHandle(prompt.creator.handle)}
+        <CreatorMark prompt={prompt} />
         <span className="sr-only">（外部链接，新窗口打开）</span>
       </a>
+      {/*
+        Micro label, tier 3, for the counted facts only — never for the handle.
+        The tier carries `uppercase`, which is a no-op on 赞 / 藏 but would
+        rewrite a Latin handle into `@AZED_AI`, i.e. into something the
+        creator never wrote.
+      */}
       {publishedAt === null ? (
-        <span>日期未收录</span>
+        <span className={microLabelClassName()}>日期未收录</span>
       ) : (
-        <time dateTime={publishedAt}>{publishedAt}</time>
+        <time className={microLabelClassName("font-mono tabular-nums")} dateTime={publishedAt}>
+          {publishedAt}
+        </time>
       )}
-      <span className="font-mono tabular-nums">{formatThousands(likes)} 赞</span>
-      <span className="font-mono tabular-nums">{formatThousands(bookmarks)} 藏</span>
+      <span className={microLabelClassName("font-mono tabular-nums")}>
+        {formatThousands(likes)} 赞
+      </span>
+      <span className={microLabelClassName("font-mono tabular-nums")}>
+        {formatThousands(bookmarks)} 藏
+      </span>
     </p>
   );
 }
@@ -312,15 +378,16 @@ function CompactMeta({ prompt }: { prompt: PromptSummary }) {
   const { likes, bookmarks, highValue } = prompt.metrics;
 
   return (
-    <p
-      data-testid="prompt-card-metrics"
-      className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t-2 border-foreground pt-3 text-xs font-medium"
-    >
-      <span>{formatCreatorHandle(prompt.creator.handle)}</span>
-      <span>
+    <p data-testid="prompt-card-metrics" className={META_ROW}>
+      {/* Not a link here: the compact card already spends its one external
+          link on 原帖 at the end of this same line. */}
+      <span className="inline-flex items-center gap-2">
+        <CreatorMark prompt={prompt} />
+      </span>
+      <span className={microLabelClassName()}>
         <b className="font-mono tabular-nums">{formatCompactCount(likes)}</b> 赞
       </span>
-      <span>
+      <span className={microLabelClassName()}>
         <b className="font-mono tabular-nums">{formatCompactCount(bookmarks)}</b> 藏
       </span>
       {highValue ? (
