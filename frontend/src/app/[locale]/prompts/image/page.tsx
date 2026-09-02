@@ -15,12 +15,21 @@ import {
   galleryStats,
   promptsForTerm,
   selectImagePrompts,
+  topRailedModels,
 } from "@/features/gallery/image-prompts";
 import { PromptExplorer } from "@/features/prompt/PromptExplorer";
 
 const TITLE = "图片提示词";
 const DESCRIPTION =
   "按模型、任务、风格和主体浏览图片提示词，每条都标注原作者与原帖出处，找到后一键复制。";
+
+/**
+ * The breadcrumb's own last-step label. Deliberately shorter than `TITLE`
+ * (used for the H1 and metadata) so the trail reads 首页 › 提示词库 › 图片,
+ * matching the other L2/L3/L4 breadcrumb trails' one-or-two-character last
+ * step rather than repeating the full page title.
+ */
+const BREADCRUMB_LABEL = "图片";
 
 /**
  * The prototype's portrait rail is keyed on the subject term whose English
@@ -31,6 +40,14 @@ const PORTRAIT_SUBJECT_LABEL = "Person / portrait";
 
 /** Cards per rail, shared with the JSON-LD ItemList so the two cannot drift. */
 const RAIL_LIMIT = 6;
+
+/**
+ * How many models get their own "browse by model" rail (tiles + h3 + rail),
+ * capped by image-prompt count (ties broken by slug — see `topRailedModels`).
+ * `ModelTiles` still shows every model in the image subset regardless of this
+ * cap; only the rail band and the JSON-LD ItemList respect it.
+ */
+const MODEL_RAIL_LIMIT = 3;
 
 /** How many tasks the related-links band lists. */
 const RELATED_USE_CASE_LIMIT = 3;
@@ -77,21 +94,28 @@ export default async function ImageGalleryPage({
   const featured = selectImagePrompts(featuredAll);
 
   const stats = galleryStats(imagePrompts);
+  // ALL models present in the subset (with count>0), sorted count desc / slug
+  // asc. `ModelTiles` and the related-links band use this in full.
   const models = countTermsWithin(modelTerms, imagePrompts, "model");
+  // Only the top MODEL_RAIL_LIMIT of those get their own tiles-row rail; see
+  // `topRailedModels` for why the cap exists and how ties are broken.
+  const railedModels = topRailedModels(models, MODEL_RAIL_LIMIT);
   const useCases = countTermsWithin(useCaseTerms, imagePrompts, "useCase");
   const subjects = countTermsWithin(subjectTerms, imagePrompts, "subject");
   const portraitSubject = findTermByLabel(subjects, PORTRAIT_SUBJECT_LABEL);
 
   const crumbs: BreadcrumbItem[] = [
+    { name: "首页", path: localeHome(locale) },
     { name: "提示词库", path: promptsHome(locale) },
-    { name: TITLE, path: basePath },
+    { name: BREADCRUMB_LABEL, path: basePath },
   ];
 
   // The ItemList mirrors the rails the exported HTML renders: the featured rail
-  // plus every model rail, capped by the same RAIL_LIMIT the browse view uses.
+  // plus each railed model's rail, capped by the same RAIL_LIMIT the browse
+  // view uses. It must never enumerate more than what is actually railed.
   const railed = [
     ...featured,
-    ...models.flatMap((model) =>
+    ...railedModels.flatMap((model) =>
       model.href === null ? [] : promptsForTerm(imagePrompts, "model", model.slug).slice(0, RAIL_LIMIT),
     ),
   ];
@@ -151,7 +175,9 @@ export default async function ImageGalleryPage({
               observedAt={snapshot.observedAt}
               featured={featured}
               imagePrompts={imagePrompts}
+              allPrompts={list.items}
               models={models}
+              railedModels={railedModels}
               contentTypes={contentTypes}
               portraitSubject={portraitSubject}
               topUseCases={useCases.slice(0, RELATED_USE_CASE_LIMIT)}

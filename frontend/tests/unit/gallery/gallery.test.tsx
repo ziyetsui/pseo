@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { getContentRepository } from "@/lib/content";
 import type { PromptSummary, TaxonomyWithCount } from "@/lib/content/types";
+import { modelRailMoreLabel } from "@/features/gallery/image-prompts";
 
 /**
  * Assembly test for the L2 image gallery. It stands in for the build-time
@@ -33,16 +34,38 @@ async function imageSubset(): Promise<PromptSummary[]> {
   return items.filter((prompt) => prompt.contentType.slug === "image");
 }
 
-/** Model terms that actually carry image prompts, counted over the subset. */
-async function imageModels(): Promise<{ term: TaxonomyWithCount; count: number }[]> {
-  const subset = await imageSubset();
+/**
+ * Model terms that actually carry image prompts, counted over the subset —
+ * plus each model's `totalCount` across every content type, computed from the
+ * unfiltered prompt list. The model page (a rail's "查看全部" destination)
+ * lists that wider set, so `count` and `totalCount` disagree for a model that
+ * also has non-image prompts (e.g. seedance, which has plenty of video ones).
+ */
+async function imageModels(): Promise<
+  { term: TaxonomyWithCount; count: number; totalCount: number }[]
+> {
+  const { items } = await repository.listPrompts("zh-CN");
+  const subset = items.filter((prompt) => prompt.contentType.slug === "image");
   const models = await repository.listTaxonomies("zh-CN", "model");
   return models
     .map((term) => ({
       term,
       count: subset.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)).length,
+      totalCount: items.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)).length,
     }))
     .filter((entry) => entry.count > 0);
+}
+
+/**
+ * The models that get their own rail: href-bearing, top 3 by image count, ties
+ * broken by slug — mirrors `topRailedModels` in `features/gallery/image-prompts`
+ * without importing test expectations from the implementation itself.
+ */
+function railedModels<T extends { term: TaxonomyWithCount; count: number }>(models: T[]): T[] {
+  return models
+    .filter((entry) => entry.term.href !== null)
+    .sort((a, b) => b.count - a.count || a.term.slug.localeCompare(b.term.slug))
+    .slice(0, 3);
 }
 
 async function renderPage() {
@@ -64,6 +87,16 @@ describe("L2 image gallery page", () => {
     const headings = screen.getAllByRole("heading", { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent("图片提示词");
+  });
+
+  it("renders a 首页 › 提示词库 › 图片 breadcrumb trail", async () => {
+    const { container } = await renderPage();
+    const nav = within(container).getByRole("navigation", { name: "面包屑" });
+    expect(nav.textContent?.replace(/\s+/g, "")).toBe("首页/提示词库/图片");
+    const home = within(nav).getByRole("link", { name: "首页" });
+    expect(home.getAttribute("href")).toBe("/zh-CN");
+    const hub = within(nav).getByRole("link", { name: "提示词库" });
+    expect(hub.getAttribute("href")).toBe("/zh-CN/prompts");
   });
 
   it("derives every statline number from the repository", async () => {
@@ -144,12 +177,17 @@ describe("L2 image gallery page", () => {
     }
   });
 
-  it("gives every model with a page and image prompts its own rail with a real 查看全部 link", async () => {
-    const models = (await imageModels()).filter((entry) => entry.term.href !== null);
-    expect(models.length).toBeGreaterThan(0);
+  it("caps the model rail band at the top 3 models by image count, tie-broken by slug", async () => {
+    const models = await imageModels();
+    const railed = railedModels(models);
+    // The fixture has more than 3 models with image prompts, so this actually
+    // exercises the cap rather than vacuously passing.
+    expect(models.filter((entry) => entry.term.href !== null).length).toBeGreaterThan(3);
+    expect(railed).toHaveLength(3);
+
     const { container } = await renderPage();
 
-    for (const { term, count } of models) {
+    for (const { term, count } of railed) {
       const label = term.labelZh ?? term.label;
       const rail = within(container).getByRole("region", { name: `${label} 图片提示词` });
       const heading = within(container).getByRole("heading", {
@@ -158,13 +196,74 @@ describe("L2 image gallery page", () => {
       });
       expect(heading).toBeInTheDocument();
 
-      const more = container.querySelector(`a[data-model-more="${term.slug}"]`);
-      expect(more?.getAttribute("href")).toBe(term.href);
-      expect(more?.textContent).toContain(`查看全部 ${count} 条`);
-
       const shown = rail.querySelectorAll("article").length;
       expect(shown).toBeGreaterThan(0);
       expect(shown).toBeLessThanOrEqual(count);
+    }
+
+    // Every model beyond the top 3 still gets a browse tile (finding 1:
+    // ModelTiles shows ALL models) but never its own rail region.
+    const excluded = models.filter(
+      (entry) => !railed.some((r) => r.term.slug === entry.term.slug),
+    );
+    expect(excluded.length).toBeGreaterThan(0);
+    for (const { term } of excluded) {
+      const label = term.labelZh ?? term.label;
+      expect(
+        within(container).queryByRole("region", { name: `${label} 图片提示词` }),
+      ).toBeNull();
+    }
+  });
+
+  it("gives each railed model a 查看全部 link into its own model page, scope-neutral unless the counts truly match", async () => {
+    const railed = railedModels(await imageModels());
+    const { container } = await renderPage();
+
+    for (const { term, count, totalCount } of railed) {
+      const more = container.querySelector(`a[data-model-more="${term.slug}"]`);
+      expect(more?.getAttribute("href")).toBe(term.href);
+      // The model page lists every content type for the model, not just
+      // images, so the label only claims a count when the two scopes agree.
+      expect(more?.textContent).toBe(modelRailMoreLabel(count, totalCount));
+    }
+  });
+
+  it("gives no misleading count when a model's image count differs from its total (e.g. seedance)", async () => {
+    const models = await imageModels();
+    const seedance = models.find((entry) => entry.term.slug === "seedance");
+    expect(seedance).toBeDefined();
+    // Sanity check on the fixture itself: seedance must actually be a model
+    // with far more total prompts (mostly video) than image ones, otherwise
+    // this test would not exercise the differing-count branch at all.
+    expect(seedance?.count).not.toBe(seedance?.totalCount);
+
+    const label = modelRailMoreLabel(seedance!.count, seedance!.totalCount);
+    expect(label).toBe("进入模型页 →");
+    expect(label).not.toMatch(/\d/);
+  });
+
+  it("lists every href-bearing model in the related-links band, not just the railed top 3", async () => {
+    const models = await imageModels();
+    const linkable = models.filter((entry) => entry.term.href !== null);
+    expect(linkable.length).toBeGreaterThan(3);
+
+    const { container } = await renderPage();
+    const region = within(container).getByRole("region", { name: "相关页面" });
+
+    for (const { term } of linkable) {
+      const label = term.labelZh ?? term.label;
+      const link = within(region).getByRole("link", { name: `${label} 模型页` });
+      expect(link.getAttribute("href")).toBe(term.href);
+    }
+  });
+
+  it("drops the image-only count from related use-case links, which point at L1 across all content types", async () => {
+    const { container } = await renderPage();
+    const links = [...container.querySelectorAll("a[data-usecase-more]")];
+    expect(links.length).toBeGreaterThan(0);
+    for (const link of links) {
+      expect(link.textContent).not.toMatch(/\d/);
+      expect(link.textContent?.trim().endsWith("提示词")).toBe(true);
     }
   });
 
@@ -197,6 +296,11 @@ describe("L2 image gallery page", () => {
       const link = tile.tagName === "A" ? tile : tile.querySelector("a");
       if (term.slug === "image") {
         expect(link?.getAttribute("href")).toBe("/zh-CN/prompts/image");
+      } else if (term.slug === "unknown") {
+        // Unlabelled data, not a real page that simply hasn't shipped yet —
+        // a different, more honest explanation (finding 6).
+        expect(link).toBeNull();
+        expect(tile.textContent).toContain("未标注类型，不会生成独立页面");
       } else {
         expect(link).toBeNull();
         expect(tile.textContent).toContain("尚未发布");
@@ -216,7 +320,7 @@ describe("L2 image gallery page", () => {
     }
   });
 
-  it("emits a two-item BreadcrumbList and an ItemList that matches the visible rails", async () => {
+  it("emits a three-item BreadcrumbList (首页 › 提示词库 › 图片) and an ItemList that matches the visible rails", async () => {
     const { container } = await renderPage();
 
     const payloads = [...container.querySelectorAll('script[type="application/ld+json"]')].map(
@@ -229,8 +333,11 @@ describe("L2 image gallery page", () => {
     const crumbs = payloads.find((payload) => payload["@type"] === "BreadcrumbList") as {
       itemListElement: { name: string; item: string }[];
     };
-    expect(crumbs.itemListElement).toHaveLength(2);
-    expect(crumbs.itemListElement[1]?.item).toBe("https://example.invalid/zh-CN/prompts/image");
+    expect(crumbs.itemListElement).toHaveLength(3);
+    expect(crumbs.itemListElement[0]?.name).toBe("首页");
+    expect(crumbs.itemListElement[0]?.item).toBe("https://example.invalid/zh-CN");
+    expect(crumbs.itemListElement[1]?.name).toBe("提示词库");
+    expect(crumbs.itemListElement[2]?.item).toBe("https://example.invalid/zh-CN/prompts/image");
 
     const collection = payloads.find((payload) => payload["@type"] === "CollectionPage");
     const itemList = collection?.mainEntity as {

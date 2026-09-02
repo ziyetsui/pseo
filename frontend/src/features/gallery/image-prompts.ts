@@ -88,6 +88,38 @@ export function findTermByLabel(
   return terms.find((term) => term.label === label) ?? null;
 }
 
+/**
+ * The models that get their own "browse by model" rail (tiles + h3 + rail),
+ * capped to the top `limit` by image-prompt count.
+ *
+ * `models` must already be sorted count desc, slug asc (what `countTermsWithin`
+ * returns) so the cap is deterministic under a tie. Only a model with a real
+ * page (`href !== null`) can be railed — there is nowhere for its "查看全部"
+ * link to go otherwise. `ModelTiles` is unaffected by this cap: it keeps
+ * rendering every model in the image subset, railed or not.
+ */
+export function topRailedModels(
+  models: readonly TaxonomyWithCount[],
+  limit: number,
+): TaxonomyWithCount[] {
+  return models.filter((model) => model.href !== null).slice(0, limit);
+}
+
+/**
+ * Label for a model rail's "see everything" link, which always points at the
+ * model's own page (`/prompts/models/<slug>`) — a page that lists every
+ * content type for that model, not only images.
+ *
+ * Because the destination's scope is wider than this rail's, the label is
+ * scope-neutral ("进入模型页 →") rather than claiming an image-only count. Only
+ * when the model's image-prompt count equals its total prompt count (all
+ * content types) does the model page show exactly what the rail promised, and
+ * only then do we append the count.
+ */
+export function modelRailMoreLabel(imageCount: number, totalCount: number): string {
+  return imageCount === totalCount ? `进入模型页（共 ${totalCount} 条）→` : "进入模型页 →";
+}
+
 export function termLabel(term: { label: string; labelZh: string | null }): string {
   return term.labelZh ?? term.label;
 }

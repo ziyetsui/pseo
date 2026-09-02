@@ -8,8 +8,10 @@ import {
   IMAGE_CONTENT_TYPE_SLUG,
   countTermsWithin,
   galleryStats,
+  modelRailMoreLabel,
   promptsForTerm,
   selectImagePrompts,
+  topRailedModels,
 } from "@/features/gallery/image-prompts";
 
 import { makeMetrics, makePromptSummary, makeTaxonomy } from "../support/prompt-fixtures";
@@ -109,6 +111,64 @@ describe("ContentTypeTiles", () => {
       expect(node.getAttribute("href")).not.toContain("/prompts/video");
     }
   });
+
+  it("explains the unknown content type as unlabelled data rather than an unpublished page", () => {
+    const withUnknown: TaxonomyWithCount[] = [
+      ...types,
+      term({
+        id: "contentType:unknown",
+        axis: "contentType",
+        slug: "unknown",
+        label: "未标注",
+        labelZh: "未标注",
+        href: null,
+        count: 1,
+      }),
+    ];
+    const { container } = render(<ContentTypeTiles types={withUnknown} currentSlug="image" />);
+    const tile = container.querySelector('[data-content-type="unknown"]') as HTMLElement;
+
+    expect(tile.tagName).not.toBe("A");
+    expect(tile.textContent).toContain("未标注类型，不会生成独立页面");
+    // This is a different message from an unreleased-but-real page.
+    expect(tile.textContent).not.toContain("该类型页面尚未发布");
+  });
+});
+
+describe("topRailedModels", () => {
+  const published = (slug: string, count: number) =>
+    term({ id: `model:${slug}`, slug, label: slug, href: `/zh-CN/prompts/models/${slug}`, count });
+
+  it("caps at the given limit, keeping only models with a real page", () => {
+    const a = published("a", 10);
+    const b = published("b", 8);
+    const c = published("c", 6);
+    const noPage = term({ id: "model:d", slug: "d", label: "d", href: null, count: 20 });
+
+    expect(topRailedModels([a, noPage, b, c], 2)).toEqual([a, b]);
+  });
+
+  it("relies on its input already being sorted count desc / slug asc — the order countTermsWithin produces", () => {
+    const zebra = published("zebra", 5);
+    const apple = published("apple", 5);
+
+    // countTermsWithin itself breaks a count tie by slug (apple before
+    // zebra); topRailedModels only slices, so pre-sorted input like this is
+    // what actually reaches it from `page.tsx`.
+    expect(topRailedModels([apple, zebra], 1)).toEqual([apple]);
+  });
+});
+
+describe("modelRailMoreLabel", () => {
+  it("appends the count only when the image count matches the model's total count", () => {
+    expect(modelRailMoreLabel(5, 5)).toBe("进入模型页（共 5 条）→");
+  });
+
+  it("stays scope-neutral, with no count at all, when the counts differ", () => {
+    const label = modelRailMoreLabel(2, 11);
+    expect(label).toBe("进入模型页 →");
+    expect(label).not.toMatch(/\d/);
+  });
 });
 
 describe("image-prompts helpers", () => {
@@ -165,5 +225,23 @@ describe("image-prompts helpers", () => {
     expect(counted[0]?.count).toBe(1);
 
     expect(promptsForTerm([image, video], "model", "seedance").map((p) => p.id)).toEqual(["a", "b"]);
+  });
+
+  it("sorts by count desc and breaks a tie by slug — what topRailedModels' cap depends on", () => {
+    const zebraPrompt = makePromptSummary({
+      id: "z",
+      models: [makeTaxonomy({ id: "model:zebra", slug: "zebra", label: "zebra" })],
+    });
+    const applePrompt = makePromptSummary({
+      id: "p",
+      models: [makeTaxonomy({ id: "model:apple", slug: "apple", label: "apple" })],
+    });
+    const zebra = term({ id: "model:zebra", slug: "zebra", label: "zebra" });
+    const apple = term({ id: "model:apple", slug: "apple", label: "apple" });
+
+    // Both terms end up with count 1 — a genuine tie — and input order is
+    // zebra-before-apple, the opposite of the expected output order.
+    const counted = countTermsWithin([zebra, apple], [zebraPrompt, applePrompt], "model");
+    expect(counted.map((t) => t.slug)).toEqual(["apple", "zebra"]);
   });
 });

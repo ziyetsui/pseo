@@ -10,7 +10,12 @@ import { queryHref, setFacet } from "@/features/search/query-links";
 import { ContentTypeTiles } from "./ContentTypeTiles";
 import { ModelTiles } from "./ModelTiles";
 import { PromptRail } from "./PromptRail";
-import { IMAGE_CONTENT_TYPE_SLUG, promptsForTerm, termLabel } from "./image-prompts";
+import {
+  IMAGE_CONTENT_TYPE_SLUG,
+  modelRailMoreLabel,
+  promptsForTerm,
+  termLabel,
+} from "./image-prompts";
 
 export interface GalleryBrowseProps {
   locale: Locale;
@@ -21,8 +26,23 @@ export interface GalleryBrowseProps {
   featured: readonly PromptSummary[];
   /** The image subset — the only prompts this page may render. */
   imagePrompts: readonly PromptSummary[];
-  /** Model terms present in the subset, counted over it, ordered by count. */
+  /**
+   * Every prompt in the library (all content types), used only to check
+   * whether a model's image count equals its total count — see
+   * `modelRailMoreLabel`. Never rendered or filtered on its own.
+   */
+  allPrompts: readonly PromptSummary[];
+  /**
+   * ALL model terms present in the subset, counted over it, ordered by count.
+   * `ModelTiles` renders every one of these, and so does the related-links
+   * band (they are real pages, unlike the rail cap below).
+   */
   models: readonly TaxonomyWithCount[];
+  /**
+   * The subset of `models` that also get a tiles-row rail (h3 + `PromptRail`),
+   * capped upstream by `topRailedModels`. A strict subset of `models`.
+   */
+  railedModels: readonly TaxonomyWithCount[];
   /** Content types across the whole library, counts included. */
   contentTypes: readonly TaxonomyWithCount[];
   /** The `Person / portrait` subject term, or `null` if the data lost it. */
@@ -47,15 +67,37 @@ export function GalleryBrowse({
   observedAt,
   featured,
   imagePrompts,
+  allPrompts,
   models,
+  railedModels,
   contentTypes,
   portraitSubject,
   topUseCases,
   railLimit = 6,
 }: GalleryBrowseProps) {
-  // Only a model that owns a real page can offer a "see all" destination.
-  const modelRails = models.flatMap((model) =>
-    model.href === null ? [] : [{ model, href: model.href, prompts: promptsForTerm(imagePrompts, "model", model.slug) }],
+  // Only a model that owns a real page can offer a "see all" destination —
+  // already guaranteed by `topRailedModels`, but checked again here so this
+  // component cannot render a rail with a broken link if that ever changes.
+  const modelRails = railedModels.flatMap((model) =>
+    model.href === null
+      ? []
+      : [
+          {
+            model,
+            href: model.href,
+            prompts: promptsForTerm(imagePrompts, "model", model.slug),
+            // The model page (the rail's "进入模型页" destination) lists every
+            // content type for that model — this is its true, wider count.
+            totalCount: promptsForTerm(allPrompts, "model", model.slug).length,
+          },
+        ],
+  );
+
+  // The related-links band, unlike the rail band above, is not capped: every
+  // model with a real page is a real destination worth linking, regardless of
+  // how many image prompts it has.
+  const allLinkableModels = models.filter(
+    (model): model is TaxonomyWithCount & { href: string } => model.href !== null,
   );
 
   const portraitPrompts =
@@ -75,7 +117,7 @@ export function GalleryBrowse({
         description={`编辑挑出的图片提示词，互动数据观测于 ${observedAt}。`}
       >
         <PromptRail
-          label="精选图片提示词"
+          label="精选图片提示词，横向滚动列表"
           prompts={featured}
           locale={locale}
           idPrefix="featured"
@@ -92,14 +134,14 @@ export function GalleryBrowse({
         <ModelTiles models={models} />
 
         <div className="mt-10 flex flex-col gap-10">
-          {modelRails.map(({ model, href, prompts }) => {
+          {modelRails.map(({ model, href, prompts, totalCount }) => {
             const label = termLabel(model);
             return (
               <div key={model.id}>
-                <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-2">
+                <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-2 md:border-b-4">
                   <h3 className="text-xl font-black tracking-tight uppercase">{label} 图片提示词</h3>
                   <ButtonLink href={href} data-model-more={model.slug} variant="outline">
-                    查看全部 {model.count} 条 →
+                    {modelRailMoreLabel(model.count, totalCount)}
                   </ButtonLink>
                 </div>
                 <div className="mt-4">
@@ -163,9 +205,9 @@ export function GalleryBrowse({
               提示词库首页
             </Link>
           </li>
-          {modelRails.map(({ model, href }) => (
+          {allLinkableModels.map((model) => (
             <li key={`related-${model.id}`}>
-              <Link href={href} className="text-base font-bold underline">
+              <Link href={model.href} className="text-base font-bold underline">
                 {termLabel(model)} 模型页
               </Link>
             </li>
@@ -174,9 +216,10 @@ export function GalleryBrowse({
             <li key={`related-${useCase.id}`}>
               <Link
                 href={queryHref(promptsHome(locale), setFacet({}, "useCase", [useCase.slug]))}
+                data-usecase-more={useCase.slug}
                 className="text-base font-bold underline"
               >
-                {termLabel(useCase)}提示词（{useCase.count} 条图片提示词）
+                {termLabel(useCase)} 提示词
               </Link>
             </li>
           ))}

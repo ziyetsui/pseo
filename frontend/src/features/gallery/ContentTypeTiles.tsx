@@ -52,7 +52,7 @@ export function ContentTypeTiles({
               >
                 {body}
                 <p className="mt-auto text-xs font-bold tracking-wider uppercase">
-                  该类型页面尚未发布
+                  {type.slug === "unknown" ? "未标注类型，不会生成独立页面" : "该类型页面尚未发布"}
                 </p>
               </div>
             ) : (
