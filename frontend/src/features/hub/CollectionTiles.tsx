@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { CardLink, tileShellClassName } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
 import type { CollectionWithCount } from "@/lib/content/types";
 import { queryHref } from "@/features/search/query-links";
@@ -77,9 +75,9 @@ export function CollectionTiles({
 
         return (
           <li key={collection.id} className={browseTileCellClassName(lead)}>
-            <Link
+            <CardLink
               href={queryHref(basePath, { collection: collection.slug })}
-              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+              className={cx(tileShellClassName, browseTileBodyClassName(lead))}
             >
               {lead ? <BrowseTileRank accent={accent} /> : null}
               <h3 className={browseTileTitleClassName(lead)}>{collection.title}</h3>
@@ -89,7 +87,7 @@ export function CollectionTiles({
               <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
               <BrowseTileCount value={collection.count} caption="条" lead={lead} />
               <BrowseTileBar share={share} accent={accent} lead={lead} />
-            </Link>
+            </CardLink>
           </li>
         );
       })}

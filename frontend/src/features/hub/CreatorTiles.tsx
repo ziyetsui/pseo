@@ -66,7 +66,9 @@ export function CreatorTiles({
               href={creator.url}
               target="_blank"
               rel="noopener nofollow"
-              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)), {
+                interactive: true,
+              })}
             >
               {lead ? <BrowseTileRank accent={accent} /> : null}
               <span className={browseTileTitleClassName(lead)}>

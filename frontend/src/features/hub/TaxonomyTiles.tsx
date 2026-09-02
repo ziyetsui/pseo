@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { CardLink, tileShellClassName } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
 import type { QueryFacetKey, TaxonomyWithCount } from "@/lib/content/types";
 import { queryHref, setFacet } from "@/features/search/query-links";
@@ -73,9 +71,9 @@ export function TaxonomyTiles({
 
         return (
           <li key={term.id} className={browseTileCellClassName(lead)}>
-            <Link
+            <CardLink
               href={href}
-              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+              className={cx(tileShellClassName, browseTileBodyClassName(lead))}
             >
               {lead ? <BrowseTileRank accent={accent} /> : null}
               {/* Prototype tiles carry the English taxonomy value (`Fashion`,
@@ -84,7 +82,7 @@ export function TaxonomyTiles({
               <h3 className={browseTileTitleClassName(lead)}>{term.label}</h3>
               <BrowseTileCount value={term.count} caption="条提示词" lead={lead} />
               <BrowseTileBar share={share} accent={accent} lead={lead} />
-            </Link>
+            </CardLink>
           </li>
         );
       })}

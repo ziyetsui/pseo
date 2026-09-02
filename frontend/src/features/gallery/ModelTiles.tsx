@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { CardLink, tileShellClassName } from "@/components/ui/Card";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { cx } from "@/components/ui/class-names";
 import {
@@ -88,15 +86,15 @@ export function ModelTiles({
                 <p className="text-xs font-bold tracking-wider uppercase">模型页尚未发布</p>
               </div>
             ) : (
-              <Link
+              <CardLink
                 href={model.href}
                 data-model-tile={model.slug}
-                className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+                className={cx(tileShellClassName, browseTileBodyClassName(lead))}
               >
                 {/* The whole tile is the link, exactly as in the prototype —
                     no extra call-to-action line underneath it. */}
                 {body}
-              </Link>
+              </CardLink>
             )}
           </li>
         );

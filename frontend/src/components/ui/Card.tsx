@@ -1,16 +1,43 @@
+import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
 
-import { GeometricMark, type MarkColor, type MarkShape } from "./GeometricMark";
+import { GeometricMark, type MarkShape, type MarkColor } from "./GeometricMark";
 
 /**
- * Bauhaus surface: white, hard black border (2px mobile / 4px desktop) and an
- * unblurred offset shadow. `cardClassName` is exported so semantic wrappers
- * (`<article>`, `<li>`) can wear it without nesting an extra `<div>`.
+ * The chassis.
+ *
+ * Every card on the site is this one shell — white, hard black border (2px
+ * mobile / 4px desktop), unblurred offset shadow — and differs only by which
+ * SLOTS are pushed into it (`CardMedia`, `IdentityMark`, `StatusBadge`,
+ * `CategoryPill`, `ActionRow`, `SpineCard`'s colour column). The shell is what
+ * makes forty different cards read as one system; the slots are what keeps
+ * them from reading as forty copies of one card.
+ *
+ * `cardClassName` is exported so semantic wrappers (`<article>`, `<li>`,
+ * `<a>`) can wear it without nesting an extra `<div>`.
  */
-export function cardClassName(className?: string): string {
+
+export interface CardStyleOptions {
+  /**
+   * The whole card is one link or button.
+   *
+   * It drops the document-wide hover underline (underlining an entire tile is
+   * noise, not feedback — see the `a[href]:not(.no-underline)` rule in
+   * `globals.css`). The `group` hook that the hover expressions hang off is
+   * NOT conditional on this: it is on every card, so a card that is merely
+   * *containing* a link can still colour its title on card hover.
+   */
+  interactive?: boolean;
+}
+
+export function cardClassName(className?: string, options: CardStyleOptions = {}): string {
   return cx(
+    // `group`: the anchor for every hover expression in `hover.ts`. It paints
+    // nothing on its own, so putting it on all cards costs nothing and means a
+    // slot never has to ask its parent to opt in.
+    "group",
     // Hover is deliberately small: 2px of lift keeps the hard shadow reading as
     // a shadow. A 4px jump made a whole grid of cards twitch under the pointer.
     //
@@ -21,6 +48,7 @@ export function cardClassName(className?: string): string {
     // own shadow. Both steps ride the same 200ms ease-out; `prefers-reduced-
     // motion` is neutralised globally in `globals.css`.
     "relative flex min-w-0 flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-md-hover md:border-4 md:shadow-hard-lg md:hover:shadow-hard-lg-hover",
+    options.interactive === true ? "no-underline" : undefined,
     className,
   );
 }
@@ -61,5 +89,25 @@ export function Card({ className, mark, children, ...rest }: CardProps) {
       )}
       {children}
     </div>
+  );
+}
+
+export interface CardLinkProps extends Omit<ComponentPropsWithoutRef<typeof Link>, "className"> {
+  className?: string;
+}
+
+/**
+ * The interactive variant: the whole card is one internal link.
+ *
+ * One link per card, not a link per line inside it — a tile with three
+ * separately focusable fragments makes a keyboard walk the same destination
+ * three times. External destinations do not go through `next/link`, so they
+ * stay a plain `<a>` wearing `cardClassName(…, { interactive: true })`.
+ */
+export function CardLink({ className, children, ...rest }: CardLinkProps) {
+  return (
+    <Link {...rest} className={cardClassName(className, { interactive: true })}>
+      {children}
+    </Link>
   );
 }

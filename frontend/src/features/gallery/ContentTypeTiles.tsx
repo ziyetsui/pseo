@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { CardLink, tileShellClassName } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
 import { StateBlock } from "@/components/ui/StateBlock";
 import {
@@ -88,16 +86,16 @@ export function ContentTypeTiles({
                 </p>
               </div>
             ) : (
-              <Link
+              <CardLink
                 href={type.href}
                 data-content-type={type.slug}
                 aria-current={type.slug === currentSlug ? "page" : undefined}
-                className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+                className={cx(tileShellClassName, browseTileBodyClassName(lead))}
               >
                 {/* The whole tile is the link, as in the prototype; the current
                     page is marked with `aria-current` rather than a caption. */}
                 {body}
-              </Link>
+              </CardLink>
             )}
           </li>
         );

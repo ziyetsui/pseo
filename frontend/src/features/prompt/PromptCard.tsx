@@ -2,9 +2,10 @@ import Link from "next/link";
 
 import { buttonClassName } from "@/components/ui/Button";
 import { cardClassName } from "@/components/ui/Card";
+import { CardMedia } from "@/components/ui/CardMedia";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { formatCreatorHandle } from "@/lib/content";
 import type { Locale, Media, PromptSummary, Taxonomy } from "@/lib/content/types";
@@ -128,7 +129,7 @@ export function PromptCard({
       )}
 
       {cover === undefined ? null : (
-        <MediaFrame
+        <CardMedia
           src={cover.src}
           srcSet={cover.srcSet}
           sizes={mediaSizes}
@@ -326,9 +327,7 @@ function CompactMeta({ prompt }: { prompt: PromptSummary }) {
         // A pill, not a square chip: the one marker on this card that is a
         // verdict rather than a fact reads as a stamp. Still a word — the
         // signal is never carried by the yellow alone.
-        <span className="inline-flex items-center rounded-pill border-2 border-foreground bg-accent-yellow px-2.5 py-0.5 text-xs font-bold tracking-wider shadow-hard-sm">
-          热门
-        </span>
+        <StatusBadge>热门</StatusBadge>
       ) : null}
       <a
         {...EXTERNAL}

@@ -34,6 +34,15 @@
   --radius-none: 0px;
   --radius-pill: 9999px;
 
+  /*
+   * Metadata tracking. The one letter-spacing step the scale was missing:
+   * Tailwind's widest stop is 0.1em, and the micro label — 11-12px, heaviest
+   * weight, upper case — needs to open further than that before a line of it
+   * reads as a designed label rather than as body copy nobody set. Added as a
+   * token (not `tracking-[0.16em]`) so no component ever spells the number.
+   */
+  --tracking-micro: 0.16em;
+
   /* `--font-outfit` / `--font-jetbrains-mono` are injected by next/font. */
   --font-sans:
     var(--font-outfit), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
