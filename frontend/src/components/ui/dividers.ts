@@ -115,9 +115,20 @@ const SIDE_THICK: Record<DividerSide, string> = {
 
 export interface DividerOptions {
   /**
-   * Step up to the 4px desktop border from `md`. Only meaningful for the
-   * `card` tier, where the rule has to match the card's own frame. Off by
-   * default: everything else in this system draws a 2px rule at every width.
+   * Step up to the 4px desktop border from `md`.
+   *
+   * **On by default for the `card` tier, and meaningless for the other two.**
+   * A card's own frame is 2px on mobile and 4px from `md`, so a card-internal
+   * rule that stays at 2px on desktop is thinner than the box it sits in — the
+   * exact mistake this file's header warns about, and it shipped at three call
+   * sites (a card's meta row, a spine's colour column, an action row's top
+   * rule) because the option was opt-in and easy to forget. Making it the
+   * tier's default means a caller can only get it wrong on purpose.
+   *
+   * Pass `false` for the one shape that legitimately wants a 2px rule at every
+   * width while still asking for full-strength ink — a card-tier rule drawn
+   * UNDER a page section rather than inside a card, where there is no 4px
+   * frame for it to match.
    *
    * Ignored when `from` is set — a rule that only starts at `lg` cannot also
    * thicken at `md`, and the two together would make it appear early.
@@ -149,7 +160,11 @@ export function dividerClassName(
   side: DividerSide,
   options: DividerOptions = {},
 ): string {
-  const { desktopThick = false, surface = "canvas", from, className } = options;
+  const { surface = "canvas", from, className } = options;
+  // The card tier carries the desktop step unless the caller opts out; the
+  // column and row tiers draw 2px at every width and cannot be thickened,
+  // because a page-level or list-level rule has no 4px frame to match.
+  const desktopThick = tier === "card" && (options.desktopThick ?? true);
   return cx(
     SIDE[from ?? "base"][side],
     desktopThick && from === undefined ? SIDE_THICK[side] : undefined,

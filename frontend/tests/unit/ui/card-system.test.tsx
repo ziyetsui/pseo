@@ -15,42 +15,113 @@ import { SpineCard } from "@/components/ui/SpineCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { dividerClassName } from "@/components/ui/dividers";
 import {
+  controlLabelClassName,
   displayTitleClassName,
+  figureClassName,
   microLabelClassName,
+  pageTitleClassName,
+  recordTitleClassName,
+  sectionTitleClassName,
   singleLineTitleClassName,
 } from "@/components/ui/type-scale";
 
 /* ------------------------------------------------------------ 第二步: tiers */
 
-describe("title tiers", () => {
-  it("keeps the three tiers far enough apart to be unmistakable", () => {
-    const display = displayTitleClassName();
-    const single = singleLineTitleClassName();
-    const micro = microLabelClassName();
+/** Every rung of the ladder, largest first. */
+const LADDER = [
+  { name: "page", className: pageTitleClassName(), mobile: "text-4xl", desktop: "md:text-6xl" },
+  { name: "record", className: recordTitleClassName(), mobile: "text-3xl", desktop: "md:text-5xl" },
+  { name: "display", className: displayTitleClassName(), mobile: "text-2xl", desktop: "md:text-4xl" },
+  { name: "section", className: sectionTitleClassName(), mobile: "text-xl", desktop: "md:text-2xl" },
+  { name: "single", className: singleLineTitleClassName(), mobile: "text-base", desktop: undefined },
+  { name: "control", className: controlLabelClassName(), mobile: "text-sm", desktop: undefined },
+  { name: "micro", className: microLabelClassName(), mobile: "text-xs", desktop: undefined },
+] as const;
 
+describe("title tiers", () => {
+  it("is one ladder: every rung a distinct size, no two rungs alike", () => {
+    for (const rung of LADDER) {
+      expect(rung.className, rung.name).toContain(rung.mobile);
+      if (rung.desktop !== undefined) expect(rung.className, rung.name).toContain(rung.desktop);
+    }
+    expect(new Set(LADDER.map((rung) => rung.mobile)).size).toBe(LADDER.length);
+    expect(new Set(LADDER.map((rung) => rung.className)).size).toBe(LADDER.length);
+  });
+
+  it("puts the card poster a full step above the band heading it sits under", () => {
+    // They used to be size-identical at both breakpoints, which is the one
+    // comparison the poster tier exists to win.
+    const display = displayTitleClassName();
+    const section = sectionTitleClassName();
+    expect(display).not.toBe(section);
     expect(display).toContain("text-2xl");
-    expect(single).toContain("text-sm");
-    expect(micro).toContain("text-xs");
-    expect(new Set([display, single, micro]).size).toBe(3);
+    expect(section).toContain("text-xl");
+    expect(display).toContain("md:text-4xl");
+    expect(section).toContain("md:text-2xl");
   });
 
   it("clamps the display tier to two lines so a poster title cannot grow the card", () => {
     expect(displayTitleClassName()).toContain("line-clamp-2");
     expect(displayTitleClassName()).toContain("font-black");
-    expect(displayTitleClassName()).toContain("leading-none");
+    // `leading-none` clipped a Latin descender on the last clamped line; the
+    // one place it survives is the figure tier, which is digits only.
+    expect(displayTitleClassName()).toContain("leading-tight");
+    expect(displayTitleClassName()).not.toContain("leading-none");
+    expect(figureClassName()).toContain("leading-none");
+    expect(figureClassName()).not.toMatch(/line-clamp/);
+    expect(figureClassName()).toContain("tabular-nums");
   });
 
-  it("always truncates the single-line tier", () => {
+  it("always truncates the single-line tier, at a size the body copy does not share", () => {
     // The whole point of the tier: a long title can never wrap and make this
-    // card taller than its neighbours.
+    // card taller than its neighbours. And it is 16px, not the 14px it shares
+    // with the body copy and the monospace prompt directly beneath it — the
+    // weight step that used to separate them does not render on CJK.
     expect(singleLineTitleClassName()).toContain("truncate");
+    expect(singleLineTitleClassName()).toContain("text-base");
     expect(singleLineTitleClassName("extra")).toContain("extra");
   });
 
-  it("opens the micro label with the tracking token rather than a literal em value", () => {
+  it("names the fourth tier so the control label stops being hand-typed", () => {
+    expect(controlLabelClassName()).toContain("text-sm");
+    expect(controlLabelClassName()).toContain("uppercase");
+    expect(controlLabelClassName()).toContain("tracking-micro");
+    expect(controlLabelClassName("extra")).toContain("extra");
+  });
+
+  it("opens both label tiers with the tracking token rather than a literal em value", () => {
     expect(microLabelClassName()).toContain("tracking-micro");
     expect(microLabelClassName()).toContain("uppercase");
     expect(microLabelClassName()).not.toMatch(/tracking-\[/);
+    expect(controlLabelClassName()).not.toMatch(/tracking-\[/);
+  });
+
+  it("keeps the wide Latin tracking off CJK runs and behind an explicit opt-in", () => {
+    // 0.16em is what turns 11-12px Latin caps into a label; on 中文标签 it reads
+    // as 疏排 and costs ~16% of the run's width. So the default is the step both
+    // scripts wear, and the wide one is asked for by script, never by number.
+    expect(microLabelClassName(undefined, { script: "cjk" })).toContain("tracking-micro");
+    expect(microLabelClassName(undefined, { script: "cjk" })).not.toContain("tracking-micro-latin");
+    expect(microLabelClassName(undefined, { script: "latin" })).toContain("tracking-micro-latin");
+    expect(controlLabelClassName(undefined, { script: "latin" })).toContain("tracking-micro-latin");
+  });
+
+  it("does not rest the hierarchy on a weight step CJK cannot render", () => {
+    // PingFang caps at Semibold, so 700 and 900 are the same face. The micro
+    // tier therefore stops asking for 900 (it bought nothing and implied a step
+    // that does not exist) and every rung is separated by SIZE first.
+    expect(microLabelClassName()).toContain("font-bold");
+    expect(microLabelClassName()).not.toContain("font-black");
+    const weights = LADDER.map((rung) => /font-(black|bold|medium)/.exec(rung.className)?.[1]);
+    expect(new Set(weights).size).toBeLessThan(LADDER.length);
+  });
+
+  it("uses the CJK-safe display tracking by default and the tighter one only for Latin", () => {
+    expect(displayTitleClassName()).toContain("tracking-tight");
+    expect(displayTitleClassName()).not.toContain("tracking-tighter");
+    expect(displayTitleClassName(undefined, { script: "latin" })).toContain("tracking-tighter");
+    expect(pageTitleClassName()).toContain("tracking-tight");
+    expect(recordTitleClassName()).toContain("tracking-tight");
   });
 });
 
@@ -71,8 +142,27 @@ describe("divider tiers", () => {
     expect(dividerClassName("row", "top")).toContain("border-t-2");
     expect(dividerClassName("row", "right")).toContain("border-r-2");
     expect(dividerClassName("row", "left")).toContain("border-l-2");
-    expect(dividerClassName("card", "bottom")).not.toContain("md:border-b-4");
-    expect(dividerClassName("card", "bottom", { desktopThick: true })).toContain("md:border-b-4");
+    expect(dividerClassName("row", "bottom")).not.toContain("md:border-b-4");
+  });
+
+  it("gives the card tier the desktop step by default, so a caller cannot forget it", () => {
+    // A card frame is 2px mobile / 4px desktop; a 2px rule inside a 4px box is
+    // the mistake this file's own header warns about, and it shipped at three
+    // call sites because the option was opt-in.
+    expect(dividerClassName("card", "bottom")).toContain("md:border-b-4");
+    expect(dividerClassName("card", "top")).toContain("md:border-t-4");
+    expect(dividerClassName("card", "bottom", { desktopThick: false })).not.toContain(
+      "md:border-b-4",
+    );
+  });
+
+  it("refuses to thicken a tier that has no 4px frame to match", () => {
+    expect(dividerClassName("row", "bottom", { desktopThick: true })).not.toContain(
+      "md:border-b-4",
+    );
+    expect(dividerClassName("column", "left", { desktopThick: true })).not.toContain(
+      "md:border-l-4",
+    );
   });
 
   it("draws the same tier in the surface's own ink, without an override", () => {
@@ -99,8 +189,10 @@ describe("divider tiers", () => {
   });
 
   it("can express a four-sided frame, so a card compartment is not hand-drawn", () => {
-    expect(dividerClassName("card", "all")).toBe("border-2 border-foreground");
-    expect(dividerClassName("card", "all", { desktopThick: true })).toContain("md:border-4");
+    expect(dividerClassName("card", "all")).toBe("border-2 md:border-4 border-foreground");
+    expect(dividerClassName("card", "all", { desktopThick: false })).toBe(
+      "border-2 border-foreground",
+    );
   });
 });
 

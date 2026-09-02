@@ -35,13 +35,23 @@
   --radius-pill: 9999px;
 
   /*
-   * Metadata tracking. The one letter-spacing step the scale was missing:
-   * Tailwind's widest stop is 0.1em, and the micro label — 11-12px, heaviest
-   * weight, upper case — needs to open further than that before a line of it
-   * reads as a designed label rather than as body copy nobody set. Added as a
-   * token (not `tracking-[0.16em]`) so no component ever spells the number.
+   * Label tracking, in two steps, because letter-spacing is a LATIN device.
+   *
+   * `--tracking-micro` is the label step both scripts can wear, and it is what
+   * `microLabelClassName` / `controlLabelClassName` emit by default. It used to
+   * be 0.16em for every label on the site — which is right for 11-12px Latin
+   * caps, where that much air is the difference between a designed label and a
+   * run of small bold text, and wrong for 中文标签, where the same value reads
+   * as 疏排 (spaced-out prose) rather than as a label and costs ~16% of the
+   * run's width. This site publishes zh-CN, so the default is the value that
+   * works on the glyphs actually being set.
+   *
+   * `--tracking-micro-latin` keeps the wide step for the labels that really are
+   * Latin or digits — a model name, a unit, a taxonomy slug. Callers ask for it
+   * by script (`{ script: "latin" }`), never by number.
    */
-  --tracking-micro: 0.16em;
+  --tracking-micro: 0.05em;
+  --tracking-micro-latin: 0.16em;
 
   /* `--font-outfit` / `--font-jetbrains-mono` are injected by next/font. */
   --font-sans:
@@ -60,9 +70,28 @@
   --border-thin: 2px;
   --border-thick: 4px;
 
-  /* Motion is only ever state feedback. */
+  /*
+   * Motion is only ever state feedback.
+   *
+   * `--motion-fast` / `--motion-base` are the canonical values that Tailwind's
+   * `duration-200` / `duration-300` utilities mirror (v4 has no `--duration-*`
+   * theme namespace, so a utility cannot be generated from them).
+   *
+   * `--motion-press` is consumed directly, by `pressClassName` in
+   * `components/ui/hover.ts`, and it is deliberately OUTSIDE the 200-300ms band
+   * that `specs/images/0008-bo-pseo-ui.md` sets for motion. That band was
+   * written for hover and for state changes, where a fifth of a second reads as
+   * considered. A press is different in kind: it has to land under the finger,
+   * and a desktop card press travels 8px from rest (10px from a hovered state),
+   * where 200ms of travel reads as mush rather than as a mechanism. 120ms keeps
+   * `ease-out` and keeps the motion mechanical — it makes it more mechanical,
+   * not less. The RELEASE stays on `--motion-fast`, so the object snaps down
+   * and settles back up, which is how a real key feels. This is a deliberate,
+   * argued amendment to the spec: please do not "correct" it back to 200ms.
+   */
   --motion-fast: 200ms;
   --motion-base: 300ms;
+  --motion-press: 120ms;
 }
 
 html {
@@ -74,7 +103,16 @@ html {
    * just moved to (WCAG 2.2 "Focus Not Obscured (Minimum)").
    */
   scroll-padding-top: 1.5rem;
-  scroll-padding-bottom: 6rem;
+  /*
+   * 6rem is the sticky bar's own height, and a padding EQUAL to the obstruction
+   * leaves the focused control flush against it with nothing left for the 2px
+   * focus outline and its 2px offset — the ring is then drawn under the bar,
+   * which is the thing WCAG 2.2 "Focus Not Obscured" is about. The extra 0.75rem
+   * is the ring's clearance; the safe-area inset is the bar's own growth on a
+   * device with a home indicator, which is what made 6rem exact in the first
+   * place.
+   */
+  scroll-padding-bottom: calc(6rem + 0.75rem + env(safe-area-inset-bottom, 0px));
 }
 
 body {
@@ -125,8 +163,37 @@ body {
     text-underline-offset: 0.2em;
   }
 
+  /*
+   * A link that draws its own box is a control, and a control's hover reply is
+   * its fill and its shadow — not a rule through its label.
+   *
+   * `text-decoration-line` is not animatable, so it snaps. Matching on the TAG
+   * meant every chip, every trending tab and every button-shaped `<a>` answered
+   * one gesture twice on two clocks: an instant underline through an uppercase
+   * tracked label while that same element's fill eased over 200ms. Worse, the
+   * same visual button behaved differently depending on how it was built —
+   * `<button>复制</button>` never underlined, `<a>原帖 ↗</a>` beside it in the
+   * same action row always did — and a pill-shaped chip got a straight rule
+   * driven through its label.
+   *
+   * So the rule is scoped here, at the source, rather than opted out of at
+   * every control: anything wearing a full frame from this system's border set
+   * (`border-2` / `border-4` / `border-s-2` — the widths a control paints, as
+   * opposed to the single-side `border-b-2` a divider paints), anything
+   * pill-shaped, anything ARIA-typed as a button or a tab, and anything that
+   * has explicitly opted out. What is left is what the rule was written for:
+   * the anchor bar, the mobile nav, and prose links with no standing underline.
+   */
   @media (hover: hover) {
-    a[href]:not(.no-underline):hover {
+    a[href]:not(
+        .no-underline,
+        [class*="border-2"],
+        [class*="border-4"],
+        [class*="border-s-2"],
+        [class*="rounded-pill"],
+        [role="button"],
+        [role="tab"]
+      ):hover {
       text-decoration-line: underline;
     }
   }
@@ -143,6 +210,18 @@ body {
   [role="tab"],
   [role="button"] {
     cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  /*
+   * The form controls get the same 300ms-tap-delay removal but NOT the hand
+   * cursor: a text field's cursor is the I-beam, and the search field was the
+   * one control on the site still paying the double-tap wait before it focused.
+   */
+  input,
+  select,
+  textarea,
+  label {
     touch-action: manipulation;
   }
 
@@ -219,6 +298,24 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /*
+   * Collapsing the durations above makes every transition instant, which is the
+   * right answer for a colour or a shadow — the state still lands, it just does
+   * not travel. It is NOT the right answer for the press, whose whole geometry
+   * is a translate: instant or not, the object still jumps 4-8px down-right
+   * under the finger, which is exactly the kind of displacement a reader who
+   * asked for less motion is asking not to get.
+   *
+   * So the press keeps its meaning and loses its travel: the shadow still
+   * collapses to nothing (the object is still visibly pushed flat), and the
+   * translate that would normally follow the shadow down is cancelled. The
+   * marker class is `PRESS_FLATTEN_MARKER` in `components/ui/hover.ts`; the
+   * fill-inverting and band presses move nothing and need no counterpart here.
+   */
+  .press-flatten:active {
+    translate: none !important;
   }
 }
 

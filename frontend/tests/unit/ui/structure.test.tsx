@@ -98,8 +98,14 @@ describe("cardClassName", () => {
     expect(className).toContain("md:hover:shadow-hard-lg-hover");
   });
 
-  it("runs both on one 200ms ease-out transition and emits no arbitrary values", () => {
-    expect(className).toContain("transition duration-200 ease-out");
+  it("runs both on one 200ms ease-out transition and emits no arbitrary colours", () => {
+    expect(className).toContain("duration-200 ease-out");
+    // Never `transition-all`, and never a transition whose property list drags
+    // `outline-color` along with it — see `transitionClassName` in `hover.ts`,
+    // which is what this chassis reaches for once the chip/button family moves
+    // off the bare utility.
+    expect(className).not.toContain("transition-all");
+    expect(className).not.toContain("outline");
     expect(className).not.toMatch(/shadow-\[/);
     expect(className).not.toMatch(/#[0-9a-f]{3,6}/i);
   });
