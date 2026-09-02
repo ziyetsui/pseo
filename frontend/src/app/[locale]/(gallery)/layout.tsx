@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { SiteShell } from "@/components/layout/SiteShell";
-import { getContentRepository } from "@/lib/content";
+import { getServerContentRepository } from "@/lib/content/server";
 import { isPublishedLocale } from "@/lib/i18n/config";
 
 /**
@@ -23,7 +23,7 @@ export default async function GalleryLayout({
 }) {
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  const snapshot = await getContentRepository().getSnapshot();
+  const snapshot = await (await getServerContentRepository()).getSnapshot();
 
   return (
     <SiteShell

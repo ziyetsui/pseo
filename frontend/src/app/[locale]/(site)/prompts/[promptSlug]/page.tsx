@@ -4,10 +4,10 @@ import { notFound } from "next/navigation";
 import { PromptDetailView } from "@/features/prompt-detail/PromptDetailView";
 import {
   formatCreatorHandle,
-  getContentRepository,
   type Locale,
   type PromptDetail,
 } from "@/lib/content";
+import { getServerContentRepository } from "@/lib/content/server";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 import { promptDetail } from "@/lib/i18n/routes";
 import { buildBreadcrumbTrail } from "@/lib/seo/breadcrumbs";
@@ -18,7 +18,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo/site";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const params: { locale: Locale; promptSlug: string }[] = [];
   for (const locale of PUBLISHED_LOCALES) {
     const { items } = await repository.listPrompts(locale);
@@ -32,7 +32,7 @@ type PageParams = Promise<{ locale: string; promptSlug: string }>;
 async function load(params: PageParams): Promise<{ locale: Locale; prompt: PromptDetail }> {
   const { locale, promptSlug } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  const prompt = await getContentRepository().getPromptBySlug(locale, promptSlug);
+  const prompt = await (await getServerContentRepository()).getPromptBySlug(locale, promptSlug);
   if (prompt === null) notFound();
   return { locale, prompt };
 }

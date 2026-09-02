@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { SiteShell } from "@/components/layout/SiteShell";
-import { getContentRepository } from "@/lib/content";
+import { getServerContentRepository } from "@/lib/content/server";
 import { isPublishedLocale } from "@/lib/i18n/config";
 import { buildFooterColumns } from "@/features/hub/footer-links";
 
@@ -27,7 +27,7 @@ export default async function HubLayout({
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
 
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const [snapshot, models, useCases, techniques, styles] = await Promise.all([
     repository.getSnapshot(),
     repository.listTaxonomies(locale, "model"),

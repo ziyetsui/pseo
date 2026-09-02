@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 
+import { InternalPreviewMarker } from "@/components/layout/InternalPreviewMarker";
+import { createServerContentContext } from "@/lib/content/server";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 
 /** Static export: only the locales listed below may exist as routes. */
@@ -46,6 +48,12 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
+  const context = await createServerContentContext({ locale });
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <InternalPreviewMarker mode={context.mode} revision={context.revision} />
+    </>
+  );
 }

@@ -94,14 +94,14 @@ export interface CreateServerContentContextOptions {
 export async function createServerContentContext(
   options: CreateServerContentContextOptions = {},
 ): Promise<ServerContentContext> {
-  if (typeof window !== "undefined") {
-    throw new CmsPreviewConfigError("Server content context cannot run in the browser");
-  }
   const config = resolveContentSourceConfig(options.env ?? process.env);
   if (config.mode === "fixture") {
     const repository = getFixtureContentRepository();
     const snapshot = await repository.getSnapshot();
     return { mode: "fixture", revision: snapshot.indexVersion, repository };
+  }
+  if (typeof window !== "undefined") {
+    throw new CmsPreviewConfigError("CMS preview content context cannot run in the browser");
   }
 
   const envelope = await fetchCmsPreviewCatalog({
