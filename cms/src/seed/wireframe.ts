@@ -43,6 +43,7 @@ interface WireframeTaxonomy {
 interface WireframeCreator {
   readonly id: string
   readonly handle: string
+  readonly url: string
 }
 
 interface WireframeModel {
@@ -214,7 +215,11 @@ export function buildWireframeSeedFixture(): WireframeSeedFixture {
     addTaxonomy(taxonomyData(axis, term.slug, term.slug, term.labelZh ?? term.label, null, term))
   }
   for (const creator of WIREFRAME_CREATORS) {
-    addTaxonomy(taxonomyData('creator', creator.id, creator.id, creator.handle, null, creator))
+    const seeded = taxonomyData('creator', creator.id, creator.id, creator.handle, null, creator)
+    addTaxonomy({
+      ...seeded,
+      data: { ...seeded.data, officialUrl: creator.url },
+    })
   }
   for (const model of WIREFRAME_MODELS) {
     const key = taxonomyKey('model', model.slug)

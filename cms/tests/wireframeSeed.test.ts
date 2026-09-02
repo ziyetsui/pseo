@@ -44,6 +44,10 @@ test('wireframe adapter imports the exact fixture universe as noindex needs-revi
 
   assert.equal(fixture.artifacts.length, 35)
   assert.equal(fixture.taxonomies.filter((item) => item.axis === 'creator').length, 21)
+  assert.equal(
+    fixture.taxonomies.filter((item) => item.axis === 'creator' && typeof item.data.officialUrl === 'string').length,
+    21,
+  )
   assert.equal(fixture.taxonomies.filter((item) => item.axis === 'model').length, 11)
   assert.equal(fixture.taxonomies.filter((item) => item.axis === 'collection').length, 6)
   assert.deepEqual(
