@@ -143,9 +143,21 @@ const LABEL_ZH = {
   "technique:multi-shot-storyboard": "分镜",
 };
 
+/**
+ * @typedef {object} TaxonomyTerm
+ * @property {string} id
+ * @property {string} axis
+ * @property {string} slug
+ * @property {string} label
+ * @property {string | null} labelZh
+ * @property {string[]} aliases
+ * @property {number | null} wireframeDeclaredCount
+ * @property {string[]} appearsOn
+ */
+
 class TaxonomyRegistry {
   constructor() {
-    /** @type {Map<string, any>} */
+    /** @type {Map<string, TaxonomyTerm>} */
     this.terms = new Map();
   }
 
@@ -214,6 +226,18 @@ function mediaAlt(kind, index, total, durationSeconds) {
   }
   return total > 1 ? `来源帖媒体（图片 ${index}/${total}）` : "来源帖媒体（图片）";
 }
+
+/**
+ * @typedef {object} RawMediaEntry
+ * @property {string} id
+ * @property {"image" | "video"} kind
+ * @property {string} src
+ * @property {string} alt
+ * @property {string | null} label
+ * @property {number | null} durationSeconds
+ * @property {number} index
+ * @property {number} total
+ */
 
 function buildMedia(promptId, entries) {
   return entries.map((entry, i) => ({
@@ -516,8 +540,18 @@ function creatorIdOf(handle) {
   return id;
 }
 
+/**
+ * @typedef {object} DeclaredCreator
+ * @property {string} handle
+ * @property {string} url
+ * @property {string | null} avatarUrl
+ * @property {number | null} wireframeDeclaredPromptCount
+ * @property {number | null} wireframeDeclaredLikes
+ * @property {number | null} wireframeDeclaredBookmarks
+ */
+
 function parseCreatorDirectories(pages) {
-  /** @type {Map<string, any>} */
+  /** @type {Map<string, DeclaredCreator>} */
   const declared = new Map();
 
   for (const anchor of pages.l1.querySelectorAll(".creators .creator")) {
@@ -560,8 +594,41 @@ function parseCreatorDirectories(pages) {
 
 /* ------------------------------------------------------------------ merge */
 
+/**
+ * One card's worth of data as seen on a single page (l1/l2/l3), or the golden
+ * L4 record. `mergePrompts` groups these by X status id and reduces each
+ * group down to one merged prompt record.
+ *
+ * @typedef {object} PromptObservation
+ * @property {string} id
+ * @property {"l1" | "l2" | "l3" | "l4"} page
+ * @property {string | null} slug
+ * @property {string} title
+ * @property {string} promptText
+ * @property {string | null} [summary]
+ * @property {RawMediaEntry[]} media
+ * @property {string[]} modelSlugs
+ * @property {string[]} useCaseSlugs
+ * @property {string[]} techniqueSlugs
+ * @property {string[]} styleSlugs
+ * @property {string[]} subjectSlugs
+ * @property {string} handle
+ * @property {string} sourceUrl
+ * @property {string | null} publishedAt
+ * @property {number | null} likes
+ * @property {number | null} bookmarks
+ * @property {number | null} [views]
+ * @property {number | null} [reposts]
+ * @property {number | null} [replies]
+ * @property {number | null} [quotes]
+ * @property {boolean} metricsRounded
+ * @property {number | null} valueScore
+ * @property {boolean} highValue
+ * @property {string[]} featuredOn
+ */
+
 function mergePrompts(observations, golden) {
-  /** @type {Map<string, any[]>} */
+  /** @type {Map<string, PromptObservation[]>} */
   const byId = new Map();
   for (const obs of observations) {
     const bucket = byId.get(obs.id) ?? [];
@@ -607,7 +674,7 @@ function mergePrompts(observations, golden) {
     const promptText = ordered.reduce((best, o) => (o.promptText.length > best.length ? o.promptText : best), "");
     const media = ordered.reduce(
       (best, o) => (o.media.length > best.length ? o.media : best),
-      /** @type {any[]} */ ([]),
+      /** @type {RawMediaEntry[]} */ ([]),
     );
 
     const exact = ordered.find((o) => !o.metricsRounded && o.likes !== null);
@@ -780,7 +847,19 @@ function main() {
   /* creators */
   const declaredCreators = parseCreatorDirectories(pages);
   const creatorsById = new Map();
+  // creatorIdOf() slugifies the handle, so two distinct handles that only
+  // differ by characters slugify() strips (e.g. "@Foo_" and "@Foo") would
+  // silently collide on the same id and one creator's data would clobber the
+  // other's. Assert every id maps back to exactly one handle instead.
+  const handleById = new Map();
   for (const prompt of prompts) {
+    const previousHandle = handleById.get(prompt.creatorId);
+    assert(
+      previousHandle === undefined || previousHandle === prompt.handle,
+      `creator id collision: handles "${previousHandle}" and "${prompt.handle}" both slugify to creator id "${prompt.creatorId}"`,
+    );
+    handleById.set(prompt.creatorId, prompt.handle);
+
     if (creatorsById.has(prompt.creatorId)) continue;
     const declared = declaredCreators.get(prompt.handle);
     creatorsById.set(prompt.creatorId, {
@@ -788,7 +867,11 @@ function main() {
       handle: prompt.handle,
       url: declared?.url ?? `https://x.com/${prompt.handle.replace(/^@/, "")}`,
       avatarUrl: declared?.avatarUrl ?? null,
-      followers: prompt.id === GOLDEN_ID ? (golden.followers ?? null) : null,
+      // Only the L4 golden record's source panel publishes a follower count.
+      // Keyed off the creator's own handle (not "is this the first prompt we
+      // saw for this creator"), so it still lands on the right creator even if
+      // an earlier, non-golden prompt from the same handle is processed first.
+      followers: prompt.handle === golden.handle ? (golden.followers ?? null) : null,
       wireframeDeclaredPromptCount: declared?.wireframeDeclaredPromptCount ?? null,
       wireframeDeclaredLikes: declared?.wireframeDeclaredLikes ?? null,
       wireframeDeclaredBookmarks: declared?.wireframeDeclaredBookmarks ?? null,
@@ -1120,7 +1203,9 @@ function buildReport(ctx) {
   push("| L2 `其他类型` tiles `unresolved` / `mixed` / `网页` | 不建模：ContentType 只有 image / video / unknown |");
   push("| 媒体尺寸 | 原型未提供 → 固定 640×360 占位并标记 `dimensionsSource: \"assumed\"` |");
   push("| 媒体 alt | L2/L3 的英文 alt（`photo from the source post`）统一改写为与 L1/L4 一致的中文 alt |");
-  push("| L1 `data-q` 搜索索引 | 不保存：`query.ts` 从 title / prompt / handle / taxonomy label 自建检索串 |");
+  push(
+    "| L1 `data-q` 搜索索引 | 不保存：由 `fixture-repository.ts` 用 `query.ts` 的 `buildPromptSearchText()` 从 title / **完整** promptText（非 240 字的 `promptPreview`）/ handle / taxonomy label·slug·labelZh 生成，存为 `PromptSummary.searchText` |",
+  );
   push("| L3 genbox 的 设置 / 参考图 / 生成 按钮 | 无行为 → 不建模为数据（页面层按 global constraint 12 处理） |");
   push("| L3 `带变量的提示词` 标题声明 3 条，实际渲染 2 张卡 | 以实际卡片为准；`hasVariables` 由 `extractVariables()` 动态判定 |");
   push("| L1/L2/L3 的 copy / expand / tab 交互脚本 | 行为规格，不是数据 |");
@@ -1129,6 +1214,13 @@ function buildReport(ctx) {
   push();
   push(
     `L2/L3 render likes/bookmarks abbreviated (\`3.8K\`, \`2.4K\`, \`1.2K\`). Where the same prompt also appears on L1 the exact value (\`3,849\`) is kept; where it does not, the abbreviated value is expanded (\`3.8K\` → \`3800\`) and the record is flagged \`metricsRounded: true\` so a renderer can qualify it. In this run every abbreviated card also appears on L1, so ${prompts.filter((p) => p.metricsRounded).length} record(s) are flagged. No metric is ever invented: everything unavailable is \`null\`.`,
+  );
+  push();
+  push("### Cross-page model-tag unions");
+  push();
+  const multiModel = prompts.filter((p) => p.modelSlugs.length >= 2);
+  push(
+    `The prototype tags the same X status id with a different model on different pages (e.g. id \`2008952931484098637\` is \`Nano Banana\` on L1 but \`Nano Banana Pro\` on L2/L3). Per "union taxonomies across pages", the merged record keeps every model slug it was ever tagged with, so this one prompt is a member of two model pages rather than being forced onto one. **${multiModel.length}** of ${prompts.length} merged prompts carry 2+ model slugs for this reason.`,
   );
   push();
   push("### Rules that differ from the prototype's own code");
@@ -1145,7 +1237,7 @@ function buildReport(ctx) {
     "| L4 文案「全文出现 7 次」 | 由 `extractVariables()` 数出（本次为 7） | 数量必须来自当前数据 |",
   );
   push(
-    "| L1 卡片 `data-q` 预拼检索串 | `query.ts` 现算 haystack（title + prompt + handle + taxonomy label/slug/labelZh） | 服务端与客户端共用同一函数，且能命中中文标签 |",
+    "| L1 卡片 `data-q` 预拼检索串 | `fixture-repository.ts` 用 `query.ts` 的 `buildPromptSearchText()` 预先算好并存为 `PromptSummary.searchText`（title + **完整** promptText + handle + taxonomy label/slug/labelZh），`applyPromptQuery()` 只读这个字段，不再退化到 240 字的 `promptPreview` | 服务端与客户端共用同一构造函数，命中中文标签，且不受预览截断影响 |",
   );
   push();
   push("### Unknown-parameter reporting");

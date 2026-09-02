@@ -204,7 +204,7 @@ The prototype defines these six as JS predicates in the L1 script; they are re-e
 | L2 `其他类型` tiles `unresolved` / `mixed` / `网页` | 不建模：ContentType 只有 image / video / unknown |
 | 媒体尺寸 | 原型未提供 → 固定 640×360 占位并标记 `dimensionsSource: "assumed"` |
 | 媒体 alt | L2/L3 的英文 alt（`photo from the source post`）统一改写为与 L1/L4 一致的中文 alt |
-| L1 `data-q` 搜索索引 | 不保存：`query.ts` 从 title / prompt / handle / taxonomy label 自建检索串 |
+| L1 `data-q` 搜索索引 | 不保存：由 `fixture-repository.ts` 用 `query.ts` 的 `buildPromptSearchText()` 从 title / **完整** promptText（非 240 字的 `promptPreview`）/ handle / taxonomy label·slug·labelZh 生成，存为 `PromptSummary.searchText` |
 | L3 genbox 的 设置 / 参考图 / 生成 按钮 | 无行为 → 不建模为数据（页面层按 global constraint 12 处理） |
 | L3 `带变量的提示词` 标题声明 3 条，实际渲染 2 张卡 | 以实际卡片为准；`hasVariables` 由 `extractVariables()` 动态判定 |
 | L1/L2/L3 的 copy / expand / tab 交互脚本 | 行为规格，不是数据 |
@@ -213,6 +213,10 @@ The prototype defines these six as JS predicates in the L1 script; they are re-e
 
 L2/L3 render likes/bookmarks abbreviated (`3.8K`, `2.4K`, `1.2K`). Where the same prompt also appears on L1 the exact value (`3,849`) is kept; where it does not, the abbreviated value is expanded (`3.8K` → `3800`) and the record is flagged `metricsRounded: true` so a renderer can qualify it. In this run every abbreviated card also appears on L1, so 0 record(s) are flagged. No metric is ever invented: everything unavailable is `null`.
 
+### Cross-page model-tag unions
+
+The prototype tags the same X status id with a different model on different pages (e.g. id `2008952931484098637` is `Nano Banana` on L1 but `Nano Banana Pro` on L2/L3). Per "union taxonomies across pages", the merged record keeps every model slug it was ever tagged with, so this one prompt is a member of two model pages rather than being forced onto one. **13** of 35 merged prompts carry 2+ model slugs for this reason.
+
 ### Rules that differ from the prototype's own code
 
 | prototype | fixture | why |
@@ -220,7 +224,7 @@ L2/L3 render likes/bookmarks abbreviated (`3.8K`, `2.4K`, `1.2K`). Where the sam
 | 合集「模板提示词」谓词 `/\[[A-Z][A-Z _\/]{2,40}\]|@img\d|@image\d/` | `\[[A-Z][A-Z0-9 _/-]{1,40}\]|@img\d+|@image\d+` | 与 `extractVariables()` 用同一套 token 规则，避免「合集里有、详情页说没有变量」的自相矛盾；也覆盖 `[SHOT 2]` / `[CTA-TEXT]` 这类含数字与连字符的 token |
 | 热门补位：`该时段收录较少，已补充全部时段热门。` | `该时段收录较少，已补充全部时段的高分提示词。` | 同一行为，措辞点明补位来源 |
 | L4 文案「全文出现 7 次」 | 由 `extractVariables()` 数出（本次为 7） | 数量必须来自当前数据 |
-| L1 卡片 `data-q` 预拼检索串 | `query.ts` 现算 haystack（title + prompt + handle + taxonomy label/slug/labelZh） | 服务端与客户端共用同一函数，且能命中中文标签 |
+| L1 卡片 `data-q` 预拼检索串 | `fixture-repository.ts` 用 `query.ts` 的 `buildPromptSearchText()` 预先算好并存为 `PromptSummary.searchText`（title + **完整** promptText + handle + taxonomy label/slug/labelZh），`applyPromptQuery()` 只读这个字段，不再退化到 240 字的 `promptPreview` | 服务端与客户端共用同一构造函数，命中中文标签，且不受预览截断影响 |
 
 ### Unknown-parameter reporting
 

@@ -16,7 +16,7 @@ import {
   promptsImage,
 } from "@/lib/i18n/routes";
 
-import { applyPromptQuery, facetAxis, promptTaxonomies, resolveWindowStart } from "./query";
+import { applyPromptQuery, buildPromptSearchText, facetAxis, promptTaxonomies, resolveWindowStart } from "./query";
 import type { ContentRepository } from "./repository";
 import {
   ASSUMED_MEDIA_HEIGHT,
@@ -166,6 +166,12 @@ function buildView(locale: Locale): LocaleView {
     }
 
     const flat = normalize(record.promptText);
+    const models = resolve("model", record.modelSlugs);
+    const useCases = resolve("useCase", record.useCaseSlugs);
+    const techniques = resolve("technique", record.techniqueSlugs);
+    const styles = resolve("style", record.styleSlugs);
+    const subjects = resolve("subject", record.subjectSlugs);
+
     return {
       id: record.id,
       slug: record.slug,
@@ -174,12 +180,20 @@ function buildView(locale: Locale): LocaleView {
       title: record.title,
       excerpt: record.summary ?? truncate(flat, EXCERPT_LENGTH),
       promptPreview: truncate(flat, PREVIEW_LENGTH),
+      // Matched against the FULL prompt text (`flat`), not the truncated
+      // `promptPreview` above, so a term past the 240-char preview still matches.
+      searchText: buildPromptSearchText({
+        title: record.title,
+        promptText: flat,
+        handle: record.handle,
+        taxonomies: [contentType, ...models, ...useCases, ...techniques, ...styles, ...subjects],
+      }),
       contentType,
-      models: resolve("model", record.modelSlugs),
-      useCases: resolve("useCase", record.useCaseSlugs),
-      techniques: resolve("technique", record.techniqueSlugs),
-      styles: resolve("style", record.styleSlugs),
-      subjects: resolve("subject", record.subjectSlugs),
+      models,
+      useCases,
+      techniques,
+      styles,
+      subjects,
       creator,
       source: {
         platform: "x",
@@ -573,6 +587,10 @@ export class FixtureContentRepository implements ContentRepository {
     const inWindow = ranked.filter(
       (prompt) => prompt.source.publishedAt !== null && prompt.source.publishedAt >= (windowStart ?? ""),
     );
+    // A window counts as "has enough to show" once it can fill the request (or
+    // holds at least 3 — enough to look like a real rail rather than 1-2 stray
+    // items); short of that we top up with the highest-scoring prompts from
+    // outside the window instead of rendering an almost-empty trending rail.
     if (inWindow.length >= Math.min(3, limit)) {
       return { items: inWindow.slice(0, limit), note: null, windowStart };
     }

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   applyPromptQuery,
+  buildPromptSearchText,
   isEmptyPromptQuery,
   parsePromptQuery,
   resolveWindowStart,
@@ -14,7 +15,7 @@ function taxonomy(axis: Taxonomy["axis"], slug: string, label: string): Taxonomy
 }
 
 function prompt(overrides: Partial<PromptSummary> & Pick<PromptSummary, "id">): PromptSummary {
-  const base: PromptSummary = {
+  const base: Omit<PromptSummary, "searchText"> = {
     id: overrides.id,
     slug: `slug-${overrides.id}`,
     href: `/zh-CN/prompts/slug-${overrides.id}`,
@@ -62,7 +63,25 @@ function prompt(overrides: Partial<PromptSummary> & Pick<PromptSummary, "id">): 
     hasVariables: false,
     featuredOn: [],
   };
-  return { ...base, ...overrides };
+  const merged: PromptSummary = { ...base, searchText: "", ...overrides };
+  // Recomputed from the merged fields (unless a test explicitly overrides
+  // `searchText`) so `q` tests exercise the same builder production uses.
+  if (overrides.searchText === undefined) {
+    merged.searchText = buildPromptSearchText({
+      title: merged.title,
+      promptText: overrides.promptPreview ?? merged.promptPreview,
+      handle: merged.source.handle,
+      taxonomies: [
+        merged.contentType,
+        ...merged.models,
+        ...merged.useCases,
+        ...merged.techniques,
+        ...merged.styles,
+        ...merged.subjects,
+      ],
+    });
+  }
+  return merged;
 }
 
 const nanoBananaPro = taxonomy("model", "nano-banana-pro", "Nano Banana Pro");

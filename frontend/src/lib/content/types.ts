@@ -171,6 +171,15 @@ export interface PromptSummary {
   title: string;
   excerpt: string;
   promptPreview: string;
+  /**
+   * Lower-cased, whitespace-normalized free-text haystack: title + FULL prompt
+   * text (not `promptPreview`, which is truncated to 240 chars for display) +
+   * creator handle + every matched taxonomy's label/slug/labelZh. Built once by
+   * `buildPromptSearchText` (`lib/content/query.ts`) in the repository's view
+   * builder; `applyPromptQuery` matches `q` against this, never against
+   * `promptPreview`, so a term past the 240-char cut-off still matches.
+   */
+  searchText: string;
   contentType: Taxonomy;
   models: Taxonomy[];
   useCases: Taxonomy[];

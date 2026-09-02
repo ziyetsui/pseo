@@ -117,6 +117,22 @@ describe("listPrompts", () => {
     expect(option?.selected).toBe(true);
     expect(option?.count).toBe(0);
   });
+
+  it("matches free text past the 240-char promptPreview cut-off (searches the FULL prompt text)", async () => {
+    const isometricId = "concept-2008952931484098637";
+    const isometric = (await allPrompts()).find((p) => p.slug === isometricId);
+    expect(isometric).toBeDefined();
+    // Both terms only occur well past character 240 of the (much longer) prompt.
+    expect(isometric!.promptPreview.length).toBeLessThanOrEqual(241);
+    expect(isometric!.promptPreview.toLowerCase()).not.toContain("raytracing");
+    expect(isometric!.searchText).toContain("raytracing");
+
+    const byRaytracing = await repo.listPrompts(LOCALE, { q: "raytracing" });
+    expect(byRaytracing.items.map((p) => p.slug)).toContain(isometricId);
+
+    const byNegativePrompt = await repo.listPrompts(LOCALE, { q: "negative prompt" });
+    expect(byNegativePrompt.items.map((p) => p.slug)).toContain(isometricId);
+  });
 });
 
 describe("getPromptBySlug — the L4 golden record", () => {
