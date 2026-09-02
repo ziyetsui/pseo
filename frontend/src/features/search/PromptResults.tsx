@@ -1,6 +1,6 @@
 import { StateBlock } from "@/components/ui/StateBlock";
 import type { Locale, PromptSummary } from "@/lib/content/types";
-import { PromptCard } from "@/features/prompt/PromptCard";
+import { PromptCard, type PromptCardVariant } from "@/features/prompt/PromptCard";
 
 export interface PromptResultsProps {
   prompts: readonly PromptSummary[];
@@ -14,6 +14,8 @@ export interface PromptResultsProps {
   children?: React.ReactNode;
   /** How many leading cards get eager, high-priority media. */
   priorityCount?: number;
+  /** Card anatomy: L1's `hub` card (default) or the L2/L3 `compact` one. */
+  variant?: PromptCardVariant;
   className?: string;
 }
 
@@ -27,6 +29,7 @@ export function PromptResults({
   emptyMessage,
   children,
   priorityCount = 0,
+  variant,
   className,
 }: PromptResultsProps) {
   if (prompts.length === 0) {
@@ -41,7 +44,12 @@ export function PromptResults({
     <ul className={className ?? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"}>
       {prompts.map((prompt, index) => (
         <li key={prompt.id} className="flex min-w-0">
-          <PromptCard prompt={prompt} locale={locale} priority={index < priorityCount} />
+          <PromptCard
+            prompt={prompt}
+            locale={locale}
+            variant={variant}
+            priority={index < priorityCount}
+          />
         </li>
       ))}
     </ul>

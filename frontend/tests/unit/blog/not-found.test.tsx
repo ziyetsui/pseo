@@ -28,7 +28,7 @@ describe("404 page", () => {
     const { container } = render(await NotFound());
 
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    expect(screen.getByText(new RegExp(`数据快照日期：${snapshot.observedAt}`))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`数据更新于 ${snapshot.observedAt}`))).toBeInTheDocument();
     expect(screen.queryByText(/尚未接入内容仓库/)).not.toBeInTheDocument();
     expect(container.querySelectorAll('a[href="#"]')).toHaveLength(0);
   });

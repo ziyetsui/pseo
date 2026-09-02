@@ -15,6 +15,8 @@ function creator(overrides: Partial<CreatorWithCount> = {}): CreatorWithCount {
     wireframeDeclaredLikes: 12533,
     wireframeDeclaredBookmarks: 4409,
     count: 3,
+    likes: 12533,
+    bookmarks: 4409,
     ...overrides,
   };
 }
@@ -39,12 +41,19 @@ describe("CreatorTiles", () => {
     },
   );
 
-  it("shows the count computed from the data, not the prototype's declared one", () => {
-    render(<CreatorTiles creators={[creator()]} />);
+  it("shows prompts, likes and bookmarks aggregated from the data", () => {
+    render(<CreatorTiles creators={[creator({ likes: 1476, bookmarks: 507 })]} />);
 
-    expect(screen.getByText(/3 条提示词/)).toBeInTheDocument();
-    expect(screen.queryByText(/78/)).not.toBeInTheDocument();
-    expect(screen.queryByText(/12,533/)).not.toBeInTheDocument();
+    expect(screen.getByText(/3 条提示词 · 1,476 赞 · 507 藏/)).toBeInTheDocument();
+    // The prototype's own declared per-creator figures stay out of the render.
+    expect(screen.queryByText(/78 条/)).not.toBeInTheDocument();
+  });
+
+  it("shows — rather than 0 for a creator whose posts never exposed a metric", () => {
+    render(<CreatorTiles creators={[creator({ likes: null, bookmarks: null })]} />);
+
+    expect(screen.getByText(/3 条提示词 · — 赞 · — 藏/)).toBeInTheDocument();
+    expect(screen.queryByText(/0 赞/)).not.toBeInTheDocument();
   });
 
   it("caps the list when asked", () => {

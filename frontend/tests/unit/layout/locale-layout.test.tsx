@@ -15,7 +15,7 @@ describe("localized layout", () => {
       }),
     );
 
-    expect(screen.getByText(new RegExp(`数据快照日期：${snapshot.observedAt}`))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`数据更新于 ${snapshot.observedAt}`))).toBeInTheDocument();
     expect(screen.queryByText(/尚未接入内容仓库/)).not.toBeInTheDocument();
   });
 });

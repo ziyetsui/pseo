@@ -52,9 +52,10 @@ export function TaxonomyTiles({
         return (
           <li key={term.id} className="flex">
             <Link href={href} className={cardClassName("w-full gap-3 p-4 no-underline")}>
-              <h3 className="text-base font-black tracking-tight md:text-lg">
-                {term.labelZh ?? term.label}
-              </h3>
+              {/* Prototype tiles carry the English taxonomy value (`Fashion`,
+                  `Camera movement / shot language`); `labelZh` is reserved for
+                  the Chinese-labelled footer columns. */}
+              <h3 className="text-base font-black tracking-tight md:text-lg">{term.label}</h3>
               <p className="text-sm font-medium">{term.count} 条提示词</p>
               <span
                 aria-hidden="true"

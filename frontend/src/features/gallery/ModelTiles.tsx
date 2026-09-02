@@ -32,14 +32,26 @@ export function ModelTiles({
 }: ModelTilesProps) {
   if (models.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
+  const max = models.reduce((best, model) => Math.max(best, model.count), 0);
+
   return (
     <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
       {models.map((model) => {
         const label = termLabel(model);
+        const share = max === 0 ? 0 : Math.round((model.count / max) * 100);
         const body = (
           <>
             <h3 className="text-base font-black tracking-tight md:text-lg">{label}</h3>
-            <p className="text-sm font-medium">{model.count} 条图片提示词</p>
+            {/* Prototype tile line: `136 条 · 46 条热门`. */}
+            <p className="text-sm font-medium">
+              {model.count} 条 · {model.highValueCount} 条热门
+            </p>
+            <span
+              aria-hidden="true"
+              className="mt-auto block h-3 border-2 border-foreground bg-surface"
+            >
+              <span className="block h-full bg-accent-red" style={{ width: `${share}%` }} />
+            </span>
           </>
         );
 

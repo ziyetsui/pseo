@@ -42,9 +42,31 @@ describe("CopyPromptButton", () => {
     await userEvent.click(copyButton());
 
     expect(writeText).toHaveBeenCalledWith(TEXT);
-    expect(copyButton()).toHaveTextContent("已复制");
-    expect(screen.getByRole("status")).toHaveTextContent("已复制到剪贴板");
+    expect(copyButton()).toHaveTextContent("已复制 ✓");
+    // Exactly the success label, and nothing else: the old second sentence
+    // ("已复制到剪贴板") is gone.
+    expect(screen.getByRole("status")).toHaveTextContent("已复制 ✓");
+    expect(screen.getByRole("status").textContent).toBe("已复制 ✓");
     expect(screen.getByRole("status")).toHaveAttribute("aria-live", "polite");
+  });
+
+  it("announces the caller's successLabel, e.g. the compact card's 已复制", async () => {
+    setClipboard({ writeText: vi.fn().mockResolvedValue(undefined) });
+
+    render(
+      <div>
+        <pre id="prompt-body">{TEXT}</pre>
+        <CopyPromptButton
+          text={TEXT}
+          targetId="prompt-body"
+          label="复制"
+          successLabel="已复制"
+        />
+      </div>,
+    );
+    await userEvent.click(screen.getByRole("button", { name: "复制" }));
+
+    expect(screen.getByRole("status").textContent).toBe("已复制");
   });
 
   it("never claims success when writeText rejects, and selects the target text", async () => {

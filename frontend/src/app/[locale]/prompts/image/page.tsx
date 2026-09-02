@@ -168,6 +168,9 @@ export default async function ImageGalleryPage({
           prompts={imagePrompts}
           facetGroups={list.facets}
           facetAxes={["useCase", "style", "subject", "model"]}
+          searchPlaceholder="搜索图片提示词…"
+          summaryStyle="count"
+          cardVariant="compact"
           browse={
             <GalleryBrowse
               locale={locale}

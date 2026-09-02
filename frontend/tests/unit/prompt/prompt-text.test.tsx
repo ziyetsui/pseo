@@ -35,7 +35,7 @@ describe("PromptText", () => {
     const region = container.querySelector("[data-expanded]");
     expect(region).toHaveAttribute("data-expanded", "false");
 
-    const toggle = screen.getByRole("button", { name: "展开全文" });
+    const toggle = screen.getByRole("button", { name: "展开" });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     expect(toggle).toHaveAttribute("aria-controls", "p1");
 

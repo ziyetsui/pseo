@@ -77,7 +77,7 @@ const FACET_LABEL: Record<QueryFacetKey, string> = {
 const WINDOW_LABEL: Record<TrendingWindow, string> = {
   "7d": "近 7 天",
   "30d": "近 30 天",
-  all: "全部时间",
+  all: "全部",
 };
 
 const TAXONOMY_FIELD: Record<QueryFacetKey, keyof WireframePromptRecord> = {
@@ -104,6 +104,8 @@ function slugsOf(record: WireframePromptRecord, key: QueryFacetKey): readonly st
 
 interface LocaleView {
   taxonomyById: Map<string, Taxonomy>;
+  /** Collection slug → member prompt ids, resolved once per locale. */
+  collectionIdsBySlug: Record<string, readonly string[]>;
   prompts: PromptSummary[];
   promptsById: Map<string, PromptSummary>;
   promptsBySlug: Map<string, PromptSummary>;
@@ -233,6 +235,7 @@ function buildView(locale: Locale): LocaleView {
 
   const view: LocaleView = {
     taxonomyById,
+    collectionIdsBySlug: {},
     prompts,
     promptsById: new Map(prompts.map((p) => [p.id, p])),
     promptsBySlug: new Map(prompts.map((p) => [p.slug, p])),
@@ -246,6 +249,13 @@ function buildView(locale: Locale): LocaleView {
       description: category.description,
     })),
   };
+  // Resolved after `view` exists because `collectionMembers` reads `view`.
+  for (const collection of WIREFRAME_COLLECTIONS) {
+    view.collectionIdsBySlug[collection.slug] = collectionMembers(collection, view).map(
+      (prompt) => prompt.id,
+    );
+  }
+
   viewCache.set(locale, view);
   return view;
 }
@@ -262,7 +272,10 @@ function buildFacets(
     // Counts answer "what would I get if I picked this?", so every OTHER axis
     // stays applied while this axis is released.
     const withoutThisAxis: PromptQuery = { ...query, [key]: undefined };
-    const pool = applyPromptQuery(base, withoutThisAxis, { windowStart });
+    const pool = applyPromptQuery(base, withoutThisAxis, {
+      windowStart,
+      collectionMembers: view.collectionIdsBySlug,
+    });
     const selected = new Set(query[key] ?? []);
 
     const counts = new Map<string, number>();
@@ -314,6 +327,14 @@ function buildAppliedFilters(view: LocaleView, query: PromptQuery): AppliedFilte
   if (query.window !== undefined && query.window !== "all") {
     applied.push({ key: "window", value: query.window, label: `时间范围：${WINDOW_LABEL[query.window]}` });
   }
+  if (query.collection !== undefined) {
+    const collection = WIREFRAME_COLLECTIONS.find((entry) => entry.slug === query.collection);
+    applied.push({
+      key: "collection",
+      value: query.collection,
+      label: `合集：${collection?.title ?? query.collection}`,
+    });
+  }
   return applied;
 }
 
@@ -339,7 +360,8 @@ function listWithin(
 ): PromptListResult {
   const windowStart =
     query.window === undefined ? null : resolveWindowStart(WIREFRAME_SNAPSHOT.observedAt, query.window);
-  const items = applyPromptQuery(base, query, { windowStart });
+  const options = { windowStart, collectionMembers: view.collectionIdsBySlug };
+  const items = applyPromptQuery(base, query, options);
   return {
     items,
     total: items.length,
@@ -375,16 +397,22 @@ function buildModelDetail(view: LocaleView, locale: Locale, slug: string): Model
   if (prompts.length === 0) return null;
 
   const creators = new Set(prompts.map((prompt) => prompt.creator.id));
+  const highValueCount = prompts.filter((prompt) => prompt.metrics.highValue).length;
   const dates = prompts
     .map((prompt) => prompt.source.publishedAt)
     .filter((date): date is string => date !== null)
     .sort();
 
-  const coverage = `库中 ${prompts.length} 条 Prompt 点名该模型，来自 ${creators.size} 位创作者`;
-  const summary =
+  // Prototype L3 lede, verbatim; every number is computed from the current set.
+  // With no recorded publish date the coverage clause says so instead of
+  // inventing a range (global constraint 4).
+  const coverage =
     dates.length > 0
-      ? `${coverage}，收录 ${dates[0]} 至 ${dates[dates.length - 1]}。`
-      : `${coverage}；原型未记录这些 Prompt 的发布日期。`;
+      ? `收录 ${dates[0]} 至 ${dates[dates.length - 1]}`
+      : "收录日期未收录";
+  const summary =
+    `${prompts.length} 条点名该模型的真实提示词 · ${highValueCount} 条热门 · ` +
+    `${creators.size} 位创作者 · ${coverage}`;
 
   const capabilities = [
     ...new Set(
@@ -593,10 +621,19 @@ export class FixtureContentRepository implements ContentRepository {
     return view.prompts.filter((prompt) => prompt.featuredOn.includes(surface));
   }
 
-  async listTrending(locale: Locale, window: TrendingWindow, limit: number): Promise<TrendingResult> {
+  async listTrending(
+    locale: Locale,
+    window: TrendingWindow,
+    limit: number,
+    modelSlug?: string,
+  ): Promise<TrendingResult> {
     const view = buildView(locale);
     const windowStart = resolveWindowStart(WIREFRAME_SNAPSHOT.observedAt, window);
-    const ranked = [...view.prompts].sort(trendingSort);
+    const pool =
+      modelSlug === undefined
+        ? view.prompts
+        : view.prompts.filter((prompt) => prompt.models.some((model) => model.slug === modelSlug));
+    const ranked = [...pool].sort(trendingSort);
 
     if (window === "all") {
       return { items: ranked.slice(0, limit), note: null, windowStart };
@@ -616,7 +653,7 @@ export class FixtureContentRepository implements ContentRepository {
     const filler = ranked.filter((prompt) => !inWindow.includes(prompt)).slice(0, limit - inWindow.length);
     return {
       items: [...inWindow, ...filler],
-      note: "该时段收录较少，已补充全部时段的高分提示词。",
+      note: "该时段收录较少，已补充全部时段热门。",
       windowStart,
     };
   }
@@ -624,17 +661,27 @@ export class FixtureContentRepository implements ContentRepository {
   async listTaxonomies(locale: Locale, axis: TaxonomyAxis): Promise<TaxonomyWithCount[]> {
     const view = buildView(locale);
     const counts = new Map<string, number>();
+    const highValue = new Map<string, number>();
     for (const prompt of view.prompts) {
       const terms =
         axis === "contentType"
           ? [prompt.contentType]
           : promptTaxonomies(prompt, axis as QueryFacetKey);
-      for (const term of terms) counts.set(term.slug, (counts.get(term.slug) ?? 0) + 1);
+      for (const term of terms) {
+        counts.set(term.slug, (counts.get(term.slug) ?? 0) + 1);
+        if (prompt.metrics.highValue) {
+          highValue.set(term.slug, (highValue.get(term.slug) ?? 0) + 1);
+        }
+      }
     }
 
     return [...view.taxonomyById.values()]
       .filter((term) => term.axis === axis)
-      .map((term) => ({ ...term, count: counts.get(term.slug) ?? 0 }))
+      .map((term) => ({
+        ...term,
+        count: counts.get(term.slug) ?? 0,
+        highValueCount: highValue.get(term.slug) ?? 0,
+      }))
       .filter((term) => term.count > 0)
       .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
   }
@@ -667,6 +714,7 @@ export class FixtureContentRepository implements ContentRepository {
         rule: collection.rule,
         count: members.length,
         sampleIds: members.slice(0, 3).map((prompt) => prompt.id),
+        promptIds: members.map((prompt) => prompt.id),
       };
     });
   }
@@ -674,11 +722,37 @@ export class FixtureContentRepository implements ContentRepository {
   async listCreators(locale: Locale): Promise<CreatorWithCount[]> {
     const view = buildView(locale);
     const counts = new Map<string, number>();
+    // `null` sums stay null: a creator whose posts never exposed a like count
+    // is shown as "—", never as 0 (AGENTS.md §1). A single recorded value is
+    // enough to make the sum real.
+    const likes = new Map<string, number | null>();
+    const bookmarks = new Map<string, number | null>();
+    const add = (
+      totals: Map<string, number | null>,
+      id: string,
+      value: number | null,
+    ): void => {
+      if (value === null) {
+        if (!totals.has(id)) totals.set(id, null);
+        return;
+      }
+      totals.set(id, (totals.get(id) ?? 0) + value);
+    };
+
     for (const prompt of view.prompts) {
-      counts.set(prompt.creator.id, (counts.get(prompt.creator.id) ?? 0) + 1);
+      const id = prompt.creator.id;
+      counts.set(id, (counts.get(id) ?? 0) + 1);
+      add(likes, id, prompt.metrics.likes);
+      add(bookmarks, id, prompt.metrics.bookmarks);
     }
+
     return [...view.creatorsById.values()]
-      .map((creator) => ({ ...creator, count: counts.get(creator.id) ?? 0 }))
+      .map((creator) => ({
+        ...creator,
+        count: counts.get(creator.id) ?? 0,
+        likes: likes.get(creator.id) ?? null,
+        bookmarks: bookmarks.get(creator.id) ?? null,
+      }))
       .sort((a, b) => b.count - a.count || a.handle.localeCompare(b.handle));
   }
 

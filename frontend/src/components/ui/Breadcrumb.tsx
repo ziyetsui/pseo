@@ -21,7 +21,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={item.path} className="flex items-center gap-2">
+            <li key={`${index}-${item.path ?? item.name}`} className="flex items-center gap-2">
               {index === 0 ? null : (
                 <span aria-hidden="true" className="text-foreground/60">
                   /
@@ -31,6 +31,11 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                 <span aria-current="page" className="underline decoration-accent-red decoration-2">
                   {item.name}
                 </span>
+              ) : item.path === null ? (
+                // A hierarchy level with no page in this phase. It keeps its
+                // position in the trail but is never a link — a `#` or a link
+                // into an unbuilt route would both be lies (global constraint 5).
+                <span className="text-foreground/70">{item.name}</span>
               ) : (
                 <Link
                   href={item.path}

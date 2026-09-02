@@ -105,6 +105,16 @@ export interface ApplyPromptQueryOptions {
    * components can filter without knowing the snapshot.
    */
   windowStart?: string | null;
+  /**
+   * Collection slug → the prompt ids that belong to it. Supplied by whoever
+   * knows the collection rules (the repository on the server, or the page's
+   * serialized `collections` prop on the client), which is what lets a
+   * body-regex collection be filtered by a component that has never seen the
+   * rule. A `query.collection` naming a slug absent from this map is a no-op,
+   * exactly like an omitted map: the caller reports it as an unknown value
+   * rather than silently filtering everything away.
+   */
+  collectionMembers?: Readonly<Record<string, readonly string[]>>;
 }
 
 /**
@@ -119,7 +129,14 @@ export function applyPromptQuery(
   const terms = searchTerms(query.q);
   const windowStart = query.window === undefined ? null : (options.windowStart ?? null);
 
+  const memberIds =
+    query.collection === undefined
+      ? null
+      : resolveCollectionMembers(options.collectionMembers, query.collection);
+
   return prompts.filter((prompt) => {
+    if (memberIds !== null && !memberIds.has(prompt.id)) return false;
+
     for (const key of QUERY_FACET_KEYS) {
       const selected = query[key];
       if (selected === undefined || selected.length === 0) continue;
@@ -139,6 +156,20 @@ export function applyPromptQuery(
 
     return true;
   });
+}
+
+/**
+ * `null` when the collection cannot be resolved — an absent map or an unknown
+ * slug — so the filter degrades to a no-op instead of matching nothing.
+ */
+function resolveCollectionMembers(
+  members: Readonly<Record<string, readonly string[]>> | undefined,
+  slug: string,
+): Set<string> | null {
+  if (members === undefined) return null;
+  const ids = members[slug];
+  if (ids === undefined) return null;
+  return new Set(ids);
 }
 
 /* ------------------------------------------------------------ URL parsing */
@@ -184,6 +215,11 @@ export function parsePromptQuery(input: SearchParamsInput): ParsedPromptQuery {
       continue;
     }
 
+    if (rawKey === "collection") {
+      if (value.length > 0) query.collection = value;
+      continue;
+    }
+
     if (rawKey === "window") {
       if (isTrendingWindow(value)) query.window = value;
       else unknown.add("window");
@@ -214,6 +250,9 @@ export function parsePromptQuery(input: SearchParamsInput): ParsedPromptQuery {
 export function serializePromptQuery(query: PromptQuery): Record<string, string | string[]> {
   const params: Record<string, string | string[]> = {};
   if (query.q !== undefined && query.q.trim().length > 0) params.q = query.q.trim();
+  if (query.collection !== undefined && query.collection.trim().length > 0) {
+    params.collection = query.collection.trim();
+  }
   for (const key of QUERY_FACET_KEYS) {
     const values = query[key];
     if (values !== undefined && values.length > 0) params[key] = [...values];

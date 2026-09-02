@@ -65,7 +65,9 @@ export function promptsForTerm(
 
 /**
  * Re-counts taxonomy terms against a subset and drops the ones the subset never
- * uses. The incoming `count` (library-wide) is replaced, never carried over.
+ * uses. The incoming `count` AND `highValueCount` (both library-wide) are
+ * replaced, never carried over — a tile that says `N 条 · N 条热门` must have
+ * both numbers scoped to the same set.
  * Ordering is count desc, then slug, so the same data always yields the same
  * page.
  */
@@ -75,7 +77,14 @@ export function countTermsWithin(
   axis: QueryFacetKey,
 ): TaxonomyWithCount[] {
   return terms
-    .map((term) => ({ ...term, count: promptsForTerm(prompts, axis, term.slug).length }))
+    .map((term) => {
+      const matched = promptsForTerm(prompts, axis, term.slug);
+      return {
+        ...term,
+        count: matched.length,
+        highValueCount: matched.filter((prompt) => prompt.metrics.highValue).length,
+      };
+    })
     .filter((term) => term.count > 0)
     .sort((a, b) => b.count - a.count || a.slug.localeCompare(b.slug));
 }

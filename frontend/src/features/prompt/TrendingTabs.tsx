@@ -9,7 +9,7 @@ import { StateBlock } from "@/components/ui/StateBlock";
 import { cx } from "@/components/ui/class-names";
 import { parsePromptQuery } from "@/lib/content/query";
 import type { Locale, PromptQuery, PromptSummary, TrendingWindow } from "@/lib/content/types";
-import { PromptCard } from "@/features/prompt/PromptCard";
+import { PromptCard, type PromptCardVariant } from "@/features/prompt/PromptCard";
 import { queryHref } from "@/features/search/query-links";
 
 /**
@@ -25,6 +25,16 @@ import { queryHref } from "@/features/search/query-links";
  * (plus Home/End) move focus across the tablist, and Enter follows the focused
  * tab's link. Automatic activation would mean navigating on every arrow press.
  */
+
+/**
+ * Tab labels, verbatim from the prototype's L1 tablist. Pages build their
+ * `windows` from this so the labels cannot drift per page.
+ */
+export const TRENDING_WINDOW_LABELS: Record<TrendingWindow, string> = {
+  "7d": "近 7 天",
+  "30d": "近 30 天",
+  all: "全部",
+};
 
 export interface TrendingWindowPanel {
   window: TrendingWindow;
@@ -44,6 +54,8 @@ export interface TrendingTabsProps {
   defaultWindow?: TrendingWindow;
   /** Snapshot date every metric and window boundary is relative to. */
   observedAt: string;
+  /** Card anatomy for the panel grid. Defaults to L1's `hub` card. */
+  cardVariant?: PromptCardVariant;
   label?: string;
   idPrefix?: string;
   emptyMessage?: string;
@@ -83,6 +95,7 @@ function TrendingTabsView({
   basePath,
   windows,
   observedAt,
+  cardVariant,
   label = "时间范围",
   idPrefix = "trending",
   emptyMessage = "该时段暂无收录的提示词。",
@@ -151,7 +164,13 @@ function TrendingTabsView({
         })}
       </div>
 
-      <p className="text-sm font-medium">{windowDescription(current, observedAt)}</p>
+      {/*
+        The prototype carries no standing window description — only the
+        top-up note, and only when a top-up actually happened. The snapshot
+        date still has to be stated somewhere (global constraint 4), so it
+        stays in the accessibility tree rather than as visible clutter.
+      */}
+      <p className="sr-only">互动数据观测于 {observedAt}。</p>
 
       {current.note === null ? null : <Panel tone="note">{current.note}</Panel>}
 
@@ -162,7 +181,12 @@ function TrendingTabsView({
           <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {current.items.map((prompt) => (
               <li key={prompt.id} className="flex min-w-0">
-                <PromptCard prompt={prompt} locale={locale} idPrefix={idPrefix} />
+                <PromptCard
+                  prompt={prompt}
+                  locale={locale}
+                  variant={cardVariant}
+                  idPrefix={idPrefix}
+                />
               </li>
             ))}
           </ul>
@@ -172,10 +196,3 @@ function TrendingTabsView({
   );
 }
 
-/** Window boundaries always come from the snapshot date, never from `Date.now()`. */
-function windowDescription(panel: TrendingWindowPanel, observedAt: string): string {
-  if (panel.windowStart === null) {
-    return `全部收录时段，按互动价值排序；互动数据观测于 ${observedAt}。`;
-  }
-  return `统计窗口 ${panel.windowStart} 至 ${observedAt}，按互动价值排序。`;
-}

@@ -2,8 +2,14 @@ import { absoluteUrl } from "./site";
 
 export interface BreadcrumbItem {
   name: string;
-  /** Locale-prefixed path from the route builder. */
-  path: string;
+  /**
+   * Locale-prefixed path from the route builder, or `null` for a level that
+   * exists in the information architecture but has no page in this phase (the
+   * prototype's `模型` step between 图片 and a model page). A `null` path is
+   * rendered as plain text and emitted as a `ListItem` with no `item` URL —
+   * never as a link to a route that does not ship (global constraint 5).
+   */
+  path: string | null;
 }
 
 export interface BreadcrumbListJsonLd {
@@ -13,7 +19,7 @@ export interface BreadcrumbListJsonLd {
     "@type": "ListItem";
     position: number;
     name: string;
-    item: string;
+    item?: string;
   }[];
 }
 
@@ -22,10 +28,10 @@ export function breadcrumbList(items: readonly BreadcrumbItem[]): BreadcrumbList
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
+      "@type": "ListItem" as const,
       position: index + 1,
       name: item.name,
-      item: absoluteUrl(item.path),
+      ...(item.path === null ? {} : { item: absoluteUrl(item.path) }),
     })),
   };
 }

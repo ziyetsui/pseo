@@ -6,7 +6,7 @@ import { Button, type ButtonShape, type ButtonVariant } from "@/components/ui/Bu
 
 const RESET_DELAY_MS = 2500;
 
-const SUCCESS_MESSAGE = "已复制到剪贴板";
+const DEFAULT_SUCCESS_LABEL = "已复制 ✓";
 const FAILURE_MESSAGE = "复制失败，可选中文本手动复制";
 
 export interface CopyPromptButtonProps {
@@ -15,6 +15,17 @@ export interface CopyPromptButtonProps {
   /** Id of the element to select when the clipboard is unavailable. */
   targetId: string;
   label?: string;
+  /**
+   * Announced in the `role="status"` region after a confirmed clipboard write,
+   * and used as the button's swapped label. The prototype's L1 card and detail
+   * page say `已复制 ✓`; its L2/L3 compact card says `已复制`. This is the ONLY
+   * success text — there is no second "copied to clipboard" sentence.
+   */
+  successLabel?: string;
+  /**
+   * Button label while the success state is showing. Defaults to
+   * `successLabel`, which is what both prototypes do.
+   */
   copiedLabel?: string;
   variant?: ButtonVariant;
   shape?: ButtonShape;
@@ -35,7 +46,8 @@ export function CopyPromptButton({
   text,
   targetId,
   label = "复制提示词",
-  copiedLabel = "已复制 ✓",
+  successLabel = DEFAULT_SUCCESS_LABEL,
+  copiedLabel = successLabel,
   variant = "primary",
   shape = "square",
   className,
@@ -99,7 +111,7 @@ export function CopyPromptButton({
         {state === "copied" ? copiedLabel : label}
       </Button>
       <span role="status" aria-live="polite" className="text-xs font-bold">
-        {state === "copied" ? SUCCESS_MESSAGE : null}
+        {state === "copied" ? successLabel : null}
         {state === "failed" ? FAILURE_MESSAGE : null}
       </span>
     </span>

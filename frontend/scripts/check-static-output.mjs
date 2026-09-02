@@ -269,7 +269,8 @@ async function checkPresentationTruth(files) {
     const text = await readFile(file, "utf8");
     if (/@@[A-Za-z0-9_]/.test(text)) hits.push(`${rel(file)}: double-@ creator handle`);
     if (text.includes("尚未接入内容仓库")) hits.push(`${rel(file)}: snapshot placeholder`);
-    if (!/数据快照日期：[\s\S]{0,40}\d{4}-\d{2}-\d{2}/.test(text)) {
+    // The footer states the snapshot as the prototype writes it: `数据更新于 <date>`.
+    if (!/数据更新于[\s\S]{0,40}\d{4}-\d{2}-\d{2}/.test(text)) {
       hits.push(`${rel(file)}: missing dated footer snapshot`);
     }
     if (/<div hidden id="S:\d+">/.test(text)) {
@@ -293,6 +294,59 @@ async function checkPresentationTruth(files) {
   }
 }
 
+/* ------------------------------------------------------- 8. canonical host */
+
+/**
+ * Every canonical in the export must point at ONE origin. This does not assert
+ * which — the host comes from `NEXT_PUBLIC_SITE_URL` and is a deploy decision —
+ * only that the build did not mix two of them, which is what a half-configured
+ * environment produces. The host actually found is printed so the deploy can
+ * be eyeballed against it.
+ */
+async function checkCanonicalHost(files) {
+  heading("8. one canonical host across the export");
+  const hosts = new Map();
+  const unparsable = [];
+  let total = 0;
+
+  for (const file of files) {
+    for (const match of text_canonicals(await readFile(file, "utf8"))) {
+      total += 1;
+      let host;
+      try {
+        host = new URL(match).origin;
+      } catch {
+        unparsable.push(`${rel(file)}: canonical "${match}" is not an absolute URL`);
+        continue;
+      }
+      hosts.set(host, (hosts.get(host) ?? 0) + 1);
+    }
+  }
+
+  const inventory = [...hosts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([host, count]) => `${host} \u00d7${count}`);
+  process.stdout.write(`        canonical host(s): ${inventory.join(", ") || "none"}\n`);
+
+  if (unparsable.length > 0) fail(`${unparsable.length} unparsable canonical(s)`, unparsable);
+  else if (hosts.size > 1) {
+    fail(`${hosts.size} different canonical hosts in one export`, inventory);
+  } else if (hosts.size === 0) fail("no <link rel=\"canonical\"> found in out/");
+  else ok(`${total} canonical link(s), all on ${[...hosts.keys()][0]}`);
+}
+
+/** `<link rel="canonical" href="…">` in either attribute order. */
+function text_canonicals(text) {
+  const found = [];
+  for (const tag of text.matchAll(/<link\b[^>]*>/gi)) {
+    const element = tag[0];
+    if (!/\brel=["\']?canonical\b/i.test(element)) continue;
+    const href = /\bhref=["\']([^"\']+)["\']/i.exec(element);
+    if (href !== null) found.push(href[1]);
+  }
+  return found;
+}
+
 /* ------------------------------------------------------------------ main */
 
 const outHtml = await walk(OUT, (file) => file.endsWith(".html"));
@@ -313,6 +367,7 @@ if (outHtml.length === 0) {
   await checkNoEnglishAlternate(outHtml);
   await checkPrototypeNumbers(outHtml);
   await checkPresentationTruth(outHtml);
+  await checkCanonicalHost(outHtml);
 }
 
 process.stdout.write("\n");

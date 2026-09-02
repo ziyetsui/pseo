@@ -30,6 +30,7 @@ function taxonomy(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
     href: null,
     wireframeDeclaredCount: null,
     count: 2,
+    highValueCount: 1,
     ...overrides,
   };
 }
@@ -57,6 +58,7 @@ const collections: CollectionWithCount[] = [
     rule: { type: "axis-all", conditions: [{ axis: "useCase", value: "advertising" }] },
     count: 3,
     sampleIds: [],
+    promptIds: [],
   },
 ];
 
@@ -71,6 +73,8 @@ const creators: CreatorWithCount[] = [
     wireframeDeclaredLikes: null,
     wireframeDeclaredBookmarks: null,
     count: 2,
+    likes: 128,
+    bookmarks: 44,
   },
 ];
 
@@ -85,6 +89,8 @@ function manyCreators(count: number): CreatorWithCount[] {
     wireframeDeclaredLikes: null,
     wireframeDeclaredBookmarks: null,
     count: 1,
+    likes: null,
+    bookmarks: null,
   }));
 }
 

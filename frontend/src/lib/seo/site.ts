@@ -9,7 +9,7 @@ import { OPEN_GRAPH_LOCALE, PUBLISHED_LOCALES, type Locale } from "@/lib/i18n/co
  */
 export const FALLBACK_SITE_URL = "https://example.invalid";
 
-export const SITE_NAME = "提示词库";
+export const SITE_NAME = "Higgsfield 提示词库";
 
 export function getSiteUrl(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();

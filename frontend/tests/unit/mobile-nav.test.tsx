@@ -3,10 +3,12 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { MobileNav } from "@/components/layout/MobileNav";
+import type { NavItem } from "@/components/layout/nav";
 
-const items = [
-  { href: "/zh-CN/prompts", label: "提示词" },
-  { href: "/zh-CN/blog", label: "Blog" },
+const items: NavItem[] = [
+  { key: "home", href: "/zh-CN/prompts", label: "首页" },
+  { key: "image", href: "/zh-CN/prompts/image", label: "图片" },
+  { key: "video", href: null, label: "视频", note: "（即将推出）" },
 ];
 
 function toggle() {
@@ -29,15 +31,32 @@ describe("MobileNav", () => {
     expect(toggle()).toHaveAttribute("aria-expanded", "true");
   });
 
-  it("renders every nav item as a real link once opened", async () => {
+  it("renders every routed nav item as a real link once opened", async () => {
     render(<MobileNav items={items} />);
     await userEvent.click(toggle());
 
-    expect(screen.getByRole("link", { name: "提示词" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "首页" })).toHaveAttribute("href", "/zh-CN/prompts");
+    expect(screen.getByRole("link", { name: "图片" })).toHaveAttribute(
       "href",
-      "/zh-CN/prompts",
+      "/zh-CN/prompts/image",
     );
-    expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/zh-CN/blog");
+  });
+
+  it("renders an unbuilt destination as plain text with its reason, never a link", async () => {
+    render(<MobileNav items={items} />);
+    await userEvent.click(toggle());
+
+    expect(screen.queryByRole("link", { name: /视频/ })).not.toBeInTheDocument();
+    expect(screen.getByText("视频")).toBeInTheDocument();
+    expect(screen.getByText("（即将推出）")).toBeInTheDocument();
+  });
+
+  it("marks the current page in the panel", async () => {
+    render(<MobileNav items={items} currentNav="image" />);
+    await userEvent.click(toggle());
+
+    expect(screen.getByRole("link", { name: "图片" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "首页" })).not.toHaveAttribute("aria-current");
   });
 
   it("closes on Escape and moves focus back to the toggle", async () => {

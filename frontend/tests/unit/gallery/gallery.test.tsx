@@ -42,17 +42,24 @@ async function imageSubset(): Promise<PromptSummary[]> {
  * also has non-image prompts (e.g. seedance, which has plenty of video ones).
  */
 async function imageModels(): Promise<
-  { term: TaxonomyWithCount; count: number; totalCount: number }[]
+  { term: TaxonomyWithCount; count: number; highValueCount: number; totalCount: number }[]
 > {
   const { items } = await repository.listPrompts("zh-CN");
   const subset = items.filter((prompt) => prompt.contentType.slug === "image");
   const models = await repository.listTaxonomies("zh-CN", "model");
   return models
-    .map((term) => ({
-      term,
-      count: subset.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)).length,
-      totalCount: items.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)).length,
-    }))
+    .map((term) => {
+      const matched = subset.filter((prompt) =>
+        prompt.models.some((m) => m.slug === term.slug),
+      );
+      return {
+        term,
+        count: matched.length,
+        // Both tile numbers must be scoped to the same (image) subset.
+        highValueCount: matched.filter((prompt) => prompt.metrics.highValue).length,
+        totalCount: items.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)).length,
+      };
+    })
     .filter((entry) => entry.count > 0);
 }
 
@@ -151,10 +158,10 @@ describe("L2 image gallery page", () => {
       models.map((entry) => entry.term.slug).sort(),
     );
 
-    for (const { term, count } of models) {
+    for (const { term, count, highValueCount } of models) {
       const tile = region.querySelector(`[data-model-tile="${term.slug}"]`);
       expect(tile).not.toBeNull();
-      expect(tile?.textContent).toContain(`${count} 条图片提示词`);
+      expect(tile?.textContent).toContain(`${count} 条 · ${highValueCount} 条热门`);
     }
   });
 

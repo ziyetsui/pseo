@@ -46,6 +46,7 @@ export function toggleFacet(query: PromptQuery, key: QueryFacetKey, slug: string
 export function removeFilter(query: PromptQuery, filter: AppliedFilter): PromptQuery {
   if (filter.key === "q") return { ...query, q: undefined };
   if (filter.key === "window") return { ...query, window: undefined };
+  if (filter.key === "collection") return { ...query, collection: undefined };
   return setFacet(
     query,
     filter.key,

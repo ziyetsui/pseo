@@ -106,6 +106,12 @@ export interface Taxonomy {
 export interface TaxonomyWithCount extends Taxonomy {
   /** Number of prompts in the current fixture carrying this term. */
   count: number;
+  /**
+   * How many of those prompts are flagged `metrics.highValue`. The prototype's
+   * L2 tiles read `N 条 · N 条热门`; this is the second number, computed from
+   * the same set `count` was computed from.
+   */
+  highValueCount: number;
 }
 
 export interface WireframeTaxonomyRecord {
@@ -136,6 +142,14 @@ export interface Creator {
 
 export interface CreatorWithCount extends Creator {
   count: number;
+  /**
+   * Sum of `metrics.likes` / `metrics.bookmarks` across this creator's prompts,
+   * or `null` when not one of them recorded that metric — a creator whose posts
+   * all lack the number must not be shown as having zero (AGENTS.md §1).
+   * Prompts with a `null` metric are skipped, never counted as 0.
+   */
+  likes: number | null;
+  bookmarks: number | null;
 }
 
 /* -------------------------------------------------------------- variables */
@@ -350,6 +364,14 @@ export interface Collection {
 export interface CollectionWithCount extends Collection {
   count: number;
   sampleIds: string[];
+  /**
+   * Every member's prompt id, in repository order. This is what makes a
+   * collection filterable from the client: `?collection=<slug>` cannot be
+   * expressed as facet params (some rules match the prompt body), so the page
+   * hands these ids to `PromptExplorer`, which feeds them to
+   * `applyPromptQuery`'s `collectionMembers` option.
+   */
+  promptIds: string[];
 }
 
 /* --------------------------------------------------------------- articles */
@@ -455,6 +477,14 @@ export interface PromptQuery {
   style?: readonly string[];
   subject?: readonly string[];
   window?: TrendingWindow;
+  /**
+   * Slug of a curated collection (`?collection=cinematic-camera`). Unlike the
+   * facet axes this is not a taxonomy term: membership is an explicit id list
+   * the page supplies, because a collection rule can be a body regex with no
+   * query equivalent. `applyPromptQuery` resolves it through
+   * `ApplyPromptQueryOptions.collectionMembers`.
+   */
+  collection?: string;
 }
 
 /** Query axes that map 1:1 onto a taxonomy axis and a URL search param. */
@@ -462,7 +492,7 @@ export const QUERY_FACET_KEYS = ["model", "useCase", "technique", "style", "subj
 export type QueryFacetKey = (typeof QUERY_FACET_KEYS)[number];
 
 export interface AppliedFilter {
-  key: QueryFacetKey | "q" | "window";
+  key: QueryFacetKey | "q" | "window" | "collection";
   value: string;
   label: string;
 }

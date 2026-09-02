@@ -45,12 +45,21 @@ export function FacetChips({
 
         return (
           <div key={group.key} role="group" aria-labelledby={headingId}>
-            <h3
+            {/*
+              A plain label, not a heading. The prototype's facet rows are
+              `<b>模型</b>` inside an unlabelled filter block; promoting them to
+              `<h3>` would invent document structure the page does not have (and
+              would follow the page `<h1>` with a level skipped, since the
+              prototype has no `<h2>` above the filters either). `role="group"`
+              plus `aria-labelledby` gives assistive tech the same grouping
+              without the heading semantics.
+            */}
+            <span
               id={headingId}
-              className="text-xs font-bold tracking-widest text-foreground uppercase"
+              className="block text-xs font-bold tracking-widest text-foreground uppercase"
             >
               {group.label}
-            </h3>
+            </span>
             <div className="mt-3 flex flex-wrap gap-2">
               {options.map((option) => {
                 const active = isFacetSelected(query, group.key, option.slug);

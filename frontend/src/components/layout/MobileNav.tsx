@@ -3,13 +3,19 @@
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-import type { NavItem } from "./nav";
+import type { NavItem, NavKey } from "./nav";
 
 /**
  * Smallest possible client leaf: the disclosure behaviour for the mobile
  * navigation panel. The links themselves are produced on the server.
  */
-export function MobileNav({ items }: { items: readonly NavItem[] }) {
+export interface MobileNavProps {
+  items: readonly NavItem[];
+  /** Marks the matching entry `aria-current="page"`, as in the desktop nav. */
+  currentNav?: NavKey;
+}
+
+export function MobileNav({ items, currentNav }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -49,14 +55,24 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
       >
         <ul className="flex flex-col">
           {items.map((item) => (
-            <li key={item.href} className="border-t-2 border-foreground first:border-t-0">
-              <Link
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="flex min-h-11 items-center px-4 py-3 text-base font-bold"
-              >
-                {item.label}
-              </Link>
+            <li key={item.key} className="border-t-2 border-foreground first:border-t-0">
+              {item.href === null ? (
+                <span className="flex min-h-11 items-center px-4 py-3 text-base font-bold text-foreground/60">
+                  {item.label}
+                  {item.note === undefined ? null : (
+                    <span className="ml-1 text-xs font-medium">{item.note}</span>
+                  )}
+                </span>
+              ) : (
+                <Link
+                  href={item.href}
+                  aria-current={item.key === currentNav ? "page" : undefined}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-11 items-center px-4 py-3 text-base font-bold"
+                >
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

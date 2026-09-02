@@ -102,8 +102,10 @@ export default async function ModelPage({ params }: { params: PageParams }) {
           prompts={list.items}
           facetGroups={list.facets}
           facetAxes={["useCase", "style", "subject"]}
-          filterHeading="在本模型内搜索与筛选"
-          filterHeadingId="model-filters"
+          filterLabel="在本模型内筛选"
+          searchPlaceholder={`描述你想要的画面，或搜索下方 ${list.total} 条提示词…例如：杂志感美妆人像、奢侈品静物`}
+          summaryStyle="count"
+          cardVariant="compact"
           searchInputId="model-search"
           facetIdPrefix="model-facet"
           resultsHeadingId="model-results"

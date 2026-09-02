@@ -23,7 +23,7 @@ import { makeMetrics, makePromptSummary, makeTaxonomy } from "../support/prompt-
  */
 
 function term(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
-  return { ...makeTaxonomy(), count: 0, ...overrides };
+  return { ...makeTaxonomy(), count: 0, highValueCount: 0, ...overrides };
 }
 
 describe("ModelTiles", () => {
@@ -33,6 +33,7 @@ describe("ModelTiles", () => {
     label: "Nano Banana Pro",
     href: "/zh-CN/prompts/models/nano-banana-pro",
     count: 14,
+    highValueCount: 3,
   });
   const unpublished = term({
     id: "model:mystery",
@@ -47,7 +48,7 @@ describe("ModelTiles", () => {
     const tile = container.querySelector('[data-model-tile="nano-banana-pro"]');
     expect(tile?.tagName).toBe("A");
     expect(tile?.getAttribute("href")).toBe("/zh-CN/prompts/models/nano-banana-pro");
-    expect(tile?.textContent).toContain("14 条图片提示词");
+    expect(tile?.textContent).toContain("14 条 · 3 条热门");
   });
 
   it("renders a model without a page as plain text with a visible explanation", () => {
@@ -56,7 +57,7 @@ describe("ModelTiles", () => {
 
     expect(tile.tagName).not.toBe("A");
     expect(tile.querySelector("a")).toBeNull();
-    expect(tile.textContent).toContain("2 条图片提示词");
+    expect(tile.textContent).toContain("2 条 · 0 条热门");
     expect(tile.textContent).toContain("模型页尚未发布");
     expect(container.querySelectorAll("a")).toHaveLength(1);
   });

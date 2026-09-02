@@ -8,7 +8,13 @@ export interface SearchFormProps {
   /** The query currently reflected in the URL. */
   query: PromptQuery;
   label?: string;
-  placeholder?: string;
+  /**
+   * Required: the prototype writes a different one on every page (L1
+   * `搜索提示词、模型、风格、镜头语言、创作者…`, L2 `搜索图片提示词…`, L3 the
+   * generate-box prompt), so there is no sensible shared default and each page
+   * must state its own.
+   */
+  placeholder: string;
   submitLabel?: string;
   resetLabel?: string;
   /** Input id. Override when two search forms share a page. */
@@ -28,15 +34,13 @@ export function SearchForm({
   basePath,
   query,
   label = "搜索提示词",
-  placeholder = "输入关键词、模型或作者",
+  placeholder,
   submitLabel = "搜索",
-  resetLabel = "重置搜索",
+  resetLabel = "重置",
   inputId = "prompt-search",
   className,
 }: SearchFormProps) {
   const preserved = serializePromptQuery({ ...query, q: undefined });
-  // An empty `q` is not a filtered state — nothing was actually typed.
-  const hasState = (query.q !== undefined && query.q !== "") || Object.keys(preserved).length > 0;
 
   return (
     <form
@@ -69,11 +73,14 @@ export function SearchForm({
         {submitLabel}
       </Button>
 
-      {hasState ? (
-        <ButtonLink href={basePath} variant="outline">
-          {resetLabel}
-        </ButtonLink>
-      ) : null}
+      {/*
+        Always present, as in the prototype, where 重置 sits next to 搜索 at
+        every moment. With nothing filtered it simply points back at the same
+        unfiltered page, so it is never a dead control.
+      */}
+      <ButtonLink href={basePath} variant="outline">
+        {resetLabel}
+      </ButtonLink>
     </form>
   );
 }

@@ -3,7 +3,6 @@
 import { Suspense, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { Section } from "@/components/ui/Section";
 import { StateBlockLink } from "@/components/ui/StateBlock";
 import { applyPromptQuery, isEmptyPromptQuery, parsePromptQuery, promptTaxonomies } from "@/lib/content/query";
 import {
@@ -16,6 +15,7 @@ import {
   type PromptSummary,
   type QueryFacetKey,
 } from "@/lib/content/types";
+import type { PromptCardVariant } from "@/features/prompt/PromptCard";
 import { ActiveFilters } from "@/features/search/ActiveFilters";
 import { FacetChips } from "@/features/search/FacetChips";
 import { PromptResults } from "@/features/search/PromptResults";
@@ -55,15 +55,41 @@ export interface PromptExplorerProps {
   facetAxes?: readonly QueryFacetKey[];
   /** Server-rendered browse sections, shown while nothing is filtered. */
   browse: ReactNode;
+  /**
+   * Search-box placeholder. Required, and passed straight to `SearchForm`:
+   * the prototype writes a different one on every page.
+   */
+  searchPlaceholder: string;
+  /**
+   * Curated collections this page can filter by. Supplying them is what makes
+   * `?collection=<slug>` work: a collection rule can match the prompt body,
+   * which no facet param can express, so membership travels as an explicit id
+   * list instead. Omit on a page with no collections.
+   */
+  collections?: readonly ExplorerCollection[];
+  /**
+   * Result summary wording. `hub` is the prototype's L1 `共 N 条`; `count` is
+   * the L2/L3 `筛选出 N 条`. Both appear only while something is filtered.
+   */
+  summaryStyle?: "hub" | "count";
+  /** Card anatomy for the result grid. Defaults to L1's `hub` card. */
+  cardVariant?: PromptCardVariant;
   resultsHeading?: string;
   resultsHeadingId?: string;
-  filterHeading?: string;
-  filterHeadingId?: string;
+  /** Accessible name of the (heading-less) filter block. */
+  filterLabel?: string;
   searchInputId?: string;
   facetIdPrefix?: string;
   /** How many result cards get eager media. */
   priorityCount?: number;
   className?: string;
+}
+
+/** The membership data `?collection=` needs, serialized by the page. */
+export interface ExplorerCollection {
+  slug: string;
+  title: string;
+  promptIds: readonly string[];
 }
 
 export function PromptExplorer(props: PromptExplorerProps) {
@@ -98,10 +124,13 @@ function ExplorerView({
   facetGroups,
   facetAxes,
   browse,
+  searchPlaceholder,
+  collections = [],
+  summaryStyle = "hub",
+  cardVariant,
   resultsHeading = "筛选结果",
   resultsHeadingId = "prompt-explorer-results",
-  filterHeading = "搜索与筛选",
-  filterHeadingId = "prompt-explorer-filters",
+  filterLabel = "筛选",
   searchInputId,
   facetIdPrefix = "explorer-facet",
   priorityCount = 3,
@@ -121,27 +150,65 @@ function ExplorerView({
   // for every outgoing href so switching tabs survives a search or a filter
   // change instead of being silently dropped.
   const activeQuery: PromptQuery = { ...query, window: undefined };
-  const active = !isEmptyPromptQuery(activeQuery);
 
   // A facet value this vocabulary has never heard of (`model=does-not-exist`)
   // would otherwise filter the set down to nothing. Stripped here so it is
   // genuinely ignored — reported, never silently applied as a dead-end filter.
-  const filterQuery = stripUnknownFacetValues(activeQuery, facetGroups);
+  // A `collection` slug this page has no members for is stripped for the same
+  // reason.
+  const selectedCollection =
+    activeQuery.collection === undefined
+      ? undefined
+      : collections.find((entry) => entry.slug === activeQuery.collection);
+  const filterQuery = stripUnknownFacetValues(
+    { ...activeQuery, collection: selectedCollection?.slug },
+    facetGroups,
+  );
   const linkQuery: PromptQuery = { ...filterQuery, window: query.window };
+  // "The URL claims a filter", not "a filter survived validation": a query that
+  // named only unknown values still opens the result region, where the warning
+  // and the recovery link live, rather than silently dropping the reader back
+  // into the browse view as if they had asked for nothing.
+  const active = !isEmptyPromptQuery(activeQuery);
 
-  const results = active ? applyPromptQuery(prompts, filterQuery) : [...prompts];
-  const liveGroups = recountFacets(prompts, visibleGroups, filterQuery);
-  const applied = buildAppliedFilters(facetGroups, filterQuery);
-  const unknownValues = unknownFacetValues(facetGroups, activeQuery);
+  const collectionMembers = Object.fromEntries(
+    collections.map((entry) => [entry.slug, entry.promptIds]),
+  );
+
+  const results = active ? applyPromptQuery(prompts, filterQuery, { collectionMembers }) : [...prompts];
+  const liveGroups = recountFacets(prompts, visibleGroups, filterQuery, collectionMembers);
+  const applied = buildAppliedFilters(facetGroups, filterQuery, selectedCollection);
+  const unknownValues = [
+    ...unknownFacetValues(facetGroups, activeQuery),
+    ...(activeQuery.collection !== undefined && selectedCollection === undefined
+      ? [`collection=${activeQuery.collection}`]
+      : []),
+  ];
   const showSummary = active || unknownParams.length > 0 || unknownValues.length > 0;
+
+  // `共 N 条` (L1) / `筛选出 N 条` (L2/L3), prefixed with the collection name
+  // when the reader arrived through a 精选合集 tile — exactly as the prototype's
+  // `合集名 · 共 N 条`.
+  const countText = summaryStyle === "hub" ? `共 ${results.length} 条` : `筛选出 ${results.length} 条`;
+  const summaryText = active
+    ? selectedCollection === undefined
+      ? countText
+      : `${selectedCollection.title} · ${countText}`
+    : "";
 
   return (
     <div className={className ?? "flex flex-col gap-8"}>
-      {/* The filter surface owns an <h2> so that FacetChips' per-axis <h3>
-          headings never follow the page <h1> with a level skipped. */}
-      <Section id={filterHeadingId} title={filterHeading}>
+      {/* No heading: the prototype's filter block is an unlabelled region
+          with `aria-label="筛选"`, and its axis labels are plain `<b>` text
+          rather than headings. */}
+      <div aria-label={filterLabel} role="group">
         <div className="flex flex-col gap-6">
-          <SearchForm basePath={basePath} query={linkQuery} inputId={searchInputId} />
+          <SearchForm
+            basePath={basePath}
+            query={linkQuery}
+            placeholder={searchPlaceholder}
+            inputId={searchInputId}
+          />
 
           <FacetChips
             basePath={basePath}
@@ -162,7 +229,7 @@ function ExplorerView({
             />
           ) : null}
         </div>
-      </Section>
+      </div>
 
       {/*
         Exactly one result-count live region for the whole explorer, mounted
@@ -172,7 +239,7 @@ function ExplorerView({
         never announced twice.
       */}
       <p role="status" aria-live="polite" className="text-sm font-bold">
-        {active ? `找到 ${results.length} 条提示词` : ""}
+        {summaryText}
       </p>
 
       {active ? (
@@ -190,6 +257,7 @@ function ExplorerView({
             <PromptResults
               prompts={results}
               locale={locale}
+              variant={cardVariant}
               priorityCount={priorityCount}
               emptyMessage={noResultsMessage(applied)}
             >
@@ -201,7 +269,7 @@ function ExplorerView({
                   移除「{filter.label}」
                 </StateBlockLink>
               ))}
-              <StateBlockLink href={queryHref(basePath, { window: linkQuery.window })}>
+              <StateBlockLink href={queryHref(basePath, { window: query.window })}>
                 清除全部筛选
               </StateBlockLink>
             </PromptResults>
@@ -230,9 +298,10 @@ function recountFacets(
   prompts: readonly PromptSummary[],
   groups: readonly FacetGroup[],
   query: PromptQuery,
+  collectionMembers: Readonly<Record<string, readonly string[]>>,
 ): FacetGroup[] {
   return groups.map((group): FacetGroup => {
-    const pool = applyPromptQuery(prompts, setFacet(query, group.key, []));
+    const pool = applyPromptQuery(prompts, setFacet(query, group.key, []), { collectionMembers });
     const selected = new Set(facetValues(query, group.key));
 
     const counts = new Map<string, number>();
@@ -265,12 +334,17 @@ function recountFacets(
 function buildAppliedFilters(
   groups: readonly FacetGroup[],
   query: PromptQuery,
+  collection: { slug: string; title: string } | undefined,
 ): AppliedFilter[] {
   const applied: AppliedFilter[] = [];
 
   const q = query.q?.trim();
   if (q !== undefined && q.length > 0) {
     applied.push({ key: "q", value: q, label: `关键词「${q}」` });
+  }
+
+  if (collection !== undefined) {
+    applied.push({ key: "collection", value: collection.slug, label: `合集：${collection.title}` });
   }
 
   for (const key of QUERY_FACET_KEYS) {

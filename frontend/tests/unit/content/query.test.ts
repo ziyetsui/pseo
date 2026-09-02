@@ -206,6 +206,43 @@ describe("applyPromptQuery", () => {
   });
 });
 
+describe("applyPromptQuery — collections", () => {
+  const members = { templates: ["a", "c"], empty: [] };
+
+  it("keeps only the named collection's members when a membership map is supplied", () => {
+    expect(
+      applyPromptQuery(ALL, { collection: "templates" }, { collectionMembers: members }).map(
+        (p) => p.id,
+      ),
+    ).toEqual(["a", "c"]);
+  });
+
+  it("ANDs a collection with the other axes", () => {
+    expect(
+      applyPromptQuery(
+        ALL,
+        { collection: "templates", useCase: ["fashion"] },
+        { collectionMembers: members },
+      ).map((p) => p.id),
+    ).toEqual(["c"]);
+  });
+
+  it("degrades to a no-op rather than matching nothing when membership is unknown", () => {
+    // No map at all (a client that was never given the data) …
+    expect(applyPromptQuery(ALL, { collection: "templates" })).toHaveLength(ALL.length);
+    // … and a map that simply does not know this slug.
+    expect(
+      applyPromptQuery(ALL, { collection: "nope" }, { collectionMembers: members }),
+    ).toHaveLength(ALL.length);
+  });
+
+  it("matches nothing only when the collection genuinely has no members", () => {
+    expect(
+      applyPromptQuery(ALL, { collection: "empty" }, { collectionMembers: members }),
+    ).toHaveLength(0);
+  });
+});
+
 describe("resolveWindowStart", () => {
   it("computes 7d/30d relative to the snapshot date, never to Date.now()", () => {
     expect(resolveWindowStart("2026-08-20", "7d")).toBe("2026-08-13");
@@ -261,6 +298,17 @@ describe("serializePromptQuery", () => {
     expect(serializePromptQuery({})).toEqual({});
     expect(serializePromptQuery({ q: "", model: [], window: "all" })).toEqual({});
   });
+
+  it("round-trips a collection slug", () => {
+    expect(serializePromptQuery({ collection: "template-prompts" })).toEqual({
+      collection: "template-prompts",
+    });
+    expect(parsePromptQuery("collection=template-prompts").query).toEqual({
+      collection: "template-prompts",
+    });
+    expect(parsePromptQuery("collection=").unknownParams).toEqual([]);
+    expect(parsePromptQuery("collection=").query.collection).toBeUndefined();
+  });
 });
 
 describe("isEmptyPromptQuery", () => {
@@ -270,5 +318,6 @@ describe("isEmptyPromptQuery", () => {
     expect(isEmptyPromptQuery({ q: "x" })).toBe(false);
     expect(isEmptyPromptQuery({ model: ["a"] })).toBe(false);
     expect(isEmptyPromptQuery({ window: "7d" })).toBe(false);
+    expect(isEmptyPromptQuery({ collection: "template-prompts" })).toBe(false);
   });
 });

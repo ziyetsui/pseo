@@ -35,8 +35,19 @@ export interface ContentRepository {
   /** Prompts the prototype puts in the L1 精选 slot / the L2 精选 rail. */
   listFeatured(locale: Locale, surface: "l1" | "l2"): Promise<PromptSummary[]>;
 
-  /** Trending relative to `getSnapshot().observedAt` — never to `Date.now()`. */
-  listTrending(locale: Locale, window: TrendingWindow, limit: number): Promise<TrendingResult>;
+  /**
+   * Trending relative to `getSnapshot().observedAt` — never to `Date.now()`.
+   *
+   * `modelSlug` narrows the pool to prompts naming that model before ranking,
+   * so the L3 model page gets its "近期热门" rail from the same ranking and
+   * top-up rules as L1 instead of re-implementing a comparator of its own.
+   */
+  listTrending(
+    locale: Locale,
+    window: TrendingWindow,
+    limit: number,
+    modelSlug?: string,
+  ): Promise<TrendingResult>;
 
   /** Terms on one axis with counts computed from the current prompt set. */
   listTaxonomies(locale: Locale, axis: TaxonomyAxis): Promise<TaxonomyWithCount[]>;

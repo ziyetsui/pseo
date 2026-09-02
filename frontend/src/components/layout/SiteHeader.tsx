@@ -6,9 +6,18 @@ import { SITE_NAME } from "@/lib/seo/site";
 
 import { BrandMark } from "./BrandMark";
 import { MobileNav } from "./MobileNav";
-import { getPrimaryNav } from "./nav";
+import { getPrimaryNav, type NavKey } from "./nav";
 
-export function SiteHeader({ locale }: { locale: Locale }) {
+export interface SiteHeaderProps {
+  locale: Locale;
+  /**
+   * Which primary nav entry this page IS. That entry is marked
+   * `aria-current="page"`, as in the prototype's L2/L3 nav.
+   */
+  currentNav?: NavKey;
+}
+
+export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
   const items = getPrimaryNav(locale);
 
   return (
@@ -25,13 +34,25 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <nav aria-label="主导航" className="hidden md:block">
           <ul className="flex items-center gap-6">
             {items.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="flex min-h-11 items-center text-sm font-bold tracking-wider uppercase"
-                >
-                  {item.label}
-                </Link>
+              <li key={item.key}>
+                {item.href === null ? (
+                  // No route in this phase: plain text plus the reason, never a
+                  // link and never `#` (global constraint 5).
+                  <span className="flex min-h-11 items-center text-sm font-bold tracking-wider text-foreground/60 uppercase">
+                    {item.label}
+                    {item.note === undefined ? null : (
+                      <span className="ml-1 text-xs normal-case">{item.note}</span>
+                    )}
+                  </span>
+                ) : (
+                  <Link
+                    href={item.href}
+                    aria-current={item.key === currentNav ? "page" : undefined}
+                    className="flex min-h-11 items-center text-sm font-bold tracking-wider uppercase aria-[current=page]:underline aria-[current=page]:decoration-accent-red aria-[current=page]:decoration-4"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -60,7 +81,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        <MobileNav items={items} />
+        <MobileNav items={items} currentNav={currentNav} />
       </div>
     </header>
   );

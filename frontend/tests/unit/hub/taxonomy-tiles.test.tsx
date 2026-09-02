@@ -16,6 +16,7 @@ function term(overrides: Partial<TaxonomyWithCount> = {}): TaxonomyWithCount {
     href: null,
     wireframeDeclaredCount: 162,
     count: 4,
+    highValueCount: 1,
     ...overrides,
   };
 }
@@ -24,10 +25,12 @@ describe("TaxonomyTiles", () => {
   it("links a term without a page of its own to the pre-filtered hub", () => {
     render(<TaxonomyTiles basePath={BASE} axis="useCase" terms={[term()]} />);
 
-    expect(screen.getByRole("link", { name: /时尚/ })).toHaveAttribute(
+    // The tile carries the prototype's English value, not `labelZh`.
+    expect(screen.getByRole("link", { name: /Fashion/ })).toHaveAttribute(
       "href",
       `${BASE}?useCase=fashion`,
     );
+    expect(screen.queryByText("时尚")).not.toBeInTheDocument();
   });
 
   it("links a model that has a real page to that page", () => {
@@ -81,7 +84,7 @@ describe("TaxonomyTiles", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: /时尚/ })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Fashion/ })).toHaveAttribute(
       "href",
       "/zh-CN/prompts/use-cases/fashion",
     );

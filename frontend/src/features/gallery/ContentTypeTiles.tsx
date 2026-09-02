@@ -32,14 +32,26 @@ export function ContentTypeTiles({
 }: ContentTypeTilesProps) {
   if (types.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
+  const max = types.reduce((best, type) => Math.max(best, type.count), 0);
+
   return (
     <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
       {types.map((type) => {
         const label = termLabel(type);
+        const share = max === 0 ? 0 : Math.round((type.count / max) * 100);
         const body = (
           <>
             <h3 className="text-base font-black tracking-tight md:text-lg">{label}</h3>
-            <p className="text-sm font-medium">{type.count} 条提示词</p>
+            {/* Prototype tile line: `N 条 · N 条热门`. */}
+            <p className="text-sm font-medium">
+              {type.count} 条 · {type.highValueCount} 条热门
+            </p>
+            <span
+              aria-hidden="true"
+              className="mt-auto block h-3 border-2 border-foreground bg-surface"
+            >
+              <span className="block h-full bg-accent-red" style={{ width: `${share}%` }} />
+            </span>
           </>
         );
 

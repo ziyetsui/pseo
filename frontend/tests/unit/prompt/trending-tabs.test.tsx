@@ -27,7 +27,7 @@ const windows = [
     window: "7d" as const,
     label: "近 7 天",
     items: [prompt("w7", "七日热门提示词")],
-    note: "该时段收录较少，已补充全部时段的高分提示词。",
+    note: "该时段收录较少，已补充全部时段热门。",
     windowStart: "2026-08-13",
   },
   {
@@ -39,7 +39,7 @@ const windows = [
   },
   {
     window: "all" as const,
-    label: "全部时段",
+    label: "全部",
     items: [prompt("wall", "全部时段热门提示词")],
     note: null,
     windowStart: null,
@@ -65,7 +65,7 @@ describe("TrendingTabs", () => {
   it("defaults to the all-time panel and renders its cards", () => {
     renderTabs();
 
-    const all = screen.getByRole("tab", { name: "全部时段" });
+    const all = screen.getByRole("tab", { name: "全部" });
     expect(all).toHaveAttribute("aria-selected", "true");
     expect(screen.getByRole("tab", { name: "近 7 天" })).toHaveAttribute("aria-selected", "false");
 
@@ -91,7 +91,7 @@ describe("TrendingTabs", () => {
       "href",
       `${BASE}?window=30d`,
     );
-    expect(screen.getByRole("tab", { name: "全部时段" })).toHaveAttribute("href", BASE);
+    expect(screen.getByRole("tab", { name: "全部" })).toHaveAttribute("href", BASE);
   });
 
   it("keeps the rest of the query when switching windows", () => {
@@ -109,7 +109,7 @@ describe("TrendingTabs", () => {
     renderTabs();
 
     expect(screen.getByRole("tab", { name: "近 7 天" })).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByRole("tab", { name: "全部时段" })).toHaveAttribute("aria-selected", "false");
+    expect(screen.getByRole("tab", { name: "全部" })).toHaveAttribute("aria-selected", "false");
     expect(screen.getByText(/该时段收录较少/)).toBeInTheDocument();
     expect(within(screen.getByRole("tabpanel")).getByRole("heading", { name: "七日热门提示词" }))
       .toBeInTheDocument();
@@ -122,17 +122,22 @@ describe("TrendingTabs", () => {
     expect(screen.queryByText(/该时段收录较少/)).not.toBeInTheDocument();
   });
 
-  it("states the window boundaries from the snapshot rather than a hardcoded date", () => {
+  it("carries no standing window description, only the snapshot note for assistive tech", () => {
     search = "window=30d";
     renderTabs();
 
-    expect(screen.getByText(/2026-07-21/)).toHaveTextContent(OBSERVED_AT);
+    // The prototype's tablist has no description paragraph — the only prose is
+    // the top-up note, and only when a top-up happened.
+    expect(screen.queryByText(/统计窗口/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/按互动价值排序/)).not.toBeInTheDocument();
+    // The snapshot date still has to be stated somewhere (global constraint 4).
+    expect(screen.getByText(`互动数据观测于 ${OBSERVED_AT}。`)).toBeInTheDocument();
   });
 
   it("uses a roving tabindex so the tablist is a single tab stop", () => {
     renderTabs();
 
-    expect(screen.getByRole("tab", { name: "全部时段" })).toHaveAttribute("tabindex", "0");
+    expect(screen.getByRole("tab", { name: "全部" })).toHaveAttribute("tabindex", "0");
     expect(screen.getByRole("tab", { name: "近 7 天" })).toHaveAttribute("tabindex", "-1");
   });
 
@@ -151,7 +156,7 @@ describe("TrendingTabs", () => {
     expect(first).toHaveFocus();
 
     await user.keyboard("{End}");
-    expect(screen.getByRole("tab", { name: "全部时段" })).toHaveFocus();
+    expect(screen.getByRole("tab", { name: "全部" })).toHaveFocus();
 
     await user.keyboard("{Home}");
     expect(first).toHaveFocus();
@@ -163,7 +168,7 @@ describe("TrendingTabs", () => {
 
     screen.getByRole("tab", { name: "近 7 天" }).focus();
     await user.keyboard("{ArrowLeft}");
-    expect(screen.getByRole("tab", { name: "全部时段" })).toHaveFocus();
+    expect(screen.getByRole("tab", { name: "全部" })).toHaveFocus();
 
     await user.keyboard("{ArrowRight}");
     expect(screen.getByRole("tab", { name: "近 7 天" })).toHaveFocus();
@@ -174,7 +179,7 @@ describe("TrendingTabs", () => {
       <TrendingTabs
         locale="zh-CN"
         basePath={BASE}
-        windows={[{ window: "all", label: "全部时段", items: [], note: null, windowStart: null }]}
+        windows={[{ window: "all", label: "全部", items: [], note: null, windowStart: null }]}
         observedAt={OBSERVED_AT}
       />,
     );

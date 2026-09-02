@@ -134,6 +134,8 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
           prompts={list.items}
           facetGroups={list.facets}
           facetAxes={["model", "useCase", "technique", "style"]}
+          searchPlaceholder="搜索提示词、模型、风格、镜头语言、创作者…"
+          summaryStyle="hub"
           browse={
             <PromptHubBrowse
               locale={locale}

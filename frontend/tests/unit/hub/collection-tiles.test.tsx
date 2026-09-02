@@ -20,6 +20,7 @@ const axisCollection: CollectionWithCount = {
   },
   count: 5,
   sampleIds: [],
+  promptIds: [],
 };
 
 const sameAxisTwiceCollection: CollectionWithCount = {
@@ -36,6 +37,7 @@ const sameAxisTwiceCollection: CollectionWithCount = {
   },
   count: 2,
   sampleIds: [],
+  promptIds: [],
 };
 
 const regexCollection: CollectionWithCount = {
@@ -46,40 +48,49 @@ const regexCollection: CollectionWithCount = {
   rule: { type: "regex", pattern: "\\[[A-Z]+\\]" },
   count: 7,
   sampleIds: [],
+  promptIds: [],
 };
 
 describe("CollectionTiles", () => {
-  it("turns an axis rule into a real filtered hub link with every condition ANDed", () => {
+  it("links every collection to ?collection=<slug> on the hub", () => {
     render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
 
     expect(screen.getByRole("link", { name: /电影感镜头合集/ })).toHaveAttribute(
       "href",
-      `${BASE}?style=cinematic&technique=camera-movement-shot-language`,
+      `${BASE}?collection=cinematic-camera`,
     );
   });
 
-  it("shows the count computed from the data", () => {
+  it("writes the prototype's `副标题 · N 条` on one line", () => {
     render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
-    expect(screen.getByText("5 条提示词")).toBeInTheDocument();
+    expect(screen.getByText("镜头控制 × 电影质感 · 5 条")).toBeInTheDocument();
   });
 
-  it("does not fake a link for a rule the URL contract cannot express", () => {
-    render(<CollectionTiles basePath={BASE} collections={[regexCollection]} />);
+  it.each([
+    ["a body-regex rule", regexCollection, "模板提示词合集"],
+    ["two conditions on one axis", sameAxisTwiceCollection, "双模型合集"],
+  ])(
+    "still links a collection whose rule no facet query can express (%s)",
+    (_name, collection, title) => {
+      // Membership travels as an explicit id list through `?collection=`, so a
+      // rule the facet contract cannot express no longer costs the reader the
+      // affordance — nor does it require faking an equivalent facet query.
+      render(<CollectionTiles basePath={BASE} collections={[collection]} />);
 
-    expect(screen.queryByRole("link", { name: /模板提示词合集/ })).not.toBeInTheDocument();
-    expect(screen.getByText(/模板提示词合集/)).toBeInTheDocument();
-    expect(screen.getByText(/暂不支持/)).toBeInTheDocument();
-  });
+      expect(screen.getByRole("link", { name: new RegExp(title) })).toHaveAttribute(
+        "href",
+        `${BASE}?collection=${collection.slug}`,
+      );
+      expect(screen.queryByText(/暂不支持/)).not.toBeInTheDocument();
+    },
+  );
 
-  it("does not fake a link when two conditions share the same axis (OR ≠ AND-of-two-values)", () => {
-    // A query facet's multiple values on one axis mean OR ("model A or B"),
-    // never AND ("model A and B"); building a link would silently drop one
-    // condition and show a broader, wrong set instead.
-    render(<CollectionTiles basePath={BASE} collections={[sameAxisTwiceCollection]} />);
-
-    expect(screen.queryByRole("link", { name: /双模型合集/ })).not.toBeInTheDocument();
-    expect(screen.getByText(/双模型合集/)).toBeInTheDocument();
-    expect(screen.getByText(/暂不支持/)).toBeInTheDocument();
+  it("sizes the proportion bar against the library total when given one", () => {
+    const { container } = render(
+      <CollectionTiles basePath={BASE} collections={[axisCollection]} total={20} />,
+    );
+    const bar = container.querySelector("span[style]");
+    expect(bar).toHaveStyle({ width: "25%" });
   });
 
   it("never emits a placeholder href", () => {

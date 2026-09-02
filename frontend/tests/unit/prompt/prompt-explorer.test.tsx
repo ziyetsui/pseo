@@ -118,7 +118,11 @@ const facetGroups: FacetGroup[] = [
   },
 ];
 
-function renderExplorer() {
+const collections = [
+  { slug: "template-prompts", title: "模板提示词合集", promptIds: ["a", "c"] },
+];
+
+function renderExplorer(overrides: Record<string, unknown> = {}) {
   return render(
     <PromptExplorer
       locale="zh-CN"
@@ -126,7 +130,10 @@ function renderExplorer() {
       prompts={prompts}
       facetGroups={facetGroups}
       facetAxes={["model", "useCase", "technique", "style"]}
+      searchPlaceholder="搜索提示词、模型、风格、镜头语言、创作者…"
+      collections={collections}
       browse={<p data-testid="browse-body">浏览区内容</p>}
+      {...overrides}
     />,
   );
 }
@@ -141,6 +148,18 @@ function browseRegion() {
 
 function resultCards() {
   return screen.queryAllByRole("article");
+}
+
+/**
+ * The one status region that reports the result count. Every result card has
+ * its own unrelated copy-feedback status region, so they are filtered out.
+ */
+function countRegion(): HTMLElement {
+  const regions = screen
+    .getAllByRole("status")
+    .filter((node) => /条/.test(node.textContent ?? ""));
+  expect(regions).toHaveLength(1);
+  return regions[0] as HTMLElement;
 }
 
 beforeEach(() => {
@@ -186,11 +205,62 @@ describe("PromptExplorer", () => {
     // only counts ones that actually say how many results there are.)
     const countRegions = screen
       .getAllByRole("status")
-      .filter((node) => /找到 \d+ 条提示词/.test(node.textContent ?? ""));
+      .filter((node) => /共 \d+ 条/.test(node.textContent ?? ""));
     expect(countRegions).toHaveLength(1);
     const live = countRegions[0] as HTMLElement;
-    expect(live).toHaveTextContent("找到 1 条提示词");
+    expect(live).toHaveTextContent("共 1 条");
     expect(live).toHaveAttribute("aria-live", "polite");
+  });
+
+  it("writes the summary as the prototype does per page", () => {
+    search = "q=cube";
+    const { unmount } = renderExplorer({ summaryStyle: "hub" });
+    expect(countRegion()).toHaveTextContent("共 1 条");
+    unmount();
+
+    renderExplorer({ summaryStyle: "count" });
+    expect(countRegion()).toHaveTextContent("筛选出 1 条");
+  });
+
+  it("has no 搜索与筛选 heading and no per-axis headings above the facets", () => {
+    renderExplorer();
+
+    expect(screen.queryByRole("heading", { name: "搜索与筛选" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "模型" })).not.toBeInTheDocument();
+    // The grouping survives as a labelled group, just not as document structure.
+    expect(screen.getByRole("group", { name: "模型" })).toBeInTheDocument();
+  });
+
+  it("filters to a collection's members and names it in the summary", () => {
+    search = "collection=template-prompts";
+    renderExplorer();
+
+    expect(resultCards()).toHaveLength(2);
+    expect(countRegion()).toHaveTextContent("模板提示词合集 · 共 2 条");
+    expect(browseRegion()).not.toBeVisible();
+  });
+
+  it("reports an unknown collection slug instead of filtering everything away", () => {
+    search = "collection=does-not-exist";
+    renderExplorer();
+
+    expect(screen.getByText(/以下筛选值不存在，已被忽略/)).toHaveTextContent(
+      "collection=does-not-exist",
+    );
+    // Stripped before filtering, exactly like an unknown facet value: the
+    // reader sees the whole set plus the warning, not an empty page.
+    expect(resultCards()).toHaveLength(3);
+  });
+
+  it("lets a collection filter be removed like any other condition", () => {
+    search = "collection=template-prompts&model=seedance";
+    renderExplorer();
+
+    expect(resultCards()).toHaveLength(2);
+    expect(screen.getByRole("link", { name: "移除筛选：合集：模板提示词合集" })).toHaveAttribute(
+      "href",
+      `${BASE}?model=seedance`,
+    );
   });
 
   it("ORs several values on the same axis", () => {

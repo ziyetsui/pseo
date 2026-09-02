@@ -241,6 +241,33 @@ describe("listTrending", () => {
   it("respects the limit", async () => {
     expect((await repo.listTrending(LOCALE, "all", 3)).items).toHaveLength(3);
   });
+
+  it("narrows to one model when asked, using the same ranking and top-up rules", async () => {
+    const prompts = await allPrompts();
+    const expected = prompts.filter((p) => p.models.some((m) => m.slug === "nano-banana-pro"));
+
+    const scoped = await repo.listTrending(LOCALE, "all", 3, "nano-banana-pro");
+    expect(scoped.items).toHaveLength(Math.min(3, expected.length));
+    for (const item of scoped.items) {
+      expect(item.models.some((m) => m.slug === "nano-banana-pro")).toBe(true);
+    }
+
+    // Ranked by value score, exactly as the library-wide call is.
+    const scores = scoped.items.map((item) => item.metrics.valueScore ?? -Infinity);
+    expect([...scores].sort((a, b) => b - a)).toEqual(scores);
+  });
+
+  it("tops up a model's short window from that model's own prompts, never another model's", async () => {
+    const scoped = await repo.listTrending(LOCALE, "7d", 3, "nano-banana-pro");
+    for (const item of scoped.items) {
+      expect(item.models.some((m) => m.slug === "nano-banana-pro")).toBe(true);
+    }
+  });
+
+  it("uses the prototype's top-up note verbatim when it tops a window up", async () => {
+    const week = await repo.listTrending(LOCALE, "7d", 6);
+    if (week.note !== null) expect(week.note).toBe("该时段收录较少，已补充全部时段热门。");
+  });
 });
 
 describe("listTaxonomies", () => {
@@ -257,11 +284,59 @@ describe("listTaxonomies", () => {
     expect(models.map((m) => m.slug)).not.toContain("wan");
   });
 
+  it("counts high-value prompts on the same set the count came from", async () => {
+    const prompts = await allPrompts();
+    for (const axis of ["model", "useCase", "style", "contentType"] as const) {
+      for (const term of await repo.listTaxonomies(LOCALE, axis)) {
+        const matched = prompts.filter((prompt) =>
+          axis === "contentType"
+            ? prompt.contentType.slug === term.slug
+            : [...prompt.models, ...prompt.useCases, ...prompt.styles].some(
+                (candidate) => candidate.axis === axis && candidate.slug === term.slug,
+              ),
+        );
+        expect(term.highValueCount).toBe(
+          matched.filter((prompt) => prompt.metrics.highValue).length,
+        );
+        expect(term.highValueCount).toBeLessThanOrEqual(term.count);
+      }
+    }
+  });
+
   it("keeps the prototype's declared count as metadata only", async () => {
     const models = await repo.listTaxonomies(LOCALE, "model");
     const pro = models.find((m) => m.slug === "nano-banana-pro");
     expect(pro?.wireframeDeclaredCount).toBe(136);
     expect(pro?.count).not.toBe(136);
+  });
+
+  it("keeps the prototype's English value in `label` and the Chinese one in `labelZh`", async () => {
+    // Card chips and browse tiles render `label`; only the Chinese-labelled
+    // footer columns read `labelZh`. The extraction must therefore never put a
+    // translation in `label` for a term the prototype writes in English.
+    const expected: Record<string, { label: string; labelZh: string | null }> = {
+      "useCase:fashion": { label: "Fashion", labelZh: "时尚" },
+      "useCase:beauty": { label: "Beauty", labelZh: "美妆" },
+      "useCase:web-motion-design": { label: "Web & motion design", labelZh: null },
+      "style:photorealistic": { label: "Photorealistic", labelZh: "写实风" },
+      "style:anime-illustrated": { label: "Anime / illustrated", labelZh: null },
+      "technique:camera-movement-shot-language": {
+        label: "Camera movement / shot language",
+        labelZh: "镜头运动",
+      },
+      "model:nano-banana-pro": { label: "Nano Banana Pro", labelZh: null },
+    };
+
+    const byId = new Map<string, { label: string; labelZh: string | null }>();
+    for (const axis of ["model", "useCase", "technique", "style", "subject"] as const) {
+      for (const term of await repo.listTaxonomies(LOCALE, axis)) {
+        byId.set(term.id, { label: term.label, labelZh: term.labelZh });
+      }
+    }
+
+    for (const [id, value] of Object.entries(expected)) {
+      expect(byId.get(id)).toEqual(value);
+    }
   });
 
   it("covers every axis the query layer can filter on", async () => {
@@ -287,7 +362,9 @@ describe("models", () => {
 
     const listed = await repo.listModelPrompts(LOCALE, "nano-banana-pro");
     expect(model.href).toBe(modelPage(LOCALE, "nano-banana-pro"));
-    expect(model.summary).toContain(`库中 ${listed.total} 条 Prompt 点名该模型`);
+    expect(model.summary).toContain(`${listed.total} 条点名该模型的真实提示词`);
+    expect(model.summary).toContain("位创作者");
+    expect(model.summary).toMatch(/· \d+ 条热门 ·/);
     expect(model.summary).not.toContain("136");
     expect(model.editorialStatus).toBe("derived-from-fixture");
     expect(model.officialUrl).toBeNull();
@@ -345,7 +422,26 @@ describe("collections", () => {
       expect(collection.count).toBeGreaterThan(0);
       expect(collection.sampleIds.length).toBeLessThanOrEqual(3);
       expect(collection.sampleIds.length).toBeLessThanOrEqual(collection.count);
+      // The full membership list is what makes `?collection=` filterable.
+      expect(collection.promptIds).toHaveLength(collection.count);
+      expect(collection.promptIds.slice(0, 3)).toEqual(collection.sampleIds);
     }
+  });
+
+  it("filters listPrompts down to a collection's members", async () => {
+    const collections = await repo.listCollections(LOCALE);
+    const templates = collections.find((c) => c.slug === "template-prompts");
+    expect(templates).toBeDefined();
+    if (templates === undefined) return;
+
+    const listed = await repo.listPrompts(LOCALE, { collection: templates.slug });
+    expect(listed.total).toBe(templates.count);
+    expect(listed.items.map((p) => p.id).sort()).toEqual([...templates.promptIds].sort());
+    expect(listed.appliedFilters).toContainEqual({
+      key: "collection",
+      value: templates.slug,
+      label: `合集：${templates.title}`,
+    });
   });
 });
 
@@ -360,6 +456,36 @@ describe("creators", () => {
       expect(creator.url.startsWith("https://x.com/")).toBe(true);
     }
     expect(creators.map((c) => c.handle)).not.toContain("@PrometheanAIX");
+  });
+
+  it("sums likes and bookmarks over each creator's own prompts", async () => {
+    const creators = await repo.listCreators(LOCALE);
+    const prompts = await allPrompts();
+
+    for (const creator of creators) {
+      const mine = prompts.filter((prompt) => prompt.creator.id === creator.id);
+      for (const [field, actual] of [
+        ["likes", creator.likes],
+        ["bookmarks", creator.bookmarks],
+      ] as const) {
+        const values = mine.map((prompt) => prompt.metrics[field]);
+        // Never 0 for a creator whose posts recorded nothing (AGENTS.md §1).
+        if (values.every((value) => value === null)) expect(actual).toBeNull();
+        else {
+          expect(actual).toBe(
+            values.reduce((sum: number, value) => sum + (value ?? 0), 0),
+          );
+        }
+      }
+    }
+  });
+
+  it("never renders the prototype's declared per-creator figures as achieved sums", async () => {
+    const creators = await repo.listCreators(LOCALE);
+    for (const creator of creators) {
+      if (creator.wireframeDeclaredLikes === null) continue;
+      expect(creator.likes).not.toBe(creator.wireframeDeclaredLikes);
+    }
   });
 });
 
