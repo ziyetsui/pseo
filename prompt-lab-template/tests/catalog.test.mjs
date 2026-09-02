@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
@@ -95,4 +95,96 @@ test('check detects stale generated files without rewriting them', async (t) => 
   await checkGenerated({ root })
   await writeFile(path.join(root, 'catalog.json'), '{}\n')
   await assert.rejects(checkGenerated({ root }), /generated output is stale: catalog\.json/)
+})
+
+test('removed locales are rejected as obsolete and generate prunes only managed files', async (t) => {
+  const root = await copyFixture(t)
+  await writeGenerated({ root })
+  await writeFile(path.join(root, 'locales/zh-CN/keep.txt'), 'not managed\n')
+  await writeFile(path.join(root, 'locales/zh-CN/catalog.json'), '{}\n')
+  await rm(path.join(root, 'content/prompts/prm_city_postcard/zh-CN.md'))
+  await rm(path.join(root, 'content/taxonomies/content-type/cty_image/zh-CN.json'))
+  await rm(path.join(root, 'content/taxonomies/model/mdl_example_image/zh-CN.json'))
+  const sitePath = path.join(root, 'content/site.json')
+  const site = JSON.parse(await readFile(sitePath, 'utf8'))
+  site.locales = ['en']
+  site.publishedLocales = ['en']
+  await writeFile(sitePath, `${JSON.stringify(site, null, 2)}\n`)
+
+  await assert.rejects(checkGenerated({ root }), /obsolete managed output: .*locales\/zh-CN\/README\.md/)
+  await writeGenerated({ root })
+  await checkGenerated({ root })
+  await assert.rejects(readFile(path.join(root, 'locales/zh-CN/README.md')), { code: 'ENOENT' })
+  await assert.rejects(readFile(path.join(root, 'locales/zh-CN/catalog.json')), { code: 'ENOENT' })
+  assert.equal(await readFile(path.join(root, 'locales/zh-CN/keep.txt'), 'utf8'), 'not managed\n')
+})
+
+test('absolute, escaping, and symbolic local references fail real-path containment', async (t) => {
+  const root = await copyFixture(t)
+  const outside = await mkdtemp(path.join(os.tmpdir(), 'prompt-lab-outside-'))
+  t.after(() => rm(outside, { recursive: true, force: true }))
+  await writeFile(path.join(outside, 'outside.txt'), 'outside')
+  const promptDirectory = path.join(root, 'content/prompts/prm_city_postcard')
+  await symlink(path.join(outside, 'outside.txt'), path.join(promptDirectory, 'linked.txt'))
+  await mkdir(path.join(root, 'content/media'), { recursive: true })
+  await symlink(path.join(outside, 'outside.txt'), path.join(root, 'content/media/linked.bin'))
+  const promptPath = path.join(promptDirectory, 'en.md')
+  const prompt = await readFile(promptPath, 'utf8')
+  const links = `[absolute](/etc/passwd)\n[escape](../../../../${path.basename(outside)}/outside.txt)\n[linked](./linked.txt)\n\n`
+  await writeFile(promptPath, prompt.replace('"media": []', '"media": [{"url": "media/linked.bin", "alt": "Linked output"}]').replace('\n## Source', `\n${links}## Source`))
+
+  await assert.rejects(
+    validateRepository({ root }),
+    (error) => {
+      assert.match(error.message, /absolute local Markdown link is forbidden/)
+      assert.match(error.message, /Markdown link escapes the repository/)
+      assert.match(error.message, /symbolic Markdown link is forbidden/)
+      assert.match(error.message, /symbolic media reference is forbidden/)
+      return true
+    },
+  )
+})
+
+test('accepted media bytes are included in the deterministic content revision', async (t) => {
+  const root = await copyFixture(t)
+  await mkdir(path.join(root, 'content/media'), { recursive: true })
+  const mediaPath = path.join(root, 'content/media/example.bin')
+  await writeFile(mediaPath, 'first')
+  const promptPath = path.join(root, 'content/prompts/prm_city_postcard/en.md')
+  const prompt = await readFile(promptPath, 'utf8')
+  await writeFile(promptPath, prompt.replace('"media": []', '"media": [{"url": "media/example.bin", "alt": "Example output"}]'))
+
+  const first = await buildCatalog({ root })
+  await writeFile(mediaPath, 'second')
+  const second = await buildCatalog({ root })
+  assert.notEqual(first.contentRevision, second.contentRevision)
+})
+
+test('external media cannot bypass the offline media revision contract', async (t) => {
+  const root = await copyFixture(t)
+  const promptPath = path.join(root, 'content/prompts/prm_city_postcard/en.md')
+  const prompt = await readFile(promptPath, 'utf8')
+  await writeFile(promptPath, prompt.replace('"media": []', '"media": [{"url": "https://example.com/unpinned.png", "alt": "Remote output"}]'))
+  await assert.rejects(validateRepository({ root }), /external media is forbidden/)
+})
+
+test('the executable schema is closed at top-level and nested objects', async (t) => {
+  const root = await copyFixture(t)
+  const promptPath = path.join(root, 'content/prompts/prm_city_postcard/en.md')
+  const prompt = await readFile(promptPath, 'utf8')
+  await writeFile(
+    promptPath,
+    prompt
+      .replace('"schemaVersion": 1,', '"schemaVersion": 1,\n  "cmsDraft": true,')
+      .replace('"platform": "web",', '"platform": "web",\n    "privateNote": "must not leak",'),
+  )
+
+  await assert.rejects(
+    validateRepository({ root }),
+    (error) => {
+      assert.match(error.message, /unknown field cmsDraft/)
+      assert.match(error.message, /source: unknown field privateNote/)
+      return true
+    },
+  )
 })
