@@ -12,15 +12,17 @@ import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
 import type { Locale, PromptDetail, PromptSummary, RelatedGroups, Taxonomy } from "@/lib/content";
 import type { BreadcrumbItem } from "@/lib/seo/json-ld";
 
+import { PromptCopyProvider, PromptStickyCopyBar, PromptSubstitutedText } from "./PromptCopyProvider";
 import { PromptSourceText } from "./PromptSourceText";
 import { StickyCopyBar } from "./StickyCopyBar";
 import { VariableSelector } from "./VariableSelector";
 import { taxonomyHref, taxonomyLabel } from "./taxonomy-links";
-import { formatStepBody, promptLanguageLabel, promptTokens } from "./variable-view";
+import { formatStepBody, promptLanguageLabel, promptTokens, splitTokenKinds } from "./variable-view";
 
-/** Id of the `<pre>` — the copy fallback target and the in-page anchor. */
+/** Id of the `<pre>` — the copy fallback target when there is nothing to
+ * substitute (no variables means the visible original already is the text a
+ * plain copy button would put on the clipboard). */
 const PROMPT_TEXT_ID = "prompt-text";
-const VARIABLES_ID = "prompt-variables";
 
 export interface PromptDetailViewProps {
   prompt: PromptDetail;
@@ -47,8 +49,10 @@ function TaxonomyChips({ locale, terms }: { locale: Locale; terms: readonly Taxo
         const href = taxonomyHref(locale, term);
         const label = taxonomyLabel(term);
         return href === null ? (
-          // No page and no filter axis: plain text beats a dead link.
-          <span key={term.id} className={chipClassName(false, { size: "compact" })}>
+          // No page and no filter axis: plain text beats a dead link. Same
+          // size as `ChipLink` below — linked and unlinked terms in the same
+          // row must read as the same kind of chip, not two different sizes.
+          <span key={term.id} className={chipClassName(false)}>
             {label}
           </span>
         ) : (
@@ -78,6 +82,7 @@ function PromptLinkList({ prompts }: { prompts: readonly PromptSummary[] }) {
 
 export function PromptDetailView({ prompt, locale, related, breadcrumbs }: PromptDetailViewProps) {
   const tokens = promptTokens(prompt.promptText);
+  const { substitutable, reference } = splitTokenKinds(tokens);
   const hasVariables = prompt.variables.length > 0;
   const [hero, ...thumbnails] = prompt.media;
   const model = prompt.models[0];
@@ -109,8 +114,8 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
     { label: "引用", value: prompt.metrics.quotes },
   ];
 
-  return (
-    <div className="mx-auto max-w-5xl px-4 pt-8 pb-32 md:px-8 md:pt-12 md:pb-16">
+  const content = (
+    <div className="mx-auto max-w-5xl px-4 pt-8 pb-8 md:px-8 md:pt-12 md:pb-16">
       <Breadcrumb items={breadcrumbs} />
 
       {/* ------------------------------------------------------- identity */}
@@ -197,22 +202,23 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
         <PromptSourceText id={PROMPT_TEXT_ID} text={prompt.promptText} tokens={tokens} />
         <div className="mt-4">
           {hasVariables ? (
-            <Panel tone="note">
-              <p>
-                这条提示词含变量。请在下方
-                <a href={`#${VARIABLES_ID}`} className="mx-1 font-bold underline">
-                  变量选择
-                </a>
-                中选好取值，复制按钮会把每一处都替换掉。
-              </p>
-            </Panel>
+            // Selection, live status and the primary copy button live right
+            // here — no separate section, no "go pick a value below" note.
+            <VariableSelector promptText={prompt.promptText} variables={prompt.variables} />
           ) : (
             <div className="flex flex-col gap-4">
-              {tokens.length === 0 ? null : (
+              {substitutable.length === 0 ? null : (
                 // Tokens with no curated option list: say so rather than let the
                 // reader paste `[PRODUCT NAME]` into a generator unchanged.
                 <Panel tone="warning">
-                  <p>{`本页未收录这些变量的候选取值，复制后请自行替换：${tokens.join("、")}。`}</p>
+                  <p>{`本页未收录这些变量的候选取值，复制后请自行替换：${substitutable.join("、")}。`}</p>
+                </Panel>
+              )}
+              {reference.length === 0 ? null : (
+                // `@img1` is a reference-image placeholder, not text you can
+                // type in — "自行替换" would be misleading here.
+                <Panel tone="note">
+                  <p>{`需附上参考图：${reference.join("、")}。`}</p>
                 </Panel>
               )}
               <div>
@@ -294,22 +300,6 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
               </li>
             ))}
           </ol>
-        </Section>
-      )}
-
-      {/* ------------------------------------------------------- variables */}
-      {!hasVariables ? null : (
-        <Section
-          id={VARIABLES_ID}
-          title="变量选择"
-          description="选好取值后复制，提示词里的每一处都会被替换。"
-        >
-          <VariableSelector
-            promptText={prompt.promptText}
-            variables={prompt.variables}
-            targetId={PROMPT_TEXT_ID}
-            sticky={sticky}
-          />
         </Section>
       )}
 
@@ -433,11 +423,29 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
         )}
       </Section>
 
-      {/* Prompts with variables get their sticky bar from VariableSelector,
-          which owns the substituted text. */}
-      {hasVariables ? null : (
+      {/* Visually hidden (position: absolute, out of flow — never the
+          `<pre>` above the fold) copy of the substituted text, so the copy
+          button's manual-copy fallback selects the same text it would have
+          put on the clipboard. Its DOM position doesn't matter for layout. */}
+      {!hasVariables ? null : <PromptSubstitutedText />}
+
+      {/* Must stay the LAST in-flow child here: `position: sticky` only
+          clamps within this wrapper's own box, so this is what keeps the bar
+          from ever sitting on top of the footer (which is outside this
+          wrapper) — see `StickyCopyBar` and `PromptStickyCopyBar`. */}
+      {hasVariables ? (
+        <PromptStickyCopyBar info={sticky} />
+      ) : (
         <StickyCopyBar {...sticky} copyText={prompt.promptText} targetId={PROMPT_TEXT_ID} />
       )}
     </div>
+  );
+
+  return hasVariables ? (
+    <PromptCopyProvider promptText={prompt.promptText} variables={prompt.variables}>
+      {content}
+    </PromptCopyProvider>
+  ) : (
+    content
   );
 }

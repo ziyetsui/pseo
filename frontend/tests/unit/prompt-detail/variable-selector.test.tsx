@@ -2,6 +2,11 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
+import {
+  PromptCopyProvider,
+  PromptStickyCopyBar,
+  PromptSubstitutedText,
+} from "@/features/prompt-detail/PromptCopyProvider";
 import { VariableSelector } from "@/features/prompt-detail/VariableSelector";
 import {
   getContentRepository,
@@ -40,18 +45,15 @@ function setClipboard(value: unknown): void {
 
 afterEach(() => {
   setClipboard(undefined);
+  window.getSelection()?.removeAllRanges();
 });
 
-function renderSelector() {
+function renderSelector(promptText: string = golden.promptText, variables = golden.variables) {
   return render(
-    <div>
-      <pre id="prompt-text">{golden.promptText}</pre>
-      <VariableSelector
-        promptText={golden.promptText}
-        variables={golden.variables}
-        targetId="prompt-text"
-      />
-    </div>,
+    <PromptCopyProvider promptText={promptText} variables={variables}>
+      <VariableSelector promptText={promptText} variables={variables} />
+      <PromptSubstitutedText />
+    </PromptCopyProvider>,
   );
 }
 
@@ -120,16 +122,8 @@ describe("VariableSelector", () => {
   });
 
   it("warns about tokens it cannot replace instead of copying them silently", () => {
-    render(
-      <div>
-        <pre id="prompt-text">{`Draw ${TOKEN} in [STYLE_NAME].`}</pre>
-        <VariableSelector
-          promptText={`Draw ${TOKEN} in [STYLE_NAME].`}
-          variables={golden.variables}
-          targetId="prompt-text"
-        />
-      </div>,
-    );
+    const text = `Draw ${TOKEN} in [STYLE_NAME].`;
+    renderSelector(text, golden.variables);
     expect(screen.getByText(/以下变量未替换/)).toHaveTextContent("[STYLE_NAME]");
   });
 
@@ -138,19 +132,17 @@ describe("VariableSelector", () => {
     setClipboard({ writeText });
 
     render(
-      <div>
-        <pre id="prompt-text">{golden.promptText}</pre>
-        <VariableSelector
-          promptText={golden.promptText}
-          variables={golden.variables}
-          targetId="prompt-text"
-          sticky={{
+      <PromptCopyProvider promptText={golden.promptText} variables={golden.variables}>
+        <VariableSelector promptText={golden.promptText} variables={golden.variables} />
+        <PromptStickyCopyBar
+          info={{
             title: golden.title,
             meta: "GPT Image 2 · @Naiknelofar788",
             sourceUrl: golden.source.url,
           }}
         />
-      </div>,
+        <PromptSubstitutedText />
+      </PromptCopyProvider>,
     );
 
     await userEvent.click(screen.getByRole("radio", { name: "Mexico" }));
@@ -165,5 +157,23 @@ describe("VariableSelector", () => {
       "href",
       golden.source.url,
     );
+  });
+
+  it("selects the substituted text — not the raw, tokenized prompt — when the clipboard write fails", async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error("denied"));
+    setClipboard({ writeText });
+
+    renderSelector();
+    await userEvent.click(screen.getByRole("radio", { name: "France" }));
+    await userEvent.click(screen.getByRole("button", { name: /复制提示词/ }));
+
+    expect(screen.getByText("复制失败，可选中文本手动复制")).toBeInTheDocument();
+
+    const selection = window.getSelection();
+    expect(selection?.rangeCount).toBe(1);
+    const range = selection?.getRangeAt(0);
+    const selectedText = range?.cloneContents().textContent ?? "";
+    expect(selectedText).toContain("France");
+    expect(selectedText).not.toContain(TOKEN);
   });
 });

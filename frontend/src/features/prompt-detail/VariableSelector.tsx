@@ -1,61 +1,40 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useRef, type KeyboardEvent } from "react";
 
 import { Panel } from "@/components/ui/Panel";
 import { cx } from "@/components/ui/class-names";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
-import { substituteVariables } from "@/lib/content/variables";
 import type { PromptVariable } from "@/lib/content/types";
 
-import { StickyCopyBar, type StickyBarInfo } from "./StickyCopyBar";
+import { usePromptCopyContext } from "./PromptCopyProvider";
 import { replacementPhrase } from "./variable-view";
 
 export interface VariableSelectorProps {
-  /** The prompt exactly as published — never mutated, only substituted from. */
+  /**
+   * The prompt exactly as published. Only used here to count occurrences for
+   * each variable's live status line — the actual selection state and the
+   * substituted text live in the ancestor `PromptCopyProvider`, shared with
+   * the mobile sticky bar rendered at the end of the page.
+   */
   promptText: string;
   variables: readonly PromptVariable[];
-  /** Id of the server-rendered `<pre>`, used as the copy fallback target. */
-  targetId: string;
-  /** When supplied, the selector also owns the mobile sticky action bar. */
-  sticky?: StickyBarInfo;
-}
-
-function initialValues(variables: readonly PromptVariable[]): Record<string, string> {
-  const values: Record<string, string> = {};
-  for (const variable of variables) {
-    values[variable.token] = variable.defaultValue || (variable.options[0] ?? "");
-  }
-  return values;
 }
 
 /**
- * Variable picker for a prompt with placeholders.
+ * Variable picker for a prompt with placeholders, rendered directly under the
+ * published `<pre>` inside the "提示词" section: one radiogroup per variable,
+ * a live status line, and the primary copy button — choosing a value and
+ * copying it never requires leaving the section.
  *
- * It owns the selection state and therefore every control whose output depends
- * on it: the inline copy button and — when the page asks for one — the mobile
- * sticky bar's copy button. The `<pre>` above stays server-rendered with the
- * original text (tokens and all); this component never rewrites it, so the
- * published prompt on the page is always the verbatim one.
- *
- * Each variable is an ARIA radio group with roving `tabindex`: one tab stop per
- * group, arrow keys move (and select) within it — the standard radio pattern.
+ * Each variable is an ARIA radio group with roving `tabindex`: one tab stop
+ * per group, arrow keys move (and select) within it — the standard radio
+ * pattern.
  */
-export function VariableSelector({
-  promptText,
-  variables,
-  targetId,
-  sticky,
-}: VariableSelectorProps) {
-  const [values, setValues] = useState(() => initialValues(variables));
+export function VariableSelector({ promptText, variables }: VariableSelectorProps) {
+  const { values, select, result, copyTargetId } = usePromptCopyContext();
   const optionRefs = useRef<Record<string, (HTMLButtonElement | null)[]>>({});
   const baseId = useId();
-
-  const result = substituteVariables(promptText, values);
-
-  function select(token: string, value: string): void {
-    setValues((current) => ({ ...current, [token]: value }));
-  }
 
   function handleKeyDown(
     event: KeyboardEvent<HTMLButtonElement>,
@@ -143,12 +122,8 @@ export function VariableSelector({
       )}
 
       <div>
-        <CopyPromptButton text={result.text} targetId={targetId} />
+        <CopyPromptButton text={result.text} targetId={copyTargetId} />
       </div>
-
-      {sticky === undefined ? null : (
-        <StickyCopyBar {...sticky} copyText={result.text} targetId={targetId} />
-      )}
     </div>
   );
 }

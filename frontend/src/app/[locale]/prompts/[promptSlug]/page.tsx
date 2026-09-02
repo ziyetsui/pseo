@@ -34,13 +34,23 @@ async function load(params: PageParams): Promise<{ locale: Locale; prompt: Promp
 
 export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
   const { locale, prompt } = await load(params);
+  // Built from `prompt.localeVariants` (filtered to "ready") rather than
+  // hand-listing locales, so a translation that hasn't actually shipped can
+  // never be advertised as an hreflang alternate. The current locale is
+  // guaranteed present regardless of what the fixture says, since we are
+  // rendering it right now.
+  const paths: Partial<Record<Locale, string>> = Object.fromEntries(
+    prompt.localeVariants
+      .filter((variant) => variant.status === "ready")
+      .map((variant) => [variant.locale, promptDetail(variant.locale, variant.slug)] as const),
+  );
+  paths[locale] = promptDetail(locale, prompt.slug);
+
   return buildMetadata({
     locale,
     title: prompt.title,
     description: prompt.summary ?? prompt.excerpt,
-    // `localeVariants` only ever contains locales with real published content,
-    // so a missing translation can never be advertised as an alternate.
-    paths: { [locale]: promptDetail(locale, prompt.slug) },
+    paths,
   });
 }
 

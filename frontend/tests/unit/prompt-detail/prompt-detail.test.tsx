@@ -14,6 +14,9 @@ import {
 
 const GOLDEN_SLUG = "country-miniature-stamp-poster";
 const TOKEN = "[COUNTRY]";
+// Its `promptText` contains only `@img1` (a reference-image placeholder), no
+// `[BRACKET]`-style substitutable token, and its curated `variables` is empty.
+const REFERENCE_ONLY_SLUG = "scene-a-seamless-ultra-cinematic-one-take-sh-2071174186978951379";
 
 const repository = getContentRepository();
 
@@ -21,6 +24,8 @@ let golden: PromptDetail;
 let goldenRelated: RelatedGroups;
 let plain: PromptDetail;
 let plainRelated: RelatedGroups;
+let referenceOnly: PromptDetail;
+let referenceOnlyRelated: RelatedGroups;
 
 beforeAll(async () => {
   const detail = await repository.getPromptBySlug("zh-CN", GOLDEN_SLUG);
@@ -40,6 +45,13 @@ beforeAll(async () => {
     break;
   }
   if (plain === undefined) throw new Error("fixture has no prompt without variables");
+
+  const referenceDetail = await repository.getPromptBySlug("zh-CN", REFERENCE_ONLY_SLUG);
+  if (referenceDetail === null) {
+    throw new Error(`fixture is missing the reference-image record ${REFERENCE_ONLY_SLUG}`);
+  }
+  referenceOnly = referenceDetail;
+  referenceOnlyRelated = await repository.getRelated("zh-CN", referenceOnly.id);
 });
 
 function renderGolden() {
@@ -221,5 +233,53 @@ describe("PromptDetailView — prompt without variables", () => {
     const section = screen.getByRole("region", { name: "互动数据" });
     expect(within(section).getAllByText("—").length).toBeGreaterThanOrEqual(2);
     expect(within(section).getAllByText("未收录").length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe("PromptDetailView — reference-image tokens (@img1)", () => {
+  function renderReferenceOnly() {
+    return render(
+      <PromptDetailView
+        prompt={referenceOnly}
+        locale="zh-CN"
+        related={referenceOnlyRelated}
+        breadcrumbs={promptBreadcrumbs("zh-CN", referenceOnly)}
+      />,
+    );
+  }
+
+  it("never counts a reference-image token as a substitutable variable", () => {
+    renderReferenceOnly();
+    // `@img1` occurs in the text, but it isn't something you type a value
+    // into, so it must never inflate the "N 处变量" count — the label stays
+    // plain.
+    expect(screen.getByText("英文")).toBeInTheDocument();
+    expect(screen.queryByText(/处变量/)).not.toBeInTheDocument();
+  });
+
+  it("tells the reader to attach a reference photo instead of offering to self-replace it", () => {
+    renderReferenceOnly();
+    expect(screen.getByText(/需附上参考图：@img1/)).toBeInTheDocument();
+    expect(screen.queryByText(/复制后请自行替换/)).not.toBeInTheDocument();
+    // No radiogroup: there is nothing to pick a text value for.
+    expect(screen.queryByRole("radiogroup")).not.toBeInTheDocument();
+    // Still copyable — the reference note doesn't replace the copy button.
+    expect(screen.getAllByRole("button", { name: /复制提示词/ }).length).toBeGreaterThan(0);
+  });
+});
+
+describe("formatStepBody", () => {
+  it("rewrites the occurrence count in '7 处全部替换' but leaves '处理'/'处于' untouched", () => {
+    const promptText = `${TOKEN} appears once here.`;
+
+    expect(formatStepBody("", "分 2 处理颜色，无需替换。", promptText)).toBe(
+      "分 2 处理颜色，无需替换。",
+    );
+    expect(formatStepBody("", "已处于待命状态，3 处理论上可省略。", promptText)).toBe(
+      "已处于待命状态，3 处理论上可省略。",
+    );
+    expect(formatStepBody("", "9 处全部替换为同一国家名。", promptText)).toBe(
+      "1 处全部替换为同一国家名。",
+    );
   });
 });
