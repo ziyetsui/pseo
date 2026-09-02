@@ -115,6 +115,17 @@ export function topRailedModels(
 }
 
 /**
+ * The words of the "see everything" affordance, without the arrow.
+ *
+ * A model tile's `ActionRow` draws its arrow with the shared `Chevron`, so it
+ * needs the same sentence the rail headers use minus the `→` character. Both
+ * spellings therefore come from one place and can never drift apart.
+ */
+export function tileActionLabel(count: number): string {
+  return `查看全部 ${count} 条`;
+}
+
+/**
  * Label for a rail's "see everything" link: the prototype's
  * `查看全部 136 条 →`.
  *
@@ -125,7 +136,7 @@ export function topRailedModels(
  * destination.
  */
 export function railMoreLabel(count: number): string {
-  return `查看全部 ${count} 条 →`;
+  return `${tileActionLabel(count)} →`;
 }
 
 /**

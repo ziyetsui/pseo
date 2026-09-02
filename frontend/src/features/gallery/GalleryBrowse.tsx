@@ -1,8 +1,12 @@
-import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { ButtonLink } from "@/components/ui/Button";
+import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { Section } from "@/components/ui/Section";
 import { StateBlock } from "@/components/ui/StateBlock";
+import { cx } from "@/components/ui/class-names";
+import { dividerClassName } from "@/components/ui/dividers";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import { COMING_SOON_NOTE } from "@/components/layout/nav";
 import type { Locale, PromptSummary, TaxonomyWithCount } from "@/lib/content/types";
 import { promptsHome, promptsImage } from "@/lib/i18n/routes";
@@ -50,6 +54,30 @@ interface RelatedItem {
   href: string | null;
   /** Extra attribute the tests hook onto, e.g. `data-usecase-more`. */
   attrs?: Record<string, string>;
+}
+
+/**
+ * A hairline row for a destination this phase does not build.
+ *
+ * `HairlineRow` requires a real `href` by design — a row that navigates
+ * nowhere is text, not a link — so the 即将推出 entries keep the row's rhythm
+ * (44px target, the `row` divider tier) without its chevron, which would
+ * promise a destination that does not exist. See the lane report's primitive
+ * gap note.
+ */
+function ComingSoonRow({ children, last = false }: { children: ReactNode; last?: boolean }) {
+  return (
+    <li className="flex flex-col">
+      <span
+        className={cx(
+          "flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium text-foreground/70",
+          last ? undefined : dividerClassName("row", "bottom"),
+        )}
+      >
+        {children}
+      </span>
+    </li>
+  );
 }
 
 /**
@@ -198,27 +226,40 @@ export function GalleryBrowse({
         <ContentTypeTiles types={contentTypes} currentSlug={IMAGE_CONTENT_TYPE_SLUG} />
       </Section>
 
+      {/*
+        The 相关 band is a dense text index, so it is deliberately NOT cards:
+        four boxes of four boxes would out-shout the tiles above them. Hairline
+        rows carry the same links, labels and order at a quarter of the weight,
+        with the chevron appearing only on hover or focus.
+      */}
       <Section id="gallery-related" title="相关">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {relatedColumns.map((column) => (
             <div key={column.title}>
-              <h3 className="text-xs font-bold tracking-widest uppercase">{column.title}</h3>
-              <ul className="mt-3 flex flex-col gap-2">
-                {column.items.map((item) => (
-                  <li key={item.key}>
-                    {item.href === null ? (
-                      <span className="text-base font-bold text-foreground/70">
-                        {item.label}
-                        {COMING_SOON_NOTE}
-                      </span>
-                    ) : (
-                      <Link href={item.href} {...item.attrs} className="text-base font-bold underline">
-                        {item.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              <h3
+                className={dividerClassName("column", "bottom", {
+                  className: microLabelClassName("pb-2"),
+                })}
+              >
+                {column.title}
+              </h3>
+              <HairlineList>
+                {column.items.map((item, index) => {
+                  const last = index === column.items.length - 1;
+                  return item.href === null ? (
+                    <ComingSoonRow key={item.key} last={last}>
+                      {item.label}
+                      {COMING_SOON_NOTE}
+                    </ComingSoonRow>
+                  ) : (
+                    <HairlineRow key={item.key} href={item.href} last={last}>
+                      {/* `HairlineRow` forwards no extra attributes, so the
+                          test hook rides an inner span. */}
+                      <span {...item.attrs}>{item.label}</span>
+                    </HairlineRow>
+                  );
+                })}
+              </HairlineList>
             </div>
           ))}
         </div>

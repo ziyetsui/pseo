@@ -204,7 +204,7 @@ describe("L2 image gallery page", () => {
     }
   });
 
-  it("renders one model tile per model in the image subset, labelled `N 条 · N 条热门`", async () => {
+  it("renders one model tile per model in the image subset, counting 条 and stamping N 条热门", async () => {
     const models = await imageModels();
     const { container } = await renderPage();
 
@@ -216,7 +216,9 @@ describe("L2 image gallery page", () => {
 
     for (const { term, count, highValueCount } of models) {
       const tile = region.querySelector(`[data-model-tile="${term.slug}"]`);
-      expect(tile?.textContent).toContain(`${count} 条 · ${highValueCount} 条热门`);
+      // The count keeps its 条 caption; the 热门 half is the status stamp.
+      expect(tile?.textContent).toContain(`${count} 条`);
+      expect(tile?.textContent).toContain(`${highValueCount} 条热门`);
     }
     // The prototype has no explanatory paragraph under this heading.
     expect(region.textContent).not.toContain("数量按当前收录的图片提示词计算");
@@ -352,23 +354,25 @@ describe("L2 image gallery page", () => {
 
     // 模型: the top three by image count, linking their real model pages.
     const topModels = models.filter((entry) => entry.term.href !== null).slice(0, 3);
-    const related = [...region.querySelectorAll("a[data-model-related]")];
+    // The band is hairline rows, not cards, so the hooks sit on the label
+    // inside each row's link.
+    const related = [...region.querySelectorAll("[data-model-related]")];
     expect(related.map((node) => node.getAttribute("data-model-related"))).toEqual(
       models.slice(0, 3).map((entry) => entry.term.slug),
     );
     for (const { term } of topModels) {
-      const link = region.querySelector(`a[data-model-related="${term.slug}"]`);
-      expect(link?.getAttribute("href")).toBe(term.href);
-      expect(link?.textContent).toBe(term.labelZh ?? term.label);
+      const label = region.querySelector(`[data-model-related="${term.slug}"]`);
+      expect(label?.closest("a")?.getAttribute("href")).toBe(term.href);
+      expect(label?.textContent).toBe(term.labelZh ?? term.label);
     }
 
     // 用例: no use-case page exists, so each links the pre-filtered library.
-    const useCaseLinks = [...region.querySelectorAll("a[data-usecase-more]")];
+    const useCaseLinks = [...region.querySelectorAll("[data-usecase-more]")];
     expect(useCaseLinks.length).toBeGreaterThan(0);
-    for (const link of useCaseLinks) {
-      const slug = link.getAttribute("data-usecase-more");
-      expect(link.getAttribute("href")).toBe(`/zh-CN/prompts?useCase=${slug}`);
-      expect(link.textContent).not.toMatch(/\d/);
+    for (const label of useCaseLinks) {
+      const slug = label.getAttribute("data-usecase-more");
+      expect(label.closest("a")?.getAttribute("href")).toBe(`/zh-CN/prompts?useCase=${slug}`);
+      expect(label.textContent).not.toMatch(/\d/);
     }
 
     // 更多: the library home is real, a creators index is not.
@@ -377,6 +381,15 @@ describe("L2 image gallery page", () => {
     ).toBe("/zh-CN/prompts");
     expect(within(region).queryByRole("link", { name: /全部创作者/ })).toBeNull();
     expect(region.textContent).toContain("全部创作者（即将推出）");
+
+    // Demoted from boxes to hairline rows: every row keeps the 44px target and
+    // the lightest divider tier, and no row is a card.
+    const rows = [...region.querySelectorAll("li > a, li > span")];
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) {
+      expect(row.className).toContain("min-h-11");
+      expect(row.className).not.toContain("shadow-hard");
+    }
   });
 
   it("closes with the prototype's CTA, pointing at the model that holds the most image prompts", async () => {

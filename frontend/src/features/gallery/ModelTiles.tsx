@@ -1,6 +1,13 @@
+import type { ReactNode } from "react";
+
+import { ActionRow } from "@/components/ui/ActionRow";
 import { CardLink, tileShellClassName } from "@/components/ui/Card";
+import { IdentityMark } from "@/components/ui/IdentityMark";
 import { StateBlock } from "@/components/ui/StateBlock";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { cx } from "@/components/ui/class-names";
+import { hoverTitleClassName } from "@/components/ui/hover";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import {
   BrowseTileBar,
   BrowseTileCount,
@@ -13,7 +20,7 @@ import {
 import type { SectionAccent } from "@/features/hub/section-accent";
 import type { TaxonomyWithCount } from "@/lib/content/types";
 
-import { termLabel } from "./image-prompts";
+import { termLabel, tileActionLabel } from "./image-prompts";
 
 export interface ModelTilesProps {
   /**
@@ -28,7 +35,7 @@ export interface ModelTilesProps {
 }
 
 /**
- * Browse-by-model tiles for the gallery.
+ * Browse-by-model tiles for the gallery — the identity variant of the card.
  *
  * A model links to its own page only when the repository gave the term a real
  * `href`. A model without one renders as plain text carrying the same count and
@@ -37,8 +44,20 @@ export interface ModelTilesProps {
  *
  * Weight and layout come from the shared browse-tile family (`features/hub`), so
  * the L2 bands read as the same object as the hub's: display-scale count, small
- * caption, accent proportion bar, and the biggest model leading the band. The
- * tile's content is unchanged.
+ * caption, accent proportion bar, and the biggest model leading the band.
+ *
+ * Three slots are pushed into that chassis here and nothing else changes:
+ *
+ * - `IdentityMark` — a monogram derived from the model's own name. The
+ *   reference puts each vendor's SVG logo in this square; we do not ship other
+ *   companies' marks, and the monogram identifies the same thing from data we
+ *   already hold. See `components/ui/IdentityMark`.
+ * - `StatusBadge` — the tile's one verdict, `N 条热门`. Same words it has
+ *   always carried, moved out of the count caption and onto the stamp so the
+ *   two numbers stop reading as one sentence.
+ * - `ActionRow` — the tile's affordance, in the same `查看全部 N 条` wording the
+ *   rails above already use (`tileActionLabel`); the arrow is the shared
+ *   `Chevron`, and only the gap between them animates on hover.
  */
 export function ModelTiles({
   models,
@@ -57,17 +76,40 @@ export function ModelTiles({
         const label = termLabel(model);
         const share = max === 0 ? 0 : Math.round((model.count / max) * 100);
         const lead = hasLead && index === 0;
-        const body = (
+
+        /**
+         * `footer` is the tile's last line: the action row when the tile is a
+         * link, the "no page yet" note when it is not. `linked` decides only
+         * whether the title answers the card's hover — the plain-text tile has
+         * no `group` to hang that off.
+         */
+        const body = (footer: ReactNode, linked: boolean) => (
           <>
             {lead ? <BrowseTileRank accent={accent} /> : null}
-            <h3 className={browseTileTitleClassName(lead)}>{label}</h3>
-            {/* Prototype tile line: `136 条 · 46 条热门`. */}
-            <BrowseTileCount
-              value={model.count}
-              caption={`条 · ${model.highValueCount} 条热门`}
-              lead={lead}
-            />
-            <BrowseTileBar share={share} accent={accent} lead={lead} />
+            <div className="flex items-start justify-between gap-3">
+              <IdentityMark name={label} />
+              <StatusBadge>{model.highValueCount} 条热门</StatusBadge>
+            </div>
+            <h3
+              className={
+                linked
+                  ? hoverTitleClassName(browseTileTitleClassName(lead))
+                  : browseTileTitleClassName(lead)
+              }
+            >
+              {label}
+            </h3>
+            {/* Prototype tile line: `136 条`; the 热门 half is the badge above. */}
+            <BrowseTileCount value={model.count} caption="条" lead={lead} />
+            {/*
+              One `mt-auto` per flex column: the bar and the footer travel to
+              the bottom together instead of splitting the free space between
+              two auto margins.
+            */}
+            <div className="mt-auto flex flex-col gap-3">
+              <BrowseTileBar share={share} accent={accent} lead={lead} />
+              {footer}
+            </div>
           </>
         );
 
@@ -82,8 +124,7 @@ export function ModelTiles({
                   "md:border-4",
                 )}
               >
-                {body}
-                <p className="text-xs font-bold tracking-wider uppercase">模型页尚未发布</p>
+                {body(<p className={microLabelClassName()}>模型页尚未发布</p>, false)}
               </div>
             ) : (
               <CardLink
@@ -92,8 +133,9 @@ export function ModelTiles({
                 className={cx(tileShellClassName, browseTileBodyClassName(lead))}
               >
                 {/* The whole tile is the link, exactly as in the prototype —
-                    no extra call-to-action line underneath it. */}
-                {body}
+                    the action row is a `<span>`, not a second focusable
+                    control for the same destination. */}
+                {body(<ActionRow label={tileActionLabel(model.count)} divider />, true)}
               </CardLink>
             )}
           </li>

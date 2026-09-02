@@ -251,6 +251,16 @@ describe("L3 model page — module order and content", () => {
     // `/prompts/creators` does not ship this phase: text, never a dead link.
     expect(related.textContent).toContain("全部创作者（即将推出）");
     expect(within(related).queryByRole("link", { name: /全部创作者/ })).toBeNull();
+
+    // A dense text index, demoted from boxes to hairline rows: 44px targets,
+    // the lightest divider tier, and no card frame or shadow anywhere in it.
+    const rows = [...related.querySelectorAll("li > a, li > span")];
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) {
+      expect(row.className).toContain("min-h-11");
+      expect(row.className).not.toContain("shadow-hard");
+      expect(row.className).not.toContain("border-2 border-foreground");
+    }
   });
 
   it("closes with the prototype CTA pointing back at 全部提示词", async () => {

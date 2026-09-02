@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import type { TaxonomyWithCount } from "@/lib/content/types";
@@ -13,6 +13,7 @@ import {
   promptsForTerm,
   railMoreLabel,
   selectImagePrompts,
+  tileActionLabel,
   topRailedModels,
 } from "@/features/gallery/image-prompts";
 
@@ -50,7 +51,8 @@ describe("ModelTiles", () => {
     const tile = container.querySelector('[data-model-tile="nano-banana-pro"]');
     expect(tile?.tagName).toBe("A");
     expect(tile?.getAttribute("href")).toBe("/zh-CN/prompts/models/nano-banana-pro");
-    expect(tile?.textContent).toContain("14 条 · 3 条热门");
+    expect(tile?.textContent).toContain("14 条");
+    expect(tile?.textContent).toContain("3 条热门");
   });
 
   it("renders a model without a page as plain text with a visible explanation", () => {
@@ -59,7 +61,8 @@ describe("ModelTiles", () => {
 
     expect(tile.tagName).not.toBe("A");
     expect(tile.querySelector("a")).toBeNull();
-    expect(tile.textContent).toContain("2 条 · 0 条热门");
+    expect(tile.textContent).toContain("2 条");
+    expect(tile.textContent).toContain("0 条热门");
     expect(tile.textContent).toContain("模型页尚未发布");
     expect(container.querySelectorAll("a")).toHaveLength(1);
   });
@@ -76,6 +79,32 @@ describe("ModelTiles", () => {
     const fill = container.querySelector("span[style]");
     expect(fill?.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
     expect(container.querySelectorAll("li")[0]?.className).toContain("lg:col-span-2");
+  });
+
+  it("marks the model with a monogram of its own name, never a vendor logo", () => {
+    const { container } = render(<ModelTiles models={[published]} />);
+    const tile = container.querySelector('[data-model-tile="nano-banana-pro"]') as HTMLElement;
+
+    // `Nano Banana Pro` → `NB`, derived from the label written beside it.
+    const mark = within(tile).getByText("NB");
+    expect(mark.getAttribute("aria-hidden")).toBe("true");
+    // No icon library, no third-party brand asset, no image of any kind.
+    expect(tile.querySelector("img")).toBeNull();
+    expect(tile.querySelector("svg")).toBeNull();
+  });
+
+  it("carries the rail's own 查看全部 wording as the tile's action row", () => {
+    const { container } = render(<ModelTiles models={[published, unpublished]} />);
+
+    const linked = container.querySelector('[data-model-tile="nano-banana-pro"]') as HTMLElement;
+    expect(linked.textContent).toContain(tileActionLabel(14));
+    // The gap between label and arrow is the only thing that animates.
+    expect(linked.innerHTML).toContain("transition-[gap]");
+
+    // A tile that goes nowhere gets no action row — only its explanation.
+    const unlinked = container.querySelector('[data-model-tile="mystery"]') as HTMLElement;
+    expect(unlinked.textContent).not.toContain("查看全部");
+    expect(unlinked.textContent).toContain("模型页尚未发布");
   });
 });
 
@@ -121,6 +150,23 @@ describe("ContentTypeTiles", () => {
     expect(tile.textContent).toContain("尚未发布");
     for (const node of container.querySelectorAll("a[href]")) {
       expect(node.getAttribute("href")).not.toContain("/prompts/video");
+    }
+  });
+
+  it("opens every tile with a full-width accent stripe closed by the card rule", () => {
+    const { container } = render(<ContentTypeTiles types={types} currentSlug="image" />);
+
+    for (const slug of ["image", "video"]) {
+      const tile = container.querySelector(`[data-content-type="${slug}"]`) as HTMLElement;
+      const stripe = tile.firstElementChild as HTMLElement;
+      expect(stripe.getAttribute("aria-hidden")).toBe("true");
+      expect(stripe.className).toContain("h-1.5");
+      expect(stripe.className).toContain("w-full");
+      expect(stripe.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
+      // The compartment rule: the stripe is a band of the card, not a floating
+      // decoration, so it is closed with the card-tier divider.
+      expect(stripe.className).toContain("border-b-2");
+      expect(stripe.className).toContain("border-foreground");
     }
   });
 
@@ -189,6 +235,11 @@ describe("topRailedModels", () => {
 describe("railMoreLabel", () => {
   it("writes the prototype's 查看全部 N 条 → with the rail's own scope", () => {
     expect(railMoreLabel(136)).toBe("查看全部 136 条 →");
+  });
+
+  it("shares its wording with the tile action row, which draws its own arrow", () => {
+    expect(tileActionLabel(136)).toBe("查看全部 136 条");
+    expect(railMoreLabel(136)).toBe(`${tileActionLabel(136)} →`);
   });
 });
 
