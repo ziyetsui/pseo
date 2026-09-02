@@ -14,6 +14,22 @@ describe("PromptText", () => {
     expect(pre).toHaveTextContent(TEXT);
   });
 
+  it("makes the scrollable pre a named keyboard stop", () => {
+    const { container } = render(<PromptText id="p1" text={TEXT} expandable={false} />);
+    const pre = container.querySelector("pre#p1");
+    // axe `scrollable-region-focusable`: a region a mouse can scroll must be
+    // focusable. The explicit role is what makes `aria-label` legal here.
+    expect(pre).toHaveAttribute("tabindex", "0");
+    expect(pre).toHaveAttribute("role", "group");
+    expect(pre).toHaveAttribute("aria-label", "提示词原文");
+    expect(screen.getByRole("group", { name: "提示词原文" })).toBe(pre);
+  });
+
+  it("accepts an overridden accessible name", () => {
+    render(<PromptText id="p1" text={TEXT} expandable={false} label="替换后的提示词" />);
+    expect(screen.getByRole("group", { name: "替换后的提示词" })).toBeInTheDocument();
+  });
+
   it("collapses by default and toggles data-expanded without removing the text", async () => {
     const { container } = render(<PromptText id="p1" text={TEXT} />);
     const region = container.querySelector("[data-expanded]");

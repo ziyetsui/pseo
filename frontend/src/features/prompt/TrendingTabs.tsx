@@ -159,9 +159,9 @@ function TrendingTabsView({
         {current.items.length === 0 ? (
           <StateBlock variant="empty" message={emptyMessage} />
         ) : (
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {current.items.map((prompt) => (
-              <li key={prompt.id} className="flex">
+              <li key={prompt.id} className="flex min-w-0">
                 <PromptCard prompt={prompt} locale={locale} idPrefix={idPrefix} />
               </li>
             ))}

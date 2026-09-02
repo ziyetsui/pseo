@@ -54,9 +54,9 @@ export function ModelBrowse({
         {trending.length === 0 ? (
           <StateBlock variant="empty" message="这个模型还没有可排序的热门提示词。" />
         ) : (
-          <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             {trending.map((prompt, index) => (
-              <li key={prompt.id} className="flex">
+              <li key={prompt.id} className="flex min-w-0">
                 <PromptCard
                   prompt={prompt}
                   locale={locale}
@@ -78,9 +78,9 @@ export function ModelBrowse({
         {prompts.length === 0 ? (
           <StateBlock variant="empty" message="这个模型下还没有收录提示词。" />
         ) : (
-          <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             {prompts.map((prompt) => (
-              <li key={prompt.id} className="flex">
+              <li key={prompt.id} className="flex min-w-0">
                 <PromptCard
                   prompt={prompt}
                   locale={locale}

@@ -7,6 +7,7 @@ import { formatStepBody } from "@/features/prompt-detail/variable-view";
 import {
   countToken,
   extractVariables,
+  formatCreatorHandle,
   getContentRepository,
   type PromptDetail,
   type RelatedGroups,
@@ -92,6 +93,15 @@ describe("PromptDetailView — golden record", () => {
     for (const mark of marks) expect(mark.textContent).toBe(TOKEN);
   });
 
+  it("gives the scrollable prompt <pre> keyboard access and a name", () => {
+    const { container } = renderGolden();
+    const pre = container.querySelector("pre#prompt-text");
+    // Same axe `scrollable-region-focusable` contract as the card `<pre>`.
+    expect(pre).toHaveAttribute("tabindex", "0");
+    expect(pre).toHaveAttribute("role", "group");
+    expect(pre).toHaveAttribute("aria-label", "提示词原文");
+  });
+
   it("renders all four use steps in an ordered list", () => {
     renderGolden();
     const section = screen.getByRole("region", { name: "使用步骤" });
@@ -140,6 +150,12 @@ describe("PromptDetailView — golden record", () => {
     expect(post).toHaveAttribute("rel", expect.stringContaining("noopener"));
     expect(post).toHaveAttribute("rel", expect.stringContaining("nofollow"));
     expect(within(section).getByText(/逐字保留/)).toBeInTheDocument();
+    expect(
+      within(section).getByRole("link", {
+        name: formatCreatorHandle(golden.source.handle),
+      }),
+    ).toBeInTheDocument();
+    expect(section.textContent).not.toContain("@@");
   });
 
   it("links the model chip to its model page and the other axes to a filtered L1", () => {

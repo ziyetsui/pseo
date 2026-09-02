@@ -4,7 +4,13 @@ import { describe, expect, it, vi } from "vitest";
 
 import { PromptCard } from "@/features/prompt/PromptCard";
 
-import { OBSERVED_AT, makeMetrics, makePromptSummary, makeSource } from "../support/prompt-fixtures";
+import {
+  OBSERVED_AT,
+  makeCreator,
+  makeMetrics,
+  makePromptSummary,
+  makeSource,
+} from "../support/prompt-fixtures";
 
 describe("PromptCard", () => {
   it("links the title to the real detail route", () => {
@@ -41,6 +47,21 @@ describe("PromptCard", () => {
       "https://x.com/azed_ai/status/1",
     );
   });
+
+  it.each(["azed_ai", "@azed_ai"])(
+    "renders %s with exactly one leading @",
+    (handle) => {
+      const { container } = render(
+        <PromptCard
+          prompt={makePromptSummary({ creator: makeCreator({ handle }) })}
+          locale="zh-CN"
+        />,
+      );
+
+      expect(screen.getByRole("link", { name: /@azed_ai/ })).toBeInTheDocument();
+      expect(container.textContent).not.toContain("@@azed_ai");
+    },
+  );
 
   it("states when the publish date is not recorded", () => {
     render(

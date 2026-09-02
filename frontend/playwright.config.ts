@@ -46,7 +46,9 @@ export default defineConfig({
   ],
   webServer: {
     // Serves the `next build` static export; run `pnpm build` first.
-    command: `pnpm exec serve out -l ${PORT}`,
+    // Bind loopback explicitly: an internal-beta test server must never be
+    // exposed on every interface of the developer machine.
+    command: `pnpm exec serve out -l tcp://127.0.0.1:${PORT} --no-port-switching -n`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

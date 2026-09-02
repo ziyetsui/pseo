@@ -3,6 +3,7 @@ import type { ContentRepository } from "./repository";
 
 export type { ContentRepository } from "./repository";
 export * from "./types";
+export { formatCreatorHandle } from "./creator-handle";
 export { applyPromptQuery, isEmptyPromptQuery, parsePromptQuery, resolveWindowStart, serializePromptQuery } from "./query";
 export { countToken, extractVariables, substituteVariables } from "./variables";
 

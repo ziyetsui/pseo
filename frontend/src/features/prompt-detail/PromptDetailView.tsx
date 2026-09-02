@@ -9,7 +9,14 @@ import { Panel } from "@/components/ui/Panel";
 import { Section } from "@/components/ui/Section";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
-import type { Locale, PromptDetail, PromptSummary, RelatedGroups, Taxonomy } from "@/lib/content";
+import {
+  formatCreatorHandle,
+  type Locale,
+  type PromptDetail,
+  type PromptSummary,
+  type RelatedGroups,
+  type Taxonomy,
+} from "@/lib/content";
 import type { BreadcrumbItem } from "@/lib/seo/json-ld";
 
 import { PromptCopyProvider, PromptStickyCopyBar, PromptSubstitutedText } from "./PromptCopyProvider";
@@ -86,7 +93,8 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
   const hasVariables = prompt.variables.length > 0;
   const [hero, ...thumbnails] = prompt.media;
   const model = prompt.models[0];
-  const stickyMeta = [model === undefined ? null : taxonomyLabel(model), prompt.source.handle]
+  const creatorHandle = formatCreatorHandle(prompt.source.handle);
+  const stickyMeta = [model === undefined ? null : taxonomyLabel(model), creatorHandle]
     .filter((part): part is string => part !== null)
     .join(" · ");
   const sticky = {
@@ -145,7 +153,7 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
             rel="noopener nofollow"
             className="font-bold underline"
           >
-            {prompt.source.handle}
+            {creatorHandle}
           </a>{" "}
           发布于 X ·{" "}
           {prompt.source.publishedAt === null ? (
@@ -346,7 +354,7 @@ export function PromptDetailView({ prompt, locale, related, breadcrumbs }: Promp
                   rel="noopener nofollow"
                   className="font-bold underline"
                 >
-                  {prompt.source.handle}
+                  {creatorHandle}
                 </a>
               </dd>
             </div>

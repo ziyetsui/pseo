@@ -26,7 +26,11 @@ export function ExpandToggle({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div>
+    // `min-w-0`: as a flex item this wrapper would otherwise take its
+    // automatic minimum size from the prompt's min-content width, which a long
+    // unbroken token can push far past the card — that is what made L3 scroll
+    // sideways at 320/375. The `<pre>` inside scrolls instead.
+    <div className="min-w-0">
       <div
         data-expanded={expanded ? "true" : "false"}
         className="data-[expanded=false]:max-h-40 data-[expanded=false]:overflow-hidden"

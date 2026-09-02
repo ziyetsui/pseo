@@ -72,6 +72,14 @@ frontend/
   `images.unoptimized: true`. Every dynamic segment needs `generateStaticParams`
   and `dynamicParams = false`. There is no server runtime, no ISR, no redirects —
   the locale root uses a `<meta http-equiv="refresh">` plus a real link.
+- **No route-level `loading.tsx`.** Deliberate, and enforced by
+  `tests/e2e/no-js.spec.ts`. A `loading.tsx` is a Suspense boundary, and in a
+  static export React prerenders the *fallback* into `<main>` while the real
+  page is flushed at the end of `<body>` inside `<div hidden id="S:…">` and only
+  moved into place by an inline `$RC(...)` script. With JavaScript off the page
+  is then just `加载中`. Since every page resolves its data at build time there
+  is nothing to wait for anyway. Observable loading states belong to client
+  transitions and use `StateBlock variant="loading"`; `error.tsx` files stay.
 - **Locales.** Only `zh-CN` is published. `en` is not translated and must not
   appear in routes, `alternates.languages` or copy until real content is merged.
 

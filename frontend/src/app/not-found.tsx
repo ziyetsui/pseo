@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { SiteShell } from "@/components/layout/SiteShell";
+import { getContentRepository } from "@/lib/content";
 import { DEFAULT_LOCALE } from "@/lib/i18n/config";
 import { blogHome, promptsHome, promptsImage } from "@/lib/i18n/routes";
 
@@ -43,9 +44,11 @@ const DESTINATIONS = [
   },
 ] as const;
 
-export default function NotFound() {
+export default async function NotFound() {
+  const snapshot = await getContentRepository().getSnapshot();
+
   return (
-    <SiteShell locale={DEFAULT_LOCALE}>
+    <SiteShell locale={DEFAULT_LOCALE} snapshotDate={snapshot.observedAt}>
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
         <p
           aria-hidden="true"

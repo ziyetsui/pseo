@@ -29,6 +29,16 @@ describe("CreatorTiles", () => {
     expect(link).toHaveAttribute("target", "_blank");
   });
 
+  it.each(["higgsfield_ai", "@higgsfield_ai"])(
+    "renders %s with exactly one leading @",
+    (handle) => {
+      const { container } = render(<CreatorTiles creators={[creator({ handle })]} />);
+
+      expect(screen.getByRole("link", { name: /@higgsfield_ai/ })).toBeInTheDocument();
+      expect(container.textContent).not.toContain("@@higgsfield_ai");
+    },
+  );
+
   it("shows the count computed from the data, not the prototype's declared one", () => {
     render(<CreatorTiles creators={[creator()]} />);
 

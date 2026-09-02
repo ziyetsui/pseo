@@ -1,5 +1,6 @@
 import { StateBlock } from "@/components/ui/StateBlock";
 import { cardClassName } from "@/components/ui/Card";
+import { formatCreatorHandle } from "@/lib/content";
 import type { CreatorWithCount } from "@/lib/content/types";
 
 export interface CreatorTilesProps {
@@ -36,7 +37,9 @@ export function CreatorTiles({
             rel="noopener nofollow"
             className={cardClassName("w-full gap-2 p-4 no-underline")}
           >
-            <span className="text-base font-black tracking-tight">@{creator.handle}</span>
+            <span className="text-base font-black tracking-tight">
+              {formatCreatorHandle(creator.handle)}
+            </span>
             <span className="text-sm font-medium">{creator.count} 条提示词</span>
             <span className="sr-only">（外部链接，新窗口打开）</span>
           </a>

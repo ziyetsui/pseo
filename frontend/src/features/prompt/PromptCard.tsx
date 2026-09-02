@@ -5,6 +5,7 @@ import { cardClassName } from "@/components/ui/Card";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { formatCreatorHandle } from "@/lib/content";
 import type { Locale, PromptSummary, Taxonomy } from "@/lib/content/types";
 import { promptsHome } from "@/lib/i18n/routes";
 
@@ -78,14 +79,14 @@ export function PromptCard({
         />
       )}
 
-      <div className="flex flex-1 flex-col gap-4 p-4 md:p-5">
-        <h3 className="text-lg font-black tracking-tight md:text-xl">
+      <div className="flex min-w-0 flex-1 flex-col gap-4 p-4 md:p-5">
+        <h3 className="wrap-anywhere text-lg font-black tracking-tight md:text-xl">
           <Link href={prompt.href} className="underline decoration-accent-red decoration-2">
             {prompt.title}
           </Link>
         </h3>
 
-        <p className="text-sm font-medium">{prompt.excerpt}</p>
+        <p className="wrap-anywhere text-sm font-medium">{prompt.excerpt}</p>
 
         <div className="flex flex-wrap gap-2">
           {terms.map((term) => {
@@ -114,7 +115,7 @@ export function PromptCard({
               href={prompt.creator.url}
               className="inline-flex min-h-11 items-center underline"
             >
-              @{prompt.creator.handle}
+              {formatCreatorHandle(prompt.creator.handle)}
               <span className="sr-only">（外部链接，新窗口打开）</span>
             </a>
             {publishedAt === null ? (

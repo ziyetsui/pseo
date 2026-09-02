@@ -11,7 +11,7 @@ import { GeometricMark, type MarkColor, type MarkShape } from "./GeometricMark";
  */
 export function cardClassName(className?: string): string {
   return cx(
-    "relative flex flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-y-1 md:border-4 md:shadow-hard-lg",
+    "relative flex min-w-0 flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-y-1 md:border-4 md:shadow-hard-lg",
     className,
   );
 }

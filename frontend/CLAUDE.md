@@ -43,7 +43,7 @@ frontend/
 │   │   ├── layout.tsx        # 根 layout：html/body、next/font、lang
 │   │   ├── not-found.tsx     # 404（noindex）
 │   │   └── [locale]/         # 所有可索引公开页
-│   │       ├── layout.tsx    # 校验 locale、skip link、SiteHeader/main/SiteFooter
+│   │       ├── layout.tsx    # 校验 locale、SiteShell（skip link/Header/main/Footer）
 │   │       ├── prompts/      # L1 首页
 │   │       │   ├── image/            # L2 图片 Gallery
 │   │       │   ├── models/[modelSlug]/   # L3 模型页
@@ -103,7 +103,7 @@ app/[locale]/*  →  features/*  →  components/*  →  lib/*  →  data/*
 
 ## 7. 状态、无障碍、视觉
 
-- 每个数据区域：loading（route `loading.tsx` / skeleton）、empty、no-results、error + retry（route `error.tsx`）。
+- 每个数据区域：loading（客户端筛选/切换时用 `StateBlock variant="loading"`）、empty、no-results、error + retry（route `error.tsx`）。**不要新增路由级 `loading.tsx`**：静态导出会把骨架放进 `<main>`、把正文放进 `<div hidden id="S:…">` 靠内联脚本揭示，关闭 JS 后页面只剩“加载中”，直接违反可索引首屏要求；fixture/构建期数据也不需要它。
 - 复制：clipboard 成功后才显示“已复制”；失败显示“复制失败，可选中文本手动复制”并选中文本；`aria-live` 宣告。
 - 语义标签（header/nav/main/footer/form role=search）、skip link `#main`、每页唯一 H1 且层级连续、`focus-visible`、触控目标 ≥ 44×44、320–1440 无页面级横向溢出、图片有 width/height/alt/fallback。
 - Bauhaus token：canvas `#F0F0F0`、foreground/border `#121212`、red `#D02020`、blue `#1040C0`、yellow `#F0C020`、muted `#E0E0E0`；Outfit + 等宽 Prompt 正文；2px/4px 黑边；无模糊硬阴影；圆角只用 0 或 9999px；动效 200–300ms ease-out 并尊重 `prefers-reduced-motion`。不要把内容页做成带 Pricing/FAQ/Testimonials 的 SaaS landing page。
@@ -112,7 +112,7 @@ app/[locale]/*  →  features/*  →  components/*  →  lib/*  →  data/*
 
 | 要做的事 | 放哪里 |
 | --- | --- |
-| 新公开页面 | `src/app/[locale]/…/page.tsx`（+ `loading.tsx`、`error.tsx`、`generateStaticParams`） |
+| 新公开页面 | `src/app/[locale]/…/page.tsx`（+ `error.tsx`、`generateStaticParams`、`dynamicParams = false`；不要加 `loading.tsx`） |
 | 新的数据查询 | `src/lib/content/repository.ts` 加接口 → `fixture-repository.ts` 实现 → 单元测试 |
 | 新的筛选/排序规则 | `src/lib/content/query.ts` 纯函数 |
 | 新链接 | `src/lib/i18n/routes.ts` 加 builder，不在组件里拼 |

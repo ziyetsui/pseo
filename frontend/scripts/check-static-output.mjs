@@ -256,6 +256,43 @@ async function checkPrototypeNumbers(files) {
   else ok(`0 occurrences of ${PROTOTYPE_NUMBERS.map((n) => n.id).join(" / ")}`);
 }
 
+/**
+ * Presentation truth must survive the real export, not only component tests:
+ * creator handles carry one `@`, every shell names the repository snapshot,
+ * and static pages cannot depend on React moving a streamed hidden buffer into
+ * `<main>` after JavaScript starts.
+ */
+async function checkPresentationTruth(files) {
+  heading("7. presentation truth and no-JS static HTML");
+  const hits = [];
+  for (const file of files) {
+    const text = await readFile(file, "utf8");
+    if (/@@[A-Za-z0-9_]/.test(text)) hits.push(`${rel(file)}: double-@ creator handle`);
+    if (text.includes("尚未接入内容仓库")) hits.push(`${rel(file)}: snapshot placeholder`);
+    if (!/数据快照日期：[\s\S]{0,40}\d{4}-\d{2}-\d{2}/.test(text)) {
+      hits.push(`${rel(file)}: missing dated footer snapshot`);
+    }
+    if (/<div hidden id="S:\d+">/.test(text)) {
+      hits.push(`${rel(file)}: streamed content hidden until JavaScript runs`);
+    }
+    if (/<template id="B:\d+">/.test(text)) {
+      hits.push(`${rel(file)}: unresolved Suspense boundary parked in the HTML`);
+    }
+    // The `<h1>` must be *inside* `<main>`, not merely present somewhere in the
+    // document — a heading sitting in a hidden buffer is not published content.
+    const main = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(text);
+    if (main === null) hits.push(`${rel(file)}: no <main>`);
+    else if (!/<h1\b/.test(main[1])) hits.push(`${rel(file)}: no <h1> inside <main>`);
+  }
+  if (hits.length > 0) fail(`${hits.length} presentation truth violation(s)`, hits);
+  else {
+    ok(
+      `${files.length} HTML file(s) expose dated, no-JS-safe content without double handles, ` +
+        `each with its <h1> inside <main> and no hidden Suspense buffer`,
+    );
+  }
+}
+
 /* ------------------------------------------------------------------ main */
 
 const outHtml = await walk(OUT, (file) => file.endsWith(".html"));
@@ -275,6 +312,7 @@ if (outHtml.length === 0) {
   await checkSourceFragmentHrefs(srcFiles);
   await checkNoEnglishAlternate(outHtml);
   await checkPrototypeNumbers(outHtml);
+  await checkPresentationTruth(outHtml);
 }
 
 process.stdout.write("\n");

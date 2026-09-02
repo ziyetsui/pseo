@@ -2,6 +2,7 @@ import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { cardClassName } from "@/components/ui/Card";
+import { formatCreatorHandle } from "@/lib/content";
 
 import type { ModelCreator } from "./model-data";
 
@@ -44,7 +45,7 @@ export function ModelCreators({
             ) : (
               <MediaFrame
                 src={creator.avatarUrl}
-                alt={`@${creator.handle} 的头像`}
+                alt={`${formatCreatorHandle(creator.handle)} 的头像`}
                 width={AVATAR_SIZE}
                 height={AVATAR_SIZE}
                 className="size-12 shrink-0 border-2 border-foreground md:border-2"
@@ -52,7 +53,9 @@ export function ModelCreators({
             )}
 
             <span className="flex flex-col gap-1">
-              <span className="text-base font-black tracking-tight">@{creator.handle}</span>
+              <span className="text-base font-black tracking-tight">
+                {formatCreatorHandle(creator.handle)}
+              </span>
               <span className="text-sm font-medium">{creator.count} 条提示词</span>
             </span>
             <span className="sr-only">（外部链接，新窗口打开）</span>

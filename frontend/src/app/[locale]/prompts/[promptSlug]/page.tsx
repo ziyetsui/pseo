@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 
 import { PromptDetailView } from "@/features/prompt-detail/PromptDetailView";
 import { promptBreadcrumbs } from "@/features/prompt-detail/breadcrumbs";
-import { getContentRepository, type Locale, type PromptDetail } from "@/lib/content";
+import {
+  formatCreatorHandle,
+  getContentRepository,
+  type Locale,
+  type PromptDetail,
+} from "@/lib/content";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 import { promptDetail } from "@/lib/i18n/routes";
 import { JsonLd, breadcrumbList } from "@/lib/seo/json-ld";
@@ -68,7 +73,7 @@ export default async function PromptDetailPage({ params }: { params: PageParams 
     inLanguage: prompt.promptLanguage,
     author: {
       "@type": "Person",
-      name: prompt.source.handle,
+      name: formatCreatorHandle(prompt.source.handle),
       url: prompt.creator.url,
     },
     ...(prompt.source.publishedAt === null ? {} : { datePublished: prompt.source.publishedAt }),

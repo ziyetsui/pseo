@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import { getContentRepository } from "@/lib/content";
+import { formatCreatorHandle, getContentRepository } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
 
 /**
@@ -130,10 +130,12 @@ describe("L3 model page", () => {
 
     expect(entries).toHaveLength(expected.size);
     for (const [handle, count] of expected) {
-      const entry = entries.find((node) => node.textContent?.includes(`@${handle}`));
-      expect(entry, `missing creator @${handle}`).toBeDefined();
+      const displayHandle = formatCreatorHandle(handle);
+      const entry = entries.find((node) => node.textContent?.includes(displayHandle));
+      expect(entry, `missing creator ${displayHandle}`).toBeDefined();
       expect(entry?.textContent).toContain(`${count} 条提示词`);
     }
+    expect(creators.textContent).not.toContain("@@");
     // The global creator count must not leak into a per-model page.
     const globalCreators = await getContentRepository().listCreators("zh-CN");
     expect(expected.size).toBeLessThan(globalCreators.length);

@@ -7,6 +7,12 @@ Playwright 1.62.1 + `@axe-core/playwright` 4.13.0, Chromium installed with
 Everything below is the real, trimmed console output of the commands as run from
 `frontend/`. Nothing is summarised as "passed" without its numbers.
 
+> **Sections 1–6 are run 1 and are historical.** They record the suite going red
+> on three real product defects. Those defects are fixed; the current state of
+> the suite is **"Run 2 — 2026-09-02, after the three product fixes"** at the
+> bottom of this file (42 passed / 0 failed / 12 skipped). The findings text in
+> §5 is kept verbatim as the record of what was broken and why.
+
 ---
 
 ## 1. Commands and results
@@ -307,3 +313,195 @@ is left as a failing test because it violates a global constraint.
 - **Not covered here.** Real-device browsers (only Chromium is installed), Firefox/WebKit,
   visual regression diffing, and the L1/L2 filter-result grid at mobile widths (see the
   Finding 3 note).
+
+---
+
+# Run 2 — 2026-09-02, after the three product fixes
+
+Same machine and toolchain as run 1 (darwin 25.3.0, Node v24.14.0, pnpm 11.7.0,
+Playwright 1.62.1 + `@axe-core/playwright` 4.13.0, Chromium already installed).
+This section records the verification of the fixes for Findings 1–3 above; the
+findings text is kept verbatim as the record of what was broken.
+
+## R2.1 Commands and results
+
+| Command | Result |
+| --- | --- |
+| `pnpm lint` | exit 0, no findings |
+| `pnpm typecheck` | exit 0 |
+| `pnpm test` | 36 files, **336 tests passed** |
+| `pnpm build` | exit 0, **55 static pages** into `out/` |
+| `pnpm check:static` | **PASSED** (exit 0) |
+| `pnpm test:e2e` | **42 passed, 0 failed, 12 skipped** |
+| `pnpm screenshots` | **9 passed, 1 skipped** (blog is desktop-only) |
+
+```text
+$ pnpm lint
+$ eslint .
+                                        # exit 0, no output
+
+$ pnpm typecheck
+$ tsc --noEmit
+                                        # exit 0, no output
+
+$ pnpm test
+$ vitest run
+ Test Files  36 passed (36)
+      Tests  336 passed (336)
+   Duration  5.00s
+
+$ pnpm build
+$ next build
+▲ Next.js 16.3.4 (Turbopack)
+✓ Compiled successfully
+✓ Generating static pages (55/55)
+```
+
+## R2.2 Finding 1 — grep evidence on the rebuilt export
+
+Every route-level `loading.tsx` under `src/app/[locale]/**` was deleted (7 files:
+`prompts`, `prompts/image`, `prompts/models/[modelSlug]`, `prompts/[promptSlug]`,
+`blog`, `blog/[slug]`, `blog/category/[slug]`). All `error.tsx` files were kept.
+
+```text
+$ grep -rl 'div hidden id="S:' out --include='*.html' | wc -l
+       0
+$ grep -rl '<template id="B:' out --include='*.html' | wc -l
+       0
+$ grep -rho 'id="S:[0-9]*"' out --include='*.html' | sort | uniq -c
+                                        # (no output — zero matches)
+$ grep -rl '\$RC(' out --include='*.html' | wc -l
+       0
+$ grep -o '<main[^>]*>.\{0,200\}' out/zh-CN/prompts.html
+<main id="main" class="flex-1"><div class="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14"><script
+type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList", …
+$ grep -o '<h1[^>]*>.\{0,80\}' out/zh-CN/prompts.html | head -1
+<h1 class="text-4xl font-black tracking-tighter uppercase md:text-6xl">35<!-- --> 条提示词，复制即用</h1>
+```
+
+Checked mechanically over the whole export, not one page: all **55** exported HTML
+files have an `<h1>` inside `<main>` and carry no hidden Suspense buffer. That
+check is now part of the `check:static` gate (section 7), so it cannot silently
+regress on a later build.
+
+### The `PromptExplorer` Suspense boundary, exactly as it renders now
+
+`useSearchParams` still forces a client-side-rendering bailout in a static export,
+but it no longer parks anything: the marker sits **inline inside `<main>`,
+immediately followed by the fallback (the server-rendered browse content)**.
+There is no hidden duplicate anywhere in the document.
+
+```text
+$ grep -o '.\{80\}BAILOUT_TO_CLIENT_SIDE_RENDERING.\{80\}' out/zh-CN/prompts.html | head -1
+…数量与热度均按当前收录内容计算。</p></header><div class="mt-10"><!--$!--><template
+data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template><div class="flex flex-col gap-8"><section
+aria-labelledby="prompt-e…
+```
+
+Note the shape: `<template data-dgst="…">` with **no `id="B:n"`** and no matching
+`<div hidden id="S:n">` — the boundary is already resolved in the HTML, and the
+`<div class="flex flex-col gap-8">` that follows is the real browse content. 11
+files carry this marker (L1, L2 and the 9 model pages); all 11 pass the no-JS and
+`<h1>`-inside-`<main>` checks.
+
+`evidence/screenshots/finding-1-l1-no-js.png` is retained as the **pre-fix**
+picture of this defect; it is not a current-state screenshot.
+
+## R2.3 `pnpm check:static`
+
+```text
+$ node scripts/check-static-output.mjs
+check-static-output: 55 html file(s) in out/, 99 source file(s) in src/
+
+1. required routes in out/
+  ok    8 required route files present
+  ok    3 blog article page(s)
+2a. forbidden patterns in out/**/*.html
+  ok    0 iframe / srcdoc / location.hash in 55 file(s)
+2b. forbidden patterns in src/
+  ok    0 iframe / srcdoc / location.hash in 99 file(s)
+3. fragment hrefs point at ids in the same document
+        fragments seen: #main ×55, #all-prompts ×9
+  ok    64 fragment href(s), all resolved in-document
+4. no `#` placeholder hrefs in src/
+  ok    0 placeholder hrefs in src/ (2 real in-page anchor(s))
+5. no en hreflang in the export
+  ok    0 en hreflang tags
+6. no prototype-declared counts in the export
+  ok    0 occurrences of 982 / 324 条 / 136 条
+7. presentation truth and no-JS static HTML
+  ok    55 HTML file(s) expose dated, no-JS-safe content without double handles,
+        each with its <h1> inside <main> and no hidden Suspense buffer
+
+check-static-output: PASSED
+```
+
+## R2.4 `pnpm test:e2e`
+
+```text
+$ playwright test --project=desktop --project=mobile
+Running 54 tests using 9 workers
+…
+  12 skipped
+  42 passed (9.8s)
+```
+
+| Project | passed | failed | skipped |
+| --- | --- | --- | --- |
+| `desktop` (1440×1200) | 24 | 0 | 3 (`mobile-nav`, mobile-only by design) |
+| `mobile` (Pixel 7 @ 375×812) | 18 | 0 | 9 (`filters` ×5 desktop-only, `responsive` ×4 drives its own widths) |
+| **total** | **42** | **0** | **12** |
+
+The 12 skips are the same deliberate project scoping as in run 1 (5 + 3 + 4).
+`no-js.spec.ts` (Finding 1), `a11y.spec.ts` L3 desktop (Finding 2) and
+`responsive.spec.ts` L3 (Finding 3) all pass now.
+
+## R2.5 axe results per page — 14 of 14 clean
+
+```text
+[axe] desktop L1 提示词库:    0 violation(s)
+[axe] desktop L2 图片提示词:  0 violation(s)
+[axe] desktop L3 模型页:      0 violation(s)
+[axe] desktop L4 提示词详情:  0 violation(s)
+[axe] desktop Blog 列表:      0 violation(s)
+[axe] desktop Blog 文章:      0 violation(s)
+[axe] desktop 404:            0 violation(s)
+[axe] mobile L1 提示词库:     0 violation(s)
+[axe] mobile L2 图片提示词:   0 violation(s)
+[axe] mobile L3 模型页:       0 violation(s)
+[axe] mobile L4 提示词详情:   0 violation(s)
+[axe] mobile Blog 列表:       0 violation(s)
+[axe] mobile Blog 文章:       0 violation(s)
+[axe] mobile 404:             0 violation(s)
+```
+
+Counts are **all** violations at every impact level, not just critical/serious.
+The single `scrollable-region-focusable` (Finding 2) is gone: both prompt `<pre>`
+elements are now `tabIndex={0}` with `role="group"` and
+`aria-label="提示词原文"`. The explicit role is load-bearing — `aria-label` on a
+role-less element is prohibited ARIA and axe's `aria-prohibited-attr` would have
+traded one serious violation for another.
+
+## R2.6 Screenshots, regenerated
+
+```text
+$ pnpm screenshots
+  1 skipped
+  9 passed (6.0s)
+```
+
+| File | Size (px) | Bytes | vs run 1 |
+| --- | --- | --- | --- |
+| `l1-desktop.png` | 1440 × 7482 | 1.4M | unchanged geometry |
+| `l1-mobile.png` | 375 × 14207 | 1.1M | unchanged geometry |
+| `l2-desktop.png` | 1440 × 8928 | 3.5M | unchanged geometry |
+| `l2-mobile.png` | 375 × 10858 | 960K | unchanged geometry |
+| `l3-desktop.png` | 1440 × 11351 | 4.5M | unchanged geometry |
+| `l3-mobile.png` | **375** × 25599 | 3.5M | **was 714 × 26129 / 6.8M — Finding 3 fixed** |
+| `l4-desktop.png` | 1440 × 4895 | 1.2M | unchanged geometry |
+| `l4-mobile.png` | 375 × 5890 | 404K | unchanged geometry |
+| `blog-desktop.png` | 1440 × 2096 | 204K | unchanged |
+| `finding-1-l1-no-js.png` | 1440 × 1200 | 44K | kept as pre-fix evidence |
+
+`l3-mobile.png` is now exactly 375 CSS px wide — the page no longer scrolls
+sideways, which is Finding 3 fixed and rendered as a picture.

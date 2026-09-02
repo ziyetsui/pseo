@@ -7,13 +7,14 @@ import { ROUTES } from "./routes";
  * prompt body and the real links, because the first screenful of every page is
  * rendered by RSC into the exported HTML.
  *
- * KNOWN FAILING — this is a real product defect, not a test bug. See
- * `evidence/test-run.md` → "Findings for the controller" → Finding 1: the
- * export streams the page body into a trailing `<div hidden id="S:0">` and
- * leaves the route-level `loading.tsx` skeleton inside `<main>`, so without
- * JavaScript there is nothing but a skeleton on screen. The assertions below
- * therefore check VISIBILITY and placement inside `<main>`, not mere presence
- * in the DOM — a node parked in `<div hidden>` is not published content.
+ * This is the regression guard for Finding 1 (`evidence/test-run.md`): the
+ * export used to leave a route-level `loading.tsx` skeleton inside `<main>` and
+ * stream the real page into a trailing `<div hidden id="S:0">` that only an
+ * inline script revealed, so a reader without JavaScript saw nothing but 加载中.
+ * The fix was to delete every route-level `loading.tsx` (see the note in
+ * `src/app/[locale]/layout.tsx`). The assertions below therefore check
+ * VISIBILITY and placement inside `<main>`, not mere presence in the DOM — a
+ * node parked in `<div hidden>` is not published content.
  */
 test.use({ javaScriptEnabled: false });
 
