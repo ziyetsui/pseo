@@ -55,8 +55,9 @@ export function FeaturedPrompt({
             height={cover.height}
             label={cover.label}
             priority
-            // The card-tier frame, at the card's own 2px/4px step.
-            className={dividerClassName("card", "all", { desktopThick: true })}
+            // The card-tier frame, at the card's own 2px/4px step — which the
+            // tier now carries by default, so it is no longer asked for here.
+            className={dividerClassName("card", "all")}
           />
         )}
         <p

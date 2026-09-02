@@ -267,10 +267,18 @@ export function BrowseTileBar({ share, accent, lead = false }: BrowseTileBarProp
         // A four-sided card-tier frame, asked for by name: the bar is a
         // compartment of the card, so it is drawn at the same strength as
         // every other card-tier rule instead of restating the width and the
-        // colour here. It stays 2px at every width — a 4px frame on a 16px bar
-        // would leave 8px of fill.
+        // colour here.
+        //
+        // `desktopThick: false` is deliberate and is the one shape this
+        // opt-out exists for. The card tier now steps to 4px from `md` so a
+        // rule inside a 4px card frame matches it — but this is a FRAME, not a
+        // rule, and it is 16px tall (20/24px on the leading tile). Four pixels
+        // on every side would leave 8px of fill on a 16px bar and turn the
+        // proportion into a black box with a sliver of colour in it. The bar's
+        // job is to be read as a length; 2px at every width is what keeps it
+        // legible.
         "mt-auto block bg-surface",
-        dividerClassName("card", "all"),
+        dividerClassName("card", "all", { desktopThick: false }),
         lead ? "h-5 md:h-6" : "h-4",
       )}
     >

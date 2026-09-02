@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 
+import { dividerClassName } from "@/components/ui/dividers";
+import { sectionTitleClassName } from "@/components/ui/type-scale";
+
 export interface ModelSectionProps {
   /** Id of the `<h2>`; the section is labelled by it. Unique per page. */
   id: string;
@@ -22,8 +25,12 @@ export interface ModelSectionProps {
 export function ModelSection({ id, title, end, subline, children, className }: ModelSectionProps) {
   return (
     <section aria-labelledby={id} className={className ?? "mt-10 md:mt-14"}>
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-3 md:border-b-4">
-        <h2 id={id} className="text-2xl font-black tracking-tighter uppercase md:text-3xl">
+      <div
+        className={dividerClassName("card", "bottom", {
+          className: "flex flex-wrap items-end justify-between gap-4 pb-3",
+        })}
+      >
+        <h2 id={id} className={sectionTitleClassName("uppercase")}>
           {title}
         </h2>
         {end === undefined ? null : <div className="text-sm font-bold">{end}</div>}

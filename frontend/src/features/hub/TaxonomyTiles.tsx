@@ -12,7 +12,7 @@ import {
   browseTileBodyClassName,
   browseTileTitleClassName,
 } from "./browse-tile";
-import type { SectionAccent } from "./section-accent";
+import { axisSectionAccent, type SectionAccent } from "./section-accent";
 
 export interface TaxonomyTilesProps {
   /** Page the filtered links point at, e.g. `promptsHome(locale)`. */
@@ -22,7 +22,15 @@ export interface TaxonomyTilesProps {
   terms: readonly TaxonomyWithCount[];
   /** Render at most this many tiles. The rest stay reachable through the URL. */
   limit?: number;
-  /** The band's accent, from `section-accent`. Colours the bar and rank marker. */
+  /**
+   * The band's accent. Colours the bar and the rank marker.
+   *
+   * Defaults to `axis`'s own colour from the shared taxonomy map rather than to
+   * a fixed value, so a band cannot be mounted on one axis while wearing
+   * another's colour. The hub still passes `HUB_SECTION_ACCENTS.*` explicitly,
+   * which resolves to exactly the same four values — the default is what makes
+   * that agreement structural instead of a coincidence two files have to keep.
+   */
   accent?: SectionAccent;
   emptyMessage?: string;
   /**
@@ -51,7 +59,7 @@ export function TaxonomyTiles({
   axis,
   terms,
   limit,
-  accent = "red",
+  accent = axisSectionAccent(axis),
   emptyMessage = "该维度暂无收录的提示词。",
   className,
 }: TaxonomyTilesProps) {

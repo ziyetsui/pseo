@@ -21,7 +21,15 @@ export interface ContentTypeTilesProps {
   types: readonly TaxonomyWithCount[];
   /** The type this page publishes; its tile is marked as the current page. */
   currentSlug: string;
-  /** The band's accent — different from the model band above it. */
+  /**
+   * The band's accent — different from the model band above it.
+   *
+   * A content type is not one of the query's taxonomy axes (`model`,
+   * `useCase`, `technique`, `style`, `subject`), so it has no entry in the
+   * shared axis map and legitimately takes a rotation colour: it is the one L2
+   * grid that may pick, and it picks a value the 按模型浏览 band above it does
+   * not use. `ModelTiles`, which IS an axis, reads the map instead.
+   */
   accent?: SectionAccent;
   emptyMessage?: string;
   className?: string;
@@ -72,7 +80,10 @@ export function ContentTypeTiles({
       className={cx(
         "block h-1.5 w-full shrink-0",
         accentFillClassName(accent),
-        dividerClassName("card", "bottom", { desktopThick: true }),
+        // The card tier carries the desktop step on its own now; the stripe is
+        // a compartment of a card whose frame is 2px/4px, so it wants exactly
+        // that default.
+        dividerClassName("card", "bottom"),
       )}
     />
   );

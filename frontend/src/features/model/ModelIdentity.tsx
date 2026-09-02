@@ -1,3 +1,4 @@
+import { pageTitleClassName } from "@/components/ui/type-scale";
 import type { ModelDetail } from "@/lib/content/types";
 
 export interface ModelIdentityProps {
@@ -23,7 +24,7 @@ export function ModelIdentity({ model }: ModelIdentityProps) {
 
   return (
     <>
-      <h1 className="text-4xl font-black tracking-tighter text-balance uppercase md:text-6xl">
+      <h1 className={pageTitleClassName("text-balance uppercase")}>
         {model.label} 提示词
       </h1>
 

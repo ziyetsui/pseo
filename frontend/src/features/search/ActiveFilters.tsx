@@ -2,9 +2,27 @@ import Link from "next/link";
 
 import { ChipLink } from "@/components/ui/Chip";
 import { Panel } from "@/components/ui/Panel";
+import { cx } from "@/components/ui/class-names";
+import { pressClassName, transitionClassName } from "@/components/ui/hover";
 import type { AppliedFilter, PromptQuery } from "@/lib/content/types";
 
 import { queryHref, removeFilter } from "./query-links";
+
+/**
+ * The two plain-text links in this bar (reset, and the recovery link in the
+ * warning panel) carry no border, no shadow and no fill, so a press has nothing
+ * to collapse and nothing to move against — the `band` press is the one that
+ * fits: it fills the row for the length of the tap. On touch, where there is no
+ * hover at all, this is the only feedback either link gives between the tap and
+ * the re-render. `fill` is the transition channel because the fill is the only
+ * property that moves; a bare `transition` would also animate `outline-color`
+ * and fade the focus ring in from the link's own text colour.
+ */
+const TEXT_ACTION = cx(
+  "inline-flex min-h-11 min-w-11 items-center justify-center px-1 font-bold underline",
+  transitionClassName("fill"),
+  pressClassName("band"),
+);
 
 export interface ActiveFiltersProps {
   /** Page the filters apply to. */
@@ -73,6 +91,9 @@ export function ActiveFilters({
             <ChipLink
               key={`${filter.key}:${filter.value}`}
               href={queryHref(basePath, removeFilter(query, filter))}
+              // Same reason as the facet chips: removing a filter must not
+              // also move the page. See `FacetChips`.
+              scroll={false}
               aria-label={`移除筛选：${filter.label}`}
               label={
                 <>
@@ -89,7 +110,8 @@ export function ActiveFilters({
               exactly as before. */}
           <Link
             href={queryHref(basePath, { window: query.window })}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm font-bold underline"
+            scroll={false}
+            className={cx(TEXT_ACTION, "text-sm")}
           >
             清除全部筛选
           </Link>
@@ -107,10 +129,7 @@ export function ActiveFilters({
           {/* `query` already has the bad values/keys stripped, so this never
               re-opens the same broken state — it recovers into whatever the
               rest of the query still validly describes. */}
-          <Link
-            href={queryHref(basePath, query)}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 font-bold underline"
-          >
+          <Link href={queryHref(basePath, query)} scroll={false} className={TEXT_ACTION}>
             使用可识别的筛选条件重新打开
           </Link>
         </Panel>

@@ -109,7 +109,7 @@ export function CollectionTiles({
               >
                 {collection.title}
               </h3>
-              <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
+              <p className={microLabelClassName()}>{collection.subtitle}</p>
               <p className={microLabelClassName("tabular-nums")}>{collection.count} 条</p>
               <BrowseTileBar share={share} accent={accent} lead={lead} />
             </SpineCard>

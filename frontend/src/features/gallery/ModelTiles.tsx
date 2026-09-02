@@ -16,7 +16,7 @@ import {
   browseTileBodyClassName,
   browseTileTitleClassName,
 } from "@/features/hub/browse-tile";
-import type { SectionAccent } from "@/features/hub/section-accent";
+import { axisSectionAccent, type SectionAccent } from "@/features/hub/section-accent";
 import type { TaxonomyWithCount } from "@/lib/content/types";
 
 import { termLabel, tileActionLabel } from "./image-prompts";
@@ -27,7 +27,14 @@ export interface ModelTilesProps {
    * over it by `countTermsWithin`.
    */
   models: readonly TaxonomyWithCount[];
-  /** The band's accent. Yellow matches the hub's 按模型浏览 band. */
+  /**
+   * The band's accent. Defaults to the MODEL axis's colour from the shared
+   * taxonomy map — the same one the hub's 按模型浏览 band and every 模型 chip
+   * row read. It used to default to the third step of the band rotation
+   * (yellow), so one taxonomy axis was red on L1 and yellow on L2 and the
+   * colour told the reader nothing. A band that stands for an axis does not
+   * get to pick.
+   */
   accent?: SectionAccent;
   emptyMessage?: string;
   className?: string;
@@ -60,7 +67,7 @@ export interface ModelTilesProps {
  */
 export function ModelTiles({
   models,
-  accent = "yellow",
+  accent = axisSectionAccent("model"),
   emptyMessage = "当前收录里还没有带模型标注的图片提示词。",
   className,
 }: ModelTilesProps) {

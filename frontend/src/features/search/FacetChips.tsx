@@ -1,5 +1,6 @@
 import { ChipLink } from "@/components/ui/Chip";
 import { cx } from "@/components/ui/class-names";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import type { FacetGroup, PromptQuery } from "@/lib/content/types";
 
 import { axisAccentClassName } from "./axis-accent";
@@ -48,8 +49,9 @@ const EDGE = "w-1 shrink-0 self-stretch";
  * the first chip row (chips are `min-h-11` too) without a hand-tuned offset;
  * `self-start` keeps it there while the edge beside it stretches the band.
  */
-const AXIS_LABEL =
-  "flex min-h-11 items-center self-start text-xs font-bold tracking-widest text-foreground uppercase";
+const AXIS_LABEL = microLabelClassName(
+  "flex min-h-11 items-center self-start text-foreground",
+);
 
 /**
  * Facet navigation, entirely as links.
@@ -114,6 +116,15 @@ export function FacetChips({
                     <ChipLink
                       key={option.slug}
                       href={queryHref(basePath, toggleFacet(query, group.key, option.slug))}
+                      // The reader is working IN this chip row: the whole
+                      // point of a facet is that you toggle one, look at what
+                      // came back, and toggle the next. Letting `next/link`
+                      // restore scroll to the top of the document threw them
+                      // away from the control they were using — on L1 the chip
+                      // block sits ~300px down and the result region below it,
+                      // so every filter cost a scroll back. The URL is still
+                      // the state; only the viewport stays put.
+                      scroll={false}
                       label={option.label}
                       count={option.count}
                       active={active}

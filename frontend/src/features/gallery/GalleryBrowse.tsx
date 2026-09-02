@@ -3,7 +3,7 @@ import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { Section } from "@/components/ui/Section";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { dividerClassName } from "@/components/ui/dividers";
-import { microLabelClassName } from "@/components/ui/type-scale";
+import { microLabelClassName, sectionTitleClassName } from "@/components/ui/type-scale";
 import { COMING_SOON_NOTE } from "@/components/layout/nav";
 import type { Locale, PromptSummary, TaxonomyWithCount } from "@/lib/content/types";
 import { promptsHome, promptsImage } from "@/lib/i18n/routes";
@@ -153,8 +153,12 @@ export function GalleryBrowse({
             const label = termLabel(model);
             return (
               <div key={model.id}>
-                <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-2 md:border-b-4">
-                  <h3 className="text-xl font-black tracking-tight uppercase">{label}</h3>
+                <div
+                  className={dividerClassName("card", "bottom", {
+                    className: "flex flex-wrap items-end justify-between gap-4 pb-2",
+                  })}
+                >
+                  <h3 className={sectionTitleClassName("uppercase")}>{label}</h3>
                   <ButtonLink href={href} data-model-more={model.slug} variant="outline">
                     {railMoreLabel(model.count)}
                   </ButtonLink>

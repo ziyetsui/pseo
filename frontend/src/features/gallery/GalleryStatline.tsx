@@ -1,3 +1,5 @@
+import { microLabelClassName, sectionTitleClassName } from "@/components/ui/type-scale";
+
 import type { GalleryStats } from "./image-prompts";
 
 export interface GalleryStatlineProps {
@@ -47,8 +49,8 @@ export function GalleryStatline({ stats, observedAt, className }: GalleryStatlin
       <dl className="flex flex-wrap gap-x-8 gap-y-3">
         {items.map((item) => (
           <div key={item.label} className="flex flex-col">
-            <dt className="order-2 text-xs font-bold tracking-wider uppercase">{item.label}</dt>
-            <dd className="order-1 text-xl font-black tracking-tight tabular-nums">{item.value}</dd>
+            <dt className={microLabelClassName("order-2")}>{item.label}</dt>
+            <dd className={sectionTitleClassName("order-1 tabular-nums")}>{item.value}</dd>
           </div>
         ))}
       </dl>

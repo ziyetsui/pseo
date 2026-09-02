@@ -1,4 +1,7 @@
 import { ButtonLink } from "@/components/ui/Button";
+import { cx } from "@/components/ui/class-names";
+import { pressClassName, transitionClassName } from "@/components/ui/hover";
+import { controlLabelClassName, microLabelClassName } from "@/components/ui/type-scale";
 import { serializePromptQuery } from "@/lib/content/query";
 import type { PromptQuery } from "@/lib/content/types";
 
@@ -39,9 +42,26 @@ const INPUT = "min-h-12 w-full min-w-0 bg-transparent px-4 py-2 font-medium md:m
  * shadow: the block is inside the field's frame, so a second frame would
  * reintroduce the seam this removes. Hover swaps the fill to foreground — the
  * palette has no darker red, and geometry/colour is the language here.
+ *
+ * Press is `invert`, not `flatten`. `flatten` is for an object whose shadow IS
+ * its height, and it travels by exactly the offset it collapses — this block
+ * has no shadow by construction (see above), so there would be nothing to
+ * collapse and the 4px of travel would slide a flush-mounted block out past the
+ * field's own 2px/4px frame, opening a white gap on two sides. Its one surface
+ * is its fill, so the press previews the fill the tap produces, which is also
+ * the only feedback it gives on touch where there is no hover.
+ *
+ * `fill` rather than a bare `transition`: colour and background are the only
+ * things that move here, and the bare utility would drag `outline-color` along
+ * with them and fade the focus ring in from white.
  */
-const SUBMIT =
-  "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center border-s-2 border-foreground bg-accent-red px-4 text-sm font-bold tracking-wider text-surface uppercase transition duration-200 ease-out hover:bg-foreground md:border-s-4 md:px-6";
+const SUBMIT = cx(
+  "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center border-s-2 border-foreground bg-accent-red px-4 text-surface md:border-s-4 md:px-6",
+  controlLabelClassName(),
+  transitionClassName("fill"),
+  "hover:bg-foreground",
+  pressClassName("invert"),
+);
 
 /**
  * A plain GET form — no JavaScript involved.
@@ -71,7 +91,7 @@ export function SearchForm({
       className={className ?? "flex flex-wrap items-end gap-3"}
     >
       <div className="flex min-w-60 flex-1 flex-col gap-2">
-        <label htmlFor={inputId} className="text-xs font-bold tracking-widest uppercase">
+        <label htmlFor={inputId} className={microLabelClassName()}>
           {label}
         </label>
         <div className={FIELD}>

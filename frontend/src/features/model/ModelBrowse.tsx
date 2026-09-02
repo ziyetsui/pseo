@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { Rail } from "@/components/ui/Rail";
 import { StateBlock } from "@/components/ui/StateBlock";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import type { FacetGroup, Locale, ModelDetail, PromptSummary } from "@/lib/content/types";
 import { MetricsSnapshotNote } from "@/features/prompt/MetricsSnapshotNote";
 import { PromptCard } from "@/features/prompt/PromptCard";
@@ -213,7 +214,7 @@ export function ModelBrowse({
               className="flex flex-col gap-2 border-2 border-foreground bg-surface p-4"
             >
               <p className="text-sm font-medium">{block.body}</p>
-              <h3 className="mt-auto font-mono text-xs font-bold tracking-widest text-foreground/70 uppercase">
+              <h3 className={microLabelClassName("mt-auto font-mono text-foreground/70")}>
                 {block.title}
               </h3>
             </div>
