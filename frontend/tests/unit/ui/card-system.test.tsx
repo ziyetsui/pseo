@@ -320,8 +320,12 @@ describe("HairlineList / HairlineRow", () => {
 describe("GhostNumeral", () => {
   it("is a low-contrast display number and is never announced", () => {
     const { container } = render(<GhostNumeral value="01" />);
-    const numeral = container.firstElementChild;
-    expect(numeral).toHaveTextContent("01");
+    const numeral = container.firstElementChild as HTMLElement | null;
+    // The digits are painted by `::before` from a custom property, so the
+    // marker is decoration rather than a 10%-contrast text node an audit would
+    // (correctly) read as a serious contrast failure.
+    expect(numeral).toHaveTextContent("");
+    expect(numeral?.style.getPropertyValue("--ghost-numeral")).toBe('"01"');
     expect(numeral).toHaveAttribute("aria-hidden", "true");
     expect(numeral?.className).toContain("text-foreground/10");
     expect(numeral?.className).toContain("text-5xl");

@@ -245,7 +245,9 @@ describe("PromptHubBrowse", () => {
     // In the prototype's band order: 按任务 / 镜头与运动 / 按模型 / 按风格 / 精选合集 / 创作者.
     const accents = Object.values(HEADING_BY_ID).map((name) => {
       const region = screen.getByRole("region", { name });
-      return region.querySelector("span[style]")?.className ?? "";
+      // The ghost numeral also carries an inline style (its digits), so ask
+      // for the accented bar itself rather than "the first styled span".
+      return region.querySelector("span[style]:not(.ghost-numeral)")?.className ?? "";
     });
 
     for (const className of accents) {
@@ -262,13 +264,15 @@ describe("PromptHubBrowse", () => {
     const numerals = [...container.querySelectorAll('span[aria-hidden="true"]')].filter((node) =>
       node.className.includes("text-foreground/10"),
     );
-    expect(numerals.map((node) => node.textContent)).toEqual([
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
+    expect(
+      numerals.map((node) => (node as HTMLElement).style.getPropertyValue("--ghost-numeral")),
+    ).toEqual([
+      '"01"',
+      '"02"',
+      '"03"',
+      '"04"',
+      '"05"',
+      '"06"',
     ]);
 
     // Decoration only: every band keeps its own heading, at level 2, with its

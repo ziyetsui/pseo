@@ -205,3 +205,24 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+@layer components {
+  /*
+   * The group marker's digits are painted by a pseudo-element rather than
+   * written as text.
+   *
+   * The numeral is decoration: it restates an ordinal a reader already gets
+   * from position, and the band's own heading is the real label. As a text
+   * node at 10% contrast an automated audit can only see 1.1:1 and report a
+   * serious contrast failure — correctly, because a checker cannot tell
+   * decoration from content. Raising it to a passing ratio would make it
+   * compete with the heading it is supposed to sit behind, so the number moves
+   * out of the text layer instead: `content` is not in the accessibility tree
+   * and is not a text node, which is what it always was in substance.
+   *
+   * The value arrives as `--ghost-numeral` from the component.
+   */
+  .ghost-numeral::before {
+    content: var(--ghost-numeral, "");
+  }
+}

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties } from "react";
 
 import { cx } from "./class-names";
 
@@ -9,27 +9,35 @@ import { cx } from "./class-names";
  * word or a colour on it: at that contrast it never competes with the heading
  * beside it, and at that size it is impossible to miss while scrolling.
  *
- * `aria-hidden`, always. The number is an ordinal a reader infers from
- * position anyway, and it must never be the only label for anything — the
- * group's own heading is the label, and this sits next to it.
+ * The digits are painted by a `::before` rule (see `.ghost-numeral` in
+ * `globals.css`) rather than written as a text node. The numeral is decoration
+ * — an ordinal the reader already has from position, next to a heading that is
+ * the real label — but an automated audit reading a 10%-contrast text node can
+ * only report a serious contrast failure, and the passing ratio would make the
+ * number compete with the heading. Moving it out of the text layer keeps the
+ * design and states its nature honestly.
+ *
+ * `aria-hidden` as well, so it never reaches assistive technology.
  */
 
 export interface GhostNumeralProps {
-  /** Usually a zero-padded ordinal: `01`, `02`. Rendered as given. */
-  value: ReactNode;
+  /** Usually a zero-padded ordinal: `01`, `02`. Digits only. */
+  value: string;
   className?: string;
 }
 
 export function GhostNumeral({ value, className }: GhostNumeralProps) {
+  // Only digits reach `content`, so the value can never close the CSS string.
+  const digits = value.replace(/\D/g, "");
+
   return (
     <span
       aria-hidden="true"
+      style={{ "--ghost-numeral": `"${digits}"` } as CSSProperties}
       className={cx(
-        "block text-5xl leading-none font-black tracking-tighter text-foreground/10 tabular-nums select-none md:text-6xl",
+        "ghost-numeral block text-5xl leading-none font-black tracking-tighter text-foreground/10 tabular-nums select-none md:text-6xl",
         className,
       )}
-    >
-      {value}
-    </span>
+    />
   );
 }
