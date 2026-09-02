@@ -83,7 +83,9 @@ export function validateSourceEvidenceProjection(data: SourceEvidenceProjection)
     if (!nonEmpty(data.observedAt)) {
       throw new EditorialProjectionValidationError('observedAt is required for source records')
     }
-    assertDate(data.sourcePublishedDate, 'sourcePublishedDate')
+    if (data.sourcePublishedDate !== null && data.sourcePublishedDate !== undefined && data.sourcePublishedDate !== '') {
+      assertDate(data.sourcePublishedDate, 'sourcePublishedDate')
+    }
     assertSafeHttpUrl(data.sourceUrl, 'sourceUrl')
   }
   if (data.recordType === 'evidence') {

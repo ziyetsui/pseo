@@ -9,8 +9,8 @@ export function createMediaFields(): Field[] {
     { name: 'assetId', type: 'text', required: true },
     { name: 'mediaType', type: 'select', required: true, options: ['image', 'video'] },
     { name: 'url', type: 'text', required: true },
-    { name: 'width', type: 'number', required: true, min: 1 },
-    { name: 'height', type: 'number', required: true, min: 1 },
+    { name: 'width', type: 'number', min: 1 },
+    { name: 'height', type: 'number', min: 1 },
     { name: 'alt', type: 'text', required: true },
     { name: 'posterUrl', type: 'text' },
   ]

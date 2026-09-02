@@ -17,9 +17,11 @@ function record(value: unknown): Document {
 
 class InMemorySeedPayload implements SeedPayloadLocalApi {
   readonly documents = new Map<string, Document[]>()
+  readonly creates: Array<{ readonly collection: string; readonly data: Document; readonly draft?: boolean }> = []
   private nextId = 1
 
-  async create(args: { readonly collection: string; readonly data: Document }): Promise<Document> {
+  async create(args: { readonly collection: string; readonly data: Document; readonly draft?: boolean }): Promise<Document> {
+    this.creates.push(args)
     const document = { id: `${args.collection}-${this.nextId++}`, ...args.data }
     const collection = this.documents.get(args.collection) ?? []
     collection.push(document)
@@ -70,11 +72,37 @@ test('wireframe adapter imports the exact fixture universe as noindex needs-revi
   assert.equal(record(unknown.variant.data.seo).robots, 'noindex,nofollow')
 })
 
-test('adapter preserves missing source dates and explicit assumed media dimensions', () => {
+test('adapter preserves missing source dates, editable workflow facts, and assumptions only in preview metadata', () => {
   const fixture = buildWireframeSeedFixture()
   const undated = fixture.sources.find((source) => source.data.sourcePublishedDate === null)
   assert.ok(undated)
   assert.equal(record(record(undated.data.betaPreview).source).publishedAt, null)
+
+  for (const artifact of fixture.artifacts) {
+    const prompt = record(record(artifact.data.betaPreview).wireframe)
+    assert.deepEqual(
+      artifact.data.parameters,
+      (prompt.parameters as readonly unknown[]).map((parameter) => {
+        const item = record(parameter)
+        return {
+          key: item.label,
+          label: item.label,
+          value: item.value,
+          valueType: 'text',
+          required: false,
+          options: [],
+        }
+      }),
+    )
+    assert.deepEqual(
+      artifact.variant.data.workflow,
+      (prompt.steps as readonly unknown[]).map((step) => {
+        const item = record(step)
+        return { position: item.order, title: item.title, body: item.body }
+      }),
+    )
+    assert.deepEqual(record(artifact.data.betaPreview).wireframe, prompt)
+  }
 
   const firstMedia = fixture.artifacts.flatMap((artifact) => artifact.data.media)[0]
   assert.deepEqual(
@@ -83,12 +111,16 @@ test('adapter preserves missing source dates and explicit assumed media dimensio
       assetId: '1992826251220754540-1',
       mediaType: 'image',
       url: 'https://pbs.twimg.com/media/G6fw59VXYAAHd8R.jpg?name=small',
-      width: 640,
-      height: 360,
+      width: null,
+      height: null,
       alt: '来源帖媒体（图片 1/2）',
       posterUrl: null,
     },
   )
+  assert.deepEqual(record(record(fixture.artifacts[0]?.data.betaPreview).mediaAssumptions), {
+    dimensions: { height: 360, width: 640 },
+    provenance: 'wireframe-assumption',
+  })
 })
 
 test('seeding is a dry-run when requested and reruns skip edited natural keys', async () => {
@@ -109,6 +141,7 @@ test('seeding is a dry-run when requested and reruns skip edited natural keys', 
     sourceEvidence: 35,
     taxonomies: 66,
   })
+  assert.ok(payload.creates.every((create) => create.draft === true))
   const edited = payload.documents.get('prompt-artifacts')?.[0]
   assert.ok(edited)
   edited.prompt = { language: 'en', text: 'Human edit must survive reruns.' }

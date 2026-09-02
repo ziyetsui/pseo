@@ -25,8 +25,11 @@ interface WireframePrompt {
   readonly metricsRounded: boolean
   readonly media: readonly { readonly id: string; readonly kind: 'image' | 'video'; readonly src: string; readonly alt: string }[]
   readonly variables: readonly { readonly token: string; readonly label: string; readonly defaultValue: string; readonly options: readonly string[] }[]
+  readonly steps: readonly { readonly order: number; readonly title: string; readonly body: string }[]
   readonly requiredInputs: readonly string[]
   readonly optionalInputs: readonly string[]
+  readonly parameters: readonly { readonly label: string; readonly value: string }[]
+  readonly variations: readonly { readonly title: string; readonly variableValue: string }[]
 }
 
 interface WireframeTaxonomy {
@@ -83,7 +86,7 @@ const DRAFT_STATE = {
 } as const
 
 export interface SeedPayloadLocalApi {
-  create(args: { readonly collection: string; readonly data: RecordValue; readonly overrideAccess?: boolean }): Promise<RecordValue>
+  create(args: { readonly collection: string; readonly data: RecordValue; readonly draft?: boolean; readonly overrideAccess?: boolean }): Promise<RecordValue>
   find(args: { readonly collection: string; readonly where?: Record<string, unknown>; readonly limit?: number; readonly overrideAccess?: boolean }): Promise<{ docs: RecordValue[] }>
 }
 
@@ -254,7 +257,17 @@ export function buildWireframeSeedFixture(): WireframeSeedFixture {
         outcome: { outputType: mappedContentType, platforms: [] },
         requiredInputs: list(prompt.requiredInputs),
         optionalInputs: list(prompt.optionalInputs),
-        parameters: [],
+        parameters: prompt.parameters.map((parameter) => ({
+          // The extract supplies a display label/value but no machine key or
+          // type. Retain the source label as the key and describe its known
+          // string representation instead of inventing a semantic key/type.
+          key: parameter.label,
+          label: parameter.label,
+          value: parameter.value,
+          valueType: 'text',
+          required: false,
+          options: [],
+        })),
         models: prompt.modelSlugs.map((slug) => taxonomyKey('model', slug)),
         useCases: prompt.useCaseSlugs.map((slug) => taxonomyKey('use_case', slug)),
         techniques: prompt.techniqueSlugs.map((slug) => taxonomyKey('technique', slug)),
@@ -264,7 +277,10 @@ export function buildWireframeSeedFixture(): WireframeSeedFixture {
           assetId: media.id,
           mediaType: media.kind,
           url: media.src,
-          ...ASSUMED_MEDIA_DIMENSIONS,
+          // Canonical fields are intentionally null: the wireframe did not
+          // measure these dimensions. The preview-only assumption is below.
+          width: null,
+          height: null,
           alt: media.alt,
           posterUrl: null,
         })),
@@ -280,7 +296,15 @@ export function buildWireframeSeedFixture(): WireframeSeedFixture {
         creator: taxonomyKey('creator', prompt.creatorId),
         relatedPrompts: [],
         actions: { canCopy: true, tryUrl: null },
-        betaPreview: { wireframe: prompt },
+        betaPreview: {
+          // Variations remain here because the beta schema has no editable
+          // variation model. The preview projector treats this as its source.
+          wireframe: prompt,
+          mediaAssumptions: {
+            dimensions: ASSUMED_MEDIA_DIMENSIONS,
+            provenance: 'wireframe-assumption',
+          },
+        },
       },
       variant: {
         naturalKey: `${artifactKey}:zh-CN`,
@@ -295,7 +319,11 @@ export function buildWireframeSeedFixture(): WireframeSeedFixture {
           indexable: false,
           bodyMarkdown: '',
           localizedOutcome: { purpose: null, characteristics: [] },
-          workflow: [],
+          workflow: prompt.steps.map((step) => ({
+            position: step.order,
+            title: step.title,
+            body: step.body,
+          })),
           translation: { translationStatus: 'draft' },
           seo: { robots: 'noindex,nofollow' },
           betaPreview: { source: 'wireframe-flow-proto', wireframeId: prompt.id },
@@ -359,7 +387,7 @@ async function createMissing(
   if (dryRun) return { created: true, document: null }
   return {
     created: true,
-    document: await payload.create({ collection, data, overrideAccess: true }),
+    document: await payload.create({ collection, data, draft: true, overrideAccess: true }),
   }
 }
 

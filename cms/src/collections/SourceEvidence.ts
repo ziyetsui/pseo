@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated, canEditDrafts, denyAll } from '@/access'
-import { enforceDraftOnly } from '@/hooks'
+import { enforceDraftOnly, validateSourceEvidence } from '@/hooks'
 
 import { betaPreviewField, draftVersions, gitPublicationField } from './fields'
 
@@ -20,7 +20,10 @@ export const SourceEvidence: CollectionConfig = {
     update: canEditDrafts,
     delete: denyAll,
   },
-  hooks: { beforeChange: [enforceDraftOnly] },
+  hooks: {
+    beforeValidate: [validateSourceEvidence],
+    beforeChange: [enforceDraftOnly],
+  },
   versions: draftVersions,
   fields: [
     {

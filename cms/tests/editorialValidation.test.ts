@@ -52,6 +52,15 @@ test('source records require typed provenance and safe absolute URLs', () => {
       sourceUrl: 'https://x.com/example/status/123',
     }),
   )
+  assert.doesNotThrow(() =>
+    validateSourceEvidenceProjection({
+      recordType: 'source',
+      sourcePlatform: 'x',
+      sourceId: 'undated',
+      observedAt: '2026-09-02T00:00:00Z',
+      sourceUrl: 'https://x.com/example/status/undated',
+    }),
+  )
   assert.throws(
     () =>
       validateSourceEvidenceProjection({

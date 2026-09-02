@@ -112,6 +112,7 @@ export const PromptArtifacts: CollectionConfig = {
       fields: [
         { name: 'key', type: 'text', required: true },
         { name: 'label', type: 'text', required: true },
+        { name: 'value', type: 'text' },
         {
           name: 'valueType',
           type: 'select',

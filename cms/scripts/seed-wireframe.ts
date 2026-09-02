@@ -1,30 +1,9 @@
-import { register } from 'node:module'
+import { createRequire, register } from 'node:module'
 
-import {
-  buildWireframeSeedFixture,
-  seedWireframeFixture,
-  type SeedPayloadLocalApi,
-} from '../src/seed/wireframe.ts'
+import { runWireframeSeedCli } from '../src/seed/cli.ts'
+import type { SeedPayloadLocalApi } from '../src/seed/wireframe.ts'
 
-type RecordValue = Record<string, unknown>
-
-function hasFlag(flag: string): boolean {
-  return process.argv.slice(2).includes(flag)
-}
-
-function print(value: unknown): void {
-  process.stdout.write(`${JSON.stringify(value, null, 2)}\n`)
-}
-
-function fixtureCounts(): Record<string, number> {
-  const fixture = buildWireframeSeedFixture()
-  return {
-    artifacts: fixture.artifacts.length,
-    localeVariants: fixture.artifacts.length,
-    sourceEvidence: fixture.sources.length,
-    taxonomies: fixture.taxonomies.length,
-  }
-}
+type NextEnvLoader = (cwd: string, dev?: boolean) => unknown
 
 function registerCmsPathAliases(): void {
   const sourceRoot = new URL('../src/', import.meta.url).href
@@ -54,25 +33,23 @@ function registerCmsPathAliases(): void {
 }
 
 async function main(): Promise<void> {
-  const countOnly = hasFlag('--count')
-  const dryRun = hasFlag('--dry-run')
-  if (countOnly) {
-    print({ mode: 'count', ...fixtureCounts() })
-    return
-  }
-
   registerCmsPathAliases()
-  const [{ getPayload }, { default: config }] = await Promise.all([import('payload'), import('../src/payload.config.ts')])
-  const localApi: SeedPayloadLocalApi = {
-    async create(args) {
-      return await payload.create(args as never) as RecordValue
+  // Resolve Next's bundled environment loader from Next's own package context.
+  // This remains reliable with pnpm's isolated dependency layout.
+  const requireFromScript = createRequire(import.meta.url)
+  const requireFromNext = createRequire(requireFromScript.resolve('next/package.json'))
+  const { loadEnvConfig } = requireFromNext('@next/env') as { readonly loadEnvConfig: NextEnvLoader }
+  const { getPayload } = await import('payload')
+  await runWireframeSeedCli({
+    argv: process.argv.slice(2),
+    cwd: process.cwd(),
+    loadEnv: (cwd) => {
+      loadEnvConfig(cwd, process.env.NODE_ENV !== 'production')
     },
-    async find(args) {
-      const result = await payload.find(args as never)
-      return { docs: result.docs as RecordValue[] }
-    },
-  }
-  print({ mode: dryRun ? 'dry-run' : 'seed', ...(await seedWireframeFixture(localApi, { dryRun })) })
+    loadConfig: async () => (await import('../src/payload.config.ts')).default,
+    getPayload: async ({ config }) => await getPayload({ config } as never) as unknown as SeedPayloadLocalApi,
+    write: (value) => process.stdout.write(value),
+  })
 }
 
 void main().catch((error: unknown) => {
