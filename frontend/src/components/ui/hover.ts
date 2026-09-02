@@ -1,5 +1,4 @@
 import { cx } from "./class-names";
-import { IS_BAUHAUS } from "./theme";
 
 /**
  * The interaction vocabulary: what a surface does when it is pointed at,
@@ -10,7 +9,7 @@ import { IS_BAUHAUS } from "./theme";
  * element has its own reply — and because every reply happens in the same
  * 200ms ease-out, so they never argue with each other.
  *
- *   1. card lift          — `cardClassName` (translate + shadow)
+ *   1. card lift          — `cardClassName` (shadow)
  *   2. title colour       — `hoverTitleClassName`
  *   3. action-row gap     — `ActionRow` (`hoverGapClassName`)
  *   4. underline growth   — `GrowingUnderline` (`hoverUnderlineBarClassName`)
@@ -107,31 +106,23 @@ export function transitionClassName(channel: TransitionChannel, className?: stri
  * desktop" in `Card.tsx` and "a button under the pointer" in `Button.tsx` — so
  * a hovered button sat at exactly the height of a resting card and the scale
  * stopped ranking anything. The fix is to stop naming the pixel and start
- * naming the role: a role owns its resting offset AND its hover partner, and
- * the two can never drift apart.
+ * naming the role: a role owns its resting cast AND its hover partner, and the
+ * two can never drift apart.
  *
- * In this system the hard offset shadow IS the object's height above the page,
- * so the ladder reads literally: chrome sits lowest, a control sits above it,
- * a card sits highest and gains a step again on desktop where it is physically
- * bigger.
+ * The shadow IS the object's height above the page, so the ladder reads
+ * literally: chrome sits lowest, a control sits above it, a card sits highest
+ * and gains a step again on desktop where it is physically bigger.
  *
- * - `chrome`  — 3px. Rail arrows, the mobile nav trigger, an unselected tab:
- *   furniture around the content, never the content itself.
- * - `control` — 4px at every width. Buttons and button-shaped links.
- * - `card`    — 4px mobile, 8px desktop. The card chassis and every tile.
+ * - `chrome`  — the shallowest cast. Rail arrows, the mobile nav trigger, an
+ *   unselected tab: furniture around the content, never the content itself.
+ * - `control` — one step up, at every width. Buttons and button-shaped links.
+ * - `card`    — one step up again, and one more from `md`. The card chassis
+ *   and every tile.
  *
- * Each hover partner grows the offset by exactly the 2px the object lifts, so
- * the shadow's far corner stays pinned to the page and the object reads as
- * rising off it (see `globals.css`).
- *
- * **The ladder is the same in both themes; only the rungs are made of
- * something else.** In `neutral` a `--shadow-hard-*` token is not a hard
- * shadow at all — it is a layered soft cast, and the hover partner deepens and
- * widens that cast instead of growing an offset. Same three roles, same
- * statement (this object is further off the page), same class tokens out of
- * this function. Nothing here needs to know which theme is running, which is
- * exactly why the role names — and not the pixel values — are what this module
- * exports.
+ * Each hover partner deepens and widens the same cast, so the object reads as
+ * rising off the page. `--shadow-hard-*` is a historical NAME — the tokens are
+ * layered soft casts, not hard offsets (see `globals.css`) — and it is kept
+ * because every call site says it.
  */
 export type ElevationRole = "chrome" | "control" | "card";
 
@@ -148,9 +139,9 @@ const ELEVATION_REST: Record<ElevationRole, string> = {
 };
 
 /**
- * `chrome` has no hover partner on purpose: 3px → 4px is one pixel of offset
- * on a 44px control, which is below the perceptual threshold and costs a
- * repaint to deliver nothing. Chrome's hover reply is its fill (`hover:bg-muted`).
+ * `chrome` has no hover partner on purpose: one step on the shallowest cast is
+ * below the perceptual threshold on a 44px control and costs a repaint to
+ * deliver nothing. Chrome's hover reply is its fill (`hover:bg-muted`).
  */
 const ELEVATION_HOVER: Record<ElevationRole, string | undefined> = {
   chrome: undefined,
@@ -180,13 +171,13 @@ export function elevationClassName(
 /* ------------------------------------------------------------------- press */
 
 /**
- * The marker class the reduced-motion block in `globals.css` looks for.
+ * The marker class `globals.css` looks for, in two places.
  *
- * It paints nothing. Its only job is to give that block one thing to cancel:
- * `.press-flatten:active { translate: none }` turns the press from a slide
- * into a shadow collapsing in place, which keeps the feedback and drops the
- * movement. Exported so a test can assert the two halves still refer to the
- * same name.
+ * It paints nothing itself. `.press-flatten:active` is where the elevation
+ * drop that accompanies the scale lives, and the reduced-motion block cancels
+ * the scale by the same name — which turns the press into a shadow changing in
+ * place, keeping the feedback and dropping the movement. Exported so a test can
+ * assert the halves still refer to the same name.
  */
 export const PRESS_FLATTEN_MARKER = "press-flatten";
 
@@ -195,21 +186,18 @@ export const PRESS_FLATTEN_MARKER = "press-flatten";
  *
  * A hover state is a promise; a press is a receipt. Until this existed the only
  * press feedback on the site was iOS Safari's default translucent grey rounded
- * box — the one piece of touch feedback in a hard-edged Bauhaus system was a
- * soft grey rounded rectangle nobody designed. On a phone the browse grid has
- * no hover to fall back on at all, so a tap produced nothing until the next
- * route painted, and people tapped again.
+ * box, which is to say the one piece of touch feedback nobody designed. On a
+ * phone the browse grid has no hover to fall back on at all, so a tap produced
+ * nothing until the next route painted, and people tapped again.
  *
  * Three kinds, because there are exactly three situations:
  *
- * - `flatten` — the object owns a shadow, and in this system the shadow IS its
- *   height. So a press pushes it flat onto the page: the shadow goes to zero
- *   and the object translates down-right by exactly the offset it just lost,
- *   so its own bottom-right corner lands where the shadow's corner was and the
- *   silhouette collapses without changing size. No scale, no bounce, no colour
- *   trick — the geometry already says it. Pass the `elevation` role so the
- *   travel matches the shadow being collapsed; getting this wrong by 1–2px is
- *   what makes an object look like it shrank rather than sank.
+ * - `flatten` — the object owns a shadow, and the shadow IS its height. So a
+ *   press pushes it down: it shrinks under the finger while `globals.css`
+ *   drops it one step of elevation, and the two halves say the same thing. The
+ *   name is historical — it used to collapse a hard offset — and is kept
+ *   because every call site and the marker class say it. Pass the `elevation`
+ *   role so the step is sized to the object.
  *
  * - `invert` — the object has NO shadow (a chip, a variable radio). There is
  *   nothing to collapse, and a 1px nudge on a 32px pill is invisible. Its only
@@ -233,47 +221,22 @@ export type PressKind = "flatten" | "invert" | "band";
 export const PRESS_KINDS = ["flatten", "invert", "band"] as const satisfies readonly PressKind[];
 
 /**
- * Travel per role: exactly the resting offset that is being collapsed.
- * `translate-x-1` is 4px, `translate-x-2` is 8px; `chrome`'s 3px has no spacing
- * step, and this is the one place in the system allowed to spell it, because
- * it is the shadow token's own offset rather than a magic number.
+ * Scale per role, not one value.
  *
- * `aria-disabled` cancels the travel: `frontend/CLAUDE.md` §6 ships capabilities
- * the app does not have as `aria-disabled` with a written reason, and a control
+ * `emil-design-eng` and `ui-polish` both put a button's press at 0.96–0.97 and
+ * warn that below 0.95 reads as exaggerated, but those numbers are written for
+ * a 44px control. The same ratio on a 400px card moves its edges 6px and reads
+ * as the card recoiling, so a card gets the gentlest step that is still
+ * visible. `transform-origin` stays centred, which is correct here — nothing in
+ * this system is anchored to a trigger.
+ *
+ * `globals.css` supplies the other half: it drops one step of elevation at the
+ * same moment, and puts `scale` into the element's transition list so the
+ * RELEASE eases back rather than snapping.
+ *
+ * `aria-disabled` cancels it: `frontend/CLAUDE.md` §6 ships capabilities the
+ * app does not have as `aria-disabled` with a written reason, and a control
  * that physically depresses is the app saying it did something. It did not.
- */
-const PRESS_FLATTEN: Record<ElevationRole, string> = {
-  chrome: "active:translate-x-[3px] active:translate-y-[3px]",
-  control: "active:translate-x-1 active:translate-y-1",
-  card: "active:translate-x-1 active:translate-y-1 md:active:translate-x-2 md:active:translate-y-2",
-};
-
-const PRESS_FLATTEN_COMMON =
-  "active:shadow-none active:duration-[var(--motion-press)] aria-disabled:active:translate-x-0 aria-disabled:active:translate-y-0 aria-disabled:active:shadow-none";
-
-/**
- * The `neutral` half of `flatten` — the one place in this module where the two
- * themes emit different class tokens, because this is the one idiom a token
- * cannot re-express.
- *
- * Bauhaus flattening is arithmetic on a hard offset: the shadow goes to zero
- * and the object travels exactly the offset it lost. Take the hard shadow away
- * and there is nothing to collapse and nothing for the travel to be the length
- * OF — a soft-shadowed object sliding 8px down-right just looks like it slipped.
- * The soft system's equivalent is the one every platform uses: the object gets
- * smaller under the finger. `globals.css` supplies the other half (it drops one
- * step of elevation at the same moment) and puts `scale` into the element's
- * transition list so the RELEASE eases back rather than snapping.
- *
- * Scale by role, not one value: `emil-design-eng` and `ui-polish` both put a
- * button's press at 0.96–0.97 and warn that below 0.95 reads as exaggerated,
- * but those numbers are written for a 44px control. The same ratio on a 400px
- * card moves its edges 6px and reads as the card recoiling, so a card gets the
- * gentlest step that is still visible. `transform-origin` stays centred, which
- * is correct here — nothing in this system is anchored to a trigger.
- *
- * `aria-disabled` cancels it, exactly as the Bauhaus travel is cancelled: a
- * control the app cannot honour must not answer as though it did.
  */
 const PRESS_SCALE: Record<ElevationRole, string> = {
   chrome: "active:scale-[0.96]",
@@ -321,27 +284,22 @@ export interface PressOptions {
  * `hover:` block in the compiled sheet, so a press works on touch and beats a
  * hover on the same element without any specificity work.
  *
- * **The press-in runs at `--motion-press` (120ms), not at the 200–300ms the
- * visual spec (`specs/images/0008-bo-pseo-ui.md`) gives for motion. This is a
- * deliberate amendment, not an oversight — do not "correct" it back.** That
- * band was written for hover and for state changes, where a fifth of a second
- * reads as considered. A press is different in kind: it has to land under the
- * finger, and a desktop card press travels 8px from rest (10px from a hovered
- * state). 200ms over that distance reads as mush rather than as a mechanism.
- * 120ms keeps `ease-out` and keeps the motion mechanical — it makes it MORE
- * mechanical, not less. The release is left on the standard 200ms, so the
- * object snaps down and settles back up, which is how a real key feels.
+ * **The press-in runs at `--motion-press` (120ms), not at the 200–300ms band
+ * the rest of the system's motion uses. This is a deliberate amendment, not an
+ * oversight — do not "correct" it back.** That band is written for hover and
+ * for state changes, where a fifth of a second reads as considered. A press is
+ * different in kind: it has to land under the finger, and 200ms of travel
+ * reads as mush rather than as a mechanism. 120ms keeps `ease-out` and keeps
+ * the motion mechanical — it makes it MORE mechanical, not less. The release is
+ * left on the standard 200ms, so the object snaps down and settles back up,
+ * which is how a real key feels. It is also exactly the band
+ * `emil-design-eng` and `animations` give for press feedback (100–160ms).
  */
 export function pressClassName(kind: PressKind, options: PressOptions = {}): string {
   const { elevation = "control", selected = false, surface = "canvas", className } = options;
 
   if (kind === "flatten") {
-    return cx(
-      PRESS_FLATTEN_MARKER,
-      IS_BAUHAUS ? PRESS_FLATTEN[elevation] : PRESS_SCALE[elevation],
-      IS_BAUHAUS ? PRESS_FLATTEN_COMMON : PRESS_SCALE_COMMON,
-      className,
-    );
+    return cx(PRESS_FLATTEN_MARKER, PRESS_SCALE[elevation], PRESS_SCALE_COMMON, className);
   }
   if (kind === "invert") {
     return cx(PRESS_INVERT[selected ? "selected" : "idle"], className);

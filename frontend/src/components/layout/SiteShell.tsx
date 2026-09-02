@@ -1,6 +1,4 @@
-import { COLOR_SCHEME, THEME } from "@/components/ui/theme";
 import type { Locale } from "@/lib/i18n/config";
-import { blogHome } from "@/lib/i18n/routes";
 
 import { SiteFooter, type FooterColumn, type FooterLinkItem } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -27,16 +25,14 @@ export interface SiteShellProps {
  * — renders through this component so the skip link and landmark structure
  * never has to be hand-duplicated.
  *
- * It is also where the visual theme is declared, because it is the one element
- * every route passes through that this lane owns (`src/app/layout.tsx`, which
- * owns `<html>` and `<body>`, is edited by another lane). `styles/globals.css`
- * reaches the document root from here with `:root:has([data-theme="bauhaus"])`,
- * so `<body>`'s own `bg-canvas` flips with the rest of the page even though
- * the attribute sits one element below it.
+ * There is no theme attribute: the site has one visual system, defined once in
+ * `styles/globals.css`.
  *
- * `data-color-scheme` is rendered ONLY when a build pins one. Its absence is a
- * meaningful third state — follow the operating system — and an attribute that
- * is always present with a default value would quietly destroy it.
+ * The colour scheme is a separate question and stays a three-state one. Nothing
+ * is stamped here, so `:root { color-scheme: light dark }` follows the
+ * operating system; `styles/globals.css` pins the scheme when a
+ * `data-color-scheme="light|dark"` appears anywhere under `:root`, which is a
+ * reader's preference rather than a second theme.
  */
 export function SiteShell({
   locale,
@@ -48,11 +44,7 @@ export function SiteShell({
   footerLinks,
 }: SiteShellProps) {
   return (
-    <div
-      data-theme={THEME}
-      data-color-scheme={COLOR_SCHEME}
-      className="flex min-h-dvh flex-col"
-    >
+    <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:flex focus:min-h-11 focus:items-center focus:border-2 focus:border-foreground focus:bg-accent-yellow focus:px-4 focus:font-bold"
@@ -68,7 +60,6 @@ export function SiteShell({
         columns={footerColumns}
         links={footerLinks}
         snapshotDate={snapshotDate}
-        blogHref={blogHome(locale)}
       />
     </div>
   );

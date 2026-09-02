@@ -16,47 +16,33 @@ mix in npm/yarn/bun). Run everything from `frontend/`.
 | `pnpm lint` | ESLint flat config (`eslint-config-next` 16) |
 | `pnpm typecheck` | `tsc --noEmit`, strict + `noUncheckedIndexedAccess` |
 | `pnpm test` | Vitest (jsdom + Testing Library) unit tests |
-| `pnpm test:e2e` | Playwright against the built `out/` served on :3100 |
+| `pnpm test:e2e` | Playwright against the built `out/` served on :43117 |
 | `pnpm check:static` | Static-output gate over `out/` + `src/` (routes, iframe/srcdoc/hash, `#` links, hreflang, prototype counts) |
 | `pnpm screenshots` | Full-page PNGs of L1–L4 at 1440×1200 and 375×812 into `evidence/screenshots/` |
-| `pnpm build:bauhaus` | The comparison theme, exported to `out-bauhaus/`; `out/` is put back exactly as it was |
-| `pnpm screenshots:bauhaus` | The same PNGs for that theme, into `evidence/screenshots/bauhaus/` |
 
 Gate before any delivery: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 
-### `NEXT_PUBLIC_THEME` — which visual system a build ships
+### The visual system
 
-The site has two complete themes and one set of token names.
+There is one visual system and no theme switch. Its tokens are the prototype's
+own (`docs/wireframes/flow-proto.html`), set out in a design-engineering idiom:
+a platform sans that puts PingFang SC in front of the Chinese glyphs,
+translucent hairline rules, layered soft shadows, a 12px radius (10px for
+controls), and a real dark mode via `light-dark()`. The Bauhaus system that used
+to ship beside it behind `NEXT_PUBLIC_THEME` was retired on 2026-09-03; nothing
+reads that variable any more.
 
-| Value | Theme |
-| --- | --- |
-| *(unset)* | **`neutral`** — the default and the direction: the prototype's own tokens (`docs/wireframes/flow-proto.html`) in a design-engineering idiom. A platform sans that puts PingFang SC in front of the Chinese glyphs, translucent hairline rules, layered soft shadows, a 12px radius, and a real dark mode. |
-| `bauhaus` | The previous system from `specs/images/0008-bo-pseo-ui.md`, value for value: the flat three-accent palette, Outfit, 2px/4px black rules, unblurred offset shadows, square corners, light only. Kept for side-by-side comparison during the transition. |
+Every value lives in `src/styles/globals.css`, which is the only place a token
+is defined. Components consume the semantic utilities that come out of it and
+never spell a colour, a shadow or a radius themselves.
 
-Anything other than `bauhaus` — unset, empty, a typo — is `neutral`, so a
-misspelt variable can never half-configure a page.
-
-`SiteShell` stamps the choice as `data-theme` on the shell's root element and
-`src/styles/globals.css` does the rest, so switching themes is a rebuild and
-never a code change:
-
-```bash
-NEXT_PUBLIC_THEME=bauhaus pnpm build     # or: pnpm build:bauhaus, which keeps out/
-```
-
-`NEXT_PUBLIC_COLOR_SCHEME=light|dark` pins the scheme for a `neutral` build
-(the screenshot runs use it). Leaving it unset is a third state, not a default:
-no attribute is rendered and `prefers-color-scheme` decides. It is ignored under
-`bauhaus`, which is light-only by its own spec.
+Colour scheme is a reader preference, not a theme, and has three states: no
+attribute at all follows the operating system, and an explicit
+`data-color-scheme="light|dark"` anywhere under `:root` pins it.
 
 `pnpm test:e2e`, `pnpm check:static` and `pnpm screenshots` all read the built
-`out/`, so run `pnpm build` first. Playwright's `webServer` starts
-`serve out -l 3100` for you and reuses an already-running one.
-
-The two themes never share an export or a port. `pnpm screenshots:bauhaus`
-builds into `out-bauhaus/` and serves it on :43118 while the default runs serve
-`out/` on :43117, so a run cannot screenshot one theme and file it under the
-other — and the committed PNGs of each theme live in directories of their own.
+`out/`, so run `pnpm build` first. Playwright's `webServer` serves `out/` on
+:43117 and never reuses an already-running server.
 
 **Install the browser once** before the first Playwright run — the repo does not
 vendor it:
@@ -68,8 +54,7 @@ pnpm exec playwright install chromium
 Both Playwright projects (`desktop` 1440×1200, `mobile` Pixel 7 @ 375×812) are
 Chromium, so `chromium` is the only download needed. `pnpm screenshots` uses two
 separate projects (`screenshots-desktop` / `screenshots-mobile`) so a plain
-`pnpm test:e2e` never rewrites the committed PNGs in `evidence/screenshots/`
-(default theme) or `evidence/screenshots/bauhaus/`.
+`pnpm test:e2e` never rewrites the committed PNGs in `evidence/screenshots/`.
 
 The current e2e result and the open product findings are recorded in
 [`evidence/test-run.md`](./evidence/test-run.md) — read it before assuming a red

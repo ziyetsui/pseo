@@ -1,48 +1,36 @@
 import { cx } from "./class-names";
 
 /**
- * Three divider tiers, and the rule that ranks them.
+ * Two divider tiers, and the rule that ranks them.
  *
  * The rule is one line: **the denser the rules, the lighter they are drawn.**
- * A card has one internal rule, so it is the full-strength one; a page column
- * has a handful, so they recede; a dense list has dozens, so they are barely
- * there. Applied consistently this keeps a list of thirty rows from reading as
- * dirt while still letting a single rule inside a card do real work.
+ * A card has one internal rule, so it is the strong one; a dense list has
+ * dozens, so they are barely there. Applied consistently this keeps a list of
+ * thirty rows from reading as dirt while still letting a single rule inside a
+ * card do real work.
  *
  * Opacity is deliberately NOT a parameter. Callers pick a tier — "this is a
  * card-internal split" — and the tier owns the number, so two dense lists
- * built by two people cannot end up 15% and 20%. Every tier is drawn at the
- * system's 2px border width on an existing palette token; no new colour and no
- * third border width enter the system here.
+ * built by two people cannot end up 15% and 20%. `styles/globals.css` renders
+ * every one of these as a single translucent hairline, ranked by ink:
  *
- * ## The same three tiers in the `neutral` theme
+ * | tier | painted as |
+ * | --- | --- |
+ * | `card` | `--border-strong` (20%) — a card frame, or a split inside one |
+ * | `row` | `--border` (11%) — the rows of a dense list |
  *
- * Nothing in this module branches on the theme, and that is the design: it
- * emits the same class tokens either way and `styles/globals.css` decides what
- * they paint. The ranking survives the translation intact — it is the same
- * sentence in a quieter voice:
- *
- * | tier | bauhaus | neutral |
- * | --- | --- | --- |
- * | `card` | 2px black, 4px from `md` | one hairline at `--border-strong` (20%) |
- * | `column` | 2px black at 70% | one hairline at `--border-strong` (20%) |
- * | `row` | 2px black at 15% | one hairline at `--border` (11%) |
- *
- * Two consequences worth knowing. The `column` and `card` tiers converge,
- * because a soft system has no third strength between 20% and nothing that a
- * reader can actually tell apart — the difference between them was always the
- * WIDTH, and there is only one width now. And `desktopThick` becomes inert:
- * the `md:border-*-4` it emits is flattened to the same hairline as everything
- * else. Both are left in place rather than branched away, because the class
- * string is what makes a `bauhaus` build comparable to the pre-theme build,
- * and because the option is meaningful again the moment that theme is selected.
+ * There used to be a third `column` tier at 70% ink, and a `desktopThick`
+ * option that stepped the card tier to 4px from `md`. Both existed because the
+ * previous system ranked its rules by WIDTH as well as by ink; with one
+ * hairline width there is nothing for either to say, so `column` collapsed into
+ * `card` and the desktop step is simply what the card tier always draws. Both
+ * are removed from the API rather than accepted and ignored — passing either is
+ * a type error.
  */
 
 export type DividerTier =
-  /** Inside a card: media | body. The heavy one — full-strength foreground. */
+  /** A card frame, or a split inside a card: media | body. The strong one. */
   | "card"
-  /** Between page columns / sections. */
-  | "column"
   /** Between rows of a dense list. The lightest. */
   | "row";
 
@@ -76,12 +64,10 @@ export type DividerFrom = "sm" | "md" | "lg";
 const TIER: Record<DividerSurface, Record<DividerTier, string>> = {
   canvas: {
     card: "border-foreground",
-    column: "border-foreground/70",
     row: "border-foreground/15",
   },
   inverse: {
     card: "border-surface",
-    column: "border-surface/70",
     row: "border-surface/15",
   },
 };
@@ -122,10 +108,12 @@ const SIDE: Record<"base" | DividerFrom, Record<DividerSide, string>> = {
 };
 
 /**
- * The desktop step, for the one place it applies: a card-internal rule (or a
- * card-tier FRAME) that has to match a card border which is itself 2px on
- * mobile and 4px from `md`. A rule thinner than the frame it sits in reads as
- * a mistake.
+ * The desktop step. It is inert on its own — every width resolves to one
+ * hairline — but the frames written inline across `src/features/**` and by
+ * `cardClassName` still carry `md:border-4`, and a helper that disagreed with
+ * them would be the odd one out the day those call sites are cleaned up. The
+ * card tier always emits it; the `row` tier never does, because a list rule has
+ * no frame to agree with.
  */
 const SIDE_THICK: Record<DividerSide, string> = {
   top: "md:border-t-4",
@@ -136,26 +124,6 @@ const SIDE_THICK: Record<DividerSide, string> = {
 };
 
 export interface DividerOptions {
-  /**
-   * Step up to the 4px desktop border from `md`.
-   *
-   * **On by default for the `card` tier, and meaningless for the other two.**
-   * A card's own frame is 2px on mobile and 4px from `md`, so a card-internal
-   * rule that stays at 2px on desktop is thinner than the box it sits in — the
-   * exact mistake this file's header warns about, and it shipped at three call
-   * sites (a card's meta row, a spine's colour column, an action row's top
-   * rule) because the option was opt-in and easy to forget. Making it the
-   * tier's default means a caller can only get it wrong on purpose.
-   *
-   * Pass `false` for the one shape that legitimately wants a 2px rule at every
-   * width while still asking for full-strength ink — a card-tier rule drawn
-   * UNDER a page section rather than inside a card, where there is no 4px
-   * frame for it to match.
-   *
-   * Ignored when `from` is set — a rule that only starts at `lg` cannot also
-   * thicken at `md`, and the two together would make it appear early.
-   */
-  desktopThick?: boolean;
   /**
    * Surface the rule is drawn on. `canvas` (default) is every normal page
    * surface; `inverse` is the footer's `bg-foreground`.
@@ -183,13 +151,12 @@ export function dividerClassName(
   options: DividerOptions = {},
 ): string {
   const { surface = "canvas", from, className } = options;
-  // The card tier carries the desktop step unless the caller opts out; the
-  // column and row tiers draw 2px at every width and cannot be thickened,
-  // because a page-level or list-level rule has no 4px frame to match.
-  const desktopThick = tier === "card" && (options.desktopThick ?? true);
+  // The card tier carries the desktop step, except when the whole rule is
+  // scoped to a breakpoint: a rule that only starts at `lg` cannot also
+  // thicken at `md`, and the two together would make it appear early.
   return cx(
     SIDE[from ?? "base"][side],
-    desktopThick && from === undefined ? SIDE_THICK[side] : undefined,
+    tier === "card" && from === undefined ? SIDE_THICK[side] : undefined,
     TIER[surface][tier],
     className,
   );

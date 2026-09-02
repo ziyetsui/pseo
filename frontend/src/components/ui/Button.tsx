@@ -3,7 +3,6 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
 import { elevationClassName, pressClassName, transitionClassName } from "./hover";
-import { IS_BAUHAUS } from "./theme";
 
 /**
  * The one place button styling is defined. `buttonClassName` is exported so a
@@ -21,7 +20,7 @@ export interface ButtonStyleOptions {
 }
 
 /**
- * ≥ 44×44 touch target, uppercase Bauhaus label.
+ * ≥ 44×44 touch target, uppercase label.
  *
  * The press lives in `VARIANT`, not here, because it depends on whether the
  * variant owns a shadow — see the comment there.
@@ -37,10 +36,10 @@ const BASE = cx(
 );
 
 /**
- * Hover deepens the offset shadow instead of tinting the fill: the palette has
- * exactly three flat accents and no darker step, and geometry is the language
- * this system already speaks. Nothing moves, so a row of buttons never reflows
- * under the pointer; `active` then collapses the shadow entirely.
+ * Hover deepens the cast instead of tinting the fill: the palette carries an
+ * ink and a fill value per accent and no third, darker step. Nothing moves, so
+ * a row of buttons never reflows under the pointer; `active` then drops the
+ * button one step of elevation.
  *
  * The step is `elevationClassName("control")` — 4px at rest, 6px hovered. It
  * used to be a hand-written `shadow-hard-md hover:shadow-hard-lg`, i.e. 4px →
@@ -49,15 +48,14 @@ const BASE = cx(
  * The role owns both ends now, so the two can no longer drift.
  *
  * The press splits on whether the variant owns a shadow. The four shadowed
- * variants `flatten`: the shadow goes to zero and the button travels down-right
- * by exactly the 4px it lost, so its own corner lands where the shadow's corner
- * was and the silhouette collapses without changing size. `ghost` has no
- * shadow and no fill to collapse — moving it would be movement against nothing
- * — so it takes the `band` press, filling the same `muted` its hover uses. That
- * also keeps a disabled ghost honest: `aria-disabled:bg-muted` and the pressed
- * band are the same colour, so a control the app cannot honour does not
- * depress. (`flatten` cancels its own travel under `aria-disabled` for the
- * same reason.)
+ * variants `flatten`: the button shrinks by the step written for a 44px
+ * control while its cast drops one step, so the two halves say the same thing.
+ * `ghost` has no shadow and no fill to collapse — scaling it would be motion
+ * against nothing — so it takes the `band` press, filling the same `muted` its
+ * hover uses. That also keeps a disabled ghost honest: `aria-disabled:bg-muted`
+ * and the pressed band are the same colour, so a control the app cannot honour
+ * does not depress. (`flatten` cancels its own scale under `aria-disabled` for
+ * the same reason.)
  */
 const VARIANT: Record<ButtonVariant, string> = {
   primary: cx(
@@ -87,18 +85,15 @@ const VARIANT: Record<ButtonVariant, string> = {
 };
 
 /*
- * `square` is the default shape and it is not square in every theme: Bauhaus
- * radius is binary (0 or a full pill) while `neutral` gives a control the
- * prototype's `--r` less the ~2px its frame sits inside a card by — the
- * derived-not-copied nested-radius rule from `surfaces`. Both are the
- * `--radius-*` token the theme sets, so this is the only line that has to know.
- *
- * `rounded-none` has to be spelled out rather than left to the default,
- * because the zero-specificity radius rule in `globals.css` rounds anything
- * that draws a full frame and says nothing about its corners.
+ * `square` is the default shape and it is not literally square: a control gets
+ * the prototype's `--r` less the ~2px its frame sits inside a card by — the
+ * derived-not-copied nested-radius rule from `surfaces`. It is spelled out as
+ * a token rather than left to the default, because the zero-specificity radius
+ * rule in `globals.css` rounds anything that draws a full frame and says
+ * nothing about its corners.
  */
 const SHAPE: Record<ButtonShape, string> = {
-  square: IS_BAUHAUS ? "rounded-none" : "rounded-control",
+  square: "rounded-control",
   pill: "rounded-pill",
 };
 

@@ -4,9 +4,6 @@ import { useState } from "react";
 
 import { cx } from "./class-names";
 
-import { GeometricMark } from "./GeometricMark";
-import { IS_BAUHAUS } from "./theme";
-
 export interface MediaFrameProps {
   src: string;
   /**
@@ -77,23 +74,15 @@ export function MediaFrame({
       {failed ? (
         <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-4 text-center">
           {/*
-            The failure state needs a shape where the picture would have been.
-            Bauhaus draws its three primitives; `neutral` draws one empty
-            rounded frame at hairline strength — the same geometry as the card
-            around it, with nothing in it, which is exactly what happened.
+            The failure state needs a shape where the picture would have been:
+            one empty rounded frame at hairline strength — the same geometry as
+            the card around it, with nothing in it, which is exactly what
+            happened.
           */}
-          {IS_BAUHAUS ? (
-            <span aria-hidden="true" className="flex items-center gap-2">
-              <GeometricMark shape="circle" color="red" className="size-5" />
-              <GeometricMark shape="square" color="blue" className="size-5" />
-              <GeometricMark shape="triangle" color="yellow" className="size-5" />
-            </span>
-          ) : (
-            <span
-              aria-hidden="true"
-              className="block size-8 rounded-[6px] border border-foreground/25"
-            />
-          )}
+          <span
+            aria-hidden="true"
+            className="block size-8 rounded-[6px] border border-foreground/25"
+          />
           <p className="text-sm font-bold">媒体不可用</p>
           <span className="sr-only">{alt}</span>
         </div>

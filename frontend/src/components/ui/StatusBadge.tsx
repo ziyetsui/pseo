@@ -15,9 +15,9 @@ import { cx } from "./class-names";
 export type BadgeCorner = "none" | "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
 /**
- * Corner placement. Absolute, so the badge overlaps the card's own frame
- * exactly like the `GeometricMark` does, and above the media (`z-10`).
- * The card shell is already `relative`, so nothing else is needed.
+ * Corner placement. Absolute, so the badge overlaps the card's own frame and
+ * sits above the media (`z-10`). The card shell is already `relative`, so
+ * nothing else is needed.
  */
 const CORNER: Record<BadgeCorner, string | undefined> = {
   none: undefined,

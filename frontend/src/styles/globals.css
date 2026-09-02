@@ -2,29 +2,25 @@
 
 /*
  * ============================================================================
- * TWO THEMES, ONE SET OF TOKEN NAMES
+ * ONE VISUAL SYSTEM
  * ============================================================================
  *
- * `neutral` (the default) is the prototype's own system — see
+ * The site's tokens are the prototype's own — see
  * `docs/wireframes/flow-proto.html`: a platform sans that puts PingFang SC in
  * front of the Chinese glyphs, hairline translucent borders, layered soft
  * shadows, a 12px radius, and a real dark mode via `light-dark()`.
  *
- * `bauhaus` is the previous system from `specs/images/0008-bo-pseo-ui.md`,
- * preserved value-for-value further down under `[data-theme="bauhaus"]` so the
- * two can be compared side by side. `SiteShell` stamps the attribute; nothing
- * else selects a theme.
+ * There is no theme switch. The Bauhaus system that used to sit beside this
+ * one (`specs/images/0008-bo-pseo-ui.md`, selected by `data-theme`) was
+ * retired on 2026-09-03: every token below is now the single definition of its
+ * role, and no rule in this file selects on a theme.
  *
- * **The token NAMES never change.** `--color-canvas`, `--shadow-hard-md`,
- * `--tracking-micro` and the rest mean the same ROLE in both systems and only
- * differ in value, so `bg-canvas`, `shadow-hard-md` and every helper in
- * `components/ui/hover.ts` keep emitting exactly the same class strings in both
- * themes. That is what lets one component tree serve both systems, and what
- * makes a `NEXT_PUBLIC_THEME=bauhaus` build byte-identical to the build from
- * before the neutral theme existed. Where a name is honestly Bauhaus-shaped —
- * `--shadow-hard-*` is not a hard shadow any more in `neutral` — the name is
- * kept anyway and the comment says so; renaming it would be a churn of every
- * call site for no behaviour.
+ * **The token NAMES are load-bearing.** `--color-canvas`, `--shadow-hard-md`,
+ * `--tracking-micro` and the rest are read by the whole component tree through
+ * `bg-canvas`, `shadow-hard-md` and the helpers in `components/ui/hover.ts`,
+ * so a rename is a churn of every call site for no behaviour. Where a name is
+ * honestly Bauhaus-shaped — `--shadow-hard-*` is not a hard shadow at all any
+ * more — the name is kept and the comment beside it says so.
  *
  * Never write a hex value or an arbitrary shadow in JSX.
  */
@@ -55,7 +51,7 @@
   /*
    * Muted / faint text. Prototype `--muted` is 56% and `--faint` is 38%.
    *
-   * Measured against all three neutral surfaces: 56% ink gives 3.91–4.02:1 in
+   * Measured against all three surfaces: 56% ink gives 3.91–4.02:1 in
    * light, which FAILS AA for body text, so light rises to 62% (4.73–4.89:1).
    * Dark's 56% already passes (5.55–6.10:1) and is kept verbatim.
    *
@@ -70,7 +66,7 @@
 
   /*
    * The two hairline strengths, prototype `--border` (11%) and
-   * `--border-strong` (20%), verbatim. In `neutral` these are what every
+   * `--border-strong` (20%), verbatim. These are what every
    * `border-foreground` in the component tree actually paints — see the
    * hairline block below.
    */
@@ -80,7 +76,7 @@
   /*
    * Accents. The three names are structural — `accent.ts` maps a taxonomy axis
    * to one of them and both the chips and the browse bands read that map — so
-   * they survive the theme change and only their values are retuned.
+   * the three names are fixed and only their values are ever tuned.
    *
    * Every one of them is used BOTH as ink (a title reddening on hover) and as a
    * fill carrying text, and the two want opposite lightness. The rule that
@@ -129,30 +125,30 @@
   --color-on-warm: rgb(38 28 6);
 
   /*
-   * The one deliberately inverted surface: the footer. In `bauhaus` it is
-   * `bg-foreground` + `text-surface`, which self-inverts under `light-dark()`
-   * and would turn the dark-mode footer into a white slab. So `neutral` gives
-   * the inverse surface tokens of its own and keeps it a dark slab in both
+   * The one deliberately inverted surface: the footer. Written at its call
+   * site as `bg-foreground` + `text-surface`, which self-inverts under
+   * `light-dark()` and would turn the dark-mode footer into a white slab. So
+   * the inverse surface gets tokens of its own and stays a dark slab in both
    * schemes (16.7:1 / 16.0:1).
    */
   --color-footer: light-dark(rgb(24 26 29), rgb(16 16 18));
   --color-on-footer: light-dark(rgb(250 250 252), rgb(235 235 240));
 
-  /* Focus is never the brand colour in `neutral` (ui-polish): it is the ink. */
+  /* Focus is never the brand colour (ui-polish): it is the ink. */
   --color-focus: var(--color-foreground);
   --color-focus-inverse: rgb(255 255 255);
 
   /*
    * -------------------------------------------------------------- elevation
    *
-   * The names are `--shadow-hard-*` because they are the Bauhaus system's names
-   * and every call site says them; in `neutral` they are not hard at all.
+   * The names are `--shadow-hard-*` because that is what every call site says;
+   * they are not hard shadows at all.
    *
    * Each one is a layered soft shadow in the `surfaces` idiom: a tight crisp
    * layer just under the object and a wider ambient one. The third ingredient
    * that recipe calls for — the 1px spread standing in for a border — is
    * deliberately absent, because every shadowed object in this component tree
-   * also paints a real border (`border-2`, which `neutral` renders as a
+   * also paints a real border (`border-2`, which this file renders as a
    * hairline). Adding a ring on top of that hairline would draw the edge twice.
    *
    * Dark mode does not flatten these to a ring for the same reason: the ring is
@@ -170,11 +166,9 @@
   --shadow-hard-lg:
     0 2px 6px -2px var(--shadow-cast-near), 0 10px 24px -10px var(--shadow-cast-far);
   /*
-   * The hover partners. In `bauhaus` these grow the offset by exactly the 2px
-   * the object lifts; here they deepen and widen the cast, which is the same
-   * statement — the object is further off the page — in a soft system's
-   * language. Only `box-shadow` changes, so the hover costs one paint and no
-   * layout (`surfaces`).
+   * The hover partners: they deepen and widen the cast, which is the
+   * statement that the object is further off the page. Only `box-shadow`
+   * changes, so the hover costs one paint and no layout (`surfaces`).
    */
   --shadow-hard-md-hover:
     0 2px 6px -2px var(--shadow-cast-near-strong), 0 8px 18px -8px var(--shadow-cast-far-strong);
@@ -186,10 +180,9 @@
   /*
    * ----------------------------------------------------------------- radius
    *
-   * `bauhaus` radius is binary — square or full pill, nothing in between — so
-   * it was never a token, just `rounded-none` / `rounded-pill` at the call
-   * site. `neutral` needs a real value (the prototype's `--r`), so the two
-   * shapes that carry one become named tokens and `bauhaus` sets them to 0.
+   * The two shapes that carry a real corner are named tokens, so a component
+   * never spells a radius itself. `--radius-card` is the prototype's `--r`;
+   * `rounded-none` and `rounded-pill` remain the explicit opt-outs.
    *
    * `--radius-control` is `--radius-card` minus the ~2px a control's own frame
    * sits inside a card by, which is the derived-not-copied rule from
@@ -216,19 +209,19 @@
    * Latin or digits — a model name, a unit, a taxonomy slug. Callers ask for it
    * by script (`{ script: "latin" }`), never by number.
    *
-   * `neutral` halves both. Wide-tracked small caps are a Bauhaus signature;
-   * the platform sans is already drawn with its own tracking tables, and Apple's
-   * rule is that small text wants only a touch of positive tracking. `bauhaus`
-   * restores 0.05 / 0.16 below.
+   * Both steps are deliberately small. Wide-tracked small caps are a poster
+   * device; the platform sans is already drawn with its own tracking tables,
+   * and Apple's rule is that small text wants only a touch of positive
+   * tracking.
    */
   --tracking-micro: 0.02em;
   --tracking-micro-latin: 0.08em;
 
   /*
-   * Enter/exit easing. `transitionClassName` emits `ease-out` in both themes;
-   * this is the curve that name resolves to. The CSS keyword is too weak to
-   * read as intentional (`animations`), so `neutral` uses the strong drawer
-   * curve — fast off the mark, long settle. `bauhaus` restores the keyword.
+   * Enter/exit easing. `transitionClassName` emits `ease-out`; this is the
+   * curve that name resolves to. The CSS keyword is too weak to read as
+   * intentional (`animations`), so this is the strong drawer curve — fast off
+   * the mark, long settle.
    */
   --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
 
@@ -245,10 +238,9 @@
    * onto the browser's default sans (`type-surface-report.md` M10). CJK glyphs
    * are full-width, so appending them costs no alignment.
    *
-   * `--font-outfit` / `--font-jetbrains-mono` are injected by next/font and are
-   * referenced ONLY by the `bauhaus` block. They are still downloaded in a
-   * neutral build — the `next/font` call lives in `src/app/layout.tsx`, which
-   * this lane does not own; removing that cost is a one-line follow-up there.
+   * Nothing here references a downloaded webfont. `src/app/layout.tsx` still
+   * calls `next/font` for Outfit and JetBrains Mono, which no token below
+   * names any more; deleting those two calls is a follow-up in that file.
    */
   --font-sans:
     -apple-system, system-ui, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
@@ -264,11 +256,12 @@
  */
 :root {
   /*
-   * Rule weight. `bauhaus` draws 2px on mobile and 4px for primary desktop
-   * elements, always black. `neutral` draws one hairline at every width and
-   * every breakpoint — a translucent line whose strength, not whose thickness,
-   * ranks it (see the hairline block). `--rule-hairline` drops to a true
-   * half-pixel on high-density displays, per `surfaces`.
+   * Rule weight. The system draws one hairline at every width and every
+   * breakpoint — a translucent line whose strength, not whose thickness, ranks
+   * it (see the hairline block). `--border-thin` / `--border-thick` are still
+   * the widths the `border-2` / `border-4` utilities in the component tree
+   * name, and `--border-thin` is also the focus-ring width. `--rule-hairline`
+   * drops to a true half-pixel on high-density displays, per `surfaces`.
    */
   --border-thin: 2px;
   --border-thick: 4px;
@@ -294,7 +287,7 @@
    * argued amendment to the spec: please do not "correct" it back to 200ms.
    *
    * 120ms is also exactly the band `emil-design-eng` and `animations` give for
-   * press feedback (100–160ms), so the amendment survives the theme change.
+   * press feedback (100–160ms), which is the band this system is drawn to.
    */
   --motion-fast: 200ms;
   --motion-base: 300ms;
@@ -317,9 +310,8 @@
  * token above is a `light-dark()` pair and follows it, including the ones
  * Tailwind wraps in `color-mix()` for an opacity modifier (`text-foreground/70`).
  *
- * `bauhaus` is light-only, as its spec says, so it pins `light` unconditionally
- * and a dark-mode operating system does not silently produce a dark Bauhaus
- * page that no spec describes.
+ * This is a user preference, not a theme: there is only one visual system and
+ * it is drawn in whichever scheme the reader is in.
  */
 :root {
   color-scheme: light dark;
@@ -331,82 +323,6 @@
 
 :root:has([data-color-scheme="dark"]) {
   color-scheme: dark;
-}
-
-/*
- * ===========================================================================
- * THEME: bauhaus — `specs/images/0008-bo-pseo-ui.md`, value for value
- * ===========================================================================
- *
- * Selected only by `NEXT_PUBLIC_THEME=bauhaus`, which makes `SiteShell` stamp
- * `data-theme="bauhaus"`. The `:has()` form puts the values on `:root` so the
- * `<body>` element — whose `bg-canvas` is written in `src/app/layout.tsx`,
- * outside the shell — flips with everything else; the bare attribute selector
- * is the same block for a shell rendered on its own (a unit test, a fragment).
- *
- * Nothing in this block is new. It is the palette, the hard offset shadows, the
- * binary radius, the label tracking and the Outfit stack exactly as they were.
- */
-:root:has([data-theme="bauhaus"]),
-[data-theme="bauhaus"] {
-  color-scheme: light;
-
-  /* Palette */
-  --color-canvas: #f0f0f0;
-  --color-foreground: #121212;
-  --color-surface: #ffffff;
-  --color-muted: #e0e0e0;
-  --color-accent-red: #d02020;
-  --color-accent-blue: #1040c0;
-  --color-accent-yellow: #f0c020;
-
-  /* No muted-text or hairline tier exists in this system: rules are black. */
-  --color-muted-foreground: #121212;
-  --color-faint: #121212;
-  --color-hairline: #121212;
-  --color-hairline-strong: #121212;
-  --color-accent-red-fill: var(--color-accent-red);
-  --color-accent-blue-fill: var(--color-accent-blue);
-  --color-accent-yellow-fill: var(--color-accent-yellow);
-  --color-on-accent: #ffffff;
-  --color-on-warm: #121212;
-  --color-footer: #121212;
-  --color-on-footer: #ffffff;
-
-  /* Focus is Bauhaus blue on the page, Bauhaus yellow on the black footer. */
-  --color-focus: var(--color-accent-blue);
-  --color-focus-inverse: var(--color-accent-yellow);
-
-  /* Hard offset shadows only — no blur, no spread, no softening. */
-  --shadow-hard-sm: 3px 3px 0 0 var(--color-foreground);
-  --shadow-hard-md: 4px 4px 0 0 var(--color-foreground);
-  --shadow-hard-lg: 8px 8px 0 0 var(--color-foreground);
-  /*
-   * Hover partners for the two card steps. Each grows the offset by exactly
-   * the 2px the card lifts, so the shadow's far corner stays pinned to the
-   * page and the card reads as rising off it — a card that lifts while its
-   * shadow keeps its size looks like it is sinking INTO the shadow instead.
-   */
-  --shadow-hard-md-hover: 6px 6px 0 0 var(--color-foreground);
-  --shadow-hard-lg-hover: 10px 10px 0 0 var(--color-foreground);
-  --shadow-pressed: none;
-
-  /* Radius is binary: square or full circle/pill. Nothing in between. */
-  --radius-card: 0px;
-  --radius-control: 0px;
-
-  --tracking-micro: 0.05em;
-  --tracking-micro-latin: 0.16em;
-
-  /* Tailwind's own `ease-out`, which is what this system was drawn against. */
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-
-  /* `--font-outfit` / `--font-jetbrains-mono` are injected by next/font. */
-  --font-sans:
-    var(--font-outfit), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
-    -apple-system, sans-serif;
-  --font-mono:
-    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 html {
@@ -436,6 +352,17 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
+   * A missing weight fails loudly rather than quietly.
+   *
+   * The ladder is 400/500/700/900, and on Chinese glyphs PingFang SC stops at
+   * Semibold — so without this the browser fabricates the rest by thickening
+   * the real glyphs, which is what let the old hierarchy LOOK like it had a
+   * weight step it did not have (`type-surface-report.md` §I4).
+   * `type-scale.ts` separates every rung by SIZE, so turning synthesis off
+   * costs no information and turns a silent collapse into a visible one.
+   */
+  font-synthesis: none;
 }
 
 /*
@@ -560,9 +487,7 @@ body {
 /*
  * Focus is always visible and always high contrast.
  *
- * The colour is a token, not a literal, because the two themes answer this
- * differently: `bauhaus` uses its own blue (a system with three flat accents
- * has no neutral bright enough to be seen), `neutral` uses the ink, because a
+ * The colour is a token, not a literal, and the token is the ink: a
  * brand-coloured focus ring clashes with whatever it lands on (`ui-polish`).
  */
 :focus-visible {
@@ -573,11 +498,6 @@ body {
 /* On the dark footer slab, the page's ring would disappear. */
 [data-surface="inverse"] :focus-visible {
   outline-color: var(--color-focus-inverse);
-}
-
-/* Pure geometry: the triangle of the red-circle / blue-square / yellow-triangle mark. */
-.shape-triangle {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 /*
@@ -625,13 +545,16 @@ body {
 
 /*
  * ===========================================================================
- * THEME: neutral — re-expressing the three Bauhaus idioms for a soft system
+ * THE GEOMETRY LAYER — what the component tree's border utilities actually draw
  * ===========================================================================
  *
- * Everything below is scoped to `[data-theme="neutral"]` and is UNLAYERED on
- * purpose: an unlayered rule beats every rule inside `@layer utilities`
- * whatever its specificity, which is what lets a theme reinterpret a utility a
- * component wrote without that component having to know a theme exists.
+ * Everything below is UNLAYERED on purpose: an unlayered rule beats every rule
+ * inside `@layer utilities` whatever its specificity, which is what lets this
+ * file reinterpret a utility a component wrote without that component having to
+ * know. That indirection exists because roughly forty frames across
+ * `src/features/**` still spell their geometry inline as
+ * `border-2 border-foreground md:border-4`; once those call sites move onto
+ * `cardClassName` / `dividerClassName`, this whole block can shrink to nothing.
  *
  * The attribute-substring hooks (`[class*="border-2"]`) are the same ones the
  * hover-underline rule above already uses, and they are exact by construction:
@@ -640,45 +563,42 @@ body {
  */
 
 /*
- * IDIOM 1 of 3 — the rule. 2px/4px solid black becomes a translucent hairline.
+ * THE RULE — every border utility in the tree is one translucent hairline.
  *
- * `bauhaus` ranks its three divider tiers by INK (100% / 70% / 15%) and steps
- * the card tier to 4px on desktop to match the frame it sits inside.
- * `neutral` keeps the ranking and drops the thickness: one hairline width
- * everywhere, ranked by the prototype's own two strengths — `--border-strong`
- * (20%) for a card frame or a card-internal split, `--border` (11%) for the
- * rows of a dense list. `dividerClassName` therefore emits exactly the same
- * class tokens in both themes and needs no theme branch at all.
+ * There is one width. The two divider tiers are ranked by INK instead:
+ * `--border-strong` (20%) for a card frame or a card-internal split,
+ * `--border` (11%) for the rows of a dense list. `dividerClassName` emits the
+ * class tokens; this decides what they paint.
  *
- * The `md:border-*-4` step the card tier still emits is flattened here rather
- * than suppressed at the source: it is inert once every width is one hairline,
- * and leaving it in the class string is what keeps the two builds comparable.
+ * The `md:border-*-4` desktop step the card tier still emits is flattened here
+ * rather than suppressed at the source, because the same step is written
+ * inline at the frames listed above and both have to agree.
  */
-[data-theme="neutral"] :is([class*="border-2"], [class*="border-4"]) {
+:is([class*="border-2"], [class*="border-4"]) {
   border-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-t-2"], [class*="border-t-4"]) {
+:is([class*="border-t-2"], [class*="border-t-4"]) {
   border-top-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-r-2"], [class*="border-r-4"]) {
+:is([class*="border-r-2"], [class*="border-r-4"]) {
   border-right-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-b-2"], [class*="border-b-4"]) {
+:is([class*="border-b-2"], [class*="border-b-4"]) {
   border-bottom-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-l-2"], [class*="border-l-4"]) {
+:is([class*="border-l-2"], [class*="border-l-4"]) {
   border-left-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-s-2"], [class*="border-s-4"]) {
+:is([class*="border-s-2"], [class*="border-s-4"]) {
   border-inline-start-width: var(--rule-hairline);
 }
 
-[data-theme="neutral"] :is([class*="border-e-2"], [class*="border-e-4"]) {
+:is([class*="border-e-2"], [class*="border-e-4"]) {
   border-inline-end-width: var(--rule-hairline);
 }
 
@@ -687,19 +607,19 @@ body {
  * matches `border-foreground/70`). `border-transparent` is untouched, which is
  * what keeps the ghost button's invisible frame invisible.
  */
-[data-theme="neutral"] :is([class~="border-foreground"], [class~="border-foreground/70"]) {
+:is([class~="border-foreground"], [class~="border-foreground/70"]) {
   border-color: var(--color-hairline-strong);
 }
 
-[data-theme="neutral"] [class~="border-foreground/15"] {
+[class~="border-foreground/15"] {
   border-color: var(--color-hairline);
 }
 
 /*
- * A 4px text underline is a Bauhaus weight. Two pixels is the heaviest a
- * hairline system draws under a word.
+ * Two pixels is the heaviest a hairline system draws under a word, so the
+ * `decoration-4` written at the `aria-current` nav underline is halved here.
  */
-[data-theme="neutral"] [class*="decoration-4"] {
+[class*="decoration-4"] {
   text-decoration-thickness: 2px;
 }
 
@@ -709,7 +629,7 @@ body {
  * a square is meant. Everything that draws a full frame and says nothing about
  * its corners gets the prototype's `--r`.
  */
-:where([data-theme="neutral"]) :where([class*="border-2"], [class*="border-4"]) {
+:where([class*="border-2"], [class*="border-4"]) {
   border-radius: var(--radius-card);
   /*
    * A frame that is square can hold a full-bleed child; a frame with a corner
@@ -727,55 +647,48 @@ body {
 }
 
 /*
- * IDIOM 2 of 3 — the press. Flatten-onto-the-page is meaningless without a
- * hard shadow to collapse, so it becomes a scale.
+ * THE PRESS. A soft-shadowed object has no hard offset to collapse, so a press
+ * is a scale rather than a flattening.
  *
  * `pressClassName("flatten")` emits the scale itself (see `hover.ts`); this
  * rule is the other half: the object also drops one step of elevation, so the
- * two halves say the same thing — it went down — the way the Bauhaus press
- * said it with an offset and a translate.
+ * two halves say the same thing — it went down.
  */
-[data-theme="neutral"] .press-flatten:active {
+.press-flatten:active {
   box-shadow: var(--shadow-pressed);
 }
 
 /*
  * `transitionClassName` names the properties a channel is allowed to animate,
- * and none of them names `scale` — it could not, because in `bauhaus` nothing
- * scales. Adding it here rather than in the channel table keeps the emitted
- * class strings identical across the two themes, and keeps the invariant the
- * channel table exists for: no `outline-*` property is ever animated, so a
- * focus ring is instant and one colour. Only the properties an element already
- * transitions are listed, plus `scale`.
+ * and none of them names `scale`: the press is the only thing that scales, and
+ * it is the only element carrying this marker. Stating it here rather than in
+ * the channel table keeps the invariant that table exists for — no `outline-*`
+ * property is ever animated, so a focus ring is instant and one colour. Only
+ * the properties an element already transitions are listed, plus `scale`.
  */
-[data-theme="neutral"] .press-flatten {
+.press-flatten {
   transition-property: box-shadow, scale, color, background-color;
 }
 
 /*
- * The spine — `SpineCard`'s full-height accent column, and the one Bauhaus
- * decoration `neutral` narrows rather than drops, because it is the only one
- * carrying information (which family of card this is, read from across a
- * scroll). 38px of flat primary colour is a poster device; 4px says the same
- * thing at hairline weight. Done here rather than in the component because
- * `w-9.5` is the selector two test suites use to find the spine.
+ * The spine — `SpineCard`'s full-height accent column. It is the one
+ * decoration carrying information (which family of card this is, read from
+ * across a scroll), so it survives at hairline weight: 38px of flat colour is
+ * a poster device, 4px says the same thing quietly. Done here rather than in
+ * the component because `w-9.5` is the selector two test suites use to find
+ * the spine.
  */
-[data-theme="neutral"] [class~="w-9.5"] {
+[class~="w-9.5"] {
   width: 0.25rem;
 }
 
 /*
- * IDIOM 3 of 3 — elevation — needs no rule here at all: it is entirely a
- * matter of what `--shadow-hard-*` means, and those are redefined at the top
- * of this file. That is the point of keeping the names.
+ * Enter/exit easing. `--ease-out` is a Tailwind theme variable, so defining it
+ * above should be enough; this restates it unlayered because the utility's
+ * exact compiled shape is a build detail and this file should not depend on
+ * one.
  */
-
-/*
- * Enter/exit easing. `--ease-out` is a Tailwind theme variable, so redefining
- * it above should be enough; this restates it unlayered because the utility's
- * exact compiled shape is a build detail and a theme should not depend on one.
- */
-[data-theme="neutral"] .ease-out {
+.ease-out {
   transition-timing-function: var(--ease-out);
 }
 
@@ -791,76 +704,55 @@ body {
  * `features/**` that write the pairing by hand, and the ink inherits so a fill
  * that wraps its own label needs no second rule.
  */
-[data-theme="neutral"] [class~="bg-accent-red"] {
+[class~="bg-accent-red"] {
   background-color: var(--color-accent-red-fill);
   color: var(--color-on-accent);
 }
 
-[data-theme="neutral"] [class~="bg-accent-blue"] {
+[class~="bg-accent-blue"] {
   background-color: var(--color-accent-blue-fill);
   color: var(--color-on-accent);
 }
 
-[data-theme="neutral"] [class~="bg-accent-yellow"] {
+[class~="bg-accent-yellow"] {
   background-color: var(--color-accent-yellow-fill);
   color: var(--color-on-warm);
 }
 
 /*
- * `text-foreground/60` measures 4.43:1 on the muted fill — a marginal AA miss
- * that only exists in this theme, because `bauhaus` ink is opaque black. The
- * muted-text token is the value that passes on all three neutral surfaces.
+ * `text-foreground/60` measures 4.43:1 on the muted fill — a marginal AA miss.
+ * The muted-text token is the value that passes on all three surfaces.
  */
-[data-theme="neutral"] [class~="text-foreground/60"] {
+[class~="text-foreground/60"] {
   color: var(--color-muted-foreground);
 }
 
 /*
- * The footer. `bauhaus` inverts it by swapping two tokens, which under
- * `light-dark()` would make the dark-mode footer a white slab; `neutral` gives
- * the inverse surface its own pair so it stays a dark slab in both schemes,
- * and re-tints the four translucent utilities the footer draws on it. The
- * yellow column headings — a Bauhaus signature — become muted white.
+ * The footer. `SiteFooter` inverts it by swapping two tokens, which under
+ * `light-dark()` would make the dark-mode footer a white slab; the inverse
+ * surface gets its own pair instead so it stays a dark slab in both schemes,
+ * and the four translucent utilities the footer draws on it are re-tinted
+ * here, including the yellow column headings, which become muted white.
  */
-[data-theme="neutral"] [data-surface="inverse"] {
+[data-surface="inverse"] {
   background-color: var(--color-footer);
   color: var(--color-on-footer);
 }
 
-[data-theme="neutral"] [data-surface="inverse"] :is([class~="text-surface/70"], [class~="text-accent-yellow"]) {
+[data-surface="inverse"] :is([class~="text-surface/70"], [class~="text-accent-yellow"]) {
   color: rgb(255 255 255 / 62%);
 }
 
-[data-theme="neutral"] [data-surface="inverse"] :is([class~="border-surface"], [class~="border-surface/70"]) {
+[data-surface="inverse"] :is([class~="border-surface"], [class~="border-surface/70"]) {
   border-color: rgb(255 255 255 / 22%);
 }
 
-[data-theme="neutral"] [data-surface="inverse"] [class~="border-surface/15"] {
+[data-surface="inverse"] [class~="border-surface/15"] {
   border-color: rgb(255 255 255 / 12%);
 }
 
-[data-theme="neutral"] [data-surface="inverse"] [class~="active:bg-surface/10"]:active {
+[data-surface="inverse"] [class~="active:bg-surface/10"]:active {
   background-color: rgb(255 255 255 / 8%);
-}
-
-/*
- * A missing weight fails loudly rather than quietly.
- *
- * The ladder is 400/500/700/900, and on Chinese glyphs PingFang SC stops at
- * Semibold — so without this the browser fabricates the rest by thickening the
- * real glyphs, which is what let the old hierarchy LOOK like it had a weight
- * step it did not have (`type-surface-report.md` §I4). `type-scale.ts`
- * separates every rung by SIZE, so turning synthesis off costs no information
- * and turns a silent collapse into a visible one.
- *
- * Scoped to `neutral` on purpose: the same report argued against setting this
- * document-wide while Bauhaus was the system, because there it would REMOVE
- * emphasis that the hierarchy still leaned on. That argument no longer applies
- * to the theme whose hierarchy is size-led, and `bauhaus` keeps its old
- * behaviour untouched.
- */
-[data-theme="neutral"] {
-  font-synthesis: none;
 }
 
 /*
@@ -885,16 +777,16 @@ body {
    * Collapsing the durations above makes every transition instant, which is the
    * right answer for a colour or a shadow — the state still lands, it just does
    * not travel. It is NOT the right answer for the press, whose whole geometry
-   * is a displacement: instant or not, a Bauhaus press still jumps 4-8px
-   * down-right under the finger and a neutral press still shrinks the object
-   * under it, which is exactly the kind of movement a reader who asked for less
-   * motion is asking not to get.
+   * is a displacement: instant or not, a press still shrinks the object under
+   * the finger, which is exactly the kind of movement a reader who asked for
+   * less motion is asking not to get.
    *
-   * So the press keeps its meaning and loses its movement in BOTH themes: the
-   * shadow still changes (the object is still visibly pushed down), and the
-   * translate or the scale that would follow it is cancelled by name. The
-   * marker class is `PRESS_FLATTEN_MARKER` in `components/ui/hover.ts`; the
-   * fill-inverting and band presses move nothing and need no counterpart here.
+   * So the press keeps its meaning and loses its movement: the shadow still
+   * changes (the object is still visibly pushed down), and the scale that
+   * would follow it is cancelled by name. `translate` is cancelled beside it
+   * so any element that grows one later cannot slip past this rule. The marker
+   * class is `PRESS_FLATTEN_MARKER` in `components/ui/hover.ts`; the
+   * fill-inverting and band presses move nothing and need no counterpart.
    */
   .press-flatten:active {
     translate: none !important;

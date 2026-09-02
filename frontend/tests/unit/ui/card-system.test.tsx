@@ -12,7 +12,7 @@ import { Section } from "@/components/ui/Section";
 import { Avatar, IdentityMark, monogramFrom } from "@/components/ui/IdentityMark";
 import { SpineCard } from "@/components/ui/SpineCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { dividerClassName } from "@/components/ui/dividers";
+import { dividerClassName, type DividerTier } from "@/components/ui/dividers";
 import {
   controlLabelClassName,
   displayTitleClassName,
@@ -125,16 +125,14 @@ describe("title tiers", () => {
 });
 
 describe("divider tiers", () => {
-  it("draws the three tiers at three distinct strengths, heaviest inside a card", () => {
+  it("draws the two tiers at two distinct strengths, heavier inside a card", () => {
     const card = dividerClassName("card", "bottom");
-    const column = dividerClassName("column", "left");
     const row = dividerClassName("row", "bottom");
 
     expect(card).toContain("border-foreground");
     expect(card).not.toContain("/");
-    expect(column).toContain("border-foreground/70");
     expect(row).toContain("border-foreground/15");
-    expect(new Set([card, column, row]).size).toBe(3);
+    expect(new Set([card, row]).size).toBe(2);
   });
 
   it("puts the border on the side it was asked for and never invents a width", () => {
@@ -144,24 +142,29 @@ describe("divider tiers", () => {
     expect(dividerClassName("row", "bottom")).not.toContain("md:border-b-4");
   });
 
-  it("gives the card tier the desktop step by default, so a caller cannot forget it", () => {
-    // A card frame is 2px mobile / 4px desktop; a 2px rule inside a 4px box is
-    // the mistake this file's own header warns about, and it shipped at three
-    // call sites because the option was opt-in.
+  it("always gives the card tier the desktop step, so it agrees with the frames", () => {
+    // Inert on its own — every width resolves to one hairline — but the card
+    // frames written inline across `features/**` and by `cardClassName` still
+    // carry `md:border-4`, and a helper that disagreed would be the odd one out.
     expect(dividerClassName("card", "bottom")).toContain("md:border-b-4");
     expect(dividerClassName("card", "top")).toContain("md:border-t-4");
-    expect(dividerClassName("card", "bottom", { desktopThick: false })).not.toContain(
-      "md:border-b-4",
-    );
   });
 
-  it("refuses to thicken a tier that has no 4px frame to match", () => {
-    expect(dividerClassName("row", "bottom", { desktopThick: true })).not.toContain(
-      "md:border-b-4",
-    );
-    expect(dividerClassName("column", "left", { desktopThick: true })).not.toContain(
-      "md:border-l-4",
-    );
+  it("never thickens the row tier, which has no frame to agree with", () => {
+    expect(dividerClassName("row", "bottom")).not.toContain("md:border-b-4");
+    expect(dividerClassName("row", "left")).not.toContain("md:border-l-4");
+  });
+
+  it("has no third tier and no width option left to get wrong", () => {
+    // `column` (70% ink) and `desktopThick` both ranked a rule by WIDTH, which
+    // one hairline width cannot express. They were removed from the API rather
+    // than accepted and ignored, so a stale call site is a compile error.
+    const tiers: DividerTier[] = ["card", "row"];
+    expect(tiers).toHaveLength(2);
+    // @ts-expect-error — `column` is not a tier any more.
+    expect(() => dividerClassName("column", "left")).not.toThrow();
+    // @ts-expect-error — `desktopThick` is not an option any more.
+    expect(() => dividerClassName("card", "left", { desktopThick: false })).not.toThrow();
   });
 
   it("draws the same tier in the surface's own ink, without an override", () => {
@@ -172,26 +175,25 @@ describe("divider tiers", () => {
     expect(inverse).toContain("border-surface/15");
     expect(inverse).not.toContain("border-foreground");
     expect(inverse).not.toContain("!");
-    expect(dividerClassName("column", "left", { surface: "inverse" })).toContain(
-      "border-surface/70",
-    );
+    expect(dividerClassName("card", "left", { surface: "inverse" })).toContain("border-surface");
   });
 
   it("scopes a rule to a breakpoint by prefixing the width alone", () => {
     // Tailwind's preflight zeroes every border, so a width that only exists
     // from `lg` is a rule that only exists from `lg`; the colour needs no
     // prefix because a 0-width border paints nothing.
-    const scoped = dividerClassName("column", "left", { surface: "inverse", from: "lg" });
+    const scoped = dividerClassName("card", "left", { surface: "inverse", from: "lg" });
     expect(scoped).toContain("lg:border-l-2");
     expect(scoped).not.toMatch(/(^|\s)border-l-2/);
-    expect(scoped).toContain("border-surface/70");
+    // A rule that only starts at `lg` must not also thicken at `md`, which
+    // would make it appear early.
+    expect(scoped).not.toContain("md:border-l-4");
+    expect(scoped).toContain("border-surface");
   });
 
   it("can express a four-sided frame, so a card compartment is not hand-drawn", () => {
     expect(dividerClassName("card", "all")).toBe("border-2 md:border-4 border-foreground");
-    expect(dividerClassName("card", "all", { desktopThick: false })).toBe(
-      "border-2 border-foreground",
-    );
+    expect(dividerClassName("row", "all")).toBe("border-2 border-foreground/15");
   });
 });
 
@@ -567,7 +569,7 @@ describe("Section", () => {
     );
     const header = screen.getByRole("heading", { level: 2 }).parentElement
       ?.parentElement as HTMLElement;
-    expect(header.className).toContain(dividerClassName("card", "bottom", { desktopThick: true }));
+    expect(header.className).toContain(dividerClassName("card", "bottom"));
   });
 });
 

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   ELEVATION_ROLES,
@@ -16,27 +16,6 @@ import {
   pressClassName,
   transitionClassName,
 } from "@/components/ui/hover";
-
-/**
- * Re-imports `hover.ts` under one theme or the other.
- *
- * `THEME` is resolved once, when `components/ui/theme.ts` is first evaluated,
- * because it is a build-time constant — so the only honest way to exercise both
- * branches in one run is to reset the module registry and read the env again.
- * Every assertion that names a class token belonging to ONE theme goes through
- * this; assertions about the contract both themes keep use the plain import.
- */
-async function pressUnder(theme: "neutral" | "bauhaus") {
-  vi.resetModules();
-  vi.stubEnv("NEXT_PUBLIC_THEME", theme);
-  const { pressClassName: scoped } = await import("@/components/ui/hover");
-  return scoped;
-}
-
-afterEach(() => {
-  vi.unstubAllEnvs();
-  vi.resetModules();
-});
 
 /** Vitest runs from the package root, so the token file is a fixed path away. */
 const GLOBALS = readFileSync(resolve(process.cwd(), "src/styles/globals.css"), "utf8");
@@ -128,47 +107,27 @@ describe("elevationClassName", () => {
 /* ------------------------------------------------------------------ press */
 
 describe("pressClassName", () => {
-  it("flattens a shadowed object by exactly the offset it loses, under bauhaus", async () => {
-    // The hard shadow IS the object's height, so a press collapses it to zero
-    // and moves the object down-right by the same distance: the silhouette
-    // collapses without changing size.
-    const press = await pressUnder("bauhaus");
-    expect(press("flatten", { elevation: "chrome" })).toContain("active:translate-x-[3px]");
-    expect(press("flatten", { elevation: "control" })).toContain("active:translate-x-1");
-
-    const card = press("flatten", { elevation: "card" });
-    expect(card).toContain("active:translate-x-1");
-    expect(card).toContain("md:active:translate-x-2");
-    expect(card).toContain("md:active:translate-y-2");
-
-    for (const role of ELEVATION_ROLES) {
-      expect(press("flatten", { elevation: role }), role).toContain("active:shadow-none");
-    }
-  });
-
-  it("scales a soft-shadowed object instead, under neutral", async () => {
+  it("scales a shadowed object rather than moving it", () => {
     // There is no hard offset to collapse and nothing for a travel to be the
     // length of, so the object gets smaller under the finger. The step is
     // role-sized: 0.96-0.97 is written for a 44px control and would read as a
     // 400px card recoiling.
-    const press = await pressUnder("neutral");
-    expect(press("flatten", { elevation: "chrome" })).toContain("active:scale-[0.96]");
-    expect(press("flatten", { elevation: "control" })).toContain("active:scale-[0.97]");
-    expect(press("flatten", { elevation: "card" })).toContain("active:scale-[0.99]");
+    expect(pressClassName("flatten", { elevation: "chrome" })).toContain("active:scale-[0.96]");
+    expect(pressClassName("flatten", { elevation: "control" })).toContain("active:scale-[0.97]");
+    expect(pressClassName("flatten", { elevation: "card" })).toContain("active:scale-[0.99]");
 
     for (const role of ELEVATION_ROLES) {
       // Nothing translates, and the elevation drop is the stylesheet's half of
       // the press (`.press-flatten:active`), not a class on the element.
-      expect(press("flatten", { elevation: role }), role).not.toContain("active:translate");
+      expect(pressClassName("flatten", { elevation: role }), role).not.toContain(
+        "active:translate",
+      );
     }
-    expect(GLOBALS).toMatch(/\[data-theme="neutral"\] \.press-flatten:active/);
+    expect(GLOBALS).toMatch(/^\.press-flatten:active \{$/m);
   });
 
-  it("marks the press for the reduced-motion rule in both themes", async () => {
-    for (const theme of ["neutral", "bauhaus"] as const) {
-      const press = await pressUnder(theme);
-      expect(press("flatten"), theme).toContain(PRESS_FLATTEN_MARKER);
-    }
+  it("marks the press for the reduced-motion rule", () => {
+    expect(pressClassName("flatten")).toContain(PRESS_FLATTEN_MARKER);
   });
 
   it("presses in at the token duration, not at the 200-300ms hover band", () => {
@@ -179,13 +138,10 @@ describe("pressClassName", () => {
     expect(GLOBALS).toMatch(/do not "correct" it back/i);
   });
 
-  it("refuses to depress a control that cannot act, in either theme", async () => {
-    const bauhaus = (await pressUnder("bauhaus"))("flatten", { elevation: "card" });
-    expect(bauhaus).toContain("aria-disabled:active:translate-x-0");
-    expect(bauhaus).toContain("aria-disabled:active:translate-y-0");
-
-    const neutral = (await pressUnder("neutral"))("flatten", { elevation: "card" });
-    expect(neutral).toContain("aria-disabled:active:scale-100");
+  it("refuses to depress a control that cannot act", () => {
+    expect(pressClassName("flatten", { elevation: "card" })).toContain(
+      "aria-disabled:active:scale-100",
+    );
   });
 
   it("inverts an unshadowed control's fill instead of nudging it", () => {
@@ -210,24 +166,25 @@ describe("pressClassName", () => {
 
   it("is inert under prefers-reduced-motion: the shadow still collapses, nothing travels", () => {
     // The document-wide block collapses durations, which makes a colour or a
-    // shadow instant — but an instant 4-8px displacement under the finger is
-    // exactly what a reader who asked for less motion asked not to get. So the
-    // travel is cancelled by name and the feedback survives.
+    // shadow instant — but an instant shrink under the finger is exactly what a
+    // reader who asked for less motion asked not to get. So the movement is
+    // cancelled by name and the feedback survives.
     const reducedMotionBlock = /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\n\}/.exec(
       GLOBALS,
     );
     expect(reducedMotionBlock).not.toBeNull();
     const block = reducedMotionBlock?.[0] ?? "";
     expect(block).toContain(`.${PRESS_FLATTEN_MARKER}:active`);
+    expect(block).toMatch(/scale:\s*none\s*!important/);
     expect(block).toMatch(/translate:\s*none\s*!important/);
 
     // The marker rides on the only press kind that moves…
     expect(pressClassName("flatten")).toContain(PRESS_FLATTEN_MARKER);
     // …and the two that do not move need no counterpart, because they carry no
-    // translate at all.
+    // scale and no translate at all.
     for (const kind of PRESS_KINDS) {
       const className = pressClassName(kind);
-      if (className.includes("translate")) {
+      if (className.includes("scale") || className.includes("translate")) {
         expect(className, kind).toContain(PRESS_FLATTEN_MARKER);
       }
     }
@@ -275,7 +232,41 @@ describe("globals.css", () => {
   });
 
   it("keeps the label tracking token as the step both scripts can wear", () => {
-    expect(GLOBALS).toContain("--tracking-micro: 0.05em");
-    expect(GLOBALS).toContain("--tracking-micro-latin: 0.16em");
+    expect(GLOBALS).toContain("--tracking-micro: 0.02em");
+    expect(GLOBALS).toContain("--tracking-micro-latin: 0.08em");
+  });
+
+  /* ------------------------------------------------------ one system only */
+
+  it("has no theme hook left anywhere in the stylesheet", () => {
+    // The Bauhaus comparison theme was removed on 2026-09-03. `data-theme` was
+    // the only selector that chose between two sets of values; if one comes
+    // back, so has the fork.
+    expect(GLOBALS).not.toMatch(/\[data-theme[=\]]/);
+    expect(GLOBALS).not.toContain("NEXT_PUBLIC_THEME");
+  });
+
+  it("defines every token exactly once", () => {
+    // A second definition of a token name means a second system: either a
+    // theme block or an override that a reader has to hold in their head.
+    // `--rule-hairline` is the one legitimate exception — it is redefined
+    // inside a `min-resolution` media query, which is a device fact, not a
+    // theme.
+    const counts = new Map<string, number>();
+    for (const [, name] of GLOBALS.matchAll(/^\s+(--[a-z0-9-]+):/gm)) {
+      if (name === undefined) continue;
+      counts.set(name, (counts.get(name) ?? 0) + 1);
+    }
+    const duplicated = [...counts]
+      .filter(([name, count]) => count > 1 && name !== "--rule-hairline")
+      .map(([name]) => name);
+    expect(duplicated).toEqual([]);
+    expect(counts.get("--rule-hairline")).toBe(2);
+  });
+
+  it("still cancels both press movements under reduced motion", () => {
+    const block = /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\n\}/.exec(GLOBALS)?.[0] ?? "";
+    expect(block).toMatch(/transition-duration:\s*0\.01ms\s*!important/);
+    expect(block).toMatch(/animation-duration:\s*0\.01ms\s*!important/);
   });
 });

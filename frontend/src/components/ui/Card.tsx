@@ -3,15 +3,12 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
 import { elevationClassName, pressClassName, transitionClassName } from "./hover";
-import { IS_BAUHAUS } from "./theme";
-
-import { GeometricMark, type MarkShape, type MarkColor } from "./GeometricMark";
 
 /**
  * The chassis.
  *
- * Every card on the site is this one shell — white, hard black border (2px
- * mobile / 4px desktop), unblurred offset shadow — and differs only by which
+ * Every card on the site is this one shell — a raised surface inside a
+ * hairline frame, under a layered soft cast — and differs only by which
  * SLOTS are pushed into it (`CardMedia`, `IdentityMark`, `StatusBadge`,
  * `ActionRow`, `SpineCard`'s colour column). The shell is what
  * makes forty different cards read as one system; the slots are what keeps
@@ -53,12 +50,10 @@ export function cardClassName(className?: string, options: CardStyleOptions = {}
     // slot never has to ask its parent to opt in.
     "group",
     "relative flex min-w-0 flex-col border-2 border-foreground bg-surface md:border-4",
-    // `neutral` rounds every frame to the prototype's 12px (`globals.css`), and
-    // a card's media is full-bleed: without clipping, the square top corners of
+    // Every frame is rounded to the prototype's 12px (`globals.css`), and a
+    // card's media is full-bleed: without clipping, the square top corners of
     // `CardMedia` poke through the rounded corners of the shell they sit in.
-    // Bauhaus corners are square, so there is nothing to clip and the class is
-    // not emitted — which is also what keeps the two builds comparable.
-    IS_BAUHAUS ? undefined : "overflow-hidden",
+    "overflow-hidden",
     // Named properties, never the bare `transition` utility: that one expands
     // to twenty-one properties in Tailwind v4, `outline-color` among them, so
     // it made every focus ring fade in from black over 200ms.
@@ -66,18 +61,14 @@ export function cardClassName(className?: string, options: CardStyleOptions = {}
     // THE SHADOW GROWS AND NOTHING MOVES — the idiom `Button.tsx` already
     // writes down, now spoken by the chassis too.
     //
-    // The chassis used to translate 2px up-left while its shadow grew 2px. That
-    // failed three ways. It translated AWAY from the pointer along its own
-    // right and bottom edges, so a pointer resting within 2px of either edge
-    // oscillated: hover → card moves away → un-hover → card returns. It
-    // animated `translate` (compositor) against `box-shadow` (paint) under a
-    // blur-free 4px band, where a single desynced frame is a countable
-    // rectangle rather than a soft blur nobody sees. And it was a second
-    // vocabulary for the same idea buttons already expressed.
+    // The chassis used to translate 2px up-left while its shadow grew. That
+    // failed two ways. It translated AWAY from the pointer along its own right
+    // and bottom edges, so a pointer resting within 2px of either edge
+    // oscillated: hover → card moves away → un-hover → card returns. And it
+    // was a second vocabulary for the same idea buttons already expressed.
     //
-    // Under a hard offset shadow a growing offset IS the object rising: the
-    // shadow's far corner stays pinned to the page and the gap under the card
-    // opens. Same reading, one pipeline, no edge to oscillate on.
+    // A deepening cast IS the object rising, on one pipeline, with no edge to
+    // oscillate on.
     elevationClassName("card", { hover: interactive }),
     interactive
       ? cx("no-underline", pressClassName("flatten", { elevation: "card" }))
@@ -88,20 +79,11 @@ export function cardClassName(className?: string, options: CardStyleOptions = {}
 
 export interface CardProps extends Omit<ComponentPropsWithoutRef<"div">, "className"> {
   className?: string;
-  /** Optional corner decoration. Purely visual — see `GeometricMark`. */
-  mark?: { shape: MarkShape; color: MarkColor };
 }
 
-export function Card({ className, mark, children, ...rest }: CardProps) {
+export function Card({ className, children, ...rest }: CardProps) {
   return (
     <div {...rest} className={cardClassName(className)}>
-      {mark === undefined ? null : (
-        <GeometricMark
-          shape={mark.shape}
-          color={mark.color}
-          className="absolute top-2 right-2 z-10"
-        />
-      )}
       {children}
     </div>
   );

@@ -49,7 +49,7 @@ export function Section({
       <div
         className={cx(
           "flex flex-wrap items-end justify-between gap-4 pb-3",
-          dividerClassName("card", "bottom", { desktopThick: true }),
+          dividerClassName("card", "bottom"),
         )}
       >
         <div>

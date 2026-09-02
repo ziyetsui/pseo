@@ -7,8 +7,7 @@ import { cx } from "./class-names";
 import { dividerClassName } from "./dividers";
 
 /**
- * A card with a colour column down its left edge — 38px solid in `bauhaus`,
- * narrowed to a 4px rail in `neutral`.
+ * A card with a colour rail down its left edge.
  *
  * The spine carries no text and no meaning of its own — it exists so that one
  * FAMILY of card is distinguishable from every other card at a glance, from
@@ -55,15 +54,11 @@ export function SpineCard({
         aria-hidden="true"
         className={cx(
           /*
-           * The one Bauhaus decoration that is KEPT rather than dropped,
-           * because it is the only one doing a job: it is what makes one family
-           * of card recognisable from across a scroll before a word is read.
-           * What changes with the theme is how loudly it says it — 38px of flat
-           * primary colour is a poster device, and `neutral` narrows the same
-           * element to a 4px rail. That narrowing is a WIDTH, so it is done in
-           * `globals.css` off this exact class rather than by branching here:
-           * `w-9.5` is the hook two suites already use to find the spine, and a
-           * theme should not move the furniture other people navigate by.
+           * The one decoration in this system doing a real job: it is what
+           * makes one family of card recognisable from across a scroll before
+           * a word is read. It is narrowed to a 4px rail in `globals.css` off
+           * this exact class rather than here, because `w-9.5` is the hook two
+           * test suites use to find the spine.
            */
           // 38px on the spacing scale — not an arbitrary length.
           "w-9.5 shrink-0",
