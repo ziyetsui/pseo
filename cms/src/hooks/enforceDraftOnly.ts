@@ -52,11 +52,16 @@ export function enforceDraftProjection({
   const previousProjection = originalDoc?.gitPublication ?? EMPTY_GIT_PROJECTION
   const incomingProjection = data.gitPublication
 
-  const ordinaryCreateProjection = originalDoc === undefined && isInitialGitProjection(incomingProjection)
+  // Payload normalizes group defaults before this hook and may provide an
+  // empty originalDoc on create. Treat structurally different all-null
+  // `unpublished` projections as the same initial state, but never as a way
+  // to reset an established Git publication state.
+  const ordinaryInitialProjection = isInitialGitProjection(incomingProjection) &&
+    isInitialGitProjection(previousProjection)
   if (
     !gitSync &&
     incomingProjection !== undefined &&
-    !ordinaryCreateProjection &&
+    !ordinaryInitialProjection &&
     !isDeepStrictEqual(incomingProjection, previousProjection)
   ) {
     throw new GitProjectionMutationError(

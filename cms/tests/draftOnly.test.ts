@@ -38,6 +38,38 @@ test('ordinary saves remain drafts and cannot mutate Git publication state', () 
   )
 })
 
+test('Payload-normalized unpublished defaults are allowed only for an initial projection', () => {
+  const normalizedInitial = {
+    state: 'unpublished',
+    lastRequest: null,
+    pullRequestNumber: null,
+    pullRequestUrl: null,
+    mergeSha: null,
+    releasedAt: null,
+  }
+
+  assert.doesNotThrow(() =>
+    enforceDraftProjection({
+      data: { title: 'Imported draft', gitPublication: normalizedInitial },
+      originalDoc: {},
+    }),
+  )
+  assert.doesNotThrow(() =>
+    enforceDraftProjection({
+      data: { title: 'Normalized draft', gitPublication: normalizedInitial },
+      originalDoc: { gitPublication: { state: 'unpublished', mergeSha: null } },
+    }),
+  )
+  assert.throws(
+    () =>
+      enforceDraftProjection({
+        data: { gitPublication: normalizedInitial },
+        originalDoc: { gitPublication: { state: 'pr_open', pullRequestNumber: 42 } },
+      }),
+    GitProjectionMutationError,
+  )
+})
+
 test('verified Git projection context may update Git fields but never Payload _status', () => {
   const saved = enforceDraftProjection({
     context: { [GIT_PROJECTION_CONTEXT_KEY]: true },
