@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
 import { cx } from "./class-names";
+import { IS_BAUHAUS } from "./theme";
 
 /**
  * A display-scale number at 10% contrast, used to mark a group.
@@ -35,7 +36,23 @@ export function GhostNumeral({ value, className }: GhostNumeralProps) {
       aria-hidden="true"
       style={{ "--ghost-numeral": `"${digits}"` } as CSSProperties}
       className={cx(
-        "ghost-numeral block text-5xl leading-none font-black tracking-tighter text-foreground/10 tabular-nums select-none md:text-6xl",
+        "ghost-numeral block text-5xl leading-none",
+        /*
+         * Weight is the one thing about the numeral that changes with the
+         * theme. 900 + `tracking-tighter` is a poster numeral: it is trying to
+         * be a graphic element, which is right in a system built out of them.
+         * In `neutral` nothing decorative shouts, so it drops to the weight the
+         * platform face actually draws well at display size and gives back the
+         * negative tracking that was crowding the digits. It stays at 10% ink
+         * and stays out of the text layer either way — see `globals.css`.
+         *
+         * Spliced in HERE rather than appended, so that under `bauhaus` the
+         * emitted string is character-for-character the one that shipped before
+         * the theme existed — a reordered class list renders identically but
+         * makes an equivalence diff report a difference that is not one.
+         */
+        IS_BAUHAUS ? "font-black tracking-tighter" : "font-semibold tracking-tight",
+        "text-foreground/10 tabular-nums select-none md:text-6xl",
         className,
       )}
     />

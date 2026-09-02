@@ -369,6 +369,18 @@ describe("site chrome card-system tiers", () => {
     expect(screen.getByText("（即将推出）")).toBeInTheDocument();
   });
 
+  it("sets the footer index two-up on a phone rather than one column per row", () => {
+    // Five columns stacked one per row cost 522px of measured mobile height for
+    // no desktop gain, on the only keyword-anchored link layer L1 still has.
+    // The count above `lg` is unchanged; this is purely the narrow layout.
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    const nav = screen.getByRole("navigation", { name: "页脚导航" });
+    expect(nav.className).toContain("grid-cols-2");
+    expect(nav.className).toContain("lg:grid-cols-5");
+    expect(nav.className).not.toContain("grid-cols-1");
+  });
+
   it("separates the footer columns on the column tier and the rows on the row tier", () => {
     render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
 

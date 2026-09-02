@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cardClassName } from "@/components/ui/Card";
 import { ChipButton, ChipLink, chipClassName } from "@/components/ui/Chip";
 import { Section } from "@/components/ui/Section";
 
@@ -142,14 +142,5 @@ describe("cardClassName", () => {
     expect(className).not.toContain("outline");
     expect(className).not.toMatch(/shadow-\[/);
     expect(className).not.toMatch(/#[0-9a-f]{3,6}/i);
-  });
-});
-
-describe("tileShellClassName", () => {
-  it("gives every browse tile the same floor and pins its last row to it", () => {
-    // The floor rose with the display-scale count inside the tiles; what the
-    // shell guarantees is unchanged — one shared floor, last row pinned to it.
-    expect(tileShellClassName).toMatch(/min-h-\d+/);
-    expect(tileShellClassName).toContain("justify-between");
   });
 });

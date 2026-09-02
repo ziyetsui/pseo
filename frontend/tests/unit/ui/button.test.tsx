@@ -13,9 +13,22 @@ describe("buttonClassName", () => {
     }
   });
 
-  it("uses square or pill radius and nothing in between", () => {
-    expect(buttonClassName({ shape: "square" })).toContain("rounded-none");
+  it("states its radius as a theme token rather than leaving it to the default", () => {
+    // `neutral` rounds anything that draws a full frame and says nothing about
+    // its corners, so "square" has to be spelled out — and in that theme
+    // "square" is the control radius, one step inside the card's.
+    expect(buttonClassName({ shape: "square" })).toContain("rounded-control");
     expect(buttonClassName({ shape: "pill" })).toContain("rounded-pill");
+  });
+
+  it("keeps Bauhaus radius binary — square or pill, nothing in between", async () => {
+    vi.resetModules();
+    vi.stubEnv("NEXT_PUBLIC_THEME", "bauhaus");
+    const { buttonClassName: scoped } = await import("@/components/ui/Button");
+    expect(scoped({ shape: "square" })).toContain("rounded-none");
+    expect(scoped({ shape: "pill" })).toContain("rounded-pill");
+    vi.unstubAllEnvs();
+    vi.resetModules();
   });
 
   it("names its transition properties and never animates the focus ring", () => {
@@ -41,18 +54,33 @@ describe("buttonClassName", () => {
     }
   });
 
-  it("flattens the shadowed variants by exactly the offset they lose", () => {
+  it("presses the shadowed variants and cancels it when the app cannot act", () => {
     for (const variant of ["primary", "secondary", "yellow", "outline"] as const) {
       const className = buttonClassName({ variant });
+      // `neutral`: the control shrinks by the step written for a 44px control.
+      expect(className).toContain("active:scale-[0.97]");
+      // A capability the app does not have must not depress.
+      expect(className).toContain("aria-disabled:active:scale-100");
+      expect(className).toContain("active:duration-[var(--motion-press)]");
+    }
+  });
+
+  it("flattens the shadowed variants by exactly the offset they lose, under bauhaus", async () => {
+    vi.resetModules();
+    vi.stubEnv("NEXT_PUBLIC_THEME", "bauhaus");
+    const { buttonClassName: scoped } = await import("@/components/ui/Button");
+    for (const variant of ["primary", "secondary", "yellow", "outline"] as const) {
+      const className = scoped({ variant });
       // 4px of shadow collapsed, 4px of travel — the silhouette lands flat
       // instead of stopping 2px short and looking like it shrank.
       expect(className).toContain("active:translate-x-1");
       expect(className).toContain("active:translate-y-1");
       expect(className).toContain("active:shadow-none");
       expect(className).not.toContain("active:translate-x-0.5");
-      // A capability the app does not have must not depress.
       expect(className).toContain("aria-disabled:active:translate-x-0");
     }
+    vi.unstubAllEnvs();
+    vi.resetModules();
   });
 
   it("presses the shadowless ghost variant with its band, not with a travel", () => {
@@ -110,6 +138,6 @@ describe("ButtonLink", () => {
     render(<ButtonLink href="/zh-CN/prompts">提示词</ButtonLink>);
     const link = screen.getByRole("link", { name: "提示词" });
     expect(link).toHaveAttribute("href", "/zh-CN/prompts");
-    expect(link.className).toContain("rounded-none");
+    expect(link.className).toContain("rounded-control");
   });
 });

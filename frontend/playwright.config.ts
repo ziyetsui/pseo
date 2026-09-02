@@ -1,11 +1,24 @@
 import { defineConfig, devices } from "@playwright/test";
 
+/**
+ * Which of the two visual themes this run is pointed at.
+ *
+ * The site ships `neutral` and keeps `bauhaus` behind `NEXT_PUBLIC_THEME` for
+ * side-by-side comparison, so a run has to agree with the export it is serving.
+ * `pnpm build:bauhaus` writes that export to `out-bauhaus/`, deliberately NOT
+ * to `out/`: the default build stays where it is, and no run can silently
+ * screenshot one theme while claiming the other.
+ */
+const BAUHAUS = process.env.NEXT_PUBLIC_THEME === "bauhaus";
+
 // A dedicated, unusual port: 3100 collides with other tooling on this machine,
 // and `reuseExistingServer` then silently attaches Playwright to whatever is
 // already listening — which once produced a full green run (and screenshots)
-// against a different site entirely. Never reuse: the run must serve the `out/`
-// this repository just built.
-const PORT = 43117;
+// against a different site entirely. Never reuse: the run must serve the
+// export this repository just built. The two themes take different ports so a
+// stale server from the other one cannot be mistaken for this one's.
+const PORT = BAUHAUS ? 43118 : 43117;
+const SERVE_DIR = BAUHAUS ? "out-bauhaus" : "out";
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 /** Written by `tests/e2e/screenshots.spec.ts`, committed as delivery evidence. */
@@ -50,10 +63,11 @@ export default defineConfig({
     },
   ],
   webServer: {
-    // Serves the `next build` static export; run `pnpm build` first.
+    // Serves the `next build` static export; run `pnpm build` (or, for the
+    // comparison theme, `pnpm build:bauhaus`) first.
     // Bind loopback explicitly: an internal-beta test server must never be
     // exposed on every interface of the developer machine.
-    command: `pnpm exec serve out -l tcp://127.0.0.1:${PORT} --no-port-switching -n`,
+    command: `pnpm exec serve ${SERVE_DIR} -l tcp://127.0.0.1:${PORT} --no-port-switching -n`,
     url: BASE_URL,
     reuseExistingServer: false,
     timeout: 120_000,

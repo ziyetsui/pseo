@@ -14,6 +14,28 @@ import { cx } from "./class-names";
  * built by two people cannot end up 15% and 20%. Every tier is drawn at the
  * system's 2px border width on an existing palette token; no new colour and no
  * third border width enter the system here.
+ *
+ * ## The same three tiers in the `neutral` theme
+ *
+ * Nothing in this module branches on the theme, and that is the design: it
+ * emits the same class tokens either way and `styles/globals.css` decides what
+ * they paint. The ranking survives the translation intact — it is the same
+ * sentence in a quieter voice:
+ *
+ * | tier | bauhaus | neutral |
+ * | --- | --- | --- |
+ * | `card` | 2px black, 4px from `md` | one hairline at `--border-strong` (20%) |
+ * | `column` | 2px black at 70% | one hairline at `--border-strong` (20%) |
+ * | `row` | 2px black at 15% | one hairline at `--border` (11%) |
+ *
+ * Two consequences worth knowing. The `column` and `card` tiers converge,
+ * because a soft system has no third strength between 20% and nothing that a
+ * reader can actually tell apart — the difference between them was always the
+ * WIDTH, and there is only one width now. And `desktopThick` becomes inert:
+ * the `md:border-*-4` it emits is flattened to the same hairline as everything
+ * else. Both are left in place rather than branched away, because the class
+ * string is what makes a `bauhaus` build comparable to the pre-theme build,
+ * and because the option is meaningful again the moment that theme is selected.
  */
 
 export type DividerTier =

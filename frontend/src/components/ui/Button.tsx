@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
 import { elevationClassName, pressClassName, transitionClassName } from "./hover";
+import { IS_BAUHAUS } from "./theme";
 
 /**
  * The one place button styling is defined. `buttonClassName` is exported so a
@@ -85,8 +86,19 @@ const VARIANT: Record<ButtonVariant, string> = {
   ),
 };
 
+/*
+ * `square` is the default shape and it is not square in every theme: Bauhaus
+ * radius is binary (0 or a full pill) while `neutral` gives a control the
+ * prototype's `--r` less the ~2px its frame sits inside a card by — the
+ * derived-not-copied nested-radius rule from `surfaces`. Both are the
+ * `--radius-*` token the theme sets, so this is the only line that has to know.
+ *
+ * `rounded-none` has to be spelled out rather than left to the default,
+ * because the zero-specificity radius rule in `globals.css` rounds anything
+ * that draws a full frame and says nothing about its corners.
+ */
 const SHAPE: Record<ButtonShape, string> = {
-  square: "rounded-none",
+  square: IS_BAUHAUS ? "rounded-none" : "rounded-control",
   pill: "rounded-pill",
 };
 

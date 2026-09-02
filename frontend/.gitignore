@@ -5,6 +5,10 @@ node_modules/
 # next.js
 .next/
 out/
+# `pnpm build:bauhaus` exports the comparison theme here and puts the default
+# build back where it found it, so `out/` always holds the theme that ships.
+out-bauhaus/
+out.prev/
 next-env.d.ts
 
 # test output

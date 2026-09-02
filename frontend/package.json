@@ -13,6 +13,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test --project=desktop --project=mobile",
     "screenshots": "playwright test --project=screenshots-desktop --project=screenshots-mobile",
+    "build:bauhaus": "sh -c 'rm -rf out-bauhaus out.prev; if [ -d out ]; then mv out out.prev; fi; NEXT_PUBLIC_THEME=bauhaus next build && mv out out-bauhaus; status=$?; if [ -d out.prev ]; then mv out.prev out; fi; exit $status'",
+    "screenshots:bauhaus": "pnpm build:bauhaus && NEXT_PUBLIC_THEME=bauhaus playwright test --project=screenshots-desktop --project=screenshots-mobile",
     "check:static": "node scripts/check-static-output.mjs"
   },
   "dependencies": {

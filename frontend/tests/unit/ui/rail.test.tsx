@@ -58,9 +58,11 @@ describe("Rail", () => {
     // nothing. Chrome's hover reply is its fill.
     expect(arrow.className).not.toContain("hover:shadow-hard-md");
     expect(arrow.className).toContain("hover:bg-muted");
-    // Travel matches the 3px being collapsed, not a generic 2px.
-    expect(arrow.className).toContain("active:translate-x-[3px]");
-    expect(arrow.className).toContain("active:shadow-none");
+    // The press is role-sized: an arrow is chrome, so it takes the smallest
+    // step on the ladder. (Under `bauhaus` the same role travels 3px, exactly
+    // the offset it collapses — see `tests/unit/ui/interaction.test.ts`.)
+    expect(arrow.className).toContain("press-flatten");
+    expect(arrow.className).toContain("active:scale-[0.96]");
     expect(arrow.className).not.toContain("outline");
   });
 

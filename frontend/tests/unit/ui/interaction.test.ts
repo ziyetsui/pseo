@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   ELEVATION_ROLES,
@@ -16,6 +16,27 @@ import {
   pressClassName,
   transitionClassName,
 } from "@/components/ui/hover";
+
+/**
+ * Re-imports `hover.ts` under one theme or the other.
+ *
+ * `THEME` is resolved once, when `components/ui/theme.ts` is first evaluated,
+ * because it is a build-time constant — so the only honest way to exercise both
+ * branches in one run is to reset the module registry and read the env again.
+ * Every assertion that names a class token belonging to ONE theme goes through
+ * this; assertions about the contract both themes keep use the plain import.
+ */
+async function pressUnder(theme: "neutral" | "bauhaus") {
+  vi.resetModules();
+  vi.stubEnv("NEXT_PUBLIC_THEME", theme);
+  const { pressClassName: scoped } = await import("@/components/ui/hover");
+  return scoped;
+}
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+  vi.resetModules();
+});
 
 /** Vitest runs from the package root, so the token file is a fixed path away. */
 const GLOBALS = readFileSync(resolve(process.cwd(), "src/styles/globals.css"), "utf8");
@@ -107,22 +128,46 @@ describe("elevationClassName", () => {
 /* ------------------------------------------------------------------ press */
 
 describe("pressClassName", () => {
-  it("flattens a shadowed object by exactly the offset it loses", () => {
+  it("flattens a shadowed object by exactly the offset it loses, under bauhaus", async () => {
     // The hard shadow IS the object's height, so a press collapses it to zero
     // and moves the object down-right by the same distance: the silhouette
     // collapses without changing size.
-    expect(pressClassName("flatten", { elevation: "chrome" })).toContain(
-      "active:translate-x-[3px]",
-    );
-    expect(pressClassName("flatten", { elevation: "control" })).toContain("active:translate-x-1");
+    const press = await pressUnder("bauhaus");
+    expect(press("flatten", { elevation: "chrome" })).toContain("active:translate-x-[3px]");
+    expect(press("flatten", { elevation: "control" })).toContain("active:translate-x-1");
 
-    const card = pressClassName("flatten", { elevation: "card" });
+    const card = press("flatten", { elevation: "card" });
     expect(card).toContain("active:translate-x-1");
     expect(card).toContain("md:active:translate-x-2");
     expect(card).toContain("md:active:translate-y-2");
 
     for (const role of ELEVATION_ROLES) {
-      expect(pressClassName("flatten", { elevation: role }), role).toContain("active:shadow-none");
+      expect(press("flatten", { elevation: role }), role).toContain("active:shadow-none");
+    }
+  });
+
+  it("scales a soft-shadowed object instead, under neutral", async () => {
+    // There is no hard offset to collapse and nothing for a travel to be the
+    // length of, so the object gets smaller under the finger. The step is
+    // role-sized: 0.96-0.97 is written for a 44px control and would read as a
+    // 400px card recoiling.
+    const press = await pressUnder("neutral");
+    expect(press("flatten", { elevation: "chrome" })).toContain("active:scale-[0.96]");
+    expect(press("flatten", { elevation: "control" })).toContain("active:scale-[0.97]");
+    expect(press("flatten", { elevation: "card" })).toContain("active:scale-[0.99]");
+
+    for (const role of ELEVATION_ROLES) {
+      // Nothing translates, and the elevation drop is the stylesheet's half of
+      // the press (`.press-flatten:active`), not a class on the element.
+      expect(press("flatten", { elevation: role }), role).not.toContain("active:translate");
+    }
+    expect(GLOBALS).toMatch(/\[data-theme="neutral"\] \.press-flatten:active/);
+  });
+
+  it("marks the press for the reduced-motion rule in both themes", async () => {
+    for (const theme of ["neutral", "bauhaus"] as const) {
+      const press = await pressUnder(theme);
+      expect(press("flatten"), theme).toContain(PRESS_FLATTEN_MARKER);
     }
   });
 
@@ -134,10 +179,13 @@ describe("pressClassName", () => {
     expect(GLOBALS).toMatch(/do not "correct" it back/i);
   });
 
-  it("refuses to depress a control that cannot act", () => {
-    const flatten = pressClassName("flatten", { elevation: "card" });
-    expect(flatten).toContain("aria-disabled:active:translate-x-0");
-    expect(flatten).toContain("aria-disabled:active:translate-y-0");
+  it("refuses to depress a control that cannot act, in either theme", async () => {
+    const bauhaus = (await pressUnder("bauhaus"))("flatten", { elevation: "card" });
+    expect(bauhaus).toContain("aria-disabled:active:translate-x-0");
+    expect(bauhaus).toContain("aria-disabled:active:translate-y-0");
+
+    const neutral = (await pressUnder("neutral"))("flatten", { elevation: "card" });
+    expect(neutral).toContain("aria-disabled:active:scale-100");
   });
 
   it("inverts an unshadowed control's fill instead of nudging it", () => {

@@ -1,14 +1,13 @@
 import Link from "next/link";
 
 import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
-import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { cx } from "@/components/ui/class-names";
 import { dividerClassName } from "@/components/ui/dividers";
 import { microLabelClassName } from "@/components/ui/type-scale";
 import { SITE_NAME } from "@/lib/seo/site";
 
 /**
- * One entry in a footer column. `href` is `null` for a destination that has no
+ * One entry in the footer. `href` is `null` for a destination that has no
  * page in this phase; those render as plain text carrying `note`, never as a
  * link and never as `#` (global constraint 5).
  */
@@ -18,6 +17,11 @@ export interface FooterLinkItem {
   note?: string;
 }
 
+/**
+ * One titled group of the `full` footer's link row (`按模型` and its entry
+ * links). The name is historical — these were rendered as columns — and is
+ * kept because the hub layout and `SiteShell` type their props with it.
+ */
 export interface FooterColumn {
   title: string;
   items: readonly FooterLinkItem[];
@@ -25,13 +29,13 @@ export interface FooterColumn {
 
 export interface SiteFooterProps {
   /**
-   * `full` is the prototype's L1 footer: five link columns above the legal
-   * line. `compact` is the L2/L3/L4 foot — the legal line only, optionally
-   * preceded by a short link row (L4's 首页/模型/用例/创作者).
+   * `full` is the L1 footer: one short row of grouped entry links above the
+   * legal line. `compact` is the L2/L3/L4 foot — the legal line only,
+   * optionally preceded by a short link row (L4's 首页/模型/用例/创作者).
    */
   variant?: "full" | "compact";
   /**
-   * Columns for `variant="full"`. Built by the page from `listTaxonomies`
+   * Groups for `variant="full"`. Built by the hub layout from `listTaxonomies`
    * (see `features/hub/footer-links`) so this component never touches the
    * content repository. Ignored by `compact`.
    */
@@ -39,11 +43,9 @@ export interface SiteFooterProps {
   /** Inline link row for `compact`, as on the prototype's L4 foot. */
   links?: readonly FooterLinkItem[];
   /**
-   * Route of the blog index. The prototype has no Blog entry anywhere, but
-   * `/{locale}/blog` is a real published section, so it is added to the `资源`
-   * column of the `full` footer (the one place the prototype already reserves
-   * for site-level resources) — see `getPrimaryNav`, which does the same for
-   * the header. `null`/omitted leaves the columns exactly as given.
+   * Route of the blog index. `/{locale}/blog` is a real published section, so
+   * the `full` footer ends its row with it — see `getPrimaryNav`, which does
+   * the same for the header. `null`/omitted leaves the row exactly as given.
    */
   blogHref?: string | null;
   /**
@@ -56,44 +58,39 @@ export interface SiteFooterProps {
 }
 
 const COPYRIGHT_LINE = "提示词版权归原作者所有，本站注明出处";
-
-/** Title of the prototype's site-resources column, where Blog belongs. */
-const RESOURCE_COLUMN_TITLE = "资源";
 const BLOG_LABEL = "Blog";
 
 /**
  * The footer is the site's one inverse surface: `bg-foreground` with
- * `text-surface`. Every rule here therefore asks `dividerClassName` for the
- * `inverse` surface — the tier still decides the side, the 2px width and the
- * strength, and naming the surface picks the ink, so a single border-colour
- * utility is emitted and nothing has to be forced with `!`.
- *
- * The `column` tier (~70%) between the five columns also only appears from
- * `lg`: below that the columns stack one or two up, where a left rule would
- * sit against the page edge instead of between two columns. `from` scopes the
- * whole rule to that breakpoint.
+ * `text-surface`. The rule above the legal line therefore asks
+ * `dividerClassName` for the `inverse` surface — the tier decides the side,
+ * the 2px width and the strength, and naming the surface picks the ink.
  */
-const COLUMN_RULE_LEFT = dividerClassName("column", "left", {
-  surface: "inverse",
-  from: "lg",
-});
 const SECTION_RULE_TOP = dividerClassName("column", "top", { surface: "inverse" });
 
 /**
- * Appends the blog index to the `资源` column. Never creates the column (a
- * footer that has no resources column is not this component's decision to
- * change) and never duplicates an entry a caller already supplied.
+ * One footer entry. A link answers the pointer the way the header nav does —
+ * a bar that grows under the label — and a destination with no page in this
+ * phase is text plus its `（即将推出）` marker, so the dimmed colour never
+ * carries the state alone. Both keep the 44px floor.
  */
-function withBlogLink(
-  columns: readonly FooterColumn[],
-  blogHref: string | null,
-): readonly FooterColumn[] {
-  if (blogHref === null) return columns;
-  return columns.map((column) => {
-    if (column.title !== RESOURCE_COLUMN_TITLE) return column;
-    if (column.items.some((item) => item.label === BLOG_LABEL)) return column;
-    return { ...column, items: [...column.items, { label: BLOG_LABEL, href: blogHref }] };
-  });
+function FooterEntry({ item }: { item: FooterLinkItem }) {
+  if (item.href === null) {
+    return (
+      <span className={microLabelClassName("flex min-h-11 items-center gap-2 text-surface/70")}>
+        {item.label}
+        {item.note === undefined ? null : <span>{item.note}</span>}
+      </span>
+    );
+  }
+  return (
+    <Link
+      href={item.href}
+      className={microLabelClassName("group flex min-h-11 items-center no-underline")}
+    >
+      <GrowingUnderline>{item.label}</GrowingUnderline>
+    </Link>
+  );
 }
 
 export function SiteFooter({
@@ -103,8 +100,10 @@ export function SiteFooter({
   snapshotDate = null,
   blogHref = null,
 }: SiteFooterProps) {
-  const resolvedColumns = withBlogLink(columns, blogHref);
-  const hasColumns = variant === "full" && resolvedColumns.length > 0;
+  const groups = variant === "full" ? columns.filter((column) => column.items.length > 0) : [];
+  const blog: FooterLinkItem | null =
+    variant === "full" && blogHref !== null ? { label: BLOG_LABEL, href: blogHref } : null;
+  const hasRow = groups.length > 0 || blog !== null;
   const hasLinkRow = variant === "compact" && links.length > 0;
 
   return (
@@ -114,85 +113,47 @@ export function SiteFooter({
       className="mt-16 border-t-2 border-foreground bg-foreground text-surface md:border-t-4"
     >
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
-        {hasColumns ? (
+        {hasRow ? (
           /*
-            Five dense text indexes, not five stacks of boxes (图版 02). At `lg`
-            the column gap is handed to the columns themselves as padding, so
-            the `column`-tier rule sits exactly halfway between two columns
-            instead of hard against the next one's first word.
+            One row, not five columns. The prototype's footer was a second
+            index of the library — four columns of four or five filter links
+            each, plus a 资源 column of three destinations with no page — under
+            a page whose bands already are that index. What a footer owes the
+            reader is a way back in: a few entry links per axis, wrapping as
+            one line of micro labels, and the legal line. Each axis keeps its
+            name as a yellow label so the row still reads in four families.
           */
-          <nav aria-label="页脚导航" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-0">
-            {resolvedColumns.map((column, index) => (
-              <div
-                key={column.title}
-                className={cx(
-                  "lg:px-6",
-                  index === 0 ? "lg:pl-0" : COLUMN_RULE_LEFT,
-                  index === resolvedColumns.length - 1 ? "lg:pr-0" : undefined,
-                )}
-              >
-                <h2 className={microLabelClassName("text-accent-yellow")}>{column.title}</h2>
-                <HairlineList className="mt-3">
-                  {column.items.map((item, itemIndex) => {
-                    const last = itemIndex === column.items.length - 1;
-                    // A destination with no page in this phase is the row
-                    // primitive's non-link variant: same rule, same 44px
-                    // height, no chevron and no anchor. The `（即将推出）`
-                    // marker is the signal, so the dimmed colour is never
-                    // carrying the state on its own.
-                    return (
-                      <HairlineRow
-                        key={`${column.title}-${item.label}`}
-                        href={item.href ?? undefined}
-                        last={last}
-                        surface="inverse"
-                        className={item.href === null ? "text-surface/70" : undefined}
-                      >
-                        <span className="flex min-w-0 items-center gap-2">
-                          {item.label}
-                          {item.note === undefined ? null : (
-                            <span className={microLabelClassName()}>{item.note}</span>
-                          )}
-                        </span>
-                      </HairlineRow>
-                    );
-                  })}
-                </HairlineList>
-              </div>
-            ))}
+          <nav aria-label="页脚导航">
+            <ul className="flex flex-wrap items-center gap-x-8 gap-y-2">
+              {groups.map((group) => (
+                <li key={group.title} className="flex flex-wrap items-center gap-x-4">
+                  <span className={microLabelClassName("text-accent-yellow")}>{group.title}</span>
+                  <ul aria-label={group.title} className="flex flex-wrap items-center gap-x-4">
+                    {group.items.map((item) => (
+                      <li key={item.label}>
+                        <FooterEntry item={item} />
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+              {blog === null ? null : (
+                <li>
+                  <FooterEntry item={blog} />
+                </li>
+              )}
+            </ul>
           </nav>
         ) : null}
 
         {hasLinkRow ? (
-          /*
-            The compact foot's short row is navigation, not an index, so it
-            keeps its one line and answers the pointer the way the header nav
-            does — a bar that grows under the label — rather than sprouting a
-            chevron per item.
-          */
+          /* The compact foot's short row is navigation, not an index, so it
+             keeps its one line and the same entry as the full row. */
           <nav aria-label="页脚导航" className="mb-6">
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-1">
               {links.map((item) => (
                 <li key={item.label}>
-                  {item.href === null ? (
-                    <span
-                      className={microLabelClassName(
-                        "flex min-h-11 items-center gap-2 text-surface/70",
-                      )}
-                    >
-                      {item.label}
-                      {item.note === undefined ? null : <span>{item.note}</span>}
-                    </span>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={microLabelClassName(
-                        "group flex min-h-11 items-center no-underline",
-                      )}
-                    >
-                      <GrowingUnderline>{item.label}</GrowingUnderline>
-                    </Link>
-                  )}
+                  <FooterEntry item={item} />
                 </li>
               ))}
             </ul>
@@ -200,17 +161,16 @@ export function SiteFooter({
         ) : null}
 
         {/*
-          The prototype's footlegal, verbatim, on every page — now on the micro
-          label tier, which is what it is: three pieces of site metadata. The
-          rule above it is the same `column` tier that separates the columns,
-          so `full` and `compact` read as one family.
+          The prototype's footlegal, verbatim, on every page, on the micro
+          label tier — three pieces of site metadata. The rule above it is the
+          `column` tier, so `full` and `compact` read as one family.
         */}
         <div
           data-testid="footer-legal"
           className={microLabelClassName(
             cx(
               "flex flex-wrap gap-x-6 gap-y-2",
-              hasColumns || hasLinkRow ? cx("mt-10 pt-6", SECTION_RULE_TOP) : undefined,
+              hasRow || hasLinkRow ? cx("mt-10 pt-6", SECTION_RULE_TOP) : undefined,
             ),
           )}
         >

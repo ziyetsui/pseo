@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
 import { elevationClassName, pressClassName, transitionClassName } from "./hover";
+import { IS_BAUHAUS } from "./theme";
 
 import { GeometricMark, type MarkShape, type MarkColor } from "./GeometricMark";
 
@@ -52,6 +53,12 @@ export function cardClassName(className?: string, options: CardStyleOptions = {}
     // slot never has to ask its parent to opt in.
     "group",
     "relative flex min-w-0 flex-col border-2 border-foreground bg-surface md:border-4",
+    // `neutral` rounds every frame to the prototype's 12px (`globals.css`), and
+    // a card's media is full-bleed: without clipping, the square top corners of
+    // `CardMedia` poke through the rounded corners of the shell they sit in.
+    // Bauhaus corners are square, so there is nothing to clip and the class is
+    // not emitted — which is also what keeps the two builds comparable.
+    IS_BAUHAUS ? undefined : "overflow-hidden",
     // Named properties, never the bare `transition` utility: that one expands
     // to twenty-one properties in Tailwind v4, `outline-color` among them, so
     // it made every focus ring fade in from black over 200ms.
@@ -78,24 +85,6 @@ export function cardClassName(className?: string, options: CardStyleOptions = {}
     className,
   );
 }
-
-/**
- * Shared tile geometry for the browse bands (models, content types,
- * collections, taxonomy axes, creators).
- *
- * A grid row already stretches its tiles to the tallest one, so the ragged
- * edge was BETWEEN rows and between bands: a one-line label produced a
- * noticeably shorter tile than a two-line one. A shared minimum height plus
- * `justify-between` gives every tile the same floor and pins its last element
- * (the proportion bar, or the counts line) to it, so the whole grid lines up
- * whatever the labels say. It changes no tile content.
- *
- * The floor moved up with the display-scale count: a tile is now a title, a
- * large figure, a caption and a thicker bar, which is taller than the old 8rem
- * on its own. Keeping the floor just under the natural height is what still
- * makes a one-line band and a two-line band share a baseline.
- */
-export const tileShellClassName = "min-h-40 w-full justify-between md:min-h-44";
 
 export interface CardProps extends Omit<ComponentPropsWithoutRef<"div">, "className"> {
   className?: string;

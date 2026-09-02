@@ -1,4 +1,5 @@
 import { cx } from "./class-names";
+import { IS_BAUHAUS } from "./theme";
 
 /**
  * The interaction vocabulary: what a surface does when it is pointed at,
@@ -122,6 +123,15 @@ export function transitionClassName(channel: TransitionChannel, className?: stri
  * Each hover partner grows the offset by exactly the 2px the object lifts, so
  * the shadow's far corner stays pinned to the page and the object reads as
  * rising off it (see `globals.css`).
+ *
+ * **The ladder is the same in both themes; only the rungs are made of
+ * something else.** In `neutral` a `--shadow-hard-*` token is not a hard
+ * shadow at all — it is a layered soft cast, and the hover partner deepens and
+ * widens that cast instead of growing an offset. Same three roles, same
+ * statement (this object is further off the page), same class tokens out of
+ * this function. Nothing here needs to know which theme is running, which is
+ * exactly why the role names — and not the pixel values — are what this module
+ * exports.
  */
 export type ElevationRole = "chrome" | "control" | "card";
 
@@ -241,6 +251,39 @@ const PRESS_FLATTEN: Record<ElevationRole, string> = {
 const PRESS_FLATTEN_COMMON =
   "active:shadow-none active:duration-[var(--motion-press)] aria-disabled:active:translate-x-0 aria-disabled:active:translate-y-0 aria-disabled:active:shadow-none";
 
+/**
+ * The `neutral` half of `flatten` — the one place in this module where the two
+ * themes emit different class tokens, because this is the one idiom a token
+ * cannot re-express.
+ *
+ * Bauhaus flattening is arithmetic on a hard offset: the shadow goes to zero
+ * and the object travels exactly the offset it lost. Take the hard shadow away
+ * and there is nothing to collapse and nothing for the travel to be the length
+ * OF — a soft-shadowed object sliding 8px down-right just looks like it slipped.
+ * The soft system's equivalent is the one every platform uses: the object gets
+ * smaller under the finger. `globals.css` supplies the other half (it drops one
+ * step of elevation at the same moment) and puts `scale` into the element's
+ * transition list so the RELEASE eases back rather than snapping.
+ *
+ * Scale by role, not one value: `emil-design-eng` and `ui-polish` both put a
+ * button's press at 0.96–0.97 and warn that below 0.95 reads as exaggerated,
+ * but those numbers are written for a 44px control. The same ratio on a 400px
+ * card moves its edges 6px and reads as the card recoiling, so a card gets the
+ * gentlest step that is still visible. `transform-origin` stays centred, which
+ * is correct here — nothing in this system is anchored to a trigger.
+ *
+ * `aria-disabled` cancels it, exactly as the Bauhaus travel is cancelled: a
+ * control the app cannot honour must not answer as though it did.
+ */
+const PRESS_SCALE: Record<ElevationRole, string> = {
+  chrome: "active:scale-[0.96]",
+  control: "active:scale-[0.97]",
+  card: "active:scale-[0.99]",
+};
+
+const PRESS_SCALE_COMMON =
+  "active:duration-[var(--motion-press)] aria-disabled:active:scale-100";
+
 const PRESS_INVERT = {
   idle: "active:bg-foreground active:text-surface",
   selected: "active:bg-surface active:text-foreground",
@@ -293,7 +336,12 @@ export function pressClassName(kind: PressKind, options: PressOptions = {}): str
   const { elevation = "control", selected = false, surface = "canvas", className } = options;
 
   if (kind === "flatten") {
-    return cx(PRESS_FLATTEN_MARKER, PRESS_FLATTEN[elevation], PRESS_FLATTEN_COMMON, className);
+    return cx(
+      PRESS_FLATTEN_MARKER,
+      IS_BAUHAUS ? PRESS_FLATTEN[elevation] : PRESS_SCALE[elevation],
+      IS_BAUHAUS ? PRESS_FLATTEN_COMMON : PRESS_SCALE_COMMON,
+      className,
+    );
   }
   if (kind === "invert") {
     return cx(PRESS_INVERT[selected ? "selected" : "idle"], className);
