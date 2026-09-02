@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import { cx } from "@/components/ui/class-names";
-import { dividerClassName } from "@/components/ui/dividers";
 import { hoverTitleClassName } from "@/components/ui/hover";
 import {
   displayTitleClassName,
@@ -12,8 +11,8 @@ import {
 import { accentFillClassName, type SectionAccent } from "./section-accent";
 
 /**
- * The shared parts of a browse tile: the figure, its caption, the proportion
- * bar and the leading tile's rank marker.
+ * The shared parts of a browse tile: the shell, the figure, its caption and
+ * the band's accent edge.
  *
  * Every browse grid on the site — the hub's four taxonomy bands, its
  * collections and creators, and the gallery's models and content types — is the
@@ -22,6 +21,13 @@ import { accentFillClassName, type SectionAccent } from "./section-accent";
  * as 14px body text, so forty tiles read as one repeated picture. Here the
  * number is the protagonist (display scale, `tabular-nums`, heaviest weight) and
  * the unit drops to a caption underneath it.
+ *
+ * What a tile no longer carries is a proportion bar. It was a second encoding
+ * of the number printed directly above it — a length relative to the group's
+ * own maximum — and there is nothing a reader can do with the ratio that the
+ * two numbers do not already say. The band's accent, which the bar used to be
+ * the only carrier of, moved to the tile's top edge, so a band still reads as
+ * its own family while costing no height at all.
  *
  * These live in `features/hub` because the hub defines the family; the gallery
  * bands import them so the L2 tiles read as members of it rather than as a
@@ -48,7 +54,7 @@ export function leadsGroup(counts: readonly number[]): boolean {
 /**
  * The two browse grids in the system, as column counts per breakpoint.
  *
- * A browse tile is a number, a short label and a bar, so it reads perfectly
+ * A browse tile is a number and a short label, so it reads perfectly
  * well at ~165px: the hub's six bands are therefore two-up from 320px, which
  * is what took the hub from one tile per screenful to two. The gallery's tiles
  * carry more than that (a 56px monogram beside a 热门 stamp, an action row, a
@@ -139,8 +145,8 @@ export interface BrowseLayout {
   /** Grid classes for the `<ul>`. */
   readonly gridClassName: string;
   /**
-   * Whether the first tile leads the band — the rank marker, the display-tier
-   * title, the extra padding and the taller bar.
+   * Whether the first tile leads the band — the display-tier title and the
+   * extra padding.
    *
    * Tied to the span at the NARROWEST breakpoint, because that is the one
    * where width is scarce: a display-scale title in a 165px half-row cell
@@ -247,56 +253,44 @@ export function BrowseTileCount({ value, caption, lead = false, className }: Bro
   );
 }
 
-export interface BrowseTileBarProps {
-  /** 0–100, relative to the group's own maximum (or the library, for collections). */
-  share: number;
-  accent: SectionAccent;
-  lead?: boolean;
-}
+/**
+ * Shared tile geometry for the browse bands (models, content types,
+ * collections, taxonomy axes, creators).
+ *
+ * A grid row already stretches its tiles to the tallest one, so the ragged
+ * edge was BETWEEN rows and between bands: a one-line label produced a
+ * noticeably shorter tile than a two-line one. A shared minimum height plus
+ * `justify-between` gives every tile the same floor and pins its last element
+ * to it, so the whole grid lines up whatever the labels say.
+ *
+ * The floor is `components/ui/Card`'s `tileShellClassName` less exactly the
+ * compartment the proportion bar occupied — a 16px bar over a 12px gap, 28px,
+ * at both breakpoints (160 → 132, 176 → 148). The bar was the tallest thing
+ * between the caption and the bottom of the card, so a floor that kept its
+ * space would have handed the deletion straight back as white space. It lives
+ * here rather than in the chassis because the browse bands are the only
+ * consumers of that floor and the number it holds is now a fact about THIS
+ * family.
+ */
+export const browseTileShellClassName = "min-h-33 w-full justify-between md:min-h-37";
 
 /**
- * The proportion bar: thicker than the old 12px hairline and filled in the
- * band's accent. Still `aria-hidden` — the number above it is the accessible
- * fact, and a screen reader gains nothing from a second, vaguer copy of it.
+ * The band's accent, as the tile's top edge.
+ *
+ * It is positioned rather than laid out — the card is `relative`, so a 6px
+ * strip pinned to the inside of the frame paints across the tile's own top
+ * padding and costs the tile no height. That is the whole point: the accent is
+ * what tells six consecutive grids apart at a glance, and it should not be
+ * paid for in vertical space the way the proportion bar was.
+ *
+ * `aria-hidden`, and never the only carrier of anything: every band names
+ * itself in its `<h2>` and every tile writes its own count out in text.
  */
-export function BrowseTileBar({ share, accent, lead = false }: BrowseTileBarProps) {
+export function BrowseTileEdge({ accent }: { accent: SectionAccent }) {
   return (
     <span
       aria-hidden="true"
-      className={cx(
-        // A four-sided card-tier frame, asked for by name: the bar is a
-        // compartment of the card, so it is drawn at the same strength as
-        // every other card-tier rule instead of restating the width and the
-        // colour here.
-        //
-        // `desktopThick: false` is deliberate and is the one shape this
-        // opt-out exists for. The card tier now steps to 4px from `md` so a
-        // rule inside a 4px card frame matches it — but this is a FRAME, not a
-        // rule, and it is 16px tall (20/24px on the leading tile). Four pixels
-        // on every side would leave 8px of fill on a 16px bar and turn the
-        // proportion into a black box with a sliver of colour in it. The bar's
-        // job is to be read as a length; 2px at every width is what keeps it
-        // legible.
-        "mt-auto block bg-surface",
-        dividerClassName("card", "all", { desktopThick: false }),
-        lead ? "h-5 md:h-6" : "h-4",
-      )}
-    >
-      <span className={cx("block h-full", accentFillClassName(accent))} style={{ width: `${share}%` }} />
-    </span>
-  );
-}
-
-/**
- * The leading tile's rank marker: a solid block of the band's accent above the
- * title. Pure geometry, `aria-hidden`, and never the only way to tell which tile
- * is biggest — the counts say that in text.
- */
-export function BrowseTileRank({ accent }: { accent: SectionAccent }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cx("block h-2 w-16 md:h-2.5 md:w-20", accentFillClassName(accent))}
+      className={cx("absolute inset-x-0 top-0 h-1.5", accentFillClassName(accent))}
     />
   );
 }

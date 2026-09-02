@@ -1,6 +1,6 @@
 import { StateBlock } from "@/components/ui/StateBlock";
 import { Avatar } from "@/components/ui/IdentityMark";
-import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cardClassName } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
 import { hoverTitleClassName } from "@/components/ui/hover";
 import { microLabelClassName, singleLineTitleClassName } from "@/components/ui/type-scale";
@@ -9,10 +9,10 @@ import type { CreatorWithCount } from "@/lib/content/types";
 import { formatThousands } from "@/lib/format/numbers";
 
 import {
-  BrowseTileBar,
-  BrowseTileRank,
+  BrowseTileEdge,
   browseLayout,
   browseTileBodyClassName,
+  browseTileShellClassName,
 } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
 
@@ -47,8 +47,8 @@ export interface CreatorTilesProps {
  * line is one micro label under the handle — the same words in the same order,
  * set as the label they always were. The handle takes the single-line tier, so
  * a long handle truncates instead of making one tile taller than its
- * neighbours, and it answers the card's hover with a colour change. The
- * proportion bar reads against the busiest creator shown.
+ * neighbours, and it answers the card's hover with a colour change. The band's
+ * accent is the tile's top edge.
  */
 export function CreatorTiles({
   creators,
@@ -60,7 +60,6 @@ export function CreatorTiles({
   const visible = limit === undefined ? creators : creators.slice(0, limit);
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
-  const max = visible.reduce((best, creator) => Math.max(best, creator.count), 0);
   const layout = browseLayout(
     visible.map((creator) => creator.count),
     "hub-4",
@@ -69,7 +68,6 @@ export function CreatorTiles({
   return (
     <ul className={className ?? layout.gridClassName}>
       {visible.map((creator, index) => {
-        const share = max === 0 ? 0 : Math.round((creator.count / max) * 100);
         const lead = layout.lead && index === 0;
 
         return (
@@ -78,11 +76,12 @@ export function CreatorTiles({
               href={creator.url}
               target="_blank"
               rel="noopener nofollow"
-              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)), {
-                interactive: true,
-              })}
+              className={cardClassName(
+                cx(browseTileShellClassName, browseTileBodyClassName(lead)),
+                { interactive: true },
+              )}
             >
-              {lead ? <BrowseTileRank accent={accent} /> : null}
+              <BrowseTileEdge accent={accent} />
               <span className="flex min-w-0 items-center gap-2">
                 <Avatar name={creator.handle} src={creator.avatarUrl} />
                 <span className={hoverTitleClassName(singleLineTitleClassName("min-w-0"))}>
@@ -92,7 +91,6 @@ export function CreatorTiles({
               <p className={microLabelClassName("tabular-nums")}>
                 {`${creator.count} 条提示词 · ${formatThousands(creator.likes)} 赞 · ${formatThousands(creator.bookmarks)} 藏`}
               </p>
-              <BrowseTileBar share={share} accent={accent} lead={lead} />
               <span className="sr-only">（外部链接，新窗口打开）</span>
             </a>
           </li>

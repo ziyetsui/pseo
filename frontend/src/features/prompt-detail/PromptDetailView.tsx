@@ -1,7 +1,6 @@
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { buttonClassName } from "@/components/ui/Button";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
-import { GeometricMark } from "@/components/ui/GeometricMark";
 import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
 import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { MediaFrame } from "@/components/ui/MediaFrame";
@@ -43,7 +42,6 @@ import {
   promptTokens,
   splitTokenKinds,
   tokenOccurrences,
-  variationVariableName,
 } from "./variable-view";
 
 /** Id of the `<pre>` — the copy fallback target when there is nothing to
@@ -268,10 +266,13 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
       {/* ------------------------------------------------------------ hero */}
       <header className="mt-8 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-start md:gap-12">
         <div>
-          {/* The prototype's kicker: one row, before the H1 —
-              `Prompt`(solid) · model · platform · technique/style. */}
+          {/* The kicker: one row, before the H1 — model · platform ·
+              technique/style. The prototype opened it with a solid `Prompt`
+              pill, which is gone: it was the highest-contrast object above the
+              H1 and it named the category every page on this site belongs to,
+              so it displaced the record's own title while saying nothing about
+              it. The chips that remain each carry a fact about THIS prompt. */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className={chipClassName(true)}>Prompt</span>
             {prompt.models.map((term) => (
               <TermChip key={term.id} locale={locale} term={term} />
             ))}
@@ -458,40 +459,6 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
         </Section>
       )}
 
-      {/* ------------------------------------------------------ variations */}
-      {prompt.variations.length === 0 ? null : (
-        <Section
-          id="prompt-variations"
-          title="同系列"
-          description={
-            primary === undefined
-              ? "同一提示词换不同取值的效果方向。"
-              : `同一提示词换不同${primary.label}的效果方向。`
-          }
-        >
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {prompt.variations.map((variation) => (
-              <li
-                key={variation.title}
-                className="flex flex-col gap-2 border-2 border-foreground bg-surface p-4"
-              >
-                <span aria-hidden="true" className="flex items-center gap-2">
-                  <GeometricMark shape="square" color="blue" className="size-4" />
-                  <GeometricMark shape="circle" color="red" className="size-4" />
-                </span>
-                <p className={microLabelClassName()}>待生成</p>
-                <p className="font-bold">{variation.title}</p>
-                <p className="font-mono text-xs font-bold">
-                  {primary === undefined
-                    ? variation.variableValue
-                    : `${variationVariableName(primary.token)} = ${variation.variableValue}`}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      )}
-
       {/* ---------------------------------------------------------- source */}
       <Section id="prompt-source-info" title="来源">
         <div className="grid gap-4 md:grid-cols-2">
@@ -584,7 +551,15 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
         <Section id="prompt-inputs" title="输入 / 参数">
           <div className="grid gap-6 md:grid-cols-2">
             <InputList title="必需输入" items={prompt.requiredInputs} />
-            <InputList title="可选输入" items={prompt.optionalInputs} />
+            {/* A sub-block whose whole content is 无 is not information. It is
+                dropped when empty rather than printed, because 必需输入 and
+                参数 beside it carry real data and a reader scanning the block
+                should only meet the ones that do. 必需输入 keeps its empty
+                state: a prompt with no required input is a fact about the
+                prompt worth stating. */}
+            {prompt.optionalInputs.length === 0 ? null : (
+              <InputList title="可选输入" items={prompt.optionalInputs} />
+            )}
           </div>
 
           {prompt.parameters.length === 0 ? null : (

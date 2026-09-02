@@ -187,7 +187,6 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
                     countWithCameraLanguage(list.items),
                     list.total,
                   )}
-                  libraryTotal={list.total}
                 />
               }
             />

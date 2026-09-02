@@ -182,16 +182,31 @@ describe("TaxonomyTiles", () => {
     }
   });
 
-  it("paints the proportion bar in the accent the section was given", () => {
+  it("paints the tile's top edge in the accent the section was given", () => {
     const { container } = render(
       <TaxonomyTiles basePath={BASE} axis="technique" accent="blue" terms={[term()]} />,
     );
 
-    const fill = container.querySelector("span[style]");
-    expect(fill?.className).toContain("bg-accent-blue");
-    expect(fill?.className).not.toContain("bg-accent-red");
-    // The bar stays decorative: the number beside it is the accessible fact.
-    expect(fill?.closest("[aria-hidden='true']")).not.toBeNull();
+    const edge = container.querySelector('span[aria-hidden="true"]');
+    expect(edge?.className).toContain("bg-accent-blue");
+    expect(edge?.className).not.toContain("bg-accent-red");
+    // Pinned to the frame rather than laid out, so the accent costs the tile
+    // no height at all.
+    expect(edge?.className).toContain("absolute");
+  });
+
+  it("renders no proportion bar: the count beside it already is the number", () => {
+    const { container } = render(
+      <TaxonomyTiles
+        basePath={BASE}
+        axis="useCase"
+        terms={[term({ count: 9 }), term({ id: "t:b", slug: "b", label: "B", count: 3 })]}
+      />,
+    );
+
+    // The bar was the only element on a browse tile carrying an inline width,
+    // so a tile with no `style` attribute anywhere is a tile with no bar.
+    expect(container.querySelector("[style]")).toBeNull();
   });
 
   it("falls back to an empty state instead of an empty list", () => {

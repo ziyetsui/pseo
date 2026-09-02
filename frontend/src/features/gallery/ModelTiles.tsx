@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { ActionRow } from "@/components/ui/ActionRow";
-import { CardLink, tileShellClassName } from "@/components/ui/Card";
+import { CardLink } from "@/components/ui/Card";
 import { IdentityMark } from "@/components/ui/IdentityMark";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -9,11 +9,11 @@ import { cx } from "@/components/ui/class-names";
 import { hoverTitleClassName } from "@/components/ui/hover";
 import { microLabelClassName } from "@/components/ui/type-scale";
 import {
-  BrowseTileBar,
   BrowseTileCount,
-  BrowseTileRank,
+  BrowseTileEdge,
   browseLayout,
   browseTileBodyClassName,
+  browseTileShellClassName,
   browseTileTitleClassName,
 } from "@/features/hub/browse-tile";
 import { axisSectionAccent, type SectionAccent } from "@/features/hub/section-accent";
@@ -28,7 +28,8 @@ export interface ModelTilesProps {
    */
   models: readonly TaxonomyWithCount[];
   /**
-   * The band's accent. Defaults to the MODEL axis's colour from the shared
+   * The band's accent, painted as the tile's top edge. Defaults to the MODEL
+   * axis's colour from the shared
    * taxonomy map — the same one the hub's 按模型浏览 band and every 模型 chip
    * row read. It used to default to the third step of the band rotation
    * (yellow), so one taxonomy axis was red on L1 and yellow on L2 and the
@@ -49,8 +50,8 @@ export interface ModelTilesProps {
  * this phase does not ship.
  *
  * Weight and layout come from the shared browse-tile family (`features/hub`), so
- * the L2 bands read as the same object as the hub's: display-scale count, small
- * caption, accent proportion bar, and the biggest model leading the band.
+ * the L2 bands read as the same object as the hub's: display-scale count,
+ * small caption, accent top edge, and the biggest model leading the band.
  *
  * Three slots are pushed into that chassis here and nothing else changes:
  *
@@ -73,7 +74,6 @@ export function ModelTiles({
 }: ModelTilesProps) {
   if (models.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
-  const max = models.reduce((best, model) => Math.max(best, model.count), 0);
   const layout = browseLayout(
     models.map((model) => model.count),
     "gallery-3",
@@ -83,7 +83,6 @@ export function ModelTiles({
     <ul className={className ?? layout.gridClassName}>
       {models.map((model, index) => {
         const label = termLabel(model);
-        const share = max === 0 ? 0 : Math.round((model.count / max) * 100);
         const lead = layout.lead && index === 0;
 
         /**
@@ -94,7 +93,7 @@ export function ModelTiles({
          */
         const body = (footer: ReactNode, linked: boolean) => (
           <>
-            {lead ? <BrowseTileRank accent={accent} /> : null}
+            <BrowseTileEdge accent={accent} />
             <div className="flex items-start justify-between gap-3">
               <IdentityMark name={label} />
               <StatusBadge>{model.highValueCount} 条热门</StatusBadge>
@@ -110,16 +109,10 @@ export function ModelTiles({
             </h3>
             {/* Prototype tile line: `136 条`; the 热门 half is the badge above. */}
             <BrowseTileCount value={model.count} caption="条" lead={lead} />
-            {/*
-              One `mt-auto` per flex column: the bar and the footer travel to
-              the bottom together instead of splitting the free space between
-              two auto margins. (`ActionRow` no longer brings its own — see its
-              `pushToBottom` prop.)
-            */}
-            <div className="mt-auto flex flex-col gap-3">
-              <BrowseTileBar share={share} accent={accent} lead={lead} />
-              {footer}
-            </div>
+            {/* The footer travels to the bottom on its own `mt-auto`.
+                (`ActionRow` no longer brings one — see its `pushToBottom`
+                prop.) */}
+            <div className="mt-auto">{footer}</div>
           </>
         );
 
@@ -129,8 +122,10 @@ export function ModelTiles({
               <div
                 data-model-tile={model.slug}
                 className={cx(
-                  tileShellClassName,
-                  "flex flex-col gap-3 border-2 border-foreground bg-muted p-4",
+                  browseTileShellClassName,
+                  // `relative` is the chassis's own; a plain `<div>` tile has
+                  // to declare it so the accent edge has something to pin to.
+                  "relative flex flex-col gap-3 border-2 border-foreground bg-muted p-4",
                   "md:border-4",
                 )}
               >
@@ -140,7 +135,7 @@ export function ModelTiles({
               <CardLink
                 href={model.href}
                 data-model-tile={model.slug}
-                className={cx(tileShellClassName, browseTileBodyClassName(lead))}
+                className={cx(browseTileShellClassName, browseTileBodyClassName(lead))}
               >
                 {/* The whole tile is the link, exactly as in the prototype —
                     the action row is a `<span>`, not a second focusable

@@ -1,15 +1,15 @@
 import { StateBlock } from "@/components/ui/StateBlock";
-import { CardLink, tileShellClassName } from "@/components/ui/Card";
+import { CardLink } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
 import type { QueryFacetKey, TaxonomyWithCount } from "@/lib/content/types";
 import { queryHref, setFacet } from "@/features/search/query-links";
 
 import {
-  BrowseTileBar,
   BrowseTileCount,
-  BrowseTileRank,
+  BrowseTileEdge,
   browseLayout,
   browseTileBodyClassName,
+  browseTileShellClassName,
   browseTileTitleClassName,
 } from "./browse-tile";
 import { axisSectionAccent, type SectionAccent } from "./section-accent";
@@ -23,7 +23,7 @@ export interface TaxonomyTilesProps {
   /** Render at most this many tiles. The rest stay reachable through the URL. */
   limit?: number;
   /**
-   * The band's accent. Colours the bar and the rank marker.
+   * The band's accent. Colours the tile's top edge.
    *
    * Defaults to `axis`'s own colour from the shared taxonomy map rather than to
    * a fixed value, so a band cannot be mounted on one axis while wearing
@@ -49,9 +49,9 @@ export interface TaxonomyTilesProps {
  * tile ever renders a placeholder href, and every count comes from the current
  * data — the prototype's declared library-wide figures are never shown.
  *
- * Visual weight follows the count: the number is the tile's protagonist, the
- * biggest term leads the band across two columns on wide viewports, and the
- * proportion bar carries the band's accent. Order, counts and links are exactly
+ * Visual weight follows the count: the number is the tile's protagonist and
+ * the biggest term leads the band across two columns on wide viewports. The
+ * band's accent is the tile's top edge. Order, counts and links are exactly
  * what the caller passed.
  */
 export function TaxonomyTiles({
@@ -66,7 +66,6 @@ export function TaxonomyTiles({
   const visible = limit === undefined ? terms : terms.slice(0, limit);
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
-  const max = visible.reduce((best, term) => Math.max(best, term.count), 0);
   const layout = browseLayout(
     visible.map((term) => term.count),
     "hub-4",
@@ -81,22 +80,20 @@ export function TaxonomyTiles({
         // component's own `axis` prop already pins for every item in `terms`.
         const href =
           term.href !== null ? term.href : queryHref(basePath, setFacet({}, axis, [term.slug]));
-        const share = max === 0 ? 0 : Math.round((term.count / max) * 100);
         const lead = layout.lead && index === 0;
 
         return (
           <li key={term.id} className={layout.cellClassName(index)}>
             <CardLink
               href={href}
-              className={cx(tileShellClassName, browseTileBodyClassName(lead))}
+              className={cx(browseTileShellClassName, browseTileBodyClassName(lead))}
             >
-              {lead ? <BrowseTileRank accent={accent} /> : null}
+              <BrowseTileEdge accent={accent} />
               {/* Prototype tiles carry the English taxonomy value (`Fashion`,
                   `Camera movement / shot language`); `labelZh` is reserved for
                   the Chinese-labelled footer columns. */}
               <h3 className={browseTileTitleClassName(lead)}>{term.label}</h3>
               <BrowseTileCount value={term.count} caption="条提示词" lead={lead} />
-              <BrowseTileBar share={share} accent={accent} lead={lead} />
             </CardLink>
           </li>
         );

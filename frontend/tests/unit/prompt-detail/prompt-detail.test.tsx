@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { beforeAll, describe, expect, it } from "vitest";
 
 import { PromptDetailView } from "@/features/prompt-detail/PromptDetailView";
-import { formatStepBody, variationVariableName } from "@/features/prompt-detail/variable-view";
+import { formatStepBody } from "@/features/prompt-detail/variable-view";
 import {
   countToken,
   extractVariables,
@@ -71,7 +71,7 @@ describe("PromptDetailView — golden record", () => {
     expect(screen.getByText(golden.summary ?? "")).toBeInTheDocument();
   });
 
-  it("puts the prototype's kicker chips in one row before the H1", () => {
+  it("puts the kicker chips in one row before the H1, without the 「Prompt」 pill", () => {
     const { container } = renderGolden();
     const heading = screen.getAllByRole("heading", { level: 1 })[0];
     const kicker = heading?.previousElementSibling;
@@ -79,11 +79,14 @@ describe("PromptDetailView — golden record", () => {
     const chipText = Array.from(kicker?.children ?? []).map((node) =>
       (node.textContent ?? "").trim(),
     );
-    // `Prompt` (solid) · model · platform · technique · style — the prototype's
-    // five chips, verbatim. `超写实` is the Chinese ALIAS the L4 prototype uses
-    // for `Photorealistic`, whose canonical `labelZh` (`写实风`) is what the L1
+    // model · platform · technique · style. The prototype's solid `Prompt`
+    // pill is gone: it was the highest-contrast object above the H1 and every
+    // page in this library is a prompt, so it carried no information about
+    // this record. `超写实` is the Chinese ALIAS the L4 prototype uses for
+    // `Photorealistic`, whose canonical `labelZh` (`写实风`) is what the L1
     // footer column writes.
-    expect(chipText).toEqual(["Prompt", "GPT Image 2", "Higgsfield", "微缩摄影", "超写实"]);
+    expect(chipText).toEqual(["GPT Image 2", "Higgsfield", "微缩摄影", "超写实"]);
+    expect(chipText).not.toContain("Prompt");
     expect(container.querySelectorAll('a[href="#"]')).toHaveLength(0);
   });
 
@@ -94,7 +97,6 @@ describe("PromptDetailView — golden record", () => {
       "提示词",
       "使用步骤",
       "换个国家试试",
-      "同系列",
       "来源",
       "输入 / 参数",
       "相关",
@@ -293,14 +295,19 @@ describe("PromptDetailView — golden record", () => {
     );
   });
 
-  it("lists the pending variations with the lower-cased variable assignment", () => {
-    renderGolden();
-    const section = screen.getByRole("region", { name: "同系列" });
-    expect(within(section).getByText("同一提示词换不同国家的效果方向。")).toBeInTheDocument();
-    expect(within(section).getAllByRole("listitem")).toHaveLength(golden.variations.length);
-    expect(within(section).getAllByText("待生成").length).toBe(golden.variations.length);
-    expect(variationVariableName(TOKEN)).toBe("country");
-    expect(within(section).getByText("country = Japan")).toBeInTheDocument();
+  it("renders no 同系列 grid, even for a record that carries variations", () => {
+    const { container } = renderGolden();
+
+    // The record still declares six variations; the page no longer advertises
+    // them. Each card was a 待生成 badge over a country name, i.e. an image
+    // that does not exist plus a value the country radio group above already
+    // offers as a working control.
+    expect(golden.variations.length).toBeGreaterThan(0);
+    expect(screen.queryByRole("region", { name: "同系列" })).not.toBeInTheDocument();
+    expect(screen.queryByText("待生成")).not.toBeInTheDocument();
+    expect(container.textContent).not.toContain("country = Japan");
+    // The radio group that does the same job for real is untouched.
+    expect(screen.getByRole("radiogroup")).toBeInTheDocument();
   });
 
   it("keeps the source attribution and the metrics side by side under 来源", () => {
@@ -436,7 +443,6 @@ describe("PromptDetailView — prompt without variables", () => {
     renderDetail(plain);
     expect(screen.queryByRole("region", { name: /换个/ })).not.toBeInTheDocument();
     expect(screen.queryByRole("region", { name: "使用步骤" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("region", { name: "同系列" })).not.toBeInTheDocument();
     expect(screen.queryByRole("radiogroup")).not.toBeInTheDocument();
     // The template itself is unchanged: prompt, source and related still render.
     expect(screen.getByRole("region", { name: "提示词" })).toBeInTheDocument();

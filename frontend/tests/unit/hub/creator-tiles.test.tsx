@@ -93,7 +93,7 @@ describe("CreatorTiles", () => {
     expect(screen.queryByText(/0 赞/)).not.toBeInTheDocument();
   });
 
-  it("reads as a member of the tile family: figure, caption and an accent bar", () => {
+  it("reads as a member of the tile family: an accent edge and no proportion bar", () => {
     const { container } = render(
       <CreatorTiles
         accent="yellow"
@@ -101,13 +101,14 @@ describe("CreatorTiles", () => {
       />,
     );
 
-    const bars = [...container.querySelectorAll("span[style]")];
-    expect(bars).toHaveLength(2);
-    expect(bars[0]?.className).toContain("bg-accent-yellow");
-    // Relative to the group's own maximum, and decorative only.
-    expect(bars[0]).toHaveStyle({ width: "100%" });
-    expect(bars[1]).toHaveStyle({ width: "33%" });
-    expect(bars[0]?.closest("[aria-hidden='true']")).not.toBeNull();
+    const edges = [...container.querySelectorAll('span[aria-hidden="true"].absolute')];
+    expect(edges).toHaveLength(2);
+    for (const edge of edges) expect(edge.className).toContain("bg-accent-yellow");
+    // The bar was the only element here carrying an inline width; no `style`
+    // attribute anywhere means the ratio is gone and the counts stand alone.
+    expect(container.querySelector("[style]")).toBeNull();
+    expect(container.textContent).toContain("3 条提示词");
+    expect(container.textContent).toContain("1 条提示词");
   });
 
   it("gives the busiest creator the full row only when the tiles then fill it", () => {

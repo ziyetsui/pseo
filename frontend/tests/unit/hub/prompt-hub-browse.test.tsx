@@ -141,7 +141,6 @@ function renderBrowse(
       collections={collections}
       creators={creatorsOverride}
       cameraShareTenths={8}
-      libraryTotal={35}
     />,
   );
 }
@@ -245,9 +244,13 @@ describe("PromptHubBrowse", () => {
     // In the prototype's band order: 按任务 / 镜头与运动 / 按模型 / 按风格 / 精选合集 / 创作者.
     const accents = Object.values(HEADING_BY_ID).map((name) => {
       const region = screen.getByRole("region", { name });
-      // The ghost numeral also carries an inline style (its digits), so ask
-      // for the accented bar itself rather than "the first styled span".
-      return region.querySelector("span[style]:not(.ghost-numeral)")?.className ?? "";
+      // Four bands paint the accent as the tile's top edge and 精选合集 paints
+      // it as the spine, so ask for the first decorative element that is
+      // filled in one of the four accents rather than for a shape.
+      const accented = [...region.querySelectorAll('span[aria-hidden="true"]')].find((node) =>
+        /bg-(accent-red|accent-blue|accent-yellow|foreground)(\s|$)/.test(node.className),
+      );
+      return accented?.className ?? "";
     });
 
     for (const className of accents) {

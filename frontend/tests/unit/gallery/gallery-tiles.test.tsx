@@ -72,13 +72,23 @@ describe("ModelTiles", () => {
     expect(screen.getByText("当前收录里还没有带模型标注的图片提示词。")).toBeInTheDocument();
   });
 
-  it("wears the same tile family as the hub: display figure, accent bar, leading cell", () => {
+  it("wears the same tile family as the hub: display figure, accent edge, leading cell", () => {
     const { container } = render(<ModelTiles models={[published, unpublished]} />);
 
     expect(screen.getByText("14").className).toContain("tabular-nums");
-    const fill = container.querySelector("span[style]");
-    expect(fill?.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
+    const edge = container.querySelector('span[aria-hidden="true"].absolute');
+    expect(edge?.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
     expect(container.querySelectorAll("li")[0]?.className).toContain("lg:col-span-2");
+  });
+
+  it("renders no proportion bar on either tile variant", () => {
+    const { container } = render(<ModelTiles models={[published, unpublished]} />);
+
+    // The bar was the only inline-width element on these tiles; the counts it
+    // re-encoded are still printed on both.
+    expect(container.querySelector("[style]")).toBeNull();
+    expect(container.textContent).toContain("14");
+    expect(container.textContent).toContain("2 条");
   });
 
   it("resolves the leading tile's span per breakpoint", () => {
@@ -177,21 +187,19 @@ describe("ContentTypeTiles", () => {
     }
   });
 
-  it("opens every tile with a full-width accent stripe closed by the card rule", () => {
+  it("opens every tile with the family's accent edge, and no proportion bar", () => {
     const { container } = render(<ContentTypeTiles types={types} currentSlug="image" />);
 
     for (const slug of ["image", "video"]) {
       const tile = container.querySelector(`[data-content-type="${slug}"]`) as HTMLElement;
-      const stripe = tile.firstElementChild as HTMLElement;
-      expect(stripe.getAttribute("aria-hidden")).toBe("true");
-      expect(stripe.className).toContain("h-1.5");
-      expect(stripe.className).toContain("w-full");
-      expect(stripe.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
-      // The compartment rule: the stripe is a band of the card, not a floating
-      // decoration, so it is closed with the card-tier divider.
-      expect(stripe.className).toContain("border-b-2");
-      expect(stripe.className).toContain("border-foreground");
+      const edge = tile.firstElementChild as HTMLElement;
+      expect(edge.getAttribute("aria-hidden")).toBe("true");
+      expect(edge.className).toContain("h-1.5");
+      // Pinned inside the frame rather than laid out, so it costs no height.
+      expect(edge.className).toContain("absolute");
+      expect(edge.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
     }
+    expect(container.querySelector("[style]")).toBeNull();
   });
 
   it("carries a different accent from the model band above it", () => {
@@ -204,9 +212,9 @@ describe("ContentTypeTiles", () => {
       <ContentTypeTiles types={types} currentSlug="image" />,
     );
 
-    const modelBar = models.querySelector("span[style]")?.className;
-    const typeBar = contentTypes.querySelector("span[style]")?.className;
-    expect(modelBar).not.toBe(typeBar);
+    const edge = (root: HTMLElement) =>
+      root.querySelector('span[aria-hidden="true"].absolute')?.className;
+    expect(edge(models)).not.toBe(edge(contentTypes));
   });
 
   it("explains the unknown content type as unlabelled data rather than an unpublished page", () => {

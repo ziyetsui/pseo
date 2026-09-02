@@ -122,12 +122,15 @@ describe("CollectionTiles", () => {
     },
   );
 
-  it("sizes the proportion bar against the library total when given one", () => {
+  it("renders no proportion bar — the count is the only number the tile makes", () => {
     const { container } = render(
-      <CollectionTiles basePath={BASE} collections={[axisCollection]} total={20} />,
+      <CollectionTiles basePath={BASE} collections={[axisCollection, regexCollection]} />,
     );
-    const bar = container.querySelector("span[style]");
-    expect(bar).toHaveStyle({ width: "25%" });
+
+    // The bar was the tile's one inline-width element, and the share of the
+    // library it drew was a second encoding of the `N 条` printed above it.
+    expect(container.querySelector("[style]")).toBeNull();
+    expect(container.textContent).toContain("5 条");
   });
 
   it("never emits a placeholder href", () => {

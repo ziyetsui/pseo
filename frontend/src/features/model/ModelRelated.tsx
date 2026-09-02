@@ -36,9 +36,15 @@ export interface ModelRelatedProps {
  * would silently change the prototype's information architecture. That is
  * `HairlineRow`'s own non-link variant: same rule, same 44px floor, no chevron
  * and no anchor.
+ *
+ * 其他模型 and 按用例 are different: they are DATA columns, and when the data
+ * set has none, the column used to print a heading over a sentence saying so.
+ * Beside two columns that do carry links that reads as a fourth kind of row
+ * rather than as information, so an empty data column is dropped. 上级 and
+ * 创作者 are fixed rows, never empty, so the section always keeps a body.
  */
 export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRelatedProps) {
-  const groups: { id: string; title: string; body: React.ReactNode }[] = [
+  const allGroups: { id: string; title: string; body: React.ReactNode }[] = [
     {
       id: "model-related-parents",
       title: "上级",
@@ -55,9 +61,7 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
       id: "model-related-models",
       title: "其他模型",
       body:
-        relatedModels.length === 0 ? (
-          <p className="text-sm font-medium">暂无可关联的其他模型。</p>
-        ) : (
+        relatedModels.length === 0 ? null : (
           <HairlineList>
             {relatedModels.map((term, index) => {
               const last = index === relatedModels.length - 1;
@@ -80,9 +84,7 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
       id: "model-related-use-cases",
       title: "按用例",
       body:
-        relatedUseCases.length === 0 ? (
-          <p className="text-sm font-medium">暂无可关联的用例。</p>
-        ) : (
+        relatedUseCases.length === 0 ? null : (
           <HairlineList>
             {relatedUseCases.map((term, index) => (
               <HairlineRow
@@ -108,6 +110,8 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
       ),
     },
   ];
+
+  const groups = allGroups.filter((group) => group.body !== null);
 
   return (
     <ModelSection id={RELATED_SECTION_ID} title="相关">

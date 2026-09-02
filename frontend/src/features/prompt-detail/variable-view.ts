@@ -105,14 +105,6 @@ export function promptLanguageLabel(language: string, promptText: string): strin
   return total === 0 ? label : `${label} · ${total} 处变量`;
 }
 
-/**
- * `[COUNTRY]` → `country`: the prototype writes a variation's value as
- * `country = Japan`, i.e. the token without its brackets, lower-cased.
- */
-export function variationVariableName(token: string): string {
-  return token.replace(/[[\]]/g, "").trim().toLowerCase();
-}
-
 /** How many times one token occurs in the prompt. */
 export function tokenOccurrences(promptText: string, token: string): number {
   return countToken(promptText, token);

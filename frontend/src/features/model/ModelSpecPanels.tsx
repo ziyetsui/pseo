@@ -26,6 +26,13 @@ export interface ModelSpecPanelsProps {
  * state capabilities / inputs / outputs / limitations. It sits immediately
  * after 关于这个模型 — the prototype's own "what is this model" band — so the
  * addition disturbs the prototype's module order as little as possible.
+ *
+ * A column with nothing in it is dropped as long as at least one of its
+ * siblings has something: a panel whose entire content is 尚未收录… is a
+ * heading and a sentence saying there is no data, sitting at the same weight
+ * as the panels that do carry data. When NO column has anything the four
+ * empty sentences stay, because then the block's honest state IS "nothing has
+ * been derived yet" and silently rendering an empty band would hide it.
  */
 export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
   const columns: { title: string; items: readonly string[]; empty: string }[] = [
@@ -39,6 +46,9 @@ export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
     { title: "限制", items: model.limitations, empty: "尚未收录限制说明。" },
   ];
 
+  const withItems = columns.filter((column) => column.items.length > 0);
+  const visible = withItems.length === 0 ? columns : withItems;
+
   return (
     <ModelSection
       id={SPEC_SECTION_ID}
@@ -46,7 +56,7 @@ export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
       subline="以下四栏归纳自本站收录的 Prompt，不是模型官方规格说明。"
     >
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {columns.map((column) => (
+        {visible.map((column) => (
           <Panel key={column.title} tone="neutral" className="flex flex-col gap-3">
             <h3 className="text-base font-black tracking-tight uppercase">{column.title}</h3>
             {column.items.length === 0 ? (

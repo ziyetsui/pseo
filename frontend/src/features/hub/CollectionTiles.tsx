@@ -1,12 +1,11 @@
 import { StateBlock } from "@/components/ui/StateBlock";
-import { tileShellClassName } from "@/components/ui/Card";
 import { SpineCard } from "@/components/ui/SpineCard";
 import { hoverTitleClassName } from "@/components/ui/hover";
 import { displayTitleClassName, microLabelClassName } from "@/components/ui/type-scale";
 import type { CollectionWithCount } from "@/lib/content/types";
 import { queryHref } from "@/features/search/query-links";
 
-import { BrowseTileBar, browseLayout, browseTileBodyClassName } from "./browse-tile";
+import { browseLayout, browseTileBodyClassName, browseTileShellClassName } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
 
 export interface CollectionTilesProps {
@@ -14,11 +13,6 @@ export interface CollectionTilesProps {
   basePath: string;
   collections: readonly CollectionWithCount[];
   limit?: number;
-  /**
-   * Denominator for the proportion bar — the size of the whole library, as in
-   * the prototype. Falls back to the largest collection when omitted.
-   */
-  total?: number;
   /** The band's accent, from `section-accent`. */
   accent?: SectionAccent;
   emptyMessage?: string;
@@ -47,21 +41,19 @@ export interface CollectionTilesProps {
  * Weighting follows from the spine: the title takes the display tier (two
  * lines, then clamped) because the title is what a reader picks a collection
  * by, and the count drops to a micro label rather than being the tile's figure,
- * which is the difference between this variant and the number tiles. The
- * proportion bar stays — it is the share of the library this collection covers,
- * which is real data, not decoration of the accent.
+ * which is the difference between this variant and the number tiles. The spine
+ * is also why this is the one browse grid with no accent top edge — the band's
+ * colour is already a solid column down the left of every tile.
  *
  * Collections arrive in their editorial order, which is not sorted by size, so
  * the leading-tile treatment appears only when the first collection really is
- * the biggest — never by re-sorting them. The leading tile takes the wider cell
- * and the taller bar; it does not take the rank block the number tiles use,
- * because the spine is already a solid accent shape on the same card.
+ * the biggest — never by re-sorting them. The leading tile takes the wider
+ * cell and more padding.
  */
 export function CollectionTiles({
   basePath,
   collections,
   limit,
-  total,
   accent = "red",
   emptyMessage = "暂无可展示的合集。",
   className,
@@ -69,10 +61,6 @@ export function CollectionTiles({
   const visible = limit === undefined ? collections : collections.slice(0, limit);
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
-  const denominator =
-    total !== undefined && total > 0
-      ? total
-      : visible.reduce((best, collection) => Math.max(best, collection.count), 0);
   const layout = browseLayout(
     visible.map((collection) => collection.count),
     "hub-3",
@@ -81,8 +69,6 @@ export function CollectionTiles({
   return (
     <ul className={className ?? layout.gridClassName}>
       {visible.map((collection, index) => {
-        const share =
-          denominator === 0 ? 0 : Math.round((collection.count / denominator) * 100);
         const lead = layout.lead && index === 0;
 
         return (
@@ -90,7 +76,7 @@ export function CollectionTiles({
             <SpineCard
               accent={accent}
               href={queryHref(basePath, { collection: collection.slug })}
-              className={tileShellClassName}
+              className={browseTileShellClassName}
               bodyClassName={browseTileBodyClassName(lead)}
             >
               {/* Prototype: `副标题 · N 条`. Same words, re-weighted — the
@@ -111,7 +97,6 @@ export function CollectionTiles({
               </h3>
               <p className={microLabelClassName()}>{collection.subtitle}</p>
               <p className={microLabelClassName("tabular-nums")}>{collection.count} 条</p>
-              <BrowseTileBar share={share} accent={accent} lead={lead} />
             </SpineCard>
           </li>
         );

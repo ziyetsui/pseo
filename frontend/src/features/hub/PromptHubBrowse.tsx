@@ -38,8 +38,6 @@ export interface PromptHubBrowseProps {
    * the page. `null` drops the figure from the 镜头与运动 sentence.
    */
   cameraShareTenths?: number | null;
-  /** Library size — denominator of the collection tiles' proportion bars. */
-  libraryTotal?: number;
   /** How many creator tiles to show (the prototype shows 7). */
   creatorLimit?: number;
   /** How many tiles per taxonomy grid (the prototype shows up to 8). */
@@ -79,7 +77,6 @@ export function PromptHubBrowse({
   collections,
   creators,
   cameraShareTenths = null,
-  libraryTotal,
   creatorLimit = 7,
   taxonomyLimit = 8,
   collectionLimit = 6,
@@ -174,7 +171,6 @@ export function PromptHubBrowse({
           basePath={basePath}
           collections={collections}
           limit={collectionLimit}
-          total={libraryTotal}
           accent={HUB_SECTION_ACCENTS.collections}
         />
       </Section>
