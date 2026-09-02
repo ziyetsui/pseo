@@ -16,7 +16,14 @@ test.describe("four-level journey", () => {
     expect(currentPath(page)).toBe(ROUTES.l1);
 
     // ------------------------------------------------------------ L1 → L2
-    await page.locator("main").getByRole("link", { name: "浏览图片提示词" }).click();
+    // The prototype's L1 body has no gallery entry at all — its only cross-page
+    // navigation is the site nav, which the shared Header carries (handoff §7).
+    // So this one hop is taken from the header; every hop below is still scoped
+    // to `main`, where a dead end would otherwise hide.
+    // Below `md` that nav sits behind the disclosure, so open it first.
+    const menu = page.locator("header button[aria-controls]");
+    if (await menu.isVisible()) await menu.click();
+    await page.locator("header").getByRole("link", { name: "图片", exact: true }).click();
     await page.waitForURL(`**${ROUTES.l2}`);
     expect(currentPath(page)).toBe(ROUTES.l2);
     await expect(page.locator("h1")).toHaveCount(1);
@@ -30,11 +37,11 @@ test.describe("four-level journey", () => {
     await expect(page.locator("h1")).toContainText("Nano Banana Pro");
 
     // The prototype's three no-op controls must read as unavailable, not as
-    // working buttons (global constraint 12).
-    // `Section` puts the id on its <h2> and labels the band with it.
-    const generate = page.locator('section[aria-labelledby="model-generate"]');
-    await expect(generate.locator('button[aria-disabled="true"]')).toHaveCount(3);
-    await expect(generate).toContainText("生成功能尚未接入");
+    // working buttons (global constraint 12). They live in the hero genbox —
+    // the prototype has no separate 生成 section for them.
+    const hero = page.locator("main header").first();
+    await expect(hero.locator('button[aria-disabled="true"]')).toHaveCount(3);
+    await expect(hero).toContainText("生成功能尚未接入，本页仅提供 Prompt 复制");
 
     // ------------------------------------------------------------ L3 → L4
     const detailHref = await page

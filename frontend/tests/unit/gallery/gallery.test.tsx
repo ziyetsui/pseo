@@ -146,7 +146,9 @@ describe("L2 image gallery page", () => {
 
   it("offers the prototype's three facet axes — 用例 / 风格 / 主体 — and no model axis", async () => {
     const { container } = await renderPage();
-    const filters = within(container).getByRole("group", { name: "按标签浏览" });
+    // The prototype gives this block a real `<h2>按标签浏览</h2>`, so it is a
+    // labelled region rather than an anonymous group.
+    const filters = within(container).getByRole("region", { name: "按标签浏览" });
 
     for (const axis of ["用例", "风格", "主体"]) {
       const group = within(filters).getByRole("group", { name: axis });

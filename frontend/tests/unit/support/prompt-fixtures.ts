@@ -23,6 +23,7 @@ export function makeTaxonomy(overrides: Partial<Taxonomy> = {}): Taxonomy {
     slug: "seedance",
     label: "Seedance",
     labelZh: null,
+    aliases: [],
     href: null,
     wireframeDeclaredCount: null,
     ...overrides,

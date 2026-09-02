@@ -31,7 +31,7 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
           <span>{SITE_NAME}</span>
         </Link>
 
-        <nav aria-label="主导航" className="hidden md:block">
+        <nav aria-label="主导航" className="hidden min-w-0 md:block">
           <ul className="flex items-center gap-6">
             {items.map((item) => (
               <li key={item.key}>
@@ -76,7 +76,18 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
           >
             {LOCALE_LABEL[locale]} ({locale})
           </button>
-          <p id="locale-availability" className="max-w-28 text-xs leading-snug font-medium">
+          {/*
+            Visually hidden until `lg`: at exactly 768px the brand, the eight
+            nav items, the language button AND this wrapped sentence together
+            were 24px wider than the viewport, which put every page into a
+            horizontal scroll (CLAUDE.md §7 forbids one between 320 and 1440).
+            `sr-only` takes it out of the flow without taking it away from the
+            `aria-describedby` that explains the disabled button.
+          */}
+          <p
+            id="locale-availability"
+            className="sr-only lg:not-sr-only lg:max-w-28 lg:text-xs lg:leading-snug lg:font-medium"
+          >
             更多语言尚未发布
           </p>
         </div>

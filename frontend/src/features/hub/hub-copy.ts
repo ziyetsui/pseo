@@ -18,6 +18,11 @@ import { queryHref } from "@/features/search/query-links";
  * whose members are every prompt; `?collection=all` then produces exactly that
  * state, through the same code path a 精选合集 tile uses.
  */
+/**
+ * RESERVED collection slug. `all` is synthesised here, so a curated collection
+ * must never be published under it — the two would collide on the same URL and
+ * the synthetic one would win.
+ */
 export const ALL_PROMPTS_COLLECTION_SLUG = "all";
 export const ALL_PROMPTS_COLLECTION_TITLE = "全部提示词";
 
@@ -61,6 +66,9 @@ export function cameraShareTenths(withCameraLanguage: number, total: number): nu
 
 /** 镜头与运动 sec-p, prototype wording with a measured share. */
 export function cameraSectionDescription(tenths: number | null): string {
-  const lead = tenths === null ? "提示词里的镜头语言" : `约 ${tenths} 成提示词带镜头语言`;
+  // Prototype wording exactly (`7 成提示词带镜头语言——`), with the figure
+  // measured here. `cameraShareTenths` already rounds to the nearest tenth, so
+  // no hedging word is added on top of it.
+  const lead = tenths === null ? "提示词里的镜头语言" : `${tenths} 成提示词带镜头语言`;
   return `${lead}——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。`;
 }

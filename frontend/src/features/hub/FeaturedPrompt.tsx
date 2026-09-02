@@ -34,7 +34,7 @@ export function FeaturedPrompt({
 }: FeaturedPromptProps) {
   const cover = prompt.media[0];
   const textId = `${idPrefix}-${prompt.id}`;
-  const { likes, bookmarks, observedAt } = prompt.metrics;
+  const { likes, bookmarks } = prompt.metrics;
   const publishedAt = prompt.source.publishedAt;
 
   return (
@@ -56,10 +56,9 @@ export function FeaturedPrompt({
         )}
         <p
           data-testid="featured-prompt-meta"
-          // The observation date is required for honesty (global constraint 4);
-          // the prototype's byline has no room for it, so it travels in the
-          // tooltip and in screen-reader-only text.
-          title={`指标观测于 ${observedAt}`}
+          // No observation date on the byline: the prototype has none there.
+          // The 本期精选 region states it once (`MetricsSnapshotNote`), which is
+          // what global constraint 4 asks for.
           className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium"
         >
           <span>
@@ -73,7 +72,6 @@ export function FeaturedPrompt({
           <span className="font-mono tabular-nums">
             {formatThousands(likes)} 赞 · {formatThousands(bookmarks)} 藏
           </span>
-          <span className="sr-only">指标观测于 {observedAt}</span>
         </p>
       </div>
 

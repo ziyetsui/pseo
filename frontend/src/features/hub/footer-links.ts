@@ -77,8 +77,12 @@ export function buildFooterColumns(
 
 /**
  * The Chinese-labelled axes: `时尚提示词`, `镜头运动提示词`, `电影感提示词` —
- * `labelZh` with no separating space, exactly as the prototype writes them,
- * falling back to the English label for a term with no translation.
+ * `labelZh` with no separating space, exactly as the prototype writes them.
+ *
+ * A term with no translation falls back to the English label *plus a space*
+ * (`Lip sync / dialogue 提示词`), matching how the prototype sets its English
+ * `按模型` column (`Seedance 提示词`). Without the space the entry reads as one
+ * run-on word, which is the only thing the prototype never writes.
  */
 function filterColumn(
   base: string,
@@ -87,7 +91,7 @@ function filterColumn(
   axis: QueryFacetKey,
 ): FooterLinkItem[] {
   return pick(terms, preferred).map((term) => ({
-    label: `${term.labelZh ?? term.label}提示词`,
+    label: term.labelZh === null ? `${term.label} 提示词` : `${term.labelZh}提示词`,
     href: queryHref(base, setFacet({}, axis, [term.slug])),
   }));
 }

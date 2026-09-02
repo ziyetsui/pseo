@@ -14,6 +14,13 @@ export interface FacetChipsProps {
   idPrefix?: string;
   /** Cap the chips shown per axis; the rest stay reachable via the URL. */
   maxPerGroup?: number;
+  /**
+   * How the axis name is marked up. `none` (default) is L1's plain `<b>`-style
+   * label — its prototype has no `<h2>` above the filter block, so a heading
+   * there would skip a level. `h3` matches the L2/L3 prototypes, whose axis
+   * names ARE `<h3>`s inside a section that already carries an `<h2>`.
+   */
+  headingLevel?: "none" | "h3";
   className?: string;
 }
 
@@ -31,6 +38,7 @@ export function FacetChips({
   groups,
   idPrefix = "facet",
   maxPerGroup,
+  headingLevel = "none",
   className,
 }: FacetChipsProps) {
   const visible = groups.filter((group) => group.options.length > 0);
@@ -46,20 +54,33 @@ export function FacetChips({
         return (
           <div key={group.key} role="group" aria-labelledby={headingId}>
             {/*
-              A plain label, not a heading. The prototype's facet rows are
+              L1: a plain label, not a heading. Its prototype's facet rows are
               `<b>模型</b>` inside an unlabelled filter block; promoting them to
               `<h3>` would invent document structure the page does not have (and
-              would follow the page `<h1>` with a level skipped, since the
+              would follow the page `<h1>` with a level skipped, since that
               prototype has no `<h2>` above the filters either). `role="group"`
               plus `aria-labelledby` gives assistive tech the same grouping
               without the heading semantics.
+
+              L2/L3 (`headingLevel="h3"`): their prototypes DO write
+              `<h3>用例</h3>` — there the block sits under a real `<h2>`
+              (`按标签浏览` / `全部提示词`), so the level is continuous.
             */}
-            <span
-              id={headingId}
-              className="block text-xs font-bold tracking-widest text-foreground uppercase"
-            >
-              {group.label}
-            </span>
+            {headingLevel === "h3" ? (
+              <h3
+                id={headingId}
+                className="block text-xs font-bold tracking-widest text-foreground uppercase"
+              >
+                {group.label}
+              </h3>
+            ) : (
+              <span
+                id={headingId}
+                className="block text-xs font-bold tracking-widest text-foreground uppercase"
+              >
+                {group.label}
+              </span>
+            )}
             <div className="mt-3 flex flex-wrap gap-2">
               {options.map((option) => {
                 const active = isFacetSelected(query, group.key, option.slug);

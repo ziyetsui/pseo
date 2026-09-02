@@ -165,6 +165,7 @@ describe("getPromptBySlug — the L4 golden record", () => {
         label: "国家",
         options: ["Japan", "France", "Egypt", "Brazil", "India", "Mexico"],
         defaultValue: "Japan",
+        note: "[COUNTRY] 同时驱动地标、动植物、传统服饰、邮票文字、货币面额与邮戳城市 —— 换一个国家即可得到一整套自洽的新画面。",
       },
     ]);
     expect(detail.steps).toHaveLength(4);

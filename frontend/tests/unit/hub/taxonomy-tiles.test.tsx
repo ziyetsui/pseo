@@ -13,6 +13,7 @@ function term(overrides: Partial<TaxonomyWithCount> = {}): TaxonomyWithCount {
     slug: "fashion",
     label: "Fashion",
     labelZh: "时尚",
+    aliases: [],
     href: null,
     wireframeDeclaredCount: 162,
     count: 4,

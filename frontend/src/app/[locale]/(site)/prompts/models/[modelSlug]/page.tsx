@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { getContentRepository, type Locale, type ModelDetail } from "@/lib/content";
+import type { Locale, ModelDetail } from "@/lib/content";
+import { getServerContentRepository } from "@/lib/content/server";
 import type { PromptSummary } from "@/lib/content/types";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 import { localeHome, modelPage } from "@/lib/i18n/routes";
@@ -21,7 +22,7 @@ export const dynamicParams = false;
  * `ModelDetail` exists for — no curated list to drift.
  */
 export async function generateStaticParams() {
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const params: { locale: Locale; modelSlug: string }[] = [];
 
   for (const locale of PUBLISHED_LOCALES) {
@@ -41,7 +42,7 @@ type PageParams = Promise<{ locale: string; modelSlug: string }>;
 async function load(params: PageParams): Promise<{ locale: Locale; model: ModelDetail }> {
   const { locale, modelSlug } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  const model = await getContentRepository().getModel(locale, modelSlug);
+  const model = await (await getServerContentRepository()).getModel(locale, modelSlug);
   if (model === null) notFound();
   return { locale, model };
 }
@@ -59,9 +60,10 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 export default async function ModelPage({ params }: { params: PageParams }) {
   const { locale, model } = await load(params);
 
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const basePath = modelPage(locale, model.slug);
-  const [list, promptsWithVariables, trending] = await Promise.all([
+  const [snapshot, list, promptsWithVariables, trending] = await Promise.all([
+    repository.getSnapshot(),
     repository.listModelPrompts(locale, model.slug),
     repository.listPromptsWithVariables(locale, model.slug),
     // The shared ranking + top-up rule, narrowed to this model. The prototype's
@@ -88,6 +90,7 @@ export default async function ModelPage({ params }: { params: PageParams }) {
         trending={trending.items}
         trendingNote={trending.note}
         promptsWithVariables={promptsWithVariables}
+        observedAt={snapshot.observedAt}
       />
     </div>
   );

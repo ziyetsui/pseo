@@ -80,8 +80,10 @@ describe("PromptDetailView — golden record", () => {
       (node.textContent ?? "").trim(),
     );
     // `Prompt` (solid) · model · platform · technique · style — the prototype's
-    // five chips, with the Chinese fixture labels where it has them.
-    expect(chipText).toEqual(["Prompt", "GPT Image 2", "Higgsfield", "微缩摄影", "写实风"]);
+    // five chips, verbatim. `超写实` is the Chinese ALIAS the L4 prototype uses
+    // for `Photorealistic`, whose canonical `labelZh` (`写实风`) is what the L1
+    // footer column writes.
+    expect(chipText).toEqual(["Prompt", "GPT Image 2", "Higgsfield", "微缩摄影", "超写实"]);
     expect(container.querySelectorAll('a[href="#"]')).toHaveLength(0);
   });
 
@@ -139,9 +141,30 @@ describe("PromptDetailView — golden record", () => {
     expect(pre).toHaveAttribute("aria-label", "提示词原文");
   });
 
-  it("explains what the variable drives, below the payload", () => {
+  it("prints the record's own variable note, verbatim, below the payload", () => {
     renderGolden();
+    // The golden record carries the source page's sentence (`PromptVariable
+    // .note`), which names what the variable actually drives rather than
+    // repeating a generated "N 处描述" line every record would share.
+    const note = golden.variables[0]?.note;
+    expect(note).toBe(
+      "[COUNTRY] 同时驱动地标、动植物、传统服饰、邮票文字、货币面额与邮戳城市 —— 换一个国家即可得到一整套自洽的新画面。",
+    );
+    expect(screen.getByText(note as string)).toBeInTheDocument();
+  });
+
+  it("falls back to a counted sentence for a record with no note", () => {
     const occurrences = countToken(golden.promptText, TOKEN);
+    render(
+      <PromptDetailView
+        prompt={{
+          ...golden,
+          variables: golden.variables.map((variable) => ({ ...variable, note: null })),
+        }}
+        locale="zh-CN"
+        breadcrumbs={buildBreadcrumbTrail({ page: "promptDetail", locale: "zh-CN", prompt: golden })}
+      />,
+    );
     expect(
       screen.getByText(
         `${TOKEN} 同时驱动全文 ${occurrences} 处描述 —— 换一个取值即可得到一整套自洽的新画面。`,
@@ -304,7 +327,11 @@ describe("PromptDetailView — golden record", () => {
     }
     const [style] = golden.styles;
     if (style === undefined) throw new Error("the golden record must carry a style term");
-    expect(screen.getByRole("link", { name: style.labelZh ?? style.label })).toHaveAttribute(
+    // The L4 chip prints the Chinese alias the prototype used (`超写实`).
+    const styleLabel = style.aliases.find((alias) => /[\u4e00-\u9fff]/.test(alias)) ??
+      style.labelZh ??
+      style.label;
+    expect(screen.getByRole("link", { name: styleLabel })).toHaveAttribute(
       "href",
       `/zh-CN/prompts?style=${style.slug}`,
     );

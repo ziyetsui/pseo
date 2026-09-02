@@ -168,6 +168,7 @@ function buildView(
       slug: term.slug,
       label: term.label,
       labelZh: term.labelZh,
+      aliases: [...term.aliases],
       href,
       wireframeDeclaredCount: term.wireframeDeclaredCount,
     });
@@ -312,7 +313,13 @@ function buildFacets(
         const term = view.taxonomyById.get(taxonomyKey(facetAxis(key), slug));
         return {
           slug,
-          label: term?.labelZh ?? term?.label ?? slug,
+          // The prototype writes every facet chip value in English (`Fashion`,
+          // `Photorealistic`, `Camera movement / shot language`), on L1, L2 and
+          // L3 alike, and the same English value on the browse tiles and card
+          // tags. `labelZh` is reserved for the surfaces the prototype itself
+          // writes in Chinese: the L1 footer columns, the L2 其他类型 tiles and
+          // the 相关 用例 columns.
+          label: term?.label ?? slug,
           count,
           selected: selected.has(slug),
         };
@@ -324,7 +331,7 @@ function buildFacets(
     for (const slug of selected) {
       if (options.some((option) => option.slug === slug)) continue;
       const term = view.taxonomyById.get(taxonomyKey(facetAxis(key), slug));
-      options.push({ slug, label: term?.labelZh ?? term?.label ?? slug, count: 0, selected: true });
+      options.push({ slug, label: term?.label ?? slug, count: 0, selected: true });
     }
 
     return { key, axis: facetAxis(key), label: FACET_LABEL[key], options };
@@ -346,7 +353,7 @@ function buildAppliedFilters(
       applied.push({
         key,
         value: slug,
-        label: `${FACET_LABEL[key]}：${term?.labelZh ?? term?.label ?? slug}`,
+        label: `${FACET_LABEL[key]}：${term?.label ?? slug}`,
       });
     }
   }

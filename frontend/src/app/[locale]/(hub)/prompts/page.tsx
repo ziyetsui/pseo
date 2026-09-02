@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getContentRepository } from "@/lib/content";
+import { getServerContentRepository } from "@/lib/content/server";
 import type { TrendingWindow } from "@/lib/content/types";
 import { isPublishedLocale } from "@/lib/i18n/config";
 import { localeHome, promptsHome } from "@/lib/i18n/routes";
@@ -14,7 +14,15 @@ import {
   cameraShareTenths,
   countWithCameraLanguage,
 } from "@/features/hub/hub-copy";
-import { PromptExplorer, type ExplorerCollection } from "@/features/prompt/PromptExplorer";
+import {
+  ExplorerFacets,
+  ExplorerNotices,
+  ExplorerResults,
+  ExplorerSearch,
+  ExplorerSummary,
+  PromptExplorer,
+  type ExplorerCollection,
+} from "@/features/prompt/PromptExplorer";
 import { type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
 import { TRENDING_WINDOW_LABELS } from "@/features/prompt/trending-labels";
 
@@ -50,7 +58,7 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
 
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const basePath = promptsHome(locale);
 
   const [snapshot, list, featuredList, trending, useCases, techniques, models, styles, collections, creators] =
@@ -143,30 +151,47 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
             prompts={list.items}
             facetGroups={list.facets}
             facetAxes={["model", "useCase", "technique", "style"]}
-            searchPlaceholder="搜索提示词、模型、风格、镜头语言、创作者…"
             collections={explorerCollections}
-            summaryStyle="hub"
-            browse={
-              <PromptHubBrowse
-                locale={locale}
-                basePath={basePath}
-                observedAt={snapshot.observedAt}
-                featured={featured}
-                trendingWindows={trending}
-                useCases={useCases}
-                techniques={techniques}
-                models={models}
-                styles={styles}
-                collections={collections}
-                creators={creators}
-                cameraShareTenths={cameraShareTenths(
-                  countWithCameraLanguage(list.items),
-                  list.total,
-                )}
-                libraryTotal={list.total}
-              />
-            }
-          />
+          >
+            {/* The prototype's search row, then its `.facets` block: four
+                unlabelled axis rows carrying the block's own
+                `aria-label="筛选"`, and no heading of its own. */}
+            <div className="flex flex-col gap-6">
+              <ExplorerSearch placeholder="搜索提示词、模型、风格、镜头语言、创作者…" />
+              <ExplorerFacets idPrefix="explorer-facet" />
+              <ExplorerNotices />
+            </div>
+
+            <ExplorerSummary style="hub" />
+
+            <ExplorerResults
+              heading="筛选结果"
+              observedAt={snapshot.observedAt}
+              // The prototype's own empty-state line. The conditions that
+              // produced it are listed under it by `ExplorerResults`.
+              emptyMessage="没有找到匹配的提示词，换个关键词试试。"
+              browse={
+                <PromptHubBrowse
+                  locale={locale}
+                  basePath={basePath}
+                  observedAt={snapshot.observedAt}
+                  featured={featured}
+                  trendingWindows={trending}
+                  useCases={useCases}
+                  techniques={techniques}
+                  models={models}
+                  styles={styles}
+                  collections={collections}
+                  creators={creators}
+                  cameraShareTenths={cameraShareTenths(
+                    countWithCameraLanguage(list.items),
+                    list.total,
+                  )}
+                  libraryTotal={list.total}
+                />
+              }
+            />
+          </PromptExplorer>
         </div>
       </div>
     </>

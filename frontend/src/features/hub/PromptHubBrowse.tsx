@@ -8,6 +8,7 @@ import type {
   PromptSummary,
   TaxonomyWithCount,
 } from "@/lib/content/types";
+import { MetricsSnapshotNote } from "@/features/prompt/MetricsSnapshotNote";
 import { TrendingTabs, type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
 
 import { CollectionTiles } from "./CollectionTiles";
@@ -82,7 +83,10 @@ export function PromptHubBrowse({
         {featured === null ? (
           <StateBlock variant="empty" message="本期还没有选出精选提示词。" />
         ) : (
-          <FeaturedPrompt prompt={featured} idPrefix="featured" />
+          <>
+            <MetricsSnapshotNote observedAt={observedAt} />
+            <FeaturedPrompt prompt={featured} idPrefix="featured" />
+          </>
         )}
       </Section>
 

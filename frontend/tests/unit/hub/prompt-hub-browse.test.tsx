@@ -27,6 +27,7 @@ function taxonomy(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
     slug: "fashion",
     label: "Fashion",
     labelZh: "时尚",
+    aliases: [],
     href: null,
     wireframeDeclaredCount: null,
     count: 2,
@@ -169,7 +170,7 @@ describe("PromptHubBrowse", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "约 8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
+        "8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
       ),
     ).toBeInTheDocument();
     expect(screen.getByText("按主题整理的提示词合集。")).toBeInTheDocument();

@@ -419,6 +419,22 @@ function parseGoldenRecord(doc, registry) {
   const countryCount = promptText.split("[COUNTRY]").length - 1;
   assert(countryCount > 0, "L4 prompt no longer contains [COUNTRY]");
 
+  // The prototype's `varnote` under the payload: a sentence about THIS prompt's
+  // variable ("同时驱动地标、动植物、传统服饰…"), not a generic template. It is
+  // carried as data on the variable so the detail page can print it verbatim
+  // instead of inventing one sentence every record would repeat. The selector
+  // deliberately skips `#countryNote`, which is the 换个国家试试 live status
+  // line, not a description of the variable.
+  const varnoteNode = doc
+    .querySelectorAll(".varnote")
+    .find((node) => node.getAttribute("id") !== "countryNote");
+  assert(varnoteNode !== undefined, "L4 varnote is missing");
+  const variableNote = text(varnoteNode);
+  assert(
+    variableNote.startsWith("[COUNTRY]") && variableNote.endsWith("。"),
+    "L4 varnote no longer reads as a [COUNTRY] sentence",
+  );
+
   return {
     page: "l4",
     id: GOLDEN_ID,
@@ -447,7 +463,9 @@ function parseGoldenRecord(doc, registry) {
     highValue: false,
     media: buildMedia(GOLDEN_ID, mediaEntries),
     featuredOn: [],
-    variables: [{ token: "[COUNTRY]", label: "国家", options, defaultValue: options[0] }],
+    variables: [
+      { token: "[COUNTRY]", label: "国家", options, defaultValue: options[0], note: variableNote },
+    ],
     steps,
     requiredInputs: ["国家名（替换 [COUNTRY]）"],
     optionalInputs: [],
@@ -1181,6 +1199,9 @@ function buildReport(ctx) {
   push(`- id \`${GOLDEN_ID}\`, slug \`${GOLDEN_SLUG}\` (curated, per the task brief).`);
   push(`- \`[COUNTRY]\` occurs **${golden.countryCount}** times — counted by the parser, not copied from the prototype's "7 处" copy.`);
   push(`- ${golden.variables[0].options.length} country options, ${golden.steps.length} usage steps, ${golden.parameters.length} tail parameters, ${golden.variations.length} variations (all \`status: "pending"\`, \`media: null\` — the prototype renders 待生成 placeholders).`);
+  push(
+    `- variable note carried verbatim from the prototype's \`.varnote\`: \`${golden.variables[0].note}\` — record-specific copy, so no other prompt repeats it.`,
+  );
   push(`- ${golden.media.length} media items, followers ${golden.followers}, views ${golden.views} / likes ${golden.likes} / bookmarks ${golden.bookmarks} / reposts ${golden.reposts} / replies ${golden.replies} / quotes ${golden.quotes}.`);
   push();
 

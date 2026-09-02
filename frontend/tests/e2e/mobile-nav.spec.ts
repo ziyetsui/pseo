@@ -25,8 +25,11 @@ test.describe("mobile navigation disclosure", () => {
     await button.click();
     await expect(button).toHaveAttribute("aria-expanded", "true");
     await expect(panel).toBeVisible();
-    await expect(panel.getByRole("link")).toHaveCount(4);
-    await expect(panel.getByRole("link", { name: "图片提示词" })).toBeVisible();
+    // Only the three published destinations are links (首页 / 图片 / Blog); the
+    // five the prototype names but this phase does not build are plain text
+    // with （即将推出）, never a link (global constraint 5).
+    await expect(panel.getByRole("link")).toHaveCount(3);
+    await expect(panel.getByRole("link", { name: "图片" })).toBeVisible();
 
     await expect(button).toHaveText("关闭");
     await button.click();
@@ -56,7 +59,7 @@ test.describe("mobile navigation disclosure", () => {
     await page.locator("header button[aria-controls]").click();
     await page
       .getByRole("navigation", { name: "移动端主导航" })
-      .getByRole("link", { name: "图片提示词" })
+      .getByRole("link", { name: "图片" })
       .click();
     await page.waitForURL(`**${ROUTES.l2}`);
     await expect(page.locator("h1")).toHaveText("图片提示词");

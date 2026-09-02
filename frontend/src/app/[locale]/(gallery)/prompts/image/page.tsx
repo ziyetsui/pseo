@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { COMING_SOON_NOTE } from "@/components/layout/nav";
-import { getContentRepository } from "@/lib/content";
-import type { FacetGroup, Locale, QueryFacetKey } from "@/lib/content/types";
+import { getServerContentRepository } from "@/lib/content/server";
+import type { Locale, QueryFacetKey } from "@/lib/content/types";
 import { isPublishedLocale } from "@/lib/i18n/config";
 import { localeHome, promptsImage } from "@/lib/i18n/routes";
 import { buildBreadcrumbTrail } from "@/lib/seo/breadcrumbs";
@@ -22,7 +22,14 @@ import {
   selectImagePrompts,
   topRailedModels,
 } from "@/features/gallery/image-prompts";
-import { PromptExplorer } from "@/features/prompt/PromptExplorer";
+import {
+  ExplorerFacets,
+  ExplorerNotices,
+  ExplorerResults,
+  ExplorerSearch,
+  ExplorerSummary,
+  PromptExplorer,
+} from "@/features/prompt/PromptExplorer";
 
 const TITLE = "图片提示词";
 
@@ -53,21 +60,14 @@ const GALLERY_FACET_AXES = ["useCase", "style", "subject"] as const;
 /**
  * The prototype calls the use-case axis 任务 on L1 and 用例 on this page. The
  * repository ships one label per axis (L1's), so the gallery renames its own
- * copy of the group here rather than changing the shared vocabulary — the
- * slugs, counts and URL contract are untouched.
+ * copy of the group through the explorer's `axisLabels` prop rather than
+ * changing the shared vocabulary — slugs, counts and URL contract untouched.
  */
 const GALLERY_FACET_LABELS: Partial<Record<QueryFacetKey, string>> = { useCase: "用例" };
 
-function relabelFacets(groups: readonly FacetGroup[]): FacetGroup[] {
-  return groups.map((group) => {
-    const label = GALLERY_FACET_LABELS[group.key];
-    return label === undefined ? group : { ...group, label };
-  });
-}
-
 /** How many image prompts this build publishes — the metadata's only number. */
 async function imageTotal(locale: Locale): Promise<number> {
-  const { items } = await getContentRepository().listPrompts(locale);
+  const { items } = await (await getServerContentRepository()).listPrompts(locale);
   return selectImagePrompts(items).length;
 }
 
@@ -96,7 +96,7 @@ export default async function ImageGalleryPage({
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
 
-  const repository = getContentRepository();
+  const repository = await getServerContentRepository();
   const basePath = promptsImage(locale);
 
   const [snapshot, list, featuredAll, modelTerms, useCaseTerms, subjectTerms, contentTypes] =
@@ -173,32 +173,57 @@ export default async function ImageGalleryPage({
 
       <Breadcrumb items={crumbs} />
 
-      <header className="mt-6 max-w-3xl">
-        <h1 className="text-4xl font-black tracking-tighter uppercase md:text-6xl">{TITLE}</h1>
-        <p className="mt-6 text-lg font-medium">{galleryLede(stats.total)}</p>
-        <GalleryStatline stats={stats} observedAt={snapshot.observedAt} className="mt-6" />
-        {/*
-          The prototype puts a `视频提示词（479）→` button next to the search
-          box. `/prompts/video` does not exist in this phase, so the entry keeps
-          its place as plain text with the same note the nav uses, and carries
-          no count it could not honestly source (global constraint 5).
-        */}
-        <p data-video-teaser className="mt-4 text-sm font-bold tracking-wider uppercase">
-          视频提示词{COMING_SOON_NOTE}
-        </p>
-      </header>
+      {/*
+        The prototype's hero holds the search box and the `#resultcount` line,
+        and the facet block is a separate `按标签浏览` section below it — so the
+        explorer wraps the whole page body and each piece is placed where that
+        page puts it, rather than in one welded stack.
+      */}
+      <PromptExplorer
+        locale={locale}
+        basePath={basePath}
+        prompts={imagePrompts}
+        facetGroups={list.facets}
+        facetAxes={GALLERY_FACET_AXES}
+        axisLabels={GALLERY_FACET_LABELS}
+        className="flex flex-col gap-10"
+      >
+        <header className="mt-6">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-black tracking-tighter uppercase md:text-6xl">{TITLE}</h1>
+            <p className="mt-6 text-lg font-medium">{galleryLede(stats.total)}</p>
+            <GalleryStatline stats={stats} observedAt={snapshot.observedAt} className="mt-6" />
+          </div>
 
-      <div className="mt-10">
-        <PromptExplorer
-          locale={locale}
-          basePath={basePath}
-          prompts={imagePrompts}
-          facetGroups={relabelFacets(list.facets)}
-          facetAxes={GALLERY_FACET_AXES}
-          searchPlaceholder="搜索图片提示词…"
-          filterLabel="按标签浏览"
-          summaryStyle="count"
+          <ExplorerSearch placeholder="搜索图片提示词…" className="mt-6 flex flex-wrap items-end gap-3" />
+
+          {/*
+            The prototype puts a `视频提示词（479）→` button next to the search
+            box. `/prompts/video` does not exist in this phase, so the entry keeps
+            its place as plain text with the same note the nav uses, and carries
+            no count it could not honestly source (global constraint 5).
+          */}
+          <p data-video-teaser className="mt-4 text-sm font-bold tracking-wider uppercase">
+            视频提示词{COMING_SOON_NOTE}
+          </p>
+
+          {/* `#resultcount`: in the hero, after the search box. */}
+          <ExplorerSummary style="count" className="mt-4 text-sm font-bold" />
+        </header>
+
+        <ExplorerFacets
+          heading="按标签浏览"
+          headingId="gallery-facets"
+          axisHeadingLevel="h3"
+          idPrefix="explorer-facet"
+          className="grid gap-6 md:grid-cols-3"
+        />
+
+        <ExplorerNotices />
+
+        <ExplorerResults
           cardVariant="compact"
+          observedAt={snapshot.observedAt}
           browse={
             <GalleryBrowse
               locale={locale}
@@ -215,7 +240,7 @@ export default async function ImageGalleryPage({
             />
           }
         />
-      </div>
+      </PromptExplorer>
     </div>
   );
 }

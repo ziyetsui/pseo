@@ -11,7 +11,7 @@ import {
 import type { PromptSummary, Taxonomy } from "@/lib/content/types";
 
 function taxonomy(axis: Taxonomy["axis"], slug: string, label: string): Taxonomy {
-  return { id: `${axis}:${slug}`, axis, slug, label, labelZh: null, href: null, wireframeDeclaredCount: null };
+  return { id: `${axis}:${slug}`, axis, slug, label, labelZh: null, aliases: [], href: null, wireframeDeclaredCount: null };
 }
 
 function prompt(overrides: Partial<PromptSummary> & Pick<PromptSummary, "id">): PromptSummary {

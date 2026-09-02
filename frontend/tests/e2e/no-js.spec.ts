@@ -24,7 +24,8 @@ test.describe("without JavaScript", () => {
 
     const heading = page.locator("main h1");
     await expect(heading, "the H1 must be inside <main>, not in a hidden buffer").toBeVisible();
-    await expect(heading).toContainText("条提示词");
+    // The prototype's two-line L1 H1: `N 条 Higgsfield 提示词` / `复制即用`.
+    await expect(heading).toContainText(/\d+ 条 .*提示词/);
 
     const hrefs = await page
       .locator('main a[href^="/zh-CN/prompts/"]')

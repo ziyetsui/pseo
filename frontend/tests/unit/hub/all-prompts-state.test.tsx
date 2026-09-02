@@ -55,7 +55,7 @@ describe("hub copy helpers", () => {
 
   it("keeps the prototype's sentence shape either way", () => {
     expect(cameraSectionDescription(8)).toBe(
-      "约 8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
+      "8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
     );
     expect(cameraSectionDescription(null)).toBe(
       "提示词里的镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",

@@ -100,11 +100,12 @@ function validateMedia(value: unknown, path: string): void {
 }
 
 function validateVariable(value: unknown, path: string): void {
-  const item = objectAt(value, path, ["token", "label", "options", "defaultValue"]);
+  const item = objectAt(value, path, ["token", "label", "options", "defaultValue", "note"]);
   stringAt(item.token, `${path}.token`);
   stringAt(item.label, `${path}.label`);
   stringArrayAt(item.options, `${path}.options`);
   stringAt(item.defaultValue, `${path}.defaultValue`);
+  nullableStringAt(item.note, `${path}.note`);
 }
 
 function validateStep(value: unknown, path: string): void {

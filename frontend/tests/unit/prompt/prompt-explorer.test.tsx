@@ -16,7 +16,14 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/zh-CN/prompts",
 }));
 
-const { PromptExplorer } = await import("@/features/prompt/PromptExplorer");
+const {
+  PromptExplorer,
+  ExplorerFacets,
+  ExplorerNotices,
+  ExplorerResults,
+  ExplorerSearch,
+  ExplorerSummary,
+} = await import("@/features/prompt/PromptExplorer");
 
 const BASE = "/zh-CN/prompts";
 
@@ -122,7 +129,14 @@ const collections = [
   { slug: "template-prompts", title: "模板提示词合集", promptIds: ["a", "c"] },
 ];
 
-function renderExplorer(overrides: Record<string, unknown> = {}) {
+/**
+ * The L1 arrangement: unlabelled filter block, then the summary line, then the
+ * result region. `slots` lets a test swap in the L2/L3 placement instead.
+ */
+function renderExplorer(
+  overrides: Record<string, unknown> = {},
+  slots: { summaryStyle?: "hub" | "count"; emptyMessage?: string; facetHeading?: string } = {},
+) {
   return render(
     <PromptExplorer
       locale="zh-CN"
@@ -130,11 +144,21 @@ function renderExplorer(overrides: Record<string, unknown> = {}) {
       prompts={prompts}
       facetGroups={facetGroups}
       facetAxes={["model", "useCase", "technique", "style"]}
-      searchPlaceholder="搜索提示词、模型、风格、镜头语言、创作者…"
       collections={collections}
-      browse={<p data-testid="browse-body">浏览区内容</p>}
       {...overrides}
-    />,
+    >
+      <div role="group" aria-label="筛选" className="flex flex-col gap-6">
+        <ExplorerSearch placeholder="搜索提示词、模型、风格、镜头语言、创作者…" />
+        <ExplorerFacets idPrefix="explorer-facet" heading={slots.facetHeading} />
+        <ExplorerNotices />
+      </div>
+      <ExplorerSummary style={slots.summaryStyle ?? "hub"} />
+      <ExplorerResults
+        heading="筛选结果"
+        emptyMessage={slots.emptyMessage}
+        browse={<p data-testid="browse-body">浏览区内容</p>}
+      />
+    </PromptExplorer>,
   );
 }
 
@@ -214,12 +238,34 @@ describe("PromptExplorer", () => {
 
   it("writes the summary as the prototype does per page", () => {
     search = "q=cube";
-    const { unmount } = renderExplorer({ summaryStyle: "hub" });
+    const { unmount } = renderExplorer({}, { summaryStyle: "hub" });
     expect(countRegion()).toHaveTextContent("共 1 条");
     unmount();
 
-    renderExplorer({ summaryStyle: "count" });
+    renderExplorer({}, { summaryStyle: "count" });
     expect(countRegion()).toHaveTextContent("筛选出 1 条");
+  });
+
+  it("renders a real <h2> above the facets only when the page asks for one", () => {
+    const { unmount } = renderExplorer();
+    expect(screen.queryByRole("heading", { name: "按标签浏览" })).not.toBeInTheDocument();
+    unmount();
+
+    renderExplorer({}, { facetHeading: "按标签浏览" });
+    expect(screen.getByRole("heading", { name: "按标签浏览", level: 2 })).toBeInTheDocument();
+  });
+
+  it("uses the page's own empty-state line and still names the conditions under it", () => {
+    search = "q=cube&model=kling";
+    renderExplorer({}, { emptyMessage: "没有找到匹配的提示词，换个关键词试试。" });
+
+    const noResults = document.querySelector('[data-state="no-results"]') as HTMLElement;
+    expect(noResults.textContent).toContain("没有找到匹配的提示词，换个关键词试试。");
+    // Global constraint 6: the conditions that produced the dead end are still
+    // spelled out, and each is still removable.
+    expect(noResults.textContent).toContain("关键词「cube」");
+    expect(noResults.textContent).toContain("模型：Kling");
+    expect(within(noResults).getByRole("link", { name: "清除全部筛选" })).toBeInTheDocument();
   });
 
   it("has no 搜索与筛选 heading and no per-axis headings above the facets", () => {

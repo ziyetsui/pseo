@@ -19,6 +19,7 @@ function term(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
     slug: "x",
     label: "X",
     labelZh: null,
+    aliases: [],
     href: null,
     wireframeDeclaredCount: null,
     count: 1,

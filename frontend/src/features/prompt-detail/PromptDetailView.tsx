@@ -164,10 +164,15 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
           primaryNoun === null ? "替换为同一取值即可使用。" : `替换为同一${primaryNoun}名即可使用。`
         }`;
 
+  // The record's own sentence about what this variable drives, carried by the
+  // extractor from the source page (`PromptVariable.note`). A record without
+  // one falls back to a sentence built from the counted occurrences, which
+  // asserts nothing this data cannot back.
   const variableNote =
-    primaryToken === null
+    primary?.note ??
+    (primaryToken === null
       ? null
-      : `${primaryToken} 同时驱动全文 ${primaryCount} 处描述 —— 换一个取值即可得到一整套自洽的新画面。`;
+      : `${primaryToken} 同时驱动全文 ${primaryCount} 处描述 —— 换一个取值即可得到一整套自洽的新画面。`);
 
   const generatorHint =
     modelLabel === null

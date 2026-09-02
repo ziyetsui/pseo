@@ -95,8 +95,23 @@ export interface Taxonomy {
   id: string;
   axis: TaxonomyAxis;
   slug: string;
+  /**
+   * Canonical English value, exactly as the prototype writes it on chips,
+   * tiles and card tags (`Fashion`, `Camera movement / shot language`).
+   */
   label: string;
+  /**
+   * Chinese value, for the surfaces the prototype itself writes in Chinese:
+   * the L1 footer columns, the L2 其他类型 tiles and 相关 用例 columns, and the
+   * L4 detail page. `null` when the prototype never wrote one.
+   */
   labelZh: string | null;
+  /**
+   * Other label variants seen across the four prototype pages, in the order
+   * they were first met (e.g. `超写实` for `Photorealistic`). Carried so a page
+   * can render the exact wording ITS prototype used without a hard-coded map.
+   */
+  aliases: readonly string[];
   /** Non-null only for axes/terms that have a real page in this phase. */
   href: string | null;
   /** Prototype-declared library-wide count. Metadata only — never rendered. */
@@ -159,6 +174,13 @@ export interface PromptVariable {
   label: string;
   options: string[];
   defaultValue: string;
+  /**
+   * The record-specific sentence explaining what this variable drives, as the
+   * source page writes it (the L4 prototype's `varnote`). `null` when the
+   * record has none — the detail page then falls back to a sentence generated
+   * from the counted occurrences, which says nothing this data cannot back.
+   */
+  note: string | null;
 }
 
 export interface ExtractedVariable {

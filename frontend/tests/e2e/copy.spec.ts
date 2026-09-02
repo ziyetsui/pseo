@@ -2,7 +2,9 @@ import { expect, test } from "@playwright/test";
 
 import { ROUTES } from "./routes";
 
-const SUCCESS = "已复制到剪贴板";
+// The prototype's own success label on the L4 copy button. Wave B removed the
+// extra `已复制到剪贴板` line the earlier build showed next to it.
+const SUCCESS = "已复制 ✓";
 const FAILURE = "复制失败，可选中文本手动复制";
 const TOKEN = "[COUNTRY]";
 const CHOICE = "France";

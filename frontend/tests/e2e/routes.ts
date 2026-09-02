@@ -30,17 +30,19 @@ export const LEVELS = [
 
 /**
  * The explorer's single result-count live region. Every list page mounts
- * exactly one `role="status"` with this copy; other status regions on the page
- * (the copy buttons') never carry it, so the text is the discriminator.
+ * exactly one `role="status"` carrying the prototype's own summary wording —
+ * `共 N 条` on L1 (optionally prefixed by a collection name) and `筛选出 N 条`
+ * on L2/L3. Other status regions on the page (the copy buttons') never carry a
+ * count, so the text is the discriminator.
  */
 export function resultStatus(page: Page): Locator {
-  return page.getByRole("status").filter({ hasText: /找到 \d+ 条提示词/ });
+  return page.getByRole("status").filter({ hasText: /(?:共|筛选出) \d+ 条/ });
 }
 
-/** Parses `找到 N 条提示词` into `N`. */
+/** Parses `共 N 条` / `筛选出 N 条` into `N`. */
 export async function resultCount(page: Page): Promise<number> {
   const text = (await resultStatus(page).innerText()).trim();
-  const match = /找到 (\d+) 条提示词/.exec(text);
+  const match = /(?:共|筛选出) (\d+) 条/.exec(text);
   if (match?.[1] === undefined) throw new Error(`Unparseable result status: ${text}`);
   return Number(match[1]);
 }

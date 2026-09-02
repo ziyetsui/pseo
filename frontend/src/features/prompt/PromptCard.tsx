@@ -253,16 +253,17 @@ function PromptBody({ prompt, textId, expandable, variant, tags }: PromptBodyPro
 
 /** L1 meta: `@handle` · date · `2,512 赞` · `6,127 藏`. */
 function HubMeta({ prompt }: { prompt: PromptSummary }) {
-  const { likes, bookmarks, observedAt } = prompt.metrics;
+  const { likes, bookmarks } = prompt.metrics;
   const publishedAt = prompt.source.publishedAt;
 
   return (
     <p
       data-testid="prompt-card-metrics"
-      // The observation date is required for honesty (global constraint 4) but
-      // the prototype's card has no room for it: it lives in the tooltip and in
-      // screen-reader-only text rather than as a visible line per card.
-      title={`指标观测于 ${observedAt}`}
+      // No per-card observation date: the prototype's card has none, and
+      // repeating it on every card of a grid says the same thing six times.
+      // Global constraint 4 is met once per data region instead — see
+      // `MetricsSnapshotNote`, the trending panel's note, the L2 statline and
+      // the footer's `数据更新于`.
       className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t-2 border-foreground pt-3 text-xs font-medium"
     >
       <a
@@ -280,19 +281,17 @@ function HubMeta({ prompt }: { prompt: PromptSummary }) {
       )}
       <span className="font-mono tabular-nums">{formatThousands(likes)} 赞</span>
       <span className="font-mono tabular-nums">{formatThousands(bookmarks)} 藏</span>
-      <span className="sr-only">指标观测于 {observedAt}</span>
     </p>
   );
 }
 
 /** L2/L3 meta: `@handle` · `3.8K 赞` · `2.4K 藏` · `热门` · `原帖 ↗`. */
 function CompactMeta({ prompt }: { prompt: PromptSummary }) {
-  const { likes, bookmarks, highValue, observedAt } = prompt.metrics;
+  const { likes, bookmarks, highValue } = prompt.metrics;
 
   return (
     <p
       data-testid="prompt-card-metrics"
-      title={`指标观测于 ${observedAt}`}
       className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t-2 border-foreground pt-3 text-xs font-medium"
     >
       <span>{formatCreatorHandle(prompt.creator.handle)}</span>
@@ -312,7 +311,6 @@ function CompactMeta({ prompt }: { prompt: PromptSummary }) {
       >
         原帖 ↗<span className="sr-only">（外部链接，新窗口打开）</span>
       </a>
-      <span className="sr-only">指标观测于 {observedAt}</span>
     </p>
   );
 }

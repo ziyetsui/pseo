@@ -148,7 +148,7 @@ describe("L1 prompt hub page", () => {
     await renderPage();
 
     const section = screen.getByRole("region", { name: "镜头与运动" });
-    expect(section.textContent).toContain(`约 ${tenths} 成提示词带镜头语言`);
+    expect(section.textContent).toContain(`${tenths} 成提示词带镜头语言`);
   });
 
   it("links the closing CTA at the whole-library result state", async () => {

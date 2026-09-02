@@ -13,27 +13,32 @@ import { Button } from "@/components/ui/Button";
  * `aria-describedby`, so the sentence is announced with every button without
  * being repeated three times on screen (handoff §9, global constraint 12).
  *
- * The prototype's emoji glyphs are dropped: they are decorative, and an emoji
- * inside an accessible name is read aloud as its Unicode description.
+ * The prototype's emoji glyphs (`⚙` / `🖼`) are kept, but marked
+ * `aria-hidden`: they are part of the visible label, while an emoji inside an
+ * accessible name would be read aloud as its Unicode description.
  */
 
 export const GENERATE_DISABLED_REASON_ID = "model-generate-disabled-reason";
 export const GENERATE_DISABLED_REASON = "生成功能尚未接入，本页仅提供 Prompt 复制";
 
-const SECONDARY_CONTROLS = ["设置", "参考图"] as const;
+/** Prototype labels, glyph first: `⚙ 设置` / `🖼 参考图`. */
+const SECONDARY_CONTROLS = [
+  { glyph: "⚙", label: "设置" },
+  { glyph: "🖼", label: "参考图" },
+] as const;
 
 export function ModelGenerateControls() {
   return (
     <>
       <div className="flex flex-wrap items-center gap-3">
-        {SECONDARY_CONTROLS.map((label) => (
+        {SECONDARY_CONTROLS.map(({ glyph, label }) => (
           <Button
             key={label}
             variant="ghost"
             disabled
             aria-describedby={GENERATE_DISABLED_REASON_ID}
           >
-            {label}
+            <span aria-hidden="true">{glyph}</span> {label}
           </Button>
         ))}
         <Button

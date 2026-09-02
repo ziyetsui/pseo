@@ -1309,7 +1309,8 @@ export const WIREFRAME_PROMPTS: readonly WireframePromptRecord[] = [
           "India",
           "Mexico"
         ],
-        "defaultValue": "Japan"
+        "defaultValue": "Japan",
+        "note": "[COUNTRY] 同时驱动地标、动植物、传统服饰、邮票文字、货币面额与邮戳城市 —— 换一个国家即可得到一整套自洽的新画面。"
       }
     ],
     "steps": [

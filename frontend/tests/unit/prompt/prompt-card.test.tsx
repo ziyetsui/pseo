@@ -80,7 +80,7 @@ describe("PromptCard — shared behaviour", () => {
   });
 
   it.each(["hub", "compact"] as const)(
-    "keeps the observation date in the DOM without a visible per-card line (%s)",
+    "carries no per-card observation date at all — it is stated once per region (%s)",
     (variant) => {
       const { container } = render(
         <PromptCard
@@ -89,13 +89,15 @@ describe("PromptCard — shared behaviour", () => {
           variant={variant}
         />,
       );
+      // The prototype's card has no observation line, visible or otherwise, and
+      // repeating one on every card of a grid says the same thing six times.
+      // Global constraint 4 is satisfied once per data region instead
+      // (`MetricsSnapshotNote`, the trending panel note, the L2 statline and the
+      // footer's 数据更新于).
       const metrics = screen.getByTestId("prompt-card-metrics");
-      expect(metrics).toHaveAttribute("title", "指标观测于 2027-01-02");
-      // Present for honesty, but only for assistive tech — never a visible row.
-      const note = [...container.querySelectorAll(".sr-only")].find((node) =>
-        (node.textContent ?? "").includes("指标观测于"),
-      );
-      expect(note).toBeDefined();
+      expect(metrics).not.toHaveAttribute("title");
+      expect(container.textContent).not.toContain("指标观测于");
+      expect(container.textContent).not.toContain("2027-01-02");
       expect(container.textContent).not.toContain(OBSERVED_AT);
     },
   );
