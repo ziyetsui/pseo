@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import type { Locale } from "@/lib/i18n/config";
-import { breadcrumbList, serializeJsonLd } from "@/lib/seo/json-ld";
+import { breadcrumbList, collectionPage, serializeJsonLd } from "@/lib/seo/json-ld";
 import { absoluteUrl, buildMetadata, getSiteUrl } from "@/lib/seo/site";
 
 /**
@@ -163,6 +163,67 @@ describe("breadcrumbList", () => {
         item: "https://example.invalid/zh-CN/prompts",
       },
     ]);
+  });
+});
+
+describe("collectionPage", () => {
+  it("builds a CollectionPage with a numbered, ordered ItemList", () => {
+    const json = collectionPage({
+      name: "提示词库",
+      description: "来自 X 的图片提示词合集。",
+      url: "https://example.invalid/zh-CN/prompts",
+      itemUrls: [
+        { url: "https://example.invalid/zh-CN/prompts/a", name: "A" },
+        { url: "https://example.invalid/zh-CN/prompts/b", name: "B" },
+      ],
+    });
+
+    expect(json["@context"]).toBe("https://schema.org");
+    expect(json["@type"]).toBe("CollectionPage");
+    expect(json.name).toBe("提示词库");
+    expect(json.description).toBe("来自 X 的图片提示词合集。");
+    expect(json.url).toBe("https://example.invalid/zh-CN/prompts");
+    expect(json.mainEntity["@type"]).toBe("ItemList");
+    expect(json.mainEntity.numberOfItems).toBe(2);
+    expect(json.mainEntity.itemListElement).toEqual([
+      {
+        "@type": "ListItem",
+        position: 1,
+        url: "https://example.invalid/zh-CN/prompts/a",
+        name: "A",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        url: "https://example.invalid/zh-CN/prompts/b",
+        name: "B",
+      },
+    ]);
+  });
+
+  it("numberOfItems always matches the actual item count, including empty", () => {
+    const json = collectionPage({
+      name: "提示词库",
+      description: "…",
+      url: "https://example.invalid/zh-CN/prompts",
+      itemUrls: [],
+    });
+    expect(json.mainEntity.numberOfItems).toBe(0);
+    expect(json.mainEntity.itemListElement).toEqual([]);
+  });
+
+  it("callers can spread extra fields (e.g. inLanguage, isPartOf) onto the result", () => {
+    const json = {
+      ...collectionPage({
+        name: "提示词库",
+        description: "…",
+        url: "https://example.invalid/zh-CN/prompts",
+        itemUrls: [],
+      }),
+      inLanguage: "zh-CN",
+    };
+    expect(json.inLanguage).toBe("zh-CN");
+    expect(json["@type"]).toBe("CollectionPage");
   });
 });
 

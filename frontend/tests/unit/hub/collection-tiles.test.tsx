@@ -22,6 +22,22 @@ const axisCollection: CollectionWithCount = {
   sampleIds: [],
 };
 
+const sameAxisTwiceCollection: CollectionWithCount = {
+  id: "collection:two-models",
+  slug: "two-models",
+  title: "双模型合集",
+  subtitle: "同一条提示词同时用了两个模型",
+  rule: {
+    type: "axis-all",
+    conditions: [
+      { axis: "model", value: "seedance" },
+      { axis: "model", value: "kling" },
+    ],
+  },
+  count: 2,
+  sampleIds: [],
+};
+
 const regexCollection: CollectionWithCount = {
   id: "collection:template-prompts",
   slug: "template-prompts",
@@ -52,6 +68,17 @@ describe("CollectionTiles", () => {
 
     expect(screen.queryByRole("link", { name: /模板提示词合集/ })).not.toBeInTheDocument();
     expect(screen.getByText(/模板提示词合集/)).toBeInTheDocument();
+    expect(screen.getByText(/暂不支持/)).toBeInTheDocument();
+  });
+
+  it("does not fake a link when two conditions share the same axis (OR ≠ AND-of-two-values)", () => {
+    // A query facet's multiple values on one axis mean OR ("model A or B"),
+    // never AND ("model A and B"); building a link would silently drop one
+    // condition and show a broader, wrong set instead.
+    render(<CollectionTiles basePath={BASE} collections={[sameAxisTwiceCollection]} />);
+
+    expect(screen.queryByRole("link", { name: /双模型合集/ })).not.toBeInTheDocument();
+    expect(screen.getByText(/双模型合集/)).toBeInTheDocument();
     expect(screen.getByText(/暂不支持/)).toBeInTheDocument();
   });
 

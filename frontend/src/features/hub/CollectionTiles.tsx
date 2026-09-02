@@ -39,12 +39,22 @@ function toFacetKey(axis: TaxonomyAxis): QueryFacetKey | null {
  * (and any condition on a non-filterable axis) have no query equivalent, so
  * they get `null` — the tile then says so instead of linking somewhere that
  * would silently show the wrong set.
+ *
+ * Two conditions on the SAME axis are also inexpressible: a query facet's
+ * multiple values on one axis mean OR ("has model A or model B"), never AND
+ * ("has both model A and model B"), so building a link from the second
+ * condition would silently overwrite the first and show a broader, wrong set
+ * rather than the collection's actual (narrower) rule.
  */
 function collectionQuery(rule: CollectionRule): PromptQuery | null {
   if (rule.type !== "axis-all") return null;
 
+  const seenAxes = new Set<TaxonomyAxis>();
   let query: PromptQuery = {};
   for (const condition of rule.conditions) {
+    if (seenAxes.has(condition.axis)) return null;
+    seenAxes.add(condition.axis);
+
     const key = toFacetKey(condition.axis);
     if (key === null) return null;
     query = setFacet(query, key, [condition.value]);
@@ -80,9 +90,7 @@ export function CollectionTiles({
             {query === null ? (
               <div className={cardClassName("w-full gap-3 p-4")}>
                 {body}
-                <p className="text-xs font-medium">
-                  该合集按提示词正文匹配，当前的筛选参数暂不支持这种条件，因此本期不提供跳转链接。
-                </p>
+                <p className="text-xs font-medium">该合集的筛选条件暂不支持转换成链接，因此本期不提供跳转，仅展示条目数。</p>
               </div>
             ) : (
               <Link

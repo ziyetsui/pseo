@@ -55,7 +55,7 @@ export function PromptHubBrowse({
   styles,
   collections,
   creators,
-  creatorLimit = 8,
+  creatorLimit = 7,
   taxonomyLimit = 8,
 }: PromptHubBrowseProps) {
   return (
@@ -63,7 +63,7 @@ export function PromptHubBrowse({
       <Section
         id="hub-featured"
         title="本期精选"
-        description="编辑选出的一条完整提示词，可以直接复制使用。"
+        description="编辑选出的一条完整提示词，可以直接复制使用；下方的热门列表已排除这一条，避免重复出现。"
       >
         {featured === null ? (
           <StateBlock variant="empty" message="本期还没有选出精选提示词。" />

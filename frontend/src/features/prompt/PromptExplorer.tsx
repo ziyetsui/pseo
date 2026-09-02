@@ -77,12 +77,16 @@ export function PromptExplorer(props: PromptExplorerProps) {
 function ExplorerFromUrl(props: PromptExplorerProps) {
   const searchParams = useSearchParams();
   const parsed = parsePromptQuery(searchParams.toString());
-  const query: PromptQuery = { ...parsed.query, window: undefined };
 
-  return <ExplorerView {...props} query={query} unknownParams={parsed.unknownParams} />;
+  // The raw, as-parsed query (still carrying `window` when present) is handed
+  // down as-is: `ExplorerView` is the one place that decides which parts of it
+  // count as an active filter versus which parts merely need to survive into
+  // outgoing links.
+  return <ExplorerView {...props} query={parsed.query} unknownParams={parsed.unknownParams} />;
 }
 
 interface ExplorerViewProps extends PromptExplorerProps {
+  /** As-parsed query, including `window` when the URL carried a valid one. */
   query: PromptQuery;
   unknownParams: readonly string[];
 }
@@ -111,12 +115,25 @@ function ExplorerView({
     return group === undefined ? [] : [group];
   });
 
-  const active = !isEmptyPromptQuery(query);
-  const results = active ? applyPromptQuery(prompts, query) : [...prompts];
-  const liveGroups = recountFacets(prompts, visibleGroups, query);
-  const applied = buildAppliedFilters(facetGroups, query);
-  const unknown = [...unknownParams, ...unknownFacetValues(facetGroups, query)].sort();
-  const showSummary = active || unknown.length > 0;
+  // `window` selects a trending tab, not a browse filter: releasing it here
+  // keeps this surface from hiding the whole browse section just because a
+  // trending window happens to be selected. It is restored below (`linkQuery`)
+  // for every outgoing href so switching tabs survives a search or a filter
+  // change instead of being silently dropped.
+  const activeQuery: PromptQuery = { ...query, window: undefined };
+  const active = !isEmptyPromptQuery(activeQuery);
+
+  // A facet value this vocabulary has never heard of (`model=does-not-exist`)
+  // would otherwise filter the set down to nothing. Stripped here so it is
+  // genuinely ignored — reported, never silently applied as a dead-end filter.
+  const filterQuery = stripUnknownFacetValues(activeQuery, facetGroups);
+  const linkQuery: PromptQuery = { ...filterQuery, window: query.window };
+
+  const results = active ? applyPromptQuery(prompts, filterQuery) : [...prompts];
+  const liveGroups = recountFacets(prompts, visibleGroups, filterQuery);
+  const applied = buildAppliedFilters(facetGroups, filterQuery);
+  const unknownValues = unknownFacetValues(facetGroups, activeQuery);
+  const showSummary = active || unknownParams.length > 0 || unknownValues.length > 0;
 
   return (
     <div className={className ?? "flex flex-col gap-8"}>
@@ -124,11 +141,11 @@ function ExplorerView({
           headings never follow the page <h1> with a level skipped. */}
       <Section id={filterHeadingId} title={filterHeading}>
         <div className="flex flex-col gap-6">
-          <SearchForm basePath={basePath} query={query} inputId={searchInputId} />
+          <SearchForm basePath={basePath} query={linkQuery} inputId={searchInputId} />
 
           <FacetChips
             basePath={basePath}
-            query={query}
+            query={linkQuery}
             groups={liveGroups}
             idPrefix={facetIdPrefix}
           />
@@ -136,14 +153,27 @@ function ExplorerView({
           {showSummary ? (
             <ActiveFilters
               basePath={basePath}
-              query={query}
+              query={linkQuery}
               total={results.length}
               appliedFilters={applied}
-              unknownParams={unknown}
+              unknownParams={unknownParams}
+              unknownValues={unknownValues}
+              showTotal={false}
             />
           ) : null}
         </div>
       </Section>
+
+      {/*
+        Exactly one result-count live region for the whole explorer, mounted
+        unconditionally (empty in the browse state) so assistive tech is
+        always attached to it rather than to a node that pops in and out —
+        `ActiveFilters` above is told `showTotal={false}` so the count is
+        never announced twice.
+      */}
+      <p role="status" aria-live="polite" className="text-sm font-bold">
+        {active ? `找到 ${results.length} 条提示词` : ""}
+      </p>
 
       {active ? (
         <section aria-labelledby={resultsHeadingId}>
@@ -154,9 +184,6 @@ function ExplorerView({
             >
               {resultsHeading}
             </h2>
-            <p role="status" aria-live="polite" className="text-sm font-bold">
-              找到 {results.length} 条提示词
-            </p>
           </div>
 
           <div className="mt-6">
@@ -169,20 +196,20 @@ function ExplorerView({
               {applied.map((filter) => (
                 <StateBlockLink
                   key={`${filter.key}:${filter.value}`}
-                  href={queryHref(basePath, removeFilter(query, filter))}
+                  href={queryHref(basePath, removeFilter(linkQuery, filter))}
                 >
                   移除「{filter.label}」
                 </StateBlockLink>
               ))}
-              <StateBlockLink href={basePath}>清除全部筛选</StateBlockLink>
+              <StateBlockLink href={queryHref(basePath, { window: linkQuery.window })}>
+                清除全部筛选
+              </StateBlockLink>
             </PromptResults>
           </div>
         </section>
       ) : null}
 
-      <div data-testid="prompt-explorer-browse" hidden={active}>
-        {browse}
-      </div>
+      <div hidden={active}>{browse}</div>
     </div>
   );
 }
@@ -276,4 +303,22 @@ function unknownFacetValues(groups: readonly FacetGroup[], query: PromptQuery): 
     }
   }
   return unknown;
+}
+
+/**
+ * Drops facet values `unknownFacetValues` flagged, so the query actually
+ * filters by nothing on that axis instead of legitimately matching zero
+ * prompts. This is what makes an unknown value genuinely "ignored" rather than
+ * merely reported while still being applied.
+ */
+function stripUnknownFacetValues(query: PromptQuery, groups: readonly FacetGroup[]): PromptQuery {
+  let result = query;
+  for (const key of QUERY_FACET_KEYS) {
+    const group = groups.find((candidate) => candidate.key === key);
+    const values = facetValues(query, key);
+    if (values.length === 0) continue;
+    const known = group === undefined ? [] : values.filter((slug) => group.options.some((option) => option.slug === slug));
+    if (known.length !== values.length) result = setFacet(result, key, known);
+  }
+  return result;
 }

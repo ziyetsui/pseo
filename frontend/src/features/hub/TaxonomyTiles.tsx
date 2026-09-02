@@ -41,10 +41,12 @@ export function TaxonomyTiles({
   return (
     <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}>
       {visible.map((term) => {
+        // `href` is only ever non-null for a term that has a real page in this
+        // phase (currently: models with an L3 page) — checked directly rather
+        // than re-deriving "is this a model" from `term.axis`, which this
+        // component's own `axis` prop already pins for every item in `terms`.
         const href =
-          term.href !== null && term.axis === "model"
-            ? term.href
-            : queryHref(basePath, setFacet({}, axis, [term.slug]));
+          term.href !== null ? term.href : queryHref(basePath, setFacet({}, axis, [term.slug]));
         const share = max === 0 ? 0 : Math.round((term.count / max) * 100);
 
         return (

@@ -48,8 +48,31 @@ describe("L1 prompt hub page", () => {
       within(featuredSection).getByRole("heading", { name: featured?.title, level: 3 }),
     ).toBeInTheDocument();
 
+    // The featured prompt is excluded from the trending grid below it (finding
+    // #1: rendering it twice on the same page is a bug, not a feature), so the
+    // grid is one slot short of the full window whenever the fixture's
+    // featured prompt is itself trending — never backfilled with a stand-in.
+    const expectedTrendingCount = trending.items.filter((item) => item.id !== featured?.id).length;
     const panel = screen.getByRole("tabpanel");
-    expect(within(panel).getAllByRole("article").length).toBe(trending.items.length);
+    expect(within(panel).getAllByRole("article").length).toBe(expectedTrendingCount);
+  });
+
+  it("never renders the featured prompt a second time inside the trending list", async () => {
+    const repository = getContentRepository();
+    const [featured] = await repository.listFeatured("zh-CN", "l1");
+    expect(featured).toBeDefined();
+
+    const { container } = await renderPage();
+
+    expect(container.querySelector(`#featured-${featured?.id}`)).not.toBeNull();
+    expect(container.querySelector(`#trending-${featured?.id}`)).toBeNull();
+  });
+
+  it("notes in the featured section that the prompt below is excluded from the lists", async () => {
+    await renderPage();
+
+    const featuredSection = screen.getByRole("region", { name: "本期精选" });
+    expect(featuredSection.textContent).toContain("已排除");
   });
 
   it("links to at least one prompt detail page", async () => {

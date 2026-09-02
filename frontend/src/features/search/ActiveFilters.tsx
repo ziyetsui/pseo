@@ -9,7 +9,12 @@ import { queryHref, removeFilter } from "./query-links";
 export interface ActiveFiltersProps {
   /** Page the filters apply to. */
   basePath: string;
-  /** The query currently reflected in the URL. */
+  /**
+   * The query currently reflected in the URL, with any unknown facet values
+   * already stripped by the caller — every href built below (removal links,
+   * the reset link, the recovery link) is derived from this, so none of them
+   * can point back at an unrecoverable value.
+   */
   query: PromptQuery;
   /** Result count for this query, computed by the repository from real data. */
   total: number;
@@ -17,6 +22,22 @@ export interface ActiveFiltersProps {
   appliedFilters: readonly AppliedFilter[];
   /** Param names the page could not honour, from `parsePromptQuery`. */
   unknownParams?: readonly string[];
+  /**
+   * Facet values that do not exist in this page's vocabulary (e.g.
+   * `"model=does-not-exist"`), one entry per bad value. These are a different
+   * failure than an unknown param name: the key is real but the value isn't,
+   * so they get their own truthful copy instead of being folded into the
+   * "unknown params" message. The caller must already have stripped them out
+   * of `query`/`appliedFilters` before they are applied.
+   */
+  unknownValues?: readonly string[];
+  /**
+   * Whether to render the "共 N 条" total. Defaults to `true`. Set `false`
+   * when the caller already announces the result count elsewhere (e.g. a
+   * `PromptExplorer` that owns its own permanently-mounted live region), so
+   * the count is not announced twice.
+   */
+  showTotal?: boolean;
   className?: string;
 }
 
@@ -32,13 +53,19 @@ export function ActiveFilters({
   total,
   appliedFilters,
   unknownParams = [],
+  unknownValues = [],
+  showTotal = true,
   className,
 }: ActiveFiltersProps) {
+  const hasUnknown = unknownParams.length > 0 || unknownValues.length > 0;
+
   return (
     <div className={className ?? "flex flex-col gap-3"}>
-      <p role="status" className="text-sm font-bold">
-        共 {total} 条
-      </p>
+      {showTotal ? (
+        <p role="status" className="text-sm font-bold">
+          共 {total} 条
+        </p>
+      ) : null}
 
       {appliedFilters.length === 0 ? null : (
         <div className="flex flex-wrap items-center gap-2">
@@ -56,8 +83,12 @@ export function ActiveFilters({
               active
             />
           ))}
+          {/* Clears every facet/search filter but keeps `window` (which trending
+              tab is active, if any) — `query.window` is `undefined` for a
+              caller that never passed one, so this collapses to `basePath`
+              exactly as before. */}
           <Link
-            href={basePath}
+            href={queryHref(basePath, { window: query.window })}
             className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm font-bold underline"
           >
             清除全部筛选
@@ -65,11 +96,17 @@ export function ActiveFilters({
         </div>
       )}
 
-      {unknownParams.length === 0 ? null : (
+      {hasUnknown ? (
         <Panel tone="warning" className="flex flex-col items-start gap-2">
-          <p>
-            未知参数 {unknownParams.join("、")} 已被忽略，它们不属于本页的筛选条件。
-          </p>
+          {unknownParams.length === 0 ? null : (
+            <p>未知参数 {unknownParams.join("、")} 已被忽略，它们不属于本页的筛选条件。</p>
+          )}
+          {unknownValues.length === 0 ? null : (
+            <p>以下筛选值不存在，已被忽略：{unknownValues.join("、")}</p>
+          )}
+          {/* `query` already has the bad values/keys stripped, so this never
+              re-opens the same broken state — it recovers into whatever the
+              rest of the query still validly describes. */}
           <Link
             href={queryHref(basePath, query)}
             className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 font-bold underline"
@@ -77,7 +114,7 @@ export function ActiveFilters({
             使用可识别的筛选条件重新打开
           </Link>
         </Panel>
-      )}
+      ) : null}
     </div>
   );
 }

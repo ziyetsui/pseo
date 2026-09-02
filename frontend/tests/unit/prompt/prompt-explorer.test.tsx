@@ -131,8 +131,12 @@ function renderExplorer() {
   );
 }
 
+// Visibility (not existence) is what matters here: the wrapper around
+// `browse` carries no `data-testid` in production markup (finding #8), so
+// tests read the browse child's own visibility, which reflects the `hidden`
+// attribute on its ancestor exactly as reliably.
 function browseRegion() {
-  return screen.getByTestId("prompt-explorer-browse");
+  return screen.getByTestId("browse-body");
 }
 
 function resultCards() {
@@ -148,9 +152,16 @@ describe("PromptExplorer", () => {
     renderExplorer();
 
     expect(browseRegion()).toBeVisible();
-    expect(screen.getByTestId("browse-body")).toBeVisible();
     expect(screen.queryByRole("heading", { name: "筛选结果", level: 2 })).not.toBeInTheDocument();
     expect(resultCards()).toHaveLength(0);
+  });
+
+  it("mounts exactly one result-count live region, empty while browsing", () => {
+    renderExplorer();
+
+    const live = screen.getByRole("status");
+    expect(live).toHaveAttribute("aria-live", "polite");
+    expect(live).toHaveTextContent("");
   });
 
   it("still renders the search form and facet chips in the browse state", () => {
@@ -169,8 +180,16 @@ describe("PromptExplorer", () => {
     expect(screen.getByRole("heading", { name: "筛选结果", level: 2 })).toBeInTheDocument();
     expect(browseRegion()).not.toBeVisible();
 
-    const live = screen.getByText(/找到 1 条提示词/);
-    expect(live).toHaveAttribute("role", "status");
+    // Exactly one status region announces the RESULT COUNT — no second one
+    // from ActiveFilters duplicating that particular announcement. (Each
+    // result card has its own unrelated copy-feedback status region; this
+    // only counts ones that actually say how many results there are.)
+    const countRegions = screen
+      .getAllByRole("status")
+      .filter((node) => /找到 \d+ 条提示词/.test(node.textContent ?? ""));
+    expect(countRegions).toHaveLength(1);
+    const live = countRegions[0] as HTMLElement;
+    expect(live).toHaveTextContent("找到 1 条提示词");
     expect(live).toHaveAttribute("aria-live", "polite");
   });
 
@@ -231,11 +250,54 @@ describe("PromptExplorer", () => {
     expect(browseRegion()).toBeVisible();
   });
 
-  it("reports a facet value this data set has never heard of", () => {
+  it("strips an unknown facet value instead of applying it as a dead-end filter", () => {
     search = "model=does-not-exist";
     renderExplorer();
 
-    expect(screen.getByText(/未知参数/)).toHaveTextContent("model=does-not-exist");
+    // Truthful, distinct copy from the unknown-KEY warning: this is a real key
+    // with a value the vocabulary doesn't know, not an unrecognised param.
+    expect(screen.queryByText(/未知参数/)).not.toBeInTheDocument();
+    const warning = screen.getByText(/以下筛选值不存在，已被忽略/);
+    expect(warning).toHaveTextContent("model=does-not-exist");
+
+    // The bad value is stripped before filtering, so with no other real
+    // condition applied the count reflects the full unfiltered set.
+    expect(resultCards()).toHaveLength(3);
+
+    // The recovery link never re-opens the same broken URL: it omits the bad
+    // value entirely rather than linking back to the current query.
+    const recovery = screen.getByRole("link", { name: "使用可识别的筛选条件重新打开" });
+    const href = recovery.getAttribute("href");
+    expect(href).not.toBe(`${BASE}?model=does-not-exist`);
+    expect(href).not.toContain("does-not-exist");
+    expect(href).toBe(BASE);
+  });
+
+  it("keeps an unknown KEY and an unknown facet VALUE as separate, correctly-labelled warnings", () => {
+    search = "foo=1&model=does-not-exist";
+    renderExplorer();
+
+    expect(screen.getByText(/未知参数/)).toHaveTextContent("foo");
+    expect(screen.getByText(/以下筛选值不存在，已被忽略/)).toHaveTextContent("model=does-not-exist");
+  });
+
+  it("preserves the trending window in every outgoing filter href while a real filter is active", () => {
+    search = "window=7d&model=seedance";
+    renderExplorer();
+
+    const form = screen.getByRole("search");
+    const hiddenWindow = form.querySelector('input[type="hidden"][name="window"]');
+    expect(hiddenWindow).not.toBeNull();
+    expect(hiddenWindow).toHaveValue("7d");
+
+    const klingChip = screen.getByRole("link", { name: /Kling/ });
+    expect(klingChip.getAttribute("href")).toContain("window=7d");
+
+    const remove = screen.getByRole("link", { name: "移除筛选：模型：Seedance" });
+    expect(remove).toHaveAttribute("href", `${BASE}?window=7d`);
+
+    const reset = screen.getByRole("link", { name: "清除全部筛选" });
+    expect(reset).toHaveAttribute("href", `${BASE}?window=7d`);
   });
 
   it("recomputes facet counts against the other axes' current selection", () => {

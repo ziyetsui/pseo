@@ -69,6 +69,24 @@ describe("TaxonomyTiles", () => {
     expect(document.querySelector('[data-state="empty"]')).not.toBeNull();
   });
 
+  it("links to a term's own href whenever it has one, regardless of axis", () => {
+    // `href` is only ever populated for a term with a real page in this phase;
+    // trusting it directly (instead of also checking `axis === "model"`)
+    // means a future axis gaining a real page needs no change here.
+    render(
+      <TaxonomyTiles
+        basePath={BASE}
+        axis="useCase"
+        terms={[term({ href: "/zh-CN/prompts/use-cases/fashion" })]}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: /时尚/ })).toHaveAttribute(
+      "href",
+      "/zh-CN/prompts/use-cases/fashion",
+    );
+  });
+
   it("caps how many tiles it renders when asked", () => {
     render(
       <TaxonomyTiles

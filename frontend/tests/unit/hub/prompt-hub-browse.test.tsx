@@ -74,7 +74,24 @@ const creators: CreatorWithCount[] = [
   },
 ];
 
-function renderBrowse(featuredPrompt: PromptSummary | null = featured) {
+function manyCreators(count: number): CreatorWithCount[] {
+  return Array.from({ length: count }, (_, index) => ({
+    id: `creator:handle-${index}`,
+    handle: `handle_${index}`,
+    url: `https://x.com/handle_${index}`,
+    avatarUrl: null,
+    followers: null,
+    wireframeDeclaredPromptCount: null,
+    wireframeDeclaredLikes: null,
+    wireframeDeclaredBookmarks: null,
+    count: 1,
+  }));
+}
+
+function renderBrowse(
+  featuredPrompt: PromptSummary | null = featured,
+  creatorsOverride: readonly CreatorWithCount[] = creators,
+) {
   return render(
     <PromptHubBrowse
       locale="zh-CN"
@@ -101,7 +118,7 @@ function renderBrowse(featuredPrompt: PromptSummary | null = featured) {
       ]}
       styles={[taxonomy({ id: "style:cinematic", axis: "style", slug: "cinematic", labelZh: "电影感", count: 4 })]}
       collections={collections}
-      creators={creators}
+      creators={creatorsOverride}
     />,
   );
 }
@@ -159,5 +176,14 @@ describe("PromptHubBrowse", () => {
     for (const link of screen.getAllByRole("link")) {
       expect(link.getAttribute("href")).not.toBe("#");
     }
+  });
+
+  it("shows 7 creator tiles by default, matching the wireframe, while stating the real total", () => {
+    renderBrowse(featured, manyCreators(9));
+
+    const section = screen.getByRole("region", { name: "创作者" });
+    expect(within(section).getAllByRole("listitem")).toHaveLength(7);
+    // The section copy still states the honest total (9), not the 7 shown.
+    expect(section.textContent).toContain("9");
   });
 });

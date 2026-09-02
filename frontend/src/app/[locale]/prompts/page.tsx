@@ -6,7 +6,7 @@ import { getContentRepository } from "@/lib/content";
 import type { TrendingWindow } from "@/lib/content/types";
 import { isPublishedLocale } from "@/lib/i18n/config";
 import { localeHome, promptsHome } from "@/lib/i18n/routes";
-import { JsonLd, breadcrumbList, type BreadcrumbItem } from "@/lib/seo/json-ld";
+import { JsonLd, breadcrumbList, collectionPage, type BreadcrumbItem } from "@/lib/seo/json-ld";
 import { SITE_NAME, absoluteUrl, buildMetadata } from "@/lib/seo/site";
 import { PromptHubBrowse } from "@/features/hub/PromptHubBrowse";
 import { PromptExplorer } from "@/features/prompt/PromptExplorer";
@@ -67,7 +67,18 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
     ]);
 
   const featured = featuredList[0] ?? null;
-  const trendingAll = trending.find((panel) => panel.window === "all");
+  // The featured prompt already has its own copy target above; excluding its
+  // id from every trending window keeps it from being rendered a second time
+  // in the list below. Window sizes are left honest — a dropped slot is not
+  // backfilled with another prompt.
+  const trendingWithoutFeatured =
+    featured === null
+      ? trending
+      : trending.map((panel) => ({
+          ...panel,
+          items: panel.items.filter((item) => item.id !== featured.id),
+        }));
+  const trendingAll = trendingWithoutFeatured.find((panel) => panel.window === "all");
 
   const crumbs: BreadcrumbItem[] = [
     { name: "首页", path: localeHome(locale) },
@@ -75,41 +86,31 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
   ];
 
   // The ItemList mirrors exactly what the exported HTML shows above the fold:
-  // the featured prompt plus the default (all-time) trending panel.
+  // the featured prompt plus the default (all-time) trending panel (already
+  // excluding the featured id, so nothing is double-counted here either).
   const listed = [...(featured === null ? [] : [featured]), ...(trendingAll?.items ?? [])];
   const seen = new Set<string>();
-  const itemListElement = listed.flatMap((prompt) => {
+  const itemUrls = listed.flatMap((prompt) => {
     if (seen.has(prompt.id)) return [];
     seen.add(prompt.id);
-    return [
-      {
-        "@type": "ListItem",
-        position: seen.size,
-        url: absoluteUrl(prompt.href),
-        name: prompt.title,
-      },
-    ];
+    return [{ url: absoluteUrl(prompt.href), name: prompt.title }];
   });
 
-  const collectionPage = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: TITLE,
-    description: DESCRIPTION,
-    url: absoluteUrl(basePath),
+  const collectionPageJsonLd = {
+    ...collectionPage({
+      name: TITLE,
+      description: DESCRIPTION,
+      url: absoluteUrl(basePath),
+      itemUrls,
+    }),
     inLanguage: locale,
-    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl(localeHome(locale)) },
-    mainEntity: {
-      "@type": "ItemList",
-      numberOfItems: itemListElement.length,
-      itemListElement,
-    },
+    isPartOf: { "@type": "WebSite" as const, name: SITE_NAME, url: absoluteUrl(localeHome(locale)) },
   };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
       <JsonLd data={breadcrumbList(crumbs)} />
-      <JsonLd data={collectionPage} />
+      <JsonLd data={collectionPageJsonLd} />
 
       <Breadcrumb items={crumbs} />
 
@@ -136,7 +137,7 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
               basePath={basePath}
               observedAt={snapshot.observedAt}
               featured={featured}
-              trendingWindows={trending}
+              trendingWindows={trendingWithoutFeatured}
               useCases={useCases}
               techniques={techniques}
               models={models}
