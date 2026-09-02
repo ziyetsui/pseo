@@ -4,6 +4,11 @@ import { useId, useRef, type KeyboardEvent } from "react";
 
 import { Panel } from "@/components/ui/Panel";
 import { cx } from "@/components/ui/class-names";
+import {
+  elevationClassName,
+  pressClassName,
+  transitionClassName,
+} from "@/components/ui/hover";
 import type { PromptVariable } from "@/lib/content/types";
 
 import { usePromptCopyContext } from "./PromptCopyProvider";
@@ -87,9 +92,23 @@ export function VariableSelector({ variables }: VariableSelectorProps) {
                     onClick={() => select(variable.token, option)}
                     onKeyDown={(event) => handleKeyDown(event, variable, index)}
                     className={cx(
-                      "inline-flex min-h-11 min-w-11 items-center justify-center rounded-none border-2 border-foreground px-4 py-2 text-sm font-bold transition duration-200 ease-out",
+                      "inline-flex min-h-11 min-w-11 items-center justify-center rounded-none border-2 border-foreground px-4 py-2 text-sm font-bold",
+                      // `fill` rather than the bare `transition` utility: that
+                      // one expands to twenty-one properties including
+                      // `outline-color`, which fades the focus ring in from
+                      // the option's own text colour. An option changes its
+                      // fill and its ink and nothing else.
+                      transitionClassName("fill"),
+                      // No shadow to collapse and no room to travel on a 44px
+                      // pill, so the press previews the fill the tap produces —
+                      // inverted for the option that is already selected. On
+                      // touch this was the only control family on the page
+                      // with no feedback at all between tap and re-render.
+                      pressClassName("invert", { selected: checked }),
                       checked
-                        ? "bg-foreground text-surface shadow-hard-sm"
+                        ? elevationClassName("chrome", {
+                            className: "bg-foreground text-surface",
+                          })
                         : "bg-surface text-foreground hover:bg-muted",
                     )}
                   >

@@ -1,5 +1,5 @@
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Button, buttonClassName } from "@/components/ui/Button";
+import { buttonClassName } from "@/components/ui/Button";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
@@ -10,7 +10,12 @@ import { Panel } from "@/components/ui/Panel";
 import { Section } from "@/components/ui/Section";
 import { cx } from "@/components/ui/class-names";
 import { dividerClassName } from "@/components/ui/dividers";
-import { displayTitleClassName, microLabelClassName } from "@/components/ui/type-scale";
+import {
+  controlLabelClassName,
+  figureClassName,
+  microLabelClassName,
+  recordTitleClassName,
+} from "@/components/ui/type-scale";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
 import { queryHref } from "@/features/search/query-links";
 import {
@@ -62,10 +67,6 @@ const PLATFORM_LABEL = "Higgsfield";
 const SOURCE_ROW = dividerClassName("row", "top", {
   className: "flex items-baseline justify-between gap-4 py-2",
 });
-
-/** The generator the prototype's CTA card sends readers to. Not built yet. */
-const GENERATOR_NAME = "bo";
-const GENERATOR_DISABLED_REASON = "生成功能尚未接入";
 
 export interface PromptDetailViewProps {
   prompt: PromptDetail;
@@ -219,13 +220,6 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
       ? null
       : `${primaryToken} 同时驱动全文 ${primaryCount} 处描述 —— 换一个取值即可得到一整套自洽的新画面。`);
 
-  const generatorHint =
-    modelLabel === null
-      ? `在 ${GENERATOR_NAME} 中粘贴提示词${primaryNoun === null ? "" : `并替换${primaryNoun}名`}。`
-      : `在 ${GENERATOR_NAME} 中选择 ${modelLabel}，粘贴提示词${
-          primaryNoun === null ? "" : `并替换${primaryNoun}名`
-        }。`;
-
   /* ---------------------------------------------------------------- blocks */
 
   const showInputsBlock =
@@ -287,9 +281,7 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
             ))}
           </div>
 
-          <h1 className="mt-4 text-3xl font-black tracking-tighter uppercase md:text-5xl">
-            {prompt.title}
-          </h1>
+          <h1 className={recordTitleClassName("mt-4 uppercase")}>{prompt.title}</h1>
 
           {prompt.summary === null ? null : (
             <p className="mt-4 max-w-prose text-base font-medium whitespace-pre-line md:text-lg">
@@ -335,12 +327,18 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
               height={hero.height}
               label={hero.label}
               priority
-              className="border-2 border-foreground md:border-4"
+              className={dividerClassName("card", "all")}
             />
             {thumbnails.length === 0 ? null : (
               <ul className="mt-2 grid grid-cols-3 gap-2">
                 {thumbnails.map((item) => (
-                  <li key={item.id} className="border-2 border-foreground">
+                  // The frame belongs to the media, not to the `<li>`. When
+                  // both drew one, `MediaFrame`'s own compartment rule
+                  // (`border-b-2 md:border-b-4`) stacked on the item's
+                  // `border-2` and the thumbnail wore a 6px bottom edge against
+                  // 2px sides. One source per side, and it is the same
+                  // `card`-tier frame the hero above wears.
+                  <li key={item.id}>
                     <MediaFrame
                       src={item.src}
                       srcSet={item.srcSet}
@@ -349,6 +347,7 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
                       width={item.width}
                       height={item.height}
                       label={item.label}
+                      className={dividerClassName("card", "all")}
                     />
                   </li>
                 ))}
@@ -360,58 +359,69 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
 
       {/* ---------------------------------------------------------- prompt */}
       <Section id="prompt-source" title="提示词" description={promptDescription}>
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
-          <div>
-            {/* The prototype's payload box: a bar carrying the language +
-                counted variable total and the primary copy button, over the
-                verbatim prompt. */}
-            <div className="border-2 border-foreground md:border-4">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-foreground bg-muted px-4 py-2 md:border-b-4">
-                <span className="text-sm font-bold tracking-wider uppercase">
-                  {promptLanguageLabel(prompt.promptLanguage, prompt.promptText)}
-                </span>
+        {/*
+          One column, not two. The second column used to hold the 用这条提示词生成
+          card — a button that does nothing (`生成功能尚未接入`) wrapped around a
+          sentence that 使用步骤 restates verbatim in steps 01–03, four hundred
+          pixels below, charged to the width of the payload. `frontend/CLAUDE.md`
+          §6 lists 隐藏 first among the two honest treatments for a capability
+          the app does not have, and this one earns it: nothing is lost but the
+          width, and the width goes back to the prompt.
+        */}
+        <div>
+          {/* The prototype's payload box: a bar carrying the language +
+              counted variable total and the primary copy button, over the
+              verbatim prompt. `bg-surface` on the box, not only on the
+              `<pre>`, because the prompt is now set to a measure and the
+              paper has to run to the frame. */}
+          <div className={dividerClassName("card", "all", { className: "bg-surface" })}>
+            <div
+              className={dividerClassName("card", "bottom", {
+                className: "flex flex-wrap items-center justify-between gap-3 bg-muted px-4 py-2",
+              })}
+            >
+              <span className={controlLabelClassName()}>
+                {promptLanguageLabel(prompt.promptLanguage, prompt.promptText)}
+              </span>
+              {/*
+                Hidden below `md`, where `StickyCopyBar` is pinned ~185px
+                away and the two identical red 复制提示词 buttons were on
+                screen at once. `display: none` — so it is out of the
+                accessibility tree and out of the tab order there, rather
+                than a second invisible stop. Both paths copy the same
+                substituted text (`PromptCopyProvider`), so which one the
+                reader reaches is a layout question, never a content one.
+              */}
+              <span className="hidden md:inline-flex">
                 {hasVariables ? (
                   <PromptCopyButton />
                 ) : (
                   <CopyPromptButton text={prompt.promptText} targetId={PROMPT_TEXT_ID} />
                 )}
-              </div>
-              <PromptSourceText id={PROMPT_TEXT_ID} text={prompt.promptText} tokens={tokens} />
+              </span>
             </div>
-
-            {variableNote === null ? null : (
-              <p className="mt-4 text-sm font-medium">{variableNote}</p>
-            )}
-
-            {hasVariables || substitutable.length === 0 ? null : (
-              // Tokens with no curated option list: say so rather than let the
-              // reader paste `[PRODUCT NAME]` into a generator unchanged.
-              <Panel tone="warning" className="mt-4">
-                <p>{`本页未收录这些变量的候选取值，复制后请自行替换：${substitutable.join("、")}。`}</p>
-              </Panel>
-            )}
-
-            {reference.length === 0 ? null : (
-              // `@img1` is a reference-image placeholder, not text you can type
-              // in — "自行替换" would be misleading here.
-              <Panel tone="note" className="mt-4">
-                <p>{`需附上参考图：${reference.join("、")}。`}</p>
-              </Panel>
-            )}
+            <PromptSourceText id={PROMPT_TEXT_ID} text={prompt.promptText} tokens={tokens} />
           </div>
 
-          {/* The prototype's CTA card. The generator is not wired up in this
-              phase, so the button is `aria-disabled` with a visible reason
-              rather than a link to nowhere (constraint 12). */}
-          <aside aria-label="用这条提示词生成" className="border-2 border-foreground p-4">
-            <p className="font-bold">用这条提示词生成</p>
-            <p className="mt-2 text-sm font-medium">{generatorHint}</p>
-            <p className="mt-4">
-              <Button disabled disabledReason={GENERATOR_DISABLED_REASON}>
-                去 {GENERATOR_NAME} 生成 →
-              </Button>
-            </p>
-          </aside>
+          {variableNote === null ? null : (
+            <p className="mt-4 text-sm font-medium">{variableNote}</p>
+          )}
+
+          {hasVariables || substitutable.length === 0 ? null : (
+            // Tokens with no curated option list: say so rather than let the
+            // reader paste `[PRODUCT NAME]` into a generator unchanged.
+            <Panel tone="warning" className="mt-4">
+              <p>{`本页未收录这些变量的候选取值，复制后请自行替换：${substitutable.join("、")}。`}</p>
+            </Panel>
+          )}
+
+          {reference.length === 0 ? null : (
+            // `@img1` is a reference-image placeholder, not text you can type
+            // in — "自行替换" would be misleading here.
+            <Panel tone="note" className="mt-4">
+              <p>{`需附上参考图：${reference.join("、")}。`}</p>
+            </Panel>
+          )}
         </div>
       </Section>
 
@@ -420,13 +430,7 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
         <Section id="prompt-steps" title="使用步骤">
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {prompt.steps.map((step) => (
-              <li
-                key={step.order}
-                className={dividerClassName("card", "top", {
-                  desktopThick: true,
-                  className: "pt-3",
-                })}
-              >
+              <li key={step.order} className={dividerClassName("card", "top", { className: "pt-3" })}>
                 <p className={microLabelClassName("font-mono tabular-nums")}>
                   {step.order.toString().padStart(2, "0")}
                 </p>
@@ -562,7 +566,7 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
             <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {metrics.map((metric) => (
                 <li key={metric.label} className="min-w-0 text-center">
-                  <p className={displayTitleClassName("font-mono tabular-nums")}>
+                  <p className={figureClassName("font-mono")}>
                     {metric.value === null ? "—" : formatCount(metric.value)}
                     {metric.value === null ? <span className="sr-only">未收录</span> : null}
                   </p>

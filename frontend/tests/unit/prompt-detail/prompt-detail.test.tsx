@@ -121,6 +121,47 @@ describe("PromptDetailView — golden record", () => {
     expect(within(bar as HTMLElement).getByRole("button", { name: /复制提示词/ })).toBeInTheDocument();
   });
 
+  it("suppresses the inline payload copy button below md, where the bar covers it", () => {
+    renderGolden();
+    const bar = screen.getByText(/^英文 · \d+ 处变量$/).parentElement as HTMLElement;
+    const inline = within(bar).getByRole("button", { name: /复制提示词/ });
+    // Two identical red 复制提示词 buttons used to sit 185px apart in one
+    // mobile viewport — this one and `StickyCopyBar`'s. `display: none` below
+    // `md` (not `invisible`, not `opacity-0`) keeps it out of the tab order
+    // and out of the accessibility tree at the widths where the bar is the
+    // action, and hands it back from `md` up where the bar is far away.
+    const gate = inline.closest("span.hidden") as HTMLElement | null;
+    expect(gate).not.toBeNull();
+    expect((gate as HTMLElement).className).toContain("md:inline-flex");
+  });
+
+  it("keeps a copy action on screen at every width, both wired to the same text", () => {
+    renderGolden();
+    const bar = screen.getByRole("complementary", { name: /快捷操作/ });
+    // The sticky bar is no longer `md:hidden`, so the ~2,650px of desktop page
+    // below the payload is no longer without a copy action.
+    expect(bar.className).not.toContain("md:hidden");
+    // Both buttons are fed by `PromptCopyProvider`, so the page can never
+    // offer two disagreeing strings.
+    expect(screen.getAllByRole("button", { name: /复制提示词/ })).toHaveLength(2);
+  });
+
+  it("draws one frame per thumbnail, not a doubled bottom edge", () => {
+    const { container } = renderGolden();
+    const items = container.querySelectorAll("header ul li");
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      // The `<li>` used to carry `border-2` around a `MediaFrame` that already
+      // draws its own `border-b-2 md:border-b-4` compartment rule, so the
+      // thumbnail wore a 6px bottom edge against 2px sides. The media owns the
+      // frame now, and it is the same `card`-tier frame as the hero.
+      expect(item.className).not.toMatch(/border/);
+      const frame = item.firstElementChild as HTMLElement;
+      expect(frame.className).toContain("border-2");
+      expect(frame.className).toContain("md:border-4");
+    }
+  });
+
   it("renders the prompt verbatim in a selectable <pre> with the tokens marked", () => {
     const { container } = renderGolden();
     const pre = container.querySelector("pre#prompt-text");
@@ -132,11 +173,22 @@ describe("PromptDetailView — golden record", () => {
     for (const mark of marks) expect(mark.textContent).toBe(TOKEN);
   });
 
-  it("gives the scrollable prompt <pre> keyboard access and a name", () => {
+  it("renders the prompt at full height — no cap, no nested scroll region", () => {
     const { container } = renderGolden();
-    const pre = container.querySelector("pre#prompt-text");
-    // Same axe `scrollable-region-focusable` contract as the card `<pre>`.
-    expect(pre).toHaveAttribute("tabindex", "0");
+    const pre = container.querySelector("pre#prompt-text") as HTMLElement;
+    // The file's own prop doc promises "rendered in full, never truncated";
+    // `max-h-96 overflow-auto` broke that promise 26 lines later, delivering
+    // the one artifact the page exists for through a 384px letterbox with no
+    // fade, no rule and no line count to say there was more.
+    expect(pre.className).not.toMatch(/max-h-/);
+    expect(pre.className).not.toMatch(/overflow-(auto|scroll|y-auto)/);
+    // What IS bounded is the measure — and `ch` is exact because the block is
+    // monospace.
+    expect(pre.className).toContain("max-w-[85ch]");
+    // Still a named region for assistive tech, but no longer a tab stop: the
+    // `tabIndex` existed only for axe's `scrollable-region-focusable` rule,
+    // and nothing here scrolls in either axis any more.
+    expect(pre).not.toHaveAttribute("tabindex");
     expect(pre).toHaveAttribute("role", "group");
     expect(pre).toHaveAttribute("aria-label", "提示词原文");
   });
@@ -172,15 +224,19 @@ describe("PromptDetailView — golden record", () => {
     ).toBeInTheDocument();
   });
 
-  it("keeps the generator CTA as text with a disabled button, never a fake link", () => {
+  it("does not render the no-behaviour generator CTA at all", () => {
     renderGolden();
-    const card = screen.getByRole("complementary", { name: "用这条提示词生成" });
-    expect(within(card).getByText("在 bo 中选择 GPT Image 2，粘贴提示词并替换国家名。"))
-      .toBeInTheDocument();
-    const cta = within(card).getByRole("button", { name: /去 bo 生成/ });
-    expect(cta).toHaveAttribute("aria-disabled", "true");
-    expect(within(card).getByText("生成功能尚未接入")).toBeInTheDocument();
-    expect(within(card).queryByRole("link")).not.toBeInTheDocument();
+    // `frontend/CLAUDE.md` §6 lists 隐藏 FIRST among the two honest treatments
+    // for a capability the app does not have. This one earns it: the button
+    // did nothing, and its one explanatory sentence is already steps 01–03 of
+    // 使用步骤 directly below — so hiding it costs no information and gives the
+    // prompt back the third of the column the aside was spending.
+    expect(screen.queryByRole("complementary", { name: "用这条提示词生成" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /去 bo 生成/ })).not.toBeInTheDocument();
+    expect(screen.queryByText("生成功能尚未接入")).not.toBeInTheDocument();
+    // The sentence it carried survives, verbatim, where it always also lived.
+    const steps = screen.getByRole("region", { name: "使用步骤" });
+    expect(within(steps).getByText(/GPT Image 2/)).toBeInTheDocument();
   });
 
   it("renders all four use steps, numbered 01–04, in an ordered list", () => {
@@ -506,8 +562,12 @@ describe("PromptDetailView — the shared card-system tiers", () => {
     const caption = within(section).getByText("点赞");
     expect(caption.className).toContain("tracking-micro");
     const figure = caption.previousElementSibling as HTMLElement;
-    expect(figure.className).toContain("text-2xl");
+    // The FIGURE rung, not the poster-title rung: a standalone numeral, so it
+    // takes `leading-none` (digits do not descend) and carries no line clamp.
+    expect(figure.className).toContain("text-3xl");
     expect(figure.className).toContain("font-black");
+    expect(figure.className).toContain("tabular-nums");
+    expect(figure.className).not.toContain("line-clamp");
   });
 
   it("grows the underline on the byline link instead of painting a standing one", () => {
