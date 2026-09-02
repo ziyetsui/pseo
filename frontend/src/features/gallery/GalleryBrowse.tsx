@@ -12,7 +12,13 @@ import { queryHref, setFacet } from "@/features/search/query-links";
 import { ContentTypeTiles } from "./ContentTypeTiles";
 import { ModelTiles } from "./ModelTiles";
 import { PromptRail } from "./PromptRail";
-import { IMAGE_CONTENT_TYPE_SLUG, promptsForTerm, railMoreLabel, termLabel } from "./image-prompts";
+import {
+  IMAGE_CONTENT_TYPE_SLUG,
+  planGalleryRails,
+  promptsForTerm,
+  railMoreLabel,
+  termLabel,
+} from "./image-prompts";
 
 export interface GalleryBrowseProps {
   locale: Locale;
@@ -58,6 +64,12 @@ interface RelatedItem {
  * order: 精选, 按模型浏览 (tiles + one rail per model), the Person / portrait
  * rail, 其他类型, 相关 and the closing call to action.
  *
+ * Each prompt gets exactly one card on this page. Which rail that card belongs
+ * to is decided by `planGalleryRails` — see its own note for why, and for why
+ * the numbers printed beside the rails do not move when a card does. Every
+ * count below (`查看全部 N 条`, the subject band's `N 条`) is still counted from
+ * the whole term.
+ *
  * It is server-rendered and handed to `PromptExplorer` as its `browse` slot, so
  * a crawler or a reader without JavaScript receives all of it.
  */
@@ -74,17 +86,22 @@ export function GalleryBrowse({
   relatedUseCases,
   railLimit = 3,
 }: GalleryBrowseProps) {
-  // Only a model that owns a real page can offer a "see all" destination —
-  // already guaranteed by `topRailedModels`, but checked again here so this
-  // component cannot render a rail with a broken link if that ever changes.
-  const modelRails = railedModels.flatMap((model) =>
-    model.href === null
-      ? []
-      : [{ model, href: model.href, prompts: promptsForTerm(imagePrompts, "model", model.slug) }],
-  );
+  const rails = planGalleryRails({
+    featured,
+    imagePrompts,
+    railedModels,
+    portraitSubject,
+    railLimit,
+  });
+  const modelRails = rails.modelRails;
 
-  const portraitPrompts =
-    portraitSubject === null ? [] : promptsForTerm(imagePrompts, "subject", portraitSubject.slug);
+  // The subject band's `N 条` counts the whole term, not the three cards drawn
+  // under it — the label says how many portrait prompts exist and the link
+  // beside it lists all of them.
+  const portraitTotal =
+    portraitSubject === null
+      ? 0
+      : promptsForTerm(imagePrompts, "subject", portraitSubject.slug).length;
   const portraitHref =
     portraitSubject === null
       ? null
@@ -137,7 +154,7 @@ export function GalleryBrowse({
       <Section id="gallery-featured" title="精选">
         <PromptRail
           label="精选图片提示词，横向滚动列表"
-          prompts={featured}
+          prompts={rails.featured}
           locale={locale}
           idPrefix="featured"
           priorityFirst
@@ -164,13 +181,15 @@ export function GalleryBrowse({
                   </ButtonLink>
                 </div>
                 <div className="mt-4">
+                  {/* `prompts` is already this rail's exact set: capped at
+                      `railLimit` and free of anything shown above. It is never
+                      empty — a rail with nothing left to show is not in
+                      `modelRails` at all. */}
                   <PromptRail
                     label={`${label} 图片提示词`}
                     prompts={prompts}
                     locale={locale}
                     idPrefix={`model-${model.slug}`}
-                    limit={railLimit}
-                    emptyMessage={`${label} 还没有收录图片提示词。`}
                   />
                 </div>
               </div>
@@ -183,17 +202,16 @@ export function GalleryBrowse({
         id="gallery-portrait"
         title={portraitSubject === null ? "Person / portrait" : portraitSubject.label}
         moreHref={portraitHref ?? undefined}
-        moreLabel={`${portraitPrompts.length} 条`}
+        moreLabel={`${portraitTotal} 条`}
       >
         {portraitSubject === null || portraitHref === null ? (
           <StateBlock variant="empty" message="当前收录里还没有人物主体的标注。" />
         ) : (
           <PromptRail
             label={`${portraitSubject.label} 图片提示词`}
-            prompts={portraitPrompts}
+            prompts={rails.portrait}
             locale={locale}
             idPrefix={`subject-${portraitSubject.slug}`}
-            limit={railLimit}
             emptyMessage="当前收录里还没有人物主体的图片提示词。"
           />
         )}

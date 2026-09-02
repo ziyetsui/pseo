@@ -50,18 +50,20 @@ describe("L1 prompt hub page", () => {
     expect(screen.queryByText(/数量与热度均按当前收录内容计算/)).toBeNull();
   });
 
-  it("renders the six in-page anchors above the hero", async () => {
-    await renderPage();
+  it("renders the in-page anchors above the hero, one per surviving band", async () => {
+    const { container } = await renderPage();
 
     const anchorNav = screen.getByRole("navigation", { name: "页内导航" });
     expect(within(anchorNav).getAllByRole("link").map((node) => node.getAttribute("href"))).toEqual([
-      "#tasks",
-      "#camera",
       "#models",
-      "#styles",
       "#collections",
       "#creators",
     ]);
+    // `check:static` rule 3: every fragment must resolve in the same document.
+    for (const link of within(anchorNav).getAllByRole("link")) {
+      const id = (link.getAttribute("href") ?? "").slice(1);
+      expect(container.querySelector(`#${id}`)).not.toBeNull();
+    }
   });
 
   it("renders no breadcrumb and no BreadcrumbList payload", async () => {
@@ -133,22 +135,33 @@ describe("L1 prompt hub page", () => {
     expect(
       within(screen.getByRole("region", { name: "创作者" })).getAllByRole("listitem"),
     ).toHaveLength(7);
-
-    for (const name of ["按任务浏览", "镜头与运动", "按模型浏览", "按风格浏览"]) {
-      const tiles = within(screen.getByRole("region", { name })).getAllByRole("listitem");
-      expect(tiles.length).toBeGreaterThan(0);
-      expect(tiles.length).toBeLessThanOrEqual(8);
-    }
   });
 
-  it("states a measured camera-language share, never the prototype's 7 成", async () => {
-    const { items, total } = await getContentRepository().listPrompts("zh-CN");
-    const withCameraLanguage = items.filter((prompt) => prompt.techniques.length > 0).length;
-    const tenths = Math.round((withCameraLanguage / total) * 10);
+  it("drops the three bands that repeated the facet chip rows", async () => {
     await renderPage();
 
-    const section = screen.getByRole("region", { name: "镜头与运动" });
-    expect(section.textContent).toContain(`${tenths} 成提示词带镜头语言`);
+    // Their 18 tiles carried the same values, the same counts and the same
+    // `?useCase=` / `?technique=` / `?style=` hrefs as the chips ~300px above,
+    // which filter in place instead of navigating away. The chip rows are
+    // asserted above ("lays out the prototype's four facet rows in order") and
+    // are unchanged, so nothing was lost with the bands.
+    for (const name of ["按任务浏览", "镜头与运动", "按风格浏览"]) {
+      expect(screen.queryByRole("region", { name })).toBeNull();
+    }
+    expect(screen.queryByText(/成提示词带镜头语言/)).toBeNull();
+  });
+
+  it("gives every model with prompts a tile, so no model page hides behind a cap", async () => {
+    const models = await getContentRepository().listTaxonomies("zh-CN", "model");
+    await renderPage();
+
+    const section = screen.getByRole("region", { name: "按模型浏览" });
+    const links = within(section).getAllByRole("link");
+    expect(models.length).toBeGreaterThan(8);
+    expect(links).toHaveLength(models.length);
+    expect(links.map((node) => node.textContent)).toEqual(
+      expect.arrayContaining(models.map((model) => expect.stringContaining(model.label))),
+    );
   });
 
   it("links the closing CTA at the whole-library result state", async () => {

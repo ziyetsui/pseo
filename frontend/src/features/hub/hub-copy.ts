@@ -5,10 +5,11 @@ import { queryHref } from "@/features/search/query-links";
 /**
  * Hub copy and links whose wording depends on the current data.
  *
- * The prototype states figures it measured on its own (982-prompt) library —
- * `7 成提示词带镜头语言`. Those numbers may never be rendered as facts about
- * this data set (global constraint 3), so the sentence keeps its shape and
- * recomputes the number from the prompts actually on the page.
+ * This module used to also hold the 镜头与运动 band's measured sentence
+ * (`N 成提示词带镜头语言——…`) and the two functions behind it. That band was a
+ * duplicate of the 镜头·技法 chip row and has been deleted; the sentence was
+ * rendered by nothing else, and no other surface displays that share, so it
+ * was removed rather than left as an unused export.
  */
 
 /**
@@ -46,29 +47,4 @@ export function allPromptsCollection(prompts: readonly PromptSummary[]): {
     title: ALL_PROMPTS_COLLECTION_TITLE,
     promptIds: prompts.map((prompt) => prompt.id),
   };
-}
-
-/** How many prompts carry at least one technique (camera-language) term. */
-export function countWithCameraLanguage(prompts: readonly PromptSummary[]): number {
-  return prompts.filter((prompt) => prompt.techniques.length > 0).length;
-}
-
-/**
- * The share, in 成 (tenths), rounded to the nearest tenth. `null` below one
- * tenth — the prototype's sentence leads with the figure, and "0 成" would be
- * both wrong-looking and useless, so the figure is dropped instead.
- */
-export function cameraShareTenths(withCameraLanguage: number, total: number): number | null {
-  if (total <= 0) return null;
-  const tenths = Math.round((withCameraLanguage / total) * 10);
-  return tenths < 1 ? null : tenths;
-}
-
-/** 镜头与运动 sec-p, prototype wording with a measured share. */
-export function cameraSectionDescription(tenths: number | null): string {
-  // Prototype wording exactly (`7 成提示词带镜头语言——`), with the figure
-  // measured here. `cameraShareTenths` already rounds to the nearest tenth, so
-  // no hedging word is added on top of it.
-  const lead = tenths === null ? "提示词里的镜头语言" : `${tenths} 成提示词带镜头语言`;
-  return `${lead}——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。`;
 }

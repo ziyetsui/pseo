@@ -9,11 +9,7 @@ import { JsonLd, collectionPage } from "@/lib/seo/json-ld";
 import { SITE_NAME, absoluteUrl, buildMetadata } from "@/lib/seo/site";
 import { AnchorNav } from "@/features/hub/AnchorNav";
 import { PromptHubBrowse } from "@/features/hub/PromptHubBrowse";
-import {
-  allPromptsCollection,
-  cameraShareTenths,
-  countWithCameraLanguage,
-} from "@/features/hub/hub-copy";
+import { allPromptsCollection } from "@/features/hub/hub-copy";
 import {
   ExplorerFacets,
   ExplorerNotices,
@@ -61,7 +57,7 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
   const repository = await getServerContentRepository();
   const basePath = promptsHome(locale);
 
-  const [snapshot, list, featuredList, trending, useCases, techniques, models, styles, collections, creators] =
+  const [snapshot, list, featuredList, trending, models, collections, creators] =
     await Promise.all([
       repository.getSnapshot(),
       repository.listPrompts(locale),
@@ -78,10 +74,10 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
           };
         }),
       ),
-      repository.listTaxonomies(locale, "useCase"),
-      repository.listTaxonomies(locale, "technique"),
+      // Only the model axis is fetched: 按模型浏览 is the one taxonomy band
+      // left on this page. The other three axes reach the reader as facet
+      // chips, whose vocabulary and counts come from `list.facets`.
       repository.listTaxonomies(locale, "model"),
-      repository.listTaxonomies(locale, "style"),
       repository.listCollections(locale),
       repository.listCreators(locale),
     ]);
@@ -177,16 +173,9 @@ export default async function PromptsPage({ params }: { params: Promise<{ locale
                   observedAt={snapshot.observedAt}
                   featured={featured}
                   trendingWindows={trending}
-                  useCases={useCases}
-                  techniques={techniques}
                   models={models}
-                  styles={styles}
                   collections={collections}
                   creators={creators}
-                  cameraShareTenths={cameraShareTenths(
-                    countWithCameraLanguage(list.items),
-                    list.total,
-                  )}
                 />
               }
             />

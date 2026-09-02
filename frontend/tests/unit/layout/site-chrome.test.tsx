@@ -91,23 +91,20 @@ describe("site brand and primary nav", () => {
 });
 
 describe("AnchorNav", () => {
-  it("renders the prototype's six in-page anchors", () => {
+  it("links only the browse sections that still exist", () => {
     render(<AnchorNav />);
 
-    expect(HUB_ANCHORS.map((item) => item.label)).toEqual([
-      "任务",
-      "镜头",
-      "模型",
-      "风格",
-      "合集",
-      "创作者",
-    ]);
-    expect(screen.getByRole("link", { name: "任务" })).toHaveAttribute("href", "#tasks");
-    expect(screen.getByRole("link", { name: "镜头" })).toHaveAttribute("href", "#camera");
+    // 任务 / 镜头 / 风格 pointed at bands that were a second printing of the
+    // facet chip rows and have been deleted, so the anchors went with them
+    // rather than dangling — `check:static` rule 3 requires every fragment to
+    // resolve in the shipped HTML.
+    expect(HUB_ANCHORS.map((item) => item.label)).toEqual(["模型", "合集", "创作者"]);
     expect(screen.getByRole("link", { name: "模型" })).toHaveAttribute("href", "#models");
-    expect(screen.getByRole("link", { name: "风格" })).toHaveAttribute("href", "#styles");
     expect(screen.getByRole("link", { name: "合集" })).toHaveAttribute("href", "#collections");
     expect(screen.getByRole("link", { name: "创作者" })).toHaveAttribute("href", "#creators");
+    for (const label of ["任务", "镜头", "风格"]) {
+      expect(screen.queryByRole("link", { name: label })).toBeNull();
+    }
   });
 });
 

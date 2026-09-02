@@ -98,7 +98,7 @@ describe("PromptDetailView — golden record", () => {
       "使用步骤",
       "换个国家试试",
       "来源",
-      "输入 / 参数",
+      "输入",
       "相关",
     ]);
   });
@@ -337,14 +337,27 @@ describe("PromptDetailView — golden record", () => {
     ).toBeInTheDocument();
   });
 
-  it("keeps the required inputs and the baked-in parameters in one 输入 / 参数 block", () => {
+  it("keeps the required inputs, and prints the baked-in parameters nowhere but the prompt", () => {
     renderGolden();
-    const section = screen.getByRole("region", { name: "输入 / 参数" });
+    const section = screen.getByRole("region", { name: "输入" });
     for (const input of golden.requiredInputs) {
       expect(within(section).getByText(input)).toBeInTheDocument();
     }
+
+    // The 参数 sub-block is gone, and with it the section's `/ 参数` title.
+    expect(screen.queryByRole("region", { name: "输入 / 参数" })).toBeNull();
+    expect(within(section).queryByRole("heading", { level: 3, name: "参数" })).toBeNull();
+    expect(section.textContent).not.toContain("提示词尾部已经写死的渲染参数，复制时不要删。");
+
+    // Every value it printed is a verbatim substring of the prompt block above,
+    // which this page renders in full and unclipped — so the reader still meets
+    // all four, once, where they actually live.
+    expect(golden.parameters.length).toBeGreaterThan(0);
+    const promptBlock = screen.getByRole("region", { name: "提示词" });
     for (const parameter of golden.parameters) {
-      expect(within(section).getByText(parameter.value)).toBeInTheDocument();
+      expect(within(section).queryByText(parameter.value)).toBeNull();
+      expect(golden.promptText).toContain(parameter.value);
+      expect(promptBlock.textContent).toContain(parameter.value);
     }
   });
 
@@ -555,7 +568,7 @@ describe("PromptDetailView — the shared card-system tiers", () => {
 
   it("sets every block label in the shared micro-label tier", () => {
     renderGolden();
-    for (const label of ["原帖信息", "互动数据", "必需输入", "参数", "同模型"]) {
+    for (const label of ["原帖信息", "互动数据", "必需输入", "同模型"]) {
       expect(screen.getByRole("heading", { level: 3, name: label }).className).toContain(
         "tracking-micro",
       );

@@ -4,13 +4,15 @@ import type { QueryFacetKey } from "@/lib/content/types";
 /**
  * One accent per browse band.
  *
- * The hub runs six consecutive tile grids — 按任务 / 镜头与运动 / 按模型 /
- * 按风格 / 精选合集 / 创作者 — that used to be identical: same cell, same red
- * hairline, same 14px number. Scrolling read as one picture repeated forty
- * times. Giving each band its own accent turns that repetition into rhythm.
+ * The hub used to run six consecutive tile grids that were identical: same
+ * cell, same red hairline, same 14px number. Scrolling read as one picture
+ * repeated forty times. Giving each band its own accent turns that repetition
+ * into rhythm. Three of those grids have since been deleted as duplicates of
+ * the chip rows above them; the three that remain — 按模型浏览 / 精选合集 /
+ * 创作者 — still take one accent each.
  *
- * The four taxonomy bands take their accent from the shared axis map, so a
- * 任务 band and a 任务 chip row are always the same colour. 精选合集 and
+ * A band that IS a taxonomy axis takes its accent from the shared axis map, so
+ * a 模型 band and a 模型 chip row are always the same colour. 精选合集 and
  * 创作者 are not taxonomy axes, so they borrow two of the same four accents,
  * placed so no two neighbouring bands match.
  *
@@ -56,12 +58,16 @@ export function axisSectionAccent(axis: QueryFacetKey): SectionAccent {
   return TAXONOMY_ACCENT[axis];
 }
 
-/** The hub's six browse bands, in the prototype's order. Keys match `HUB_SECTION_IDS`. */
+/**
+ * The hub's three browse bands, in page order. Keys match `HUB_SECTION_IDS`.
+ *
+ * 任务 / 镜头 / 风格 are absent because their bands are: those axes now appear
+ * on the hub only as facet chips, which read the same `TAXONOMY_ACCENT` map
+ * through `features/search`'s `axisAccentClassName`, so the axis-to-colour
+ * agreement this file exists to enforce is unchanged.
+ */
 export const HUB_SECTION_ACCENTS = {
-  tasks: TAXONOMY_ACCENT.useCase,
-  camera: TAXONOMY_ACCENT.technique,
   models: TAXONOMY_ACCENT.model,
-  styles: TAXONOMY_ACCENT.style,
   collections: "blue",
   creators: "yellow",
 } as const satisfies Record<string, SectionAccent>;

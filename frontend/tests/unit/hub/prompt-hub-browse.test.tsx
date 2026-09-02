@@ -20,15 +20,22 @@ const { PromptHubBrowse } = await import("@/features/hub/PromptHubBrowse");
 const BASE = "/zh-CN/prompts";
 const OBSERVED_AT = "2026-08-20";
 
-/** Section id → the `<h2>` that labels its region, for `getByRole("region")`. */
+/**
+ * Section id → the `<h2>` that labels its region, for `getByRole("region")`.
+ *
+ * Three bands are absent on purpose: 按任务浏览 / 镜头与运动 / 按风格浏览
+ * printed the same 18 taxonomy values, with the same counts, pointing at the
+ * same `?useCase=` / `?technique=` / `?style=` URLs as the facet chip rows
+ * above them, and have been deleted.
+ */
 const HEADING_BY_ID: Record<string, string> = {
-  tasks: "按任务浏览",
-  camera: "镜头与运动",
   models: "按模型浏览",
-  styles: "按风格浏览",
   collections: "精选合集",
   creators: "创作者",
 };
+
+/** The band headings this component must NOT render any more. */
+const DELETED_BANDS = ["按任务浏览", "镜头与运动", "按风格浏览"];
 
 function taxonomy(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
   return {
@@ -109,6 +116,19 @@ function manyCreators(count: number): CreatorWithCount[] {
   }));
 }
 
+/** Nine models, as the fixture has — one more than the old `taxonomyLimit`. */
+const models: TaxonomyWithCount[] = Array.from({ length: 9 }, (_, index) =>
+  taxonomy({
+    id: `model:m${index}`,
+    axis: "model",
+    slug: `m${index}`,
+    label: `Model ${index}`,
+    labelZh: null,
+    href: `/zh-CN/prompts/models/m${index}`,
+    count: 9 - index,
+  }),
+);
+
 function renderBrowse(
   featuredPrompt: PromptSummary | null = featured,
   creatorsOverride: readonly CreatorWithCount[] = creators,
@@ -122,25 +142,9 @@ function renderBrowse(
       trendingWindows={[
         { window: "all", label: "全部", items: [trendingItem], note: null, windowStart: null },
       ]}
-      useCases={[taxonomy({})]}
-      techniques={[
-        taxonomy({ id: "technique:camera", axis: "technique", slug: "camera", labelZh: "镜头运动", count: 5 }),
-      ]}
-      models={[
-        taxonomy({
-          id: "model:nano-banana-pro",
-          axis: "model",
-          slug: "nano-banana-pro",
-          label: "Nano Banana Pro",
-          labelZh: null,
-          href: "/zh-CN/prompts/models/nano-banana-pro",
-          count: 6,
-        }),
-      ]}
-      styles={[taxonomy({ id: "style:cinematic", axis: "style", slug: "cinematic", labelZh: "电影感", count: 4 })]}
+      models={models}
       collections={collections}
       creators={creatorsOverride}
-      cameraShareTenths={8}
     />,
   );
 }
@@ -153,35 +157,52 @@ describe("PromptHubBrowse", () => {
     expect(headings).toEqual([
       "本期精选",
       "热门提示词",
-      "按任务浏览",
-      "镜头与运动",
       "按模型浏览",
-      "按风格浏览",
       "精选合集",
       "创作者",
       "找到合适的提示词，直接开始",
     ]);
   });
 
-  it("gives the six anchored sections the ids AnchorNav links to", () => {
+  it("no longer renders the three bands the chip rows already carried", () => {
     const { container } = renderBrowse();
 
-    for (const id of ["tasks", "camera", "models", "styles", "collections", "creators"]) {
+    for (const heading of DELETED_BANDS) {
+      expect(screen.queryByRole("heading", { name: heading })).toBeNull();
+    }
+    for (const id of ["tasks", "camera", "styles"]) {
+      expect(container.querySelector(`#${id}`)).toBeNull();
+    }
+    // Their descriptions go with them; nothing else printed either sentence.
+    expect(screen.queryByText("从要做的事情出发：广告、时尚、美妆、餐饮……")).toBeNull();
+    expect(screen.queryByText(/成提示词带镜头语言/)).toBeNull();
+  });
+
+  it("gives the three anchored sections the ids AnchorNav links to", () => {
+    const { container } = renderBrowse();
+
+    for (const id of Object.keys(HEADING_BY_ID)) {
       expect(container.querySelector(`#${id}`)).not.toBeNull();
     }
   });
 
-  it("quotes the prototype's section descriptions, with the camera share measured", () => {
+  it("lists EVERY model, so no model page is reachable only from a chip", () => {
     renderBrowse();
 
-    expect(
-      screen.getByText("从要做的事情出发：广告、时尚、美妆、餐饮……"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
-      ),
-    ).toBeInTheDocument();
+    // 按模型浏览 is the hub's only route to `/prompts/models/*`. It used to be
+    // capped at 8 tiles, which silently hid the 9th model (Veo) even though its
+    // page exists and the chip row links it. There is no cap any more.
+    const section = screen.getByRole("region", { name: "按模型浏览" });
+    const links = within(section).getAllByRole("link");
+    expect(links).toHaveLength(models.length);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual(
+      models.map((model) => model.href),
+    );
+  });
+
+  it("quotes the prototype's section descriptions", () => {
+    renderBrowse();
+
     expect(screen.getByText("按主题整理的提示词合集。")).toBeInTheDocument();
     expect(screen.getByText("这些提示词的原作者，点击访问其 X 主页。")).toBeInTheDocument();
     expect(screen.getByText("全部提示词免费复制，注明原作者与出处。")).toBeInTheDocument();
@@ -190,7 +211,7 @@ describe("PromptHubBrowse", () => {
   it("adds no description to the sections the prototype leaves bare", () => {
     renderBrowse();
 
-    for (const name of ["本期精选", "热门提示词", "按模型浏览", "按风格浏览"]) {
+    for (const name of ["本期精选", "热门提示词", "按模型浏览"]) {
       const section = screen.getByRole("region", { name });
       expect(section.textContent).not.toContain("已排除");
       expect(section.textContent).not.toContain("已建成模型页");
@@ -238,13 +259,13 @@ describe("PromptHubBrowse", () => {
     expect(section.textContent).toContain("3 条");
   });
 
-  it("gives each browse band its own accent so the six stop reading as one grid", () => {
+  it("gives each browse band its own accent so the three stop reading as one grid", () => {
     renderBrowse();
 
-    // In the prototype's band order: 按任务 / 镜头与运动 / 按模型 / 按风格 / 精选合集 / 创作者.
+    // In page order: 按模型浏览 / 精选合集 / 创作者.
     const accents = Object.values(HEADING_BY_ID).map((name) => {
       const region = screen.getByRole("region", { name });
-      // Four bands paint the accent as the tile's top edge and 精选合集 paints
+      // Two bands paint the accent as the tile's top edge and 精选合集 paints
       // it as the spine, so ask for the first decorative element that is
       // filled in one of the four accents rather than for a shape.
       const accented = [...region.querySelectorAll('span[aria-hidden="true"]')].find((node) =>
@@ -261,7 +282,7 @@ describe("PromptHubBrowse", () => {
     }
   });
 
-  it("marks each of the six browse bands with a ghost numeral, 01 through 06", () => {
+  it("marks each of the three browse bands with a ghost numeral, 01 through 03", () => {
     const { container } = renderBrowse();
 
     const numerals = [...container.querySelectorAll('span[aria-hidden="true"]')].filter((node) =>
@@ -269,14 +290,9 @@ describe("PromptHubBrowse", () => {
     );
     expect(
       numerals.map((node) => (node as HTMLElement).style.getPropertyValue("--ghost-numeral")),
-    ).toEqual([
-      '"01"',
-      '"02"',
-      '"03"',
-      '"04"',
-      '"05"',
-      '"06"',
-    ]);
+    // Renumbered when the three duplicate bands went: the numerals count the
+    // bands that exist, so there is no 04 pointing at nothing.
+    ).toEqual(['"01"', '"02"', '"03"']);
 
     // Decoration only: every band keeps its own heading, at level 2, with its
     // wording and its anchor id unchanged.

@@ -68,6 +68,55 @@ function railedModels<T extends { term: TaxonomyWithCount }>(models: T[]): T[] {
   return models.filter((entry) => entry.term.href !== null).slice(0, MODEL_RAIL_LIMIT);
 }
 
+/**
+ * Which prompts each rail may render, under the page's one-card-per-prompt
+ * rule: 精选 first, then each railed model, then the subject rail, each taking
+ * the first `RAIL_LIMIT` prompts of its term that no rail above it already
+ * showed. Mirrored here rather than imported, like `railedModels` above, so the
+ * test states the rule instead of restating the implementation.
+ */
+async function expectedRails(): Promise<{
+  featured: string[];
+  modelRails: { slug: string; slugs: string[] }[];
+  portrait: string[];
+}> {
+  const subset = await imageSubset();
+  const featuredAll = await repository.listFeatured("zh-CN", "l2");
+  const shown = new Set<string>();
+  const take = (prompts: PromptSummary[], limit: number | null): string[] => {
+    const picked: string[] = [];
+    for (const prompt of prompts) {
+      if (limit !== null && picked.length >= limit) break;
+      if (shown.has(prompt.id)) continue;
+      shown.add(prompt.id);
+      picked.push(prompt.slug);
+    }
+    return picked;
+  };
+
+  const featured = take(
+    featuredAll.filter((prompt) => prompt.contentType.slug === "image"),
+    null,
+  );
+  const modelRails = railedModels(await imageModels())
+    .map(({ term }) => ({
+      slug: term.slug,
+      slugs: take(
+        subset.filter((prompt) => prompt.models.some((m) => m.slug === term.slug)),
+        RAIL_LIMIT,
+      ),
+    }))
+    .filter((rail) => rail.slugs.length > 0);
+  const subjects = await repository.listTaxonomies("zh-CN", "subject");
+  const person = subjects.find((term) => term.label === "Person / portrait");
+  const portrait = take(
+    subset.filter((prompt) => prompt.subjects.some((term) => term.slug === person?.slug)),
+    RAIL_LIMIT,
+  );
+
+  return { featured, modelRails, portrait };
+}
+
 async function renderPage() {
   return render(await ImageGalleryPage({ params: Promise.resolve({ locale: "zh-CN" }) }));
 }
@@ -242,7 +291,7 @@ describe("L2 image gallery page", () => {
     }
   });
 
-  it("rails the top 3 models, three cards each, under a heading that is only the model name", async () => {
+  it("rails the top models, under a heading that is only the model name", async () => {
     const models = await imageModels();
     const railed = railedModels(models);
     // The fixture has more than 3 models with image prompts, so this actually
@@ -252,19 +301,21 @@ describe("L2 image gallery page", () => {
     );
     expect(railed).toHaveLength(MODEL_RAIL_LIMIT);
 
+    const plan = await expectedRails();
     const { container } = await renderPage();
 
-    for (const { term, count } of railed) {
-      const label = term.labelZh ?? term.label;
+    for (const { slug, slugs } of plan.modelRails) {
+      const term = railed.find((entry) => entry.term.slug === slug)?.term;
+      const label = term?.labelZh ?? term?.label;
       // Scoped to the rail's own header row: the browse tile above carries the
       // same model name, and the prototype's rail heading is the bare name.
-      const more = container.querySelector(`a[data-model-more="${term.slug}"]`) as HTMLElement;
+      const more = container.querySelector(`a[data-model-more="${slug}"]`) as HTMLElement;
       const heading = more.parentElement?.querySelector("h3");
       expect(heading?.textContent).toBe(label);
 
       const rail = within(container).getByRole("region", { name: `${label} 图片提示词` });
-      const shown = rail.querySelectorAll("article").length;
-      expect(shown).toBe(Math.min(count, RAIL_LIMIT));
+      expect(rail.querySelectorAll("article")).toHaveLength(slugs.length);
+      expect(slugs.length).toBeLessThanOrEqual(RAIL_LIMIT);
     }
 
     // Every model beyond the top 3 still gets a browse tile but never a rail.
@@ -276,15 +327,48 @@ describe("L2 image gallery page", () => {
     }
   });
 
-  it("gives each railed model a 查看全部 N 条 → link into its model page, counted over this page's scope", async () => {
-    const railed = railedModels(await imageModels());
+  it("renders each prompt exactly once, and drops a rail with nothing left to show", async () => {
+    const plan = await expectedRails();
     const { container } = await renderPage();
 
-    for (const { term, count } of railed) {
-      const more = container.querySelector(`a[data-model-more="${term.slug}"]`);
-      expect(more?.getAttribute("href")).toBe(term.href);
-      expect(more?.textContent).toBe(railMoreLabel(count));
-      expect(more?.textContent).toBe(`查看全部 ${count} 条 →`);
+    // The page used to make 18 card renders of 11 prompts — one prompt drawn
+    // four times, byte for byte the same card. Every article on the page is now
+    // a different prompt.
+    const hrefs = [...container.querySelectorAll("article")].map((article) =>
+      article.querySelector("a[href^='/zh-CN/prompts/']")?.getAttribute("href"),
+    );
+    expect(hrefs.length).toBeGreaterThan(0);
+    expect(new Set(hrefs).size).toBe(hrefs.length);
+
+    // A rail whose every prompt was already drawn above loses its heading and
+    // its "see all" button with it, rather than standing empty under a name.
+    const railed = railedModels(await imageModels());
+    const dropped = railed.filter(
+      (entry) => !plan.modelRails.some((rail) => rail.slug === entry.term.slug),
+    );
+    expect(dropped.length).toBeGreaterThan(0);
+    for (const { term } of dropped) {
+      const label = term.labelZh ?? term.label;
+      expect(within(container).queryByRole("region", { name: `${label} 图片提示词` })).toBeNull();
+      expect(container.querySelector(`a[data-model-more="${term.slug}"]`)).toBeNull();
+      // Its model page is still reachable: the 按模型浏览 tile above links it.
+      expect(container.querySelector(`a[href="${term.href}"]`)).not.toBeNull();
+    }
+  });
+
+  it("gives each railed model a 查看全部 N 条 → link counted over the whole term, not the rail", async () => {
+    const plan = await expectedRails();
+    const models = await imageModels();
+    const { container } = await renderPage();
+
+    for (const rail of plan.modelRails) {
+      const entry = models.find((model) => model.term.slug === rail.slug);
+      const more = container.querySelector(`a[data-model-more="${rail.slug}"]`);
+      expect(more?.getAttribute("href")).toBe(entry?.term.href);
+      // The count is how many image prompts carry the model — NOT how many
+      // cards survived the de-duplication under it.
+      expect(more?.textContent).toBe(railMoreLabel(entry?.count ?? 0));
+      expect(more?.textContent).toBe(`查看全部 ${entry?.count} 条 →`);
     }
   });
 
@@ -307,7 +391,13 @@ describe("L2 image gallery page", () => {
     expect(pill.getAttribute("href")).toBe(`/zh-CN/prompts/image?subject=${person?.slug}`);
 
     const rail = within(region).getByRole("region", { name: "Person / portrait 图片提示词" });
+    // All three of this rail's original cards were repeats of prompts already
+    // drawn above. It BACKFILLS from the portrait prompts nothing has shown
+    // yet rather than shrinking, so it still holds three cards — and the pill
+    // above still counts the whole term.
     expect(rail.querySelectorAll("article")).toHaveLength(Math.min(expected.length, RAIL_LIMIT));
+    const plan = await expectedRails();
+    expect(plan.portrait).toHaveLength(RAIL_LIMIT);
   });
 
   it("links only the published content type and marks the rest as unreleased", async () => {

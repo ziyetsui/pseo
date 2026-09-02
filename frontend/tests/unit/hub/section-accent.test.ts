@@ -23,25 +23,25 @@ describe("section-accent", () => {
     }
   });
 
-  it("gives each of the six hub browse bands an accent, rotating through the four", () => {
+  it("gives each of the three hub browse bands its own accent", () => {
+    // Three, not six: 按任务浏览 / 镜头与运动 / 按风格浏览 were byte-identical
+    // to the chip rows above them and have been deleted, and an accent for a
+    // band that no longer renders is a value nothing can be checked against.
     const accents = Object.values(HUB_SECTION_ACCENTS);
-    expect(accents).toHaveLength(6);
+    expect(Object.keys(HUB_SECTION_ACCENTS)).toEqual(["models", "collections", "creators"]);
     // Neighbouring bands never repeat — the point is rhythm while scrolling.
     for (let index = 1; index < accents.length; index += 1) {
       expect(accents[index]).not.toBe(accents[index - 1]);
     }
-    expect(new Set(accents).size).toBe(4);
+    expect(new Set(accents).size).toBe(3);
   });
 
-  it("colours a taxonomy band exactly like that axis's chip row", () => {
-    // The teardown plate drew red/blue/yellow to show the *idea* of per-band
-    // accents. What actually has to hold is agreement: 任务 chips and the
-    // 按任务浏览 band sit on one page, so a reader must not meet the same axis
-    // in two colours. The axis map is the single source for both.
-    expect(HUB_SECTION_ACCENTS.tasks).toBe(TAXONOMY_ACCENT.useCase);
-    expect(HUB_SECTION_ACCENTS.camera).toBe(TAXONOMY_ACCENT.technique);
+  it("colours the one surviving taxonomy band exactly like that axis's chip row", () => {
+    // What has to hold is agreement: 模型 chips and the 按模型浏览 band sit on
+    // one page, so a reader must not meet the same axis in two colours. The
+    // axis map is the single source for both. The other three axes are now
+    // chips only, and read the same map through `axisAccentClassName`.
     expect(HUB_SECTION_ACCENTS.models).toBe(TAXONOMY_ACCENT.model);
-    expect(HUB_SECTION_ACCENTS.styles).toBe(TAXONOMY_ACCENT.style);
   });
 
   it("rotates by position for bands that have no fixed slot", () => {

@@ -1,11 +1,18 @@
 /**
- * The prototype's L1 nav bar: six in-page anchors, `任务 镜头 模型 风格 合集
- * 创作者`, pointing at the browse sections further down the same document.
+ * The hub's in-page nav bar: `模型 合集 创作者`, pointing at the browse
+ * sections further down the same document.
+ *
+ * The prototype's bar had six anchors. Three of them — 任务, 镜头, 风格 —
+ * pointed at browse bands that were a second printing of the facet chip rows
+ * and have been deleted, so the anchors went with the sections rather than
+ * being repointed: an anchor that lands on the chip block would be a fourth
+ * name for a control the reader can already see, and one that lands nowhere
+ * fails `scripts/check-static-output.mjs` rule 3.
  *
  * These are the one legitimate kind of `#` href — a fragment that resolves to
- * an id in the SAME document, which `scripts/check-static-output.mjs` verifies
- * against the shipped HTML. The hub page must therefore give its sections
- * exactly the ids in `HUB_SECTION_IDS`.
+ * an id in the SAME document, which that script verifies against the shipped
+ * HTML. `HUB_SECTION_IDS` therefore holds exactly the ids
+ * `PromptHubBrowse` still renders, and every one of them is linked here.
  */
 
 import { cx } from "@/components/ui/class-names";
@@ -14,10 +21,7 @@ import { pressClassName, transitionClassName } from "@/components/ui/hover";
 import { controlLabelClassName } from "@/components/ui/type-scale";
 
 export const HUB_SECTION_IDS = {
-  tasks: "tasks",
-  camera: "camera",
   models: "models",
-  styles: "styles",
   collections: "collections",
   creators: "creators",
 } as const;
@@ -29,18 +33,15 @@ export interface AnchorNavItem {
   id: HubSectionId;
 }
 
-/** Prototype order and labels, verbatim. */
+/** One anchor per surviving browse band, in page order. Labels verbatim. */
 export const HUB_ANCHORS: readonly AnchorNavItem[] = [
-  { label: "任务", id: HUB_SECTION_IDS.tasks },
-  { label: "镜头", id: HUB_SECTION_IDS.camera },
   { label: "模型", id: HUB_SECTION_IDS.models },
-  { label: "风格", id: HUB_SECTION_IDS.styles },
   { label: "合集", id: HUB_SECTION_IDS.collections },
   { label: "创作者", id: HUB_SECTION_IDS.creators },
 ];
 
 /**
- * Six labels on a bar: the control-label tier, which is what every other
+ * Three labels on a bar: the control-label tier, which is what every other
  * uppercase 14px control on the site now wears.
  *
  * The press is `band`. These anchors have no border, no shadow and no fill, so

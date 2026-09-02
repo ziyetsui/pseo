@@ -220,10 +220,9 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
 
   /* ---------------------------------------------------------------- blocks */
 
-  const showInputsBlock =
-    prompt.requiredInputs.length > 0 ||
-    prompt.optionalInputs.length > 0 ||
-    prompt.parameters.length > 0;
+  // `prompt.parameters` is deliberately not part of this test — see the block
+  // itself for why the 参数 sub-block is gone.
+  const showInputsBlock = prompt.requiredInputs.length > 0 || prompt.optionalInputs.length > 0;
 
   const metrics = [
     { label: "浏览", value: prompt.metrics.views },
@@ -546,45 +545,35 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
         </div>
       </Section>
 
-      {/* -------------------------------------------------- inputs / params */}
+      {/* --------------------------------------------------------- inputs */}
+      {/*
+        The 参数 sub-block that used to close this section is gone, and the
+        section is named 输入 rather than 输入 / 参数 because of it.
+
+        It printed the prompt's baked-in render parameters as framed value
+        chips — `8k resolution`, `octane render`, `tilt-shift lens effect`,
+        `shallow depth of field` on the golden record — and every one of those
+        strings is a verbatim substring of the prompt block ~1,700px above,
+        which this page renders in full and unclipped. Its caption
+        (`复制时不要删`) was 使用步骤 02 (`整段复制，不要删减尾部渲染参数`) said
+        a second time. A reader who copies the prompt gets the parameters
+        whether or not they were listed, and a reader who reads it has already
+        read them. `PromptDetail.parameters` is untouched in the data.
+      */}
       {!showInputsBlock ? null : (
-        <Section id="prompt-inputs" title="输入 / 参数">
+        <Section id="prompt-inputs" title="输入">
           <div className="grid gap-6 md:grid-cols-2">
             <InputList title="必需输入" items={prompt.requiredInputs} />
             {/* A sub-block whose whole content is 无 is not information. It is
-                dropped when empty rather than printed, because 必需输入 and
-                参数 beside it carry real data and a reader scanning the block
-                should only meet the ones that do. 必需输入 keeps its empty
-                state: a prompt with no required input is a fact about the
-                prompt worth stating. */}
+                dropped when empty rather than printed, because 必需输入 beside
+                it carries real data and a reader scanning the block should only
+                meet the ones that do. 必需输入 keeps its empty state: a prompt
+                with no required input is a fact about the prompt worth
+                stating. */}
             {prompt.optionalInputs.length === 0 ? null : (
               <InputList title="可选输入" items={prompt.optionalInputs} />
             )}
           </div>
-
-          {prompt.parameters.length === 0 ? null : (
-            <div className="mt-6">
-              <h3 className={microLabelClassName()}>参数</h3>
-              <p className="mt-2 text-sm font-medium">
-                提示词尾部已经写死的渲染参数，复制时不要删。
-              </p>
-              {/* Kept as framed value chips rather than demoted to hairlines:
-                  a parameter is a literal you must not retype wrong, so it
-                  gets a box the way the prompt payload does. That is what
-                  keeps it distinct from the input lists above it. */}
-              <dl className="mt-3 grid gap-3 sm:grid-cols-2">
-                {prompt.parameters.map((parameter) => (
-                  <div
-                    key={`${parameter.label}-${parameter.value}`}
-                    className="border-2 border-foreground bg-surface p-3"
-                  >
-                    <dt className={microLabelClassName()}>{parameter.label}</dt>
-                    <dd className="mt-1 font-mono text-sm font-bold">{parameter.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          )}
         </Section>
       )}
 

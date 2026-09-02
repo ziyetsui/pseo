@@ -18,7 +18,7 @@ import {
   galleryDescription,
   galleryLede,
   galleryStats,
-  promptsForTerm,
+  planGalleryRails,
   selectImagePrompts,
   topRailedModels,
 } from "@/features/gallery/image-prompts";
@@ -127,29 +127,24 @@ export default async function ImageGalleryPage({
   const description = galleryDescription(stats.total);
 
   // The ItemList mirrors the rails the exported HTML renders: the featured rail
-  // plus each railed model's rail, capped by the same RAIL_LIMIT the browse
-  // view uses. It must never enumerate more than what is actually railed.
-  const railed = [
-    ...featured,
-    ...railedModels.flatMap((model) =>
-      model.href === null
-        ? []
-        : promptsForTerm(imagePrompts, "model", model.slug).slice(0, RAIL_LIMIT),
-    ),
-  ];
-  const seen = new Set<string>();
-  const itemListElement = railed.flatMap((prompt) => {
-    if (seen.has(prompt.id)) return [];
-    seen.add(prompt.id);
-    return [
-      {
-        "@type": "ListItem",
-        position: seen.size,
-        url: absoluteUrl(prompt.href),
-        name: prompt.title,
-      },
-    ];
+  // plus each railed model's rail. It reads the SAME plan `GalleryBrowse`
+  // renders from, so it can neither enumerate a card the page does not draw nor
+  // miss one it does — and since a prompt is now drawn once per page, the plan
+  // is already free of duplicates and no second de-duplication is needed here.
+  const rails = planGalleryRails({
+    featured,
+    imagePrompts,
+    railedModels,
+    portraitSubject,
+    railLimit: RAIL_LIMIT,
   });
+  const railed = [...rails.featured, ...rails.modelRails.flatMap((rail) => rail.prompts)];
+  const itemListElement = railed.map((prompt, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: absoluteUrl(prompt.href),
+    name: prompt.title,
+  }));
 
   const collectionPage = {
     "@context": "https://schema.org",

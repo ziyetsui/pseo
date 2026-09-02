@@ -2,12 +2,11 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import { getContentRepository } from "@/lib/content";
+import * as hubCopy from "@/features/hub/hub-copy";
 import {
   ALL_PROMPTS_COLLECTION_SLUG,
   ALL_PROMPTS_COLLECTION_TITLE,
   allPromptsHref,
-  cameraShareTenths,
-  cameraSectionDescription,
 } from "@/features/hub/hub-copy";
 
 /**
@@ -47,18 +46,14 @@ describe("hub copy helpers", () => {
     expect(allPromptsHref("/zh-CN/prompts")).toBe("/zh-CN/prompts?collection=all");
   });
 
-  it("rounds the camera-language share to 成 and drops it below one tenth", () => {
-    expect(cameraShareTenths(29, 35)).toBe(8);
-    expect(cameraShareTenths(1, 35)).toBeNull();
-    expect(cameraShareTenths(0, 0)).toBeNull();
-  });
-
-  it("keeps the prototype's sentence shape either way", () => {
-    expect(cameraSectionDescription(8)).toBe(
-      "8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
-    );
-    expect(cameraSectionDescription(null)).toBe(
-      "提示词里的镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
-    );
+  /**
+   * The 镜头与运动 band was a duplicate of the 镜头·技法 chip row and is gone.
+   * Its measured sentence went with it — and so did the two helpers that built
+   * it, rather than surviving as exports nothing renders.
+   */
+  it("no longer exports the deleted 镜头与运动 sentence or its helpers", () => {
+    expect(hubCopy).not.toHaveProperty("cameraSectionDescription");
+    expect(hubCopy).not.toHaveProperty("cameraShareTenths");
+    expect(hubCopy).not.toHaveProperty("countWithCameraLanguage");
   });
 });

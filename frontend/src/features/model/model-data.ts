@@ -1,9 +1,14 @@
-import type { Creator, ModelDetail, PromptSummary } from "@/lib/content/types";
+import type { Creator, PromptSummary } from "@/lib/content/types";
 
 /**
  * Pure derivations for the L3 model page. Everything here is computed from the
  * prompts the repository returned for THIS model, so no number on the page can
  * be a library-wide figure or a prototype-declared one.
+ *
+ * `EDITORIAL_STATUS_LABEL` and `outputLabel` used to live here too. They
+ * existed only for the 能力 / 输入 / 输出 / 限制 panel, which was a second
+ * printing of the chip block and the breadcrumb and has been deleted, so they
+ * went with it rather than staying as an unused vocabulary.
  */
 
 export interface ModelCreator extends Creator {
@@ -20,19 +25,4 @@ export function modelCreators(prompts: readonly PromptSummary[]): ModelCreator[]
     else found.count += 1;
   }
   return [...byId.values()].sort((a, b) => b.count - a.count || a.handle.localeCompare(b.handle));
-}
-
-/** Where the four spec columns come from, said in the page's language. */
-export const EDITORIAL_STATUS_LABEL: Record<ModelDetail["editorialStatus"], string> = {
-  "derived-from-fixture": "由收录 Prompt 派生",
-};
-
-/** Content-type slugs the `outputs` column carries, rendered in zh-CN. */
-const OUTPUT_LABEL: Record<string, string> = {
-  image: "图片",
-  video: "视频",
-};
-
-export function outputLabel(slug: string): string {
-  return OUTPUT_LABEL[slug] ?? slug;
 }

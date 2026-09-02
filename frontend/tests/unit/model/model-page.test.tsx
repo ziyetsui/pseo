@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import { formatCreatorHandle, getContentRepository } from "@/lib/content";
+import { extractVariables, formatCreatorHandle, getContentRepository } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
 
 /**
@@ -112,30 +112,41 @@ describe("L3 model page — module order and content", () => {
     const model = await getContentRepository().getModel("zh-CN", SLUG);
     const { container } = await renderPage();
 
+    // The 能力 / 输入 / 输出 / 限制 panel is gone: 能力 was the same 13
+    // taxonomy values as the chip block ~200px above minus their counts and
+    // links, 限制 was 关于这个模型's own sentence and 输出 was the breadcrumb.
     expect(sectionHeadings(container)).toEqual([
       "近期热门",
       "全部提示词",
       "带变量的提示词",
       "创作者",
       "关于这个模型",
-      "能力 / 输入 / 输出 / 限制（由收录 Prompt 派生）",
       "相关",
       `复制这 ${model?.summary.match(/^\d+/)?.[0]} 条提示词中的任意一条`,
     ]);
   });
 
-  it("shows three 近期热门 cards, ranked by the shared repository rule", async () => {
+  it("lists the three 近期热门 prompts as rows, ranked by the shared repository rule", async () => {
     const trending = await getContentRepository().listTrending("zh-CN", "all", 3, SLUG);
     expect(trending.items).toHaveLength(3);
 
     await renderPage();
     const section = screen.getByRole("region", { name: "近期热门" });
-    const cards = within(section).getAllByRole("article");
 
-    expect(cards).toHaveLength(3);
-    expect(within(section).getAllByRole("heading", { level: 3 }).map((n) => n.textContent)).toEqual(
-      trending.items.map((prompt) => prompt.title),
+    // All three are also in 全部提示词 below — this band is a 100% subset of
+    // it — so they are rows, not a second set of cards. The rank is the one
+    // fact the grid below does not carry, and it is the row's micro label.
+    expect(within(section).queryAllByRole("article")).toHaveLength(0);
+    const rows = within(section).getAllByRole("link");
+    expect(rows).toHaveLength(3);
+    expect(rows.map((row) => row.getAttribute("href"))).toEqual(
+      trending.items.map((prompt) => prompt.href),
     );
+    for (const [index, prompt] of trending.items.entries()) {
+      expect(rows[index]?.textContent).toContain(prompt.title);
+      expect(rows[index]?.textContent).toContain(formatCreatorHandle(prompt.creator.handle));
+      expect(rows[index]?.textContent).toContain(String(index + 1).padStart(2, "0"));
+    }
   });
 
   it("lists every prompt of this model with a real detail link, under the three facet axes", async () => {
@@ -160,18 +171,30 @@ describe("L3 model page — module order and content", () => {
     expect(styleGroup.textContent).toContain(String(styleOptions[0]?.count));
   });
 
-  it("renders the variables rail with a count pill and the prototype subline", async () => {
+  it("lists the variable-bearing prompts as rows, keeping the count pill and subline", async () => {
     const withVariables = await getContentRepository().listPromptsWithVariables("zh-CN", SLUG);
     expect(withVariables.length).toBeGreaterThan(0);
 
     await renderPage();
     const rail = screen.getByRole("region", { name: "带变量的提示词" });
 
+    // Demoted for the same reason as 近期热门: every one of these prompts has
+    // a card in 全部提示词. The two honest counts stay — the `N 条` pill and
+    // the sentence — and each row's micro label is that prompt's own first
+    // placeholder, read out of its text.
     expect(rail.textContent).toContain(`${withVariables.length} 条`);
     expect(rail.textContent).toContain(
       "这些提示词带 [COUNTRY] 一类的占位变量，替换变量即可得到一整套新画面，正文无需改动。",
     );
-    expect(within(rail).getAllByRole("article")).toHaveLength(withVariables.length);
+    expect(within(rail).queryAllByRole("article")).toHaveLength(0);
+    const rows = within(rail).getAllByRole("link");
+    expect(rows).toHaveLength(withVariables.length);
+    for (const [index, prompt] of withVariables.entries()) {
+      expect(rows[index]?.getAttribute("href")).toBe(prompt.href);
+      const token = extractVariables(prompt.promptText)[0]?.token;
+      expect(token).toBeDefined();
+      expect(rows[index]?.textContent).toContain(token);
+    }
   });
 
   it("shows creators as an inline list with counts from this model's prompts only", async () => {
@@ -198,7 +221,7 @@ describe("L3 model page — module order and content", () => {
     expect(expected.size).toBeLessThan(globalCreators.length);
   });
 
-  it("keeps 关于这个模型 and the derived spec columns adjacent, spec second", async () => {
+  it("keeps 关于这个模型 and drops the spec columns it duplicated", async () => {
     const model = await getContentRepository().getModel("zh-CN", SLUG);
     await renderPage();
 
@@ -213,16 +236,23 @@ describe("L3 model page — module order and content", () => {
       "使用建议",
     ]);
 
-    const spec = screen.getByRole("region", {
-      name: "能力 / 输入 / 输出 / 限制（由收录 Prompt 派生）",
-    });
-    for (const title of ["能力", "输入", "输出", "限制"]) {
-      expect(within(spec).getByRole("heading", { name: title, level: 3 })).toBeInTheDocument();
-    }
-    for (const limitation of model?.limitations ?? []) {
-      expect(within(spec).getByText(limitation)).toBeInTheDocument();
-    }
+    // The four derived spec columns that used to follow this section are gone.
+    // `ModelDetail` still carries the data — it is honest and unchanged — the
+    // page just stops printing it a second time.
+    expect(
+      screen.queryByRole("region", { name: /能力 \/ 输入 \/ 输出 \/ 限制/ }),
+    ).toBeNull();
     expect((model?.limitations ?? []).length).toBeGreaterThan(0);
+    for (const limitation of model?.limitations ?? []) {
+      // 限制 said what 关于这个模型 already says, so the sentence is not
+      // reprinted anywhere on the page.
+      expect(screen.queryByText(limitation)).toBeNull();
+    }
+    for (const capability of model?.capabilities ?? []) {
+      // Every 能力 value is a taxonomy term the chip block above carries WITH
+      // its count and its link, so the count-free copy is not printed twice.
+      expect(within(about).queryByText(capability)).toBeNull();
+    }
   });
 
   it("renders the four 相关 columns with the prototype's labels", async () => {
