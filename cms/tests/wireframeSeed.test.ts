@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 import { PublicationContentValidationError } from '../src/domain/errors.ts'
+import { enforceDraftProjection } from '../src/hooks/enforceDraftOnly.ts'
 import { PayloadDraftContentValidator } from '../src/publication/payloadDraftContentValidator.ts'
 import {
   buildWireframeSeedFixture,
@@ -39,6 +40,21 @@ class InMemorySeedPayload implements SeedPayloadLocalApi {
   }
 }
 
+class FailOnceSeedPayload extends InMemorySeedPayload {
+  private remainingCreatesBeforeFailure: number
+
+  constructor(remainingCreatesBeforeFailure: number) {
+    super()
+    this.remainingCreatesBeforeFailure = remainingCreatesBeforeFailure
+  }
+
+  override async create(args: { readonly collection: string; readonly data: Document; readonly draft?: boolean }): Promise<Document> {
+    this.remainingCreatesBeforeFailure -= 1
+    if (this.remainingCreatesBeforeFailure === 0) throw new Error('simulated create failure')
+    return await super.create(args)
+  }
+}
+
 test('wireframe adapter imports the exact fixture universe as noindex needs-review drafts', () => {
   const fixture = buildWireframeSeedFixture()
 
@@ -69,11 +85,28 @@ test('wireframe adapter imports the exact fixture universe as noindex needs-revi
   assert.equal(unknown.data.contentType, 'other')
   assert.equal(unknown.data.draftWorkflowState, 'needs_review')
   assert.equal(unknown.data._status, 'draft')
-  assert.equal(record(unknown.data.gitPublication).state, 'unpublished')
+  assert.equal(record(enforceDraftProjection({ data: unknown.data }).gitPublication).state, 'unpublished')
   assert.equal(unknown.variant.data.localeVariantKey, `${unknown.data.artifactKey}:zh-CN`)
   assert.equal(unknown.variant.data.indexable, false)
   assert.equal(record(unknown.variant.data.translation).translationStatus, 'draft')
   assert.equal(record(unknown.variant.data.seo).robots, 'noindex,nofollow')
+})
+
+test('seed create documents omit the read-only Git projection and take the ordinary draft hook path', () => {
+  const fixture = buildWireframeSeedFixture()
+  const documents = [
+    ...fixture.artifacts.map((artifact) => artifact.data),
+    ...fixture.artifacts.map((artifact) => artifact.variant.data),
+    ...fixture.sources.map((source) => source.data),
+    ...fixture.taxonomies.map((taxonomy) => taxonomy.data),
+  ]
+
+  for (const data of documents) {
+    assert.equal(Object.hasOwn(data, 'gitPublication'), false)
+    const saved = enforceDraftProjection({ data })
+    assert.equal(saved._status, 'draft')
+    assert.deepEqual(saved.gitPublication, { state: 'unpublished' })
+  }
 })
 
 test('adapter preserves missing source dates, editable workflow facts, and assumptions only in preview metadata', () => {
@@ -164,6 +197,26 @@ test('seeding is a dry-run when requested and reruns skip edited natural keys', 
     taxonomies: 66,
   })
   assert.deepEqual(edited.prompt, { language: 'en', text: 'Human edit must survive reruns.' })
+})
+
+test('a partial failed run safely resumes through natural-key create-or-skip behavior', async () => {
+  const payload = new FailOnceSeedPayload(3)
+  await assert.rejects(seedWireframeFixture(payload), /simulated create failure/)
+  assert.equal(payload.documents.get('taxonomies')?.length, 2)
+
+  const resumed = await seedWireframeFixture(payload)
+  assert.deepEqual(resumed.created, {
+    artifacts: 35,
+    localeVariants: 35,
+    sourceEvidence: 35,
+    taxonomies: 64,
+  })
+  assert.deepEqual(resumed.skipped, {
+    artifacts: 0,
+    localeVariants: 0,
+    sourceEvidence: 0,
+    taxonomies: 2,
+  })
 })
 
 test('the strict publication validator rejects an incomplete seeded draft', async () => {

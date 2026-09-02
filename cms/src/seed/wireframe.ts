@@ -83,7 +83,6 @@ const { WIREFRAME_SNAPSHOT } = await import(frontendFixturePath('snapshot')) as 
 const ASSUMED_MEDIA_DIMENSIONS = { height: 360, width: 640 } as const
 const DRAFT_STATE = {
   _status: 'draft',
-  gitPublication: { state: 'unpublished' },
 } as const
 
 export interface SeedPayloadLocalApi {
