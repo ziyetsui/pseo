@@ -4,6 +4,7 @@ import { authenticated, canEditDrafts, denyAll } from '@/access'
 import { enforceDraftOnly, validateLocaleVariant } from '@/hooks'
 
 import {
+  betaPreviewField,
   draftVersions,
   gitPublicationField,
   localeOptions,
@@ -34,6 +35,14 @@ export const LocaleVariants: CollectionConfig = {
   versions: draftVersions,
   fields: [
     {
+      name: 'localeVariantKey',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: { description: 'Stable import identity: <artifactKey>:<locale>.' },
+    },
+    {
       name: 'artifact',
       type: 'relationship',
       relationTo: 'prompt-artifacts',
@@ -50,11 +59,10 @@ export const LocaleVariants: CollectionConfig = {
       admin: { description: 'Unique together with locale; enforced again by the publication compiler.' },
     },
     { name: 'title', type: 'text', required: true },
-    { name: 'summary', type: 'textarea', required: true },
+    { name: 'summary', type: 'textarea' },
     {
       name: 'indexable',
       type: 'checkbox',
-      required: true,
       defaultValue: false,
       admin: { description: 'Editorial indexing intent only; Git status and release gates remain authoritative.' },
     },
@@ -67,17 +75,14 @@ export const LocaleVariants: CollectionConfig = {
     {
       name: 'localizedOutcome',
       type: 'group',
-      required: true,
       fields: [
-        { name: 'purpose', type: 'textarea', required: true },
+        { name: 'purpose', type: 'textarea' },
         textListField('characteristics', 'Characteristics'),
       ],
     },
     {
       name: 'workflow',
       type: 'array',
-      required: true,
-      minRows: 2,
       fields: [
         { name: 'position', type: 'number', min: 1, required: true },
         { name: 'title', type: 'text', required: true },
@@ -97,6 +102,7 @@ export const LocaleVariants: CollectionConfig = {
       fields: seoFields,
       admin: { description: 'Canonical URL and hreflang are compiler-owned, not edited here.' },
     },
+    betaPreviewField,
     gitPublicationField,
   ],
 }

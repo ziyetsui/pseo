@@ -1,9 +1,9 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated, canEditDrafts, denyAll } from '@/access'
-import { enforceDraftOnly, validateSourceEvidence } from '@/hooks'
+import { enforceDraftOnly } from '@/hooks'
 
-import { draftVersions, gitPublicationField } from './fields'
+import { betaPreviewField, draftVersions, gitPublicationField } from './fields'
 
 export const SourceEvidence: CollectionConfig = {
   slug: 'source-evidence',
@@ -20,10 +20,7 @@ export const SourceEvidence: CollectionConfig = {
     update: canEditDrafts,
     delete: denyAll,
   },
-  hooks: {
-    beforeValidate: [validateSourceEvidence],
-    beforeChange: [enforceDraftOnly],
-  },
+  hooks: { beforeChange: [enforceDraftOnly] },
   versions: draftVersions,
   fields: [
     {
@@ -102,6 +99,7 @@ export const SourceEvidence: CollectionConfig = {
       options: ['unknown', 'review_required', 'cleared', 'restricted', 'takedown'],
     },
     { name: 'isPrimarySource', type: 'checkbox', defaultValue: false },
+    betaPreviewField,
     gitPublicationField,
   ],
 }

@@ -3,7 +3,14 @@ import type { CollectionConfig, Field } from 'payload'
 import { authenticated, canEditDrafts, denyAll } from '@/access'
 import { enforceDraftOnly } from '@/hooks'
 
-import { createMediaFields, draftVersions, gitPublicationField, localeOptions, textListField } from './fields'
+import {
+  betaPreviewField,
+  createMediaFields,
+  draftVersions,
+  gitPublicationField,
+  localeOptions,
+  textListField,
+} from './fields'
 
 const taxonomyRelationship = (name: string, label: string): Field => ({
   name,
@@ -70,13 +77,11 @@ export const PromptArtifacts: CollectionConfig = {
       name: 'prompt',
       type: 'group',
       fields: [
-        { name: 'language', type: 'text', required: true },
-        { name: 'text', type: 'textarea', required: true },
+        { name: 'language', type: 'text' },
+        { name: 'text', type: 'textarea' },
         {
           name: 'variables',
           type: 'array',
-          required: true,
-          minRows: 1,
           fields: [
             { name: 'key', type: 'text', required: true },
             { name: 'label', type: 'text', required: true },
@@ -94,9 +99,8 @@ export const PromptArtifacts: CollectionConfig = {
     {
       name: 'outcome',
       type: 'group',
-      required: true,
       fields: [
-        { name: 'outputType', type: 'select', required: true, options: ['image', 'video', 'text', 'other'] },
+        { name: 'outputType', type: 'select', options: ['image', 'video', 'text', 'other'] },
         textListField('platforms', 'Platforms'),
       ],
     },
@@ -105,8 +109,6 @@ export const PromptArtifacts: CollectionConfig = {
     {
       name: 'parameters',
       type: 'array',
-      required: true,
-      minRows: 1,
       fields: [
         { name: 'key', type: 'text', required: true },
         { name: 'label', type: 'text', required: true },
@@ -185,6 +187,7 @@ export const PromptArtifacts: CollectionConfig = {
       relationTo: 'source-evidence',
       hasMany: true,
     },
+    betaPreviewField,
     gitPublicationField,
   ],
 }

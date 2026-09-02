@@ -3,7 +3,15 @@ import type { CollectionConfig } from 'payload'
 import { authenticated, canReview, denyAll } from '@/access'
 import { enforceDraftOnly, validateLocaleVariant } from '@/hooks'
 
-import { draftVersions, gitPublicationField, localeOptions, seoFields, textListField, translationFields } from './fields'
+import {
+  betaPreviewField,
+  draftVersions,
+  gitPublicationField,
+  localeOptions,
+  seoFields,
+  textListField,
+  translationFields,
+} from './fields'
 
 export const Taxonomies: CollectionConfig = {
   slug: 'taxonomies',
@@ -36,7 +44,7 @@ export const Taxonomies: CollectionConfig = {
     { name: 'sourceLocale', type: 'select', required: true, options: localeOptions },
     { name: 'slug', type: 'text', required: true, index: true },
     { name: 'name', type: 'text', required: true },
-    { name: 'description', type: 'textarea', required: true },
+    { name: 'description', type: 'textarea' },
     { name: 'officialUrl', type: 'text' },
     textListField('capabilities', 'Capabilities'),
     textListField('inputs', 'Inputs'),
@@ -44,6 +52,7 @@ export const Taxonomies: CollectionConfig = {
     textListField('limitations', 'Limitations'),
     { name: 'translation', type: 'group', fields: translationFields },
     { name: 'seo', type: 'group', fields: seoFields },
+    betaPreviewField,
     gitPublicationField,
   ],
 }

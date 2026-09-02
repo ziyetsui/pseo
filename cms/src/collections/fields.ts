@@ -51,6 +51,19 @@ export const gitPublicationField: Field = {
   ],
 }
 
+/**
+ * Wireframe-only metadata for the local beta preview. This is deliberately
+ * excluded by the publication validator, which serializes an explicit
+ * allowlist of editorial fields to the Git content contract.
+ */
+export const betaPreviewField: Field = {
+  name: 'betaPreview',
+  type: 'json',
+  admin: {
+    description: 'Local beta preview metadata. It is never publication content.',
+  },
+}
+
 export const translationFields: Field[] = [
   {
     name: 'translationStatus',
@@ -70,8 +83,8 @@ export const translationFields: Field[] = [
 ]
 
 export const seoFields: Field[] = [
-  { name: 'title', type: 'text', required: true, maxLength: 70 },
-  { name: 'description', type: 'textarea', required: true, maxLength: 180 },
+  { name: 'title', type: 'text', maxLength: 70 },
+  { name: 'description', type: 'textarea', maxLength: 180 },
   {
     name: 'robots',
     type: 'select',
