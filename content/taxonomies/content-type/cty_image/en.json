@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "cty_image",
+  "type": "taxonomy",
+  "axis": "content-type",
+  "locale": "en",
+  "sourceLocale": "zh-CN",
+  "slug": "image",
+  "name": "Image Prompts",
+  "description": "Groups image-generation Prompts from the current Git publication snapshot; membership is calculated during the build.",
+  "status": "draft",
+  "indexable": false,
+  "selector": {
+    "field": "contentType",
+    "value": "image"
+  },
+  "surface": {
+    "level": "L2",
+    "kind": "content-type-gallery",
+    "path": "/en/prompts/image"
+  },
+  "model": null,
+  "sourceRef": "docs/wireframes/flow-proto.html#l2",
+  "seo": {
+    "title": "Image Prompts",
+    "description": "Browse image-generation Prompts from the current Git publication snapshot; totals are calculated from traceable records.",
+    "canonical": "https://ancher.space/en/prompts/image",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": "2026-09-02T00:00:00Z",
+    "updatedAt": "2026-09-02T00:00:00Z",
+    "sourceRevision": "sha256:1a2bed3c76da644d6b96d680f73ee9684ecb1f62716a807eee4a23b4d1db74a8"
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": "sha256:1a2bed3c76da644d6b96d680f73ee9684ecb1f62716a807eee4a23b4d1db74a8",
+    "reviewer": null
+  }
+}

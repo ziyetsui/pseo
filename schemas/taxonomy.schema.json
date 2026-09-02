@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ancher.space/schemas/taxonomy.schema.json",
+  "title": "Git-native localized taxonomy record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "type",
+    "axis",
+    "locale",
+    "sourceLocale",
+    "slug",
+    "name",
+    "description",
+    "status",
+    "indexable",
+    "selector",
+    "surface",
+    "model",
+    "sourceRef",
+    "seo",
+    "publication",
+    "translation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(?:cty|mdl)_[a-z0-9_]{3,64}$"
+    },
+    "type": {
+      "const": "taxonomy"
+    },
+    "axis": {
+      "type": "string",
+      "enum": [
+        "content-type",
+        "model"
+      ]
+    },
+    "locale": {
+      "$ref": "#/$defs/locale"
+    },
+    "sourceLocale": {
+      "$ref": "#/$defs/locale"
+    },
+    "slug": {
+      "$ref": "#/$defs/slug"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "description": {
+      "type": "string",
+      "minLength": 12,
+      "maxLength": 320
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review",
+        "published",
+        "tombstoned"
+      ]
+    },
+    "indexable": {
+      "type": "boolean"
+    },
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "value"
+      ],
+      "properties": {
+        "field": {
+          "type": "string",
+          "enum": [
+            "contentType",
+            "models"
+          ]
+        },
+        "value": {
+          "$ref": "#/$defs/slug"
+        }
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "kind",
+        "path"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "L2",
+            "L3"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "content-type-gallery",
+            "model-detail"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^/(?:en|zh-CN)/prompts(?:/models)?/[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "model": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "officialUrl",
+        "capabilities",
+        "inputs",
+        "outputs",
+        "limitations"
+      ],
+      "properties": {
+        "officialUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "capabilities": {
+          "$ref": "#/$defs/stringList"
+        },
+        "inputs": {
+          "$ref": "#/$defs/stringList"
+        },
+        "outputs": {
+          "$ref": "#/$defs/stringList"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^docs/wireframes/flow-proto\\.html#l[23]$"
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description",
+        "canonical",
+        "robots"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 12,
+          "maxLength": 320
+        },
+        "canonical": {
+          "type": "string",
+          "format": "uri"
+        },
+        "robots": {
+          "type": "string",
+          "enum": [
+            "index,follow",
+            "noindex,nofollow"
+          ]
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publishedAt",
+        "updatedAt",
+        "sourceRevision"
+      ],
+      "properties": {
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceRevision": {
+          "$ref": "#/$defs/revision"
+        }
+      }
+    },
+    "translation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "translatedFromRevision",
+        "reviewer"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "review",
+            "ready",
+            "stale"
+          ]
+        },
+        "translatedFromRevision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 80
+        }
+      }
+    }
+  },
+  "$defs": {
+    "locale": {
+      "type": "string",
+      "enum": [
+        "en",
+        "zh-CN"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      }
+    }
+  }
+}

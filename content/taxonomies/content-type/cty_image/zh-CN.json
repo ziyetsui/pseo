@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "cty_image",
+  "type": "taxonomy",
+  "axis": "content-type",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "image",
+  "name": "图片 Prompt",
+  "description": "围绕图片生成任务聚合当前 Git 发布快照中的 Prompt；成员数量在构建时从内容关系计算。",
+  "status": "published",
+  "indexable": false,
+  "selector": {
+    "field": "contentType",
+    "value": "image"
+  },
+  "surface": {
+    "level": "L2",
+    "kind": "content-type-gallery",
+    "path": "/zh-CN/prompts/image"
+  },
+  "model": null,
+  "sourceRef": "docs/wireframes/flow-proto.html#l2",
+  "seo": {
+    "title": "图片 Prompt",
+    "description": "浏览当前 Git 发布快照中的图片生成 Prompt；页面数量由可追溯内容实时计算。",
+    "canonical": "https://ancher.space/zh-CN/prompts/image",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": "2026-09-02T00:00:00Z",
+    "updatedAt": "2026-09-02T00:00:00Z",
+    "sourceRevision": "sha256:1a2bed3c76da644d6b96d680f73ee9684ecb1f62716a807eee4a23b4d1db74a8"
+  },
+  "translation": {
+    "status": "ready",
+    "translatedFromRevision": null,
+    "reviewer": "bo"
+  }
+}

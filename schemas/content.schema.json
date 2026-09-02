@@ -1,0 +1,731 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ancher.space/schemas/content.schema.json",
+  "title": "Git-native Prompt Markdown frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "type",
+    "locale",
+    "sourceLocale",
+    "slug",
+    "title",
+    "summary",
+    "status",
+    "indexable",
+    "contentType",
+    "models",
+    "useCases",
+    "techniques",
+    "styles",
+    "subjects",
+    "prompt",
+    "outcome",
+    "media",
+    "metrics",
+    "inputs",
+    "parameters",
+    "examples",
+    "workflow",
+    "creator",
+    "relatedPromptIds",
+    "actions",
+    "source",
+    "evidence",
+    "seo",
+    "publication",
+    "translation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^prm_[a-z0-9_]{8,64}$"
+    },
+    "type": {
+      "const": "prompt"
+    },
+    "locale": {
+      "$ref": "#/$defs/locale"
+    },
+    "sourceLocale": {
+      "$ref": "#/$defs/locale"
+    },
+    "slug": {
+      "$ref": "#/$defs/slug"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 4,
+      "maxLength": 120
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 320
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review",
+        "published",
+        "tombstoned"
+      ]
+    },
+    "indexable": {
+      "type": "boolean"
+    },
+    "contentType": {
+      "type": "string",
+      "enum": [
+        "image",
+        "video",
+        "text",
+        "other"
+      ]
+    },
+    "models": {
+      "$ref": "#/$defs/slugList"
+    },
+    "useCases": {
+      "$ref": "#/$defs/slugList"
+    },
+    "techniques": {
+      "$ref": "#/$defs/slugList"
+    },
+    "styles": {
+      "$ref": "#/$defs/slugList"
+    },
+    "subjects": {
+      "$ref": "#/$defs/slugList"
+    },
+    "prompt": {
+      "$ref": "#/$defs/prompt"
+    },
+    "outcome": {
+      "$ref": "#/$defs/outcome"
+    },
+    "media": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/media"
+      }
+    },
+    "metrics": {
+      "$ref": "#/$defs/metrics"
+    },
+    "inputs": {
+      "$ref": "#/$defs/inputs"
+    },
+    "parameters": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/parameter"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/example"
+      }
+    },
+    "workflow": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/workflowStep"
+      }
+    },
+    "creator": {
+      "$ref": "#/$defs/creator"
+    },
+    "relatedPromptIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^prm_[a-z0-9_]{8,64}$"
+      }
+    },
+    "actions": {
+      "$ref": "#/$defs/actions"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "seo": {
+      "$ref": "#/$defs/seo"
+    },
+    "publication": {
+      "$ref": "#/$defs/publication"
+    },
+    "translation": {
+      "$ref": "#/$defs/translation"
+    }
+  },
+  "$defs": {
+    "locale": {
+      "type": "string",
+      "enum": [
+        "en",
+        "zh-CN"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "slugList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/slug"
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "label",
+        "required",
+        "defaultValue",
+        "options"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^\\[[A-Z][A-Z0-9_]{1,39}\\]$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
+        "options": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "text",
+        "variables"
+      ],
+      "properties": {
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 80,
+          "maxLength": 20000
+        },
+        "variables": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/variable"
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outputType",
+        "purpose",
+        "platforms",
+        "characteristics"
+      ],
+      "properties": {
+        "outputType": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "text",
+            "other"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 240
+        },
+        "platforms": {
+          "$ref": "#/$defs/slugList"
+        },
+        "characteristics": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetId",
+        "type",
+        "url",
+        "width",
+        "height",
+        "alt",
+        "posterUrl"
+      ],
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "pattern": "^ast_[a-z0-9_]{8,64}$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^(?:https://|/)[^\\s]+$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "posterUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(?:https://|/)[^\\s]+$"
+        }
+      }
+    },
+    "nullableMetric": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "likes",
+        "bookmarks",
+        "comments",
+        "reposts",
+        "views",
+        "observedAt"
+      ],
+      "properties": {
+        "likes": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "bookmarks": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "comments": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "reposts": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "views": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "input",
+        "output",
+        "caption"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ex_[a-z0-9_]{8,64}$"
+        },
+        "input": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "output": {
+          "$ref": "#/$defs/media"
+        },
+        "caption": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 240
+        }
+      }
+    },
+    "creator": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slug",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ctr_[a-z0-9_]{3,64}$"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canCopy",
+        "tryUrl"
+      ],
+      "properties": {
+        "canCopy": {
+          "type": "boolean"
+        },
+        "tryUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "optional"
+      ],
+      "properties": {
+        "required": {
+          "$ref": "#/$defs/stringList"
+        },
+        "optional": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "label",
+        "type",
+        "required",
+        "options"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{1,39}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "number",
+            "enum",
+            "boolean"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "options": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "workflowStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position",
+        "title",
+        "body"
+      ],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "body": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 400
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "sourceId",
+        "url",
+        "authorHandle",
+        "publishedDate",
+        "observedAt"
+      ],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": [
+            "x",
+            "rss",
+            "url",
+            "manual"
+          ]
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "authorHandle": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        },
+        "publishedDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "url",
+        "confidence"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description",
+        "canonical",
+        "robots"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 320
+        },
+        "canonical": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "robots": {
+          "type": "string",
+          "enum": [
+            "index,follow",
+            "noindex,nofollow"
+          ]
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publishedAt",
+        "updatedAt",
+        "sourceRevision"
+      ],
+      "properties": {
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceRevision": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 200,
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "translation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "translatedFromRevision",
+        "reviewer"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "missing",
+            "draft",
+            "review",
+            "ready",
+            "stale"
+          ]
+        },
+        "translatedFromRevision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200,
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        }
+      }
+    }
+  }
+}

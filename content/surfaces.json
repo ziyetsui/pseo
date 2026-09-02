@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "release": "internal-beta",
+  "publishedLocales": [
+    "zh-CN"
+  ],
+  "surfaces": [
+    {
+      "id": "srf_zh_cn_prompt_hub",
+      "level": "L1",
+      "kind": "prompt-hub",
+      "locale": "zh-CN",
+      "path": "/zh-CN/prompts",
+      "targetType": "hub",
+      "targetId": null,
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "srf_zh_cn_image_gallery",
+      "level": "L2",
+      "kind": "content-type-gallery",
+      "locale": "zh-CN",
+      "path": "/zh-CN/prompts/image",
+      "targetType": "taxonomy",
+      "targetId": "cty_image",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "srf_zh_cn_nano_banana_pro",
+      "level": "L3",
+      "kind": "model-detail",
+      "locale": "zh-CN",
+      "path": "/zh-CN/prompts/models/nano-banana-pro",
+      "targetType": "taxonomy",
+      "targetId": "mdl_nano_banana_pro",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "srf_zh_cn_country_stamp",
+      "level": "L4",
+      "kind": "prompt-detail",
+      "locale": "zh-CN",
+      "path": "/zh-CN/prompts/country-miniature-stamp-poster",
+      "targetType": "prompt",
+      "targetId": "prm_2063814043631280180",
+      "robots": "noindex,nofollow"
+    }
+  ]
+}

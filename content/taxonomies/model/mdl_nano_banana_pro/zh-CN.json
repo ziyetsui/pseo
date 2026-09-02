@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "mdl_nano_banana_pro",
+  "type": "taxonomy",
+  "axis": "model",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "nano-banana-pro",
+  "name": "Nano Banana Pro",
+  "description": "Nano Banana Pro 的模型页；只展示当前 Git 发布快照中明确关联该模型的 Prompt，不沿用 wireframe 的历史数量。",
+  "status": "published",
+  "indexable": false,
+  "selector": {
+    "field": "models",
+    "value": "nano-banana-pro"
+  },
+  "surface": {
+    "level": "L3",
+    "kind": "model-detail",
+    "path": "/zh-CN/prompts/models/nano-banana-pro"
+  },
+  "model": {
+    "officialUrl": null,
+    "capabilities": [],
+    "inputs": [],
+    "outputs": [],
+    "limitations": []
+  },
+  "sourceRef": "docs/wireframes/flow-proto.html#l3",
+  "seo": {
+    "title": "Nano Banana Pro Prompt",
+    "description": "查看当前 Git 发布快照中明确关联 Nano Banana Pro 的 Prompt；不使用 wireframe 中的历史统计。",
+    "canonical": "https://ancher.space/zh-CN/prompts/models/nano-banana-pro",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": "2026-09-02T00:00:00Z",
+    "updatedAt": "2026-09-02T00:00:00Z",
+    "sourceRevision": "sha256:4e217d0be901a801a782336224808ba782feae4e09d1a881e3a9f8a643407935"
+  },
+  "translation": {
+    "status": "ready",
+    "translatedFromRevision": null,
+    "reviewer": "bo"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ancher.space/schemas/surfaces.schema.json",
+  "title": "Internal beta route surface release contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "release",
+    "publishedLocales",
+    "surfaces"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "release": {
+      "const": "internal-beta"
+    },
+    "publishedLocales": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/locale"
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/surface"
+      }
+    }
+  },
+  "$defs": {
+    "locale": {
+      "type": "string",
+      "enum": [
+        "en",
+        "zh-CN"
+      ]
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "level",
+        "kind",
+        "locale",
+        "path",
+        "targetType",
+        "targetId",
+        "robots"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^srf_[a-z0-9_]{6,80}$"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "prompt-hub",
+            "content-type-gallery",
+            "model-detail",
+            "prompt-detail"
+          ]
+        },
+        "locale": {
+          "$ref": "#/$defs/locale"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^/(?:en|zh-CN)/prompts(?:/[a-z0-9]+(?:-[a-z0-9]+)*){0,2}$"
+        },
+        "targetType": {
+          "type": "string",
+          "enum": [
+            "hub",
+            "taxonomy",
+            "prompt"
+          ]
+        },
+        "targetId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(?:cty|mdl|prm)_[a-z0-9_]{3,64}$"
+        },
+        "robots": {
+          "const": "noindex,nofollow"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "siteName": "Prompt Library",
+  "canonicalOrigin": "https://ancher.space",
+  "defaultLocale": "zh-CN",
+  "locales": [
+    "en",
+    "zh-CN"
+  ],
+  "publishedLocales": [
+    "zh-CN"
+  ]
+}

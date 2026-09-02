@@ -1,0 +1,55 @@
+name: Static Preview artifact
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview-artifact:
+    name: build noindex Preview artifact
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Install locked frontend dependencies
+        run: pnpm --dir frontend install --frozen-lockfile
+      - name: Build frontend static export
+        run: pnpm --dir frontend build
+      - name: Validate and generate static content
+        run: |
+          node infra/bin/content.mjs validate
+          node infra/bin/content.mjs build
+      - name: Merge and harden Preview package
+        run: node infra/bin/prepare-preview.mjs
+      - name: Verify Preview noindex contract
+        run: |
+          if grep -R -L 'noindex,nofollow,noarchive' infra/generated/preview-site --include='*.html' | grep -q .; then
+            echo "Preview HTML missing the robots noindex contract" >&2
+            exit 1
+          fi
+          grep -F 'X-Robots-Tag: noindex' infra/generated/preview-site/_headers
+          grep -Fx 'Disallow: /' infra/generated/preview-site/robots.txt
+      - name: Upload deployable Preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-site-${{ github.sha }}
+          path: infra/generated/preview-site
+          if-no-files-found: error
+          retention-days: 3

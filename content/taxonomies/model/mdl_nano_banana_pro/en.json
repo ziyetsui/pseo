@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "mdl_nano_banana_pro",
+  "type": "taxonomy",
+  "axis": "model",
+  "locale": "en",
+  "sourceLocale": "zh-CN",
+  "slug": "nano-banana-pro",
+  "name": "Nano Banana Pro",
+  "description": "A Nano Banana Pro model surface that lists only Prompts explicitly related in the current Git publication snapshot, without wireframe totals.",
+  "status": "draft",
+  "indexable": false,
+  "selector": {
+    "field": "models",
+    "value": "nano-banana-pro"
+  },
+  "surface": {
+    "level": "L3",
+    "kind": "model-detail",
+    "path": "/en/prompts/models/nano-banana-pro"
+  },
+  "model": {
+    "officialUrl": null,
+    "capabilities": [],
+    "inputs": [],
+    "outputs": [],
+    "limitations": []
+  },
+  "sourceRef": "docs/wireframes/flow-proto.html#l3",
+  "seo": {
+    "title": "Nano Banana Pro Prompts",
+    "description": "View Prompts explicitly related to Nano Banana Pro in the current Git publication snapshot; historical wireframe totals are excluded.",
+    "canonical": "https://ancher.space/en/prompts/models/nano-banana-pro",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": "2026-09-02T00:00:00Z",
+    "updatedAt": "2026-09-02T00:00:00Z",
+    "sourceRevision": "sha256:4e217d0be901a801a782336224808ba782feae4e09d1a881e3a9f8a643407935"
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": "sha256:4e217d0be901a801a782336224808ba782feae4e09d1a881e3a9f8a643407935",
+    "reviewer": null
+  }
+}
