@@ -4,7 +4,7 @@ Spec: `specs/0008-prd.md`, `specs/0009-pseo-tech-arch.md`
 
 ## Goal
 
-Run a truthful local preview loop in which all 35 wireframe Prompt records and their creators/models/categories exist as Payload drafts; an authenticated, preview-only API projects those drafts; and a separately started frontend preview reads that projection so a CMS save is visible after refresh. Production/default builds remain Git-first/fixture-backed and Submit Review remains mock-only.
+Run a truthful local preview loop in which all 35 wireframe Prompt records and their creators/models/categories exist as Payload drafts; an authenticated, preview-only API projects those drafts; and a separately started frontend preview reads that projection so a CMS save is visible after refresh. Production/default builds remain Git-first/fixture-backed and Submit Review remains mock-only during Beta. After that gate passes, add a separately enabled public Prompt Lab exporter and GitHub PR publisher so reviewed locales can become public, auditable Markdown without making Payload the publication authority.
 
 ## Global Constraints
 
@@ -19,7 +19,7 @@ Run a truthful local preview loop in which all 35 wireframe Prompt records and t
 - Unknown wireframe content type maps to CMS `other` while the preview metadata preserves `unknown` for truthful frontend rendering.
 - Saving a CMS draft updates the preview after frontend refresh without rebuilding or mutating checked-in `content/`, `frontend/src/data/wireframe`, `frontend/out`, `infra/generated/static`, RSS, or sitemap.
 - Existing local fixture frontend, public Git-derived backend, and production/static build behavior must remain unchanged.
-- No live Git publisher, branch, commit, pull request, merge, external network, Cloudflare deployment, or production credential is allowed.
+- Tasks 1–4 allow no live Git publisher, branch, commit, pull request, merge, external network, Cloudflare deployment, or production credential. Task 5 may implement and test the real GitHub adapter, but activation and the first public repository write require explicit repository configuration and authenticated GitHub credentials.
 - Preserve unrelated and untracked workspace files. Agents own only the files named by their task and do not revert other edits.
 
 ## Rulings
@@ -125,3 +125,19 @@ Requirements:
 - Run CMS typecheck/tests, frontend lint/typecheck/unit/build/static checks, dedicated preview E2E, and applicable infra tests.
 - Write `docs/handoffs/cms-preview-beta.md` with commands, ports, credentials handling, limitations and exact verification evidence.
 - Commit the task and write the SDD task report.
+
+## Task 5: Publish reviewed Prompt content as a public GitHub Prompt Lab
+
+Ownership: deterministic CMS→Markdown export, the production `GitPublisher` adapter, a public-repository template/workflows, contract tests, and public publishing documentation. Keep application source and public content repository concerns separable.
+
+Implement an auditable Prompt Lab inspired by YouMind OpenLab, with stricter Git-first review semantics:
+
+- Export only CMS records that pass the existing publication validator; missing or draft translations never appear as ready locales.
+- Generate deterministic `content/prompts/<immutable-id>/<locale>.md`, locale README/index files, machine-readable catalog/index JSON, taxonomy indexes, media manifests, license/attribution, contribution guide and issue templates.
+- Preserve immutable Prompt ids, provenance/source links, creator attribution, model/taxonomy relations, translation state, record revision and content revision.
+- A real GitHub adapter creates an idempotent branch and commit, opens or reuses a PR, and records branch/commit/PR receipt. It never pushes directly to protected `main` or merges automatically.
+- Keep `CMS_GIT_PUBLISHER=mock` as the default. Real mode requires an explicit production sentinel, repository owner/name, base branch, GitHub App/token credentials and allowlisted repository identity; incomplete config fails closed.
+- CI validates schemas, links, uniqueness, attribution, media references, locale completeness and deterministic regeneration before a PR can merge.
+- Repository workflows rebuild locale README/index files from reviewed Markdown after merge; public Issue contributions enter review and do not bypass CMS/Git validation.
+- Tests use a fake GitHub transport and fixture repository. No network write occurs until the user authenticates and confirms the target public repository.
+- Document repository bootstrap, branch protection, GitHub App permissions, secrets, recovery/idempotency, contribution flow and the first-publish checklist.
