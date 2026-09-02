@@ -347,6 +347,38 @@ function text_canonicals(text) {
   return found;
 }
 
+/**
+ * A value exported from a `"use client"` module and imported by a server
+ * component is serialized as a client reference, not as data: the server reads
+ * `undefined` and the payload ships `"$undefined"`. It renders as a silently
+ * empty label or an href like `#function(){throw Error(...)}` — both shipped
+ * once in this project before this check existed.
+ */
+async function checkClientReferenceLeaks(files) {
+  heading("9. no client-module values read as server data");
+  const offenders = [];
+  let scanned = 0;
+
+  for (const file of files) {
+    const html = await readFile(file, "utf8");
+    scanned += 1;
+    const undefinedProps = [...html.matchAll(/"([A-Za-z0-9_]+)":"\$undefined"/g)].map((m) => m[1]);
+    if (undefinedProps.length > 0) {
+      const names = [...new Set(undefinedProps)].join(", ");
+      offenders.push(`${rel(file)}: prop(s) serialized as $undefined — ${names}`);
+    }
+    if (/Attempted to call [A-Za-z0-9_]+\(\) from the server/.test(html)) {
+      offenders.push(`${rel(file)}: a client function was rendered into the markup`);
+    }
+  }
+
+  if (offenders.length > 0) {
+    fail(`${offenders.length} client-reference leak(s) in the export`, offenders);
+  } else {
+    ok(`${scanned} HTML file(s) carry no $undefined props or client-function stubs`);
+  }
+}
+
 /* ------------------------------------------------------------------ main */
 
 const outHtml = await walk(OUT, (file) => file.endsWith(".html"));
@@ -368,6 +400,7 @@ if (outHtml.length === 0) {
   await checkPrototypeNumbers(outHtml);
   await checkPresentationTruth(outHtml);
   await checkCanonicalHost(outHtml);
+  await checkClientReferenceLeaks(outHtml);
 }
 
 process.stdout.write("\n");

@@ -15,7 +15,8 @@ import {
   countWithCameraLanguage,
 } from "@/features/hub/hub-copy";
 import { PromptExplorer, type ExplorerCollection } from "@/features/prompt/PromptExplorer";
-import { TRENDING_WINDOW_LABELS, type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
+import { type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
+import { TRENDING_WINDOW_LABELS } from "@/features/prompt/trending-labels";
 
 const TITLE = "提示词库";
 /** Prototype L1 dek, verbatim. */

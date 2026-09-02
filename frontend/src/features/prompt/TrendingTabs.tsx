@@ -26,16 +26,6 @@ import { queryHref } from "@/features/search/query-links";
  * tab's link. Automatic activation would mean navigating on every arrow press.
  */
 
-/**
- * Tab labels, verbatim from the prototype's L1 tablist. Pages build their
- * `windows` from this so the labels cannot drift per page.
- */
-export const TRENDING_WINDOW_LABELS: Record<TrendingWindow, string> = {
-  "7d": "近 7 天",
-  "30d": "近 30 天",
-  all: "全部",
-};
-
 export interface TrendingWindowPanel {
   window: TrendingWindow;
   label: string;
