@@ -99,13 +99,10 @@ export function Button({
       type={type}
       aria-disabled={disabled ? "true" : undefined}
       aria-describedby={describedBy}
-      onClick={
-        disabled
-          ? (event) => {
-              event.preventDefault();
-            }
-          : onClick
-      }
+      // A disabled button gets no handler at all: `type` defaults to "button"
+      // so a click is a no-op, and attaching a closure here would make this
+      // server component pass a function to a DOM element (RSC forbids that).
+      onClick={disabled ? undefined : onClick}
       className={buttonClassName({ variant, shape, className })}
     >
       {children}
