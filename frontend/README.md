@@ -83,12 +83,20 @@ frontend/
 - **Locales.** Only `zh-CN` is published. `en` is not translated and must not
   appear in routes, `alternates.languages` or copy until real content is merged.
 
-## Data status (fixture declaration)
+## Data status (internal-beta fixture)
 
-This scaffold ships **no content data**. The typed fixture extracted from
-`docs/wireframes/flow-proto.html` and the `ContentRepository` that pages read
-from arrive in a later task. Until then pages state that content is not
-connected instead of rendering placeholder counts or invented statistics.
+The internal-beta UI ships the typed fixture extracted from
+`docs/wireframes/flow-proto.html`: **35 prompts, 21 creators, 11 models and 6
+collections**, observed on `2026-08-20`. Pages read it only through the
+`ContentRepository` boundary and derive every visible count from the current
+fixture; prototype-declared library totals are retained as metadata but never
+rendered as achieved counts. See `evidence/fixture-extraction.md` for the exact
+merge rules and provenance.
+
+This fixture is the complete wireframe-backed MVP, not the long-term
+publication source. To connect the Git/API projection, add
+`src/lib/content/api-repository.ts` and switch the factory in
+`src/lib/content/index.ts`; page components should not change.
 
 `NEXT_PUBLIC_SITE_URL` is unset, so canonical/OG URLs are built against the
 placeholder origin `https://example.invalid`. Set the env var before a real
