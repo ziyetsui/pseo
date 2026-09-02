@@ -362,6 +362,28 @@ export interface ArticleCategory {
   description: string;
 }
 
+/**
+ * Who wrote the piece. `url` is `null` when there is nowhere honest to link
+ * (e.g. the fixture editorial byline); when present it is either a
+ * site-relative href built by an `lib/i18n/routes` builder or an absolute
+ * `https://` URL to an external profile.
+ */
+export interface ArticleAuthor {
+  name: string;
+  url: string | null;
+}
+
+/**
+ * One piece of external or in-repo evidence the article is based on. `url` is
+ * always a real, dereferenceable href — a site-relative route-builder path or
+ * an absolute URL — never a placeholder.
+ */
+export interface ArticleSource {
+  label: string;
+  url: string;
+  publishedAt: string | null;
+}
+
 export interface ArticleSummary {
   id: string;
   slug: string;
@@ -370,6 +392,7 @@ export interface ArticleSummary {
   title: string;
   excerpt: string;
   category: ArticleCategory;
+  author: ArticleAuthor;
   publishedAt: string;
   updatedAt: string;
   readingMinutes: number;
@@ -378,7 +401,18 @@ export interface ArticleSummary {
 
 export interface ArticleDetail extends ArticleSummary {
   paragraphs: string[];
+  sources: ArticleSource[];
 }
+
+/**
+ * A source that points at a page this app itself renders. The repository
+ * resolves `kind` + slug into a real href via the same `lib/i18n/routes`
+ * builders every other internal link uses, so the raw fixture record never
+ * stores a hand-built path string.
+ */
+export type WireframeArticleSourceRecord =
+  | { kind: "promptDetail"; promptSlug: string; label: string; publishedAt: string | null }
+  | { kind: "promptsHome"; label: string; publishedAt: string | null };
 
 export interface WireframeArticleRecord {
   id: string;
@@ -387,6 +421,8 @@ export interface WireframeArticleRecord {
   title: string;
   excerpt: string;
   paragraphs: string[];
+  author: ArticleAuthor;
+  sources: WireframeArticleSourceRecord[];
   publishedAt: string;
   updatedAt: string;
   isFixture: true;

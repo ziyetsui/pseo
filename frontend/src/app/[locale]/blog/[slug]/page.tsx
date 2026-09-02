@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Panel } from "@/components/ui/Panel";
 import { Section } from "@/components/ui/Section";
+import { StateBlock } from "@/components/ui/StateBlock";
 import { ArticleBody } from "@/features/blog/ArticleBody";
 import { ArticleList } from "@/features/blog/ArticleList";
 import { ArticleMeta } from "@/features/blog/ArticleMeta";
@@ -16,6 +17,17 @@ import { JsonLd, breadcrumbList, type BreadcrumbItem } from "@/lib/seo/json-ld";
 import { SITE_NAME, absoluteUrl, buildMetadata } from "@/lib/seo/site";
 
 export const dynamicParams = false;
+
+const EXTERNAL_URL = /^https?:\/\//;
+
+/**
+ * `absoluteUrl` always prefixes the configured site origin, which would
+ * double up a URL that is already absolute (an external author profile or
+ * source). Route-builder hrefs are site-relative, so only those need it.
+ */
+function toAbsolute(url: string): string {
+  return EXTERNAL_URL.test(url) ? url : absoluteUrl(url);
+}
 
 export async function generateStaticParams() {
   const repository = getContentRepository();
@@ -62,10 +74,14 @@ export default async function BlogArticlePage({
   const sameCategory = (await repository.listArticles(locale, article.category.slug)).filter(
     (candidate) => candidate.id !== article.id,
   );
-  const related =
-    sameCategory.length > 0
-      ? sameCategory
-      : (await repository.listArticles(locale)).filter((candidate) => candidate.id !== article.id);
+  const isSameCategoryRelated = sameCategory.length > 0;
+  const related = isSameCategoryRelated
+    ? sameCategory
+    : (await repository.listArticles(locale)).filter((candidate) => candidate.id !== article.id);
+  // The heading must be honest about what is actually listed: "相关文章" only
+  // holds when every item shares this article's category; the cross-category
+  // fallback is labelled "最新文章" instead.
+  const relatedTitle = isSameCategoryRelated ? "相关文章" : "最新文章";
 
   const canonical = absoluteUrl(blogArticle(locale, article.slug));
   const trail: BreadcrumbItem[] = [
@@ -84,8 +100,14 @@ export default async function BlogArticlePage({
           "@type": "Article",
           headline: article.title,
           description: article.excerpt,
-          // No `author`: the content layer carries no author for these records
-          // and inventing a Person here would be fabricated structured data.
+          // Emitted only because the byline itself renders visibly in
+          // `ArticleMeta` below — structured data never claims more than the
+          // page shows.
+          author: {
+            "@type": "Person",
+            name: article.author.name,
+            ...(article.author.url !== null ? { url: toAbsolute(article.author.url) } : {}),
+          },
           datePublished: article.publishedAt,
           dateModified: article.updatedAt,
           inLanguage: locale,
@@ -93,6 +115,9 @@ export default async function BlogArticlePage({
           url: canonical,
           mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
           publisher: { "@type": "Organization", name: SITE_NAME },
+          ...(article.sources.length > 0
+            ? { citation: article.sources.map((source) => toAbsolute(source.url)) }
+            : {}),
         }}
       />
 
@@ -108,22 +133,53 @@ export default async function BlogArticlePage({
         <ArticleBody paragraphs={article.paragraphs} className="mt-8" />
       </article>
 
-      <Section
-        id="article-sources"
-        title="来源与引用"
-        description="本文引用的外部资料。"
-      >
-        <Panel tone="note" className="max-w-prose">
-          本文没有登记外部引用来源：内容层目前不为文章记录保存引用字段，因此这里不列出任何链接，
-          而不是显示一份虚构的参考文献。
-        </Panel>
+      <Section id="article-sources" title="来源与引用" description="本文依据的站内资料。">
+        {article.sources.length === 0 ? (
+          <StateBlock
+            variant="empty"
+            message="本文没有登记引用来源：内容层目前不为这篇文章记录来源字段，因此这里不列出任何链接，而不是显示一份虚构的参考文献。"
+            className="max-w-prose"
+          />
+        ) : (
+          <ul className="flex max-w-prose flex-col gap-3">
+            {article.sources.map((source, index) => (
+              <li key={index} className="border-2 border-foreground p-4 text-sm font-medium">
+                {EXTERNAL_URL.test(source.url) ? (
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener nofollow"
+                    className="underline decoration-accent-blue decoration-2"
+                  >
+                    {source.label}
+                    <span className="sr-only">（外部链接，新窗口打开）</span>
+                  </a>
+                ) : (
+                  <Link href={source.url} className="underline decoration-accent-blue decoration-2">
+                    {source.label}
+                  </Link>
+                )}
+                {source.publishedAt === null ? null : (
+                  <span className="ml-2 text-xs font-bold text-foreground/70">
+                    发布于 <time dateTime={source.publishedAt}>{source.publishedAt}</time>
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </Section>
 
       <Section id="article-share" title="分享" description="复制本文链接。">
         <ShareArticle url={canonical} />
       </Section>
 
-      <Section id="article-related" title="相关文章" moreHref={blogHome(locale)} moreLabel="查看全部文章">
+      <Section
+        id="article-related"
+        title={relatedTitle}
+        moreHref={blogHome(locale)}
+        moreLabel="查看全部文章"
+      >
         <ArticleList articles={related} emptyMessage="暂时没有其他文章可以推荐。" />
       </Section>
     </div>

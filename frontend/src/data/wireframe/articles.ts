@@ -1,10 +1,18 @@
 // HAND-WRITTEN fixture — not produced by scripts/extract-wireframe.mjs.
 //
-// The wireframe has no blog. These two zh-CN articles exist so the blog routes
+// The wireframe has no blog. These zh-CN articles exist so the blog routes
 // have real, readable content to render; every record carries `isFixture: true`
 // and the repository is the only module allowed to read them.
+//
+// `release-notes` is deliberately a real category with zero articles: it lets
+// the blog list page prove it never links a category the category route would
+// not generate a page for. `case-studies` holds exactly one article on purpose
+// so that article's related-articles rail has to fall back across categories.
 
 import type { WireframeArticleCategoryRecord, WireframeArticleRecord } from "@/lib/content/types";
+
+/** Every fixture article shares the same honest, clearly-labelled byline. */
+const FIXTURE_AUTHOR = { name: "站点编辑（fixture）", url: null } as const;
 
 export const WIREFRAME_ARTICLE_CATEGORIES: readonly WireframeArticleCategoryRecord[] = [
   {
@@ -12,6 +20,18 @@ export const WIREFRAME_ARTICLE_CATEGORIES: readonly WireframeArticleCategoryReco
     slug: "guides",
     label: "指南",
     description: "怎么用这些提示词：变量替换、复制流程、来源与版权。",
+  },
+  {
+    id: "article-category:release-notes",
+    slug: "release-notes",
+    label: "更新日志",
+    description: "记录内容库版本变更的计划分类，目前还没有对应文章。",
+  },
+  {
+    id: "article-category:case-studies",
+    slug: "case-studies",
+    label: "案例复盘",
+    description: "从复制提示词到出片的完整案例复盘。",
   },
 ];
 
@@ -29,6 +49,15 @@ export const WIREFRAME_ARTICLES: readonly WireframeArticleRecord[] = [
       "所以详情页上的替换次数是数出来的，不是写死的。页面读取提示词原文、统计每个变量实际出现多少次，再告诉你替换会影响多少处。复制按钮会先做完替换再写入剪贴板，如果还有变量没填值，页面会把它们列出来，而不是悄悄放行。",
       "手动替换时，用编辑器的「全部替换」而不是逐个改；替换完再全文搜一遍方括号，确认没有残留。参考图变量（`@img` 系列）要按编号对应上传顺序，第一张图对应 `@img1`，顺序错了角色就会串。",
       "最后一点：提示词原文属于原作者，本站逐字保留。替换变量是为了让它适配你的题材，不要顺手删掉尾部的渲染参数（例如 `8k resolution`、`octane render`），那些词直接决定成品质感。",
+    ],
+    author: FIXTURE_AUTHOR,
+    sources: [
+      {
+        kind: "promptDetail",
+        promptSlug: "country-miniature-stamp-poster",
+        label: "国家主题微缩邮票海报 — 本文示例引用的变量驱动 Prompt",
+        publishedAt: null,
+      },
     ],
     publishedAt: "2026-08-18",
     updatedAt: "2026-08-20",
@@ -48,8 +77,42 @@ export const WIREFRAME_ARTICLES: readonly WireframeArticleRecord[] = [
       "有些内容我们没有收录：帖子里的图片和视频只做缩略展示并链回原帖，不做转存；没有公开提示词正文、只展示成品的帖子不收录；作者要求下架的条目会移除。如果你是作者并希望调整或撤下自己的内容，请通过原帖联系我们。",
       "这两篇文章本身是示例内容（fixture），用来验证博客路由与排版；正式上线时会替换为编辑撰写的正式稿。",
     ],
+    author: FIXTURE_AUTHOR,
+    sources: [
+      {
+        kind: "promptsHome",
+        label: "Prompt 库首页 — 全部收录条目均标注原帖链接与作者 handle",
+        publishedAt: null,
+      },
+    ],
     publishedAt: "2026-08-19",
     updatedAt: "2026-08-20",
+    isFixture: true,
+  },
+  {
+    id: "article:stamp-poster-case-study",
+    slug: "stamp-poster-case-study",
+    categorySlug: "case-studies",
+    title: "案例复盘：国家主题微缩邮票海报",
+    excerpt:
+      "拿库里收录的黄金 Prompt 复盘一遍完整流程：从读懂变量、逐处替换，到检查出图有没有互相矛盾的细节。",
+    paragraphs: [
+      "这篇复盘用的是库里「国家主题微缩邮票海报」这条 Prompt：一张巨型复古邮票立在柔和影棚背景里，地标从齿孔边缘凸出来，动植物从右下角溢出。整条 Prompt 只有一个变量 `[COUNTRY]`，但它在原文里出现了六次，分别驱动地标、动植物、传统服饰、邮票文字、货币面额和邮戳城市。",
+      "复盘的第一步是通读原文、圈出每一处 `[COUNTRY]`，确认它们要表达的是同一个国家，而不是「地标用日本、货币面额用法国」这种拼贴。详情页会把实际出现次数数出来显示，用来核对有没有漏改。",
+      "第二步是替换：把六处 `[COUNTRY]` 全部换成同一个值，例如「意大利」。换完之后再通读一遍，确认地标（比萨斜塔）、动植物（橄榄树、地中海燕鸥）、服饰、货币（里拉/欧元字样）和邮戳城市（罗马）是否互相呼应——这是复盘里最容易漏掉、也最影响成片可信度的一步。",
+      "最后一步是出图前的自查清单：变量替换次数是否等于原文出现次数、渲染参数（`8k resolution`、`octane render` 等）有没有被误删、以及成片发布时是否链回了原帖。这三点做到位，复盘就算完整。",
+    ],
+    author: FIXTURE_AUTHOR,
+    sources: [
+      {
+        kind: "promptDetail",
+        promptSlug: "country-miniature-stamp-poster",
+        label: "国家主题微缩邮票海报 — 本案例复盘所依据的 Prompt",
+        publishedAt: null,
+      },
+    ],
+    publishedAt: "2026-08-17",
+    updatedAt: "2026-08-19",
     isFixture: true,
   },
 ];

@@ -54,10 +54,15 @@ export default async function BlogIndexPage({
   ]);
 
   // Counts are derived from the articles actually present — never declared.
-  const categoriesWithCount: CategoryWithCount[] = categories.map((category) => ({
-    category,
-    count: articles.filter((article) => article.category.slug === category.slug).length,
-  }));
+  // Only non-empty categories are linked: `blog/category/[slug]` only ever
+  // generates a page for a category that has at least one article, so a
+  // zero-count category here would be a link to a page that 404s.
+  const categoriesWithCount: CategoryWithCount[] = categories
+    .map((category) => ({
+      category,
+      count: articles.filter((article) => article.category.slug === category.slug).length,
+    }))
+    .filter((entry) => entry.count > 0);
 
   const featured = articles[0];
   const trail: BreadcrumbItem[] = [

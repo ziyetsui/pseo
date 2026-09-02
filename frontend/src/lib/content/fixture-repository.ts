@@ -13,6 +13,7 @@ import {
   blogCategory,
   modelPage,
   promptDetail,
+  promptsHome,
   promptsImage,
 } from "@/lib/i18n/routes";
 
@@ -47,6 +48,7 @@ import {
   type TaxonomyWithCount,
   type TrendingResult,
   type TrendingWindow,
+  type WireframeArticleSourceRecord,
   type WireframePromptRecord,
 } from "./types";
 import { extractVariables } from "./variables";
@@ -513,6 +515,20 @@ function collectionMembers(collection: Collection, view: LocaleView): PromptSumm
 
 /* ------------------------------------------------------------ repository */
 
+/**
+ * Resolves a raw article source reference into a real href using the same
+ * route builders every other internal link goes through — the fixture record
+ * only ever stores a `kind` + slug, never a hand-built path.
+ */
+function buildArticleSourceHref(locale: Locale, source: WireframeArticleSourceRecord): string {
+  switch (source.kind) {
+    case "promptDetail":
+      return promptDetail(locale, source.promptSlug);
+    case "promptsHome":
+      return promptsHome(locale);
+  }
+}
+
 function toArticleSummary(
   locale: Locale,
   categories: readonly ArticleCategory[],
@@ -531,6 +547,7 @@ function toArticleSummary(
     title: record.title,
     excerpt: record.excerpt,
     category,
+    author: { ...record.author },
     publishedAt: record.publishedAt,
     updatedAt: record.updatedAt,
     readingMinutes: Math.max(1, Math.round(words / 400)),
@@ -690,6 +707,11 @@ export class FixtureContentRepository implements ContentRepository {
     return {
       ...toArticleSummary(locale, view.articleCategories, record),
       paragraphs: [...record.paragraphs],
+      sources: record.sources.map((source) => ({
+        label: source.label,
+        url: buildArticleSourceHref(locale, source),
+        publishedAt: source.publishedAt,
+      })),
     };
   }
 
