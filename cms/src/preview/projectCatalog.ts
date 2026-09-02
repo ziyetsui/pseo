@@ -210,7 +210,7 @@ function mediaProjection(value: unknown, baseMedia: WireframeMediaRecord[]): Wir
   })
 }
 
-function variablesProjection(value: unknown): PromptVariable[] {
+function variablesProjection(value: unknown, baseVariables: PromptVariable[]): PromptVariable[] {
   return records(value).map((item) => ({
     token: stringValue(item.key),
     label: stringValue(item.label),
@@ -220,6 +220,9 @@ function variablesProjection(value: unknown): PromptVariable[] {
           .filter(Boolean)
       : [],
     defaultValue: stringValue(item.defaultValue),
+    note: Object.hasOwn(item, 'note')
+      ? nullableString(item.note)
+      : baseVariables.find((variable) => variable.token === stringValue(item.key))?.note ?? null,
   }))
 }
 
@@ -293,7 +296,13 @@ function safeBasePrompt(value: unknown): WireframePromptRecord | null {
       (item): item is 'l1' | 'l2' | 'l3' | 'l4' => item === 'l1' || item === 'l2' || item === 'l3' || item === 'l4',
     ),
     featuredOn: stringArray(base.featuredOn).filter((item): item is 'l1' | 'l2' => item === 'l1' || item === 'l2'),
-    variables: [],
+    variables: records(base.variables).map((item) => ({
+      token: stringValue(item.token),
+      label: stringValue(item.label),
+      options: stringArray(item.options),
+      defaultValue: stringValue(item.defaultValue),
+      note: nullableString(item.note),
+    })),
     steps: [],
     requiredInputs: [],
     optionalInputs: [],
@@ -399,7 +408,7 @@ function projectPrompts(documents: PreviewCatalogDocuments, locale: PreviewLocal
         reposts: nullableNumber(metrics?.reposts),
         replies: nullableNumber(metrics?.comments),
         media: mediaProjection(artifact.media, baseMedia),
-        variables: variablesProjection(prompt?.variables),
+        variables: variablesProjection(prompt?.variables, base.variables),
         steps: workflowProjection(variant.workflow),
         requiredInputs: textList(artifact.requiredInputs),
         optionalInputs: textList(artifact.optionalInputs),

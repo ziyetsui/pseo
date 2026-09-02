@@ -189,6 +189,8 @@ function buildDocuments(): PreviewCatalogDocuments {
         variables:
           index === 0
             ? [{ key: '[SUBJECT]', label: 'Edited subject', defaultValue: 'tea', options: [{ value: 'tea' }] }]
+            : index === 1
+              ? [{ key: '[CITY]', label: 'City', defaultValue: 'Paris', options: [] }]
             : [],
       },
       requiredInputs: index === 0 ? [{ value: 'portrait' }] : [],
@@ -258,7 +260,10 @@ function buildDocuments(): PreviewCatalogDocuments {
           media: [],
           appearsOn: ['l1'],
           featuredOn: [],
-          variables: [],
+          variables:
+            index === 0
+              ? [{ token: '[SUBJECT]', label: 'Original subject', options: ['coffee'], defaultValue: 'coffee', note: 'Keep the source guidance.' }]
+              : [],
           steps: [],
           requiredInputs: [],
           optionalInputs: [],
@@ -407,7 +412,18 @@ test('projector returns the complete fixture universe with normal editable CMS f
   assert.equal(first.likes, 9001)
   assert.equal(first.media[0]?.src, 'https://example.com/edited.jpg')
   assert.deepEqual(first.variables, [
-    { token: '[SUBJECT]', label: 'Edited subject', options: ['tea'], defaultValue: 'tea' },
+    {
+      token: '[SUBJECT]',
+      label: 'Edited subject',
+      options: ['tea'],
+      defaultValue: 'tea',
+      note: 'Keep the source guidance.',
+    },
+  ])
+  const second = projected.prompts.find((prompt) => prompt.id === 'prompt-02')
+  assert.ok(second)
+  assert.deepEqual(second.variables, [
+    { token: '[CITY]', label: 'City', options: [], defaultValue: 'Paris', note: null },
   ])
   assert.deepEqual(first.requiredInputs, ['portrait'])
   assert.deepEqual(first.steps, [{ order: 1, title: 'Prepare', body: 'Prepare assets' }])

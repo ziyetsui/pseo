@@ -25,6 +25,7 @@ export interface PromptVariable {
   readonly label: string
   readonly options: string[]
   readonly defaultValue: string
+  readonly note: string | null
 }
 
 export interface PromptStep {
