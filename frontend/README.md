@@ -94,9 +94,34 @@ rendered as achieved counts. See `evidence/fixture-extraction.md` for the exact
 merge rules and provenance.
 
 This fixture is the complete wireframe-backed MVP, not the long-term
-publication source. To connect the Git/API projection, add
-`src/lib/content/api-repository.ts` and switch the factory in
-`src/lib/content/index.ts`; page components should not change.
+publication source. The shared `getContentRepository()` factory intentionally
+stays fixture-only and client-safe; server-rendered preview entry points use the
+isolated factory below.
+
+### Local CMS preview data
+
+The checked-in fixture remains the default and the production/static source.
+For the internal beta only, server layouts/pages can import
+`createServerContentContext` from `src/lib/content/server.ts`. Preview mode is
+enabled only when all four server-side variables are present:
+
+```bash
+PSEO_CONTENT_SOURCE=cms-preview
+PSEO_PREVIEW=1
+PSEO_PREVIEW_API_BASE_URL=http://127.0.0.1:3001
+PSEO_PREVIEW_API_TOKEN=<private bearer token>
+```
+
+The token must never use a `NEXT_PUBLIC_` name. Partial or invalid preview
+configuration and API failures stop the preview build/request; they never fall
+back to fixture content. The returned context exposes `mode` and `revision` so
+the beta UI can display an explicit preview marker. Each context fetches and
+validates one closed catalog envelope, then binds its repository to that single
+revision.
+
+CMS currently has no Article collection. In CMS preview mode only the prompt,
+taxonomy, creator, model, collection and snapshot data come from CMS; blog
+methods deliberately continue to use the unchanged wireframe blog fixture.
 
 `NEXT_PUBLIC_SITE_URL` is unset, so canonical/OG URLs are built against the
 placeholder origin `https://example.invalid`. Set the env var before a real

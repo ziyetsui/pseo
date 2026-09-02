@@ -49,7 +49,9 @@ import {
   type TrendingResult,
   type TrendingWindow,
   type WireframeArticleSourceRecord,
+  type WireframeModelRecord,
   type WireframePromptRecord,
+  type WireframeTaxonomyRecord,
 } from "./types";
 import { extractVariables } from "./variables";
 
@@ -65,6 +67,24 @@ import { extractVariables } from "./variables";
 const EXCERPT_LENGTH = 160;
 const PREVIEW_LENGTH = 240;
 const RELATED_LIMIT = 4;
+
+export interface ContentRepositoryData {
+  prompts: readonly WireframePromptRecord[];
+  taxonomies: readonly WireframeTaxonomyRecord[];
+  creators: readonly Creator[];
+  models: readonly WireframeModelRecord[];
+  collections: readonly Collection[];
+  snapshot: Snapshot;
+}
+
+const WIREFRAME_DATA: ContentRepositoryData = {
+  prompts: WIREFRAME_PROMPTS,
+  taxonomies: WIREFRAME_TAXONOMIES,
+  creators: WIREFRAME_CREATORS,
+  models: WIREFRAME_MODELS,
+  collections: WIREFRAME_COLLECTIONS,
+  snapshot: WIREFRAME_SNAPSHOT,
+};
 
 const FACET_LABEL: Record<QueryFacetKey, string> = {
   model: "模型",
@@ -114,26 +134,28 @@ interface LocaleView {
   articleCategories: ArticleCategory[];
 }
 
-const viewCache = new Map<Locale, LocaleView>();
-
 function taxonomyKey(axis: TaxonomyAxis, slug: string): string {
   return `${axis}:${slug}`;
 }
 
-function buildView(locale: Locale): LocaleView {
+function buildView(
+  locale: Locale,
+  data: ContentRepositoryData,
+  viewCache: Map<Locale, LocaleView>,
+): LocaleView {
   const cached = viewCache.get(locale);
   if (cached !== undefined) return cached;
 
   /* Which model slugs actually have prompts — only those get a page (and an href). */
   const modelPromptCount = new Map<string, number>();
-  for (const record of WIREFRAME_PROMPTS) {
+  for (const record of data.prompts) {
     for (const slug of record.modelSlugs) {
       modelPromptCount.set(slug, (modelPromptCount.get(slug) ?? 0) + 1);
     }
   }
 
   const taxonomyById = new Map<string, Taxonomy>();
-  for (const term of WIREFRAME_TAXONOMIES) {
+  for (const term of data.taxonomies) {
     let href: string | null = null;
     if (term.axis === "model" && (modelPromptCount.get(term.slug) ?? 0) > 0) {
       href = modelPage(locale, term.slug);
@@ -151,7 +173,7 @@ function buildView(locale: Locale): LocaleView {
     });
   }
 
-  const creatorsById = new Map<string, Creator>(WIREFRAME_CREATORS.map((c) => [c.id, { ...c }]));
+  const creatorsById = new Map<string, Creator>(data.creators.map((c) => [c.id, { ...c }]));
 
   const resolve = (axis: TaxonomyAxis, slugs: readonly string[]): Taxonomy[] =>
     slugs.flatMap((slug) => {
@@ -159,7 +181,7 @@ function buildView(locale: Locale): LocaleView {
       return term === undefined ? [] : [term];
     });
 
-  const prompts = WIREFRAME_PROMPTS.map((record): PromptSummary => {
+  const prompts = data.prompts.map((record): PromptSummary => {
     const creator = creatorsById.get(record.creatorId);
     if (creator === undefined) {
       throw new Error(`fixture-repository: prompt ${record.id} references unknown creator ${record.creatorId}`);
@@ -209,7 +231,7 @@ function buildView(locale: Locale): LocaleView {
         publishedAt: record.publishedAt,
       },
       metrics: {
-        observedAt: WIREFRAME_SNAPSHOT.observedAt,
+        observedAt: data.snapshot.observedAt,
         likes: record.likes,
         bookmarks: record.bookmarks,
         views: record.views,
@@ -239,7 +261,7 @@ function buildView(locale: Locale): LocaleView {
     prompts,
     promptsById: new Map(prompts.map((p) => [p.id, p])),
     promptsBySlug: new Map(prompts.map((p) => [p.slug, p])),
-    recordsById: new Map(WIREFRAME_PROMPTS.map((r) => [r.id, r])),
+    recordsById: new Map(data.prompts.map((r) => [r.id, r])),
     creatorsById,
     articleCategories: WIREFRAME_ARTICLE_CATEGORIES.map((category) => ({
       id: category.id,
@@ -250,7 +272,7 @@ function buildView(locale: Locale): LocaleView {
     })),
   };
   // Resolved after `view` exists because `collectionMembers` reads `view`.
-  for (const collection of WIREFRAME_COLLECTIONS) {
+  for (const collection of data.collections) {
     view.collectionIdsBySlug[collection.slug] = collectionMembers(collection, view).map(
       (prompt) => prompt.id,
     );
@@ -309,7 +331,11 @@ function buildFacets(
   });
 }
 
-function buildAppliedFilters(view: LocaleView, query: PromptQuery): AppliedFilter[] {
+function buildAppliedFilters(
+  view: LocaleView,
+  query: PromptQuery,
+  collections: readonly Collection[],
+): AppliedFilter[] {
   const applied: AppliedFilter[] = [];
   if (query.q !== undefined && query.q.trim().length > 0) {
     applied.push({ key: "q", value: query.q.trim(), label: `关键词「${query.q.trim()}」` });
@@ -328,7 +354,7 @@ function buildAppliedFilters(view: LocaleView, query: PromptQuery): AppliedFilte
     applied.push({ key: "window", value: query.window, label: `时间范围：${WINDOW_LABEL[query.window]}` });
   }
   if (query.collection !== undefined) {
-    const collection = WIREFRAME_COLLECTIONS.find((entry) => entry.slug === query.collection);
+    const collection = collections.find((entry) => entry.slug === query.collection);
     applied.push({
       key: "collection",
       value: query.collection,
@@ -357,16 +383,17 @@ function listWithin(
   view: LocaleView,
   base: readonly PromptSummary[],
   query: PromptQuery,
+  data: ContentRepositoryData,
 ): PromptListResult {
   const windowStart =
-    query.window === undefined ? null : resolveWindowStart(WIREFRAME_SNAPSHOT.observedAt, query.window);
+    query.window === undefined ? null : resolveWindowStart(data.snapshot.observedAt, query.window);
   const options = { windowStart, collectionMembers: view.collectionIdsBySlug };
   const items = applyPromptQuery(base, query, options);
   return {
     items,
     total: items.length,
     facets: buildFacets(view, base, query, windowStart),
-    appliedFilters: buildAppliedFilters(view, query),
+    appliedFilters: buildAppliedFilters(view, query, data.collections),
     unknownParams: unknownFacetValues(view, query),
   };
 }
@@ -388,8 +415,13 @@ function modelFamily(label: string): string {
   return label.split(" ")[0] ?? label;
 }
 
-function buildModelDetail(view: LocaleView, locale: Locale, slug: string): ModelDetail | null {
-  const record = WIREFRAME_MODELS.find((model) => model.slug === slug);
+function buildModelDetail(
+  view: LocaleView,
+  locale: Locale,
+  slug: string,
+  models: readonly WireframeModelRecord[],
+): ModelDetail | null {
+  const record = models.find((model) => model.slug === slug);
   const term = view.taxonomyById.get(taxonomyKey("model", slug));
   if (record === undefined || term === undefined) return null;
 
@@ -438,7 +470,7 @@ function buildModelDetail(view: LocaleView, locale: Locale, slug: string): Model
     .filter((slugValue) => slugValue !== "unknown")
     .sort();
 
-  const siblings = WIREFRAME_MODELS.filter(
+  const siblings = models.filter(
     (other) =>
       other.slug !== slug &&
       modelFamily(other.label) === modelFamily(record.label) &&
@@ -471,7 +503,7 @@ function buildModelDetail(view: LocaleView, locale: Locale, slug: string): Model
   const relatedModelSlugs =
     record.declaredRelatedModelSlugs.length > 0
       ? record.declaredRelatedModelSlugs
-      : WIREFRAME_MODELS.filter((other) => other.slug !== slug)
+      : models.filter((other) => other.slug !== slug)
           .map((other) => ({
             slug: other.slug,
             count: view.prompts.filter((prompt) => prompt.models.some((m) => m.slug === other.slug)).length,
@@ -584,17 +616,25 @@ function toArticleSummary(
 }
 
 export class FixtureContentRepository implements ContentRepository {
+  private readonly viewCache = new Map<Locale, LocaleView>();
+
+  constructor(private readonly data: ContentRepositoryData = WIREFRAME_DATA) {}
+
+  private view(locale: Locale): LocaleView {
+    return buildView(locale, this.data, this.viewCache);
+  }
+
   async getSnapshot(): Promise<Snapshot> {
-    return WIREFRAME_SNAPSHOT;
+    return this.data.snapshot;
   }
 
   async listPrompts(locale: Locale, query: PromptQuery = {}): Promise<PromptListResult> {
-    const view = buildView(locale);
-    return listWithin(view, view.prompts, query);
+    const view = this.view(locale);
+    return listWithin(view, view.prompts, query, this.data);
   }
 
   async getPromptBySlug(locale: Locale, slug: string): Promise<PromptDetail | null> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const summary = view.promptsBySlug.get(slug);
     if (summary === undefined) return null;
     const record = view.recordsById.get(summary.id);
@@ -617,7 +657,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listFeatured(locale: Locale, surface: "l1" | "l2"): Promise<PromptSummary[]> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     return view.prompts.filter((prompt) => prompt.featuredOn.includes(surface));
   }
 
@@ -627,8 +667,8 @@ export class FixtureContentRepository implements ContentRepository {
     limit: number,
     modelSlug?: string,
   ): Promise<TrendingResult> {
-    const view = buildView(locale);
-    const windowStart = resolveWindowStart(WIREFRAME_SNAPSHOT.observedAt, window);
+    const view = this.view(locale);
+    const windowStart = resolveWindowStart(this.data.snapshot.observedAt, window);
     const pool =
       modelSlug === undefined
         ? view.prompts
@@ -659,7 +699,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listTaxonomies(locale: Locale, axis: TaxonomyAxis): Promise<TaxonomyWithCount[]> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const counts = new Map<string, number>();
     const highValue = new Map<string, number>();
     for (const prompt of view.prompts) {
@@ -687,17 +727,17 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async getModel(locale: Locale, slug: string): Promise<ModelDetail | null> {
-    return buildModelDetail(buildView(locale), locale, slug);
+    return buildModelDetail(this.view(locale), locale, slug, this.data.models);
   }
 
   async listModelPrompts(locale: Locale, slug: string, query: PromptQuery = {}): Promise<PromptListResult> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const base = view.prompts.filter((prompt) => prompt.models.some((model) => model.slug === slug));
-    return listWithin(view, base, query);
+    return listWithin(view, base, query, this.data);
   }
 
   async listPromptsWithVariables(locale: Locale, modelSlug?: string): Promise<PromptSummary[]> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     return view.prompts.filter(
       (prompt) =>
         prompt.hasVariables &&
@@ -706,8 +746,8 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listCollections(locale: Locale): Promise<CollectionWithCount[]> {
-    const view = buildView(locale);
-    return WIREFRAME_COLLECTIONS.map((collection): CollectionWithCount => {
+    const view = this.view(locale);
+    return this.data.collections.map((collection): CollectionWithCount => {
       const members = collectionMembers(collection, view);
       return {
         ...collection,
@@ -720,7 +760,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listCreators(locale: Locale): Promise<CreatorWithCount[]> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const counts = new Map<string, number>();
     // `null` sums stay null: a creator whose posts never exposed a like count
     // is shown as "—", never as 0 (AGENTS.md §1). A single recorded value is
@@ -757,7 +797,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async getRelated(locale: Locale, promptId: string): Promise<RelatedGroups> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const prompt = view.promptsById.get(promptId);
     if (prompt === undefined) {
       return { sameSeries: [], sameModel: [], sameUseCase: [], sameCreator: [] };
@@ -766,7 +806,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listArticles(locale: Locale, categorySlug?: string): Promise<ArticleSummary[]> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     return WIREFRAME_ARTICLES.filter(
       (article) => categorySlug === undefined || article.categorySlug === categorySlug,
     )
@@ -775,7 +815,7 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async getArticle(locale: Locale, slug: string): Promise<ArticleDetail | null> {
-    const view = buildView(locale);
+    const view = this.view(locale);
     const record = WIREFRAME_ARTICLES.find((article) => article.slug === slug);
     if (record === undefined) return null;
     return {
@@ -790,11 +830,11 @@ export class FixtureContentRepository implements ContentRepository {
   }
 
   async listArticleCategories(locale: Locale): Promise<ArticleCategory[]> {
-    return buildView(locale).articleCategories;
+    return this.view(locale).articleCategories;
   }
 
   async getArticleCategory(locale: Locale, slug: string): Promise<ArticleCategory | null> {
-    return buildView(locale).articleCategories.find((category) => category.slug === slug) ?? null;
+    return this.view(locale).articleCategories.find((category) => category.slug === slug) ?? null;
   }
 }
 
@@ -835,4 +875,9 @@ let repository: ContentRepository | null = null;
 export function getFixtureContentRepository(): ContentRepository {
   repository ??= new FixtureContentRepository();
   return repository;
+}
+
+/** Builds an isolated repository over one already-validated data snapshot. */
+export function createDataContentRepository(data: ContentRepositoryData): ContentRepository {
+  return new FixtureContentRepository(data);
 }
