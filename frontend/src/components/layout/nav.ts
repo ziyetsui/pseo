@@ -10,9 +10,11 @@ export interface NavItem {
 export const FEATURED_MODEL_SLUG = "nano-banana-pro";
 
 /**
- * Primary navigation. Every entry points at a route that exists in this build —
- * aggregation pages that are not implemented yet (video, use cases, styles,
- * creators) are deliberately absent rather than rendered as `#` placeholders.
+ * Primary navigation. The image gallery (L2), model page (L3) and Blog routes
+ * listed here are delivered by later tasks, not this scaffold — the pages
+ * themselves land in tasks 3-8. Other aggregation pages that have no route at
+ * all yet (video, use cases, styles, creators) are deliberately absent rather
+ * than rendered as `#` placeholders.
  */
 export function getPrimaryNav(locale: Locale): NavItem[] {
   return [

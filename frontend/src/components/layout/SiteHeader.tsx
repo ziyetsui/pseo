@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { Locale } from "@/lib/i18n/config";
+import { LOCALE_LABEL, type Locale } from "@/lib/i18n/config";
 import { promptsHome } from "@/lib/i18n/routes";
 import { SITE_NAME } from "@/lib/seo/site";
 
@@ -39,16 +39,21 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <div className="hidden items-center gap-3 md:flex">
           {/*
-            Language control placeholder. Only zh-CN is published, so the control
-            is genuinely disabled and says so instead of pretending to switch.
+            Language control placeholder. Only zh-CN is published. We use
+            `aria-disabled` (not the `disabled` attribute) so the button stays
+            focusable and its `aria-describedby` explanation is announced by
+            screen readers; a plain `disabled` button is removed from the
+            accessibility tree and would silently drop that explanation. It
+            still does nothing on click — there is no handler wired up, and it
+            is not a submit button in a form.
           */}
           <button
             type="button"
-            disabled
+            aria-disabled="true"
             aria-describedby="locale-availability"
-            className="min-h-11 border-2 border-foreground bg-muted px-3 text-sm font-bold tracking-widest uppercase"
+            className="flex min-h-11 min-w-11 items-center justify-center border-2 border-foreground bg-muted px-3 text-sm font-bold tracking-widest uppercase"
           >
-            {locale}
+            {LOCALE_LABEL[locale]} ({locale})
           </button>
           <p id="locale-availability" className="max-w-28 text-xs leading-snug font-medium">
             更多语言尚未发布

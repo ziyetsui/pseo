@@ -17,7 +17,12 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
   // The locale root forwards to L1, so it declares L1 as its canonical.
-  return buildMetadata({ locale, title: TITLE, description: DESCRIPTION, path: promptsHome(locale) });
+  return buildMetadata({
+    locale,
+    title: TITLE,
+    description: DESCRIPTION,
+    paths: { [locale]: promptsHome(locale) },
+  });
 }
 
 export default async function LocaleIndexPage({

@@ -1,7 +1,22 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
+import type { Locale } from "@/lib/i18n/config";
 import { breadcrumbList, serializeJsonLd } from "@/lib/seo/json-ld";
 import { absoluteUrl, buildMetadata, getSiteUrl } from "@/lib/seo/site";
+
+/**
+ * `Locale` only has one real member (`"zh-CN"`) in this phase. The tests below
+ * exercise the multi-locale branches of `buildMetadata` by asserting a wider
+ * set of locale keys past the type checker — this never happens in production
+ * call sites, which only ever pass real `Locale` keys.
+ */
+function fakeLocalePaths(paths: Record<string, string>): Partial<Record<Locale, string>> {
+  return paths as unknown as Partial<Record<Locale, string>>;
+}
+
+function fakePublishedLocales(locales: readonly string[]): readonly Locale[] {
+  return locales as unknown as readonly Locale[];
+}
 
 const ORIGINAL = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -50,7 +65,7 @@ describe("buildMetadata", () => {
     locale: "zh-CN" as const,
     title: "提示词库",
     description: "来自 X 的图片提示词合集。",
-    path: "/zh-CN/prompts",
+    paths: { "zh-CN": "/zh-CN/prompts" },
   };
 
   it("sets title, description and an absolute canonical", () => {
@@ -60,17 +75,47 @@ describe("buildMetadata", () => {
     expect(meta.alternates?.canonical).toBe("https://example.invalid/zh-CN/prompts");
   });
 
-  it("only lists locales that actually exist, and never claims en", () => {
+  it("never claims en, regardless of what paths carries", () => {
     const meta = buildMetadata(base);
     const languages = meta.alternates?.languages ?? {};
-    expect(Object.keys(languages)).toEqual(["zh-CN"]);
     expect(languages).not.toHaveProperty("en");
     expect(JSON.stringify(meta)).not.toContain('"en"');
   });
 
-  it("omits languages entirely when no other locale variant exists", () => {
-    const meta = buildMetadata({ ...base, availableLocales: [] });
+  it("omits languages entirely when only one locale variant exists (one locale -> no languages key)", () => {
+    const meta = buildMetadata(base);
     expect(meta.alternates?.languages).toBeUndefined();
+  });
+
+  it("two published locales produce two distinct hreflang URLs", () => {
+    const meta = buildMetadata({
+      ...base,
+      paths: fakeLocalePaths({ "zh-CN": "/zh-CN/prompts", en: "/en/prompts" }),
+      publishedLocales: fakePublishedLocales(["zh-CN", "en"]),
+    });
+    expect(meta.alternates?.languages).toEqual({
+      "zh-CN": "https://example.invalid/zh-CN/prompts",
+      en: "https://example.invalid/en/prompts",
+    });
+  });
+
+  it("filters out a path whose locale is not in publishedLocales", () => {
+    const meta = buildMetadata({
+      ...base,
+      // "fr" is not a published locale, but a stray key must never leak
+      // through even if it were supplied by mistake.
+      paths: fakeLocalePaths({
+        "zh-CN": "/zh-CN/prompts",
+        en: "/en/prompts",
+        fr: "/fr/prompts",
+      }),
+      publishedLocales: fakePublishedLocales(["zh-CN", "en"]),
+    });
+    expect(Object.keys(meta.alternates?.languages ?? {})).toEqual(["zh-CN", "en"]);
+  });
+
+  it("throws when no path is supplied for the current locale", () => {
+    expect(() => buildMetadata({ ...base, paths: {} })).toThrow(/no path supplied/);
   });
 
   it("fills Open Graph and Twitter from the same values", () => {
@@ -80,7 +125,7 @@ describe("buildMetadata", () => {
     expect(meta.openGraph?.url).toBe("https://example.invalid/zh-CN/prompts");
     expect(meta.openGraph?.locale).toBe("zh_CN");
     expect(meta.twitter).toMatchObject({
-      card: "summary_large_image",
+      card: "summary",
       title: "提示词库",
       description: "来自 X 的图片提示词合集。",
     });

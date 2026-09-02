@@ -16,7 +16,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  return buildMetadata({ locale, title: TITLE, description: DESCRIPTION, path: promptsHome(locale) });
+  return buildMetadata({
+    locale,
+    title: TITLE,
+    description: DESCRIPTION,
+    paths: { [locale]: promptsHome(locale) },
+  });
 }
 
 export default async function PromptsPage({ params }: { params: Promise<{ locale: string }> }) {
