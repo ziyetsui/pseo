@@ -61,9 +61,15 @@ describe("CollectionTiles", () => {
     );
   });
 
-  it("writes the prototype's `副标题 · N 条` on one line", () => {
-    render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
-    expect(screen.getByText("镜头控制 × 电影质感 · 5 条")).toBeInTheDocument();
+  it("keeps the prototype's subtitle and count, with the count as the tile's figure", () => {
+    const { container } = render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
+
+    // The prototype's single `副标题 · N 条` line becomes a subtitle caption plus
+    // a display-scale figure; every word of it survives, only its weight changes.
+    expect(screen.getByText("镜头控制 × 电影质感")).toBeInTheDocument();
+    expect(container.textContent).toContain("5 条");
+    const figure = screen.getByText("5");
+    expect(figure.className).toContain("tabular-nums");
   });
 
   it.each([

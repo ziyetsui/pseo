@@ -107,7 +107,9 @@ describe("cardClassName", () => {
 
 describe("tileShellClassName", () => {
   it("gives every browse tile the same floor and pins its last row to it", () => {
-    expect(tileShellClassName).toContain("min-h-32");
+    // The floor rose with the display-scale count inside the tiles; what the
+    // shell guarantees is unchanged — one shared floor, last row pinned to it.
+    expect(tileShellClassName).toMatch(/min-h-\d+/);
     expect(tileShellClassName).toContain("justify-between");
   });
 });

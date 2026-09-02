@@ -16,6 +16,7 @@ import { CreatorTiles } from "./CreatorTiles";
 import { FeaturedPrompt } from "./FeaturedPrompt";
 import { HUB_SECTION_IDS } from "./AnchorNav";
 import { TaxonomyTiles } from "./TaxonomyTiles";
+import { HUB_SECTION_ACCENTS } from "./section-accent";
 import { allPromptsHref, cameraSectionDescription } from "./hub-copy";
 
 export interface PromptHubBrowseProps {
@@ -104,7 +105,13 @@ export function PromptHubBrowse({
         title="按任务浏览"
         description="从要做的事情出发：广告、时尚、美妆、餐饮……"
       >
-        <TaxonomyTiles basePath={basePath} axis="useCase" terms={useCases} limit={taxonomyLimit} />
+        <TaxonomyTiles
+          basePath={basePath}
+          axis="useCase"
+          terms={useCases}
+          limit={taxonomyLimit}
+          accent={HUB_SECTION_ACCENTS.tasks}
+        />
       </Section>
 
       <Section
@@ -117,15 +124,28 @@ export function PromptHubBrowse({
           axis="technique"
           terms={techniques}
           limit={taxonomyLimit}
+          accent={HUB_SECTION_ACCENTS.camera}
         />
       </Section>
 
       <Section id={HUB_SECTION_IDS.models} title="按模型浏览">
-        <TaxonomyTiles basePath={basePath} axis="model" terms={models} limit={taxonomyLimit} />
+        <TaxonomyTiles
+          basePath={basePath}
+          axis="model"
+          terms={models}
+          limit={taxonomyLimit}
+          accent={HUB_SECTION_ACCENTS.models}
+        />
       </Section>
 
       <Section id={HUB_SECTION_IDS.styles} title="按风格浏览">
-        <TaxonomyTiles basePath={basePath} axis="style" terms={styles} limit={taxonomyLimit} />
+        <TaxonomyTiles
+          basePath={basePath}
+          axis="style"
+          terms={styles}
+          limit={taxonomyLimit}
+          accent={HUB_SECTION_ACCENTS.styles}
+        />
       </Section>
 
       <Section
@@ -138,6 +158,7 @@ export function PromptHubBrowse({
           collections={collections}
           limit={collectionLimit}
           total={libraryTotal}
+          accent={HUB_SECTION_ACCENTS.collections}
         />
       </Section>
 
@@ -146,7 +167,11 @@ export function PromptHubBrowse({
         title="创作者"
         description="这些提示词的原作者，点击访问其 X 主页。"
       >
-        <CreatorTiles creators={creators} limit={creatorLimit} />
+        <CreatorTiles
+          creators={creators}
+          limit={creatorLimit}
+          accent={HUB_SECTION_ACCENTS.creators}
+        />
       </Section>
 
       <Section id="cta" title="找到合适的提示词，直接开始" description="全部提示词免费复制，注明原作者与出处。">

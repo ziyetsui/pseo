@@ -68,6 +68,15 @@ describe("ModelTiles", () => {
     render(<ModelTiles models={[]} />);
     expect(screen.getByText("当前收录里还没有带模型标注的图片提示词。")).toBeInTheDocument();
   });
+
+  it("wears the same tile family as the hub: display figure, accent bar, leading cell", () => {
+    const { container } = render(<ModelTiles models={[published, unpublished]} />);
+
+    expect(screen.getByText("14").className).toContain("tabular-nums");
+    const fill = container.querySelector("span[style]");
+    expect(fill?.className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
+    expect(container.querySelectorAll("li")[0]?.className).toContain("lg:col-span-2");
+  });
 });
 
 describe("ContentTypeTiles", () => {
@@ -113,6 +122,21 @@ describe("ContentTypeTiles", () => {
     for (const node of container.querySelectorAll("a[href]")) {
       expect(node.getAttribute("href")).not.toContain("/prompts/video");
     }
+  });
+
+  it("carries a different accent from the model band above it", () => {
+    const { container: models } = render(
+      <ModelTiles
+        models={[term({ id: "model:a", slug: "a", label: "A", href: "/zh-CN/x", count: 4 })]}
+      />,
+    );
+    const { container: contentTypes } = render(
+      <ContentTypeTiles types={types} currentSlug="image" />,
+    );
+
+    const modelBar = models.querySelector("span[style]")?.className;
+    const typeBar = contentTypes.querySelector("span[style]")?.className;
+    expect(modelBar).not.toBe(typeBar);
   });
 
   it("explains the unknown content type as unlabelled data rather than an unpublished page", () => {

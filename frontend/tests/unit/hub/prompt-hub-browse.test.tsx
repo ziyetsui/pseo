@@ -20,6 +20,16 @@ const { PromptHubBrowse } = await import("@/features/hub/PromptHubBrowse");
 const BASE = "/zh-CN/prompts";
 const OBSERVED_AT = "2026-08-20";
 
+/** Section id → the `<h2>` that labels its region, for `getByRole("region")`. */
+const HEADING_BY_ID: Record<string, string> = {
+  tasks: "按任务浏览",
+  camera: "镜头与运动",
+  models: "按模型浏览",
+  styles: "按风格浏览",
+  collections: "精选合集",
+  creators: "创作者",
+};
+
 function taxonomy(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
   return {
     id: "useCase:fashion",
@@ -225,7 +235,25 @@ describe("PromptHubBrowse", () => {
     const links = within(section).getAllByRole("link");
     expect(links).toHaveLength(6);
     expect(links[0]).toHaveAttribute("href", "/zh-CN/prompts?collection=c0");
-    expect(section.textContent).toContain("副标题 0 · 3 条");
+    expect(section.textContent).toContain("副标题 0");
+    expect(section.textContent).toContain("3 条");
+  });
+
+  it("gives each browse band its own accent so the six stop reading as one grid", () => {
+    renderBrowse();
+
+    // In the prototype's band order: 按任务 / 镜头与运动 / 按模型 / 按风格 / 精选合集 / 创作者.
+    const accents = Object.values(HEADING_BY_ID).map((name) => {
+      const region = screen.getByRole("region", { name });
+      return region.querySelector("span[style]")?.className ?? "";
+    });
+
+    for (const className of accents) {
+      expect(className).toMatch(/bg-(accent-red|accent-blue|accent-yellow|foreground)/);
+    }
+    for (let index = 1; index < accents.length; index += 1) {
+      expect(accents[index]).not.toBe(accents[index - 1]);
+    }
   });
 
   it("ends with the CTA opening the whole library in the result region", () => {

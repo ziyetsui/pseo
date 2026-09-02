@@ -35,8 +35,13 @@ export function cardClassName(className?: string): string {
  * `justify-between` gives every tile the same floor and pins its last element
  * (the proportion bar, or the counts line) to it, so the whole grid lines up
  * whatever the labels say. It changes no tile content.
+ *
+ * The floor moved up with the display-scale count: a tile is now a title, a
+ * large figure, a caption and a thicker bar, which is taller than the old 8rem
+ * on its own. Keeping the floor just under the natural height is what still
+ * makes a one-line band and a two-line band share a baseline.
  */
-export const tileShellClassName = "min-h-32 w-full justify-between";
+export const tileShellClassName = "min-h-40 w-full justify-between md:min-h-44";
 
 export interface CardProps extends Omit<ComponentPropsWithoutRef<"div">, "className"> {
   className?: string;

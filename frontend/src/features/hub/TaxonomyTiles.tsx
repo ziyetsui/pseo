@@ -6,6 +6,17 @@ import { cx } from "@/components/ui/class-names";
 import type { QueryFacetKey, TaxonomyWithCount } from "@/lib/content/types";
 import { queryHref, setFacet } from "@/features/search/query-links";
 
+import {
+  BrowseTileBar,
+  BrowseTileCount,
+  BrowseTileRank,
+  browseTileBodyClassName,
+  browseTileCellClassName,
+  browseTileTitleClassName,
+  leadsGroup,
+} from "./browse-tile";
+import type { SectionAccent } from "./section-accent";
+
 export interface TaxonomyTilesProps {
   /** Page the filtered links point at, e.g. `promptsHome(locale)`. */
   basePath: string;
@@ -14,6 +25,8 @@ export interface TaxonomyTilesProps {
   terms: readonly TaxonomyWithCount[];
   /** Render at most this many tiles. The rest stay reachable through the URL. */
   limit?: number;
+  /** The band's accent, from `section-accent`. Colours the bar and rank marker. */
+  accent?: SectionAccent;
   emptyMessage?: string;
   className?: string;
 }
@@ -25,12 +38,18 @@ export interface TaxonomyTilesProps {
  * there; everything else links to this page pre-filtered on that one term. No
  * tile ever renders a placeholder href, and every count comes from the current
  * data — the prototype's declared library-wide figures are never shown.
+ *
+ * Visual weight follows the count: the number is the tile's protagonist, the
+ * biggest term leads the band across two columns on wide viewports, and the
+ * proportion bar carries the band's accent. Order, counts and links are exactly
+ * what the caller passed.
  */
 export function TaxonomyTiles({
   basePath,
   axis,
   terms,
   limit,
+  accent = "red",
   emptyMessage = "该维度暂无收录的提示词。",
   className,
 }: TaxonomyTilesProps) {
@@ -38,10 +57,11 @@ export function TaxonomyTiles({
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   const max = visible.reduce((best, term) => Math.max(best, term.count), 0);
+  const hasLead = leadsGroup(visible.map((term) => term.count));
 
   return (
     <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}>
-      {visible.map((term) => {
+      {visible.map((term, index) => {
         // `href` is only ever non-null for a term that has a real page in this
         // phase (currently: models with an L3 page) — checked directly rather
         // than re-deriving "is this a model" from `term.axis`, which this
@@ -49,21 +69,21 @@ export function TaxonomyTiles({
         const href =
           term.href !== null ? term.href : queryHref(basePath, setFacet({}, axis, [term.slug]));
         const share = max === 0 ? 0 : Math.round((term.count / max) * 100);
+        const lead = hasLead && index === 0;
 
         return (
-          <li key={term.id} className="flex">
-            <Link href={href} className={cardClassName(cx(tileShellClassName, "gap-3 p-4 no-underline"))}>
+          <li key={term.id} className={browseTileCellClassName(lead)}>
+            <Link
+              href={href}
+              className={cardClassName(cx(tileShellClassName, browseTileBodyClassName(lead)))}
+            >
+              {lead ? <BrowseTileRank accent={accent} /> : null}
               {/* Prototype tiles carry the English taxonomy value (`Fashion`,
                   `Camera movement / shot language`); `labelZh` is reserved for
                   the Chinese-labelled footer columns. */}
-              <h3 className="text-base font-black tracking-tight md:text-lg">{term.label}</h3>
-              <p className="text-sm font-medium">{term.count} 条提示词</p>
-              <span
-                aria-hidden="true"
-                className="mt-auto block h-3 border-2 border-foreground bg-surface"
-              >
-                <span className="block h-full bg-accent-red" style={{ width: `${share}%` }} />
-              </span>
+              <h3 className={browseTileTitleClassName(lead)}>{term.label}</h3>
+              <BrowseTileCount value={term.count} caption="条提示词" lead={lead} />
+              <BrowseTileBar share={share} accent={accent} lead={lead} />
             </Link>
           </li>
         );
