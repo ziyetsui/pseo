@@ -322,6 +322,13 @@ function CreatorMark({ prompt }: { prompt: PromptSummary }) {
  * `card` tier: inside a card there is exactly one internal rule strength, the
  * same one `CardMedia` draws between the picture and the body — a second,
  * lighter weight here would read as an accident rather than as a decision.
+ *
+ * The tier now carries the desktop step by itself (2px, 4px from `md`), which
+ * is the width of the card's own frame at both breakpoints. This rule used to
+ * stay at 2px on desktop and so sat one weight lighter than the box around it
+ * — a rule thinner than its frame reads as a mistake. No option is passed for
+ * it on purpose: `desktopThick` is the `card` tier's default, so a caller can
+ * only get this wrong deliberately.
  */
 const META_ROW = dividerClassName("card", "top", {
   className: "flex flex-wrap items-center gap-x-4 gap-y-2 pt-3 text-xs font-medium",

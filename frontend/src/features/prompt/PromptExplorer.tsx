@@ -4,6 +4,8 @@ import { Suspense, createContext, useContext, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { StateBlockLink } from "@/components/ui/StateBlock";
+import { dividerClassName } from "@/components/ui/dividers";
+import { sectionTitleClassName } from "@/components/ui/type-scale";
 import { applyPromptQuery, isEmptyPromptQuery, parsePromptQuery, promptTaxonomies } from "@/lib/content/query";
 import {
   QUERY_FACET_KEYS,
@@ -310,10 +312,7 @@ export function ExplorerFacets({
 
   return (
     <section aria-labelledby={headingId}>
-      <h2
-        id={headingId}
-        className="mb-6 text-2xl font-black tracking-tighter uppercase md:text-3xl"
-      >
+      <h2 id={headingId} className={sectionTitleClassName("mb-6 uppercase")}>
         {heading}
       </h2>
       {chips}
@@ -447,8 +446,12 @@ export function ExplorerResults({
       </div>
     ) : (
       <section aria-labelledby={headingId} className={className}>
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-3 md:border-b-4">
-          <h2 id={headingId} className="text-2xl font-black tracking-tighter uppercase md:text-3xl">
+        <div
+          className={dividerClassName("card", "bottom", {
+            className: "flex flex-wrap items-end justify-between gap-4 pb-3",
+          })}
+        >
+          <h2 id={headingId} className={sectionTitleClassName("uppercase")}>
             {heading}
           </h2>
         </div>
