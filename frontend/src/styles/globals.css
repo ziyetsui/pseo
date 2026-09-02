@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/*
+ * Bauhaus design tokens — the single source of truth for colour, border,
+ * shadow, radius, motion and typography. Components consume the semantic
+ * Tailwind utilities generated from the `@theme static` block below
+ * (bg-canvas, text-foreground, border-foreground, shadow-hard-md, …).
+ * Never write a hex value or an arbitrary shadow in JSX.
+ */
+@theme static {
+  /* Palette (spec: specs/images/0008-bo-pseo-ui.md) */
+  --color-canvas: #f0f0f0;
+  --color-foreground: #121212;
+  --color-surface: #ffffff;
+  --color-muted: #e0e0e0;
+  --color-accent-red: #d02020;
+  --color-accent-blue: #1040c0;
+  --color-accent-yellow: #f0c020;
+
+  /* Hard offset shadows only — no blur, no spread, no softening. */
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-foreground);
+  --shadow-hard-md: 4px 4px 0 0 var(--color-foreground);
+  --shadow-hard-lg: 8px 8px 0 0 var(--color-foreground);
+
+  /* Radius is binary: square or full circle/pill. Nothing in between. */
+  --radius-none: 0px;
+  --radius-pill: 9999px;
+
+  /* `--font-outfit` / `--font-jetbrains-mono` are injected by next/font. */
+  --font-sans:
+    var(--font-outfit), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    -apple-system, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/*
+ * Tokens outside a Tailwind theme namespace. They are consumed from CSS in this
+ * file (and by later components via `var(...)`), not turned into utilities.
+ */
+:root {
+  /* Borders: 2px on mobile, 4px for primary desktop elements. Always black. */
+  --border-thin: 2px;
+  --border-thick: 4px;
+
+  /* Motion is only ever state feedback. */
+  --motion-fast: 200ms;
+  --motion-base: 300ms;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus is always visible and always high contrast. */
+:focus-visible {
+  outline: var(--border-thin) solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* On the black footer, blue would fail contrast — switch to Bauhaus yellow. */
+[data-surface="inverse"] :focus-visible {
+  outline-color: var(--color-accent-yellow);
+}
+
+/* Pure geometry: the triangle of the red-circle / blue-square / yellow-triangle mark. */
+.shape-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

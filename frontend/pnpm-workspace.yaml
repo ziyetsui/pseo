@@ -1,0 +1,7 @@
+# `frontend/` is its own pnpm project root (the repo has no root workspace).
+#
+# unrs-resolver ships prebuilt native bindings as optional dependencies, so its
+# postinstall build step is not needed; declining it keeps installs
+# deterministic and free of the pnpm "ignored build scripts" warning.
+allowBuilds:
+  unrs-resolver: false
