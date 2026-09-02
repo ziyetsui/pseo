@@ -37,6 +37,33 @@ describe("Rail", () => {
     expect(scroller).toHaveAttribute("tabindex", "0");
   });
 
+  it("leaves room on all four sides for what its cards draw outside themselves", () => {
+    // `overflow-x-auto` forces `overflow-y` to `auto` too, so the scroller
+    // clips on every side: with only `pb-2` it cut the focus ring off every
+    // card in it, the hover shadow, the travel of a pressed card, and the last
+    // card's shadow. The leading edge gives its room back with a matching
+    // negative margin so the rail still starts flush with the page gutter.
+    const { scroller } = setup();
+    for (const utility of ["pt-1", "pl-1", "pr-4", "pb-4", "-ml-1"]) {
+      expect(scroller.className).toContain(utility);
+    }
+    expect(scroller.className).not.toContain("pb-2");
+  });
+
+  it("gives the arrows a chrome elevation, a fill hover and a full-collapse press", () => {
+    setup();
+    const arrow = screen.getByRole("button", { name: "向左滚动" });
+    expect(arrow.className).toContain("shadow-hard-sm");
+    // 3px -> 4px on hover was one pixel on a 44px control: a repaint for
+    // nothing. Chrome's hover reply is its fill.
+    expect(arrow.className).not.toContain("hover:shadow-hard-md");
+    expect(arrow.className).toContain("hover:bg-muted");
+    // Travel matches the 3px being collapsed, not a generic 2px.
+    expect(arrow.className).toContain("active:translate-x-[3px]");
+    expect(arrow.className).toContain("active:shadow-none");
+    expect(arrow.className).not.toContain("outline");
+  });
+
   it("scrolls one item forward on ArrowRight and back on ArrowLeft", async () => {
     const { scroller, scrollBy } = setup();
     scroller.focus();

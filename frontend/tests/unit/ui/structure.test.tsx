@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { cardClassName, tileShellClassName } from "@/components/ui/Card";
-import { ChipButton, ChipLink } from "@/components/ui/Chip";
+import { ChipButton, ChipLink, chipClassName } from "@/components/ui/Chip";
 import { Section } from "@/components/ui/Section";
 
 describe("Breadcrumb", () => {
@@ -85,20 +85,54 @@ describe("ChipButton", () => {
   });
 });
 
-describe("cardClassName", () => {
-  const className = cardClassName();
-
-  it("lifts up-left and grows the offset shadow by the same step on hover", () => {
-    // Lift without shadow growth reads as the card sinking into its shadow.
-    expect(className).toContain("hover:-translate-x-0.5");
-    expect(className).toContain("hover:-translate-y-0.5");
-    expect(className).toContain("shadow-hard-md");
-    expect(className).toContain("hover:shadow-hard-md-hover");
-    expect(className).toContain("md:shadow-hard-lg");
-    expect(className).toContain("md:hover:shadow-hard-lg-hover");
+describe("chipClassName", () => {
+  it("previews the fill the tap produces, in whichever direction it goes", () => {
+    // No shadow to collapse and a 1px nudge on a pill is invisible, so a
+    // chip's press is its fill — and on a phone it is the only thing that
+    // happens between the tap and the filtered page.
+    expect(chipClassName(false)).toContain("active:bg-foreground");
+    expect(chipClassName(false)).toContain("active:text-surface");
+    expect(chipClassName(true)).toContain("active:bg-surface");
+    expect(chipClassName(true)).toContain("active:text-foreground");
   });
 
-  it("runs both on one 200ms ease-out transition and emits no arbitrary colours", () => {
+  it("names its two properties and never animates the focus ring", () => {
+    const className = chipClassName();
+    expect(className).toContain("duration-200 ease-out");
+    expect(className).not.toContain("transition-all");
+    expect(className).not.toContain("outline");
+    expect(className).not.toMatch(/(^|\s)transition(\s|$)/);
+  });
+
+  it("needs no per-component underline patch: it draws its own box", () => {
+    // `globals.css` excludes `[class*="border-2"]` and `[class*="rounded-pill"]`
+    // from the document hover underline, so a `ChipLink` and a `ChipButton`
+    // behave identically without either of them carrying `no-underline`.
+    const className = chipClassName();
+    expect(className).toContain("border-2");
+    expect(className).toContain("rounded-pill");
+    expect(className).not.toContain("no-underline");
+  });
+});
+
+describe("cardClassName", () => {
+  const className = cardClassName();
+  const interactive = cardClassName(undefined, { interactive: true });
+
+  it("grows the offset shadow on hover and moves nothing at all", () => {
+    // The shadow grows, the object stays put — the idiom `Button.tsx` already
+    // wrote down. A card that translated away from the pointer oscillated
+    // along its own right and bottom edges, and it animated a composited
+    // `translate` against a painted `box-shadow` under a blur-free 4px band.
+    expect(interactive).toContain("shadow-hard-md");
+    expect(interactive).toContain("hover:shadow-hard-md-hover");
+    expect(interactive).toContain("md:shadow-hard-lg");
+    expect(interactive).toContain("md:hover:shadow-hard-lg-hover");
+    expect(interactive).not.toContain("hover:-translate");
+    expect(className).not.toContain("hover:-translate");
+  });
+
+  it("names the properties it animates and emits no arbitrary colours", () => {
     expect(className).toContain("duration-200 ease-out");
     // Never `transition-all`, and never a transition whose property list drags
     // `outline-color` along with it — see `transitionClassName` in `hover.ts`,

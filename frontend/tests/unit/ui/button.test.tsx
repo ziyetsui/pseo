@@ -17,6 +17,50 @@ describe("buttonClassName", () => {
     expect(buttonClassName({ shape: "square" })).toContain("rounded-none");
     expect(buttonClassName({ shape: "pill" })).toContain("rounded-pill");
   });
+
+  it("names its transition properties and never animates the focus ring", () => {
+    for (const variant of ["primary", "secondary", "yellow", "outline", "ghost"] as const) {
+      const className = buttonClassName({ variant });
+      expect(className).toContain("duration-200 ease-out");
+      expect(className).not.toContain("transition-all");
+      expect(className).not.toContain("outline");
+      // The bare `transition` utility expands to twenty-one properties in
+      // Tailwind v4, `outline-color` among them.
+      expect(className).not.toMatch(/(^|\s)transition(\s|$)/);
+    }
+  });
+
+  it("keeps a hovered button below a resting card on the elevation ladder", () => {
+    // `shadow-hard-lg` is the card's DESKTOP RESTING offset. A button that
+    // reached it on hover made the scale rank nothing.
+    for (const variant of ["primary", "secondary", "yellow", "outline"] as const) {
+      const className = buttonClassName({ variant });
+      expect(className).toContain("shadow-hard-md");
+      expect(className).toContain("hover:shadow-hard-md-hover");
+      expect(className).not.toContain("hover:shadow-hard-lg");
+    }
+  });
+
+  it("flattens the shadowed variants by exactly the offset they lose", () => {
+    for (const variant of ["primary", "secondary", "yellow", "outline"] as const) {
+      const className = buttonClassName({ variant });
+      // 4px of shadow collapsed, 4px of travel — the silhouette lands flat
+      // instead of stopping 2px short and looking like it shrank.
+      expect(className).toContain("active:translate-x-1");
+      expect(className).toContain("active:translate-y-1");
+      expect(className).toContain("active:shadow-none");
+      expect(className).not.toContain("active:translate-x-0.5");
+      // A capability the app does not have must not depress.
+      expect(className).toContain("aria-disabled:active:translate-x-0");
+    }
+  });
+
+  it("presses the shadowless ghost variant with its band, not with a travel", () => {
+    const ghost = buttonClassName({ variant: "ghost" });
+    expect(ghost).toContain("active:bg-muted");
+    expect(ghost).not.toContain("active:translate");
+    expect(ghost).not.toContain("shadow-hard");
+  });
 });
 
 describe("Button", () => {

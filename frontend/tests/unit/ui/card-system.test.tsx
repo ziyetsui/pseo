@@ -4,7 +4,6 @@ import { describe, expect, it } from "vitest";
 import { ActionRow } from "@/components/ui/ActionRow";
 import { CardLink, cardClassName } from "@/components/ui/Card";
 import { CardMedia } from "@/components/ui/CardMedia";
-import { CategoryPill } from "@/components/ui/CategoryPill";
 import { Chevron } from "@/components/ui/Chevron";
 import { GhostNumeral } from "@/components/ui/GhostNumeral";
 import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
@@ -207,6 +206,28 @@ describe("cardClassName", () => {
     expect(cardClassName()).not.toContain("no-underline");
     expect(cardClassName(undefined, { interactive: true })).toContain("no-underline");
   });
+
+  it("keeps every interactive expression behind the interactive flag", () => {
+    // A card that does nothing when it is clicked must not answer a pointer as
+    // though it did: `PromptCard` and `ArticleCard` are plain `<article>`s
+    // whose real destinations sit inside them.
+    const inert = cardClassName();
+    expect(inert).not.toContain("hover:shadow");
+    expect(inert).not.toContain("active:");
+    expect(inert).not.toContain("press-flatten");
+
+    const live = cardClassName(undefined, { interactive: true });
+    expect(live).toContain("hover:shadow-hard-md-hover");
+    expect(live).toContain("md:hover:shadow-hard-lg-hover");
+    expect(live).toContain("press-flatten");
+  });
+
+  it("rests at the card elevation whether or not it is interactive", () => {
+    for (const className of [cardClassName(), cardClassName(undefined, { interactive: true })]) {
+      expect(className).toContain("shadow-hard-md");
+      expect(className).toContain("md:shadow-hard-lg");
+    }
+  });
 });
 
 describe("CardLink", () => {
@@ -328,17 +349,6 @@ describe("StatusBadge", () => {
   it("stays inline when no corner is asked for", () => {
     const { container } = render(<StatusBadge>热门</StatusBadge>);
     expect(container.firstElementChild?.className).not.toContain("absolute");
-  });
-});
-
-describe("CategoryPill", () => {
-  it("is the inverted pill and is not a link", () => {
-    const { container } = render(<CategoryPill>图片</CategoryPill>);
-    const pill = container.firstElementChild;
-    expect(pill?.className).toContain("bg-foreground");
-    expect(pill?.className).toContain("text-canvas");
-    expect(pill?.className).toContain("rounded-pill");
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 });
 
@@ -477,6 +487,41 @@ describe("HairlineList / HairlineRow", () => {
     expect(row.className).toContain("border-foreground/15");
     // An arrow on something that navigates nowhere is a lie.
     expect(row.querySelector("[aria-hidden='true']")).toBeNull();
+  });
+
+  it("fills its band on press, and only when the row actually navigates", () => {
+    const { container } = render(
+      <HairlineList>
+        <HairlineRow href="/zh-CN/prompts">全部</HairlineRow>
+        <HairlineRow>全部创作者（即将推出）</HairlineRow>
+      </HairlineList>,
+    );
+
+    // A row has no border, no shadow and no fill, so there is nothing to
+    // collapse and nothing to move against — its band is its only surface.
+    const link = screen.getByRole("link", { name: "全部" });
+    expect(link.className).toContain("active:bg-muted");
+    expect(link.className).toContain("duration-200 ease-out");
+    expect(link.className).not.toContain("active:translate");
+
+    // Text does not answer a tap.
+    const rows = container.querySelectorAll("li");
+    const inert = rows[1]?.firstElementChild as HTMLElement;
+    expect(inert.tagName).toBe("SPAN");
+    expect(inert.className).not.toContain("active:");
+  });
+
+  it("darkens its band against the inverse surface instead of the canvas", () => {
+    render(
+      <HairlineList>
+        <HairlineRow href="/zh-CN/prompts" surface="inverse">
+          全部
+        </HairlineRow>
+      </HairlineList>,
+    );
+    const link = screen.getByRole("link", { name: "全部" });
+    expect(link.className).toContain("active:bg-surface/10");
+    expect(link.className).not.toContain("active:bg-muted");
   });
 
   it("forwards the rest of its props to the row itself, not to an inner wrapper", () => {

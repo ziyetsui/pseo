@@ -3,6 +3,7 @@
 import { Children, useRef, useSyncExternalStore, type KeyboardEvent, type ReactNode } from "react";
 
 import { cx } from "./class-names";
+import { elevationClassName, pressClassName, transitionClassName } from "./hover";
 
 const noopSubscribe = () => () => {};
 
@@ -35,6 +36,19 @@ function prefersSmoothScroll(): boolean {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") return true;
   return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
+
+/**
+ * Chrome, not content: 3px at rest with no hover shadow step at all. It used to
+ * go 3px → 4px on hover, one pixel of offset on a 44px control — below the
+ * perceptual threshold, and it cost a repaint to deliver it. The hover reply is
+ * the fill; the press is the full collapse, travelling exactly the 3px lost.
+ */
+const ARROW = cx(
+  "flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black hover:bg-muted",
+  transitionClassName("control"),
+  elevationClassName("chrome"),
+  pressClassName("flatten", { elevation: "chrome" }),
+);
 
 /**
  * Horizontal scroller with keyboard control.
@@ -96,7 +110,7 @@ export function Rail({ label, children, className, listClassName, itemClassName 
             type="button"
             aria-label="向左滚动"
             onClick={() => scrollBy(-pageStep())}
-            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out hover:bg-muted hover:shadow-hard-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+            className={ARROW}
           >
             <span aria-hidden="true">←</span>
           </button>
@@ -104,7 +118,7 @@ export function Rail({ label, children, className, listClassName, itemClassName 
             type="button"
             aria-label="向右滚动"
             onClick={() => scrollBy(pageStep())}
-            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out hover:bg-muted hover:shadow-hard-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+            className={ARROW}
           >
             <span aria-hidden="true">→</span>
           </button>
@@ -116,7 +130,23 @@ export function Rail({ label, children, className, listClassName, itemClassName 
         tabIndex={0}
         onKeyDown={onKeyDown}
         className={cx(
-          "flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2",
+          "flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth",
+          // `overflow-x-auto` does not leave the other axis alone: a computed
+          // `overflow-x` of `auto` forces `overflow-y` to `auto` as well, so
+          // this scroller clips on ALL FOUR sides and no keyword can undo it.
+          // With only `pb-2` it was cutting the focus ring off every card
+          // inside it, the hover shadow's extra 2px, the 4/8px a pressed card
+          // travels, and the last card's shadow at the end of the scroll.
+          //
+          // So the room is padding, and the leading edge gives it back with a
+          // matching negative margin — the rail still starts flush with the
+          // page's own gutter, which is 16px at every breakpoint, so 4px of
+          // bleed can never reach the viewport edge. The trailing padding is
+          // deliberately NOT cancelled: it is scrollable width, which is what
+          // lets the last card's shadow arrive fully at the end of the travel.
+          // A vertical scrollbar never appears because the padding is what the
+          // overflowing decoration is drawn INTO.
+          "-ml-1 pt-1 pl-1 pr-4 pb-4",
           listClassName,
         )}
       >

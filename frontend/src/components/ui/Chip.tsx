@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { cx } from "./class-names";
+import { pressClassName, transitionClassName } from "./hover";
 
 /**
  * Pill-shaped taxonomy / facet token. Two flavours:
@@ -20,8 +21,18 @@ import { cx } from "./class-names";
  * two chips. The collections that hold chips all `flex-wrap`, so the row — not
  * the label — is what breaks.
  */
-const BASE =
-  "inline-flex max-w-full items-center gap-2 rounded-pill border-2 border-foreground font-bold whitespace-nowrap transition duration-200 ease-out";
+const BASE = cx(
+  "inline-flex max-w-full items-center gap-2 rounded-pill border-2 border-foreground font-bold whitespace-nowrap",
+  // A chip's whole reply is its fill and its ink — it owns no shadow and does
+  // not move — so it names exactly those two properties. The bare `transition`
+  // it used to carry also animated `outline-color`, which made a chip's focus
+  // ring fade in from black.
+  //
+  // No `no-underline` and none is needed: a chip is `rounded-pill border-2`,
+  // and the document hover-underline rule in `globals.css` excludes anything
+  // that draws its own box. `ChipLink` and `ChipButton` now behave identically.
+  transitionClassName("fill"),
+);
 const IDLE = "bg-surface text-foreground hover:bg-muted";
 const ACTIVE = "bg-foreground text-surface";
 
@@ -44,9 +55,24 @@ export interface ChipClassNameOptions {
   className?: string;
 }
 
+/**
+ * The press previews the state the tap produces.
+ *
+ * There is no shadow to collapse and a 1px nudge on a pill nobody would see, so
+ * the chip's one available surface is its fill: pressing an idle chip shows it
+ * filled, pressing a selected chip shows it empty. That is cause and effect
+ * rather than decoration — and on a phone, where there is no hover at all, it
+ * is the only thing that happens between the tap and the filtered page.
+ */
 export function chipClassName(active = false, options: ChipClassNameOptions = {}): string {
   const { size = "default", className } = options;
-  return cx(BASE, SIZE[size], active ? ACTIVE : IDLE, className);
+  return cx(
+    BASE,
+    SIZE[size],
+    active ? ACTIVE : IDLE,
+    pressClassName("invert", { selected: active }),
+    className,
+  );
 }
 
 /**

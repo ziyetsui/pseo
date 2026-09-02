@@ -203,6 +203,15 @@ body {
    * that navigates or acts shows the hand cursor, anything explicitly disabled
    * shows the blocked cursor, and none of them wait 300ms for a double-tap
    * gesture before firing on touch.
+   *
+   * `-webkit-tap-highlight-color: transparent` removes iOS Safari's default
+   * press feedback: a translucent grey ROUNDED rectangle, i.e. the one piece of
+   * touch feedback in a hard-edged system with a radius scale of 0-or-pill was
+   * the one thing nobody designed. It is only safe to remove it now that
+   * `pressClassName` gives every control family a real press of its own — cards
+   * and buttons flatten onto the page, chips and options preview their fill,
+   * hairline rows fill their band. Removing it BEFORE that landed would have
+   * left touch with no feedback at all, which is why it waited.
    */
   a[href],
   button,
@@ -211,6 +220,7 @@ body {
   [role="button"] {
     cursor: pointer;
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /*

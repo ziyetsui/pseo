@@ -331,7 +331,11 @@ describe("site chrome card-system tiers", () => {
     expect(row.className).toContain("border-b-2");
     expect(row.className).toContain("border-surface/15");
     expect(row.className).not.toMatch(/shadow-hard/);
-    expect(row.className).not.toMatch(/bg-(surface|canvas|muted)\b/);
+    // No RESTING fill. The anchor matters: the row does carry
+    // `active:bg-surface/10`, which is the press — a transient reply to a
+    // gesture, not a box the row sits in. A hairline row has no other surface
+    // to answer a tap with, and on touch it is the only feedback there is.
+    expect(row.className).not.toMatch(/(^|\s)bg-(surface|canvas|muted)\b/);
     // 44×44 survives the demotion.
     expect(row.className).toContain("min-h-11");
   });

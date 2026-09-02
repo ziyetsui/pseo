@@ -4,7 +4,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { Chevron } from "./Chevron";
 import { cx } from "./class-names";
 import { dividerClassName, type DividerSurface } from "./dividers";
-import { hoverRevealClassName } from "./hover";
+import { hoverRevealClassName, pressClassName, transitionClassName } from "./hover";
 
 /**
  * The most counter-intuitive piece of this system: **not everything should be
@@ -96,8 +96,19 @@ export function HairlineRow({
 
   // `min-h-11`: 44px, the touch-target floor — a hairline row is visually
   // slight but must not be a slight target.
+  //
+  // The press is the `band`: a row has no border, no shadow and no fill, so
+  // there is nothing to collapse and nothing to move against — translating a
+  // borderless row on a bare canvas reads as a glitch. Its one available
+  // surface is the band it occupies, so a press fills it, and
+  // `hoverRevealClassName` answers `group-active` so the chevron commits at the
+  // same moment. Only a row that navigates gets it: a row with no destination
+  // is text, and text does not answer a tap.
   const rowClassName = cx(
     "group flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium no-underline",
+    href === undefined
+      ? undefined
+      : cx(transitionClassName("fill"), pressClassName("band", { surface })),
     last ? undefined : dividerClassName("row", "bottom", { surface }),
     className,
   );

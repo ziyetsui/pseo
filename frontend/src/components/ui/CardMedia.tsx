@@ -25,7 +25,7 @@ export function CardMedia({ className, ...rest }: CardMediaProps) {
   return (
     <MediaFrame
       {...rest}
-      className={cx(dividerClassName("card", "bottom", { desktopThick: true }), className)}
+      className={cx(dividerClassName("card", "bottom"), className)}
     />
   );
 }

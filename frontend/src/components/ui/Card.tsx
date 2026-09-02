@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
 import { cx } from "./class-names";
+import { elevationClassName, pressClassName, transitionClassName } from "./hover";
 
 import { GeometricMark, type MarkShape, type MarkColor } from "./GeometricMark";
 
@@ -11,7 +12,7 @@ import { GeometricMark, type MarkShape, type MarkColor } from "./GeometricMark";
  * Every card on the site is this one shell — white, hard black border (2px
  * mobile / 4px desktop), unblurred offset shadow — and differs only by which
  * SLOTS are pushed into it (`CardMedia`, `IdentityMark`, `StatusBadge`,
- * `CategoryPill`, `ActionRow`, `SpineCard`'s colour column). The shell is what
+ * `ActionRow`, `SpineCard`'s colour column). The shell is what
  * makes forty different cards read as one system; the slots are what keeps
  * them from reading as forty copies of one card.
  *
@@ -23,32 +24,57 @@ export interface CardStyleOptions {
   /**
    * The whole card is one link or button.
    *
-   * It drops the document-wide hover underline (underlining an entire tile is
-   * noise, not feedback — see the `a[href]:not(.no-underline)` rule in
-   * `globals.css`). The `group` hook that the hover expressions hang off is
-   * NOT conditional on this: it is on every card, so a card that is merely
-   * *containing* a link can still colour its title on card hover.
+   * This is the switch for EVERY interactive expression the chassis makes: the
+   * hover elevation, the press, and dropping the document-wide hover underline
+   * (underlining an entire tile is noise, not feedback — see the
+   * `a[href]:not(.no-underline, …)` rule in `globals.css`).
+   *
+   * It has to be, because a card that does nothing when you click it must not
+   * answer a pointer as though it did. `PromptCard` and `ArticleCard` render a
+   * plain `<article>` whose real destinations are the title link, the chips and
+   * the action buttons INSIDE it; when the shell rose under the pointer, the
+   * loudest motion on the busiest surface in the product was fired by hovering
+   * something with no behaviour at all.
+   *
+   * The `group` hook is deliberately NOT conditional on this: it is on every
+   * card, so a card that merely *contains* a link can still colour its title
+   * when the card is hovered — that expression points at a real destination.
    */
   interactive?: boolean;
 }
 
 export function cardClassName(className?: string, options: CardStyleOptions = {}): string {
+  const interactive = options.interactive === true;
+
   return cx(
     // `group`: the anchor for every hover expression in `hover.ts`. It paints
     // nothing on its own, so putting it on all cards costs nothing and means a
     // slot never has to ask its parent to opt in.
     "group",
-    // Hover is deliberately small: 2px of lift keeps the hard shadow reading as
-    // a shadow. A 4px jump made a whole grid of cards twitch under the pointer.
+    "relative flex min-w-0 flex-col border-2 border-foreground bg-surface md:border-4",
+    // Named properties, never the bare `transition` utility: that one expands
+    // to twenty-one properties in Tailwind v4, `outline-color` among them, so
+    // it made every focus ring fade in from black over 200ms.
+    transitionClassName("elevation"),
+    // THE SHADOW GROWS AND NOTHING MOVES — the idiom `Button.tsx` already
+    // writes down, now spoken by the chassis too.
     //
-    // The lift is up-LEFT and the shadow grows by the same 2px, so the offset
-    // shadow's far corner stays where it was: the card rises off the page.
-    // Lifting without growing the shadow (what this used to do) shortened the
-    // visible gap instead and made the card look like it was sinking into its
-    // own shadow. Both steps ride the same 200ms ease-out; `prefers-reduced-
-    // motion` is neutralised globally in `globals.css`.
-    "relative flex min-w-0 flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-md-hover md:border-4 md:shadow-hard-lg md:hover:shadow-hard-lg-hover",
-    options.interactive === true ? "no-underline" : undefined,
+    // The chassis used to translate 2px up-left while its shadow grew 2px. That
+    // failed three ways. It translated AWAY from the pointer along its own
+    // right and bottom edges, so a pointer resting within 2px of either edge
+    // oscillated: hover → card moves away → un-hover → card returns. It
+    // animated `translate` (compositor) against `box-shadow` (paint) under a
+    // blur-free 4px band, where a single desynced frame is a countable
+    // rectangle rather than a soft blur nobody sees. And it was a second
+    // vocabulary for the same idea buttons already expressed.
+    //
+    // Under a hard offset shadow a growing offset IS the object rising: the
+    // shadow's far corner stays pinned to the page and the gap under the card
+    // opens. Same reading, one pipeline, no edge to oscillate on.
+    elevationClassName("card", { hover: interactive }),
+    interactive
+      ? cx("no-underline", pressClassName("flatten", { elevation: "card" }))
+      : undefined,
     className,
   );
 }
