@@ -1,0 +1,40 @@
+{
+  "contentRevision": "sha256:4f4d8ffbdb94c1cdd58f0288e26df6f44963f4857f33c2b39ed6157a5b52fa06",
+  "items": [
+    {
+      "attribution": {
+        "authorHandle": "prompt-lab-example",
+        "platform": "web",
+        "sourceUrl": "https://example.com/prompts/city-postcard"
+      },
+      "contentRevision": "sha256:4f4d8ffbdb94c1cdd58f0288e26df6f44963f4857f33c2b39ed6157a5b52fa06",
+      "contentType": "image",
+      "id": "prm_city_postcard",
+      "locale": "en",
+      "media": [],
+      "models": [
+        "example-image-model"
+      ],
+      "prompt": {
+        "language": "en",
+        "text": "Create an illustrated postcard for [CITY] with a warm evening palette."
+      },
+      "publishedAt": "2026-01-03T00:00:00Z",
+      "slug": "illustrated-city-postcard",
+      "source": {
+        "platform": "web",
+        "sourceId": "city-postcard-example",
+        "url": "https://example.com/prompts/city-postcard",
+        "authorHandle": "prompt-lab-example",
+        "publishedDate": "2026-01-01",
+        "observedAt": "2026-01-02T00:00:00Z"
+      },
+      "summary": "Create a warm illustrated postcard for a city while preserving explicit source attribution.",
+      "title": "Illustrated city postcard",
+      "updatedAt": "2026-01-03T00:00:00Z"
+    }
+  ],
+  "locale": "en",
+  "schemaVersion": 1,
+  "total": 1
+}

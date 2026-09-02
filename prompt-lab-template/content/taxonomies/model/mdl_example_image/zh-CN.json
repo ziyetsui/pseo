@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "mdl_example_image",
+  "type": "taxonomy",
+  "axis": "model",
+  "locale": "zh-CN",
+  "slug": "example-image-model",
+  "name": "示例图像模型",
+  "description": "用于公开仓库模板演示的模型分类占位记录。",
+  "status": "published",
+  "selector": {"field": "models", "value": "example-image-model"},
+  "translation": {"status": "ready", "reviewer": "example-maintainer"}
+}

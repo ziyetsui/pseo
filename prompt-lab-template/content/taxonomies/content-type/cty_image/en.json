@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "cty_image",
+  "type": "taxonomy",
+  "axis": "content-type",
+  "locale": "en",
+  "slug": "image",
+  "name": "Image prompts",
+  "description": "Reviewed prompts that produce or transform images.",
+  "status": "published",
+  "selector": {"field": "contentType", "value": "image"},
+  "translation": {"status": "ready", "reviewer": "example-maintainer"}
+}

@@ -1,0 +1,48 @@
+name: Prompt contribution
+description: Propose a Prompt as a review candidate; this does not publish it.
+title: "[Prompt candidate]: "
+labels: ["candidate:prompt", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: "This issue creates a review candidate only. A maintainer must verify it and publish through a reviewed pull request."
+  - type: input
+    id: title
+    attributes:
+      label: Prompt title
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Original Prompt
+      description: Preserve the source language and redact private information.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source URL
+    validations:
+      required: true
+  - type: input
+    id: creator
+    attributes:
+      label: Creator attribution
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Intended outcome and usage notes
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights and review
+      options:
+        - label: I have the right to propose this material under the repository's confirmed content license.
+          required: true
+        - label: I understand this issue does not publish content or bypass review.
+          required: true

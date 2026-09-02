@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "siteName": "Public Prompt Lab",
+  "defaultLocale": "en",
+  "locales": ["en", "zh-CN"],
+  "publishedLocales": ["en", "zh-CN"]
+}

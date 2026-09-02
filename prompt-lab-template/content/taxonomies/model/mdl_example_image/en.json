@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "mdl_example_image",
+  "type": "taxonomy",
+  "axis": "model",
+  "locale": "en",
+  "slug": "example-image-model",
+  "name": "Example image model",
+  "description": "A placeholder model taxonomy for the repository template.",
+  "status": "published",
+  "selector": {"field": "models", "value": "example-image-model"},
+  "translation": {"status": "ready", "reviewer": "example-maintainer"}
+}

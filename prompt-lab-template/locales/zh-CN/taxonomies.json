@@ -1,0 +1,40 @@
+{
+  "contentRevision": "sha256:4f4d8ffbdb94c1cdd58f0288e26df6f44963f4857f33c2b39ed6157a5b52fa06",
+  "items": [
+    {
+      "axis": "content-type",
+      "description": "经过审核、用于生成或转换图像的 Prompt。",
+      "id": "cty_image",
+      "locale": "zh-CN",
+      "memberCount": 1,
+      "memberIds": [
+        "prm_city_postcard"
+      ],
+      "name": "图像 Prompt",
+      "selector": {
+        "field": "contentType",
+        "value": "image"
+      },
+      "slug": "image"
+    },
+    {
+      "axis": "model",
+      "description": "用于公开仓库模板演示的模型分类占位记录。",
+      "id": "mdl_example_image",
+      "locale": "zh-CN",
+      "memberCount": 1,
+      "memberIds": [
+        "prm_city_postcard"
+      ],
+      "name": "示例图像模型",
+      "selector": {
+        "field": "models",
+        "value": "example-image-model"
+      },
+      "slug": "example-image-model"
+    }
+  ],
+  "locale": "zh-CN",
+  "schemaVersion": 1,
+  "total": 2
+}

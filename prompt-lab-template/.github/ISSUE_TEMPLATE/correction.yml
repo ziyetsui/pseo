@@ -1,0 +1,31 @@
+name: Prompt correction
+description: Report a provenance, safety, factual, translation, or formatting problem.
+title: "[Correction]: "
+labels: ["candidate:correction", "needs-review"]
+body:
+  - type: input
+    id: prompt_id
+    attributes:
+      label: Prompt ID and locale
+      placeholder: prm_example / en
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and source links
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review acknowledgement
+      options:
+        - label: I understand this report creates a review candidate and does not edit published content automatically.
+          required: true

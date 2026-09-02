@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/public-prompt-lab/prompt.schema.json",
+  "title": "Localized reviewed Prompt",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "id", "type", "locale", "slug", "title", "summary", "status", "indexable", "contentType", "models", "prompt", "media", "source", "publication", "translation"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "pattern": "^prm_[a-z0-9_]{3,64}$"},
+    "type": {"const": "prompt"},
+    "locale": {"type": "string", "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "review", "published", "tombstoned"]},
+    "indexable": {"type": "boolean"},
+    "contentType": {"type": "string", "minLength": 1},
+    "models": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "prompt": {"type": "object", "required": ["language", "text"]},
+    "media": {"type": "array"},
+    "source": {"type": "object", "required": ["platform", "sourceId", "url", "authorHandle"]},
+    "publication": {"type": "object", "required": ["publishedAt", "updatedAt"]},
+    "translation": {"type": "object", "required": ["status", "reviewer"]}
+  }
+}

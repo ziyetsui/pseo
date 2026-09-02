@@ -1,0 +1,35 @@
+name: Prompt translation
+description: Propose one localized explanation for an existing Prompt.
+title: "[Translation candidate]: "
+labels: ["candidate:translation", "needs-review"]
+body:
+  - type: input
+    id: prompt_id
+    attributes:
+      label: Existing immutable Prompt ID
+    validations:
+      required: true
+  - type: input
+    id: locale
+    attributes:
+      label: Target locale
+    validations:
+      required: true
+  - type: textarea
+    id: translation
+    attributes:
+      label: Localized title, summary, and usage explanation
+      description: Do not translate the original Prompt text unless the source itself has that language.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Terminology or cultural notes
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review acknowledgement
+      options:
+        - label: I understand this issue does not publish the translation; a reviewed pull request is required.
+          required: true
