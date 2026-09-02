@@ -21,6 +21,14 @@
   --shadow-hard-sm: 3px 3px 0 0 var(--color-foreground);
   --shadow-hard-md: 4px 4px 0 0 var(--color-foreground);
   --shadow-hard-lg: 8px 8px 0 0 var(--color-foreground);
+  /*
+   * Hover partners for the two card steps. Each grows the offset by exactly
+   * the 2px the card lifts, so the shadow's far corner stays pinned to the
+   * page and the card reads as rising off it — a card that lifts while its
+   * shadow keeps its size looks like it is sinking INTO the shadow instead.
+   */
+  --shadow-hard-md-hover: 6px 6px 0 0 var(--color-foreground);
+  --shadow-hard-lg-hover: 10px 10px 0 0 var(--color-foreground);
 
   /* Radius is binary: square or full circle/pill. Nothing in between. */
   --radius-none: 0px;

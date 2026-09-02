@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { cardClassName } from "@/components/ui/Card";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cx } from "@/components/ui/class-names";
 import { StateBlock } from "@/components/ui/StateBlock";
 import type { TaxonomyWithCount } from "@/lib/content/types";
 
@@ -60,7 +61,10 @@ export function ContentTypeTiles({
             {type.href === null ? (
               <div
                 data-content-type={type.slug}
-                className="flex w-full flex-col gap-2 border-2 border-foreground bg-muted p-4 md:border-4"
+                className={cx(
+                  tileShellClassName,
+                  "flex flex-col gap-2 border-2 border-foreground bg-muted p-4 md:border-4",
+                )}
               >
                 {body}
                 <p className="mt-auto text-xs font-bold tracking-wider uppercase">
@@ -72,7 +76,7 @@ export function ContentTypeTiles({
                 href={type.href}
                 data-content-type={type.slug}
                 aria-current={type.slug === currentSlug ? "page" : undefined}
-                className={cardClassName("w-full gap-2 p-4 no-underline")}
+                className={cardClassName(cx(tileShellClassName, "gap-2 p-4 no-underline"))}
               >
                 {/* The whole tile is the link, as in the prototype; the current
                     page is marked with `aria-current` rather than a caption. */}

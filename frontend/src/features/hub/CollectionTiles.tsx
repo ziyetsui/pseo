@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName } from "@/components/ui/Card";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cx } from "@/components/ui/class-names";
 import type { CollectionWithCount } from "@/lib/content/types";
 import { queryHref } from "@/features/search/query-links";
 
@@ -55,7 +56,7 @@ export function CollectionTiles({
           <li key={collection.id} className="flex">
             <Link
               href={queryHref(basePath, { collection: collection.slug })}
-              className={cardClassName("w-full gap-3 p-4 no-underline")}
+              className={cardClassName(cx(tileShellClassName, "gap-3 p-4 no-underline"))}
             >
               <h3 className="text-base font-black tracking-tight md:text-lg">{collection.title}</h3>
               {/* Prototype: `副标题 · N 条`, one line. */}

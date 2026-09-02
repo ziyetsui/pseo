@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { cardClassName } from "@/components/ui/Card";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { cx } from "@/components/ui/class-names";
 import type { TaxonomyWithCount } from "@/lib/content/types";
@@ -61,7 +61,8 @@ export function ModelTiles({
               <div
                 data-model-tile={model.slug}
                 className={cx(
-                  "flex w-full flex-col gap-2 border-2 border-foreground bg-muted p-4",
+                  tileShellClassName,
+                  "flex flex-col gap-2 border-2 border-foreground bg-muted p-4",
                   "md:border-4",
                 )}
               >
@@ -74,7 +75,7 @@ export function ModelTiles({
               <Link
                 href={model.href}
                 data-model-tile={model.slug}
-                className={cardClassName("w-full gap-2 p-4 no-underline")}
+                className={cardClassName(cx(tileShellClassName, "gap-2 p-4 no-underline"))}
               >
                 {/* The whole tile is the link, exactly as in the prototype —
                     no extra call-to-action line underneath it. */}

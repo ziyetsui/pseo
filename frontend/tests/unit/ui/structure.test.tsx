@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
 import { ChipButton, ChipLink } from "@/components/ui/Chip";
 import { Section } from "@/components/ui/Section";
 
@@ -81,5 +82,32 @@ describe("ChipButton", () => {
     rerender(<ChipButton label="Kling" pressed />);
     expect(button).toHaveAttribute("aria-pressed", "true");
     expect(button).toHaveTextContent("✓");
+  });
+});
+
+describe("cardClassName", () => {
+  const className = cardClassName();
+
+  it("lifts up-left and grows the offset shadow by the same step on hover", () => {
+    // Lift without shadow growth reads as the card sinking into its shadow.
+    expect(className).toContain("hover:-translate-x-0.5");
+    expect(className).toContain("hover:-translate-y-0.5");
+    expect(className).toContain("shadow-hard-md");
+    expect(className).toContain("hover:shadow-hard-md-hover");
+    expect(className).toContain("md:shadow-hard-lg");
+    expect(className).toContain("md:hover:shadow-hard-lg-hover");
+  });
+
+  it("runs both on one 200ms ease-out transition and emits no arbitrary values", () => {
+    expect(className).toContain("transition duration-200 ease-out");
+    expect(className).not.toMatch(/shadow-\[/);
+    expect(className).not.toMatch(/#[0-9a-f]{3,6}/i);
+  });
+});
+
+describe("tileShellClassName", () => {
+  it("gives every browse tile the same floor and pins its last row to it", () => {
+    expect(tileShellClassName).toContain("min-h-32");
+    expect(tileShellClassName).toContain("justify-between");
   });
 });

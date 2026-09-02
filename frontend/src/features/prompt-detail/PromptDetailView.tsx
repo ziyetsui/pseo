@@ -5,6 +5,7 @@ import { Button, buttonClassName } from "@/components/ui/Button";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { Panel } from "@/components/ui/Panel";
 import { Section } from "@/components/ui/Section";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
@@ -275,6 +276,8 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
           <div>
             <MediaFrame
               src={hero.src}
+              srcSet={hero.srcSet}
+              sizes={MEDIA_SIZES.detailHero}
               alt={hero.alt}
               width={hero.width}
               height={hero.height}
@@ -288,6 +291,8 @@ export function PromptDetailView({ prompt, locale, breadcrumbs }: PromptDetailVi
                   <li key={item.id} className="border-2 border-foreground">
                     <MediaFrame
                       src={item.src}
+                      srcSet={item.srcSet}
+                      sizes={MEDIA_SIZES.detailThumbnail}
                       alt={item.alt}
                       width={item.width}
                       height={item.height}

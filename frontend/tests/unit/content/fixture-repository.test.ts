@@ -135,6 +135,43 @@ describe("listPrompts", () => {
   });
 });
 
+describe("media sources", () => {
+  it("publishes X's real size ladder as srcSet and keeps src as the fallback", async () => {
+    const media = (await allPrompts()).flatMap((prompt) => prompt.media);
+    expect(media.length).toBeGreaterThan(0);
+
+    for (const item of media) {
+      const url = new URL(item.src);
+      if (url.hostname !== "pbs.twimg.com" || !url.searchParams.has("name")) {
+        expect(item.srcSet).toBeNull();
+        continue;
+      }
+
+      // The prototype pins the ~680px variant; it stays the `src` fallback.
+      expect(url.searchParams.get("name")).toBe("small");
+      expect(item.srcSet).not.toBeNull();
+
+      const candidates = (item.srcSet ?? "").split(", ").map((candidate) => {
+        const [href, descriptor] = candidate.split(" ");
+        return { href: href ?? "", descriptor: descriptor ?? "" };
+      });
+
+      expect(candidates.map((candidate) => candidate.descriptor)).toEqual([
+        "680w",
+        "1200w",
+        "2048w",
+      ]);
+      expect(
+        candidates.map((candidate) => new URL(candidate.href).searchParams.get("name")),
+      ).toEqual(["small", "medium", "large"]);
+      // Same asset every time — only the size parameter differs.
+      for (const candidate of candidates) {
+        expect(new URL(candidate.href).pathname).toBe(url.pathname);
+      }
+    }
+  });
+});
+
 describe("getPromptBySlug — the L4 golden record", () => {
   it("is reachable at country-miniature-stamp-poster with the prototype's own data", async () => {
     const detail = await repo.getPromptBySlug(LOCALE, GOLDEN_SLUG);

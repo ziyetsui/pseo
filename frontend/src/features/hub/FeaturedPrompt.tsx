@@ -1,5 +1,6 @@
 import { buttonClassName } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { formatCreatorHandle } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
 import { formatThousands } from "@/lib/format/numbers";
@@ -46,6 +47,8 @@ export function FeaturedPrompt({
         {cover === undefined ? null : (
           <MediaFrame
             src={cover.src}
+            srcSet={cover.srcSet}
+            sizes={MEDIA_SIZES.featured}
             alt={cover.alt}
             width={cover.width}
             height={cover.height}

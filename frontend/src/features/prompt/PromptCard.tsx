@@ -5,6 +5,7 @@ import { cardClassName } from "@/components/ui/Card";
 import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { formatCreatorHandle } from "@/lib/content";
 import type { Locale, Media, PromptSummary, Taxonomy } from "@/lib/content/types";
 import { formatCompactCount, formatThousands } from "@/lib/format/numbers";
@@ -74,6 +75,11 @@ export interface PromptCardProps {
   variant?: PromptCardVariant;
   /** First screenful only: eager, high-priority media. */
   priority?: boolean;
+  /**
+   * How wide the cover renders. Defaults to the card grid; a rail passes its
+   * own fixed-width value, since the same card is used in both.
+   */
+  mediaSizes?: string;
   /** Collapse the prompt preview behind an expand toggle. Defaults to `true`. */
   expandable?: boolean;
   /**
@@ -90,6 +96,7 @@ export function PromptCard({
   locale,
   variant = "hub",
   priority = false,
+  mediaSizes = MEDIA_SIZES.cardGrid,
   expandable = true,
   idPrefix = "prompt-text",
   className,
@@ -123,6 +130,8 @@ export function PromptCard({
       {cover === undefined ? null : (
         <MediaFrame
           src={cover.src}
+          srcSet={cover.srcSet}
+          sizes={mediaSizes}
           alt={cover.alt}
           width={cover.width}
           height={cover.height}
@@ -314,7 +323,12 @@ function CompactMeta({ prompt }: { prompt: PromptSummary }) {
         <b className="font-mono tabular-nums">{formatCompactCount(bookmarks)}</b> 藏
       </span>
       {highValue ? (
-        <span className="border-2 border-foreground bg-accent-yellow px-2 font-bold">热门</span>
+        // A pill, not a square chip: the one marker on this card that is a
+        // verdict rather than a fact reads as a stamp. Still a word — the
+        // signal is never carried by the yellow alone.
+        <span className="inline-flex items-center rounded-pill border-2 border-foreground bg-accent-yellow px-2.5 py-0.5 text-xs font-bold tracking-wider shadow-hard-sm">
+          热门
+        </span>
       ) : null}
       <a
         {...EXTERNAL}

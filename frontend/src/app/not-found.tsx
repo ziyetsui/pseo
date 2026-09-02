@@ -69,7 +69,9 @@ export default async function NotFound() {
               <li key={destination.href}>
                 <Link
                   href={destination.href}
-                  className={`flex min-h-11 flex-col gap-2 border-2 border-foreground p-4 shadow-hard-md transition duration-200 ease-out hover:-translate-y-1 md:border-4 ${destination.className}`}
+                  // Same hover physics as `Card`: lift up-left 2px and grow the
+                  // offset shadow by the same 2px.
+                  className={`flex min-h-11 flex-col gap-2 border-2 border-foreground p-4 shadow-hard-md transition duration-200 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-md-hover md:border-4 ${destination.className}`}
                 >
                   <span className="text-lg font-black tracking-tighter uppercase">
                     {destination.label}

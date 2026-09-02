@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName } from "@/components/ui/Card";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cx } from "@/components/ui/class-names";
 import type { QueryFacetKey, TaxonomyWithCount } from "@/lib/content/types";
 import { queryHref, setFacet } from "@/features/search/query-links";
 
@@ -51,7 +52,7 @@ export function TaxonomyTiles({
 
         return (
           <li key={term.id} className="flex">
-            <Link href={href} className={cardClassName("w-full gap-3 p-4 no-underline")}>
+            <Link href={href} className={cardClassName(cx(tileShellClassName, "gap-3 p-4 no-underline"))}>
               {/* Prototype tiles carry the English taxonomy value (`Fashion`,
                   `Camera movement / shot language`); `labelZh` is reserved for
                   the Chinese-labelled footer columns. */}

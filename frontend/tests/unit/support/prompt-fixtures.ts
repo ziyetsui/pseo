@@ -49,6 +49,7 @@ export function makeMedia(overrides: Partial<Media> = {}): Media {
     id: "media-1",
     kind: "image",
     src: "https://example.invalid/a.jpg",
+    srcSet: null,
     alt: "示例图片",
     width: 640,
     height: 360,

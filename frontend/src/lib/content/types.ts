@@ -31,6 +31,14 @@ export interface Media {
   id: string;
   kind: MediaKind;
   src: string;
+  /**
+   * Candidate sources for the same picture, widest-last (`… 680w, … 1200w,
+   * … 2048w`). X serves one photo at several sizes behind a `name` query
+   * parameter, and the prototype pinned the smallest usable one; publishing
+   * the ladder lets the browser pick per slot and per device pixel ratio.
+   * `null` whenever the host has no size ladder we can state truthfully.
+   */
+  srcSet: string | null;
   alt: string;
   width: number;
   height: number;
@@ -285,6 +293,8 @@ export interface WireframeMediaRecord {
   id: string;
   kind: MediaKind;
   src: string;
+  /** See `Media.srcSet`. Built by the extractor, never hand-written. */
+  srcSet: string | null;
   alt: string;
   label: string | null;
   durationSeconds: number | null;

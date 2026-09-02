@@ -228,6 +228,42 @@ function mediaAlt(kind, index, total, durationSeconds) {
 }
 
 /**
+ * X serves one photo at several sizes behind a `name` query parameter —
+ * `thumb` ≈150, `small` ≈680, `medium` ≈1200, `large` ≈2048 px on the long
+ * edge. Every prototype URL pins `name=small`, so any slot wider than ~340 CSS
+ * px on a 2× display was being upscaled from 680 px. Emitting the ladder as a
+ * `srcset` lets the browser pick; `src` keeps the prototype's own URL as the
+ * fallback for anything that cannot read `srcset`.
+ *
+ * Only `pbs.twimg.com` URLs that actually carry a `name` parameter get one.
+ * Any other host (or an unparsable URL) gets `null` — we do not invent a size
+ * ladder for a CDN whose contract we have not verified.
+ */
+const X_MEDIA_HOST = "pbs.twimg.com";
+const X_SRCSET_STEPS = [
+  ["small", 680],
+  ["medium", 1200],
+  ["large", 2048],
+];
+
+function buildSrcSet(src) {
+  let url;
+  try {
+    url = new URL(src);
+  } catch {
+    return null;
+  }
+  if (url.hostname !== X_MEDIA_HOST) return null;
+  if (!url.searchParams.has("name")) return null;
+
+  return X_SRCSET_STEPS.map(([name, width]) => {
+    const variant = new URL(url);
+    variant.searchParams.set("name", name);
+    return `${variant.toString()} ${width}w`;
+  }).join(", ");
+}
+
+/**
  * @typedef {object} RawMediaEntry
  * @property {string} id
  * @property {"image" | "video"} kind
@@ -244,6 +280,7 @@ function buildMedia(promptId, entries) {
     id: `${promptId}-${i + 1}`,
     kind: entry.kind,
     src: entry.src,
+    srcSet: buildSrcSet(entry.src),
     alt: mediaAlt(entry.kind, i + 1, entry.total, entry.durationSeconds),
     label: entry.label,
     durationSeconds: entry.durationSeconds,
@@ -1224,6 +1261,13 @@ function buildReport(ctx) {
   push("| L2 `其他类型` tiles `unresolved` / `mixed` / `网页` | 不建模：ContentType 只有 image / video / unknown |");
   push("| 媒体尺寸 | 原型未提供 → 固定 640×360 占位并标记 `dimensionsSource: \"assumed\"` |");
   push("| 媒体 alt | L2/L3 的英文 alt（`photo from the source post`）统一改写为与 L1/L4 一致的中文 alt |");
+  {
+    const all = prompts.flatMap((p) => p.media);
+    const withSrcSet = all.filter((m) => m.srcSet !== null).length;
+    push(
+      `| 媒体 srcset | \`pbs.twimg.com\` 的 \`?name=\` 尺寸参数展开为 \`small 680w, medium 1200w, large 2048w\`（${withSrcSet}/${all.length} 条媒体）；\`src\` 保持原型的 \`name=small\` 作为回退，其他 host 或无 \`name\` 参数 → \`srcSet: null\` |`,
+    );
+  }
   push(
     "| L1 `data-q` 搜索索引 | 不保存：由 `fixture-repository.ts` 用 `query.ts` 的 `buildPromptSearchText()` 从 title / **完整** promptText（非 240 字的 `promptPreview`）/ handle / taxonomy label·slug·labelZh 生成，存为 `PromptSummary.searchText` |",
   );

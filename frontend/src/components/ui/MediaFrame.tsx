@@ -8,6 +8,16 @@ import { GeometricMark } from "./GeometricMark";
 
 export interface MediaFrameProps {
   src: string;
+  /**
+   * Same picture at several widths (`… 680w, … 1200w, … 2048w`). `null` when
+   * the host publishes no size ladder — the browser then just uses `src`.
+   */
+  srcSet?: string | null;
+  /**
+   * How wide this frame actually renders, per breakpoint, so the browser can
+   * choose from `srcSet` before layout exists. Meaningless without `srcSet`.
+   */
+  sizes?: string;
   /** Real description of the media. Kept reachable even after a load failure. */
   alt: string;
   width: number;
@@ -28,9 +38,23 @@ export interface MediaFrameProps {
  * runtime for zero optimisation. Width/height are always set so the layout
  * never shifts, and `referrerPolicy="no-referrer"` keeps our URLs out of the
  * third-party CDNs the prototype links to.
+ *
+ * The picture is `object-contain` on the `bg-muted` mat, NOT `object-cover`.
+ * These images are the prompt's own result: the box ratio comes from the
+ * caller (a fixed 16:9 placeholder in this phase, since the source posts
+ * publish no intrinsic dimensions), while the real outputs are largely
+ * portrait, and cropping them to fill the box beheads the subject and shows
+ * something the prompt did not produce — misrepresenting a result, which the
+ * root `AGENTS.md` §3 forbids. The prototype's own CSS says `object-fit:
+ * cover`; that is a style-layer choice, and this is the owner-directed
+ * deviation from it. The mat is therefore visible around a portrait frame by
+ * design, and is drawn in the design system's own muted token so it reads as
+ * a mat rather than as a gap.
  */
 export function MediaFrame({
   src,
+  srcSet,
+  sizes,
   alt,
   width,
   height,
@@ -65,6 +89,8 @@ export function MediaFrame({
            runtime here without optimising anything. */
         <img
           src={src}
+          srcSet={srcSet ?? undefined}
+          sizes={srcSet === null || srcSet === undefined ? undefined : sizes}
           alt={alt}
           width={width}
           height={height}
@@ -73,7 +99,7 @@ export function MediaFrame({
           decoding="async"
           referrerPolicy="no-referrer"
           onError={() => setFailed(true)}
-          className={cx("h-full w-full object-cover", imgClassName)}
+          className={cx("h-full w-full object-contain", imgClassName)}
         />
       )}
 

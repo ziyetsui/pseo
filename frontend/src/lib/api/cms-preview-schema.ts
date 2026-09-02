@@ -87,11 +87,14 @@ function stringArrayAt(value: unknown, path: string): void {
 
 function validateMedia(value: unknown, path: string): void {
   const item = objectAt(value, path, [
-    "id", "kind", "src", "alt", "label", "durationSeconds", "index", "total",
+    "id", "kind", "src", "srcSet", "alt", "label", "durationSeconds", "index", "total",
   ]);
   nonemptyStringAt(item.id, `${path}.id`);
   literalAt(item.kind, `${path}.kind`, ["image", "video"]);
   stringAt(item.src, `${path}.src`);
+  // Optional in meaning, required in shape: a preview envelope that knows no
+  // size ladder must say `null`, not omit the field.
+  nullableStringAt(item.srcSet, `${path}.srcSet`);
   stringAt(item.alt, `${path}.alt`);
   nullableStringAt(item.label, `${path}.label`);
   nullableNumberAt(item.durationSeconds, `${path}.durationSeconds`);

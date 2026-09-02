@@ -1,5 +1,6 @@
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName } from "@/components/ui/Card";
+import { cardClassName, tileShellClassName } from "@/components/ui/Card";
+import { cx } from "@/components/ui/class-names";
 import { formatCreatorHandle } from "@/lib/content";
 import type { CreatorWithCount } from "@/lib/content/types";
 import { formatThousands } from "@/lib/format/numbers";
@@ -39,7 +40,7 @@ export function CreatorTiles({
             href={creator.url}
             target="_blank"
             rel="noopener nofollow"
-            className={cardClassName("w-full gap-2 p-4 no-underline")}
+            className={cardClassName(cx(tileShellClassName, "gap-2 p-4 no-underline"))}
           >
             <span className="text-base font-black tracking-tight">
               {formatCreatorHandle(creator.handle)}

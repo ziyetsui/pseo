@@ -308,7 +308,9 @@ describe("PromptCard — compact variant (L2/L3)", () => {
         variant="compact"
       />,
     );
-    expect(screen.getByText("热门")).toBeInTheDocument();
+    // Rendered as a pill stamp, and still a word — never colour alone.
+    expect(screen.getByText("热门")).toHaveClass("rounded-pill");
+    expect(screen.getByText("热门")).toHaveClass("bg-accent-yellow");
 
     rerender(
       <PromptCard

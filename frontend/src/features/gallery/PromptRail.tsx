@@ -1,5 +1,6 @@
 import { Rail } from "@/components/ui/Rail";
 import { StateBlock } from "@/components/ui/StateBlock";
+import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import type { Locale, PromptSummary } from "@/lib/content/types";
 import { PromptCard, type PromptCardVariant } from "@/features/prompt/PromptCard";
 
@@ -49,6 +50,7 @@ export function PromptRail({
           locale={locale}
           variant={variant}
           idPrefix={idPrefix}
+          mediaSizes={MEDIA_SIZES.rail}
           priority={priorityFirst && index === 0}
         />
       ))}
