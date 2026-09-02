@@ -38,7 +38,7 @@ export function ExpandToggle({
         aria-expanded={expanded}
         aria-controls={contentId}
         onClick={() => setExpanded((value) => !value)}
-        className="mt-2 inline-flex min-h-11 items-center text-xs font-bold tracking-wider uppercase underline"
+        className="mt-2 inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-xs font-bold tracking-wider uppercase underline"
       >
         {expanded ? collapseLabel : expandLabel}
       </button>

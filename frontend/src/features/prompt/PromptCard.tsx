@@ -6,7 +6,9 @@ import { ChipLink, chipClassName } from "@/components/ui/Chip";
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import type { Locale, PromptSummary, Taxonomy } from "@/lib/content/types";
-import { promptsHome, withQuery } from "@/lib/i18n/routes";
+import { promptsHome } from "@/lib/i18n/routes";
+
+import { queryHref, setFacet } from "@/features/search/query-links";
 
 import { CopyPromptButton } from "./CopyPromptButton";
 import { PromptText } from "./PromptText";
@@ -17,12 +19,14 @@ const EXTERNAL = { target: "_blank", rel: "noopener nofollow" } as const;
 /**
  * Where a taxonomy chip points. Terms that own a real page (models, the image
  * gallery) link to it; everything else links to L1 pre-filtered on that term.
- * Terms with neither are rendered as plain text rather than a dead link.
+ * Terms with neither are rendered as plain text rather than a dead link. The
+ * filtered-L1 href is built through `query-links` so the axis → query-param
+ * mapping lives in exactly one place, shared with the search feature.
  */
 function taxonomyHref(term: Taxonomy, locale: Locale): string | null {
   if (term.href !== null) return term.href;
   if (term.axis === "contentType") return null;
-  return withQuery(promptsHome(locale), { [term.axis]: [term.slug] });
+  return queryHref(promptsHome(locale), setFacet({}, term.axis, [term.slug]));
 }
 
 function taxonomyLabel(term: Taxonomy): string {
@@ -32,30 +36,30 @@ function taxonomyLabel(term: Taxonomy): string {
 export interface PromptCardProps {
   prompt: PromptSummary;
   locale: Locale;
-  /**
-   * Full prompt text for the copy button. `PromptSummary` only carries a
-   * truncated `promptPreview`, so without this the card honestly offers to copy
-   * the preview; detail pages pass `PromptDetail.promptText` here.
-   */
-  copyText?: string;
   /** First screenful only: eager, high-priority media. */
   priority?: boolean;
   /** Collapse the prompt preview behind an expand toggle. Defaults to `true`. */
   expandable?: boolean;
+  /**
+   * Prefix for the `<pre>` id the copy button targets. Override when a page
+   * renders the same prompt twice (e.g. featured rail + grid) so the two
+   * copies don't collide on the same DOM id.
+   */
+  idPrefix?: string;
   className?: string;
 }
 
 export function PromptCard({
   prompt,
   locale,
-  copyText,
   priority = false,
   expandable = true,
+  idPrefix = "prompt-text",
   className,
 }: PromptCardProps) {
   const cover = prompt.media[0];
   const terms: Taxonomy[] = [prompt.contentType, ...prompt.models, ...prompt.useCases];
-  const textId = `prompt-text-${prompt.id}`;
+  const textId = `${idPrefix}-${prompt.id}`;
   const { likes, bookmarks, observedAt } = prompt.metrics;
   const publishedAt = prompt.source.publishedAt;
 
@@ -87,7 +91,7 @@ export function PromptCard({
           {terms.map((term) => {
             const href = taxonomyHref(term, locale);
             return href === null ? (
-              <span key={term.id} className={chipClassName(false, "min-h-0 py-0.5 text-xs")}>
+              <span key={term.id} className={chipClassName(false, { size: "compact" })}>
                 {taxonomyLabel(term)}
               </span>
             ) : (
@@ -95,13 +99,13 @@ export function PromptCard({
                 key={term.id}
                 href={href}
                 label={taxonomyLabel(term)}
-                className="min-h-11 text-xs"
+                className="text-xs"
               />
             );
           })}
         </div>
 
-        <PromptText id={textId} text={prompt.promptPreview} expandable={expandable} />
+        <PromptText id={textId} text={prompt.promptText} expandable={expandable} />
 
         <div className="mt-auto flex flex-col gap-2 border-t-2 border-foreground pt-3 text-xs font-medium">
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -136,12 +140,7 @@ export function PromptCard({
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <CopyPromptButton
-            text={copyText ?? prompt.promptPreview}
-            targetId={textId}
-            label={copyText === undefined ? "复制预览" : "复制提示词"}
-            shape="square"
-          />
+          <CopyPromptButton text={prompt.promptText} targetId={textId} shape="square" />
           <a {...EXTERNAL} href={prompt.source.url} className={buttonClassName({ variant: "outline" })}>
             原帖 ↗<span className="sr-only">（外部链接，新窗口打开）</span>
           </a>

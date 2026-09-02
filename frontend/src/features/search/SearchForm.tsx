@@ -35,7 +35,8 @@ export function SearchForm({
   className,
 }: SearchFormProps) {
   const preserved = serializePromptQuery({ ...query, q: undefined });
-  const hasState = query.q !== undefined || Object.keys(preserved).length > 0;
+  // An empty `q` is not a filtered state — nothing was actually typed.
+  const hasState = (query.q !== undefined && query.q !== "") || Object.keys(preserved).length > 0;
 
   return (
     <form

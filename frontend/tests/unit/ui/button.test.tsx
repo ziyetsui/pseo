@@ -43,6 +43,22 @@ describe("Button", () => {
     await userEvent.click(button);
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  it("joins a caller-supplied aria-describedby with the disabled reason instead of dropping it", () => {
+    render(
+      <Button disabled disabledReason="生成功能尚未接入" aria-describedby="external-help">
+        生成
+      </Button>,
+    );
+
+    const button = screen.getByRole("button", { name: "生成" });
+    const ids = (button.getAttribute("aria-describedby") ?? "").split(" ").filter(Boolean);
+
+    expect(ids).toContain("external-help");
+    expect(ids).toHaveLength(2);
+    const reasonId = ids.find((id) => id !== "external-help");
+    expect(document.getElementById(reasonId ?? "")).toHaveTextContent("生成功能尚未接入");
+  });
 });
 
 describe("ButtonLink", () => {

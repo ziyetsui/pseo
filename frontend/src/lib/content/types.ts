@@ -170,6 +170,14 @@ export interface PromptSummary {
   locale: Locale;
   title: string;
   excerpt: string;
+  /**
+   * The full, whitespace-normalized prompt text — never truncated. Any surface
+   * that copies the prompt (the card's copy button, the detail page) MUST read
+   * this field, never `promptPreview`, so copy always matches the source of
+   * truth even when the visible clamp is shorter (PRD: 复制必须使用完整值).
+   */
+  promptText: string;
+  /** Truncated (240 chars) rendering of `promptText`, for compact display only. */
   promptPreview: string;
   /**
    * Lower-cased, whitespace-normalized free-text haystack: title + FULL prompt
@@ -222,7 +230,6 @@ export interface RelatedGroups {
 }
 
 export interface PromptDetail extends PromptSummary {
-  promptText: string;
   promptLanguage: "en";
   /** Editorial abstract. Only the L4 golden record has one in the prototype. */
   summary: string | null;

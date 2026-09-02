@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 
 import { PromptCard } from "@/features/prompt/PromptCard";
 
@@ -74,21 +75,43 @@ describe("PromptCard", () => {
     expect(metrics).not.toHaveTextContent("0");
   });
 
-  it("keeps the prompt text in the server HTML and lets the copy button target it", () => {
-    const { container } = render(<PromptCard prompt={makePromptSummary()} locale="zh-CN" />);
+  it("keeps the FULL prompt text (not the truncated preview) in the server HTML", () => {
+    const prompt = makePromptSummary();
+    const { container } = render(<PromptCard prompt={prompt} locale="zh-CN" />);
     const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
-    expect(pre).toHaveTextContent("A tiny city inside a glass cube");
+    // `promptText` is deliberately longer than `promptPreview` in the fixture;
+    // its tail only shows up if the card fed `promptText`, not the preview.
+    expect(prompt.promptText).not.toEqual(prompt.promptPreview);
+    expect(pre).toHaveTextContent(prompt.promptText);
     expect(pre?.id.length).toBeGreaterThan(0);
   });
 
-  it("says it only copies the preview until a full text is supplied", () => {
-    const { unmount } = render(<PromptCard prompt={makePromptSummary()} locale="zh-CN" />);
-    expect(screen.getByRole("button", { name: "复制预览" })).toBeInTheDocument();
-    unmount();
+  it("always labels the copy button 复制提示词 and copies the full promptText, never a preview", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+      writable: true,
+    });
 
-    render(<PromptCard prompt={makePromptSummary()} locale="zh-CN" copyText="full text" />);
-    expect(screen.getByRole("button", { name: "复制提示词" })).toBeInTheDocument();
+    const prompt = makePromptSummary();
+    render(<PromptCard prompt={prompt} locale="zh-CN" />);
+    const button = screen.getByRole("button", { name: "复制提示词" });
+    await userEvent.click(button);
+
+    expect(writeText).toHaveBeenCalledWith(prompt.promptText);
+
+    Object.defineProperty(navigator, "clipboard", { value: undefined, configurable: true });
+  });
+
+  it("lets a page override the <pre> id prefix so two renders of the same prompt don't collide", () => {
+    const prompt = makePromptSummary();
+    const { container } = render(
+      <PromptCard prompt={prompt} locale="zh-CN" idPrefix="featured-prompt-text" />,
+    );
+    const pre = container.querySelector("pre");
+    expect(pre?.id).toBe(`featured-prompt-text-${prompt.id}`);
   });
 
   it("renders no media block when the prompt has none", () => {

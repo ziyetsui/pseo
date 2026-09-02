@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { ChipLink } from "@/components/ui/Chip";
+import { ChipButton, ChipLink } from "@/components/ui/Chip";
 import { Section } from "@/components/ui/Section";
 
 describe("Breadcrumb", () => {
@@ -68,5 +68,18 @@ describe("ChipLink", () => {
   it("omits the count element when there is no count", () => {
     const { container } = render(<ChipLink href="/zh-CN/prompts" label="Kling" />);
     expect(container.querySelector("small")).toBeNull();
+  });
+});
+
+describe("ChipButton", () => {
+  it("toggles aria-pressed and its accessible state via the pressed prop, not colour alone", () => {
+    const { rerender } = render(<ChipButton label="Kling" pressed={false} />);
+    const button = screen.getByRole("button", { name: "Kling" });
+    expect(button).toHaveAttribute("aria-pressed", "false");
+    expect(button).not.toHaveTextContent("✓");
+
+    rerender(<ChipButton label="Kling" pressed />);
+    expect(button).toHaveAttribute("aria-pressed", "true");
+    expect(button).toHaveTextContent("✓");
   });
 });

@@ -59,4 +59,17 @@ describe("Rail", () => {
     setup();
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
   });
+
+  it("scrolls instantly instead of animating when the visitor prefers reduced motion", async () => {
+    const matchMedia = vi.fn().mockReturnValue({ matches: true });
+    vi.stubGlobal("matchMedia", matchMedia);
+
+    const { scrollBy } = setup();
+    await userEvent.click(screen.getByRole("button", { name: "向右滚动" }));
+
+    expect(matchMedia).toHaveBeenCalledWith("(prefers-reduced-motion: reduce)");
+    expect(scrollBy).toHaveBeenCalledWith(expect.objectContaining({ behavior: "auto" }));
+
+    vi.unstubAllGlobals();
+  });
 });

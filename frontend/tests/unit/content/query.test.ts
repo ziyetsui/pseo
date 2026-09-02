@@ -22,6 +22,7 @@ function prompt(overrides: Partial<PromptSummary> & Pick<PromptSummary, "id">): 
     locale: "zh-CN",
     title: "Untitled",
     excerpt: "",
+    promptText: "",
     promptPreview: "",
     contentType: taxonomy("contentType", "image", "image"),
     models: [],

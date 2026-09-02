@@ -87,13 +87,18 @@ export function Button({
     disabled && disabledReason !== undefined
       ? (disabledReasonId ?? reasonId(disabledReason))
       : undefined;
+  // Join rather than replace: a caller's own `aria-describedby` must not be
+  // dropped just because this button also has a disabled-reason explanation.
+  const describedBy =
+    [rest["aria-describedby"], describedById].filter((id): id is string => Boolean(id)).join(" ") ||
+    undefined;
 
   const button = (
     <button
       {...rest}
       type={type}
       aria-disabled={disabled ? "true" : undefined}
-      aria-describedby={describedById ?? rest["aria-describedby"]}
+      aria-describedby={describedBy}
       onClick={
         disabled
           ? (event) => {

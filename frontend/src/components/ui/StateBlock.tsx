@@ -98,7 +98,10 @@ export interface StateBlockLinkProps {
 /** Convenience link for the `children` slot, styled like the surrounding copy. */
 export function StateBlockLink({ href, children }: StateBlockLinkProps) {
   return (
-    <Link href={href} className="inline-flex min-h-11 items-center text-sm font-bold underline">
+    <Link
+      href={href}
+      className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm font-bold underline"
+    >
       {children}
     </Link>
   );

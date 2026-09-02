@@ -43,7 +43,7 @@ export function Section({
         {moreHref === undefined ? null : (
           <Link
             href={moreHref}
-            className="inline-flex min-h-11 items-center text-sm font-bold tracking-wider uppercase underline"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm font-bold tracking-wider uppercase underline"
           >
             {moreLabel}
           </Link>

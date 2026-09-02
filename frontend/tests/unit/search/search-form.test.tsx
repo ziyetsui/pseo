@@ -49,4 +49,9 @@ describe("SearchForm", () => {
     render(<SearchForm basePath={BASE} query={{}} />);
     expect(screen.queryByRole("link", { name: "重置搜索" })).not.toBeInTheDocument();
   });
+
+  it("treats an empty q as no state, not as a filter to reset", () => {
+    render(<SearchForm basePath={BASE} query={{ q: "" }} />);
+    expect(screen.queryByRole("link", { name: "重置搜索" })).not.toBeInTheDocument();
+  });
 });

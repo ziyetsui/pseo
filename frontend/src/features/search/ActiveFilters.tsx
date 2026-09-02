@@ -58,7 +58,7 @@ export function ActiveFilters({
           ))}
           <Link
             href={basePath}
-            className="inline-flex min-h-11 items-center text-sm font-bold underline"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm font-bold underline"
           >
             清除全部筛选
           </Link>
@@ -72,7 +72,7 @@ export function ActiveFilters({
           </p>
           <Link
             href={queryHref(basePath, query)}
-            className="inline-flex min-h-11 items-center font-bold underline"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 font-bold underline"
           >
             使用可识别的筛选条件重新打开
           </Link>

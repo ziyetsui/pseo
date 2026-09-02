@@ -16,12 +16,32 @@ import { cx } from "./class-names";
  */
 
 const BASE =
-  "inline-flex min-h-11 items-center gap-2 rounded-pill border-2 border-foreground px-4 py-1 text-sm font-bold transition duration-200 ease-out";
+  "inline-flex items-center gap-2 rounded-pill border-2 border-foreground font-bold transition duration-200 ease-out";
 const IDLE = "bg-surface text-foreground hover:bg-muted";
 const ACTIVE = "bg-foreground text-surface";
 
-export function chipClassName(active = false, className?: string): string {
-  return cx(BASE, active ? ACTIVE : IDLE, className);
+export type ChipSize = "default" | "compact";
+
+/**
+ * Complete, mutually exclusive class sets per size — never an override
+ * appended after the fact. Concatenating e.g. `min-h-11` with a later
+ * `min-h-0` (or `text-sm` with `text-xs`) depends on which rule wins in the
+ * generated stylesheet, not on class order in the string, so it cannot be
+ * relied on to override reliably.
+ */
+const SIZE: Record<ChipSize, string> = {
+  default: "min-h-11 px-4 py-1 text-sm",
+  compact: "px-3 py-0.5 text-xs",
+};
+
+export interface ChipClassNameOptions {
+  size?: ChipSize;
+  className?: string;
+}
+
+export function chipClassName(active = false, options: ChipClassNameOptions = {}): string {
+  const { size = "default", className } = options;
+  return cx(BASE, SIZE[size], active ? ACTIVE : IDLE, className);
 }
 
 interface ChipContentProps {
@@ -50,6 +70,7 @@ export interface ChipLinkProps extends Omit<ComponentPropsWithoutRef<typeof Link
   active?: boolean;
   /** Announced after the label when the chip is active. */
   activeHint?: string;
+  size?: ChipSize;
   className?: string;
 }
 
@@ -58,6 +79,7 @@ export function ChipLink({
   count,
   active = false,
   activeHint = "（已选，选择以移除）",
+  size,
   className,
   ...rest
 }: ChipLinkProps) {
@@ -66,7 +88,7 @@ export function ChipLink({
       {...rest}
       aria-current={active ? "true" : undefined}
       data-active={active ? "true" : "false"}
-      className={chipClassName(active, className)}
+      className={chipClassName(active, { size, className })}
     >
       <ChipContent label={label} count={count} active={active} activeHint={activeHint} />
     </Link>
@@ -78,6 +100,7 @@ export interface ChipButtonProps extends Omit<ComponentPropsWithoutRef<"button">
   count?: number | null;
   pressed?: boolean;
   activeHint?: string;
+  size?: ChipSize;
   className?: string;
 }
 
@@ -86,6 +109,7 @@ export function ChipButton({
   count,
   pressed = false,
   activeHint = "（已选，按下以移除）",
+  size,
   className,
   type = "button",
   ...rest
@@ -96,7 +120,7 @@ export function ChipButton({
       type={type}
       aria-pressed={pressed}
       data-active={pressed ? "true" : "false"}
-      className={chipClassName(pressed, className)}
+      className={chipClassName(pressed, { size, className })}
     >
       <ChipContent label={label} count={count} active={pressed} activeHint={activeHint} />
     </button>

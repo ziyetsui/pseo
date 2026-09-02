@@ -179,6 +179,7 @@ function buildView(locale: Locale): LocaleView {
       locale,
       title: record.title,
       excerpt: record.summary ?? truncate(flat, EXCERPT_LENGTH),
+      promptText: flat,
       promptPreview: truncate(flat, PREVIEW_LENGTH),
       // Matched against the FULL prompt text (`flat`), not the truncated
       // `promptPreview` above, so a term past the 240-char preview still matches.

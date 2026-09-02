@@ -95,6 +95,10 @@ export function makePromptSummary(overrides: Partial<PromptSummary> = {}): Promp
     locale: "zh-CN",
     title: "玻璃立方城市",
     excerpt: "一个透明立方体内的微缩城市。",
+    // Longer than `promptPreview` on purpose: tests assert the copy button and
+    // the `<pre>` both receive this FULL string, not the truncated preview.
+    promptText:
+      "A tiny city inside a glass cube, isometric, studio light, extended trailing detail that only exists in the full prompt text, never in the preview",
     promptPreview: "A tiny city inside a glass cube, isometric, studio light",
     // concatenation is enough here — these are hand-built fixtures, not the
     // extracted data, so nothing exercises its exact construction.

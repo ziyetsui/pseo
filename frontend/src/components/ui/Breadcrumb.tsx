@@ -32,7 +32,10 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                   {item.name}
                 </span>
               ) : (
-                <Link href={item.path} className="inline-flex min-h-11 items-center underline">
+                <Link
+                  href={item.path}
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center px-1 underline"
+                >
                   {item.name}
                 </Link>
               )}
