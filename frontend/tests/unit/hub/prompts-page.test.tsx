@@ -18,25 +18,86 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-const { default: PromptsPage, generateMetadata } = await import("@/app/[locale]/prompts/page");
+const { default: PromptsPage, generateMetadata } = await import(
+  "@/app/[locale]/(hub)/prompts/page"
+);
 
 async function renderPage() {
   return render(await PromptsPage({ params: Promise.resolve({ locale: "zh-CN" }) }));
 }
 
 describe("L1 prompt hub page", () => {
-  it("renders exactly one H1 whose count comes from the repository", async () => {
+  it("renders the prototype's two-line H1 with a count from the repository", async () => {
     const { total } = await getContentRepository().listPrompts("zh-CN");
     await renderPage();
 
     const headings = screen.getAllByRole("heading", { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent(`${total} 条提示词，复制即用`);
+    expect(headings[0]?.textContent).toBe(`${total} 条 Higgsfield 提示词复制即用`);
+    expect(headings[0]?.querySelector("br")).not.toBeNull();
     // The prototype's declared library size must never be rendered as a fact.
     expect(headings[0]?.textContent).not.toContain("982");
   });
 
-  it("server-renders the featured prompt and the all-time trending grid", async () => {
+  it("quotes the prototype's dek verbatim and adds no extra hero line", async () => {
+    await renderPage();
+
+    expect(
+      screen.getByText(
+        "来自 X 创作者的真实提示词，每条注明作者与出处。按任务、镜头语言、模型或风格浏览，找到后一键复制。",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/数量与热度均按当前收录内容计算/)).toBeNull();
+  });
+
+  it("renders the six in-page anchors above the hero", async () => {
+    await renderPage();
+
+    const anchorNav = screen.getByRole("navigation", { name: "页内导航" });
+    expect(within(anchorNav).getAllByRole("link").map((node) => node.getAttribute("href"))).toEqual([
+      "#tasks",
+      "#camera",
+      "#models",
+      "#styles",
+      "#collections",
+      "#creators",
+    ]);
+  });
+
+  it("renders no breadcrumb and no BreadcrumbList payload", async () => {
+    const { container } = await renderPage();
+
+    expect(screen.queryByRole("navigation", { name: "面包屑" })).toBeNull();
+    const types = [...container.querySelectorAll('script[type="application/ld+json"]')].map(
+      (node) => (JSON.parse(node.textContent ?? "{}") as { "@type"?: string })["@type"],
+    );
+    expect(types).not.toContain("BreadcrumbList");
+    expect(types).toContain("CollectionPage");
+  });
+
+  it("carries no 搜索与筛选 heading — the prototype's filter block has none", async () => {
+    await renderPage();
+
+    expect(screen.queryByText("搜索与筛选")).toBeNull();
+    expect(screen.getByRole("searchbox")).toHaveAttribute(
+      "placeholder",
+      "搜索提示词、模型、风格、镜头语言、创作者…",
+    );
+    expect(screen.getByRole("link", { name: "重置" })).toBeInTheDocument();
+  });
+
+  it("lays out the prototype's four facet rows in order", async () => {
+    await renderPage();
+
+    const filters = screen.getByRole("group", { name: "筛选" });
+    const rows = [...filters.querySelectorAll('[role="group"]')].map((node) => {
+      const labelId = node.getAttribute("aria-labelledby") ?? "";
+      return filters.querySelector(`#${labelId}`)?.textContent;
+    });
+    expect(rows).toEqual(["模型", "任务", "技法", "风格"]);
+  });
+
+  it("server-renders the featured prompt and the full six-slot trending grid", async () => {
     const repository = getContentRepository();
     const [featured] = await repository.listFeatured("zh-CN", "l1");
     const trending = await repository.listTrending("zh-CN", "all", 6);
@@ -48,31 +109,56 @@ describe("L1 prompt hub page", () => {
       within(featuredSection).getByRole("heading", { name: featured?.title, level: 3 }),
     ).toBeInTheDocument();
 
-    // The featured prompt is excluded from the trending grid below it (finding
-    // #1: rendering it twice on the same page is a bug, not a feature), so the
-    // grid is one slot short of the full window whenever the fixture's
-    // featured prompt is itself trending — never backfilled with a stand-in.
-    const expectedTrendingCount = trending.items.filter((item) => item.id !== featured?.id).length;
+    // The prototype does NOT drop the featured prompt from the trending grid:
+    // the window keeps all six slots.
     const panel = screen.getByRole("tabpanel");
-    expect(within(panel).getAllByRole("article").length).toBe(expectedTrendingCount);
+    expect(within(panel).getAllByRole("article").length).toBe(trending.items.length);
+    expect(trending.items.length).toBe(6);
   });
 
-  it("never renders the featured prompt a second time inside the trending list", async () => {
-    const repository = getContentRepository();
-    const [featured] = await repository.listFeatured("zh-CN", "l1");
-    expect(featured).toBeDefined();
-
-    const { container } = await renderPage();
-
-    expect(container.querySelector(`#featured-${featured?.id}`)).not.toBeNull();
-    expect(container.querySelector(`#trending-${featured?.id}`)).toBeNull();
-  });
-
-  it("notes in the featured section that the prompt below is excluded from the lists", async () => {
+  it("labels the trending tabs as the prototype does, with 全部 selected", async () => {
     await renderPage();
 
-    const featuredSection = screen.getByRole("region", { name: "本期精选" });
-    expect(featuredSection.textContent).toContain("已排除");
+    const tabs = screen.getAllByRole("tab");
+    expect(tabs.map((tab) => tab.textContent)).toEqual(["近 7 天", "近 30 天", "全部"]);
+    expect(tabs[2]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("renders each browse module at the prototype's size", async () => {
+    await renderPage();
+
+    expect(
+      within(screen.getByRole("region", { name: "精选合集" })).getAllByRole("listitem"),
+    ).toHaveLength(6);
+    expect(
+      within(screen.getByRole("region", { name: "创作者" })).getAllByRole("listitem"),
+    ).toHaveLength(7);
+
+    for (const name of ["按任务浏览", "镜头与运动", "按模型浏览", "按风格浏览"]) {
+      const tiles = within(screen.getByRole("region", { name })).getAllByRole("listitem");
+      expect(tiles.length).toBeGreaterThan(0);
+      expect(tiles.length).toBeLessThanOrEqual(8);
+    }
+  });
+
+  it("states a measured camera-language share, never the prototype's 7 成", async () => {
+    const { items, total } = await getContentRepository().listPrompts("zh-CN");
+    const withCameraLanguage = items.filter((prompt) => prompt.techniques.length > 0).length;
+    const tenths = Math.round((withCameraLanguage / total) * 10);
+    await renderPage();
+
+    const section = screen.getByRole("region", { name: "镜头与运动" });
+    expect(section.textContent).toContain(`约 ${tenths} 成提示词带镜头语言`);
+  });
+
+  it("links the closing CTA at the whole-library result state", async () => {
+    await renderPage();
+
+    const section = screen.getByRole("region", { name: "找到合适的提示词，直接开始" });
+    expect(within(section).getByRole("link", { name: "浏览全部提示词" })).toHaveAttribute(
+      "href",
+      "/zh-CN/prompts?collection=all",
+    );
   });
 
   it("links to at least one prompt detail page", async () => {
@@ -92,15 +178,12 @@ describe("L1 prompt hub page", () => {
     }
   });
 
-  it("emits BreadcrumbList and CollectionPage JSON-LD that matches the visible list", async () => {
+  it("emits CollectionPage JSON-LD that matches the visible list", async () => {
     const { container } = await renderPage();
 
     const payloads = [...container.querySelectorAll('script[type="application/ld+json"]')].map(
       (node) => JSON.parse(node.textContent ?? "{}") as { "@type"?: string; mainEntity?: unknown },
     );
-    const types = payloads.map((payload) => payload["@type"]);
-    expect(types).toContain("BreadcrumbList");
-    expect(types).toContain("CollectionPage");
 
     const collection = payloads.find((payload) => payload["@type"] === "CollectionPage");
     const itemList = collection?.mainEntity as {

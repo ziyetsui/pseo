@@ -26,7 +26,9 @@ export function PromptSourceText({ id, text, tokens }: PromptSourceTextProps) {
       tabIndex={0}
       role="group"
       aria-label="提示词原文"
-      className="max-h-96 overflow-auto border-2 border-foreground bg-surface p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap select-text md:border-4 md:text-sm"
+      // No border of its own: it sits inside the payload box, which owns the
+      // frame and the bar above it (the prototype's `.payload` / `.payload-body`).
+      className="max-h-96 overflow-auto bg-surface p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap select-text md:text-sm"
     >
       {segments.map((segment, index) =>
         segment.token ? (

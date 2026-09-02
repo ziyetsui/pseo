@@ -115,18 +115,30 @@ export function topRailedModels(
 }
 
 /**
- * Label for a model rail's "see everything" link, which always points at the
- * model's own page (`/prompts/models/<slug>`) — a page that lists every
- * content type for that model, not only images.
+ * Label for a rail's "see everything" link: the prototype's
+ * `查看全部 136 条 →`.
  *
- * Because the destination's scope is wider than this rail's, the label is
- * scope-neutral ("进入模型页 →") rather than claiming an image-only count. Only
- * when the model's image-prompt count equals its total prompt count (all
- * content types) does the model page show exactly what the rail promised, and
- * only then do we append the count.
+ * `count` is this page's own scope — how many IMAGE prompts carry the term —
+ * because that is what the rail above the link is a sample of. The model page
+ * the link points at lists every content type for that model, so its own total
+ * can legitimately be larger; the number here describes the rail, never the
+ * destination.
  */
-export function modelRailMoreLabel(imageCount: number, totalCount: number): string {
-  return imageCount === totalCount ? `进入模型页（共 ${totalCount} 条）→` : "进入模型页 →";
+export function railMoreLabel(count: number): string {
+  return `查看全部 ${count} 条 →`;
+}
+
+/**
+ * The hero lede, verbatim from the prototype with its declared 324 replaced by
+ * the number of image prompts this build actually publishes.
+ */
+export function galleryLede(total: number): string {
+  return `${total} 条可直接复制的图片提示词，全部来自 X 创作者的公开分享，注明作者与出处。`;
+}
+
+/** The prototype's own `<meta name="description">`, count made dynamic. */
+export function galleryDescription(total: number): string {
+  return `${total} 条可复制的图片提示词，注明作者与出处。`;
 }
 
 export function termLabel(term: { label: string; labelZh: string | null }): string {

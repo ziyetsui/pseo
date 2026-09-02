@@ -56,7 +56,7 @@ export function StickyCopyBar({
             rel="noopener nofollow"
             className={buttonClassName({ variant: "outline" })}
           >
-            原帖 ↗<span className="sr-only">（在新标签页打开 X 原帖）</span>
+            查看原帖<span className="sr-only">（在新标签页打开 X 原帖）</span>
           </a>
           <CopyPromptButton text={copyText} targetId={targetId} />
         </div>

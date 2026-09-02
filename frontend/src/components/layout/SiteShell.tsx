@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
+import { blogHome } from "@/lib/i18n/routes";
 
 import { SiteFooter, type FooterColumn, type FooterLinkItem } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -51,6 +52,7 @@ export function SiteShell({
         columns={footerColumns}
         links={footerLinks}
         snapshotDate={snapshotDate}
+        blogHref={blogHome(locale)}
       />
     </div>
   );

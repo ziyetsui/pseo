@@ -49,18 +49,22 @@ const trendingItem = makePromptSummary({
   title: "霓虹街道",
 });
 
-const collections: CollectionWithCount[] = [
-  {
-    id: "collection:advertising",
-    slug: "advertising",
-    title: "广告创意合集",
-    subtitle: "面向投放的广告画面",
+function makeCollection(index: number): CollectionWithCount {
+  return {
+    id: `collection:c${index}`,
+    slug: `c${index}`,
+    title: `合集 ${index}`,
+    subtitle: `副标题 ${index}`,
     rule: { type: "axis-all", conditions: [{ axis: "useCase", value: "advertising" }] },
     count: 3,
     sampleIds: [],
     promptIds: [],
-  },
-];
+  };
+}
+
+const collections: CollectionWithCount[] = Array.from({ length: 8 }, (_, index) =>
+  makeCollection(index),
+);
 
 const creators: CreatorWithCount[] = [
   {
@@ -105,7 +109,7 @@ function renderBrowse(
       observedAt={OBSERVED_AT}
       featured={featuredPrompt}
       trendingWindows={[
-        { window: "all", label: "全部时段", items: [trendingItem], note: null, windowStart: null },
+        { window: "all", label: "全部", items: [trendingItem], note: null, windowStart: null },
       ]}
       useCases={[taxonomy({})]}
       techniques={[
@@ -125,12 +129,14 @@ function renderBrowse(
       styles={[taxonomy({ id: "style:cinematic", axis: "style", slug: "cinematic", labelZh: "电影感", count: 4 })]}
       collections={collections}
       creators={creatorsOverride}
+      cameraShareTenths={8}
+      libraryTotal={35}
     />,
   );
 }
 
 describe("PromptHubBrowse", () => {
-  it("renders the wireframe's section order as level-2 headings", () => {
+  it("renders the prototype's section order as level-2 headings", () => {
     renderBrowse();
 
     const headings = screen.getAllByRole("heading", { level: 2 }).map((node) => node.textContent);
@@ -138,7 +144,7 @@ describe("PromptHubBrowse", () => {
       "本期精选",
       "热门提示词",
       "按任务浏览",
-      "镜头与技法",
+      "镜头与运动",
       "按模型浏览",
       "按风格浏览",
       "精选合集",
@@ -147,12 +153,54 @@ describe("PromptHubBrowse", () => {
     ]);
   });
 
-  it("renders the featured prompt with its own copy target id", () => {
+  it("gives the six anchored sections the ids AnchorNav links to", () => {
+    const { container } = renderBrowse();
+
+    for (const id of ["tasks", "camera", "models", "styles", "collections", "creators"]) {
+      expect(container.querySelector(`#${id}`)).not.toBeNull();
+    }
+  });
+
+  it("quotes the prototype's section descriptions, with the camera share measured", () => {
+    renderBrowse();
+
+    expect(
+      screen.getByText("从要做的事情出发：广告、时尚、美妆、餐饮……"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "约 8 成提示词带镜头语言——推拉、环绕、跟拍、转场、分镜。这是这批提示词最有价值的部分。",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("按主题整理的提示词合集。")).toBeInTheDocument();
+    expect(screen.getByText("这些提示词的原作者，点击访问其 X 主页。")).toBeInTheDocument();
+    expect(screen.getByText("全部提示词免费复制，注明原作者与出处。")).toBeInTheDocument();
+  });
+
+  it("adds no description to the sections the prototype leaves bare", () => {
+    renderBrowse();
+
+    for (const name of ["本期精选", "热门提示词", "按模型浏览", "按风格浏览"]) {
+      const section = screen.getByRole("region", { name });
+      expect(section.textContent).not.toContain("已排除");
+      expect(section.textContent).not.toContain("已建成模型页");
+    }
+  });
+
+  it("renders the featured prompt as the two-column block, not a card", () => {
     renderBrowse();
 
     const section = screen.getByRole("region", { name: "本期精选" });
+    expect(within(section).getByTestId("featured-prompt")).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: featured.title, level: 3 })).toBeInTheDocument();
     expect(section.querySelector(`#featured-${featured.id}`)).not.toBeNull();
+    // The prototype shows the featured prompt in full: no expand toggle.
+    expect(within(section).queryByRole("button", { name: "展开" })).toBeNull();
+    expect(within(section).getByRole("button", { name: "复制提示词" })).toBeInTheDocument();
+    expect(within(section).getByRole("link", { name: /查看原帖/ })).toHaveAttribute(
+      "href",
+      featured.source.url,
+    );
   });
 
   it("keeps the trending grid on a different id namespace so ids stay unique", () => {
@@ -169,11 +217,24 @@ describe("PromptHubBrowse", () => {
     expect(section.querySelector('[data-state="empty"]')).not.toBeNull();
   });
 
-  it("ends with a real CTA link into the image gallery", () => {
+  it("shows the prototype's six collection tiles, each linking to its collection state", () => {
+    renderBrowse();
+
+    const section = screen.getByRole("region", { name: "精选合集" });
+    const links = within(section).getAllByRole("link");
+    expect(links).toHaveLength(6);
+    expect(links[0]).toHaveAttribute("href", "/zh-CN/prompts?collection=c0");
+    expect(section.textContent).toContain("副标题 0 · 3 条");
+  });
+
+  it("ends with the CTA opening the whole library in the result region", () => {
     renderBrowse();
 
     const section = screen.getByRole("region", { name: "找到合适的提示词，直接开始" });
-    expect(within(section).getByRole("link")).toHaveAttribute("href", "/zh-CN/prompts/image");
+    expect(within(section).getByRole("link", { name: "浏览全部提示词" })).toHaveAttribute(
+      "href",
+      "/zh-CN/prompts?collection=all",
+    );
   });
 
   it("emits no placeholder hrefs anywhere", () => {
@@ -184,12 +245,10 @@ describe("PromptHubBrowse", () => {
     }
   });
 
-  it("shows 7 creator tiles by default, matching the wireframe, while stating the real total", () => {
+  it("shows 7 creator tiles, matching the prototype", () => {
     renderBrowse(featured, manyCreators(9));
 
     const section = screen.getByRole("region", { name: "创作者" });
     expect(within(section).getAllByRole("listitem")).toHaveLength(7);
-    // The section copy still states the honest total (9), not the 7 shown.
-    expect(section.textContent).toContain("9");
   });
 });

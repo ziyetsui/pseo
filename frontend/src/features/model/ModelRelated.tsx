@@ -1,9 +1,11 @@
 import Link from "next/link";
 
-import { Section } from "@/components/ui/Section";
+import { COMING_SOON_NOTE } from "@/components/layout/nav";
 import type { Locale, Taxonomy } from "@/lib/content/types";
 import { promptsHome, promptsImage } from "@/lib/i18n/routes";
 import { queryHref, setFacet } from "@/features/search/query-links";
+
+import { ModelSection } from "./ModelSection";
 
 export const RELATED_SECTION_ID = "model-related";
 
@@ -15,22 +17,25 @@ export interface ModelRelatedProps {
   relatedUseCases: readonly Taxonomy[];
 }
 
-function label(term: Taxonomy): string {
-  return term.labelZh ?? term.label;
-}
-
 const LINK_CLASS = "inline-flex min-h-11 items-center px-1 text-sm font-bold underline";
+const TEXT_CLASS = "inline-flex min-h-11 items-center px-1 text-sm font-medium";
 
 /**
- * Where to go next. Every entry is a real route from the typed builders; a term
- * whose page does not exist in this phase is rendered as plain text with a
- * "即将推出" note rather than a dead `#` link.
+ * The prototype's four-column `mesh`: 上级 / 其他模型 / 按用例 / 创作者, with its
+ * own link labels (`图片提示词`, `提示词库首页`, model names, Chinese use-case
+ * names, `全部创作者`).
+ *
+ * Every entry is a real route from the typed builders. The 创作者 column points
+ * at `/prompts/creators`, which does not ship this phase, so it keeps its place
+ * as plain text with a 即将推出 note rather than becoming a dead `#` link
+ * (global constraint 5) — the column itself is not deleted, because dropping it
+ * would silently change the prototype's information architecture.
  */
 export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRelatedProps) {
   const groups: { id: string; title: string; body: React.ReactNode }[] = [
     {
       id: "model-related-parents",
-      title: "上级页面",
+      title: "上级",
       body: (
         <ul className="flex flex-col gap-1">
           <li>
@@ -40,7 +45,7 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
           </li>
           <li>
             <Link href={promptsHome(locale)} className={LINK_CLASS}>
-              提示词库
+              提示词库首页
             </Link>
           </li>
         </ul>
@@ -57,10 +62,13 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
             {relatedModels.map((term) => (
               <li key={term.id}>
                 {term.href === null ? (
-                  <span className="text-sm font-medium">{label(term)}（模型页即将推出）</span>
+                  <span className={TEXT_CLASS}>
+                    {term.label}
+                    {COMING_SOON_NOTE}
+                  </span>
                 ) : (
                   <Link href={term.href} className={LINK_CLASS}>
-                    {label(term)}
+                    {term.label}
                   </Link>
                 )}
               </li>
@@ -70,7 +78,7 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
     },
     {
       id: "model-related-use-cases",
-      title: "按用例浏览",
+      title: "按用例",
       body:
         relatedUseCases.length === 0 ? (
           <p className="text-sm font-medium">暂无可关联的用例。</p>
@@ -82,27 +90,41 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
                   href={queryHref(promptsHome(locale), setFacet({}, "useCase", [term.slug]))}
                   className={LINK_CLASS}
                 >
-                  {label(term)}
+                  {term.labelZh ?? term.label}
                 </Link>
               </li>
             ))}
           </ul>
         ),
     },
+    {
+      id: "model-related-creators",
+      title: "创作者",
+      body: (
+        <ul className="flex flex-col gap-1">
+          <li>
+            <span className={TEXT_CLASS}>全部创作者{COMING_SOON_NOTE}</span>
+          </li>
+        </ul>
+      ),
+    },
   ];
 
   return (
-    <Section id={RELATED_SECTION_ID} title="相关内容">
-      <div className="grid gap-6 md:grid-cols-3">
+    <ModelSection id={RELATED_SECTION_ID} title="相关">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {groups.map((group) => (
           <div key={group.id} className="flex flex-col gap-2">
-            <h3 id={group.id} className="text-base font-black tracking-tight uppercase">
+            <h3
+              id={group.id}
+              className="text-xs font-black tracking-widest text-foreground/70 uppercase"
+            >
               {group.title}
             </h3>
             {group.body}
           </div>
         ))}
       </div>
-    </Section>
+    </ModelSection>
   );
 }

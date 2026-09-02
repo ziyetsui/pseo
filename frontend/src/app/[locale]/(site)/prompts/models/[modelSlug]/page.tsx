@@ -5,14 +5,11 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { getContentRepository, type Locale, type ModelDetail } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
-import { modelPage, promptsHome, promptsImage } from "@/lib/i18n/routes";
-import { JsonLd, breadcrumbList, type BreadcrumbItem } from "@/lib/seo/json-ld";
+import { localeHome, modelPage } from "@/lib/i18n/routes";
+import { buildBreadcrumbTrail } from "@/lib/seo/breadcrumbs";
+import { JsonLd, breadcrumbList, collectionPage } from "@/lib/seo/json-ld";
 import { SITE_NAME, absoluteUrl, buildMetadata } from "@/lib/seo/site";
-import { ModelBrowse } from "@/features/model/ModelBrowse";
-import { ModelGenerateControls } from "@/features/model/ModelGenerateControls";
-import { ModelIdentity } from "@/features/model/ModelIdentity";
-import { ModelSpecPanels } from "@/features/model/ModelSpecPanels";
-import { PromptExplorer } from "@/features/prompt/PromptExplorer";
+import { ModelBrowse, TRENDING_LIMIT } from "@/features/model/ModelBrowse";
 
 /** Static export: only the slugs generated below exist. Anything else is a 404. */
 export const dynamicParams = false;
@@ -49,14 +46,6 @@ async function load(params: PageParams): Promise<{ locale: Locale; model: ModelD
   return { locale, model };
 }
 
-function crumbsFor(locale: Locale, model: ModelDetail): BreadcrumbItem[] {
-  return [
-    { name: "提示词库", path: promptsHome(locale) },
-    { name: "图片提示词", path: promptsImage(locale) },
-    { name: model.label, path: modelPage(locale, model.slug) },
-  ];
-}
-
 export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
   const { locale, model } = await load(params);
   return buildMetadata({
@@ -72,54 +61,34 @@ export default async function ModelPage({ params }: { params: PageParams }) {
 
   const repository = getContentRepository();
   const basePath = modelPage(locale, model.slug);
-  const [snapshot, list, promptsWithVariables] = await Promise.all([
-    repository.getSnapshot(),
+  const [list, promptsWithVariables, trending] = await Promise.all([
     repository.listModelPrompts(locale, model.slug),
     repository.listPromptsWithVariables(locale, model.slug),
+    // The shared ranking + top-up rule, narrowed to this model. The prototype's
+    // 近期热门 band shows three cards and carries no window switcher, so the
+    // whole history is ranked rather than a 7d/30d slice.
+    repository.listTrending(locale, "all", TRENDING_LIMIT, model.slug),
   ]);
 
-  const crumbs = crumbsFor(locale, model);
-  const collectionPage = collectionPageJsonLd(locale, model, basePath, list.items);
+  const crumbs = buildBreadcrumbTrail({ page: "model", locale, model });
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
       <JsonLd data={breadcrumbList(crumbs)} />
-      <JsonLd data={collectionPage} />
+      <JsonLd data={collectionPageJsonLd(locale, model, basePath, list.items)} />
 
       <Breadcrumb items={crumbs} />
 
-      <ModelIdentity model={model} observedAt={snapshot.observedAt} />
-
-      <div className="mt-10">
-        <ModelSpecPanels model={model} />
-        <ModelGenerateControls />
-      </div>
-
-      <div className="mt-12">
-        <PromptExplorer
-          locale={locale}
-          basePath={basePath}
-          prompts={list.items}
-          facetGroups={list.facets}
-          facetAxes={["useCase", "style", "subject"]}
-          filterLabel="在本模型内筛选"
-          searchPlaceholder={`描述你想要的画面，或搜索下方 ${list.total} 条提示词…例如：杂志感美妆人像、奢侈品静物`}
-          summaryStyle="count"
-          cardVariant="compact"
-          searchInputId="model-search"
-          facetIdPrefix="model-facet"
-          resultsHeadingId="model-results"
-          browse={
-            <ModelBrowse
-              locale={locale}
-              model={model}
-              prompts={list.items}
-              promptsWithVariables={promptsWithVariables}
-              observedAt={snapshot.observedAt}
-            />
-          }
-        />
-      </div>
+      <ModelBrowse
+        locale={locale}
+        model={model}
+        basePath={basePath}
+        prompts={list.items}
+        facetGroups={list.facets}
+        trending={trending.items}
+        trendingNote={trending.note}
+        promptsWithVariables={promptsWithVariables}
+      />
     </div>
   );
 }
@@ -135,22 +104,16 @@ function collectionPageJsonLd(
   prompts: readonly PromptSummary[],
 ) {
   return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: `${model.label} 提示词`,
-    description: model.summary,
-    url: absoluteUrl(basePath),
-    inLanguage: locale,
-    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl(promptsHome(locale)) },
-    mainEntity: {
-      "@type": "ItemList",
-      numberOfItems: prompts.length,
-      itemListElement: prompts.map((prompt, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
+    ...collectionPage({
+      name: `${model.label} 提示词`,
+      description: model.summary,
+      url: absoluteUrl(basePath),
+      itemUrls: prompts.map((prompt) => ({
         url: absoluteUrl(prompt.href),
         name: prompt.title,
       })),
-    },
+    }),
+    inLanguage: locale,
+    isPartOf: { "@type": "WebSite" as const, name: SITE_NAME, url: absoluteUrl(localeHome(locale)) },
   };
 }

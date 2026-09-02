@@ -6,10 +6,11 @@ import type { PromptSummary } from "@/lib/content/types";
 
 /**
  * Assembly test for the L3 model route. It stands in for the build-time check
- * that `out/zh-CN/prompts/models/nano-banana-pro.html` carries the H1 and real
- * detail links: the page component is rendered exactly as the server renders
- * it, with an empty URL, so what is asserted here is the browse HTML a crawler
- * or a JavaScript-less reader receives.
+ * that `out/zh-CN/prompts/models/nano-banana-pro.html` carries the H1, the
+ * prototype's module order and real detail links: the page component is
+ * rendered exactly as the server renders it, with an empty URL, so what is
+ * asserted here is the browse HTML a crawler or a JavaScript-less reader
+ * receives.
  */
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(""),
@@ -20,7 +21,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 const { default: ModelPage, generateMetadata, generateStaticParams, dynamicParams } = await import(
-  "@/app/[locale]/prompts/models/[modelSlug]/page"
+  "@/app/[locale]/(site)/prompts/models/[modelSlug]/page"
 );
 
 const SLUG = "nano-banana-pro";
@@ -29,7 +30,14 @@ async function renderPage(modelSlug = SLUG) {
   return render(await ModelPage({ params: Promise.resolve({ locale: "zh-CN", modelSlug }) }));
 }
 
-describe("L3 model page", () => {
+function sectionHeadings(container: HTMLElement): string[] {
+  return [...container.querySelectorAll("section[aria-labelledby]")].map((node) => {
+    const id = node.getAttribute("aria-labelledby") ?? "";
+    return container.querySelector(`#${CSS.escape(id)}`)?.textContent ?? "";
+  });
+}
+
+describe("L3 model page — hero", () => {
   it("renders exactly one H1 naming the model", async () => {
     const model = await getContentRepository().getModel("zh-CN", SLUG);
     await renderPage();
@@ -39,39 +47,45 @@ describe("L3 model page", () => {
     expect(headings[0]).toHaveTextContent(`${model?.label} 提示词`);
   });
 
-  it("renders the dynamic summary, the missing official link and the snapshot date", async () => {
+  it("uses the prototype lede verbatim, with every number computed from the data", async () => {
     const repository = getContentRepository();
-    const [model, snapshot] = await Promise.all([
+    const [model, { items }] = await Promise.all([
       repository.getModel("zh-CN", SLUG),
-      repository.getSnapshot(),
+      repository.listModelPrompts("zh-CN", SLUG),
     ]);
     await renderPage();
 
-    expect(screen.getByText(model?.summary ?? "—")).toBeInTheDocument();
-    expect(screen.getByText("官方链接暂未收录")).toBeInTheDocument();
-    expect(screen.getByText(`数据快照 ${snapshot.observedAt}`)).toBeInTheDocument();
+    const lede = screen.getByText(model?.summary ?? "—");
+    expect(lede).toBeInTheDocument();
+    expect(lede.textContent).toMatch(
+      /^\d+ 条点名该模型的真实提示词 · \d+ 条热门 · \d+ 位创作者 · 收录 /,
+    );
+    expect(lede.textContent).toContain(`${items.length} 条点名该模型的真实提示词`);
+    // The snapshot line and the "官方链接暂未收录" line the prototype has no
+    // equivalent for are gone; the footer carries the snapshot date instead.
+    expect(lede.textContent).not.toContain("数据快照");
   });
 
-  it("shows the derived capabilities / inputs / outputs / limitations, limitations included", async () => {
-    const model = await getContentRepository().getModel("zh-CN", SLUG);
+  it("keeps the search box in the hero genbox with the prototype placeholder", async () => {
+    const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
     const { container } = await renderPage();
 
-    const spec = screen.getByRole("region", { name: "能力 / 输入 / 输出 / 限制" });
-    for (const title of ["能力", "输入", "输出", "限制"]) {
-      expect(within(spec).getByRole("heading", { name: title, level: 3 })).toBeInTheDocument();
-    }
-    for (const limitation of model?.limitations ?? []) {
-      expect(within(spec).getByText(limitation)).toBeInTheDocument();
-    }
-    expect((model?.limitations ?? []).length).toBeGreaterThan(0);
-    expect(container.textContent).toContain("由收录 Prompt 派生");
+    const hero = container.querySelector("header");
+    expect(hero).not.toBeNull();
+
+    const search = within(hero as HTMLElement).getByRole("searchbox");
+    expect(search).toHaveAttribute(
+      "placeholder",
+      `描述你想要的画面，或搜索下方 ${items.length} 条提示词…例如：杂志感美妆人像、奢侈品静物`,
+    );
   });
 
-  it("renders the three prototype generate controls as explained, disabled buttons", async () => {
-    await renderPage();
+  it("puts the three behaviourless prototype controls in the hero, disabled and explained", async () => {
+    const { container } = await renderPage();
+    const hero = container.querySelector("header") as HTMLElement;
 
     for (const label of ["设置", "参考图", "生成"]) {
-      const button = screen.getByRole("button", { name: label });
+      const button = within(hero).getByRole("button", { name: label });
       expect(button).toHaveAttribute("aria-disabled", "true");
 
       const describedBy = button.getAttribute("aria-describedby");
@@ -79,45 +93,88 @@ describe("L3 model page", () => {
       const reason = document.getElementById(describedBy ?? "");
       expect(reason?.textContent).toContain("生成功能尚未接入，本页仅提供 Prompt 复制");
     }
+
+    // One shared explanation, not three copies, and no separate `<h2>` for it.
+    expect(screen.getAllByText("生成功能尚未接入，本页仅提供 Prompt 复制")).toHaveLength(1);
+    expect(screen.queryByRole("heading", { name: /生成/ })).toBeNull();
   });
 
-  it("lists every prompt of this model, with a real detail link for each", async () => {
-    const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
+  it("shows 筛选出 N 条 only while something is filtered", async () => {
+    const { container } = await renderPage();
+    const status = container.querySelector('header p[role="status"]');
+    expect(status).not.toBeNull();
+    expect(status?.textContent).toBe("");
+  });
+});
+
+describe("L3 model page — module order and content", () => {
+  it("renders the prototype's bands in the prototype's order", async () => {
+    const model = await getContentRepository().getModel("zh-CN", SLUG);
+    const { container } = await renderPage();
+
+    expect(sectionHeadings(container)).toEqual([
+      "近期热门",
+      "全部提示词",
+      "带变量的提示词",
+      "创作者",
+      "关于这个模型",
+      "能力 / 输入 / 输出 / 限制（由收录 Prompt 派生）",
+      "相关",
+      `复制这 ${model?.summary.match(/^\d+/)?.[0]} 条提示词中的任意一条`,
+    ]);
+  });
+
+  it("shows three 近期热门 cards, ranked by the shared repository rule", async () => {
+    const trending = await getContentRepository().listTrending("zh-CN", "all", 3, SLUG);
+    expect(trending.items).toHaveLength(3);
+
+    await renderPage();
+    const section = screen.getByRole("region", { name: "近期热门" });
+    const cards = within(section).getAllByRole("article");
+
+    expect(cards).toHaveLength(3);
+    expect(within(section).getAllByRole("heading", { level: 3 }).map((n) => n.textContent)).toEqual(
+      trending.items.map((prompt) => prompt.title),
+    );
+  });
+
+  it("lists every prompt of this model with a real detail link, under the three facet axes", async () => {
+    const { items, facets } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
     const { container } = await renderPage();
 
     const all = screen.getByRole("region", { name: "全部提示词" });
+    expect(all.textContent).toContain(`共 ${items.length} 条`);
     expect(within(all).getAllByRole("article")).toHaveLength(items.length);
     for (const prompt of items) {
       expect(container.querySelector(`a[href="${prompt.href}"]`)).not.toBeNull();
     }
+
+    // The prototype's 用例 / 风格 / 主体 axes sit inside this section, with counts.
+    for (const axis of ["用例", "风格", "主体"]) {
+      expect(within(all).getByRole("group", { name: axis })).toBeInTheDocument();
+    }
+    const styleGroup = within(all).getByRole("group", { name: "风格" });
+    const styleOptions = facets.find((group) => group.key === "style")?.options ?? [];
+    expect(styleOptions.length).toBeGreaterThan(0);
+    expect(within(styleGroup).getAllByRole("link").length).toBe(styleOptions.length);
+    expect(styleGroup.textContent).toContain(String(styleOptions[0]?.count));
   });
 
-  it("orders 近期热门 by highValue, then valueScore, then likes, capped at six", async () => {
-    const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
-    const expected = [...items]
-      .sort((a, b) => {
-        if (a.metrics.highValue !== b.metrics.highValue) return a.metrics.highValue ? -1 : 1;
-        const av = a.metrics.valueScore;
-        const bv = b.metrics.valueScore;
-        if (av !== bv) {
-          if (av === null) return 1;
-          if (bv === null) return -1;
-          return bv - av;
-        }
-        return (b.metrics.likes ?? 0) - (a.metrics.likes ?? 0);
-      })
-      .slice(0, 6);
+  it("renders the variables rail with a count pill and the prototype subline", async () => {
+    const withVariables = await getContentRepository().listPromptsWithVariables("zh-CN", SLUG);
+    expect(withVariables.length).toBeGreaterThan(0);
 
     await renderPage();
-    const trending = screen.getByRole("region", { name: "近期热门" });
-    const titles = within(trending)
-      .getAllByRole("heading", { level: 3 })
-      .map((node) => node.textContent);
+    const rail = screen.getByRole("region", { name: "带变量的提示词" });
 
-    expect(titles).toEqual(expected.map((prompt) => prompt.title));
+    expect(rail.textContent).toContain(`${withVariables.length} 条`);
+    expect(rail.textContent).toContain(
+      "这些提示词带 [COUNTRY] 一类的占位变量，替换变量即可得到一整套新画面，正文无需改动。",
+    );
+    expect(within(rail).getAllByRole("article")).toHaveLength(withVariables.length);
   });
 
-  it("shows creator counts computed from this model's prompts only", async () => {
+  it("shows creators as an inline list with counts from this model's prompts only", async () => {
     const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
     const expected = new Map<string, number>();
     for (const prompt of items) {
@@ -141,55 +198,99 @@ describe("L3 model page", () => {
     expect(expected.size).toBeLessThan(globalCreators.length);
   });
 
-  it("renders the variables rail only when this model has prompts with variables", async () => {
-    const withVariables = await getContentRepository().listPromptsWithVariables("zh-CN", SLUG);
-    expect(withVariables.length).toBeGreaterThan(0);
-
+  it("keeps 关于这个模型 and the derived spec columns adjacent, spec second", async () => {
+    const model = await getContentRepository().getModel("zh-CN", SLUG);
     await renderPage();
-    const rail = screen.getByRole("region", { name: "带变量的提示词" });
-    expect(within(rail).getAllByRole("article")).toHaveLength(withVariables.length);
+
+    const about = screen.getByRole("region", { name: "关于这个模型" });
+    for (const block of model?.editorial ?? []) {
+      expect(about.textContent).toContain(block.title);
+      expect(about.textContent).toContain(block.body);
+    }
+    expect((model?.editorial ?? []).map((block) => block.title)).toEqual([
+      "收录情况",
+      "页面范围",
+      "使用建议",
+    ]);
+
+    const spec = screen.getByRole("region", {
+      name: "能力 / 输入 / 输出 / 限制（由收录 Prompt 派生）",
+    });
+    for (const title of ["能力", "输入", "输出", "限制"]) {
+      expect(within(spec).getByRole("heading", { name: title, level: 3 })).toBeInTheDocument();
+    }
+    for (const limitation of model?.limitations ?? []) {
+      expect(within(spec).getByText(limitation)).toBeInTheDocument();
+    }
+    expect((model?.limitations ?? []).length).toBeGreaterThan(0);
   });
 
-  it("never renders a prototype-declared count or a placeholder href", async () => {
-    const { container } = await renderPage();
-
-    const chrome = [
-      container.querySelector("h1"),
-      screen.getByRole("region", { name: "关于这个模型" }),
-      screen.getByRole("region", { name: "能力 / 输入 / 输出 / 限制" }),
-    ]
-      .map((node) => node?.textContent ?? "")
-      .join(" ");
-    for (const declared of ["136", "46 条热门", "47 位创作者"]) {
-      expect(chrome).not.toContain(declared);
-    }
-    // The prototype's declared library size for this model must not appear
-    // anywhere on the page, not just in the chrome.
-    expect(container.textContent).not.toContain("136");
-
-    for (const node of container.querySelectorAll("a[href]")) {
-      expect(node.getAttribute("href")).not.toBe("#");
-    }
-  });
-
-  it("links up to L2 and L1 and across to the related model pages", async () => {
+  it("renders the four 相关 columns with the prototype's labels", async () => {
     const model = await getContentRepository().getModel("zh-CN", SLUG);
     const { container } = await renderPage();
 
-    expect(container.querySelector('a[href="/zh-CN/prompts/image"]')).not.toBeNull();
-    expect(container.querySelector('a[href="/zh-CN/prompts"]')).not.toBeNull();
-    for (const related of model?.relatedModels ?? []) {
-      if (related.href === null) continue;
-      expect(container.querySelector(`a[href="${related.href}"]`)).not.toBeNull();
+    const related = screen.getByRole("region", { name: "相关" });
+    expect(
+      within(related)
+        .getAllByRole("heading", { level: 3 })
+        .map((node) => node.textContent),
+    ).toEqual(["上级", "其他模型", "按用例", "创作者"]);
+
+    expect(within(related).getByRole("link", { name: "图片提示词" })).toBeInTheDocument();
+    expect(within(related).getByRole("link", { name: "提示词库首页" })).toBeInTheDocument();
+    for (const term of model?.relatedModels ?? []) {
+      if (term.href === null) continue;
+      expect(container.querySelector(`a[href="${term.href}"]`)).not.toBeNull();
+      expect(related.textContent).toContain(term.label);
     }
     for (const useCase of model?.relatedUseCases ?? []) {
       expect(
         container.querySelector(`a[href="/zh-CN/prompts?useCase=${useCase.slug}"]`),
       ).not.toBeNull();
     }
+    // `/prompts/creators` does not ship this phase: text, never a dead link.
+    expect(related.textContent).toContain("全部创作者（即将推出）");
+    expect(within(related).queryByRole("link", { name: /全部创作者/ })).toBeNull();
   });
 
-  it("emits a 3-item BreadcrumbList and a CollectionPage matching the rendered list", async () => {
+  it("closes with the prototype CTA pointing back at 全部提示词", async () => {
+    const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
+    const { container } = await renderPage();
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: `复制这 ${items.length} 条提示词中的任意一条`,
+      }),
+    ).toBeInTheDocument();
+    expect(container.textContent).toContain("主动作是复制，每张卡片都能一键跳转原帖。");
+
+    const back = screen.getByRole("link", { name: "回到提示词列表" });
+    expect(back).toHaveAttribute("href", "#all-prompts");
+    expect(container.querySelector("#all-prompts")).not.toBeNull();
+  });
+});
+
+describe("L3 model page — trail, structured data, honesty", () => {
+  it("renders the four-step breadcrumb with 模型 as a non-link level", async () => {
+    const { container } = await renderPage();
+
+    const trail = screen.getByRole("navigation", { name: "面包屑" });
+    const items = within(trail).getAllByRole("listitem");
+    expect(items.map((node) => node.textContent?.replace("/", "").trim())).toEqual([
+      "提示词库",
+      "图片",
+      "模型",
+      "Nano Banana Pro",
+    ]);
+    expect(within(trail).queryByRole("link", { name: "模型" })).toBeNull();
+    expect(container.querySelector('nav[aria-label="面包屑"] a[href="/zh-CN/prompts"]')).not.toBeNull();
+    expect(
+      container.querySelector('nav[aria-label="面包屑"] a[href="/zh-CN/prompts/image"]'),
+    ).not.toBeNull();
+  });
+
+  it("emits a 4-item BreadcrumbList and a CollectionPage matching the rendered list", async () => {
     const { items } = await getContentRepository().listModelPrompts("zh-CN", SLUG);
     const { container } = await renderPage();
 
@@ -197,16 +298,24 @@ describe("L3 model page", () => {
       (node) => JSON.parse(node.textContent ?? "{}") as Record<string, unknown>,
     );
     const breadcrumb = payloads.find((payload) => payload["@type"] === "BreadcrumbList") as
-      | { itemListElement: { name: string; item: string }[] }
+      | { itemListElement: { name: string; item?: string }[] }
       | undefined;
-    expect(breadcrumb?.itemListElement).toHaveLength(3);
+    expect(breadcrumb?.itemListElement).toHaveLength(4);
     expect(breadcrumb?.itemListElement.map((entry) => entry.name)).toEqual([
       "提示词库",
-      "图片提示词",
+      "图片",
+      "模型",
       "Nano Banana Pro",
     ]);
+    // The 模型 index does not exist, so its ListItem carries no `item` URL.
+    expect(breadcrumb?.itemListElement[2]?.item).toBeUndefined();
 
-    const collection = payloads.find((payload) => payload["@type"] === "CollectionPage");
+    const collection = payloads.find((payload) => payload["@type"] === "CollectionPage") as
+      | Record<string, unknown>
+      | undefined;
+    expect((collection?.isPartOf as { url: string } | undefined)?.url).toBe(
+      "https://example.invalid/zh-CN",
+    );
     const itemList = collection?.mainEntity as {
       "@type": string;
       numberOfItems: number;
@@ -217,6 +326,18 @@ describe("L3 model page", () => {
     for (const entry of itemList.itemListElement) {
       const path = new URL(entry.url).pathname;
       expect(container.querySelector(`a[href="${path}"]`)).not.toBeNull();
+    }
+  });
+
+  it("never renders a prototype-declared count or a placeholder href", async () => {
+    const { container } = await renderPage();
+
+    for (const declared of ["136", "46 条热门", "47 位创作者"]) {
+      expect(container.textContent).not.toContain(declared);
+    }
+
+    for (const node of container.querySelectorAll("a[href]")) {
+      expect(node.getAttribute("href")).not.toBe("#");
     }
   });
 

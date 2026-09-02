@@ -1,19 +1,31 @@
 import { Panel } from "@/components/ui/Panel";
-import { Section } from "@/components/ui/Section";
 import type { ModelDetail } from "@/lib/content/types";
 
+import { ModelSection } from "./ModelSection";
 import { EDITORIAL_STATUS_LABEL, outputLabel } from "./model-data";
 
 export const SPEC_SECTION_ID = "model-spec";
-export const SPEC_SECTION_TITLE = "能力 / 输入 / 输出 / 限制";
+
+/**
+ * `能力 / 输入 / 输出 / 限制（由收录 Prompt 派生）` — the provenance is part of
+ * the heading rather than a footnote, because the four columns are NOT a vendor
+ * spec sheet and the heading is what a screen-reader user hears when they jump
+ * between the page's regions.
+ */
+export function specSectionTitle(status: ModelDetail["editorialStatus"]): string {
+  return `能力 / 输入 / 输出 / 限制（${EDITORIAL_STATUS_LABEL[status]}）`;
+}
 
 export interface ModelSpecPanelsProps {
   model: ModelDetail;
 }
 
 /**
- * Four columns derived from the prompts we actually hold — not a vendor spec
- * sheet. The caption says so, so nobody mistakes it for official documentation.
+ * Four columns derived from the prompts we actually hold. The prototype has no
+ * such block; it is here because the handoff (§9) requires the model page to
+ * state capabilities / inputs / outputs / limitations. It sits immediately
+ * after 关于这个模型 — the prototype's own "what is this model" band — so the
+ * addition disturbs the prototype's module order as little as possible.
  */
 export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
   const columns: { title: string; items: readonly string[]; empty: string }[] = [
@@ -28,10 +40,10 @@ export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
   ];
 
   return (
-    <Section
+    <ModelSection
       id={SPEC_SECTION_ID}
-      title={SPEC_SECTION_TITLE}
-      description={`以下四栏由本站收录的 Prompt 派生（数据状态：${EDITORIAL_STATUS_LABEL[model.editorialStatus]}），不是模型官方规格说明。`}
+      title={specSectionTitle(model.editorialStatus)}
+      subline="以下四栏归纳自本站收录的 Prompt，不是模型官方规格说明。"
     >
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {columns.map((column) => (
@@ -51,6 +63,6 @@ export function ModelSpecPanels({ model }: ModelSpecPanelsProps) {
           </Panel>
         ))}
       </div>
-    </Section>
+    </ModelSection>
   );
 }

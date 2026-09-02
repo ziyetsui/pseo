@@ -7,9 +7,11 @@ import { ModelTiles } from "@/features/gallery/ModelTiles";
 import {
   IMAGE_CONTENT_TYPE_SLUG,
   countTermsWithin,
+  galleryDescription,
+  galleryLede,
   galleryStats,
-  modelRailMoreLabel,
   promptsForTerm,
+  railMoreLabel,
   selectImagePrompts,
   topRailedModels,
 } from "@/features/gallery/image-prompts";
@@ -160,15 +162,21 @@ describe("topRailedModels", () => {
   });
 });
 
-describe("modelRailMoreLabel", () => {
-  it("appends the count only when the image count matches the model's total count", () => {
-    expect(modelRailMoreLabel(5, 5)).toBe("进入模型页（共 5 条）→");
+describe("railMoreLabel", () => {
+  it("writes the prototype's 查看全部 N 条 → with the rail's own scope", () => {
+    expect(railMoreLabel(136)).toBe("查看全部 136 条 →");
+  });
+});
+
+describe("gallery copy helpers", () => {
+  it("keeps the prototype lede verbatim, with only the count made dynamic", () => {
+    expect(galleryLede(7)).toBe(
+      "7 条可直接复制的图片提示词，全部来自 X 创作者的公开分享，注明作者与出处。",
+    );
   });
 
-  it("stays scope-neutral, with no count at all, when the counts differ", () => {
-    const label = modelRailMoreLabel(2, 11);
-    expect(label).toBe("进入模型页 →");
-    expect(label).not.toMatch(/\d/);
+  it("keeps the prototype meta description verbatim", () => {
+    expect(galleryDescription(7)).toBe("7 条可复制的图片提示词，注明作者与出处。");
   });
 });
 

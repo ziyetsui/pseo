@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
 import {
+  PromptCopyButton,
   PromptCopyProvider,
   PromptStickyCopyBar,
   PromptSubstitutedText,
@@ -51,7 +52,8 @@ afterEach(() => {
 function renderSelector(promptText: string = golden.promptText, variables = golden.variables) {
   return render(
     <PromptCopyProvider promptText={promptText} variables={variables}>
-      <VariableSelector promptText={promptText} variables={variables} />
+      <VariableSelector variables={variables} />
+      <PromptCopyButton />
       <PromptSubstitutedText />
     </PromptCopyProvider>,
   );
@@ -81,17 +83,17 @@ describe("VariableSelector", () => {
     expect(occurrences).toBeGreaterThan(0);
   });
 
-  it("announces the current selection and the counted replacement number", async () => {
+  it("announces the current selection in the prototype's words", async () => {
     renderSelector();
 
     const status = screen.getByText(new RegExp(`当前选择：${variable.defaultValue}`));
     expect(status).toHaveAttribute("role", "status");
     expect(status).toHaveAttribute("aria-live", "polite");
-    expect(status).toHaveTextContent(`替换 ${occurrences} 处 ${TOKEN}`);
+    expect(status).toHaveTextContent(`当前选择：${variable.defaultValue} —— 复制时自动替换。`);
 
     await userEvent.click(screen.getByRole("radio", { name: "Egypt" }));
     expect(screen.getByText(/当前选择：Egypt/)).toHaveTextContent(
-      `当前选择：Egypt，复制时替换 ${occurrences} 处 ${TOKEN}`,
+      "当前选择：Egypt —— 复制时自动替换。",
     );
   });
 
@@ -133,7 +135,7 @@ describe("VariableSelector", () => {
 
     render(
       <PromptCopyProvider promptText={golden.promptText} variables={golden.variables}>
-        <VariableSelector promptText={golden.promptText} variables={golden.variables} />
+        <VariableSelector variables={golden.variables} />
         <PromptStickyCopyBar
           info={{
             title: golden.title,
@@ -153,7 +155,7 @@ describe("VariableSelector", () => {
     const copied = String(writeText.mock.calls[0]?.[0]);
     expect(copied).not.toContain(TOKEN);
     expect(countToken(copied, "Mexico")).toBe(occurrences);
-    expect(within(bar).getByRole("link", { name: /原帖/ })).toHaveAttribute(
+    expect(within(bar).getByRole("link", { name: /查看原帖/ })).toHaveAttribute(
       "href",
       golden.source.url,
     );

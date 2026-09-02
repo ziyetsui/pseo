@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
 import type { PromptVariable } from "@/lib/content/types";
 import { substituteVariables, type SubstitutionResult } from "@/lib/content/variables";
 
@@ -120,4 +121,16 @@ export interface PromptStickyCopyBarProps {
 export function PromptStickyCopyBar({ info }: PromptStickyCopyBarProps) {
   const { result, copyTargetId } = usePromptCopyContext();
   return <StickyCopyBar {...info} copyText={result.text} targetId={copyTargetId} />;
+}
+
+/**
+ * The copy button that sits in the payload bar, wired to the shared
+ * substitution state. It writes `result.text` — the prompt with every chosen
+ * value substituted — never the tokenized original shown in the `<pre>`, and
+ * its manual-copy fallback selects `PromptSubstitutedText`, so a failed
+ * clipboard write hands the reader exactly the same string.
+ */
+export function PromptCopyButton() {
+  const { result, copyTargetId } = usePromptCopyContext();
+  return <CopyPromptButton text={result.text} targetId={copyTargetId} />;
 }

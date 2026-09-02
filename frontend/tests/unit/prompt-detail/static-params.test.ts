@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { dynamicParams, generateStaticParams } from "@/app/[locale]/prompts/[promptSlug]/page";
+import { dynamicParams, generateStaticParams } from "@/app/[locale]/(site)/prompts/[promptSlug]/page";
 import { getContentRepository } from "@/lib/content";
 import { PUBLISHED_LOCALES } from "@/lib/i18n/config";
 

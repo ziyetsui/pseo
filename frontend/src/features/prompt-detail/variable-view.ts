@@ -105,9 +105,17 @@ export function promptLanguageLabel(language: string, promptText: string): strin
   return total === 0 ? label : `${label} · ${total} 处变量`;
 }
 
-/** `复制时替换 7 处 [COUNTRY]` — the phrase the live region announces. */
-export function replacementPhrase(promptText: string, token: string): string {
-  return `复制时替换 ${countToken(promptText, token)} 处 ${token}`;
+/**
+ * `[COUNTRY]` → `country`: the prototype writes a variation's value as
+ * `country = Japan`, i.e. the token without its brackets, lower-cased.
+ */
+export function variationVariableName(token: string): string {
+  return token.replace(/[[\]]/g, "").trim().toLowerCase();
+}
+
+/** How many times one token occurs in the prompt. */
+export function tokenOccurrences(promptText: string, token: string): number {
+  return countToken(promptText, token);
 }
 
 /**

@@ -3,43 +3,30 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { StateBlock } from "@/components/ui/StateBlock";
+import { COMING_SOON_NOTE } from "@/components/layout/nav";
 import type { Locale, PromptSummary, TaxonomyWithCount } from "@/lib/content/types";
-import { promptsHome } from "@/lib/i18n/routes";
+import { promptsHome, promptsImage } from "@/lib/i18n/routes";
 import { queryHref, setFacet } from "@/features/search/query-links";
 
 import { ContentTypeTiles } from "./ContentTypeTiles";
 import { ModelTiles } from "./ModelTiles";
 import { PromptRail } from "./PromptRail";
-import {
-  IMAGE_CONTENT_TYPE_SLUG,
-  modelRailMoreLabel,
-  promptsForTerm,
-  termLabel,
-} from "./image-prompts";
+import { IMAGE_CONTENT_TYPE_SLUG, promptsForTerm, railMoreLabel, termLabel } from "./image-prompts";
 
 export interface GalleryBrowseProps {
   locale: Locale;
   /** This page's path; subject filters and facet links stay on it. */
   basePath: string;
-  /** Snapshot date the interaction figures were observed on. */
-  observedAt: string;
   featured: readonly PromptSummary[];
   /** The image subset — the only prompts this page may render. */
   imagePrompts: readonly PromptSummary[];
   /**
-   * Every prompt in the library (all content types), used only to check
-   * whether a model's image count equals its total count — see
-   * `modelRailMoreLabel`. Never rendered or filtered on its own.
-   */
-  allPrompts: readonly PromptSummary[];
-  /**
    * ALL model terms present in the subset, counted over it, ordered by count.
-   * `ModelTiles` renders every one of these, and so does the related-links
-   * band (they are real pages, unlike the rail cap below).
+   * `ModelTiles` renders every one of these.
    */
   models: readonly TaxonomyWithCount[];
   /**
-   * The subset of `models` that also get a tiles-row rail (h3 + `PromptRail`),
+   * The subset of `models` that also get their own rail (h3 + `PromptRail`),
    * capped upstream by `topRailedModels`. A strict subset of `models`.
    */
   railedModels: readonly TaxonomyWithCount[];
@@ -47,16 +34,28 @@ export interface GalleryBrowseProps {
   contentTypes: readonly TaxonomyWithCount[];
   /** The `Person / portrait` subject term, or `null` if the data lost it. */
   portraitSubject: TaxonomyWithCount | null;
-  /** Most used tasks inside the subset, for the related-links band. */
-  topUseCases: readonly TaxonomyWithCount[];
-  /** Cards per rail. The rail's "查看全部" link carries the remainder. */
+  /** Models listed in the 相关 band's 模型 column. */
+  relatedModels: readonly TaxonomyWithCount[];
+  /** Use cases listed in the 相关 band's 用例 column. */
+  relatedUseCases: readonly TaxonomyWithCount[];
+  /** Cards per rail. The rail's 查看全部 link carries the remainder. */
   railLimit?: number;
+}
+
+/** One entry of the 相关 band: a real page, or a name with no page yet. */
+interface RelatedItem {
+  key: string;
+  label: string;
+  /** `null` renders as plain text with `（即将推出）` — never a `#` href. */
+  href: string | null;
+  /** Extra attribute the tests hook onto, e.g. `data-usecase-more`. */
+  attrs?: Record<string, string>;
 }
 
 /**
  * Everything the gallery shows when nothing is filtered, in the prototype's
- * order: featured, by model (tiles + one rail per model), the portrait rail,
- * other content types, related links and a closing call to action.
+ * order: 精选, 按模型浏览 (tiles + one rail per model), the Person / portrait
+ * rail, 其他类型, 相关 and the closing call to action.
  *
  * It is server-rendered and handed to `PromptExplorer` as its `browse` slot, so
  * a crawler or a reader without JavaScript receives all of it.
@@ -64,16 +63,15 @@ export interface GalleryBrowseProps {
 export function GalleryBrowse({
   locale,
   basePath,
-  observedAt,
   featured,
   imagePrompts,
-  allPrompts,
   models,
   railedModels,
   contentTypes,
   portraitSubject,
-  topUseCases,
-  railLimit = 6,
+  relatedModels,
+  relatedUseCases,
+  railLimit = 3,
 }: GalleryBrowseProps) {
   // Only a model that owns a real page can offer a "see all" destination —
   // already guaranteed by `topRailedModels`, but checked again here so this
@@ -81,23 +79,7 @@ export function GalleryBrowse({
   const modelRails = railedModels.flatMap((model) =>
     model.href === null
       ? []
-      : [
-          {
-            model,
-            href: model.href,
-            prompts: promptsForTerm(imagePrompts, "model", model.slug),
-            // The model page (the rail's "进入模型页" destination) lists every
-            // content type for that model — this is its true, wider count.
-            totalCount: promptsForTerm(allPrompts, "model", model.slug).length,
-          },
-        ],
-  );
-
-  // The related-links band, unlike the rail band above, is not capped: every
-  // model with a real page is a real destination worth linking, regardless of
-  // how many image prompts it has.
-  const allLinkableModels = models.filter(
-    (model): model is TaxonomyWithCount & { href: string } => model.href !== null,
+      : [{ model, href: model.href, prompts: promptsForTerm(imagePrompts, "model", model.slug) }],
   );
 
   const portraitPrompts =
@@ -109,13 +91,49 @@ export function GalleryBrowse({
 
   const topModel = modelRails[0] ?? null;
 
+  // The prototype's four 相关 columns. A destination this phase does not build
+  // (视频提示词, 全部创作者) keeps its place as plain text with the same
+  // note the nav uses, rather than becoming a link into a missing route.
+  const relatedColumns: { title: string; items: RelatedItem[] }[] = [
+    {
+      title: "类型",
+      items: [
+        { key: "type-image", label: "图片提示词", href: promptsImage(locale) },
+        { key: "type-video", label: "视频提示词", href: null },
+      ],
+    },
+    {
+      title: "模型",
+      items: relatedModels.map((model) => ({
+        key: `model-${model.slug}`,
+        label: termLabel(model),
+        href: model.href,
+        attrs: { "data-model-related": model.slug },
+      })),
+    },
+    {
+      title: "用例",
+      items: relatedUseCases.map((useCase) => ({
+        key: `use-case-${useCase.slug}`,
+        label: termLabel(useCase),
+        // No use-case page exists; the honest destination for "everything
+        // tagged X" is the library home pre-filtered on that term.
+        href: queryHref(promptsHome(locale), setFacet({}, "useCase", [useCase.slug])),
+        attrs: { "data-usecase-more": useCase.slug },
+      })),
+    },
+    {
+      title: "更多",
+      items: [
+        { key: "more-hub", label: "提示词库首页", href: promptsHome(locale) },
+        { key: "more-creators", label: "全部创作者", href: null },
+      ],
+    },
+  ];
+
   return (
     <div className="flex flex-col">
-      <Section
-        id="gallery-featured"
-        title="精选图片提示词"
-        description={`编辑挑出的图片提示词，互动数据观测于 ${observedAt}。`}
-      >
+      <Section id="gallery-featured" title="精选">
         <PromptRail
           label="精选图片提示词，横向滚动列表"
           prompts={featured}
@@ -126,22 +144,18 @@ export function GalleryBrowse({
         />
       </Section>
 
-      <Section
-        id="gallery-models"
-        title="按模型浏览"
-        description="数量按当前收录的图片提示词计算；只有已建成模型页的模型可以点进去。"
-      >
+      <Section id="gallery-models" title="按模型浏览">
         <ModelTiles models={models} />
 
         <div className="mt-10 flex flex-col gap-10">
-          {modelRails.map(({ model, href, prompts, totalCount }) => {
+          {modelRails.map(({ model, href, prompts }) => {
             const label = termLabel(model);
             return (
               <div key={model.id}>
                 <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-2 md:border-b-4">
-                  <h3 className="text-xl font-black tracking-tight uppercase">{label} 图片提示词</h3>
+                  <h3 className="text-xl font-black tracking-tight uppercase">{label}</h3>
                   <ButtonLink href={href} data-model-more={model.slug} variant="outline">
-                    {modelRailMoreLabel(model.count, totalCount)}
+                    {railMoreLabel(model.count)}
                   </ButtonLink>
                 </div>
                 <div className="mt-4">
@@ -162,74 +176,58 @@ export function GalleryBrowse({
 
       <Section
         id="gallery-portrait"
-        title={portraitSubject === null ? "人物 / 肖像" : `${termLabel(portraitSubject)} 提示词`}
-        description="以人物为主体的图片提示词。"
+        title={portraitSubject === null ? "Person / portrait" : portraitSubject.label}
+        moreHref={portraitHref ?? undefined}
+        moreLabel={`${portraitPrompts.length} 条`}
       >
         {portraitSubject === null || portraitHref === null ? (
           <StateBlock variant="empty" message="当前收录里还没有人物主体的标注。" />
         ) : (
-          <>
-            <p className="mb-4">
-              <ButtonLink
-                href={portraitHref}
-                data-subject-more={portraitSubject.slug}
-                variant="outline"
-              >
-                查看全部 {portraitPrompts.length} 条 →
-              </ButtonLink>
-            </p>
-            <PromptRail
-              label={`${termLabel(portraitSubject)} 图片提示词`}
-              prompts={portraitPrompts}
-              locale={locale}
-              idPrefix={`subject-${portraitSubject.slug}`}
-              limit={railLimit}
-              emptyMessage="当前收录里还没有人物主体的图片提示词。"
-            />
-          </>
+          <PromptRail
+            label={`${portraitSubject.label} 图片提示词`}
+            prompts={portraitPrompts}
+            locale={locale}
+            idPrefix={`subject-${portraitSubject.slug}`}
+            limit={railLimit}
+            emptyMessage="当前收录里还没有人物主体的图片提示词。"
+          />
         )}
       </Section>
 
-      <Section
-        id="gallery-content-types"
-        title="其他类型"
-        description="数量按当前收录计算。本期只发布了图片聚合页，其余类型的页面还没有上线。"
-      >
+      <Section id="gallery-content-types" title="其他类型">
         <ContentTypeTiles types={contentTypes} currentSlug={IMAGE_CONTENT_TYPE_SLUG} />
       </Section>
 
-      <Section id="gallery-related" title="相关页面" description="全部为本期已发布的真实页面。">
-        <ul className="flex flex-col gap-3">
-          <li>
-            <Link href={promptsHome(locale)} className="text-base font-bold underline">
-              提示词库首页
-            </Link>
-          </li>
-          {allLinkableModels.map((model) => (
-            <li key={`related-${model.id}`}>
-              <Link href={model.href} className="text-base font-bold underline">
-                {termLabel(model)} 模型页
-              </Link>
-            </li>
+      <Section id="gallery-related" title="相关">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {relatedColumns.map((column) => (
+            <div key={column.title}>
+              <h3 className="text-xs font-bold tracking-widest uppercase">{column.title}</h3>
+              <ul className="mt-3 flex flex-col gap-2">
+                {column.items.map((item) => (
+                  <li key={item.key}>
+                    {item.href === null ? (
+                      <span className="text-base font-bold text-foreground/70">
+                        {item.label}
+                        {COMING_SOON_NOTE}
+                      </span>
+                    ) : (
+                      <Link href={item.href} {...item.attrs} className="text-base font-bold underline">
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-          {topUseCases.map((useCase) => (
-            <li key={`related-${useCase.id}`}>
-              <Link
-                href={queryHref(promptsHome(locale), setFacet({}, "useCase", [useCase.slug]))}
-                data-usecase-more={useCase.slug}
-                className="text-base font-bold underline"
-              >
-                {termLabel(useCase)} 提示词
-              </Link>
-            </li>
-          ))}
-        </ul>
+        </div>
       </Section>
 
       <Section
         id="gallery-cta"
-        title="挑一个模型开始"
-        description="全部提示词免费复制，均标注原作者与出处。"
+        title="复制一条提示词，改一个变量"
+        description="提示词原文完整保留，每张卡片一键跳转原帖。无需注册。"
       >
         {topModel === null ? (
           <StateBlock variant="empty" message="还没有可以进入的模型页。" />
@@ -239,7 +237,7 @@ export function GalleryBrowse({
             data-gallery-cta={topModel.model.slug}
             variant="primary"
           >
-            进入 {termLabel(topModel.model)} 模型页
+            进入最大的模型合集 →
           </ButtonLink>
         )}
       </Section>

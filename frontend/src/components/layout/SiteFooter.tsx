@@ -34,6 +34,14 @@ export interface SiteFooterProps {
   /** Inline link row for `compact`, as on the prototype's L4 foot. */
   links?: readonly FooterLinkItem[];
   /**
+   * Route of the blog index. The prototype has no Blog entry anywhere, but
+   * `/{locale}/blog` is a real published section, so it is added to the `资源`
+   * column of the `full` footer (the one place the prototype already reserves
+   * for site-level resources) — see `getPrimaryNav`, which does the same for
+   * the header. `null`/omitted leaves the columns exactly as given.
+   */
+  blogHref?: string | null;
+  /**
    * Observation date of the underlying data snapshot, rendered as the
    * prototype's `数据更新于 {date}`. `null` until a repository is wired up, and
    * then shown as an explicit "not connected" state rather than a plausible
@@ -44,12 +52,36 @@ export interface SiteFooterProps {
 
 const COPYRIGHT_LINE = "提示词版权归原作者所有，本站注明出处";
 
+/** Title of the prototype's site-resources column, where Blog belongs. */
+const RESOURCE_COLUMN_TITLE = "资源";
+const BLOG_LABEL = "Blog";
+
+/**
+ * Appends the blog index to the `资源` column. Never creates the column (a
+ * footer that has no resources column is not this component's decision to
+ * change) and never duplicates an entry a caller already supplied.
+ */
+function withBlogLink(
+  columns: readonly FooterColumn[],
+  blogHref: string | null,
+): readonly FooterColumn[] {
+  if (blogHref === null) return columns;
+  return columns.map((column) => {
+    if (column.title !== RESOURCE_COLUMN_TITLE) return column;
+    if (column.items.some((item) => item.label === BLOG_LABEL)) return column;
+    return { ...column, items: [...column.items, { label: BLOG_LABEL, href: blogHref }] };
+  });
+}
+
 export function SiteFooter({
   variant = "compact",
   columns = [],
   links = [],
   snapshotDate = null,
+  blogHref = null,
 }: SiteFooterProps) {
+  const resolvedColumns = withBlogLink(columns, blogHref);
+
   return (
     <footer
       data-surface="inverse"
@@ -57,9 +89,9 @@ export function SiteFooter({
       className="mt-16 border-t-2 border-foreground bg-foreground text-surface md:border-t-4"
     >
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
-        {variant === "full" && columns.length > 0 ? (
+        {variant === "full" && resolvedColumns.length > 0 ? (
           <nav aria-label="页脚导航" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-            {columns.map((column) => (
+            {resolvedColumns.map((column) => (
               <div key={column.title}>
                 <h2 className="text-xs font-bold tracking-widest text-accent-yellow uppercase">
                   {column.title}
@@ -116,7 +148,7 @@ export function SiteFooter({
         <div
           data-testid="footer-legal"
           className={
-            variant === "full" && columns.length > 0
+            variant === "full" && resolvedColumns.length > 0
               ? "mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t-2 border-surface/30 pt-6 text-sm font-medium"
               : "flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium"
           }

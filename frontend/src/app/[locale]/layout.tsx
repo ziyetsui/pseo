@@ -1,13 +1,20 @@
 import { notFound } from "next/navigation";
 
-import { SiteShell } from "@/components/layout/SiteShell";
-import { getContentRepository } from "@/lib/content";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 
 /** Static export: only the locales listed below may exist as routes. */
 export const dynamicParams = false;
 
 /*
+ * This layout is the locale guard and nothing else.
+ *
+ * The prototype gives each page its own chrome: L1 marks 首页 as the current
+ * nav entry and carries the five-column footer, while L2/L3/L4 and the blog use
+ * the compact foot. A layout cannot receive props from the page beneath it, so
+ * the shell variant is decided by the route group a page lives in — `(hub)`,
+ * `(gallery)` and `(site)` each render their own `SiteShell`. Rendering a shell
+ * here as well would nest two headers, two footers and two `#main` landmarks.
+ *
  * Why there is no route-level `loading.tsx` anywhere under `[locale]/`.
  *
  * A `loading.tsx` is a Suspense boundary. During `output: "export"` React
@@ -39,11 +46,6 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  const snapshot = await getContentRepository().getSnapshot();
 
-  return (
-    <SiteShell locale={locale} snapshotDate={snapshot.observedAt}>
-      {children}
-    </SiteShell>
-  );
+  return <>{children}</>;
 }

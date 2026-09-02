@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { COMING_SOON_NOTE } from "@/components/layout/nav";
 import { getContentRepository } from "@/lib/content";
+import type { FacetGroup, Locale, QueryFacetKey } from "@/lib/content/types";
 import { isPublishedLocale } from "@/lib/i18n/config";
-import { localeHome, promptsHome, promptsImage } from "@/lib/i18n/routes";
-import { JsonLd, breadcrumbList, type BreadcrumbItem } from "@/lib/seo/json-ld";
+import { localeHome, promptsImage } from "@/lib/i18n/routes";
+import { buildBreadcrumbTrail } from "@/lib/seo/breadcrumbs";
+import { JsonLd, breadcrumbList } from "@/lib/seo/json-ld";
 import { SITE_NAME, absoluteUrl, buildMetadata } from "@/lib/seo/site";
 import { GalleryBrowse } from "@/features/gallery/GalleryBrowse";
 import { GalleryStatline } from "@/features/gallery/GalleryStatline";
 import {
   countTermsWithin,
   findTermByLabel,
+  galleryDescription,
+  galleryLede,
   galleryStats,
   promptsForTerm,
   selectImagePrompts,
@@ -20,37 +25,51 @@ import {
 import { PromptExplorer } from "@/features/prompt/PromptExplorer";
 
 const TITLE = "图片提示词";
-const DESCRIPTION =
-  "按模型、任务、风格和主体浏览图片提示词，每条都标注原作者与原帖出处，找到后一键复制。";
 
 /**
- * The breadcrumb's own last-step label. Deliberately shorter than `TITLE`
- * (used for the H1 and metadata) so the trail reads 首页 › 提示词库 › 图片,
- * matching the other L2/L3/L4 breadcrumb trails' one-or-two-character last
- * step rather than repeating the full page title.
- */
-const BREADCRUMB_LABEL = "图片";
-
-/**
- * The prototype's portrait rail is keyed on the subject term whose English
+ * The prototype's subject rail is keyed on the subject term whose English
  * label is exactly this. The slug is looked up from the taxonomy rather than
  * written down, so a re-slugified fixture moves the page with it.
  */
 const PORTRAIT_SUBJECT_LABEL = "Person / portrait";
 
 /** Cards per rail, shared with the JSON-LD ItemList so the two cannot drift. */
-const RAIL_LIMIT = 6;
+const RAIL_LIMIT = 3;
 
 /**
- * How many models get their own "browse by model" rail (tiles + h3 + rail),
- * capped by image-prompt count (ties broken by slug — see `topRailedModels`).
+ * How many models get their own rail (h3 + `PromptRail`), capped by
+ * image-prompt count (ties broken by slug — see `topRailedModels`).
  * `ModelTiles` still shows every model in the image subset regardless of this
  * cap; only the rail band and the JSON-LD ItemList respect it.
  */
 const MODEL_RAIL_LIMIT = 3;
 
-/** How many tasks the related-links band lists. */
-const RELATED_USE_CASE_LIMIT = 3;
+/** How many entries the 相关 band's 模型 and 用例 columns list. */
+const RELATED_COLUMN_LIMIT = 3;
+
+/** The three facet axes the prototype's 按标签浏览 block offers on this page. */
+const GALLERY_FACET_AXES = ["useCase", "style", "subject"] as const;
+
+/**
+ * The prototype calls the use-case axis 任务 on L1 and 用例 on this page. The
+ * repository ships one label per axis (L1's), so the gallery renames its own
+ * copy of the group here rather than changing the shared vocabulary — the
+ * slugs, counts and URL contract are untouched.
+ */
+const GALLERY_FACET_LABELS: Partial<Record<QueryFacetKey, string>> = { useCase: "用例" };
+
+function relabelFacets(groups: readonly FacetGroup[]): FacetGroup[] {
+  return groups.map((group) => {
+    const label = GALLERY_FACET_LABELS[group.key];
+    return label === undefined ? group : { ...group, label };
+  });
+}
+
+/** How many image prompts this build publishes — the metadata's only number. */
+async function imageTotal(locale: Locale): Promise<number> {
+  const { items } = await getContentRepository().listPrompts(locale);
+  return selectImagePrompts(items).length;
+}
 
 export async function generateMetadata({
   params,
@@ -62,7 +81,9 @@ export async function generateMetadata({
   return buildMetadata({
     locale,
     title: TITLE,
-    description: DESCRIPTION,
+    // The prototype's own meta description, with its declared 324 replaced by
+    // the number of prompts this build actually publishes.
+    description: galleryDescription(await imageTotal(locale)),
     paths: { [locale]: promptsImage(locale) },
   });
 }
@@ -95,20 +116,15 @@ export default async function ImageGalleryPage({
 
   const stats = galleryStats(imagePrompts);
   // ALL models present in the subset (with count>0), sorted count desc / slug
-  // asc. `ModelTiles` and the related-links band use this in full.
+  // asc. `ModelTiles` uses this in full; the rail band and the 相关 band cap it.
   const models = countTermsWithin(modelTerms, imagePrompts, "model");
-  // Only the top MODEL_RAIL_LIMIT of those get their own tiles-row rail; see
-  // `topRailedModels` for why the cap exists and how ties are broken.
   const railedModels = topRailedModels(models, MODEL_RAIL_LIMIT);
   const useCases = countTermsWithin(useCaseTerms, imagePrompts, "useCase");
   const subjects = countTermsWithin(subjectTerms, imagePrompts, "subject");
   const portraitSubject = findTermByLabel(subjects, PORTRAIT_SUBJECT_LABEL);
 
-  const crumbs: BreadcrumbItem[] = [
-    { name: "首页", path: localeHome(locale) },
-    { name: "提示词库", path: promptsHome(locale) },
-    { name: BREADCRUMB_LABEL, path: basePath },
-  ];
+  const crumbs = buildBreadcrumbTrail({ page: "gallery", locale });
+  const description = galleryDescription(stats.total);
 
   // The ItemList mirrors the rails the exported HTML renders: the featured rail
   // plus each railed model's rail, capped by the same RAIL_LIMIT the browse
@@ -116,7 +132,9 @@ export default async function ImageGalleryPage({
   const railed = [
     ...featured,
     ...railedModels.flatMap((model) =>
-      model.href === null ? [] : promptsForTerm(imagePrompts, "model", model.slug).slice(0, RAIL_LIMIT),
+      model.href === null
+        ? []
+        : promptsForTerm(imagePrompts, "model", model.slug).slice(0, RAIL_LIMIT),
     ),
   ];
   const seen = new Set<string>();
@@ -137,7 +155,7 @@ export default async function ImageGalleryPage({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: TITLE,
-    description: DESCRIPTION,
+    description,
     url: absoluteUrl(basePath),
     inLanguage: locale,
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl(localeHome(locale)) },
@@ -157,8 +175,17 @@ export default async function ImageGalleryPage({
 
       <header className="mt-6 max-w-3xl">
         <h1 className="text-4xl font-black tracking-tighter uppercase md:text-6xl">{TITLE}</h1>
-        <p className="mt-6 text-lg font-medium">{DESCRIPTION}</p>
+        <p className="mt-6 text-lg font-medium">{galleryLede(stats.total)}</p>
         <GalleryStatline stats={stats} observedAt={snapshot.observedAt} className="mt-6" />
+        {/*
+          The prototype puts a `视频提示词（479）→` button next to the search
+          box. `/prompts/video` does not exist in this phase, so the entry keeps
+          its place as plain text with the same note the nav uses, and carries
+          no count it could not honestly source (global constraint 5).
+        */}
+        <p data-video-teaser className="mt-4 text-sm font-bold tracking-wider uppercase">
+          视频提示词{COMING_SOON_NOTE}
+        </p>
       </header>
 
       <div className="mt-10">
@@ -166,24 +193,24 @@ export default async function ImageGalleryPage({
           locale={locale}
           basePath={basePath}
           prompts={imagePrompts}
-          facetGroups={list.facets}
-          facetAxes={["useCase", "style", "subject", "model"]}
+          facetGroups={relabelFacets(list.facets)}
+          facetAxes={GALLERY_FACET_AXES}
           searchPlaceholder="搜索图片提示词…"
+          filterLabel="按标签浏览"
           summaryStyle="count"
           cardVariant="compact"
           browse={
             <GalleryBrowse
               locale={locale}
               basePath={basePath}
-              observedAt={snapshot.observedAt}
               featured={featured}
               imagePrompts={imagePrompts}
-              allPrompts={list.items}
               models={models}
               railedModels={railedModels}
               contentTypes={contentTypes}
               portraitSubject={portraitSubject}
-              topUseCases={useCases.slice(0, RELATED_USE_CASE_LIMIT)}
+              relatedModels={models.slice(0, RELATED_COLUMN_LIMIT)}
+              relatedUseCases={useCases.slice(0, RELATED_COLUMN_LIMIT)}
               railLimit={RAIL_LIMIT}
             />
           }

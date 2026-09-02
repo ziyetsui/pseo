@@ -22,30 +22,6 @@ export function modelCreators(prompts: readonly PromptSummary[]): ModelCreator[]
   return [...byId.values()].sort((a, b) => b.count - a.count || a.handle.localeCompare(b.handle));
 }
 
-/**
- * "近期热门" for one model. `listTrending` is library-wide and takes no model
- * filter, so the ranking is applied to the model's own subset here:
- * high-value first, then value score, then likes. Nulls always sort last —
- * a missing score must never outrank a measured one.
- */
-export function modelTrending(prompts: readonly PromptSummary[], limit: number): PromptSummary[] {
-  return [...prompts].sort(byTrendingRank).slice(0, limit);
-}
-
-function byTrendingRank(a: PromptSummary, b: PromptSummary): number {
-  if (a.metrics.highValue !== b.metrics.highValue) return a.metrics.highValue ? -1 : 1;
-
-  const av = a.metrics.valueScore;
-  const bv = b.metrics.valueScore;
-  if (av !== bv) {
-    if (av === null) return 1;
-    if (bv === null) return -1;
-    return bv - av;
-  }
-
-  return (b.metrics.likes ?? 0) - (a.metrics.likes ?? 0);
-}
-
 /** Where the four spec columns come from, said in the page's language. */
 export const EDITORIAL_STATUS_LABEL: Record<ModelDetail["editorialStatus"], string> = {
   "derived-from-fixture": "由收录 Prompt 派生",

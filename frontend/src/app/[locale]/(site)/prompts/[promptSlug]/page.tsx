@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { PromptDetailView } from "@/features/prompt-detail/PromptDetailView";
-import { promptBreadcrumbs } from "@/features/prompt-detail/breadcrumbs";
 import {
   formatCreatorHandle,
   getContentRepository,
@@ -11,6 +10,7 @@ import {
 } from "@/lib/content";
 import { PUBLISHED_LOCALES, isPublishedLocale } from "@/lib/i18n/config";
 import { promptDetail } from "@/lib/i18n/routes";
+import { buildBreadcrumbTrail } from "@/lib/seo/breadcrumbs";
 import { JsonLd, breadcrumbList } from "@/lib/seo/json-ld";
 import { absoluteUrl, buildMetadata } from "@/lib/seo/site";
 
@@ -61,8 +61,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 
 export default async function PromptDetailPage({ params }: { params: PageParams }) {
   const { locale, prompt } = await load(params);
-  const related = await getContentRepository().getRelated(locale, prompt.id);
-  const breadcrumbs = promptBreadcrumbs(locale, prompt);
+  const breadcrumbs = buildBreadcrumbTrail({ page: "promptDetail", locale, prompt });
 
   const creativeWork = {
     "@context": "https://schema.org",
@@ -86,12 +85,7 @@ export default async function PromptDetailPage({ params }: { params: PageParams 
     <>
       <JsonLd data={breadcrumbList(breadcrumbs)} />
       <JsonLd data={creativeWork} />
-      <PromptDetailView
-        prompt={prompt}
-        locale={locale}
-        related={related}
-        breadcrumbs={breadcrumbs}
-      />
+      <PromptDetailView prompt={prompt} locale={locale} breadcrumbs={breadcrumbs} />
     </>
   );
 }

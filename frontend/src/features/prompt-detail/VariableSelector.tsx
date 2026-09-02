@@ -4,35 +4,28 @@ import { useId, useRef, type KeyboardEvent } from "react";
 
 import { Panel } from "@/components/ui/Panel";
 import { cx } from "@/components/ui/class-names";
-import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
 import type { PromptVariable } from "@/lib/content/types";
 
 import { usePromptCopyContext } from "./PromptCopyProvider";
-import { replacementPhrase } from "./variable-view";
 
 export interface VariableSelectorProps {
-  /**
-   * The prompt exactly as published. Only used here to count occurrences for
-   * each variable's live status line — the actual selection state and the
-   * substituted text live in the ancestor `PromptCopyProvider`, shared with
-   * the mobile sticky bar rendered at the end of the page.
-   */
-  promptText: string;
   variables: readonly PromptVariable[];
 }
 
 /**
- * Variable picker for a prompt with placeholders, rendered directly under the
- * published `<pre>` inside the "提示词" section: one radiogroup per variable,
- * a live status line, and the primary copy button — choosing a value and
- * copying it never requires leaving the section.
+ * The prototype's `换个国家试试` picker: one option row per variable plus the
+ * live `当前选择：… —— 复制时自动替换。` line.
  *
- * Each variable is an ARIA radio group with roving `tabindex`: one tab stop
- * per group, arrow keys move (and select) within it — the standard radio
- * pattern.
+ * It owns no copy button of its own — the two copy buttons on the page (the
+ * payload bar and the sticky bottom bar) both read the same substitution state
+ * from `PromptCopyProvider`, so picking a value here changes what *they* copy
+ * and the page can never offer two disagreeing strings.
+ *
+ * Each variable is an ARIA radio group with roving `tabindex`: one tab stop per
+ * group, arrow keys move (and select) within it — the standard radio pattern.
  */
-export function VariableSelector({ promptText, variables }: VariableSelectorProps) {
-  const { values, select, result, copyTargetId } = usePromptCopyContext();
+export function VariableSelector({ variables }: VariableSelectorProps) {
+  const { values, select, result } = usePromptCopyContext();
   const optionRefs = useRef<Record<string, (HTMLButtonElement | null)[]>>({});
   const baseId = useId();
 
@@ -107,7 +100,7 @@ export function VariableSelector({ promptText, variables }: VariableSelectorProp
             </div>
 
             <p role="status" aria-live="polite" className="text-sm font-medium">
-              {`当前选择：${current}，${replacementPhrase(promptText, variable.token)}`}
+              {`当前选择：${current} —— 复制时自动替换。`}
             </p>
           </div>
         );
@@ -120,10 +113,6 @@ export function VariableSelector({ promptText, variables }: VariableSelectorProp
           </p>
         </Panel>
       )}
-
-      <div>
-        <CopyPromptButton text={result.text} targetId={copyTargetId} />
-      </div>
     </div>
   );
 }

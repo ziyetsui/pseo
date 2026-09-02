@@ -1,11 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import BlogListPage, { generateStaticParams as listParams } from "@/app/[locale]/blog/page";
-import ArticlePage, { generateStaticParams as articleParams } from "@/app/[locale]/blog/[slug]/page";
+import BlogListPage, { generateStaticParams as listParams } from "@/app/[locale]/(site)/blog/page";
+import ArticlePage, { generateStaticParams as articleParams } from "@/app/[locale]/(site)/blog/[slug]/page";
 import CategoryPage, {
   generateStaticParams as categoryParams,
-} from "@/app/[locale]/blog/category/[slug]/page";
+} from "@/app/[locale]/(site)/blog/category/[slug]/page";
 import { getContentRepository } from "@/lib/content";
 import { blogCategory } from "@/lib/i18n/routes";
 import { absoluteUrl } from "@/lib/seo/site";

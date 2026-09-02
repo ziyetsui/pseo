@@ -1,7 +1,7 @@
 import { Rail } from "@/components/ui/Rail";
 import { StateBlock } from "@/components/ui/StateBlock";
 import type { Locale, PromptSummary } from "@/lib/content/types";
-import { PromptCard } from "@/features/prompt/PromptCard";
+import { PromptCard, type PromptCardVariant } from "@/features/prompt/PromptCard";
 
 export interface PromptRailProps {
   /** Accessible name of the scroll region, e.g. `Nano Banana Pro 图片提示词`. */
@@ -18,6 +18,11 @@ export interface PromptRailProps {
   limit?: number;
   /** Give the first card eager, high-priority media (above-the-fold rails only). */
   priorityFirst?: boolean;
+  /**
+   * Card anatomy. Every rail on this page is the prototype's L2 card, so the
+   * default is `compact` rather than the L1 `hub` card.
+   */
+  variant?: PromptCardVariant;
   emptyMessage?: string;
 }
 
@@ -29,6 +34,7 @@ export function PromptRail({
   idPrefix,
   limit,
   priorityFirst = false,
+  variant = "compact",
   emptyMessage = "这里还没有提示词。",
 }: PromptRailProps) {
   const visible = limit === undefined ? prompts : prompts.slice(0, limit);
@@ -41,6 +47,7 @@ export function PromptRail({
           key={prompt.id}
           prompt={prompt}
           locale={locale}
+          variant={variant}
           idPrefix={idPrefix}
           priority={priorityFirst && index === 0}
         />

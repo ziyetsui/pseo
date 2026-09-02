@@ -32,7 +32,10 @@ describe("site brand and primary nav", () => {
     expect(SITE_NAME).toBe("Higgsfield 提示词库");
   });
 
-  it("lists the prototype's seven nav entries in order", () => {
+  it("lists the prototype's seven nav entries in order, then Blog", () => {
+    // `Blog` is the one entry the prototype has no equivalent for: `/zh-CN/blog`
+    // is a real published section and the nav is the only place an indexable
+    // page can link to it, so it is appended rather than substituted.
     expect(getPrimaryNav(LOCALE).map((item) => item.label)).toEqual([
       "首页",
       "图片",
@@ -41,7 +44,13 @@ describe("site brand and primary nav", () => {
       "用例",
       "风格",
       "创作者",
+      "Blog",
     ]);
+    expect(getPrimaryNav(LOCALE).at(-1)).toEqual({
+      key: "blog",
+      label: "Blog",
+      href: "/zh-CN/blog",
+    });
   });
 
   it("routes only the two pages this phase builds, and marks the current one", () => {
@@ -61,6 +70,12 @@ describe("site brand and primary nav", () => {
       expect(nav.getByText(label)).toBeInTheDocument();
     }
     expect(nav.getAllByText("（即将推出）")).toHaveLength(5);
+  });
+
+  it("links Blog from the primary nav so the section is not orphaned", () => {
+    render(<SiteHeader locale={LOCALE} />);
+    const nav = within(screen.getByRole("navigation", { name: "主导航" }));
+    expect(nav.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/zh-CN/blog");
   });
 
   it("brands the header with the site name", () => {
@@ -149,6 +164,35 @@ describe("SiteFooter", () => {
       />,
     );
     expect(screen.getByRole("link", { name: "首页" })).toHaveAttribute("href", "/zh-CN/prompts");
+  });
+
+  it("adds Blog to the 资源 column of the full footer, once", () => {
+    render(
+      <SiteFooter
+        variant="full"
+        columns={columns}
+        blogHref="/zh-CN/blog"
+        snapshotDate={OBSERVED_AT}
+      />,
+    );
+    const resources = screen.getByRole("heading", { name: "资源" }).parentElement;
+    expect(resources).not.toBeNull();
+    const blog = within(resources as HTMLElement).getAllByRole("link", { name: "Blog" });
+    expect(blog).toHaveLength(1);
+    expect(blog[0]).toHaveAttribute("href", "/zh-CN/blog");
+  });
+
+  it("never invents a 资源 column that the caller did not supply", () => {
+    render(
+      <SiteFooter
+        variant="full"
+        columns={[columns[0] as FooterColumn]}
+        blogHref="/zh-CN/blog"
+        snapshotDate={OBSERVED_AT}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "资源" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Blog" })).not.toBeInTheDocument();
   });
 
   it("says so rather than inventing a date when no snapshot is wired up", () => {

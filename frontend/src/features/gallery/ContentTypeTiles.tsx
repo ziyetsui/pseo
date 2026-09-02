@@ -74,10 +74,9 @@ export function ContentTypeTiles({
                 aria-current={type.slug === currentSlug ? "page" : undefined}
                 className={cardClassName("w-full gap-2 p-4 no-underline")}
               >
+                {/* The whole tile is the link, as in the prototype; the current
+                    page is marked with `aria-current` rather than a caption. */}
                 {body}
-                <p className="mt-auto text-xs font-bold tracking-wider uppercase">
-                  {type.slug === currentSlug ? "当前页面" : "查看该类型 →"}
-                </p>
               </Link>
             )}
           </li>

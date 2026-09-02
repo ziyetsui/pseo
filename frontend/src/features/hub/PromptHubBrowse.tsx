@@ -8,13 +8,14 @@ import type {
   PromptSummary,
   TaxonomyWithCount,
 } from "@/lib/content/types";
-import { promptsImage } from "@/lib/i18n/routes";
-import { PromptCard } from "@/features/prompt/PromptCard";
 import { TrendingTabs, type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
 
 import { CollectionTiles } from "./CollectionTiles";
 import { CreatorTiles } from "./CreatorTiles";
+import { FeaturedPrompt } from "./FeaturedPrompt";
+import { HUB_SECTION_IDS } from "./AnchorNav";
 import { TaxonomyTiles } from "./TaxonomyTiles";
+import { allPromptsHref, cameraSectionDescription } from "./hub-copy";
 
 export interface PromptHubBrowseProps {
   locale: Locale;
@@ -29,15 +30,29 @@ export interface PromptHubBrowseProps {
   styles: readonly TaxonomyWithCount[];
   collections: readonly CollectionWithCount[];
   creators: readonly CreatorWithCount[];
-  /** How many creator tiles to show; the section still states the real total. */
+  /**
+   * Share of the library carrying camera language, in 成 (tenths), measured by
+   * the page. `null` drops the figure from the 镜头与运动 sentence.
+   */
+  cameraShareTenths?: number | null;
+  /** Library size — denominator of the collection tiles' proportion bars. */
+  libraryTotal?: number;
+  /** How many creator tiles to show (the prototype shows 7). */
   creatorLimit?: number;
+  /** How many tiles per taxonomy grid (the prototype shows up to 8). */
   taxonomyLimit?: number;
+  /** How many collection tiles to show (the prototype shows 6). */
+  collectionLimit?: number;
 }
 
 /**
- * The hub's browse state, in the wireframe's order: featured, trending,
- * by task, by camera technique, by model, by style, collections, creators,
- * and a closing call to action.
+ * The hub's browse state, in the prototype's order and with its wording:
+ * featured, trending, by task, camera & movement, by model, by style,
+ * collections, creators, and the closing call to action.
+ *
+ * Section ids match `HUB_SECTION_IDS` because the page's `AnchorNav` links to
+ * them; `Section` puts the id on its `<h2>`, so each anchor resolves inside the
+ * same document (checked by `scripts/check-static-output.mjs`).
  *
  * Everything here is server-rendered and handed to `PromptExplorer` as its
  * `browse` slot, so it is present in the exported HTML whether or not
@@ -55,32 +70,23 @@ export function PromptHubBrowse({
   styles,
   collections,
   creators,
+  cameraShareTenths = null,
+  libraryTotal,
   creatorLimit = 7,
   taxonomyLimit = 8,
+  collectionLimit = 6,
 }: PromptHubBrowseProps) {
   return (
     <div className="flex flex-col">
-      <Section
-        id="hub-featured"
-        title="本期精选"
-        description="编辑选出的一条完整提示词，可以直接复制使用；下方的热门列表已排除这一条，避免重复出现。"
-      >
+      <Section id="featured" title="本期精选">
         {featured === null ? (
           <StateBlock variant="empty" message="本期还没有选出精选提示词。" />
         ) : (
-          <div className="max-w-3xl">
-            {/* The featured prompt is the longest on the page; it keeps the
-                default expand toggle so the section stays scannable. */}
-            <PromptCard prompt={featured} locale={locale} idPrefix="featured" priority />
-          </div>
+          <FeaturedPrompt prompt={featured} idPrefix="featured" />
         )}
       </Section>
 
-      <Section
-        id="hub-trending"
-        title="热门提示词"
-        description={`按互动价值排序，时间窗口相对数据快照日 ${observedAt} 计算。`}
-      >
+      <Section id="trending" title="热门提示词">
         <TrendingTabs
           locale={locale}
           basePath={basePath}
@@ -90,7 +96,7 @@ export function PromptHubBrowse({
       </Section>
 
       <Section
-        id="hub-tasks"
+        id={HUB_SECTION_IDS.tasks}
         title="按任务浏览"
         description="从要做的事情出发：广告、时尚、美妆、餐饮……"
       >
@@ -98,9 +104,9 @@ export function PromptHubBrowse({
       </Section>
 
       <Section
-        id="hub-camera"
-        title="镜头与技法"
-        description="推拉、环绕、跟拍、转场、分镜——提示词里最容易复用的部分。"
+        id={HUB_SECTION_IDS.camera}
+        title="镜头与运动"
+        description={cameraSectionDescription(cameraShareTenths)}
       >
         <TaxonomyTiles
           basePath={basePath}
@@ -110,37 +116,40 @@ export function PromptHubBrowse({
         />
       </Section>
 
-      <Section
-        id="hub-models"
-        title="按模型浏览"
-        description="已建成模型页的会直接进入该模型页，其余进入带筛选条件的列表。"
-      >
+      <Section id={HUB_SECTION_IDS.models} title="按模型浏览">
         <TaxonomyTiles basePath={basePath} axis="model" terms={models} limit={taxonomyLimit} />
       </Section>
 
-      <Section id="hub-styles" title="按风格浏览">
+      <Section id={HUB_SECTION_IDS.styles} title="按风格浏览">
         <TaxonomyTiles basePath={basePath} axis="style" terms={styles} limit={taxonomyLimit} />
       </Section>
 
-      <Section id="hub-collections" title="精选合集" description="按主题整理的提示词合集。">
-        <CollectionTiles basePath={basePath} collections={collections} />
+      <Section
+        id={HUB_SECTION_IDS.collections}
+        title="精选合集"
+        description="按主题整理的提示词合集。"
+      >
+        <CollectionTiles
+          basePath={basePath}
+          collections={collections}
+          limit={collectionLimit}
+          total={libraryTotal}
+        />
       </Section>
 
       <Section
-        id="hub-creators"
+        id={HUB_SECTION_IDS.creators}
         title="创作者"
-        description={`这些提示词的原作者，库中共收录 ${creators.length} 位，按收录条数排列。`}
+        description="这些提示词的原作者，点击访问其 X 主页。"
       >
         <CreatorTiles creators={creators} limit={creatorLimit} />
       </Section>
 
-      <Section
-        id="hub-cta"
-        title="找到合适的提示词，直接开始"
-        description="全部提示词免费复制，均标注原作者与出处。"
-      >
-        <ButtonLink href={promptsImage(locale)} variant="primary">
-          浏览图片提示词
+      <Section id="cta" title="找到合适的提示词，直接开始" description="全部提示词免费复制，注明原作者与出处。">
+        {/* The prototype's button lists the whole library in the result region
+            above; `?collection=all` is the URL form of exactly that state. */}
+        <ButtonLink href={allPromptsHref(basePath)} variant="primary">
+          浏览全部提示词
         </ButtonLink>
       </Section>
     </div>

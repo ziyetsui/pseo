@@ -76,10 +76,9 @@ export function ModelTiles({
                 data-model-tile={model.slug}
                 className={cardClassName("w-full gap-2 p-4 no-underline")}
               >
+                {/* The whole tile is the link, exactly as in the prototype —
+                    no extra call-to-action line underneath it. */}
                 {body}
-                <p className="mt-auto text-xs font-bold tracking-wider uppercase">
-                  查看模型页 →
-                </p>
               </Link>
             )}
           </li>

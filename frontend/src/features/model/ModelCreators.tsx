@@ -1,12 +1,11 @@
 import { GeometricMark } from "@/components/ui/GeometricMark";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cardClassName } from "@/components/ui/Card";
 import { formatCreatorHandle } from "@/lib/content";
 
 import type { ModelCreator } from "./model-data";
 
-const AVATAR_SIZE = 48;
+const AVATAR_SIZE = 40;
 
 export interface ModelCreatorsProps {
   creators: readonly ModelCreator[];
@@ -14,10 +13,15 @@ export interface ModelCreatorsProps {
 }
 
 /**
- * The people behind THIS model's prompts. Counts are derived from the model's
- * own prompt subset, so they never repeat the library-wide creator figures.
- * Profiles live on X, so each tile is a plain external link — `nofollow`
- * because we neither vouch for nor control what a profile shows next.
+ * The prototype's `inline-list`: avatar + `@handle` + the number of prompts,
+ * flowing on one wrapping row rather than as tiles.
+ *
+ * Counts are derived from THIS model's prompt subset, so they never repeat the
+ * library-wide creator figures. Profiles live on X, so each handle is a plain
+ * external link — `nofollow`, because we neither vouch for nor control what a
+ * profile shows next. The prototype prints a bare `<b>26</b>`; the unit is
+ * carried for assistive tech in a visually hidden span so the number is not
+ * announced as a naked integer.
  */
 export function ModelCreators({
   creators,
@@ -26,40 +30,40 @@ export function ModelCreators({
   if (creators.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold">
       {creators.map((creator) => (
-        <li key={creator.id} className="flex">
+        <li key={creator.id} className="flex items-center gap-2">
+          {creator.avatarUrl === null ? (
+            <span
+              aria-hidden="true"
+              className="flex size-10 shrink-0 items-center justify-center border-2 border-foreground bg-muted"
+            >
+              <GeometricMark shape="circle" color="blue" className="size-4" />
+            </span>
+          ) : (
+            <MediaFrame
+              src={creator.avatarUrl}
+              alt=""
+              width={AVATAR_SIZE}
+              height={AVATAR_SIZE}
+              className="size-10 shrink-0 border-2 border-foreground md:border-2"
+            />
+          )}
+
           <a
             href={creator.url}
             target="_blank"
             rel="noopener nofollow"
-            className={cardClassName("w-full flex-row items-center gap-4 p-4 no-underline")}
+            className="inline-flex min-h-11 items-center underline"
           >
-            {creator.avatarUrl === null ? (
-              <span
-                aria-hidden="true"
-                className="flex size-12 shrink-0 items-center justify-center border-2 border-foreground bg-muted"
-              >
-                <GeometricMark shape="circle" color="blue" className="size-5" />
-              </span>
-            ) : (
-              <MediaFrame
-                src={creator.avatarUrl}
-                alt={`${formatCreatorHandle(creator.handle)} 的头像`}
-                width={AVATAR_SIZE}
-                height={AVATAR_SIZE}
-                className="size-12 shrink-0 border-2 border-foreground md:border-2"
-              />
-            )}
-
-            <span className="flex flex-col gap-1">
-              <span className="text-base font-black tracking-tight">
-                {formatCreatorHandle(creator.handle)}
-              </span>
-              <span className="text-sm font-medium">{creator.count} 条提示词</span>
-            </span>
+            {formatCreatorHandle(creator.handle)}
             <span className="sr-only">（外部链接，新窗口打开）</span>
           </a>
+
+          <span className="font-mono tabular-nums">
+            {creator.count}
+            <span className="sr-only"> 条提示词</span>
+          </span>
         </li>
       ))}
     </ul>
