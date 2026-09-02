@@ -1,6 +1,4 @@
 import {
-  WIREFRAME_ARTICLES,
-  WIREFRAME_ARTICLE_CATEGORIES,
   WIREFRAME_COLLECTIONS,
   WIREFRAME_CREATORS,
   WIREFRAME_MODELS,
@@ -8,14 +6,7 @@ import {
   WIREFRAME_SNAPSHOT,
   WIREFRAME_TAXONOMIES,
 } from "@/data/wireframe";
-import {
-  blogArticle,
-  blogCategory,
-  modelPage,
-  promptDetail,
-  promptsHome,
-  promptsImage,
-} from "@/lib/i18n/routes";
+import { modelPage, promptDetail, promptsImage } from "@/lib/i18n/routes";
 
 import { applyPromptQuery, buildPromptSearchText, facetAxis, promptTaxonomies, resolveWindowStart } from "./query";
 import type { ContentRepository } from "./repository";
@@ -24,9 +15,6 @@ import {
   ASSUMED_MEDIA_WIDTH,
   QUERY_FACET_KEYS,
   type AppliedFilter,
-  type ArticleCategory,
-  type ArticleDetail,
-  type ArticleSummary,
   type Collection,
   type CollectionWithCount,
   type Creator,
@@ -48,7 +36,6 @@ import {
   type TaxonomyWithCount,
   type TrendingResult,
   type TrendingWindow,
-  type WireframeArticleSourceRecord,
   type WireframeModelRecord,
   type WireframePromptRecord,
   type WireframeTaxonomyRecord,
@@ -131,7 +118,6 @@ interface LocaleView {
   promptsBySlug: Map<string, PromptSummary>;
   recordsById: Map<string, WireframePromptRecord>;
   creatorsById: Map<string, Creator>;
-  articleCategories: ArticleCategory[];
 }
 
 function taxonomyKey(axis: TaxonomyAxis, slug: string): string {
@@ -264,13 +250,6 @@ function buildView(
     promptsBySlug: new Map(prompts.map((p) => [p.slug, p])),
     recordsById: new Map(data.prompts.map((r) => [r.id, r])),
     creatorsById,
-    articleCategories: WIREFRAME_ARTICLE_CATEGORIES.map((category) => ({
-      id: category.id,
-      slug: category.slug,
-      label: category.label,
-      href: blogCategory(locale, category.slug),
-      description: category.description,
-    })),
   };
   // Resolved after `view` exists because `collectionMembers` reads `view`.
   for (const collection of data.collections) {
@@ -582,46 +561,6 @@ function collectionMembers(collection: Collection, view: LocaleView): PromptSumm
 
 /* ------------------------------------------------------------ repository */
 
-/**
- * Resolves a raw article source reference into a real href using the same
- * route builders every other internal link goes through — the fixture record
- * only ever stores a `kind` + slug, never a hand-built path.
- */
-function buildArticleSourceHref(locale: Locale, source: WireframeArticleSourceRecord): string {
-  switch (source.kind) {
-    case "promptDetail":
-      return promptDetail(locale, source.promptSlug);
-    case "promptsHome":
-      return promptsHome(locale);
-  }
-}
-
-function toArticleSummary(
-  locale: Locale,
-  categories: readonly ArticleCategory[],
-  record: (typeof WIREFRAME_ARTICLES)[number],
-): ArticleSummary {
-  const category = categories.find((c) => c.slug === record.categorySlug);
-  if (category === undefined) {
-    throw new Error(`fixture-repository: article ${record.slug} references unknown category ${record.categorySlug}`);
-  }
-  const words = record.paragraphs.join("").length;
-  return {
-    id: record.id,
-    slug: record.slug,
-    href: blogArticle(locale, record.slug),
-    locale,
-    title: record.title,
-    excerpt: record.excerpt,
-    category,
-    author: { ...record.author },
-    publishedAt: record.publishedAt,
-    updatedAt: record.updatedAt,
-    readingMinutes: Math.max(1, Math.round(words / 400)),
-    isFixture: true,
-  };
-}
-
 export class FixtureContentRepository implements ContentRepository {
   private readonly viewCache = new Map<Locale, LocaleView>();
 
@@ -810,38 +749,6 @@ export class FixtureContentRepository implements ContentRepository {
       return { sameSeries: [], sameModel: [], sameUseCase: [], sameCreator: [] };
     }
     return relatedFor(view, prompt);
-  }
-
-  async listArticles(locale: Locale, categorySlug?: string): Promise<ArticleSummary[]> {
-    const view = this.view(locale);
-    return WIREFRAME_ARTICLES.filter(
-      (article) => categorySlug === undefined || article.categorySlug === categorySlug,
-    )
-      .map((article) => toArticleSummary(locale, view.articleCategories, article))
-      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-  }
-
-  async getArticle(locale: Locale, slug: string): Promise<ArticleDetail | null> {
-    const view = this.view(locale);
-    const record = WIREFRAME_ARTICLES.find((article) => article.slug === slug);
-    if (record === undefined) return null;
-    return {
-      ...toArticleSummary(locale, view.articleCategories, record),
-      paragraphs: [...record.paragraphs],
-      sources: record.sources.map((source) => ({
-        label: source.label,
-        url: buildArticleSourceHref(locale, source),
-        publishedAt: source.publishedAt,
-      })),
-    };
-  }
-
-  async listArticleCategories(locale: Locale): Promise<ArticleCategory[]> {
-    return this.view(locale).articleCategories;
-  }
-
-  async getArticleCategory(locale: Locale, slug: string): Promise<ArticleCategory | null> {
-    return this.view(locale).articleCategories.find((category) => category.slug === slug) ?? null;
   }
 }
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { getContentRepository } from "@/lib/content";
 import { DEFAULT_LOCALE } from "@/lib/i18n/config";
-import { blogHome, promptsHome, promptsImage } from "@/lib/i18n/routes";
+import { promptsHome, promptsImage } from "@/lib/i18n/routes";
 
 export const metadata: Metadata = {
   title: "页面不存在",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 /**
  * Recovery routes offered in the page body. The shell's navigation already
  * carries them, but a 404 is exactly the moment a reader should not have to go
- * hunting in the header — so the three real destinations that exist in this
+ * hunting in the header — so the two real destinations that exist in this
  * phase are repeated inline. Every href comes from the route builder; routes
  * that do not exist yet (video, use cases, styles, creators) are absent rather
  * than rendered as dead links.
@@ -35,12 +35,6 @@ const DESTINATIONS = [
     label: "图片提示词",
     description: "图片方向的提示词合集与筛选入口。",
     className: "bg-accent-red text-surface",
-  },
-  {
-    href: blogHome(DEFAULT_LOCALE),
-    label: "Blog",
-    description: "变量替换、来源与版权等说明性文章。",
-    className: "bg-accent-yellow text-foreground",
   },
 ] as const;
 
@@ -64,7 +58,7 @@ export default async function NotFound() {
         </p>
 
         <nav aria-label="可前往的页面" className="mt-10">
-          <ul className="grid gap-4 md:grid-cols-3">
+          <ul className="grid gap-4 md:grid-cols-2">
             {DESTINATIONS.map((destination) => (
               <li key={destination.href}>
                 <Link

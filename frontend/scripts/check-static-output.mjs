@@ -88,17 +88,28 @@ function stripBuildAssetUrls(text) {
 
 /* --------------------------------------------------------- 1. route files */
 
-/** The routes `global-constraints.md` §5 requires the export to contain. */
+/**
+ * The routes the export must contain. This is `global-constraints.md` §5 minus
+ * the blog: `/zh-CN/blog`, `/zh-CN/blog/[slug]` and `/zh-CN/blog/category/[slug]`
+ * were removed from the product on 2026-09-03, so §5 (and PRD 0008 §11 / G3)
+ * still name a section this build deliberately does not ship. Every other route
+ * §5 names is still required here and still fails loudly when it is missing.
+ */
 const REQUIRED = [
   "out/zh-CN.html",
   "out/zh-CN/prompts.html",
   "out/zh-CN/prompts/image.html",
   "out/zh-CN/prompts/models/nano-banana-pro.html",
   "out/zh-CN/prompts/country-miniature-stamp-poster.html",
-  "out/zh-CN/blog.html",
-  "out/zh-CN/blog/category/guides.html",
   "out/404.html",
 ];
+
+/**
+ * Routes the export must NOT contain. The blog was removed from the product on
+ * 2026-09-03; a stray `out/zh-CN/blog*` would mean a route file survived the
+ * removal, so its absence is asserted rather than assumed.
+ */
+const FORBIDDEN_ROUTE_DIRS = ["out/zh-CN/blog"];
 
 async function checkRequiredFiles() {
   heading("1. required routes in out/");
@@ -109,12 +120,14 @@ async function checkRequiredFiles() {
   if (missing.length > 0) fail(`${missing.length} required file(s) missing`, missing);
   else ok(`${REQUIRED.length} required route files present`);
 
-  const articles = await walk(path.join(OUT, "zh-CN", "blog"), (file) => file.endsWith(".html"));
-  const topLevelArticles = articles.filter(
-    (file) => path.dirname(file) === path.join(OUT, "zh-CN", "blog"),
-  );
-  if (topLevelArticles.length === 0) fail("no out/zh-CN/blog/*.html article pages");
-  else ok(`${topLevelArticles.length} blog article page(s)`);
+  const stray = [];
+  for (const relative of FORBIDDEN_ROUTE_DIRS) {
+    const dir = path.join(ROOT, relative);
+    if (await exists(`${dir}.html`)) stray.push(`${relative}.html`);
+    stray.push(...(await walk(dir, (file) => file.endsWith(".html"))).map(rel));
+  }
+  if (stray.length > 0) fail(`${stray.length} removed-route page(s) still exported`, stray);
+  else ok(`0 pages under ${FORBIDDEN_ROUTE_DIRS.join(", ")} (route removed from the product)`);
 }
 
 /* --------------------------------------------------- 2. forbidden patterns */

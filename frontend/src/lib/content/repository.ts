@@ -1,7 +1,4 @@
 import type {
-  ArticleCategory,
-  ArticleDetail,
-  ArticleSummary,
   CollectionWithCount,
   CreatorWithCount,
   Locale,
@@ -60,9 +57,4 @@ export interface ContentRepository {
   listCreators(locale: Locale): Promise<CreatorWithCount[]>;
 
   getRelated(locale: Locale, promptId: string): Promise<RelatedGroups>;
-
-  listArticles(locale: Locale, categorySlug?: string): Promise<ArticleSummary[]>;
-  getArticle(locale: Locale, slug: string): Promise<ArticleDetail | null>;
-  listArticleCategories(locale: Locale): Promise<ArticleCategory[]>;
-  getArticleCategory(locale: Locale, slug: string): Promise<ArticleCategory | null>;
 }

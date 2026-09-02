@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { blogHome, promptsHome, promptsImage } from "@/lib/i18n/routes";
+import { promptsHome, promptsImage } from "@/lib/i18n/routes";
 
 /**
  * Stable identity for a nav entry, used by pages to mark the current one with
@@ -12,8 +12,7 @@ export type NavKey =
   | "models"
   | "useCases"
   | "styles"
-  | "creators"
-  | "blog";
+  | "creators";
 
 export interface NavItem {
   key: NavKey;
@@ -32,14 +31,7 @@ export const COMING_SOON_NOTE = "（即将推出）";
 
 /**
  * Primary navigation: the prototype's L2/L3 site nav
- * (`首页 图片 视频 模型 用例 风格 创作者`) plus one entry the prototype has no
- * equivalent for — `Blog`.
- *
- * Blog is appended rather than substituted: `/{locale}/blog` is a real,
- * indexable route this phase ships, and the prototype's nav is the only place
- * a reader (or a crawler) could reach it from. Leaving it out would orphan a
- * published section from every indexable page, which costs more than the one
- * extra nav item costs in fidelity.
+ * (`首页 图片 视频 模型 用例 风格 创作者`).
  *
  * Only 首页 (L1) and 图片 (L2) have routes in this phase. 视频, 用例, 风格 and
  * 创作者 have no page at all; 模型 in the prototype points at the
@@ -57,6 +49,5 @@ export function getPrimaryNav(locale: Locale): NavItem[] {
     { key: "useCases", label: "用例", href: null, note: COMING_SOON_NOTE },
     { key: "styles", label: "风格", href: null, note: COMING_SOON_NOTE },
     { key: "creators", label: "创作者", href: null, note: COMING_SOON_NOTE },
-    { key: "blog", label: "Blog", href: blogHome(locale) },
   ];
 }

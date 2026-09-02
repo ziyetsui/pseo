@@ -37,18 +37,6 @@ export function promptDetail(locale: Locale, promptSlug: string): string {
   return `/${locale}/prompts/${segment(promptSlug, "prompt slug")}`;
 }
 
-export function blogHome(locale: Locale): string {
-  return `/${locale}/blog`;
-}
-
-export function blogArticle(locale: Locale, articleSlug: string): string {
-  return `/${locale}/blog/${segment(articleSlug, "article slug")}`;
-}
-
-export function blogCategory(locale: Locale, categorySlug: string): string {
-  return `/${locale}/blog/category/${segment(categorySlug, "category slug")}`;
-}
-
 /**
  * Serializes filter/search state onto a path. Keys are emitted in alphabetical
  * order so the same state always yields the same URL (stable canonical, stable

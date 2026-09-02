@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { getContentRepository } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
-import { modelPage, promptDetail, promptsHome, promptsImage } from "@/lib/i18n/routes";
+import { modelPage, promptDetail, promptsImage } from "@/lib/i18n/routes";
 
 const repo = getContentRepository();
 const LOCALE = "zh-CN" as const;
@@ -560,73 +560,5 @@ describe("featured, variables and related", () => {
       sameUseCase: [],
       sameCreator: [],
     });
-  });
-});
-
-describe("articles", () => {
-  it("publishes the zh-CN fixture articles across categories", async () => {
-    const articles = await repo.listArticles(LOCALE);
-    expect(articles).toHaveLength(3);
-    for (const article of articles) {
-      expect(article.isFixture).toBe(true);
-      expect(article.locale).toBe(LOCALE);
-      expect(article.readingMinutes).toBeGreaterThan(0);
-    }
-    expect(articles.map((a) => a.slug)).toEqual([
-      "sources-and-copyright",
-      "how-to-replace-prompt-variables",
-      "stamp-poster-case-study",
-    ]);
-    expect(articles.filter((a) => a.category.slug === "guides")).toHaveLength(2);
-    expect(articles.filter((a) => a.category.slug === "case-studies")).toHaveLength(1);
-  });
-
-  it("returns a full article body as plain paragraphs", async () => {
-    const article = await repo.getArticle(LOCALE, "how-to-replace-prompt-variables");
-    expect(article).not.toBeNull();
-    expect(article?.paragraphs.length).toBeGreaterThanOrEqual(3);
-    expect(article?.paragraphs.every((p) => p.length > 0)).toBe(true);
-    expect(await repo.getArticle(LOCALE, "missing")).toBeNull();
-  });
-
-  it("exposes categories — including a zero-article one — and filters by them", async () => {
-    const categories = await repo.listArticleCategories(LOCALE);
-    expect(categories.map((c) => c.slug)).toEqual(["guides", "release-notes", "case-studies"]);
-    expect(categories[0]?.href).toBe("/zh-CN/blog/category/guides");
-    expect((await repo.listArticles(LOCALE, "guides"))).toHaveLength(2);
-    // `release-notes` is a real, listed category with no articles — this is
-    // the exact case the blog list page must not link (see blog.test.tsx).
-    expect((await repo.listArticles(LOCALE, "release-notes"))).toHaveLength(0);
-    expect((await repo.listArticles(LOCALE, "case-studies"))).toHaveLength(1);
-    expect((await repo.listArticles(LOCALE, "nope"))).toHaveLength(0);
-    expect(await repo.getArticleCategory(LOCALE, "guides")).not.toBeNull();
-    expect(await repo.getArticleCategory(LOCALE, "release-notes")).not.toBeNull();
-    expect(await repo.getArticleCategory(LOCALE, "nope")).toBeNull();
-  });
-
-  it("attaches an honest, clearly-labelled fixture byline to every article", async () => {
-    const articles = await repo.listArticles(LOCALE);
-    for (const article of articles) {
-      expect(article.author.name).toBe("站点编辑（fixture）");
-      expect(article.author.url).toBeNull();
-    }
-  });
-
-  it("resolves each article's sources to real site-relative route hrefs", async () => {
-    const detail = await repo.getArticle(LOCALE, "how-to-replace-prompt-variables");
-    expect(detail).not.toBeNull();
-    expect(detail?.sources.length).toBeGreaterThan(0);
-    for (const source of detail?.sources ?? []) {
-      expect(source.url.startsWith("/")).toBe(true);
-      expect(source.label.length).toBeGreaterThan(0);
-    }
-    expect(detail?.sources.some((source) => source.url === promptDetail(LOCALE, GOLDEN_SLUG))).toBe(
-      true,
-    );
-
-    const copyrightDetail = await repo.getArticle(LOCALE, "sources-and-copyright");
-    expect(copyrightDetail?.sources.some((source) => source.url === promptsHome(LOCALE))).toBe(
-      true,
-    );
   });
 });

@@ -2,9 +2,6 @@ import { describe, expect, it } from "vitest";
 
 import { DEFAULT_LOCALE, PUBLISHED_LOCALES, SUPPORTED_LOCALES, isLocale } from "@/lib/i18n/config";
 import {
-  blogArticle,
-  blogCategory,
-  blogHome,
   localeHome,
   modelPage,
   promptDetail,
@@ -37,9 +34,6 @@ describe("route builders", () => {
     expect(promptDetail("zh-CN", "country-miniature-stamp-poster")).toBe(
       "/zh-CN/prompts/country-miniature-stamp-poster",
     );
-    expect(blogHome("zh-CN")).toBe("/zh-CN/blog");
-    expect(blogArticle("zh-CN", "prompt-variables")).toBe("/zh-CN/blog/prompt-variables");
-    expect(blogCategory("zh-CN", "guides")).toBe("/zh-CN/blog/category/guides");
   });
 
   it("never produces a trailing slash or a '#' placeholder href", () => {
@@ -49,9 +43,6 @@ describe("route builders", () => {
       promptsImage("zh-CN"),
       modelPage("zh-CN", "gpt-image-2"),
       promptDetail("zh-CN", "a-slug"),
-      blogHome("zh-CN"),
-      blogArticle("zh-CN", "a-slug"),
-      blogCategory("zh-CN", "guides"),
     ];
     for (const href of all) {
       expect(href.startsWith("/zh-CN")).toBe(true);
@@ -62,7 +53,7 @@ describe("route builders", () => {
 
   it("percent-encodes slug segments", () => {
     expect(promptDetail("zh-CN", "a b")).toBe("/zh-CN/prompts/a%20b");
-    expect(blogCategory("zh-CN", "指南")).toBe(`/zh-CN/blog/category/${encodeURIComponent("指南")}`);
+    expect(modelPage("zh-CN", "模型")).toBe(`/zh-CN/prompts/models/${encodeURIComponent("模型")}`);
   });
 
   it("rejects empty slugs instead of emitting a broken href", () => {

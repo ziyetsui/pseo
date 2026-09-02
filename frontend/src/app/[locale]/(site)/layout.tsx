@@ -6,8 +6,8 @@ import { isPublishedLocale } from "@/lib/i18n/config";
 
 /**
  * Shell for the pages the prototype gives no nav entry of its own: the model
- * page (L3), the prompt detail page (L4), the blog and the `/{locale}` transit
- * page. They all wear the prototype's compact three-item footer and mark no
+ * page (L3), the prompt detail page (L4) and the `/{locale}` transit page.
+ * They all wear the prototype's compact three-item footer and mark no
  * primary nav item as current — `currentNav` is deliberately not passed, which
  * is how `SiteHeader` expresses "none of them" (the prototype's L3 marks 模型,
  * but that entry is unlinked text this phase, so nothing can carry

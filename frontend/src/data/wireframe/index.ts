@@ -5,7 +5,6 @@
 // import from `@/data/wireframe` — enforced by the `no-restricted-imports`
 // rule in eslint.config.mjs.
 
-export { WIREFRAME_ARTICLES, WIREFRAME_ARTICLE_CATEGORIES } from "./articles";
 export { WIREFRAME_COLLECTIONS } from "./collections";
 export { WIREFRAME_CREATORS } from "./creators";
 export { WIREFRAME_MODELS } from "./models";
