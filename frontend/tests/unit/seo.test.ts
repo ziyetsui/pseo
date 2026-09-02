@@ -86,9 +86,9 @@ describe("buildMetadata", () => {
     });
   });
 
-  it("supports opting a page out of indexing", () => {
+  it("opts a page out of indexing while still allowing crawlers to follow links", () => {
     const meta = buildMetadata({ ...base, noindex: true });
-    expect(meta.robots).toEqual({ index: false, follow: false });
+    expect(meta.robots).toEqual({ index: false, follow: true });
   });
 
   it("leaves robots unset for indexable pages", () => {

@@ -8,7 +8,8 @@ import { promptsHome } from "@/lib/i18n/routes";
 
 export const metadata: Metadata = {
   title: "页面不存在",
-  robots: { index: false, follow: false },
+  // Not indexable, but crawlers should still follow the recovery links.
+  robots: { index: false, follow: true },
 };
 
 export default function NotFound() {

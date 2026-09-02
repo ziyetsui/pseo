@@ -34,6 +34,10 @@ export interface BuildMetadataInput {
    * missing translation must never be advertised as an alternate.
    */
   availableLocales?: readonly Locale[];
+  /**
+   * Keep the page out of the index but still let crawlers follow its links —
+   * `nofollow` would strand the canonical pages a noindexed page links to.
+   */
   noindex?: boolean;
 }
 
@@ -76,6 +80,6 @@ export function buildMetadata({
       title,
       description,
     },
-    ...(noindex ? { robots: { index: false, follow: false } } : {}),
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }
