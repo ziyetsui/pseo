@@ -1,5 +1,10 @@
 import Link from "next/link";
 
+import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
+import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
+import { cx } from "@/components/ui/class-names";
+import { dividerClassName } from "@/components/ui/dividers";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import { SITE_NAME } from "@/lib/seo/site";
 
 /**
@@ -57,6 +62,42 @@ const RESOURCE_COLUMN_TITLE = "资源";
 const BLOG_LABEL = "Blog";
 
 /**
+ * The footer is the site's one inverse surface: `bg-foreground` with
+ * `text-surface`. `dividerClassName` draws every tier on the `foreground`
+ * token, which here is the BACKGROUND — `border-foreground/15` on black is
+ * black on black, i.e. no rule at all.
+ *
+ * So the tier still decides the side, the 2px width and the strength; only the
+ * hue is flipped, with the `!` marker so the outcome never depends on which of
+ * two border-colour utilities Tailwind happens to emit last. A surface-aware
+ * `dividerClassName` belongs in `components/ui`, which is frozen this round —
+ * see the lane report.
+ */
+const INVERSE_HUE: Record<"column" | "row", string> = {
+  column: "border-surface/70!",
+  row: "border-surface/15!",
+};
+
+/** The row tier, whole, for a row this file builds itself. */
+const ROW_RULE = cx(dividerClassName("row", "bottom"), INVERSE_HUE.row);
+
+/**
+ * The `column` tier (~70%), between the five footer columns.
+ *
+ * Written out rather than composed from `dividerClassName`, because it must
+ * only appear from `lg` — below that the columns stack one or two up, where a
+ * left rule would sit against the page edge instead of between two columns,
+ * and the shared helper returns an unprefixed string it cannot qualify.
+ */
+const COLUMN_RULE_LEFT = "lg:border-l-2 lg:border-surface/70";
+
+/**
+ * The same `column` tier as a top rule, above the legal line. Not responsive,
+ * so it composes from the shared helper the way `ROW_RULE` does.
+ */
+const SECTION_RULE_TOP = cx(dividerClassName("column", "top"), INVERSE_HUE.column);
+
+/**
  * Appends the blog index to the `资源` column. Never creates the column (a
  * footer that has no resources column is not this component's decision to
  * change) and never duplicates an entry a caller already supplied.
@@ -73,6 +114,39 @@ function withBlogLink(
   });
 }
 
+/**
+ * The unlinked twin of `HairlineRow`.
+ *
+ * `HairlineRow` requires a real `href` on purpose — a row that navigates
+ * nowhere is not a link. An unbuilt destination therefore gets the row's rule,
+ * its 44px height and its type here, minus the chevron (there is nothing to
+ * point at) and minus the anchor. The `（即将推出）` marker is the signal, so
+ * the dimmed colour is never carrying the state on its own.
+ */
+function FooterTextRow({
+  label,
+  note,
+  last,
+}: {
+  label: string;
+  note?: string;
+  last: boolean;
+}) {
+  return (
+    <li className="flex flex-col">
+      <span
+        className={cx(
+          "flex min-h-11 w-full items-center gap-2 py-2 text-sm font-medium text-surface/70",
+          last ? undefined : ROW_RULE,
+        )}
+      >
+        {label}
+        {note === undefined ? null : <span className={microLabelClassName()}>{note}</span>}
+      </span>
+    </li>
+  );
+}
+
 export function SiteFooter({
   variant = "compact",
   columns = [],
@@ -81,6 +155,8 @@ export function SiteFooter({
   blogHref = null,
 }: SiteFooterProps) {
   const resolvedColumns = withBlogLink(columns, blogHref);
+  const hasColumns = variant === "full" && resolvedColumns.length > 0;
+  const hasLinkRow = variant === "compact" && links.length > 0;
 
   return (
     <footer
@@ -89,53 +165,82 @@ export function SiteFooter({
       className="mt-16 border-t-2 border-foreground bg-foreground text-surface md:border-t-4"
     >
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
-        {variant === "full" && resolvedColumns.length > 0 ? (
-          <nav aria-label="页脚导航" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-            {resolvedColumns.map((column) => (
-              <div key={column.title}>
-                <h2 className="text-xs font-bold tracking-widest text-accent-yellow uppercase">
-                  {column.title}
-                </h2>
-                <ul className="mt-4 flex flex-col gap-1">
-                  {column.items.map((item) => (
-                    <li key={`${column.title}-${item.label}`}>
-                      {item.href === null ? (
-                        <span className="flex min-h-11 items-center text-sm font-medium text-surface/70">
-                          {item.label}
-                          {item.note === undefined ? null : <span>{item.note}</span>}
-                        </span>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className="flex min-h-11 items-center text-sm font-medium underline"
-                        >
-                          {item.label}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+        {hasColumns ? (
+          /*
+            Five dense text indexes, not five stacks of boxes (图版 02). At `lg`
+            the column gap is handed to the columns themselves as padding, so
+            the `column`-tier rule sits exactly halfway between two columns
+            instead of hard against the next one's first word.
+          */
+          <nav aria-label="页脚导航" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-0">
+            {resolvedColumns.map((column, index) => (
+              <div
+                key={column.title}
+                className={cx(
+                  "lg:px-6",
+                  index === 0 ? "lg:pl-0" : COLUMN_RULE_LEFT,
+                  index === resolvedColumns.length - 1 ? "lg:pr-0" : undefined,
+                )}
+              >
+                <h2 className={microLabelClassName("text-accent-yellow")}>{column.title}</h2>
+                <HairlineList className="mt-3">
+                  {column.items.map((item, itemIndex) => {
+                    const last = itemIndex === column.items.length - 1;
+                    return item.href === null ? (
+                      <FooterTextRow
+                        key={`${column.title}-${item.label}`}
+                        label={item.label}
+                        note={item.note}
+                        last={last}
+                      />
+                    ) : (
+                      <HairlineRow
+                        key={`${column.title}-${item.label}`}
+                        href={item.href}
+                        last={last}
+                        // `HairlineRow` draws the row tier itself; only its hue
+                        // needs flipping, and on the last row (no rule) a bare
+                        // border colour paints nothing.
+                        className={INVERSE_HUE.row}
+                      >
+                        {item.label}
+                      </HairlineRow>
+                    );
+                  })}
+                </HairlineList>
               </div>
             ))}
           </nav>
         ) : null}
 
-        {variant === "compact" && links.length > 0 ? (
+        {hasLinkRow ? (
+          /*
+            The compact foot's short row is navigation, not an index, so it
+            keeps its one line and answers the pointer the way the header nav
+            does — a bar that grows under the label — rather than sprouting a
+            chevron per item.
+          */
           <nav aria-label="页脚导航" className="mb-6">
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-1">
               {links.map((item) => (
                 <li key={item.label}>
                   {item.href === null ? (
-                    <span className="flex min-h-11 items-center text-sm font-medium text-surface/70">
+                    <span
+                      className={microLabelClassName(
+                        "flex min-h-11 items-center gap-2 text-surface/70",
+                      )}
+                    >
                       {item.label}
                       {item.note === undefined ? null : <span>{item.note}</span>}
                     </span>
                   ) : (
                     <Link
                       href={item.href}
-                      className="flex min-h-11 items-center text-sm font-medium underline"
+                      className={microLabelClassName(
+                        "group flex min-h-11 items-center no-underline",
+                      )}
                     >
-                      {item.label}
+                      <GrowingUnderline>{item.label}</GrowingUnderline>
                     </Link>
                   )}
                 </li>
@@ -144,14 +249,20 @@ export function SiteFooter({
           </nav>
         ) : null}
 
-        {/* The prototype's footlegal, verbatim, on every page. */}
+        {/*
+          The prototype's footlegal, verbatim, on every page — now on the micro
+          label tier, which is what it is: three pieces of site metadata. The
+          rule above it is the same `column` tier that separates the columns,
+          so `full` and `compact` read as one family.
+        */}
         <div
           data-testid="footer-legal"
-          className={
-            variant === "full" && resolvedColumns.length > 0
-              ? "mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t-2 border-surface/30 pt-6 text-sm font-medium"
-              : "flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium"
-          }
+          className={microLabelClassName(
+            cx(
+              "flex flex-wrap gap-x-6 gap-y-2",
+              hasColumns || hasLinkRow ? cx("mt-10 pt-6", SECTION_RULE_TOP) : undefined,
+            ),
+          )}
         >
           <span>{SITE_NAME}</span>
           <span>{COPYRIGHT_LINE}</span>

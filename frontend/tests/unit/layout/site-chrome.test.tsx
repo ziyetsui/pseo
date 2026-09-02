@@ -1,7 +1,9 @@
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { SiteFooter, type FooterColumn } from "@/components/layout/SiteFooter";
+import { MobileNav } from "@/components/layout/MobileNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { getPrimaryNav } from "@/components/layout/nav";
 import { AnchorNav, HUB_ANCHORS } from "@/features/hub/AnchorNav";
@@ -293,5 +295,169 @@ describe("buildFooterColumns", () => {
       styles: [],
     });
     for (const column of sparse.slice(0, 4)) expect(column.items).toEqual([]);
+  });
+});
+
+/**
+ * 图版 02 / 03 / 04 / 06 applied to the site chrome: the footer columns are a
+ * dense text index rather than five stacks of boxes, and header and footer
+ * share one type tier and one set of divider tiers.
+ */
+describe("site chrome card-system tiers", () => {
+  const columns: FooterColumn[] = [
+    {
+      title: "按模型",
+      items: [
+        { label: "Seedance 提示词", href: "/zh-CN/prompts?model=seedance" },
+        { label: "Kling 提示词", href: "/zh-CN/prompts/models/kling" },
+      ],
+    },
+    {
+      title: "资源",
+      items: [{ label: "全部合集", href: null, note: "（即将推出）" }],
+    },
+  ];
+
+  function footerRow(name: string): HTMLElement {
+    return screen.getByRole("link", { name }).closest("a") as HTMLElement;
+  }
+
+  it("demotes the footer columns to hairline rows: no card frame, no shadow, no fill", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    const row = footerRow("Seedance 提示词");
+    // The row tier: a 15% rule and nothing else. A footer column is an index,
+    // and an index in boxes is what 图版 02 exists to stop.
+    expect(row.className).toContain("border-b-2");
+    expect(row.className).toContain("border-surface/15");
+    expect(row.className).not.toMatch(/shadow-hard/);
+    expect(row.className).not.toMatch(/bg-(surface|canvas|muted)\b/);
+    // 44×44 survives the demotion.
+    expect(row.className).toContain("min-h-11");
+  });
+
+  it("gives every hairline row a chevron that is hidden from assistive tech", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    const row = footerRow("Seedance 提示词");
+    const chevron = row.querySelector('[aria-hidden="true"]');
+    expect(chevron).not.toBeNull();
+    // Reveal expression ⑤ answers focus as well as hover: a chevron only a
+    // mouse can summon is information a keyboard never receives.
+    expect((chevron as HTMLElement).className).toContain("opacity-0");
+    expect((chevron as HTMLElement).className).toContain("group-hover:opacity-100");
+    expect((chevron as HTMLElement).className).toContain("group-focus-visible:opacity-100");
+  });
+
+  it("drops the rule under the last row of a column", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+    expect(footerRow("Kling 提示词").className).not.toContain("border-b-2");
+  });
+
+  it("keeps an unbuilt destination as a non-link row with its marker", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    expect(screen.queryByRole("link", { name: /全部合集/ })).not.toBeInTheDocument();
+    const text = screen.getByText("全部合集");
+    expect(text.tagName).toBe("SPAN");
+    expect(text.className).toContain("min-h-11");
+    // The marker is the signal; the dimmed colour never carries the state alone.
+    expect(screen.getByText("（即将推出）")).toBeInTheDocument();
+  });
+
+  it("separates the footer columns on the column tier and the rows on the row tier", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    const heading = screen.getByRole("heading", { name: "资源" });
+    const column = heading.parentElement as HTMLElement;
+    // ~70% between columns, ~15% between rows: the denser the rules, the
+    // lighter they are drawn (图版 06).
+    expect(column.className).toContain("lg:border-l-2");
+    expect(column.className).toContain("lg:border-surface/70");
+    // The first column has no rule to its left — there is no column there.
+    const first = screen.getByRole("heading", { name: "按模型" }).parentElement as HTMLElement;
+    expect(first.className).not.toContain("lg:border-l-2");
+  });
+
+  it("sets the column headings and the legal line on the micro label tier", () => {
+    render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
+
+    expect(screen.getByRole("heading", { name: "按模型" }).className).toContain("tracking-micro");
+    expect(screen.getByTestId("footer-legal").className).toContain("tracking-micro");
+  });
+
+  it("gives the compact variant the same tiers as the full one", () => {
+    render(
+      <SiteFooter
+        variant="compact"
+        links={[{ label: "首页", href: "/zh-CN/prompts" }]}
+        snapshotDate={OBSERVED_AT}
+      />,
+    );
+
+    // Same type tier as the full footer's legal line…
+    expect(screen.getByTestId("footer-legal").className).toContain("tracking-micro");
+    // …and the same column-tier rule above it.
+    expect(screen.getByTestId("footer-legal").className).toContain("border-surface/70");
+    // The short row is navigation, so it answers with the growing underline.
+    const link = screen.getByRole("link", { name: "首页" });
+    expect(link.className).toContain("group");
+    expect(link.className).toContain("no-underline");
+  });
+
+  it("draws no rule above the legal line when nothing precedes it", () => {
+    render(<SiteFooter variant="compact" snapshotDate={OBSERVED_AT} />);
+    expect(screen.getByTestId("footer-legal").className).not.toContain("border-t-2");
+  });
+
+  it("gives the header nav links the growing underline and keeps the current-page rule", () => {
+    render(<SiteHeader locale={LOCALE} currentNav="image" />);
+    const nav = within(screen.getByRole("navigation", { name: "主导航" }));
+
+    const home = nav.getByRole("link", { name: "首页" });
+    expect(home.className).toContain("group");
+    expect(home.className).toContain("no-underline");
+    const bar = home.querySelector('[aria-hidden="true"]') as HTMLElement;
+    expect(bar.className).toContain("group-hover:w-full");
+    expect(bar.className).toContain("group-focus-visible:w-full");
+
+    // The current page is still marked with a line, not with colour alone.
+    const image = nav.getByRole("link", { name: "图片" });
+    expect(image).toHaveAttribute("aria-current", "page");
+    expect(image.className).toContain("aria-[current=page]:underline");
+  });
+
+  it("keeps the disclosure menu's list identical, markers on the same tier", async () => {
+    render(<MobileNav items={getPrimaryNav(LOCALE)} currentNav="image" />);
+
+    // The disclosure still opens the same way, and the panel is still out of
+    // the accessibility tree until it does.
+    const toggle = screen.getByRole("button", { name: "菜单" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await userEvent.click(toggle);
+    expect(screen.getByRole("button", { name: "关闭" })).toHaveAttribute("aria-expanded", "true");
+
+    const nav = within(screen.getByRole("navigation", { name: "移动端主导航" }));
+    // The identical link list, markers included — nothing was dropped or
+    // promoted into a link by the restyle.
+    expect(nav.getByRole("link", { name: "首页" })).toHaveAttribute("href", "/zh-CN/prompts");
+    expect(nav.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/zh-CN/blog");
+    const markers = nav.getAllByText("（即将推出）");
+    expect(markers).toHaveLength(5);
+    for (const marker of markers) expect(marker.className).toContain("tracking-micro");
+  });
+
+  it("sets the language control and the coming-soon markers on the micro label tier", () => {
+    render(<SiteHeader locale={LOCALE} />);
+
+    const nav = within(screen.getByRole("navigation", { name: "主导航" }));
+    for (const marker of nav.getAllByText("（即将推出）")) {
+      expect(marker.className).toContain("tracking-micro");
+    }
+
+    const language = screen.getByRole("button", { name: /zh-CN/ });
+    expect(language.className).toContain("tracking-micro");
+    expect(language).toHaveAttribute("aria-disabled", "true");
+    expect(language).toHaveAttribute("aria-describedby", "locale-availability");
   });
 });

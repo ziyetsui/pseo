@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { microLabelClassName } from "@/components/ui/type-scale";
+
 import type { NavItem, NavKey } from "./nav";
 
 /**
@@ -63,7 +65,10 @@ export function MobileNav({ items, currentNav }: MobileNavProps) {
                 <span className="flex min-h-11 items-center px-4 py-3 text-base font-bold text-foreground/60">
                   {item.label}
                   {item.note === undefined ? null : (
-                    <span className="ml-1 text-xs font-medium">{item.note}</span>
+                    // Same micro label tier as the desktop nav's marker, so the
+                    // two renderings of one nav say the same thing the same
+                    // way. Nothing about the disclosure's behaviour changes.
+                    <span className={microLabelClassName("ml-2")}>{item.note}</span>
                   )}
                 </span>
               ) : (

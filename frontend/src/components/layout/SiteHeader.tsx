@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
+import { microLabelClassName } from "@/components/ui/type-scale";
 import { LOCALE_LABEL, type Locale } from "@/lib/i18n/config";
 import { promptsHome } from "@/lib/i18n/routes";
 import { SITE_NAME } from "@/lib/seo/site";
@@ -51,7 +53,17 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
             labels a few pixels higher than the plain ones. Aligning on the
             first baseline instead puts every label on one line.
           */}
-          <ul className="flex items-baseline gap-6">
+          {/*
+            `gap-4`, down from `gap-6`: opening the five `（即将推出）` markers to
+            `--tracking-micro` widens each of them by ~12px, and the marker —
+            not the two-character label above it — is what sets each entry's
+            width. Seven gaps give back the ~57px the tracking costs, so the
+            row is no wider than it was and still fits the 1216px of content
+            the `max-w-7xl` container allows at 1280 and at 1440 alike. The gap
+            is NOT restored at a larger breakpoint: the container is capped at
+            1280, so there is never more room than this.
+          */}
+          <ul className="flex items-baseline gap-4">
             {items.map((item) => (
               <li key={item.key} className="flex">
                 {item.href === null ? (
@@ -63,18 +75,27 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
                   <span className="flex min-h-11 flex-col justify-center text-sm leading-tight font-bold tracking-wider whitespace-nowrap text-foreground/60 uppercase">
                     {item.label}
                     {item.note === undefined ? null : (
-                      <span className="text-xs font-medium tracking-normal normal-case">
-                        {item.note}
-                      </span>
+                      // The marker is metadata about the destination, so it
+                      // sits on the micro label tier — the same tier the
+                      // language control and the footer's markers use.
+                      <span className={microLabelClassName()}>{item.note}</span>
                     )}
                   </span>
                 ) : (
+                  // `group` + `no-underline`: the nav's hover reply is the bar
+                  // growing under the label (hover expression ④), not the
+                  // document-wide hover underline, which would draw a second
+                  // line at a different offset over the same word. The
+                  // `aria-current` rule is a heavier 4px red underline and
+                  // outranks `no-underline` on specificity, so the page a
+                  // reader is on still says so without hovering — and says it
+                  // with a line, not with colour alone.
                   <Link
                     href={item.href}
                     aria-current={item.key === currentNav ? "page" : undefined}
-                    className="flex min-h-11 items-center text-sm font-bold tracking-wider whitespace-nowrap uppercase aria-[current=page]:underline aria-[current=page]:decoration-accent-red aria-[current=page]:decoration-4"
+                    className="group flex min-h-11 items-center text-sm font-bold tracking-wider whitespace-nowrap uppercase no-underline aria-[current=page]:underline aria-[current=page]:decoration-accent-red aria-[current=page]:decoration-4"
                   >
-                    {item.label}
+                    <GrowingUnderline>{item.label}</GrowingUnderline>
                   </Link>
                 )}
               </li>
@@ -96,7 +117,9 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
             type="button"
             aria-disabled="true"
             aria-describedby="locale-availability"
-            className="flex min-h-11 min-w-11 items-center justify-center border-2 border-foreground bg-muted px-3 text-sm font-bold tracking-widest whitespace-nowrap uppercase"
+            className={microLabelClassName(
+              "flex min-h-11 min-w-11 items-center justify-center border-2 border-foreground bg-muted px-3 whitespace-nowrap",
+            )}
           >
             {LOCALE_LABEL[locale]} ({locale})
           </button>
@@ -110,7 +133,7 @@ export function SiteHeader({ locale, currentNav }: SiteHeaderProps) {
           */}
           <p
             id="locale-availability"
-            className="sr-only xl:not-sr-only xl:max-w-20 xl:text-xs xl:leading-snug xl:font-medium"
+            className={microLabelClassName("sr-only xl:not-sr-only xl:max-w-20 xl:leading-snug")}
           >
             更多语言尚未发布
           </p>
