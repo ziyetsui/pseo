@@ -32,12 +32,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isPublishedLocale(locale)) notFound();
-  return buildMetadata({
+  const metadata = buildMetadata({
     locale,
     title: TITLE,
     description: DESCRIPTION,
     paths: { [locale]: promptsHome(locale) },
   });
+  // This route's title is also the site name. Mark it absolute so the root
+  // template does not emit the redundant "提示词库 · 提示词库".
+  return { ...metadata, title: { absolute: TITLE } };
 }
 
 export default async function PromptsPage({ params }: { params: Promise<{ locale: string }> }) {

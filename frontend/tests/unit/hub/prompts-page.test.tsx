@@ -122,6 +122,7 @@ describe("L1 prompt hub page", () => {
   it("declares a canonical and no fake hreflang alternates", async () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ locale: "zh-CN" }) });
 
+    expect(metadata.title).toEqual({ absolute: "提示词库" });
     expect(metadata.alternates?.canonical).toBe("https://example.invalid/zh-CN/prompts");
     expect(metadata.alternates?.languages).toBeUndefined();
   });
