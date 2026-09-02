@@ -25,8 +25,11 @@ const EMPTY_GIT_PROJECTION = Object.freeze({ state: 'unpublished' })
 function isInitialGitProjection(value: unknown): boolean {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) return false
   const projection = value as Record<string, unknown>
-  return projection.state === 'unpublished' && Object.entries(projection).every(
-    ([key, member]) => key === 'state' || member === null || member === undefined,
+  const members = Object.entries(projection)
+  return members.length === 0 || (
+    projection.state === 'unpublished' && members.every(
+      ([key, member]) => key === 'state' || member === null || member === undefined,
+    )
   )
 }
 

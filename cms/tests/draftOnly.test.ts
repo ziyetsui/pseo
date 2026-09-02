@@ -56,18 +56,33 @@ test('Payload-normalized unpublished defaults are allowed only for an initial pr
   )
   assert.doesNotThrow(() =>
     enforceDraftProjection({
+      data: { title: 'Imported draft', gitPublication: normalizedInitial },
+      // Payload's group traversal mutates the otherwise-empty create doc to
+      // this shape before collection beforeChange hooks run.
+      originalDoc: { gitPublication: {} },
+    }),
+  )
+  assert.doesNotThrow(() =>
+    enforceDraftProjection({
       data: { title: 'Normalized draft', gitPublication: normalizedInitial },
       originalDoc: { gitPublication: { state: 'unpublished', mergeSha: null } },
     }),
   )
-  assert.throws(
-    () =>
-      enforceDraftProjection({
-        data: { gitPublication: normalizedInitial },
-        originalDoc: { gitPublication: { state: 'pr_open', pullRequestNumber: 42 } },
-      }),
-    GitProjectionMutationError,
-  )
+  const establishedProjections = [
+    { state: 'pr_open', pullRequestNumber: 42 },
+    { state: 'merged', mergeSha: 'abc1234' },
+    { state: 'released', mergeSha: 'abc1234', releasedAt: '2026-09-02T12:00:00.000Z' },
+  ]
+  for (const gitPublication of establishedProjections) {
+    assert.throws(
+      () =>
+        enforceDraftProjection({
+          data: { gitPublication: normalizedInitial },
+          originalDoc: { gitPublication },
+        }),
+      GitProjectionMutationError,
+    )
+  }
 })
 
 test('verified Git projection context may update Git fields but never Payload _status', () => {
