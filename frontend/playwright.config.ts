@@ -1,7 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 3100;
-const BASE_URL = `http://localhost:${PORT}`;
+// A dedicated, unusual port: 3100 collides with other tooling on this machine,
+// and `reuseExistingServer` then silently attaches Playwright to whatever is
+// already listening — which once produced a full green run (and screenshots)
+// against a different site entirely. Never reuse: the run must serve the `out/`
+// this repository just built.
+const PORT = 43117;
+const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 /** Written by `tests/e2e/screenshots.spec.ts`, committed as delivery evidence. */
 const SCREENSHOT_SPEC = /screenshots\.spec\.ts/;
@@ -50,7 +55,7 @@ export default defineConfig({
     // exposed on every interface of the developer machine.
     command: `pnpm exec serve out -l tcp://127.0.0.1:${PORT} --no-port-switching -n`,
     url: BASE_URL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
