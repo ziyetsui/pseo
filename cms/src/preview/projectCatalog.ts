@@ -126,8 +126,8 @@ function taxonomyProjection(document: PreviewDocument): WireframeTaxonomyRecord 
     id: `${axis}:${slug}`,
     axis,
     slug,
-    label: stringValue(document.name),
-    labelZh: nullableString(base.labelZh),
+    label: stringValue(base.label, stringValue(document.name)),
+    labelZh: stringValue(document.name),
     aliases: stringArray(base.aliases),
     wireframeDeclaredCount: nullableNumber(base.wireframeDeclaredCount),
     appearsOn: stringArray(base.appearsOn).filter(
@@ -143,7 +143,7 @@ function creatorProjection(document: PreviewDocument): Creator | null {
   return {
     id: stringValue(base.id),
     handle: stringValue(document.name),
-    url: stringValue(document.officialUrl, stringValue(base.url)),
+    url: stringValue(document.officialUrl),
     avatarUrl: nullableString(base.avatarUrl),
     followers: nullableNumber(base.followers),
     wireframeDeclaredPromptCount: nullableNumber(base.wireframeDeclaredPromptCount),
@@ -223,10 +223,10 @@ function variablesProjection(value: unknown): PromptVariable[] {
   }))
 }
 
-function parameterProjection(value: unknown, base: PromptParameter[]): PromptParameter[] {
-  return records(value).map((item, index) => ({
+function parameterProjection(value: unknown): PromptParameter[] {
+  return records(value).map((item) => ({
     label: stringValue(item.label),
-    value: stringValue(item.value, base[index]?.value ?? ''),
+    value: stringValue(item.value),
   }))
 }
 
@@ -379,6 +379,7 @@ function projectPrompts(documents: PreviewCatalogDocuments, locale: PreviewLocal
       return [{
         ...base,
         slug: stringValue(variant.slug),
+        slugSource: stringValue(variant.slug) === base.slug ? base.slugSource : 'curated',
         title: stringValue(variant.title),
         summary: nullableString(variant.summary),
         promptText: stringValue(prompt?.text),
@@ -402,7 +403,7 @@ function projectPrompts(documents: PreviewCatalogDocuments, locale: PreviewLocal
         steps: workflowProjection(variant.workflow),
         requiredInputs: textList(artifact.requiredInputs),
         optionalInputs: textList(artifact.optionalInputs),
-        parameters: parameterProjection(artifact.parameters, base.parameters),
+        parameters: parameterProjection(artifact.parameters),
       }]
     }),
     (prompt) => prompt.id,

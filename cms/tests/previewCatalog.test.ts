@@ -119,7 +119,7 @@ function buildDocuments(): PreviewCatalogDocuments {
       },
     }
   })
-  const taxonomyDocuments = [
+  const taxonomyDocuments: Document[] = [
     ...modelDocuments,
     ...Array.from({ length: 8 }, (_, index) => taxonomyRecord('use_case', `use-case-${index + 1}`)),
     ...Array.from({ length: 8 }, (_, index) => taxonomyRecord('technique', `technique-${index + 1}`)),
@@ -163,6 +163,18 @@ function buildDocuments(): PreviewCatalogDocuments {
       },
     })),
   ]
+  const firstUseCase = taxonomyDocuments.find(
+    (item) => item.taxonomyKey === 'use_case:use-case-1',
+  )
+  assert.ok(firstUseCase)
+  firstUseCase.name = 'CMS 中文分类'
+  const firstUseCaseBeta = firstUseCase.betaPreview as { wireframe: Record<string, unknown> }
+  firstUseCaseBeta.wireframe.labelZh = '旧分类名称'
+  const firstCreator = taxonomyDocuments.find(
+    (item) => item.taxonomyKey === 'creator:creator-1',
+  )
+  assert.ok(firstCreator)
+  firstCreator.officialUrl = null
 
   const artifacts = Array.from({ length: 35 }, (_, index) => {
     const wireframeId = `prompt-${String(index + 1).padStart(2, '0')}`
@@ -181,7 +193,13 @@ function buildDocuments(): PreviewCatalogDocuments {
       },
       requiredInputs: index === 0 ? [{ value: 'portrait' }] : [],
       optionalInputs: [],
-      parameters: index === 0 ? [{ label: 'Aspect ratio', value: '16:9' }] : [],
+      parameters:
+        index === 0
+          ? [
+              { key: 'quality', label: 'Quality', value: null },
+              { key: 'aspect-ratio', label: 'Aspect ratio', value: '16:9' },
+            ]
+          : [],
       models: ['db-model-0'],
       useCases: ['db-use_case-use-case-1'],
       techniques: [],
@@ -244,7 +262,13 @@ function buildDocuments(): PreviewCatalogDocuments {
           steps: [],
           requiredInputs: [],
           optionalInputs: [],
-          parameters: [],
+          parameters:
+            index === 0
+              ? [
+                  { label: 'Aspect ratio', value: '4:3' },
+                  { label: 'Quality', value: 'high' },
+                ]
+              : [],
           variations:
             index === 0
               ? [
@@ -386,8 +410,37 @@ test('projector returns the complete fixture universe with normal editable CMS f
     { token: '[SUBJECT]', label: 'Edited subject', options: ['tea'], defaultValue: 'tea' },
   ])
   assert.deepEqual(first.requiredInputs, ['portrait'])
-  assert.deepEqual(first.parameters, [{ label: 'Aspect ratio', value: '16:9' }])
   assert.deepEqual(first.steps, [{ order: 1, title: 'Prepare', body: 'Prepare assets' }])
+})
+
+test('zh-CN taxonomy edits replace stale imported localized labels', () => {
+  const projected = projectPreviewCatalog(buildDocuments(), 'zh-CN')
+  const editedUseCase = projected.taxonomies.find((item) => item.id === 'useCase:use-case-1')
+  assert.ok(editedUseCase)
+  assert.equal(editedUseCase.labelZh, 'CMS 中文分类')
+})
+
+test('clearing a creator official URL stays empty instead of reviving import metadata', () => {
+  const projected = projectPreviewCatalog(buildDocuments(), 'zh-CN')
+  assert.equal(projected.creators.find((creator) => creator.id === 'creator-1')?.url, '')
+})
+
+test('normal CMS parameter rows stay authoritative when reordered or cleared', () => {
+  const projected = projectPreviewCatalog(buildDocuments(), 'zh-CN')
+  const first = projected.prompts.find((prompt) => prompt.id === 'prompt-01')
+  assert.ok(first)
+  assert.deepEqual(first.parameters, [
+    { label: 'Quality', value: '' },
+    { label: 'Aspect ratio', value: '16:9' },
+  ])
+})
+
+test('an edited slug receives curated provenance instead of stale wireframe provenance', () => {
+  const projected = projectPreviewCatalog(buildDocuments(), 'zh-CN')
+  const first = projected.prompts.find((prompt) => prompt.id === 'prompt-01')
+  assert.ok(first)
+  assert.equal(first.slug, 'edited-slug')
+  assert.equal(first.slugSource, 'curated')
 })
 
 test('preview revision is stable across clocks and changes when editable content changes', () => {
