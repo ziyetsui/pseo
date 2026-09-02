@@ -1,17 +1,18 @@
 import { StateBlock } from "@/components/ui/StateBlock";
+import { Avatar } from "@/components/ui/IdentityMark";
 import { cardClassName, tileShellClassName } from "@/components/ui/Card";
 import { cx } from "@/components/ui/class-names";
+import { hoverTitleClassName } from "@/components/ui/hover";
+import { microLabelClassName, singleLineTitleClassName } from "@/components/ui/type-scale";
 import { formatCreatorHandle } from "@/lib/content";
 import type { CreatorWithCount } from "@/lib/content/types";
 import { formatThousands } from "@/lib/format/numbers";
 
 import {
   BrowseTileBar,
-  BrowseTileCount,
   BrowseTileRank,
   browseTileBodyClassName,
   browseTileCellClassName,
-  browseTileTitleClassName,
   leadsGroup,
 } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
@@ -36,10 +37,19 @@ export interface CreatorTilesProps {
  * per-creator numbers stay out of the render path; a creator whose posts never
  * exposed a metric shows `—`, never `0`.
  *
- * The line is unchanged; only its weight is. The prompt count is the figure and
- * the rest of the line is its caption, which is what makes this band a member of
- * the same tile family as the taxonomy and collection grids rather than a third
- * card design. The proportion bar reads against the busiest creator shown.
+ * The line is unchanged; only its weight is. A creator is a PERSON, so the tile
+ * leads with the one thing that identifies a person fastest — a 28px round
+ * avatar, from the profile picture we already hold, falling back to the first
+ * character of the handle when a creator never exposed one. It is decoration
+ * (`aria-hidden`): the handle it stands for is written immediately beside it.
+ *
+ * That identity slot is why this variant does not make the prompt count its
+ * figure the way the number tiles do. Here the whole `N 条提示词 · N 赞 · N 藏`
+ * line is one micro label under the handle — the same words in the same order,
+ * set as the label they always were. The handle takes the single-line tier, so
+ * a long handle truncates instead of making one tile taller than its
+ * neighbours, and it answers the card's hover with a colour change. The
+ * proportion bar reads against the busiest creator shown.
  */
 export function CreatorTiles({
   creators,
@@ -71,14 +81,15 @@ export function CreatorTiles({
               })}
             >
               {lead ? <BrowseTileRank accent={accent} /> : null}
-              <span className={browseTileTitleClassName(lead)}>
-                {formatCreatorHandle(creator.handle)}
+              <span className="flex min-w-0 items-center gap-2">
+                <Avatar name={creator.handle} src={creator.avatarUrl} />
+                <span className={hoverTitleClassName(singleLineTitleClassName("min-w-0"))}>
+                  {formatCreatorHandle(creator.handle)}
+                </span>
               </span>
-              <BrowseTileCount
-                value={creator.count}
-                caption={`条提示词 · ${formatThousands(creator.likes)} 赞 · ${formatThousands(creator.bookmarks)} 藏`}
-                lead={lead}
-              />
+              <p className={microLabelClassName("tabular-nums")}>
+                {`${creator.count} 条提示词 · ${formatThousands(creator.likes)} 赞 · ${formatThousands(creator.bookmarks)} 藏`}
+              </p>
               <BrowseTileBar share={share} accent={accent} lead={lead} />
               <span className="sr-only">（外部链接，新窗口打开）</span>
             </a>

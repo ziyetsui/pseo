@@ -41,15 +41,49 @@ describe("CreatorTiles", () => {
     },
   );
 
-  it("shows prompts, likes and bookmarks aggregated from the data", () => {
+  it("shows prompts, likes and bookmarks aggregated from the data, as one micro label", () => {
     const { container } = render(<CreatorTiles creators={[creator({ likes: 1476, bookmarks: 507 })]} />);
 
-    // Same line as before, re-weighted: the count is the tile's figure and the
-    // rest of the line is its caption.
+    // Same line as before, in the same order, set as the label it always read
+    // as — the identity of this tile is the avatar, not a display-scale figure.
     expect(container.textContent).toContain("3 条提示词 · 1,476 赞 · 507 藏");
-    expect(screen.getByText("3").className).toContain("tabular-nums");
+    const stats = screen.getByText("3 条提示词 · 1,476 赞 · 507 藏");
+    expect(stats.className).toContain("tracking-micro");
+    expect(stats.className).toContain("tabular-nums");
     // The prototype's own declared per-creator figures stay out of the render.
     expect(screen.queryByText(/78 条/)).not.toBeInTheDocument();
+  });
+
+  it("uses the creator's own picture when the data has one", () => {
+    const src = "https://pbs.twimg.com/profile_images/1906739239183630336/907a7JTU_normal.jpg";
+    const { container } = render(<CreatorTiles creators={[creator({ avatarUrl: src })]} />);
+
+    const image = container.querySelector("img");
+    expect(image).toHaveAttribute("src", src);
+    expect(image).toHaveAttribute("width", "28");
+    expect(image).toHaveAttribute("height", "28");
+    // Decoration: the handle it stands for is written immediately beside it, so
+    // the link's accessible name gains nothing from a second copy of it.
+    expect(image).toHaveAttribute("alt", "");
+    expect(screen.getByRole("link", { name: /@higgsfield_ai/ })).toBeInTheDocument();
+  });
+
+  it("falls back to the first character of the handle when there is no picture", () => {
+    const { container } = render(<CreatorTiles creators={[creator({ avatarUrl: null })]} />);
+
+    expect(container.querySelector("img")).toBeNull();
+    const fallback = screen.getByText("H");
+    expect(fallback).toHaveAttribute("aria-hidden", "true");
+    // Fully round, never the reference's 8px corner.
+    expect(fallback.className).toContain("rounded-pill");
+  });
+
+  it("truncates the handle rather than letting it make one tile taller", () => {
+    render(<CreatorTiles creators={[creator()]} />);
+
+    const handle = screen.getByText("@higgsfield_ai");
+    expect(handle.className).toContain("truncate");
+    expect(handle.className).toContain("group-hover:text-accent-red");
   });
 
   it("shows — rather than 0 for a creator whose posts never exposed a metric", () => {

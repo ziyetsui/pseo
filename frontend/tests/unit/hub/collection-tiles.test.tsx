@@ -61,15 +61,46 @@ describe("CollectionTiles", () => {
     );
   });
 
-  it("keeps the prototype's subtitle and count, with the count as the tile's figure", () => {
+  it("keeps the prototype's subtitle and count, the count set as a micro label", () => {
     const { container } = render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
 
-    // The prototype's single `副标题 · N 条` line becomes a subtitle caption plus
-    // a display-scale figure; every word of it survives, only its weight changes.
+    // The prototype's single `副标题 · N 条` line becomes a subtitle plus a
+    // count; every word of it survives, only its weight changes. On a spine
+    // card the display tier belongs to the title, so the count is the label it
+    // always read as rather than the tile's figure.
     expect(screen.getByText("镜头控制 × 电影质感")).toBeInTheDocument();
     expect(container.textContent).toContain("5 条");
-    const figure = screen.getByText("5");
-    expect(figure.className).toContain("tabular-nums");
+    const count = screen.getByText("5 条");
+    expect(count.className).toContain("tracking-micro");
+    expect(count.className).toContain("tabular-nums");
+  });
+
+  it("draws the band's accent as a 38px spine rather than as the only signal", () => {
+    const { container } = render(
+      <CollectionTiles basePath={BASE} accent="blue" collections={[axisCollection]} />,
+    );
+
+    const spine = [...container.querySelectorAll('span[aria-hidden="true"]')].find((node) =>
+      node.className.includes("w-9.5"),
+    );
+    expect(spine).toBeDefined();
+    expect(spine?.className).toContain("bg-accent-blue");
+    // It carries no text: the heading beside it says what the card is.
+    expect(spine?.textContent).toBe("");
+    expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent("电影感镜头合集");
+  });
+
+  it("sets the title in the display tier and lets it answer the card's hover", () => {
+    render(<CollectionTiles basePath={BASE} collections={[axisCollection]} />);
+
+    const title = screen.getByRole("heading", { level: 3, name: "电影感镜头合集" });
+    // Display tier: clamped to two lines, so the title can never push the rest
+    // of the card down however long the collection is called.
+    expect(title.className).toContain("line-clamp-2");
+    expect(title.className).toContain("text-2xl");
+    // Hover expression 2 — the colour change rides the card's own `group`.
+    expect(title.className).toContain("group-hover:text-accent-red");
+    expect(title.className).toContain("duration-200");
   });
 
   it.each([

@@ -79,6 +79,42 @@ describe("TaxonomyTiles", () => {
     expect(figure.className).toContain("font-black");
   });
 
+  it("takes its title from the shared tiers, and answers the card's hover", () => {
+    render(
+      <TaxonomyTiles
+        basePath={BASE}
+        axis="technique"
+        terms={[
+          term({ id: "t:a", slug: "a", label: "Camera movement / shot language", count: 4 }),
+          term({ id: "t:b", slug: "b", label: "Transition / morph / match cut", count: 1 }),
+        ]}
+      />,
+    );
+
+    // The band's biggest term takes the display tier — clamped to two lines, so
+    // a long label can never push the number off the card.
+    const lead = screen.getByRole("heading", { name: "Camera movement / shot language" });
+    expect(lead.className).toContain("line-clamp-2");
+    // Every other tile takes the single-line tier, so no label can make one
+    // tile taller than its neighbours. The full string stays in the DOM.
+    const rest = screen.getByRole("heading", { name: "Transition / morph / match cut" });
+    expect(rest.className).toContain("truncate");
+    expect(rest.textContent).toBe("Transition / morph / match cut");
+    // Both answer the card's `group`, not their own hover.
+    for (const heading of [lead, rest]) {
+      expect(heading.className).toContain("group-hover:text-accent-red");
+    }
+  });
+
+  it("sets the unit under the number as a micro label", () => {
+    render(<TaxonomyTiles basePath={BASE} axis="useCase" terms={[term()]} />);
+
+    const caption = screen.getByText(/条提示词/);
+    expect(caption.className).toContain("tracking-micro");
+    // `uppercase` is a no-op on these glyphs — the words are untouched.
+    expect(caption.textContent).toContain("条提示词");
+  });
+
   it("spans the highest-count tile across two columns on wide viewports only", () => {
     const { container } = render(
       <TaxonomyTiles

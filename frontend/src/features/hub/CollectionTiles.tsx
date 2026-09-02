@@ -1,16 +1,16 @@
 import { StateBlock } from "@/components/ui/StateBlock";
-import { CardLink, tileShellClassName } from "@/components/ui/Card";
+import { tileShellClassName } from "@/components/ui/Card";
+import { SpineCard } from "@/components/ui/SpineCard";
 import { cx } from "@/components/ui/class-names";
+import { hoverTitleClassName } from "@/components/ui/hover";
+import { displayTitleClassName, microLabelClassName } from "@/components/ui/type-scale";
 import type { CollectionWithCount } from "@/lib/content/types";
 import { queryHref } from "@/features/search/query-links";
 
 import {
   BrowseTileBar,
-  BrowseTileCount,
-  BrowseTileRank,
   browseTileBodyClassName,
   browseTileCellClassName,
-  browseTileTitleClassName,
   leadsGroup,
 } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
@@ -42,11 +42,26 @@ export interface CollectionTilesProps {
  * affordance, only to stop pretending a facet query could express the rule.
  *
  * These tiles carry one thing the taxonomy tiles do not: a subtitle. It keeps
- * its words and sits with the title; the count below it becomes the tile's
- * figure, so a collection reads as the same object as every other browse tile.
+ * its words and sits with the title, and the count keeps its words below it.
+ *
+ * A collection is the one browse band that is not an axis of the library but an
+ * editorial pick, so it is the one that gets a SPINE: a 38px solid column of the
+ * band's accent down the left edge, which says "this family is different" from
+ * across a scroll without spending a word on it. Colour is not carrying that
+ * alone — the band's heading names it, and the spine is `aria-hidden`.
+ *
+ * Weighting follows from the spine: the title takes the display tier (two
+ * lines, then clamped) because the title is what a reader picks a collection
+ * by, and the count drops to a micro label rather than being the tile's figure,
+ * which is the difference between this variant and the number tiles. The
+ * proportion bar stays — it is the share of the library this collection covers,
+ * which is real data, not decoration of the accent.
+ *
  * Collections arrive in their editorial order, which is not sorted by size, so
  * the leading-tile treatment appears only when the first collection really is
- * the biggest — never by re-sorting them.
+ * the biggest — never by re-sorting them. The leading tile takes the wider cell
+ * and the taller bar; it does not take the rank block the number tiles use,
+ * because the spine is already a solid accent shape on the same card.
  */
 export function CollectionTiles({
   basePath,
@@ -75,19 +90,23 @@ export function CollectionTiles({
 
         return (
           <li key={collection.id} className={browseTileCellClassName(lead)}>
-            <CardLink
+            <SpineCard
+              accent={accent}
               href={queryHref(basePath, { collection: collection.slug })}
-              className={cx(tileShellClassName, browseTileBodyClassName(lead))}
+              className={tileShellClassName}
             >
-              {lead ? <BrowseTileRank accent={accent} /> : null}
-              <h3 className={browseTileTitleClassName(lead)}>{collection.title}</h3>
-              {/* Prototype: `副标题 · N 条`. Same words, re-weighted — the
-                  subtitle stays with the title it describes, the count becomes
-                  the figure. */}
-              <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
-              <BrowseTileCount value={collection.count} caption="条" lead={lead} />
-              <BrowseTileBar share={share} accent={accent} lead={lead} />
-            </CardLink>
+              <div className={cx("flex flex-1 flex-col", browseTileBodyClassName(lead))}>
+                {/* Prototype: `副标题 · N 条`. Same words, re-weighted — the
+                    subtitle stays with the title it describes, and the count is
+                    the card's label rather than its figure. */}
+                <h3 className={hoverTitleClassName(displayTitleClassName())}>
+                  {collection.title}
+                </h3>
+                <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
+                <p className={microLabelClassName("tabular-nums")}>{collection.count} 条</p>
+                <BrowseTileBar share={share} accent={accent} lead={lead} />
+              </div>
+            </SpineCard>
           </li>
         );
       })}

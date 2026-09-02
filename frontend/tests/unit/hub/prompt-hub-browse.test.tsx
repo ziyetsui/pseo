@@ -256,6 +256,49 @@ describe("PromptHubBrowse", () => {
     }
   });
 
+  it("marks each of the six browse bands with a ghost numeral, 01 through 06", () => {
+    const { container } = renderBrowse();
+
+    const numerals = [...container.querySelectorAll('span[aria-hidden="true"]')].filter((node) =>
+      node.className.includes("text-foreground/10"),
+    );
+    expect(numerals.map((node) => node.textContent)).toEqual([
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+    ]);
+
+    // Decoration only: every band keeps its own heading, at level 2, with its
+    // wording and its anchor id unchanged.
+    for (const [id, heading] of Object.entries(HEADING_BY_ID)) {
+      const node = screen.getByRole("heading", { level: 2, name: heading });
+      expect(node).toHaveAttribute("id", id);
+      expect(node.textContent).toBe(heading);
+    }
+    // The numerals are not part of any accessible name.
+    for (const numeral of numerals) {
+      expect(numeral.closest("h2")).toBeNull();
+    }
+  });
+
+  it("leaves the bands that are not browse grids unnumbered", () => {
+    const { container } = renderBrowse();
+
+    const numbered = [...container.querySelectorAll("section")].filter((section) =>
+      [...section.querySelectorAll('span[aria-hidden="true"]')].some((node) =>
+        node.className.includes("text-foreground/10"),
+      ),
+    );
+    expect(numbered.map((section) => section.getAttribute("aria-labelledby"))).toEqual(
+      Object.keys(HEADING_BY_ID),
+    );
+    // 本期精选 / 热门提示词 / the CTA are bands too, and stay unmarked.
+    expect(container.querySelectorAll("section").length).toBeGreaterThan(numbered.length);
+  });
+
   it("ends with the CTA opening the whole library in the result region", () => {
     renderBrowse();
 

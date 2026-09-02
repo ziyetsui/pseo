@@ -1,6 +1,12 @@
 import type { ReactNode } from "react";
 
 import { cx } from "@/components/ui/class-names";
+import { hoverTitleClassName } from "@/components/ui/hover";
+import {
+  displayTitleClassName,
+  microLabelClassName,
+  singleLineTitleClassName,
+} from "@/components/ui/type-scale";
 
 import { accentFillClassName, type SectionAccent } from "./section-accent";
 
@@ -52,11 +58,23 @@ export function browseTileBodyClassName(lead: boolean): string {
   return cx("gap-3 p-4 no-underline", lead && "md:p-6");
 }
 
-/** Tile heading type, one step up for the leading tile. */
+/**
+ * Tile heading type, drawn from the shared title tiers rather than from a size
+ * of this band's own invention.
+ *
+ * Two tiers, not a ramp: the tile that leads its band takes the DISPLAY tier
+ * (clamped to two lines, so it can never push the number off the card) and
+ * every other tile takes the SINGLE-LINE tier, which truncates so that a long
+ * taxonomy label can never make one tile taller than its neighbours. The full
+ * string stays in the DOM either way, so the link's accessible name and
+ * find-in-page are untouched.
+ *
+ * The title also carries hover expression ②: it answers the CARD's `group`, so
+ * pointing anywhere at the tile colours its name. That is the reply the browse
+ * bands were missing — every tile is a link, and only the shell moved.
+ */
 export function browseTileTitleClassName(lead: boolean): string {
-  // One `md:` size only — emitting both would leave the winner to stylesheet
-  // order rather than to this component.
-  return cx("text-base font-black tracking-tight", lead ? "md:text-xl" : "md:text-lg");
+  return hoverTitleClassName(lead ? displayTitleClassName() : singleLineTitleClassName());
 }
 
 export interface BrowseTileCountProps {
@@ -88,7 +106,7 @@ export function BrowseTileCount({ value, caption, lead = false, className }: Bro
       >
         {value}
       </span>
-      <span className="block text-xs font-bold tracking-wide tabular-nums">
+      <span className={microLabelClassName("block tabular-nums")}>
         {" "}
         {caption}
       </span>

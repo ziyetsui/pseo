@@ -11,6 +11,7 @@ import type {
 import { MetricsSnapshotNote } from "@/features/prompt/MetricsSnapshotNote";
 import { TrendingTabs, type TrendingWindowPanel } from "@/features/prompt/TrendingTabs";
 
+import { BrowseBand } from "./BrowseBand";
 import { CollectionTiles } from "./CollectionTiles";
 import { CreatorTiles } from "./CreatorTiles";
 import { FeaturedPrompt } from "./FeaturedPrompt";
@@ -53,8 +54,13 @@ export interface PromptHubBrowseProps {
  * collections, creators, and the closing call to action.
  *
  * Section ids match `HUB_SECTION_IDS` because the page's `AnchorNav` links to
- * them; `Section` puts the id on its `<h2>`, so each anchor resolves inside the
- * same document (checked by `scripts/check-static-output.mjs`).
+ * them; both `Section` and `BrowseBand` put the id on their `<h2>`, so each
+ * anchor resolves inside the same document (checked by
+ * `scripts/check-static-output.mjs`).
+ *
+ * The six browse bands use `BrowseBand` rather than `Section` so each can carry
+ * its ghost numeral — `01`…`06`, in the prototype's own band order. The numeral
+ * is decoration only; the headings and their levels are unchanged.
  *
  * Everything here is server-rendered and handed to `PromptExplorer` as its
  * `browse` slot, so it is present in the exported HTML whether or not
@@ -100,8 +106,9 @@ export function PromptHubBrowse({
         />
       </Section>
 
-      <Section
+      <BrowseBand
         id={HUB_SECTION_IDS.tasks}
+        ordinal={1}
         title="按任务浏览"
         description="从要做的事情出发：广告、时尚、美妆、餐饮……"
       >
@@ -112,10 +119,11 @@ export function PromptHubBrowse({
           limit={taxonomyLimit}
           accent={HUB_SECTION_ACCENTS.tasks}
         />
-      </Section>
+      </BrowseBand>
 
-      <Section
+      <BrowseBand
         id={HUB_SECTION_IDS.camera}
+        ordinal={2}
         title="镜头与运动"
         description={cameraSectionDescription(cameraShareTenths)}
       >
@@ -126,9 +134,9 @@ export function PromptHubBrowse({
           limit={taxonomyLimit}
           accent={HUB_SECTION_ACCENTS.camera}
         />
-      </Section>
+      </BrowseBand>
 
-      <Section id={HUB_SECTION_IDS.models} title="按模型浏览">
+      <BrowseBand id={HUB_SECTION_IDS.models} ordinal={3} title="按模型浏览">
         <TaxonomyTiles
           basePath={basePath}
           axis="model"
@@ -136,9 +144,9 @@ export function PromptHubBrowse({
           limit={taxonomyLimit}
           accent={HUB_SECTION_ACCENTS.models}
         />
-      </Section>
+      </BrowseBand>
 
-      <Section id={HUB_SECTION_IDS.styles} title="按风格浏览">
+      <BrowseBand id={HUB_SECTION_IDS.styles} ordinal={4} title="按风格浏览">
         <TaxonomyTiles
           basePath={basePath}
           axis="style"
@@ -146,10 +154,11 @@ export function PromptHubBrowse({
           limit={taxonomyLimit}
           accent={HUB_SECTION_ACCENTS.styles}
         />
-      </Section>
+      </BrowseBand>
 
-      <Section
+      <BrowseBand
         id={HUB_SECTION_IDS.collections}
+        ordinal={5}
         title="精选合集"
         description="按主题整理的提示词合集。"
       >
@@ -160,10 +169,11 @@ export function PromptHubBrowse({
           total={libraryTotal}
           accent={HUB_SECTION_ACCENTS.collections}
         />
-      </Section>
+      </BrowseBand>
 
-      <Section
+      <BrowseBand
         id={HUB_SECTION_IDS.creators}
+        ordinal={6}
         title="创作者"
         description="这些提示词的原作者，点击访问其 X 主页。"
       >
@@ -172,7 +182,7 @@ export function PromptHubBrowse({
           limit={creatorLimit}
           accent={HUB_SECTION_ACCENTS.creators}
         />
-      </Section>
+      </BrowseBand>
 
       <Section id="cta" title="找到合适的提示词，直接开始" description="全部提示词免费复制，注明原作者与出处。">
         {/* The prototype's button lists the whole library in the result region

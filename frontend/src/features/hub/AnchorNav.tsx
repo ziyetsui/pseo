@@ -8,6 +8,9 @@
  * exactly the ids in `HUB_SECTION_IDS`.
  */
 
+import { cx } from "@/components/ui/class-names";
+import { dividerClassName } from "@/components/ui/dividers";
+
 export const HUB_SECTION_IDS = {
   tasks: "tasks",
   camera: "camera",
@@ -44,7 +47,12 @@ export function AnchorNav({ items = HUB_ANCHORS, label = "页内导航", classNa
   if (items.length === 0) return null;
 
   return (
-    <nav aria-label={label} className={className ?? "border-b-2 border-foreground bg-surface"}>
+    <nav
+      aria-label={label}
+      // The rule under the bar is the card tier asked for by name rather than
+      // spelled out here; it draws exactly what it drew before.
+      className={className ?? cx(dividerClassName("card", "bottom"), "bg-surface")}
+    >
       <ul className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-1 px-4 md:px-8">
         {items.map((item) => (
           <li key={item.id}>
