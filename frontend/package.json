@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test --project=desktop --project=mobile",
+    "screenshots": "playwright test --project=screenshots-desktop --project=screenshots-mobile",
+    "check:static": "node scripts/check-static-output.mjs"
   },
   "dependencies": {
     "next": "16.3.4",

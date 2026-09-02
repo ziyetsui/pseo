@@ -17,10 +17,30 @@ mix in npm/yarn/bun). Run everything from `frontend/`.
 | `pnpm typecheck` | `tsc --noEmit`, strict + `noUncheckedIndexedAccess` |
 | `pnpm test` | Vitest (jsdom + Testing Library) unit tests |
 | `pnpm test:e2e` | Playwright against the built `out/` served on :3100 |
+| `pnpm check:static` | Static-output gate over `out/` + `src/` (routes, iframe/srcdoc/hash, `#` links, hreflang, prototype counts) |
+| `pnpm screenshots` | Full-page PNGs of L1–L4 at 1440×1200 and 375×812 into `evidence/screenshots/` |
 
 Gate before any delivery: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
-`pnpm test:e2e` requires a prior `pnpm build` (Playwright's `webServer` runs
-`serve out -l 3100`) and browsers installed via `pnpm exec playwright install`.
+
+`pnpm test:e2e`, `pnpm check:static` and `pnpm screenshots` all read the built
+`out/`, so run `pnpm build` first. Playwright's `webServer` starts
+`serve out -l 3100` for you and reuses an already-running one.
+
+**Install the browser once** before the first Playwright run — the repo does not
+vendor it:
+
+```bash
+pnpm exec playwright install chromium
+```
+
+Both Playwright projects (`desktop` 1440×1200, `mobile` Pixel 7 @ 375×812) are
+Chromium, so `chromium` is the only download needed. `pnpm screenshots` uses two
+separate projects (`screenshots-desktop` / `screenshots-mobile`) so a plain
+`pnpm test:e2e` never rewrites the committed PNGs in `evidence/screenshots/`.
+
+The current e2e result and the open product findings are recorded in
+[`evidence/test-run.md`](./evidence/test-run.md) — read it before assuming a red
+run is your fault.
 
 ## Directory map
 
