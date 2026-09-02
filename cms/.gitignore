@@ -1,0 +1,7 @@
+.env
+.env.local
+.next/
+coverage/
+node_modules/
+src/payload-types.ts
+test-results/
