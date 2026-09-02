@@ -1,29 +1,21 @@
+import { TAXONOMY_ACCENT, accentFillClassName, type Accent } from "@/components/ui/accent";
+
 /**
  * One accent per browse band.
  *
  * The hub runs six consecutive tile grids — 按任务 / 镜头与运动 / 按模型 /
  * 按风格 / 精选合集 / 创作者 — that used to be identical: same cell, same red
  * hairline, same 14px number. Scrolling read as one picture repeated forty
- * times. Giving each band its own accent (on the proportion bar and on the
- * leading tile's rank marker) turns that repetition into rhythm: you can tell
- * you have entered a new band before reading its heading.
+ * times. Giving each band its own accent turns that repetition into rhythm.
  *
- * Colour is never the only signal. Every band still names itself in its `<h2>`,
- * every tile still names its term and prints its count, and the accented parts
- * are `aria-hidden` decoration over facts that are already in the text.
- *
- * Only tokens that already exist in `globals.css` are returned — red, blue,
- * yellow and foreground. Six bands over four accents means two repeats; the
- * order below keeps repeats non-adjacent so no two neighbouring bands match.
+ * The four taxonomy bands take their accent from the shared axis map, so a
+ * 任务 band and a 任务 chip row are always the same colour. 精选合集 and
+ * 创作者 are not taxonomy axes, so they borrow two of the same four accents,
+ * placed so no two neighbouring bands match.
  */
-export type SectionAccent = "red" | "blue" | "yellow" | "foreground";
+export type SectionAccent = Accent;
 
-const ACCENT_FILL: Record<SectionAccent, string> = {
-  red: "bg-accent-red",
-  blue: "bg-accent-blue",
-  yellow: "bg-accent-yellow",
-  foreground: "bg-foreground",
-};
+export { accentFillClassName };
 
 /** Rotation order, used by bands that have no fixed slot (the L2 grids). */
 export const SECTION_ACCENT_ORDER: readonly SectionAccent[] = [
@@ -33,27 +25,18 @@ export const SECTION_ACCENT_ORDER: readonly SectionAccent[] = [
   "foreground",
 ];
 
-/** Background utility for one accent. Always an existing token utility. */
-export function accentFillClassName(accent: SectionAccent): string {
-  return ACCENT_FILL[accent];
-}
-
 /** The accent for the nth band, wrapping around the four. */
 export function sectionAccentAt(index: number): SectionAccent {
   const order = SECTION_ACCENT_ORDER;
   return order[((index % order.length) + order.length) % order.length] ?? "red";
 }
 
-/**
- * The hub's six browse bands, in the prototype's order. Keys match
- * `HUB_SECTION_IDS`; the first three follow the teardown plate exactly
- * (按任务 red, 镜头与运动 blue, 按模型 yellow).
- */
+/** The hub's six browse bands, in the prototype's order. Keys match `HUB_SECTION_IDS`. */
 export const HUB_SECTION_ACCENTS = {
-  tasks: "red",
-  camera: "blue",
-  models: "yellow",
-  styles: "foreground",
-  collections: "red",
-  creators: "blue",
+  tasks: TAXONOMY_ACCENT.useCase,
+  camera: TAXONOMY_ACCENT.technique,
+  models: TAXONOMY_ACCENT.model,
+  styles: TAXONOMY_ACCENT.style,
+  collections: "blue",
+  creators: "yellow",
 } as const satisfies Record<string, SectionAccent>;

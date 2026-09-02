@@ -1,3 +1,4 @@
+import { TAXONOMY_ACCENT } from "@/components/ui/accent";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -32,10 +33,15 @@ describe("section-accent", () => {
     expect(new Set(accents).size).toBe(4);
   });
 
-  it("follows the teardown plate: tasks red, camera blue, models yellow", () => {
-    expect(HUB_SECTION_ACCENTS.tasks).toBe("red");
-    expect(HUB_SECTION_ACCENTS.camera).toBe("blue");
-    expect(HUB_SECTION_ACCENTS.models).toBe("yellow");
+  it("colours a taxonomy band exactly like that axis's chip row", () => {
+    // The teardown plate drew red/blue/yellow to show the *idea* of per-band
+    // accents. What actually has to hold is agreement: 任务 chips and the
+    // 按任务浏览 band sit on one page, so a reader must not meet the same axis
+    // in two colours. The axis map is the single source for both.
+    expect(HUB_SECTION_ACCENTS.tasks).toBe(TAXONOMY_ACCENT.useCase);
+    expect(HUB_SECTION_ACCENTS.camera).toBe(TAXONOMY_ACCENT.technique);
+    expect(HUB_SECTION_ACCENTS.models).toBe(TAXONOMY_ACCENT.model);
+    expect(HUB_SECTION_ACCENTS.styles).toBe(TAXONOMY_ACCENT.style);
   });
 
   it("rotates by position for bands that have no fixed slot", () => {
