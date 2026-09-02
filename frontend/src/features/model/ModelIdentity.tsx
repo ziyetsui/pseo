@@ -23,11 +23,11 @@ export function ModelIdentity({ model }: ModelIdentityProps) {
 
   return (
     <>
-      <h1 className="text-4xl font-black tracking-tighter uppercase md:text-6xl">
+      <h1 className="text-4xl font-black tracking-tighter text-balance uppercase md:text-6xl">
         {model.label} 提示词
       </h1>
 
-      <p className="mx-auto mt-6 max-w-2xl text-lg font-medium">{model.summary}</p>
+      <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-balance">{model.summary}</p>
 
       {officialUrl === null ? null : (
         <p className="mt-3 text-sm font-medium">

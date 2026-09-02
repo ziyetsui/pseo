@@ -21,7 +21,7 @@ export interface ModelSectionProps {
 /** A titled band with the prototype's `sec-head` end slot. */
 export function ModelSection({ id, title, end, subline, children, className }: ModelSectionProps) {
   return (
-    <section aria-labelledby={id} className={className ?? "mt-12"}>
+    <section aria-labelledby={id} className={className ?? "mt-10 md:mt-14"}>
       <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-3 md:border-b-4">
         <h2 id={id} className="text-2xl font-black tracking-tighter uppercase md:text-3xl">
           {title}
@@ -29,7 +29,7 @@ export function ModelSection({ id, title, end, subline, children, className }: M
         {end === undefined ? null : <div className="text-sm font-bold">{end}</div>}
       </div>
       {subline === undefined ? null : (
-        <p className="mt-3 max-w-prose text-sm font-medium md:text-base">{subline}</p>
+        <p className="mt-3 max-w-prose text-base font-medium">{subline}</p>
       )}
       <div className="mt-6">{children}</div>
     </section>

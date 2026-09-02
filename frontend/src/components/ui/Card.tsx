@@ -11,7 +11,9 @@ import { GeometricMark, type MarkColor, type MarkShape } from "./GeometricMark";
  */
 export function cardClassName(className?: string): string {
   return cx(
-    "relative flex min-w-0 flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-y-1 md:border-4 md:shadow-hard-lg",
+    // Hover is deliberately small: 2px of lift keeps the hard shadow reading as
+    // a shadow. A 4px jump made a whole grid of cards twitch under the pointer.
+    "relative flex min-w-0 flex-col border-2 border-foreground bg-surface shadow-hard-md transition duration-200 ease-out hover:-translate-y-0.5 md:border-4 md:shadow-hard-lg",
     className,
   );
 }

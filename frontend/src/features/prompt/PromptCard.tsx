@@ -110,7 +110,15 @@ export function PromptCard({
 
   return (
     <article className={cardClassName(className)} data-card-variant={variant}>
-      <GeometricMark shape="square" color="blue" className="absolute top-2 right-2 z-10" />
+      {/*
+        The corner mark belongs to the hub card only. On L2/L3 the compact
+        cards ARE the page, and repeating a decorative square over two dozen
+        thumbnails turned a Bauhaus accent into wallpaper — the media badge and
+        the `热门` pill already carry every signal those cards need.
+      */}
+      {isCompact ? null : (
+        <GeometricMark shape="square" color="blue" className="absolute top-2 right-2 z-10" />
+      )}
 
       {cover === undefined ? null : (
         <MediaFrame
@@ -227,10 +235,10 @@ function PromptBody({ prompt, textId, expandable, variant, tags }: PromptBodyPro
 
   if (!expandable) {
     return (
-      <div className="flex min-w-0 flex-col gap-3">
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
         {pre}
         {meta}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="mt-auto flex flex-wrap items-center gap-3">
           {actionsBefore}
           {actionsAfter}
         </div>
@@ -239,11 +247,15 @@ function PromptBody({ prompt, textId, expandable, variant, tags }: PromptBodyPro
   }
 
   return (
+    // `flex-1`: the cards in one grid row are all as tall as the tallest, so
+    // this column has to stretch before `mt-auto` on the action row can pin
+    // the buttons to a shared baseline across the row.
     <ExpandToggle
       contentId={textId}
       belowContent={meta}
       actionsBefore={actionsBefore}
       actionsAfter={actionsAfter}
+      className="flex-1"
       rowClassName="mt-auto flex flex-wrap items-center gap-3"
     >
       {pre}

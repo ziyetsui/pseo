@@ -96,7 +96,7 @@ export function Rail({ label, children, className, listClassName, itemClassName 
             type="button"
             aria-label="向左滚动"
             onClick={() => scrollBy(-pageStep())}
-            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out hover:bg-muted hover:shadow-hard-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
           >
             <span aria-hidden="true">←</span>
           </button>
@@ -104,7 +104,7 @@ export function Rail({ label, children, className, listClassName, itemClassName 
             type="button"
             aria-label="向右滚动"
             onClick={() => scrollBy(pageStep())}
-            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+            className="flex size-11 items-center justify-center border-2 border-foreground bg-surface text-lg font-black shadow-hard-sm transition duration-200 ease-out hover:bg-muted hover:shadow-hard-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
           >
             <span aria-hidden="true">→</span>
           </button>
@@ -121,7 +121,10 @@ export function Rail({ label, children, className, listClassName, itemClassName 
         )}
       >
         {items.map((item, index) => (
-          <li key={index} className={cx("shrink-0 snap-start", itemClassName)}>
+          // `flex` on the item, not just on the list: the `<ul>` stretches every
+          // item to the tallest card, and this passes that height through to the
+          // card itself so a row of rail cards ends on one line.
+          <li key={index} className={cx("flex shrink-0 snap-start", itemClassName)}>
             {item}
           </li>
         ))}

@@ -4,7 +4,7 @@ import { formatCreatorHandle } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
 import { formatThousands } from "@/lib/format/numbers";
 import { CopyPromptButton } from "@/features/prompt/CopyPromptButton";
-import { PromptText } from "@/features/prompt/PromptText";
+import { PROMPT_PRE_CLASS, PromptText } from "@/features/prompt/PromptText";
 
 /** External link attributes used for the creator and source links. */
 const EXTERNAL = { target: "_blank", rel: "noopener nofollow" } as const;
@@ -80,7 +80,21 @@ export function FeaturedPrompt({
           {prompt.title}
         </h3>
 
-        <PromptText id={textId} text={prompt.promptText} expandable={false} />
+        {/*
+          Height cap with an internal scroll, as in the prototype
+          (`.featured .ptext { max-height: 260px }`). The whole prompt is still
+          rendered — this block is the one place the page shows a prompt in
+          full, and without the cap a 4,000-character recommendation pushed
+          everything below it two screens down on mobile. `PromptText` already
+          makes the `<pre>` a focusable, labelled region, so the scroll is
+          reachable from the keyboard.
+        */}
+        <PromptText
+          id={textId}
+          text={prompt.promptText}
+          expandable={false}
+          className={`${PROMPT_PRE_CLASS} max-h-65 overflow-y-auto`}
+        />
 
         <div className="flex flex-wrap items-center gap-3">
           <CopyPromptButton text={prompt.promptText} targetId={textId} shape="square" />

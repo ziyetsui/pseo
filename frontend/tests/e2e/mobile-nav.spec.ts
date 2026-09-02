@@ -2,9 +2,9 @@ import { expect, test } from "@playwright/test";
 
 import { ROUTES } from "./routes";
 
-/** The disclosure only exists below `md`; running it at 1440 would test nothing. */
+/** The disclosure only exists below `xl`; running it at 1440 would test nothing. */
 test.beforeEach(({}, testInfo) => {
-  test.skip(testInfo.project.name !== "mobile", "the menu button is hidden from md up");
+  test.skip(testInfo.project.name !== "mobile", "the menu button is hidden from xl up");
 });
 
 test.describe("mobile navigation disclosure", () => {

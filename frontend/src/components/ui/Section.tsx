@@ -30,14 +30,14 @@ export function Section({
   className,
 }: SectionProps) {
   return (
-    <section aria-labelledby={id} className={cx("mt-12 first:mt-0", className)}>
+    <section aria-labelledby={id} className={cx("mt-10 first:mt-0 md:mt-14", className)}>
       <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-foreground pb-3 md:border-b-4">
         <div>
           <h2 id={id} className="text-2xl font-black tracking-tighter uppercase md:text-3xl">
             {title}
           </h2>
           {description === undefined ? null : (
-            <p className="mt-2 max-w-prose text-sm font-medium md:text-base">{description}</p>
+            <p className="mt-2 max-w-prose text-base font-medium">{description}</p>
           )}
         </div>
         {moreHref === undefined ? null : (

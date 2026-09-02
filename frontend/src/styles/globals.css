@@ -50,6 +50,14 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /*
+   * Keep a focused or anchored element clear of the page chrome. The bottom
+   * value covers the L4 mobile action bar, which is `position: sticky` at the
+   * foot of the viewport and would otherwise cover a control the keyboard has
+   * just moved to (WCAG 2.2 "Focus Not Obscured (Minimum)").
+   */
+  scroll-padding-top: 1.5rem;
+  scroll-padding-bottom: 6rem;
 }
 
 body {
@@ -57,6 +65,74 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Document-wide defaults. They live in Tailwind's `base` layer on purpose:
+ * unlayered rules beat every layered utility, so a bare `p { text-wrap }` here
+ * would quietly defeat `truncate` and `whitespace-nowrap` wherever a component
+ * asks for them.
+ */
+@layer base {
+  /*
+   * Line breaking, set once for the whole document.
+   *
+   * `balance` evens out the lines of a short heading (browsers cap it at a few
+   * lines and fall back to normal wrapping beyond that, so a long heading is
+   * unaffected); `pretty` only stops paragraphs and list items from ending on
+   * a one-word last line. Neither changes a single word of copy — the measure
+   * is still bounded by `max-w-prose` where it matters.
+   */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
+
+  /*
+   * Links: a little air under the underline (CJK glyphs sit low, and a
+   * baseline-hugging rule cuts through them), and a hover affordance for the
+   * links that carry no standing underline — the nav, the anchor bar.
+   * Card-sized links opt out with `no-underline`, where underlining a whole
+   * tile on hover would be noise rather than feedback.
+   */
+  a[href] {
+    text-underline-offset: 0.2em;
+  }
+
+  @media (hover: hover) {
+    a[href]:not(.no-underline):hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  /*
+   * Pointer affordances, stated once instead of on every control: anything
+   * that navigates or acts shows the hand cursor, anything explicitly disabled
+   * shows the blocked cursor, and none of them wait 300ms for a double-tap
+   * gesture before firing on touch.
+   */
+  a[href],
+  button,
+  summary,
+  [role="tab"],
+  [role="button"] {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  [aria-disabled="true"],
+  button:disabled {
+    cursor: not-allowed;
+  }
 }
 
 /* Focus is always visible and always high contrast. */
@@ -73,6 +149,33 @@ body {
 /* Pure geometry: the triangle of the red-circle / blue-square / yellow-triangle mark. */
 .shape-triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/*
+ * Collapsed prompt preview.
+ *
+ * A `max-height` cut the monospace block mid-glyph and clipped away the
+ * `<pre>`'s own bottom padding and border, so the preview ended in a torn line
+ * inside a box with no floor. A line clamp ends on a whole line and leaves the
+ * frame intact, which is why every collapsed prompt is now exactly seven lines
+ * tall whatever it contains. The prompt itself is untouched: the full text
+ * stays in the DOM for copy, selection, find-in-page and crawlers.
+ */
+.prompt-clamp[data-expanded="false"] > * {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  /*
+   * `hidden` clips at the PADDING box, which lets the eighth line show through
+   * the block's own bottom padding — the very artefact this is here to remove.
+   * `clip` + `overflow-clip-margin: content-box` cuts at the text edge instead
+   * and still paints the padding and the border; the `hidden` above it is the
+   * fallback for engines that do not know `clip`.
+   */
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: content-box;
 }
 
 @media (prefers-reduced-motion: reduce) {

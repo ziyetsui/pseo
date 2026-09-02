@@ -48,7 +48,7 @@ export function GalleryStatline({ stats, observedAt, className }: GalleryStatlin
         {items.map((item) => (
           <div key={item.label} className="flex flex-col">
             <dt className="order-2 text-xs font-bold tracking-wider uppercase">{item.label}</dt>
-            <dd className="order-1 text-xl font-black tracking-tight">{item.value}</dd>
+            <dd className="order-1 text-xl font-black tracking-tight tabular-nums">{item.value}</dd>
           </div>
         ))}
       </dl>

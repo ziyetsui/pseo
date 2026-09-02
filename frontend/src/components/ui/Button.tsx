@@ -22,11 +22,22 @@ export interface ButtonStyleOptions {
 const BASE =
   "inline-flex min-h-11 min-w-11 items-center justify-center gap-2 px-4 py-2 text-sm font-bold tracking-wider uppercase transition duration-200 ease-out active:translate-x-0.5 active:translate-y-0.5 active:shadow-none aria-disabled:bg-muted aria-disabled:text-foreground aria-disabled:shadow-none aria-disabled:cursor-not-allowed";
 
+/**
+ * Hover deepens the offset shadow (4px → 8px) instead of tinting the fill: the
+ * palette has exactly three flat accents and no darker step, and geometry is
+ * the language this system already speaks. Nothing moves, so a row of buttons
+ * never reflows under the pointer; `active` then collapses the shadow entirely
+ * for the mechanical press.
+ */
 const VARIANT: Record<ButtonVariant, string> = {
-  primary: "border-2 border-foreground bg-accent-red text-surface shadow-hard-md",
-  secondary: "border-2 border-foreground bg-accent-blue text-surface shadow-hard-md",
-  yellow: "border-2 border-foreground bg-accent-yellow text-foreground shadow-hard-md",
-  outline: "border-2 border-foreground bg-surface text-foreground shadow-hard-md",
+  primary:
+    "border-2 border-foreground bg-accent-red text-surface shadow-hard-md hover:shadow-hard-lg",
+  secondary:
+    "border-2 border-foreground bg-accent-blue text-surface shadow-hard-md hover:shadow-hard-lg",
+  yellow:
+    "border-2 border-foreground bg-accent-yellow text-foreground shadow-hard-md hover:shadow-hard-lg",
+  outline:
+    "border-2 border-foreground bg-surface text-foreground shadow-hard-md hover:bg-muted hover:shadow-hard-lg",
   ghost: "border-2 border-transparent bg-transparent text-foreground hover:bg-muted",
 };
 

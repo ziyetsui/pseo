@@ -39,7 +39,7 @@ export function ArticleCard({ article, featured = false, className }: ArticleCar
       <p
         className={cx(
           "max-w-prose font-medium",
-          featured ? "text-base md:text-lg" : "text-sm md:text-base",
+          featured ? "text-base md:text-lg" : "text-base",
         )}
       >
         {article.excerpt}

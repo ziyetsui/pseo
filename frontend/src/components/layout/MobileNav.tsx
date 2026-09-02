@@ -35,7 +35,10 @@ export function MobileNav({ items, currentNav }: MobileNavProps) {
   }, [open, close]);
 
   return (
-    <div className="md:hidden">
+    // Mirrors `SiteHeader`'s `xl` breakpoint: the horizontal nav only fits
+    // from 1280 up, so this disclosure covers everything below it — including
+    // tablet and small-laptop widths, where it is the only navigation.
+    <div className="xl:hidden">
       <button
         ref={buttonRef}
         type="button"

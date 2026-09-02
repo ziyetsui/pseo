@@ -15,8 +15,13 @@ import { cx } from "./class-names";
  * visually hidden "（已选…）" suffix carry the same information.
  */
 
+/*
+ * `whitespace-nowrap`: a compact label that wraps inside its own pill reads as
+ * two chips. The collections that hold chips all `flex-wrap`, so the row — not
+ * the label — is what breaks.
+ */
 const BASE =
-  "inline-flex items-center gap-2 rounded-pill border-2 border-foreground font-bold transition duration-200 ease-out";
+  "inline-flex max-w-full items-center gap-2 rounded-pill border-2 border-foreground font-bold whitespace-nowrap transition duration-200 ease-out";
 const IDLE = "bg-surface text-foreground hover:bg-muted";
 const ACTIVE = "bg-foreground text-surface";
 

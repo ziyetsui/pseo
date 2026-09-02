@@ -69,18 +69,26 @@ export function SearchForm({
         )),
       )}
 
-      <Button type="submit" variant="primary">
-        {submitLabel}
-      </Button>
-
       {/*
-        Always present, as in the prototype, where 重置 sits next to 搜索 at
-        every moment. With nothing filtered it simply points back at the same
-        unfiltered page, so it is never a dead control.
+        The two controls wrap as one group. Left as individual flex children,
+        a narrow viewport kept 搜索 beside the input and pushed 重置 alone onto
+        the next line, which read as a stray button rather than as the other
+        half of a pair.
       */}
-      <ButtonLink href={basePath} variant="outline">
-        {resetLabel}
-      </ButtonLink>
+      <div className="flex flex-wrap items-center gap-3">
+        <Button type="submit" variant="primary">
+          {submitLabel}
+        </Button>
+
+        {/*
+          Always present, as in the prototype, where 重置 sits next to 搜索 at
+          every moment. With nothing filtered it simply points back at the same
+          unfiltered page, so it is never a dead control.
+        */}
+        <ButtonLink href={basePath} variant="outline">
+          {resetLabel}
+        </ButtonLink>
+      </div>
     </form>
   );
 }

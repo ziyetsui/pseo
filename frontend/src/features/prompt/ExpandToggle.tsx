@@ -2,6 +2,8 @@
 
 import { useState, type ReactNode } from "react";
 
+import { cx } from "@/components/ui/class-names";
+
 export interface ExpandToggleProps {
   /** Id of the element being expanded — usually the `<pre>` this wraps. */
   contentId: string;
@@ -21,6 +23,13 @@ export interface ExpandToggleProps {
   /** Applied to the action row; lets a card style its own `.cardact`. */
   rowClassName?: string;
   toggleClassName?: string;
+  /**
+   * Applied to the wrapper. A card passes `flex-1` so this column stretches to
+   * the card's full height and the action row's `mt-auto` can push itself to
+   * the bottom edge — without it, cards in one grid row end their buttons at
+   * three different heights.
+   */
+  className?: string;
 }
 
 /**
@@ -45,6 +54,7 @@ export function ExpandToggle({
   actionsAfter,
   rowClassName,
   toggleClassName,
+  className,
 }: ExpandToggleProps) {
   const [expanded, setExpanded] = useState(false);
 
@@ -53,10 +63,13 @@ export function ExpandToggle({
     // automatic minimum size from the prompt's min-content width, which a long
     // unbroken token can push far past the card — that is what made L3 scroll
     // sideways at 320/375. The `<pre>` inside scrolls instead.
-    <div className="flex min-w-0 flex-col gap-3">
+    <div className={cx("flex min-w-0 flex-col gap-3", className)}>
       <div
         data-expanded={expanded ? "true" : "false"}
-        className="data-[expanded=false]:max-h-40 data-[expanded=false]:overflow-hidden"
+        // `prompt-clamp` (globals.css) reads the same `data-expanded` and
+        // clamps to a whole number of monospace lines, so the collapsed block
+        // never ends mid-glyph.
+        className="prompt-clamp"
       >
         {children}
       </div>

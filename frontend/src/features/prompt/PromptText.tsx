@@ -1,5 +1,13 @@
 import { ExpandToggle } from "./ExpandToggle";
 
+/**
+ * The `<pre>`'s own skin. Exported so a caller that needs one more rule (the
+ * featured block's height cap) can add it without restating the whole string
+ * and letting the two copies drift apart.
+ */
+export const PROMPT_PRE_CLASS =
+  "overflow-x-auto border-2 border-foreground bg-muted p-3 font-mono text-sm leading-relaxed wrap-anywhere whitespace-pre-wrap select-text";
+
 export interface PromptTextProps {
   /** Id of the `<pre>`. `CopyPromptButton.targetId` points at the same value. */
   id: string;
@@ -35,10 +43,7 @@ export function PromptText({
       tabIndex={0}
       role="group"
       aria-label={label}
-      className={
-        className ??
-        "overflow-x-auto border-2 border-foreground bg-muted p-3 font-mono text-xs leading-relaxed whitespace-pre-wrap select-text md:text-sm"
-      }
+      className={className ?? PROMPT_PRE_CLASS}
     >
       {text}
     </pre>
