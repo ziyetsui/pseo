@@ -1,0 +1,169 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import type { TaxonomyWithCount } from "@/lib/content/types";
+import { ContentTypeTiles } from "@/features/gallery/ContentTypeTiles";
+import { ModelTiles } from "@/features/gallery/ModelTiles";
+import {
+  IMAGE_CONTENT_TYPE_SLUG,
+  countTermsWithin,
+  galleryStats,
+  promptsForTerm,
+  selectImagePrompts,
+} from "@/features/gallery/image-prompts";
+
+import { makeMetrics, makePromptSummary, makeTaxonomy } from "../support/prompt-fixtures";
+
+/**
+ * Component-level cover for branches the current fixture cannot reach: every
+ * model in the extracted data happens to own a page, so the "no page yet"
+ * tile is exercised here with hand-built terms instead.
+ */
+
+function term(overrides: Partial<TaxonomyWithCount>): TaxonomyWithCount {
+  return { ...makeTaxonomy(), count: 0, ...overrides };
+}
+
+describe("ModelTiles", () => {
+  const published = term({
+    id: "model:nano-banana-pro",
+    slug: "nano-banana-pro",
+    label: "Nano Banana Pro",
+    href: "/zh-CN/prompts/models/nano-banana-pro",
+    count: 14,
+  });
+  const unpublished = term({
+    id: "model:mystery",
+    slug: "mystery",
+    label: "Mystery Model",
+    href: null,
+    count: 2,
+  });
+
+  it("links a model that owns a page", () => {
+    const { container } = render(<ModelTiles models={[published]} />);
+    const tile = container.querySelector('[data-model-tile="nano-banana-pro"]');
+    expect(tile?.tagName).toBe("A");
+    expect(tile?.getAttribute("href")).toBe("/zh-CN/prompts/models/nano-banana-pro");
+    expect(tile?.textContent).toContain("14 条图片提示词");
+  });
+
+  it("renders a model without a page as plain text with a visible explanation", () => {
+    const { container } = render(<ModelTiles models={[published, unpublished]} />);
+    const tile = container.querySelector('[data-model-tile="mystery"]') as HTMLElement;
+
+    expect(tile.tagName).not.toBe("A");
+    expect(tile.querySelector("a")).toBeNull();
+    expect(tile.textContent).toContain("2 条图片提示词");
+    expect(tile.textContent).toContain("模型页尚未发布");
+    expect(container.querySelectorAll("a")).toHaveLength(1);
+  });
+
+  it("falls back to an empty state instead of an empty list", () => {
+    render(<ModelTiles models={[]} />);
+    expect(screen.getByText("当前收录里还没有带模型标注的图片提示词。")).toBeInTheDocument();
+  });
+});
+
+describe("ContentTypeTiles", () => {
+  const types: TaxonomyWithCount[] = [
+    term({
+      id: "contentType:image",
+      axis: "contentType",
+      slug: "image",
+      label: "图片",
+      labelZh: "图片",
+      href: "/zh-CN/prompts/image",
+      count: 23,
+    }),
+    term({
+      id: "contentType:video",
+      axis: "contentType",
+      slug: "video",
+      label: "视频",
+      labelZh: "视频",
+      href: null,
+      count: 11,
+    }),
+  ];
+
+  it("links the published type and marks it as the current page", () => {
+    const { container } = render(<ContentTypeTiles types={types} currentSlug="image" />);
+    const tile = container.querySelector('[data-content-type="image"]');
+
+    expect(tile?.tagName).toBe("A");
+    expect(tile?.getAttribute("href")).toBe("/zh-CN/prompts/image");
+    expect(tile?.getAttribute("aria-current")).toBe("page");
+    expect(tile?.textContent).toContain("23 条");
+  });
+
+  it("never links a type whose page does not exist yet", () => {
+    const { container } = render(<ContentTypeTiles types={types} currentSlug="image" />);
+    const tile = container.querySelector('[data-content-type="video"]') as HTMLElement;
+
+    expect(tile.tagName).not.toBe("A");
+    expect(tile.querySelector("a")).toBeNull();
+    expect(tile.textContent).toContain("11 条");
+    expect(tile.textContent).toContain("尚未发布");
+    for (const node of container.querySelectorAll("a[href]")) {
+      expect(node.getAttribute("href")).not.toContain("/prompts/video");
+    }
+  });
+});
+
+describe("image-prompts helpers", () => {
+  const image = makePromptSummary({ id: "a", metrics: makeMetrics({ highValue: true }) });
+  const video = makePromptSummary({
+    id: "b",
+    contentType: makeTaxonomy({
+      id: "contentType:video",
+      axis: "contentType",
+      slug: "video",
+      label: "视频",
+      href: null,
+    }),
+  });
+
+  it("keeps only prompts whose content type is image", () => {
+    expect(selectImagePrompts([image, video]).map((prompt) => prompt.id)).toEqual(["a"]);
+    expect(IMAGE_CONTENT_TYPE_SLUG).toBe("image");
+  });
+
+  it("computes the statline from the subset alone", () => {
+    const second = makePromptSummary({
+      id: "c",
+      creator: { ...image.creator, id: "creator-2" },
+      source: { ...image.source, publishedAt: "2026-08-19" },
+    });
+    const undated = makePromptSummary({
+      id: "d",
+      source: { ...image.source, publishedAt: null },
+    });
+
+    expect(galleryStats([image, second, undated])).toEqual({
+      total: 3,
+      highValueCount: 1,
+      creatorCount: 2,
+      datedCount: 2,
+      latestPublishedAt: "2026-08-19",
+    });
+  });
+
+  it("reports no date rather than inventing one", () => {
+    const undated = makePromptSummary({ source: { ...image.source, publishedAt: null } });
+    expect(galleryStats([undated]).latestPublishedAt).toBeNull();
+  });
+
+  it("counts and filters terms against the subset, dropping terms with no members", () => {
+    const seedance = term({ slug: "seedance", label: "Seedance", count: 99 });
+    const absent = term({ id: "model:absent", slug: "absent", label: "Absent", count: 42 });
+
+    const counted = countTermsWithin([seedance, absent], [image], "model");
+    expect(counted).toHaveLength(1);
+    expect(counted[0]?.slug).toBe("seedance");
+    // The count is recomputed from the subset, never carried over.
+    expect(counted[0]?.count).toBe(1);
+
+    expect(promptsForTerm([image, video], "model", "seedance").map((p) => p.id)).toEqual(["a", "b"]);
+  });
+});
