@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { SiteShell } from "@/components/layout/SiteShell";
 import { DEFAULT_LOCALE } from "@/lib/i18n/config";
-import { promptsHome } from "@/lib/i18n/routes";
+import { blogHome, promptsHome, promptsImage } from "@/lib/i18n/routes";
 
 export const metadata: Metadata = {
   title: "页面不存在",
@@ -14,9 +14,36 @@ export const metadata: Metadata = {
   // the same effective meaning — one is enough, so we defer to Next's.
 };
 
-export default function NotFound() {
-  const target = promptsHome(DEFAULT_LOCALE);
+/**
+ * Recovery routes offered in the page body. The shell's navigation already
+ * carries them, but a 404 is exactly the moment a reader should not have to go
+ * hunting in the header — so the three real destinations that exist in this
+ * phase are repeated inline. Every href comes from the route builder; routes
+ * that do not exist yet (video, use cases, styles, creators) are absent rather
+ * than rendered as dead links.
+ */
+const DESTINATIONS = [
+  {
+    href: promptsHome(DEFAULT_LOCALE),
+    label: "提示词库",
+    description: "按模型、用途、技巧与风格浏览全部提示词。",
+    className: "bg-accent-blue text-surface",
+  },
+  {
+    href: promptsImage(DEFAULT_LOCALE),
+    label: "图片提示词",
+    description: "图片方向的提示词合集与筛选入口。",
+    className: "bg-accent-red text-surface",
+  },
+  {
+    href: blogHome(DEFAULT_LOCALE),
+    label: "Blog",
+    description: "变量替换、来源与版权等说明性文章。",
+    className: "bg-accent-yellow text-foreground",
+  },
+] as const;
 
+export default function NotFound() {
   return (
     <SiteShell locale={DEFAULT_LOCALE}>
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
@@ -32,14 +59,24 @@ export default function NotFound() {
         <p className="mt-6 max-w-prose text-lg font-medium">
           这个地址没有对应的内容。可能链接已过期，或者该页面尚未发布。
         </p>
-        <p className="mt-8">
-          <Link
-            href={target}
-            className="inline-flex min-h-11 items-center border-2 border-foreground bg-accent-blue px-6 text-base font-bold tracking-wider text-surface uppercase shadow-hard-md md:border-4"
-          >
-            回到提示词库
-          </Link>
-        </p>
+
+        <nav aria-label="可前往的页面" className="mt-10">
+          <ul className="grid gap-4 md:grid-cols-3">
+            {DESTINATIONS.map((destination) => (
+              <li key={destination.href}>
+                <Link
+                  href={destination.href}
+                  className={`flex min-h-11 flex-col gap-2 border-2 border-foreground p-4 shadow-hard-md transition duration-200 ease-out hover:-translate-y-1 md:border-4 ${destination.className}`}
+                >
+                  <span className="text-lg font-black tracking-tighter uppercase">
+                    {destination.label}
+                  </span>
+                  <span className="text-sm font-medium">{destination.description}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </SiteShell>
   );
