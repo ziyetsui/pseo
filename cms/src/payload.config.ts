@@ -13,7 +13,7 @@ import {
   Users,
 } from '@/collections'
 import { readCmsEnvironment } from '@/config/env'
-import { createPublicationRequestEndpoint } from '@/endpoints'
+import { createPreviewCatalogEndpoint, createPublicationRequestEndpoint } from '@/endpoints'
 import { MockGitPublisher } from '@/publication'
 
 const filename = fileURLToPath(import.meta.url)
@@ -44,7 +44,10 @@ export default buildConfig({
   db: postgresAdapter({
     pool: { connectionString: environment.databaseUri },
   }),
-  endpoints: [createPublicationRequestEndpoint(gitPublisher)],
+  endpoints: [
+    createPublicationRequestEndpoint(gitPublisher),
+    createPreviewCatalogEndpoint(environment),
+  ],
   secret: environment.payloadSecret,
   serverURL: environment.publicServerUrl,
   telemetry: false,

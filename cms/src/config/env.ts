@@ -3,6 +3,8 @@ export interface CmsEnvironment {
   readonly gitPublisherMode: 'mock'
   readonly mockGitBaseSha: string
   readonly payloadSecret: string
+  readonly previewEnabled: boolean
+  readonly previewToken: string | null
   readonly publicServerUrl: string
 }
 
@@ -50,11 +52,25 @@ export function readCmsEnvironment(source: NodeJS.ProcessEnv = process.env): Cms
     throw new CmsConfigurationError('CMS_MOCK_GIT_BASE_SHA must be a 7-64 character lowercase hex revision')
   }
 
+  const previewSetting = source.CMS_PREVIEW_ENABLED?.trim() || 'false'
+  if (previewSetting !== 'true' && previewSetting !== 'false') {
+    throw new CmsConfigurationError('CMS_PREVIEW_ENABLED must be true or false')
+  }
+  const previewEnabled = previewSetting === 'true'
+  const configuredPreviewToken = source.CMS_PREVIEW_TOKEN?.trim() || null
+  if (previewEnabled && (!configuredPreviewToken || configuredPreviewToken.length < 32)) {
+    throw new CmsConfigurationError(
+      'CMS_PREVIEW_TOKEN must contain at least 32 characters when preview is enabled',
+    )
+  }
+
   return {
     databaseUri,
     gitPublisherMode: 'mock',
     mockGitBaseSha,
     payloadSecret,
+    previewEnabled,
+    previewToken: previewEnabled ? configuredPreviewToken : null,
     publicServerUrl: parsedServerUrl.toString().replace(/\/$/u, ''),
   }
 }

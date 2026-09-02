@@ -89,6 +89,38 @@ must implement protected-branch PR creation, required checks, webhook
 idempotency and verified merge projection. It is intentionally not guessed in
 this scaffold.
 
+## Protected local preview catalog
+
+The CMS can expose its draft-only wireframe projection to the separately run
+local frontend preview. It is disabled by default and is not a publication
+source. Enable it only in the local `.env` with both values below:
+
+```dotenv
+CMS_PREVIEW_ENABLED=true
+CMS_PREVIEW_TOKEN=<a-random-server-only-token-of-at-least-32-characters>
+```
+
+The token is server-only: never use a `NEXT_PUBLIC_` variable, paste it into a
+browser URL, or commit it. The endpoint is:
+
+```http
+GET /api/internal/v1/preview-catalog?locale=zh-CN
+Authorization: Bearer <the-local-preview-token>
+```
+
+When disabled it returns `404`; missing or invalid credentials return `401`,
+and unsupported locales return `400`. Successful responses contain only the
+closed wireframe DTO (35 prompts plus taxonomy, creator, model, collection and
+snapshot records), never Payload users, sessions, internal ids, publication
+keys or environment values. Every response is private/no-store and noindex.
+`X-Content-Revision` is a deterministic SHA-256 of the projected content, so a
+CMS edit changes the revision while request time does not.
+
+The endpoint reads Payload drafts on every request. It does not update checked-
+in content, build artifacts, RSS, sitemap, Git branches or pull requests. The
+normal frontend and production build remain fixture/Git-first; only the
+explicit CMS-preview frontend mode may call this endpoint.
+
 ## Local setup
 
 The checked-in source pins Payload and its first-party packages to `3.88.0`.
