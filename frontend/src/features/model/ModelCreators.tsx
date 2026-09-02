@@ -1,11 +1,8 @@
-import { GeometricMark } from "@/components/ui/GeometricMark";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { Avatar } from "@/components/ui/IdentityMark";
 import { StateBlock } from "@/components/ui/StateBlock";
 import { formatCreatorHandle } from "@/lib/content";
 
 import type { ModelCreator } from "./model-data";
-
-const AVATAR_SIZE = 40;
 
 export interface ModelCreatorsProps {
   creators: readonly ModelCreator[];
@@ -22,6 +19,12 @@ export interface ModelCreatorsProps {
  * profile shows next. The prototype prints a bare `<b>26</b>`; the unit is
  * carried for assistive tech in a visually hidden span so the number is not
  * announced as a naked integer.
+ *
+ * The face is the shared `Avatar` at its 40px size, not a private 40px square
+ * built here: a person gets the same round mark on this page as on the hub's
+ * creator tiles, and a creator with no picture falls back to the initial of
+ * the handle written immediately beside it rather than to a shape that says
+ * nothing.
  */
 export function ModelCreators({
   creators,
@@ -33,22 +36,7 @@ export function ModelCreators({
     <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold">
       {creators.map((creator) => (
         <li key={creator.id} className="flex items-center gap-2">
-          {creator.avatarUrl === null ? (
-            <span
-              aria-hidden="true"
-              className="flex size-10 shrink-0 items-center justify-center border-2 border-foreground bg-muted"
-            >
-              <GeometricMark shape="circle" color="blue" className="size-4" />
-            </span>
-          ) : (
-            <MediaFrame
-              src={creator.avatarUrl}
-              alt=""
-              width={AVATAR_SIZE}
-              height={AVATAR_SIZE}
-              className="size-10 shrink-0 border-2 border-foreground md:border-2"
-            />
-          )}
+          <Avatar name={creator.handle} src={creator.avatarUrl} size="md" />
 
           <a
             href={creator.url}

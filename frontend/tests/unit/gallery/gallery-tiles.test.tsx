@@ -81,6 +81,30 @@ describe("ModelTiles", () => {
     expect(container.querySelectorAll("li")[0]?.className).toContain("lg:col-span-2");
   });
 
+  it("resolves the leading tile's span per breakpoint", () => {
+    // The gallery grid is one-up, then two-up from `sm`, then three-up from
+    // `lg`, and nine tiles answer the fit question differently at each: at `sm`
+    // the lead's two cells make ten, five full rows; at `lg` those ten would
+    // strand one tile on a fourth row, so the lead takes its second cell back.
+    const models = Array.from({ length: 9 }, (_, index) =>
+      term({
+        id: `model:m${index}`,
+        slug: `m${index}`,
+        label: `M${index}`,
+        href: `/zh-CN/prompts/models/m${index}`,
+        count: index === 0 ? 14 : 1,
+      }),
+    );
+    const { container } = render(<ModelTiles models={models} />);
+
+    const lead = container.querySelector("li") as HTMLElement;
+    expect(lead.className).toContain("sm:col-span-2");
+    expect(lead.className).toContain("lg:col-span-1");
+    // One column at the base width: every tile already fills its row, so no
+    // span class is painted there at all.
+    expect(lead.className).not.toMatch(/(^|\s)col-span-2/);
+  });
+
   it("marks the model with a monogram of its own name, never a vendor logo", () => {
     const { container } = render(<ModelTiles models={[published]} />);
     const tile = container.querySelector('[data-model-tile="nano-banana-pro"]') as HTMLElement;

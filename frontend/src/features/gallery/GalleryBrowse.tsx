@@ -1,10 +1,7 @@
-import type { ReactNode } from "react";
-
 import { ButtonLink } from "@/components/ui/Button";
 import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
 import { Section } from "@/components/ui/Section";
 import { StateBlock } from "@/components/ui/StateBlock";
-import { cx } from "@/components/ui/class-names";
 import { dividerClassName } from "@/components/ui/dividers";
 import { microLabelClassName } from "@/components/ui/type-scale";
 import { COMING_SOON_NOTE } from "@/components/layout/nav";
@@ -53,31 +50,7 @@ interface RelatedItem {
   /** `null` renders as plain text with `（即将推出）` — never a `#` href. */
   href: string | null;
   /** Extra attribute the tests hook onto, e.g. `data-usecase-more`. */
-  attrs?: Record<string, string>;
-}
-
-/**
- * A hairline row for a destination this phase does not build.
- *
- * `HairlineRow` requires a real `href` by design — a row that navigates
- * nowhere is text, not a link — so the 即将推出 entries keep the row's rhythm
- * (44px target, the `row` divider tier) without its chevron, which would
- * promise a destination that does not exist. See the lane report's primitive
- * gap note.
- */
-function ComingSoonRow({ children, last = false }: { children: ReactNode; last?: boolean }) {
-  return (
-    <li className="flex flex-col">
-      <span
-        className={cx(
-          "flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium text-foreground/70",
-          last ? undefined : dividerClassName("row", "bottom"),
-        )}
-      >
-        {children}
-      </span>
-    </li>
-  );
+  attrs?: Record<`data-${string}`, string>;
 }
 
 /**
@@ -246,16 +219,20 @@ export function GalleryBrowse({
               <HairlineList>
                 {column.items.map((item, index) => {
                   const last = index === column.items.length - 1;
-                  return item.href === null ? (
-                    <ComingSoonRow key={item.key} last={last}>
+                  // A destination this phase does not build keeps the row's
+                  // rhythm (44px target, the `row` tier) as the primitive's
+                  // non-link variant: no chevron, no anchor, and the
+                  // `（即将推出）` note is what says so.
+                  return (
+                    <HairlineRow
+                      key={item.key}
+                      {...item.attrs}
+                      href={item.href ?? undefined}
+                      last={last}
+                      className={item.href === null ? "text-foreground/70" : undefined}
+                    >
                       {item.label}
-                      {COMING_SOON_NOTE}
-                    </ComingSoonRow>
-                  ) : (
-                    <HairlineRow key={item.key} href={item.href} last={last}>
-                      {/* `HairlineRow` forwards no extra attributes, so the
-                          test hook rides an inner span. */}
-                      <span {...item.attrs}>{item.label}</span>
+                      {item.href === null ? COMING_SOON_NOTE : null}
                     </HairlineRow>
                   );
                 })}

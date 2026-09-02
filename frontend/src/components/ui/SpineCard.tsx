@@ -26,10 +26,25 @@ export interface SpineCardProps {
   children: ReactNode;
   /** Makes the whole card one internal link. */
   href?: string;
+  /**
+   * Padding and spacing for the body column beside the spine.
+   *
+   * The spine is full-bleed, so the card itself cannot carry the padding —
+   * which used to mean every caller wrapped `children` in its own padded
+   * column and the padding of a "spine card" was decided outside the spine
+   * card. The slot puts it back on the component.
+   */
+  bodyClassName?: string;
   className?: string;
 }
 
-export function SpineCard({ accent, children, href, className }: SpineCardProps) {
+export function SpineCard({
+  accent,
+  children,
+  href,
+  bodyClassName,
+  className,
+}: SpineCardProps) {
   const inner = (
     // A nested row rather than `flex-row` on the shell itself: overriding the
     // shell's `flex-col` by appending `flex-row` would depend on stylesheet
@@ -44,7 +59,7 @@ export function SpineCard({ accent, children, href, className }: SpineCardProps)
           accentFillClassName(accent),
         )}
       />
-      <div className="flex min-w-0 flex-1 flex-col">{children}</div>
+      <div className={cx("flex min-w-0 flex-1 flex-col", bodyClassName)}>{children}</div>
     </div>
   );
 

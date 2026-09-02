@@ -1,7 +1,4 @@
-import type { ReactNode } from "react";
-
 import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
-import { cx } from "@/components/ui/class-names";
 import { dividerClassName } from "@/components/ui/dividers";
 import { microLabelClassName } from "@/components/ui/type-scale";
 import { COMING_SOON_NOTE } from "@/components/layout/nav";
@@ -22,30 +19,6 @@ export interface ModelRelatedProps {
 }
 
 /**
- * A hairline row for a destination this phase does not build.
- *
- * `HairlineRow` requires a real `href` by design — a row that navigates
- * nowhere is text, not a link — so the 即将推出 entries keep the row's rhythm
- * (44px target, the `row` divider tier) without its chevron, which would
- * promise a destination that does not exist. See the lane report's primitive
- * gap note.
- */
-function ComingSoonRow({ children, last = false }: { children: ReactNode; last?: boolean }) {
-  return (
-    <li className="flex flex-col">
-      <span
-        className={cx(
-          "flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium text-foreground/70",
-          last ? undefined : dividerClassName("row", "bottom"),
-        )}
-      >
-        {children}
-      </span>
-    </li>
-  );
-}
-
-/**
  * The prototype's four-column `mesh`: 上级 / 其他模型 / 按用例 / 创作者, with its
  * own link labels (`图片提示词`, `提示词库首页`, model names, Chinese use-case
  * names, `全部创作者`).
@@ -60,7 +33,9 @@ function ComingSoonRow({ children, last = false }: { children: ReactNode; last?:
  * at `/prompts/creators`, which does not ship this phase, so it keeps its place
  * as plain text with a 即将推出 note rather than becoming a dead `#` link
  * (global constraint 5) — the column itself is not deleted, because dropping it
- * would silently change the prototype's information architecture.
+ * would silently change the prototype's information architecture. That is
+ * `HairlineRow`'s own non-link variant: same rule, same 44px floor, no chevron
+ * and no anchor.
  */
 export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRelatedProps) {
   const groups: { id: string; title: string; body: React.ReactNode }[] = [
@@ -86,14 +61,15 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
           <HairlineList>
             {relatedModels.map((term, index) => {
               const last = index === relatedModels.length - 1;
-              return term.href === null ? (
-                <ComingSoonRow key={term.id} last={last}>
+              return (
+                <HairlineRow
+                  key={term.id}
+                  href={term.href ?? undefined}
+                  last={last}
+                  className={term.href === null ? "text-foreground/70" : undefined}
+                >
                   {term.label}
-                  {COMING_SOON_NOTE}
-                </ComingSoonRow>
-              ) : (
-                <HairlineRow key={term.id} href={term.href} last={last}>
-                  {term.label}
+                  {term.href === null ? COMING_SOON_NOTE : null}
                 </HairlineRow>
               );
             })}
@@ -125,7 +101,9 @@ export function ModelRelated({ locale, relatedModels, relatedUseCases }: ModelRe
       title: "创作者",
       body: (
         <HairlineList>
-          <ComingSoonRow last>全部创作者{COMING_SOON_NOTE}</ComingSoonRow>
+          <HairlineRow last className="text-foreground/70">
+            全部创作者{COMING_SOON_NOTE}
+          </HairlineRow>
         </HairlineList>
       ),
     },

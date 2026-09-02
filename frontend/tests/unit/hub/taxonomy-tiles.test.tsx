@@ -87,6 +87,7 @@ describe("TaxonomyTiles", () => {
         terms={[
           term({ id: "t:a", slug: "a", label: "Camera movement / shot language", count: 4 }),
           term({ id: "t:b", slug: "b", label: "Transition / morph / match cut", count: 1 }),
+          term({ id: "t:c", slug: "c", label: "Lip sync / dialogue", count: 1 }),
         ]}
       />,
     );
@@ -115,23 +116,53 @@ describe("TaxonomyTiles", () => {
     expect(caption.textContent).toContain("条提示词");
   });
 
-  it("spans the highest-count tile across two columns on wide viewports only", () => {
-    const { container } = render(
-      <TaxonomyTiles
-        basePath={BASE}
-        axis="useCase"
-        terms={[
-          term({ count: 9 }),
-          term({ id: "useCase:beauty", slug: "beauty", label: "Beauty", count: 3 }),
-        ]}
-      />,
+  /** `n` terms, the first of them the biggest, so the lead is on the table. */
+  function band(n: number) {
+    return Array.from({ length: n }, (_, index) =>
+      term({ id: `t:${index}`, slug: `t-${index}`, label: `T${index}`, count: index === 0 ? 9 : 1 }),
     );
+  }
+
+  it("gives the leading tile the full mobile row when the tiles then fill their rows", () => {
+    // Seven tiles, two-up: the lead's two cells make eight, which is four full
+    // rows. `col-span-2` is unprefixed, so it holds at `lg` too, where eight
+    // cells are two full rows of four.
+    const { container } = render(<TaxonomyTiles basePath={BASE} axis="useCase" terms={band(7)} />);
 
     const cells = [...container.querySelectorAll("li")];
-    expect(cells[0]?.className).toContain("lg:col-span-2");
-    // No unprefixed span: mobile keeps one tile per row. And no span for the rest.
-    expect(cells[0]?.className).not.toMatch(/(^|\s)col-span-2/);
-    expect(cells[1]?.className).not.toContain("col-span-2");
+    expect(cells[0]?.className).toMatch(/(^|\s)col-span-2/);
+    expect(cells[0]?.className).not.toContain("lg:col-span-1");
+    for (const cell of cells.slice(1)) {
+      expect(cell.className).not.toContain("col-span-2");
+    }
+  });
+
+  it("takes the span back rather than stranding one tile alone on the last row", () => {
+    // Eight tiles, two-up: spanning the lead would make nine cells and leave
+    // the ninth alone on a fifth row, so every tile takes one cell and the
+    // eight fill four rows exactly. Same answer four-up at `lg`.
+    const { container } = render(<TaxonomyTiles basePath={BASE} axis="useCase" terms={band(8)} />);
+
+    for (const cell of container.querySelectorAll("li")) {
+      expect(cell.className).not.toContain("col-span-2");
+    }
+    // And the tile that cannot have the width does not get the weight either:
+    // a display-scale title in a half-row cell clamps away half of its label.
+    expect(screen.getByRole("heading", { name: "T0" }).className).toContain("truncate");
+  });
+
+  it("keeps the lead's width and its weight as one decision", () => {
+    // Six tiles two-up already fill three rows, so there is no lead at all —
+    // not a lead that is narrow here and wide there. The band still renders
+    // every tile, in the order it was given.
+    const { container } = render(<TaxonomyTiles basePath={BASE} axis="useCase" terms={band(6)} />);
+
+    const cells = [...container.querySelectorAll("li")];
+    expect(cells).toHaveLength(6);
+    for (const cell of cells) {
+      expect(cell.className).not.toContain("col-span-");
+    }
+    expect(container.querySelector("h3")?.textContent).toBe("T0");
   });
 
   it("leaves every tile in one cell when the first is not the group's biggest", () => {

@@ -108,8 +108,25 @@ describe("CreatorTiles", () => {
     expect(bars[0]).toHaveStyle({ width: "100%" });
     expect(bars[1]).toHaveStyle({ width: "33%" });
     expect(bars[0]?.closest("[aria-hidden='true']")).not.toBeNull();
-    // The busiest creator leads the band.
-    expect(container.querySelectorAll("li")[0]?.className).toContain("lg:col-span-2");
+  });
+
+  it("gives the busiest creator the full row only when the tiles then fill it", () => {
+    const many = (n: number) =>
+      Array.from({ length: n }, (_, index) =>
+        creator({ id: `creator:${index}`, handle: `h${index}`, count: index === 0 ? 9 : 1 }),
+      );
+
+    // Three creators two-up: the lead's two cells make four, which is two full
+    // rows. Two creators already fill one row, so the lead stays a normal tile
+    // rather than pushing the second onto a row of its own.
+    const led = render(<CreatorTiles creators={many(3)} />);
+    expect(led.container.querySelector("li")?.className).toMatch(/(^|\s)col-span-2/);
+    led.unmount();
+
+    const even = render(<CreatorTiles creators={many(2)} />);
+    for (const cell of even.container.querySelectorAll("li")) {
+      expect(cell.className).not.toContain("col-span-");
+    }
   });
 
   it("caps the list when asked", () => {

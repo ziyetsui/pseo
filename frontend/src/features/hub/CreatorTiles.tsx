@@ -11,9 +11,8 @@ import { formatThousands } from "@/lib/format/numbers";
 import {
   BrowseTileBar,
   BrowseTileRank,
+  browseLayout,
   browseTileBodyClassName,
-  browseTileCellClassName,
-  leadsGroup,
 } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
 
@@ -62,16 +61,19 @@ export function CreatorTiles({
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   const max = visible.reduce((best, creator) => Math.max(best, creator.count), 0);
-  const hasLead = leadsGroup(visible.map((creator) => creator.count));
+  const layout = browseLayout(
+    visible.map((creator) => creator.count),
+    "hub-4",
+  );
 
   return (
-    <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}>
+    <ul className={className ?? layout.gridClassName}>
       {visible.map((creator, index) => {
         const share = max === 0 ? 0 : Math.round((creator.count / max) * 100);
-        const lead = hasLead && index === 0;
+        const lead = layout.lead && index === 0;
 
         return (
-          <li key={creator.id} className={browseTileCellClassName(lead)}>
+          <li key={creator.id} className={layout.cellClassName(index)}>
             <a
               href={creator.url}
               target="_blank"

@@ -63,39 +63,21 @@ const BLOG_LABEL = "Blog";
 
 /**
  * The footer is the site's one inverse surface: `bg-foreground` with
- * `text-surface`. `dividerClassName` draws every tier on the `foreground`
- * token, which here is the BACKGROUND — `border-foreground/15` on black is
- * black on black, i.e. no rule at all.
+ * `text-surface`. Every rule here therefore asks `dividerClassName` for the
+ * `inverse` surface — the tier still decides the side, the 2px width and the
+ * strength, and naming the surface picks the ink, so a single border-colour
+ * utility is emitted and nothing has to be forced with `!`.
  *
- * So the tier still decides the side, the 2px width and the strength; only the
- * hue is flipped, with the `!` marker so the outcome never depends on which of
- * two border-colour utilities Tailwind happens to emit last. A surface-aware
- * `dividerClassName` belongs in `components/ui`, which is frozen this round —
- * see the lane report.
+ * The `column` tier (~70%) between the five columns also only appears from
+ * `lg`: below that the columns stack one or two up, where a left rule would
+ * sit against the page edge instead of between two columns. `from` scopes the
+ * whole rule to that breakpoint.
  */
-const INVERSE_HUE: Record<"column" | "row", string> = {
-  column: "border-surface/70!",
-  row: "border-surface/15!",
-};
-
-/** The row tier, whole, for a row this file builds itself. */
-const ROW_RULE = cx(dividerClassName("row", "bottom"), INVERSE_HUE.row);
-
-/**
- * The `column` tier (~70%), between the five footer columns.
- *
- * Written out rather than composed from `dividerClassName`, because it must
- * only appear from `lg` — below that the columns stack one or two up, where a
- * left rule would sit against the page edge instead of between two columns,
- * and the shared helper returns an unprefixed string it cannot qualify.
- */
-const COLUMN_RULE_LEFT = "lg:border-l-2 lg:border-surface/70";
-
-/**
- * The same `column` tier as a top rule, above the legal line. Not responsive,
- * so it composes from the shared helper the way `ROW_RULE` does.
- */
-const SECTION_RULE_TOP = cx(dividerClassName("column", "top"), INVERSE_HUE.column);
+const COLUMN_RULE_LEFT = dividerClassName("column", "left", {
+  surface: "inverse",
+  from: "lg",
+});
+const SECTION_RULE_TOP = dividerClassName("column", "top", { surface: "inverse" });
 
 /**
  * Appends the blog index to the `资源` column. Never creates the column (a
@@ -112,39 +94,6 @@ function withBlogLink(
     if (column.items.some((item) => item.label === BLOG_LABEL)) return column;
     return { ...column, items: [...column.items, { label: BLOG_LABEL, href: blogHref }] };
   });
-}
-
-/**
- * The unlinked twin of `HairlineRow`.
- *
- * `HairlineRow` requires a real `href` on purpose — a row that navigates
- * nowhere is not a link. An unbuilt destination therefore gets the row's rule,
- * its 44px height and its type here, minus the chevron (there is nothing to
- * point at) and minus the anchor. The `（即将推出）` marker is the signal, so
- * the dimmed colour is never carrying the state on its own.
- */
-function FooterTextRow({
-  label,
-  note,
-  last,
-}: {
-  label: string;
-  note?: string;
-  last: boolean;
-}) {
-  return (
-    <li className="flex flex-col">
-      <span
-        className={cx(
-          "flex min-h-11 w-full items-center gap-2 py-2 text-sm font-medium text-surface/70",
-          last ? undefined : ROW_RULE,
-        )}
-      >
-        {label}
-        {note === undefined ? null : <span className={microLabelClassName()}>{note}</span>}
-      </span>
-    </li>
-  );
 }
 
 export function SiteFooter({
@@ -186,24 +135,25 @@ export function SiteFooter({
                 <HairlineList className="mt-3">
                   {column.items.map((item, itemIndex) => {
                     const last = itemIndex === column.items.length - 1;
-                    return item.href === null ? (
-                      <FooterTextRow
-                        key={`${column.title}-${item.label}`}
-                        label={item.label}
-                        note={item.note}
-                        last={last}
-                      />
-                    ) : (
+                    // A destination with no page in this phase is the row
+                    // primitive's non-link variant: same rule, same 44px
+                    // height, no chevron and no anchor. The `（即将推出）`
+                    // marker is the signal, so the dimmed colour is never
+                    // carrying the state on its own.
+                    return (
                       <HairlineRow
                         key={`${column.title}-${item.label}`}
-                        href={item.href}
+                        href={item.href ?? undefined}
                         last={last}
-                        // `HairlineRow` draws the row tier itself; only its hue
-                        // needs flipping, and on the last row (no rule) a bare
-                        // border colour paints nothing.
-                        className={INVERSE_HUE.row}
+                        surface="inverse"
+                        className={item.href === null ? "text-surface/70" : undefined}
                       >
-                        {item.label}
+                        <span className="flex min-w-0 items-center gap-2">
+                          {item.label}
+                          {item.note === undefined ? null : (
+                            <span className={microLabelClassName()}>{item.note}</span>
+                          )}
+                        </span>
                       </HairlineRow>
                     );
                   })}

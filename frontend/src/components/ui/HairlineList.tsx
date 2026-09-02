@@ -1,9 +1,9 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 import { Chevron } from "./Chevron";
 import { cx } from "./class-names";
-import { dividerClassName } from "./dividers";
+import { dividerClassName, type DividerSurface } from "./dividers";
 import { hoverRevealClassName } from "./hover";
 
 /**
@@ -32,9 +32,32 @@ export function HairlineList({ children, className }: HairlineListProps) {
   return <ul className={cx("flex flex-col", className)}>{children}</ul>;
 }
 
-export interface HairlineRowProps {
-  /** Real destination. Rows are links; a row that navigates nowhere is text. */
-  href: string;
+/**
+ * Everything else an `<a>` or a `<span>` accepts, forwarded to the ROW itself
+ * rather than to an inner wrapper — which is what lets a caller (or a test) put
+ * a `data-*` hook on the thing that actually is the row.
+ *
+ * Typed against `HTMLElement` rather than the anchor, because the same props
+ * land on a `<span>` when the row has no destination.
+ */
+type HairlineRowRest = Omit<HTMLAttributes<HTMLElement>, "children" | "className">;
+
+export interface HairlineRowProps extends HairlineRowRest {
+  /**
+   * Real destination, and the row's variant switch.
+   *
+   * A row with an `href` is a link. A row WITHOUT one is text: same rule, same
+   * 44px floor, same type — minus the chevron, because an arrow on something
+   * that navigates nowhere is a lie, and minus the anchor, because a row that
+   * navigates nowhere is not a link. That is the shape every unbuilt
+   * destination on the site needs (`（即将推出）` entries in the gallery, the
+   * model page, the prompt detail page and the footer), and it lives here so
+   * those four stop each keeping a private copy of it.
+   *
+   * The non-link row says its own state in words — the caller writes the note
+   * into `children` — so nothing here is signalled by weight or colour alone.
+   */
+  href?: string;
   children: ReactNode;
   /** Secondary text at the right — a count, a date. Optional. */
   meta?: ReactNode;
@@ -42,6 +65,8 @@ export interface HairlineRowProps {
   external?: boolean;
   /** Drop the rule under the last row of a list. */
   last?: boolean;
+  /** Surface the row's rule is drawn on. `inverse` is the footer. */
+  surface?: DividerSurface;
   className?: string;
 }
 
@@ -51,7 +76,9 @@ export function HairlineRow({
   meta,
   external = false,
   last = false,
+  surface = "canvas",
   className,
+  ...rest
 }: HairlineRowProps) {
   const body = (
     <>
@@ -61,9 +88,9 @@ export function HairlineRow({
         The chevron is the row's only decoration and never its only signal:
         the row is a link whatever the chevron is doing, and the reveal
         answers to focus as well as hover so a keyboard sees the same thing a
-        pointer does.
+        pointer does. A row with no destination has no chevron at all.
       */}
-      <Chevron className={hoverRevealClassName()} />
+      {href === undefined ? null : <Chevron className={hoverRevealClassName()} />}
     </>
   );
 
@@ -71,19 +98,29 @@ export function HairlineRow({
   // slight but must not be a slight target.
   const rowClassName = cx(
     "group flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium no-underline",
-    last ? undefined : dividerClassName("row", "bottom"),
+    last ? undefined : dividerClassName("row", "bottom", { surface }),
     className,
   );
 
   return (
     <li className="flex flex-col">
-      {external ? (
-        <a href={href} target="_blank" rel="noopener nofollow" className={rowClassName}>
+      {href === undefined ? (
+        <span {...rest} className={rowClassName}>
+          {body}
+        </span>
+      ) : external ? (
+        <a
+          {...rest}
+          href={href}
+          target="_blank"
+          rel="noopener nofollow"
+          className={rowClassName}
+        >
           {body}
           <span className="sr-only">（外部链接，新窗口打开）</span>
         </a>
       ) : (
-        <Link href={href} className={rowClassName}>
+        <Link {...rest} href={href} className={rowClassName}>
           {body}
         </Link>
       )}

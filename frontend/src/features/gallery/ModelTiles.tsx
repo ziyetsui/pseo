@@ -12,10 +12,9 @@ import {
   BrowseTileBar,
   BrowseTileCount,
   BrowseTileRank,
+  browseLayout,
   browseTileBodyClassName,
-  browseTileCellClassName,
   browseTileTitleClassName,
-  leadsGroup,
 } from "@/features/hub/browse-tile";
 import type { SectionAccent } from "@/features/hub/section-accent";
 import type { TaxonomyWithCount } from "@/lib/content/types";
@@ -68,14 +67,17 @@ export function ModelTiles({
   if (models.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   const max = models.reduce((best, model) => Math.max(best, model.count), 0);
-  const hasLead = leadsGroup(models.map((model) => model.count));
+  const layout = browseLayout(
+    models.map((model) => model.count),
+    "gallery-3",
+  );
 
   return (
-    <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
+    <ul className={className ?? layout.gridClassName}>
       {models.map((model, index) => {
         const label = termLabel(model);
         const share = max === 0 ? 0 : Math.round((model.count / max) * 100);
-        const lead = hasLead && index === 0;
+        const lead = layout.lead && index === 0;
 
         /**
          * `footer` is the tile's last line: the action row when the tile is a
@@ -104,7 +106,8 @@ export function ModelTiles({
             {/*
               One `mt-auto` per flex column: the bar and the footer travel to
               the bottom together instead of splitting the free space between
-              two auto margins.
+              two auto margins. (`ActionRow` no longer brings its own — see its
+              `pushToBottom` prop.)
             */}
             <div className="mt-auto flex flex-col gap-3">
               <BrowseTileBar share={share} accent={accent} lead={lead} />
@@ -114,7 +117,7 @@ export function ModelTiles({
         );
 
         return (
-          <li key={model.id} className={browseTileCellClassName(lead)}>
+          <li key={model.id} className={layout.cellClassName(index)}>
             {model.href === null ? (
               <div
                 data-model-tile={model.slug}

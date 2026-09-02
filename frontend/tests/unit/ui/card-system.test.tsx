@@ -9,6 +9,7 @@ import { Chevron } from "@/components/ui/Chevron";
 import { GhostNumeral } from "@/components/ui/GhostNumeral";
 import { GrowingUnderline } from "@/components/ui/GrowingUnderline";
 import { HairlineList, HairlineRow } from "@/components/ui/HairlineList";
+import { Section } from "@/components/ui/Section";
 import { Avatar, IdentityMark, monogramFrom } from "@/components/ui/IdentityMark";
 import { SpineCard } from "@/components/ui/SpineCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -72,6 +73,34 @@ describe("divider tiers", () => {
     expect(dividerClassName("row", "left")).toContain("border-l-2");
     expect(dividerClassName("card", "bottom")).not.toContain("md:border-b-4");
     expect(dividerClassName("card", "bottom", { desktopThick: true })).toContain("md:border-b-4");
+  });
+
+  it("draws the same tier in the surface's own ink, without an override", () => {
+    // A tier is a STRENGTH, not a colour. On the footer's black, 15% of
+    // `foreground` is black on black — no rule at all — so the surface picks
+    // the ink and nothing downstream has to force it with `!`.
+    const inverse = dividerClassName("row", "bottom", { surface: "inverse" });
+    expect(inverse).toContain("border-surface/15");
+    expect(inverse).not.toContain("border-foreground");
+    expect(inverse).not.toContain("!");
+    expect(dividerClassName("column", "left", { surface: "inverse" })).toContain(
+      "border-surface/70",
+    );
+  });
+
+  it("scopes a rule to a breakpoint by prefixing the width alone", () => {
+    // Tailwind's preflight zeroes every border, so a width that only exists
+    // from `lg` is a rule that only exists from `lg`; the colour needs no
+    // prefix because a 0-width border paints nothing.
+    const scoped = dividerClassName("column", "left", { surface: "inverse", from: "lg" });
+    expect(scoped).toContain("lg:border-l-2");
+    expect(scoped).not.toMatch(/(^|\s)border-l-2/);
+    expect(scoped).toContain("border-surface/70");
+  });
+
+  it("can express a four-sided frame, so a card compartment is not hand-drawn", () => {
+    expect(dividerClassName("card", "all")).toBe("border-2 border-foreground");
+    expect(dividerClassName("card", "all", { desktopThick: true })).toContain("md:border-4");
   });
 });
 
@@ -174,6 +203,19 @@ describe("Avatar", () => {
     expect(container.firstElementChild?.className).toContain("rounded-pill");
     expect(container.firstElementChild?.className).toContain("size-7");
   });
+
+  it("has a second, larger stop for a list that leads with the face", () => {
+    const { container } = render(
+      <Avatar name="ziye" src="https://example.invalid/a.jpg" size="md" />,
+    );
+    const image = container.querySelector("img");
+    // The intrinsic size follows the stop, so the box is reserved and the
+    // picture never shifts the row it sits in.
+    expect(image).toHaveAttribute("width", "40");
+    expect(image).toHaveAttribute("height", "40");
+    expect(container.firstElementChild?.className).toContain("size-10");
+    expect(container.firstElementChild?.className).toContain("rounded-pill");
+  });
 });
 
 describe("StatusBadge", () => {
@@ -248,6 +290,17 @@ describe("ActionRow", () => {
     const { container } = render(<ActionRow label="详情" divider />);
     expect(container.firstElementChild?.className).toContain("border-t-2");
   });
+
+  it("only claims the column's free space when asked to", () => {
+    // Two `mt-auto` siblings SPLIT the free space instead of pushing one block
+    // to the floor, and a browse tile's proportion bar already claims it — so
+    // the push is opt-in rather than something every caller has to undo.
+    const { container } = render(<ActionRow label="详情" />);
+    expect(container.firstElementChild?.className).not.toContain("mt-auto");
+
+    const pushed = render(<ActionRow label="详情" pushToBottom />);
+    expect(pushed.container.firstElementChild?.className).toContain("mt-auto");
+  });
 });
 
 describe("GrowingUnderline", () => {
@@ -315,6 +368,70 @@ describe("HairlineList / HairlineRow", () => {
     expect(link.className).not.toContain("border-b-2");
     expect(link).toHaveTextContent("（外部链接，新窗口打开）");
   });
+
+  it("keeps a row with no destination as text: same rule, same target, no chevron", () => {
+    const { container } = render(
+      <HairlineList>
+        <HairlineRow>全部创作者（即将推出）</HairlineRow>
+      </HairlineList>,
+    );
+
+    // Never a link, and never a `#` href standing in for one.
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
+    const row = container.querySelector("li")?.firstElementChild as HTMLElement;
+    expect(row.tagName).toBe("SPAN");
+    expect(row.className).toContain("min-h-11");
+    expect(row.className).toContain("border-b-2");
+    expect(row.className).toContain("border-foreground/15");
+    // An arrow on something that navigates nowhere is a lie.
+    expect(row.querySelector("[aria-hidden='true']")).toBeNull();
+  });
+
+  it("forwards the rest of its props to the row itself, not to an inner wrapper", () => {
+    const { container } = render(
+      <HairlineList>
+        <HairlineRow href="/zh-CN/prompts" data-model-related="kling">
+          Kling
+        </HairlineRow>
+        <HairlineRow data-usecase-more="beauty" last>
+          Beauty
+        </HairlineRow>
+      </HairlineList>,
+    );
+
+    expect(container.querySelector("a[data-model-related='kling']")).not.toBeNull();
+    expect(container.querySelector("span[data-usecase-more='beauty']")).not.toBeNull();
+  });
+});
+
+describe("Section", () => {
+  it("takes a marker beside the heading without a second heading style", () => {
+    render(
+      <Section id="band" title="按模型浏览" marker={<GhostNumeral value="03" />}>
+        <p>内容</p>
+      </Section>,
+    );
+
+    // The heading keeps its level, its id and its wording; the marker is a
+    // sibling, so it can never land on top of a description at any width.
+    const heading = screen.getByRole("heading", { level: 2, name: "按模型浏览" });
+    expect(heading.id).toBe("band");
+    const header = heading.parentElement?.parentElement as HTMLElement;
+    expect(header.querySelector(".ghost-numeral")).not.toBeNull();
+    // Decoration only: it never reaches assistive technology.
+    expect(header.querySelector(".ghost-numeral")?.getAttribute("aria-hidden")).toBe("true");
+  });
+
+  it("draws its rule at the card tier rather than writing the border out", () => {
+    render(
+      <Section id="plain" title="本期精选">
+        <p>内容</p>
+      </Section>,
+    );
+    const header = screen.getByRole("heading", { level: 2 }).parentElement
+      ?.parentElement as HTMLElement;
+    expect(header.className).toContain(dividerClassName("card", "bottom", { desktopThick: true }));
+  });
 });
 
 describe("GhostNumeral", () => {
@@ -368,6 +485,19 @@ describe("SpineCard", () => {
     const link = screen.getByRole("link", { name: "合集 A" });
     expect(link).toHaveAttribute("href", "/zh-CN/prompts?collection=a");
     expect(link.className).toContain("no-underline");
+  });
+
+  it("owns the padding of the column beside the spine", () => {
+    // The spine is full-bleed, so the card cannot carry the padding — without
+    // a slot, every caller decided a spine card's padding from outside it.
+    const { container } = render(
+      <SpineCard accent="red" bodyClassName="p-4">
+        <p>内容</p>
+      </SpineCard>,
+    );
+    const body = container.querySelector("p")?.parentElement as HTMLElement;
+    expect(body.className).toContain("p-4");
+    expect(body.className).toContain("flex-1");
   });
 
   it("is a plain card when it has no destination", () => {

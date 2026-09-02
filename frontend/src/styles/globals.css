@@ -174,15 +174,23 @@ body {
  * A `max-height` cut the monospace block mid-glyph and clipped away the
  * `<pre>`'s own bottom padding and border, so the preview ended in a torn line
  * inside a box with no floor. A line clamp ends on a whole line and leaves the
- * frame intact, which is why every collapsed prompt is now exactly seven lines
- * tall whatever it contains. The prompt itself is untouched: the full text
- * stays in the DOM for copy, selection, find-in-page and crawlers.
+ * frame intact, which is why a collapsed prompt is always a whole number of
+ * lines tall whatever it contains. The prompt itself is untouched: the full
+ * text stays in the DOM for copy, selection, find-in-page and crawlers, and
+ * the expand toggle still reveals every line of it.
+ *
+ * Four lines on a phone, seven from `sm` up. A monospace line at 375px carries
+ * roughly a third of what the same line carries on a desktop card, so seven of
+ * them is not seven lines' worth of preview — it is a 190px block repeated
+ * once per card, which is what made the hub's trending band nearly five
+ * thousand pixels tall. Four lines is still more than a title's worth of the
+ * prompt, and the card's own 展开 is one tap away.
  */
 .prompt-clamp[data-expanded="false"] > * {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
-  line-clamp: 7;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   /*
    * `hidden` clips at the PADDING box, which lets the eighth line show through
    * the block's own bottom padding — the very artefact this is here to remove.
@@ -193,6 +201,14 @@ body {
   overflow: hidden;
   overflow: clip;
   overflow-clip-margin: content-box;
+}
+
+/* `sm` — the same 40rem Tailwind's own `sm:` utilities use. */
+@media (width >= 40rem) {
+  .prompt-clamp[data-expanded="false"] > * {
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

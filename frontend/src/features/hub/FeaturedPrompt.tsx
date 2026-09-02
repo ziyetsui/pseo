@@ -1,5 +1,6 @@
 import { buttonClassName } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { dividerClassName } from "@/components/ui/dividers";
 import { MEDIA_SIZES } from "@/components/ui/media-sizes";
 import { formatCreatorHandle } from "@/lib/content";
 import type { PromptSummary } from "@/lib/content/types";
@@ -54,7 +55,8 @@ export function FeaturedPrompt({
             height={cover.height}
             label={cover.label}
             priority
-            className="border-2 border-foreground md:border-4"
+            // The card-tier frame, at the card's own 2px/4px step.
+            className={dividerClassName("card", "all", { desktopThick: true })}
           />
         )}
         <p

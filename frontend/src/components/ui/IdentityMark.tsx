@@ -96,13 +96,32 @@ export interface AvatarProps extends MarkAriaProps {
   name: string;
   /** Their picture. `null` / omitted falls back to the first character. */
   src?: string | null;
+  /**
+   * `sm` (28px, the default) sits inline with a card title; `md` (40px) is the
+   * one a list of people leads with, where the face is the thing being
+   * scanned. Two stops, not a scale: a third size would be a size nobody can
+   * tell from the other two.
+   */
+  size?: AvatarSize;
   className?: string;
 }
 
-/** The round 28px variant, for a person rather than a product. */
-export function Avatar({ name, src, label, className }: AvatarProps) {
+export type AvatarSize = "sm" | "md";
+
+/** Intrinsic pixels, so the `<img>` reserves its box and never shifts layout. */
+const AVATAR_PX: Record<AvatarSize, number> = { sm: 28, md: 40 };
+
+const AVATAR_SHELL: Record<AvatarSize, string> = {
+  sm: "size-7 text-xs",
+  md: "size-10 text-sm",
+};
+
+/** The round variant, for a person rather than a product. */
+export function Avatar({ name, src, label, size = "sm", className }: AvatarProps) {
+  const px = AVATAR_PX[size];
   const shell = cx(
-    "inline-flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-pill border-2 border-foreground bg-surface text-xs font-black",
+    "inline-flex shrink-0 items-center justify-center overflow-hidden rounded-pill border-2 border-foreground bg-surface font-black",
+    AVATAR_SHELL[size],
     className,
   );
 
@@ -123,12 +142,13 @@ export function Avatar({ name, src, label, className }: AvatarProps) {
     <span aria-hidden={label === undefined ? "true" : undefined} className={shell}>
       {/* eslint-disable-next-line @next/next/no-img-element --
           Static export with images.unoptimized: next/image adds markup and a
-          runtime here without optimising anything. 28px, so no srcSet either. */}
+          runtime here without optimising anything. 28-40px, so no srcSet
+          either. */}
       <img
         src={src}
         alt={label ?? ""}
-        width={28}
-        height={28}
+        width={px}
+        height={px}
         loading="lazy"
         decoding="async"
         referrerPolicy="no-referrer"

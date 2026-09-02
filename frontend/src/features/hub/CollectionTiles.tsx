@@ -1,18 +1,12 @@
 import { StateBlock } from "@/components/ui/StateBlock";
 import { tileShellClassName } from "@/components/ui/Card";
 import { SpineCard } from "@/components/ui/SpineCard";
-import { cx } from "@/components/ui/class-names";
 import { hoverTitleClassName } from "@/components/ui/hover";
 import { displayTitleClassName, microLabelClassName } from "@/components/ui/type-scale";
 import type { CollectionWithCount } from "@/lib/content/types";
 import { queryHref } from "@/features/search/query-links";
 
-import {
-  BrowseTileBar,
-  browseTileBodyClassName,
-  browseTileCellClassName,
-  leadsGroup,
-} from "./browse-tile";
+import { BrowseTileBar, browseLayout, browseTileBodyClassName } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
 
 export interface CollectionTilesProps {
@@ -79,33 +73,45 @@ export function CollectionTiles({
     total !== undefined && total > 0
       ? total
       : visible.reduce((best, collection) => Math.max(best, collection.count), 0);
-  const hasLead = leadsGroup(visible.map((collection) => collection.count));
+  const layout = browseLayout(
+    visible.map((collection) => collection.count),
+    "hub-3",
+  );
 
   return (
-    <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
+    <ul className={className ?? layout.gridClassName}>
       {visible.map((collection, index) => {
         const share =
           denominator === 0 ? 0 : Math.round((collection.count / denominator) * 100);
-        const lead = hasLead && index === 0;
+        const lead = layout.lead && index === 0;
 
         return (
-          <li key={collection.id} className={browseTileCellClassName(lead)}>
+          <li key={collection.id} className={layout.cellClassName(index)}>
             <SpineCard
               accent={accent}
               href={queryHref(basePath, { collection: collection.slug })}
               className={tileShellClassName}
+              bodyClassName={browseTileBodyClassName(lead)}
             >
-              <div className={cx("flex flex-1 flex-col", browseTileBodyClassName(lead))}>
-                {/* Prototype: `副标题 · N 条`. Same words, re-weighted — the
-                    subtitle stays with the title it describes, and the count is
-                    the card's label rather than its figure. */}
-                <h3 className={hoverTitleClassName(displayTitleClassName())}>
-                  {collection.title}
-                </h3>
-                <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
-                <p className={microLabelClassName("tabular-nums")}>{collection.count} 条</p>
-                <BrowseTileBar share={share} accent={accent} lead={lead} />
-              </div>
+              {/* Prototype: `副标题 · N 条`. Same words, re-weighted — the
+                  subtitle stays with the title it describes, and the count is
+                  the card's label rather than its figure. */}
+              {/* A taller clamp below `sm`: two-up, this tile has given a
+                  quarter of a 165px cell to the spine, and a 24px CJK line
+                  there holds two or three characters — the tier's usual
+                  two-line budget would cut a seven-character collection name
+                  in half, and the name is what a reader picks a collection by.
+                  It costs no height where the title already fits. */}
+              <h3
+                className={hoverTitleClassName(
+                  displayTitleClassName(undefined, { narrowLines: 4 }),
+                )}
+              >
+                {collection.title}
+              </h3>
+              <p className="text-xs font-bold tracking-wide">{collection.subtitle}</p>
+              <p className={microLabelClassName("tabular-nums")}>{collection.count} 条</p>
+              <BrowseTileBar share={share} accent={accent} lead={lead} />
             </SpineCard>
           </li>
         );

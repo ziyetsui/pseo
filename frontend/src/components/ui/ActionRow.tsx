@@ -29,6 +29,16 @@ export interface ActionRowProps {
   direction?: "right" | "down";
   /** Draw the card-tier rule above the row. */
   divider?: boolean;
+  /**
+   * Push the row to the bottom of its flex column (`mt-auto`).
+   *
+   * Opt-in, because a card usually already has ONE element claiming the free
+   * space — `BrowseTileBar` does — and two `mt-auto` siblings split it between
+   * them instead of moving one block to the floor, which is exactly the bug
+   * that made a tile's bar and its action row land at different heights in one
+   * grid row. Turn it on only where this row is the sole thing being pushed.
+   */
+  pushToBottom?: boolean;
   className?: string;
 }
 
@@ -36,12 +46,14 @@ export function ActionRow({
   label,
   direction = "right",
   divider = false,
+  pushToBottom = false,
   className,
 }: ActionRowProps) {
   return (
     <span
       className={cx(
-        "mt-auto inline-flex items-center",
+        "inline-flex items-center",
+        pushToBottom ? "mt-auto" : undefined,
         hoverGapClassName(),
         microLabelClassName(),
         divider ? dividerClassName("card", "top", { className: "pt-3" }) : undefined,

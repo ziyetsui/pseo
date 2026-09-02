@@ -358,9 +358,12 @@ describe("site chrome card-system tiers", () => {
     render(<SiteFooter variant="full" columns={columns} snapshotDate={OBSERVED_AT} />);
 
     expect(screen.queryByRole("link", { name: /全部合集/ })).not.toBeInTheDocument();
-    const text = screen.getByText("全部合集");
-    expect(text.tagName).toBe("SPAN");
-    expect(text.className).toContain("min-h-11");
+    // The shared `HairlineRow`, in its non-link variant: a `<span>` carrying
+    // the row's own 44px floor, and no chevron to promise a destination.
+    const row = screen.getByText("全部合集").closest("li")?.firstElementChild as HTMLElement;
+    expect(row.tagName).toBe("SPAN");
+    expect(row.className).toContain("min-h-11");
+    expect(row.querySelector('[aria-hidden="true"]')).toBeNull();
     // The marker is the signal; the dimmed colour never carries the state alone.
     expect(screen.getByText("（即将推出）")).toBeInTheDocument();
   });
@@ -372,8 +375,12 @@ describe("site chrome card-system tiers", () => {
     const column = heading.parentElement as HTMLElement;
     // ~70% between columns, ~15% between rows: the denser the rules, the
     // lighter they are drawn (图版 06).
+    // Only the WIDTH is breakpoint-scoped: a 0-width border paints nothing, so
+    // the surface-aware hue can stay unprefixed.
     expect(column.className).toContain("lg:border-l-2");
-    expect(column.className).toContain("lg:border-surface/70");
+    expect(column.className).toContain("border-surface/70");
+    // …and it is drawn on the footer's own ink, without a `!` override.
+    expect(column.className).not.toContain("!");
     // The first column has no rule to its left — there is no column there.
     const first = screen.getByRole("heading", { name: "按模型" }).parentElement as HTMLElement;
     expect(first.className).not.toContain("lg:border-l-2");

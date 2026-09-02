@@ -7,10 +7,9 @@ import { StateBlock } from "@/components/ui/StateBlock";
 import {
   BrowseTileBar,
   BrowseTileCount,
+  browseLayout,
   browseTileBodyClassName,
-  browseTileCellClassName,
   browseTileTitleClassName,
-  leadsGroup,
 } from "@/features/hub/browse-tile";
 import { accentFillClassName, type SectionAccent } from "@/features/hub/section-accent";
 import type { TaxonomyWithCount } from "@/lib/content/types";
@@ -60,7 +59,10 @@ export function ContentTypeTiles({
   if (types.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   const max = types.reduce((best, type) => Math.max(best, type.count), 0);
-  const hasLead = leadsGroup(types.map((type) => type.count));
+  const layout = browseLayout(
+    types.map((type) => type.count),
+    "gallery-3",
+  );
 
   // 6px of the band's accent, then the card-tier rule. `aria-hidden`: the type
   // is named in the heading right below it.
@@ -76,11 +78,11 @@ export function ContentTypeTiles({
   );
 
   return (
-    <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
+    <ul className={className ?? layout.gridClassName}>
       {types.map((type, index) => {
         const label = termLabel(type);
         const share = max === 0 ? 0 : Math.round((type.count / max) * 100);
-        const lead = hasLead && index === 0;
+        const lead = layout.lead && index === 0;
         const body = (linked: boolean) => (
           <>
             <h3
@@ -106,7 +108,7 @@ export function ContentTypeTiles({
         const inner = cx("flex flex-1 flex-col", browseTileBodyClassName(lead));
 
         return (
-          <li key={type.id} className={browseTileCellClassName(lead)}>
+          <li key={type.id} className={layout.cellClassName(index)}>
             {type.href === null ? (
               <div
                 data-content-type={type.slug}

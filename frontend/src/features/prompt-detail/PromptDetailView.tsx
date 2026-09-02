@@ -154,29 +154,19 @@ function RelatedColumn({ title, items }: { title: string; items: readonly Relate
         <HairlineList className="mt-2">
           {items.map((item, index) => {
             const last = index === items.length - 1;
-            // No destination in this phase: plain text, never a `#` link
-            // (constraint 5). `HairlineRow` requires a real href, so the
-            // non-link row is built here from the same tier and the same
-            // 44px floor, minus the chevron — an arrow on something that
+            // No destination in this phase: `HairlineRow`'s own non-link
+            // variant — same tier, same 44px floor, no chevron and no anchor,
+            // never a `#` link (constraint 5). An arrow on something that
             // navigates nowhere is a lie.
-            if (item.href === null) {
-              return (
-                <li key={item.label} className="flex flex-col">
-                  <span
-                    className={cx(
-                      "flex min-h-11 w-full items-center gap-3 py-2 text-sm font-medium",
-                      last ? undefined : dividerClassName("row", "bottom"),
-                    )}
-                  >
-                    {item.label}
-                    {item.note === undefined ? null : <span>{item.note}</span>}
-                  </span>
-                </li>
-              );
-            }
             return (
-              <HairlineRow key={item.label} href={item.href} external={item.external} last={last}>
+              <HairlineRow
+                key={item.label}
+                href={item.href ?? undefined}
+                external={item.external}
+                last={last}
+              >
                 {item.label}
+                {item.note === undefined ? null : <span>{item.note}</span>}
               </HairlineRow>
             );
           })}

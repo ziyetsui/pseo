@@ -8,10 +8,9 @@ import {
   BrowseTileBar,
   BrowseTileCount,
   BrowseTileRank,
+  browseLayout,
   browseTileBodyClassName,
-  browseTileCellClassName,
   browseTileTitleClassName,
-  leadsGroup,
 } from "./browse-tile";
 import type { SectionAccent } from "./section-accent";
 
@@ -26,6 +25,11 @@ export interface TaxonomyTilesProps {
   /** The band's accent, from `section-accent`. Colours the bar and rank marker. */
   accent?: SectionAccent;
   emptyMessage?: string;
+  /**
+   * Replaces the band's own grid classes. Overriding the COLUMN counts also
+   * invalidates the leading tile's fit rule, which is resolved against
+   * `browseLayout`'s grid — so pass this only for gap or spacing.
+   */
   className?: string;
 }
 
@@ -55,10 +59,13 @@ export function TaxonomyTiles({
   if (visible.length === 0) return <StateBlock variant="empty" message={emptyMessage} />;
 
   const max = visible.reduce((best, term) => Math.max(best, term.count), 0);
-  const hasLead = leadsGroup(visible.map((term) => term.count));
+  const layout = browseLayout(
+    visible.map((term) => term.count),
+    "hub-4",
+  );
 
   return (
-    <ul className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}>
+    <ul className={className ?? layout.gridClassName}>
       {visible.map((term, index) => {
         // `href` is only ever non-null for a term that has a real page in this
         // phase (currently: models with an L3 page) — checked directly rather
@@ -67,10 +74,10 @@ export function TaxonomyTiles({
         const href =
           term.href !== null ? term.href : queryHref(basePath, setFacet({}, axis, [term.slug]));
         const share = max === 0 ? 0 : Math.round((term.count / max) * 100);
-        const lead = hasLead && index === 0;
+        const lead = layout.lead && index === 0;
 
         return (
-          <li key={term.id} className={browseTileCellClassName(lead)}>
+          <li key={term.id} className={layout.cellClassName(index)}>
             <CardLink
               href={href}
               className={cx(tileShellClassName, browseTileBodyClassName(lead))}

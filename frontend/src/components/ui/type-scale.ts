@@ -15,15 +15,44 @@ import { cx } from "./class-names";
  * size, leading and overflow; nothing else.
  */
 
+const NARROW_CLAMP: Record<2 | 3 | 4, string> = {
+  2: "line-clamp-2",
+  3: "line-clamp-3 sm:line-clamp-2",
+  4: "line-clamp-4 sm:line-clamp-2",
+};
+
+export interface DisplayTitleOptions {
+  /**
+   * Lines the title may take BELOW `sm`; two from `sm` up either way.
+   *
+   * Two lines is a poster title's budget at a normal card width. The one
+   * reason to spend more is a phone-width half-row cell that has also given a
+   * quarter of itself to a spine: a 24px CJK line holds two or three
+   * characters there, so a two-line clamp cuts a seven-character collection
+   * name in half — and the name is the whole reason that tile exists. Four is
+   * the ceiling, and the clamp is what makes the tier safe, so it is moved,
+   * never removed. A taller clamp costs nothing where the title already fits:
+   * it truncates, it does not reserve.
+   */
+  narrowLines?: 2 | 3 | 4;
+}
+
 /**
  * Tier 1 — display. The heaviest weight, tight leading, clamped to two lines.
  *
  * The clamp is part of the tier, not an extra: a display title is only allowed
- * to be a poster because it can never grow past two lines and shove the rest
- * of the card down.
+ * to be a poster because it can never grow past a fixed number of lines and
+ * shove the rest of the card down.
  */
-export function displayTitleClassName(className?: string): string {
-  return cx("line-clamp-2 text-2xl leading-none font-black tracking-tighter md:text-3xl", className);
+export function displayTitleClassName(
+  className?: string,
+  options: DisplayTitleOptions = {},
+): string {
+  return cx(
+    NARROW_CLAMP[options.narrowLines ?? 2],
+    "text-2xl leading-none font-black tracking-tighter md:text-3xl",
+    className,
+  );
 }
 
 /**
