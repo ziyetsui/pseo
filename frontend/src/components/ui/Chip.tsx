@@ -49,6 +49,15 @@ export function chipClassName(active = false, options: ChipClassNameOptions = {}
   return cx(BASE, SIZE[size], active ? ACTIVE : IDLE, className);
 }
 
+/**
+ * The count is the chip's secondary half: one step smaller than the label, a
+ * step lighter, and set in tabular figures so a column of chips lines its
+ * numbers up instead of ragging. `opacity` rather than a grey token because the
+ * chip inverts when selected — one rule then recedes the count against both the
+ * light and the dark fill.
+ */
+const COUNT = "font-mono text-xs font-medium tabular-nums opacity-70";
+
 interface ChipContentProps {
   label: ReactNode;
   count?: number | null;
@@ -62,7 +71,7 @@ function ChipContent({ label, count, active, activeHint }: ChipContentProps) {
       {active ? <span aria-hidden="true">✓</span> : null}
       <span>{label}</span>
       {count === undefined || count === null ? null : (
-        <small className="font-mono text-xs font-bold tabular-nums">{count}</small>
+        <small className={COUNT}>{count}</small>
       )}
       {active ? <span className="sr-only">{activeHint}</span> : null}
     </>

@@ -56,4 +56,31 @@ describe("FacetChips", () => {
     expect(screen.getByRole("group", { name: "模型" })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "风格" })).toBeInTheDocument();
   });
+
+  it("gives each axis a band edge in its own colour, hidden from assistive tech", () => {
+    renderChips({});
+
+    for (const [axis, accent] of [
+      ["模型", "bg-accent-red"],
+      ["风格", "bg-foreground"],
+    ] as const) {
+      const band = screen.getByRole("group", { name: axis });
+      const edge = band.querySelector('[aria-hidden="true"]');
+      expect(edge, `${axis} has no colour edge`).not.toBeNull();
+      expect(edge).toHaveClass(accent);
+      // Decoration only: the axis is still named in text inside the band.
+      expect(edge).toHaveTextContent("");
+      expect(band).toHaveTextContent(axis);
+    }
+  });
+
+  it("keeps the axis name as plain text by default and as an h3 when the page asks", () => {
+    const { rerender } = renderChips({});
+    expect(screen.queryByRole("heading", { name: "模型" })).toBeNull();
+
+    rerender(
+      <FacetChips basePath={BASE} query={{}} groups={makeFacetGroups()} headingLevel="h3" />,
+    );
+    expect(screen.getByRole("heading", { level: 3, name: "模型" })).toBeInTheDocument();
+  });
 });

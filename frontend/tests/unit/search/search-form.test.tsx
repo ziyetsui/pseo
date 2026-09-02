@@ -59,6 +59,23 @@ describe("SearchForm", () => {
     expect(hidden(container, "q")).toEqual([]);
   });
 
+  it("puts the submit control inside the field's own frame as a solid colour block", () => {
+    const { container } = render(
+      <SearchForm basePath={BASE} query={{}} placeholder={PLACEHOLDER} />,
+    );
+
+    const input = container.querySelector('input[name="q"]');
+    const submit = screen.getByRole("button", { name: "搜索" });
+    expect(submit).toHaveAttribute("type", "submit");
+    // Flush against the input: same parent, and that parent is the bordered
+    // field — not a button floating beside it.
+    expect(submit.parentElement).toBe(input?.parentElement);
+    expect(submit.parentElement).toHaveClass("border-2", "md:border-4");
+    expect(submit).toHaveClass("bg-accent-red");
+    // Still a 44×44 target.
+    expect(submit).toHaveClass("min-h-11", "min-w-11");
+  });
+
   it.each([
     ["something is active", { q: "cat" }],
     ["nothing is active", {}],
