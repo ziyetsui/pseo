@@ -1,0 +1,16 @@
+{
+  "h1": [
+    "Nano Banana"
+  ],
+  "credits": [
+    {
+      "text": "Credit to Vincent Wu",
+      "href": "https://x.com/VincentWu11"
+    },
+    {
+      "text": "& Steve Li",
+      "href": "https://x.com/st3v3li"
+    }
+  ],
+  "overflow": false
+}

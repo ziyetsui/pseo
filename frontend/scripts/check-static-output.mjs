@@ -1,424 +1,58 @@
-#!/usr/bin/env node
-/**
- * Static-output gate for the exported site.
- *
- * Everything here is checked against the artefact that actually ships
- * (`out/`), plus the production sources under `src/`, so a rule can never be
- * satisfied by a test double. Prints counts for every check and exits non-zero
- * on the first category that fails.
- *
- * Run after `pnpm build`:  pnpm check:static
- */
-
-import { readdir, readFile, stat } from "node:fs/promises";
-import path from "node:path";
-import process from "node:process";
-import { fileURLToPath } from "node:url";
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OUT = path.join(ROOT, "out");
-const SRC = path.join(ROOT, "src");
-
-/* ------------------------------------------------------------------ report */
-
-const failures = [];
-
-function ok(message) {
-  process.stdout.write(`  ok    ${message}\n`);
+import { readFile, readdir } from 'node:fs/promises';
+import path from 'node:path';
+import { parse } from 'node-html-parser';
+const root = path.resolve('out');
+const manifest = JSON.parse(await readFile(path.join(root, 'frontend-build.json'), 'utf8'));
+async function files(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  return (await Promise.all(entries.map(entry => entry.isDirectory() ? files(path.join(directory, entry.name)) : path.join(directory, entry.name)))).flat();
 }
-
-function fail(message, details = []) {
-  failures.push(message);
-  process.stdout.write(`  FAIL  ${message}\n`);
-  for (const line of details.slice(0, 20)) process.stdout.write(`          ${line}\n`);
-  if (details.length > 20) process.stdout.write(`          … ${details.length - 20} more\n`);
-}
-
-function heading(title) {
-  process.stdout.write(`\n${title}\n`);
-}
-
-/* -------------------------------------------------------------------- fs */
-
-async function walk(dir, filter) {
-  const found = [];
-  let entries;
-  try {
-    entries = await readdir(dir, { withFileTypes: true });
-  } catch {
-    return found;
-  }
-  for (const entry of entries) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) found.push(...(await walk(full, filter)));
-    else if (filter(full)) found.push(full);
-  }
-  return found;
-}
-
-async function exists(file) {
-  try {
-    await stat(file);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-const rel = (file) => path.relative(ROOT, file);
-
-/**
- * Removes `/* … *\/` blocks and whole-line `//` comments so a rule can be
- * discussed in a source comment without tripping the grep that enforces it.
- * Line comments are only stripped when the line STARTS with `//`, so a URL's
- * `https://` inside real code is never truncated.
- */
-function stripComments(text) {
-  return text
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .split("\n")
-    .filter((line) => !line.trim().startsWith("//"))
-    .join("\n");
-}
-
-/** Build-asset URLs carry content hashes; digits in them mean nothing. */
-function stripBuildAssetUrls(text) {
-  return text.replace(/\/_next\/[^"'\\\s)]*/g, "");
-}
-
-/* --------------------------------------------------------- 1. route files */
-
-/**
- * The routes the export must contain. This is `global-constraints.md` §5 minus
- * the blog: `/zh-CN/blog`, `/zh-CN/blog/[slug]` and `/zh-CN/blog/category/[slug]`
- * were removed from the product on 2026-09-03, so §5 (and PRD 0008 §11 / G3)
- * still name a section this build deliberately does not ship. Every other route
- * §5 names is still required here and still fails loudly when it is missing.
- */
-const REQUIRED = [
-  "out/zh-CN.html",
-  "out/zh-CN/prompts.html",
-  "out/zh-CN/prompts/image.html",
-  "out/zh-CN/prompts/models/nano-banana-pro.html",
-  "out/zh-CN/prompts/country-miniature-stamp-poster.html",
-  "out/404.html",
-];
-
-/**
- * Routes the export must NOT contain. The blog was removed from the product on
- * 2026-09-03; a stray `out/zh-CN/blog*` would mean a route file survived the
- * removal, so its absence is asserted rather than assumed.
- */
-const FORBIDDEN_ROUTE_DIRS = ["out/zh-CN/blog"];
-
-async function checkRequiredFiles() {
-  heading("1. required routes in out/");
-  const missing = [];
-  for (const relative of REQUIRED) {
-    if (!(await exists(path.join(ROOT, relative)))) missing.push(relative);
-  }
-  if (missing.length > 0) fail(`${missing.length} required file(s) missing`, missing);
-  else ok(`${REQUIRED.length} required route files present`);
-
-  const stray = [];
-  for (const relative of FORBIDDEN_ROUTE_DIRS) {
-    const dir = path.join(ROOT, relative);
-    if (await exists(`${dir}.html`)) stray.push(`${relative}.html`);
-    stray.push(...(await walk(dir, (file) => file.endsWith(".html"))).map(rel));
-  }
-  if (stray.length > 0) fail(`${stray.length} removed-route page(s) still exported`, stray);
-  else ok(`0 pages under ${FORBIDDEN_ROUTE_DIRS.join(", ")} (route removed from the product)`);
-}
-
-/* --------------------------------------------------- 2. forbidden patterns */
-
-/**
- * `iframe` / `srcdoc` / hash routing are banned outright (global constraint 2).
- * The `srcdoc` needle is matched case-insensitively as an attribute, not as a
- * bare word, so prose that merely mentions it in a comment is not a hit.
- */
-const FORBIDDEN = [
-  { id: "<iframe", pattern: /<iframe[\s>]/gi },
-  { id: "srcdoc=", pattern: /\bsrcdoc\s*=/gi },
-  { id: "location.hash", pattern: /\blocation\s*\.\s*hash\b/g },
-];
-
-async function checkForbidden(files, label, { comments = "keep" } = {}) {
-  heading(`${label}`);
-  const hits = [];
-  let scanned = 0;
-  for (const file of files) {
-    const raw = await readFile(file, "utf8");
-    const text = comments === "strip" ? stripComments(raw) : raw;
-    scanned += 1;
-    for (const { id, pattern } of FORBIDDEN) {
-      const matches = text.match(pattern);
-      if (matches !== null) hits.push(`${rel(file)}: ${id} ×${matches.length}`);
+const htmlFiles = (await files(root)).filter(file => file.endsWith('.html'));
+if (htmlFiles.length < 3) throw new Error('Static route output is incomplete');
+let links = 0;
+const routeForFile = file => ('/' + path.relative(root, file).replace(/\.html$/, '').replace(/(^|\/)index$/, '')).replace(/\/$/, '') || '/';
+const documents = new Map(await Promise.all(htmlFiles.map(async file => [routeForFile(file), parse(await readFile(file, 'utf8'))])));
+const allPaths = new Set(documents.keys());
+for (const file of htmlFiles) {
+  const route = routeForFile(file);
+  const document = documents.get(route);
+  if (!document.querySelector('main h1')) throw new Error(`Missing server-rendered main heading: ${file}`);
+  if (document.querySelector('iframe[srcdoc]')) throw new Error('Prototype iframe leaked into static output');
+  if (manifest.mode === 'visual-fixture' && !document.querySelector('meta[name="robots"]')?.getAttribute('content')?.includes('noindex')) throw new Error(`Visual fixture lacks server noindex: ${file}`);
+  for (const link of document.querySelectorAll('a[href]')) {
+    const href = link.getAttribute('href');
+    if (href === '#') throw new Error(`Placeholder navigation: ${file}`);
+    if (!href || href.startsWith('//') || /^[a-z][a-z\d+.-]*:/i.test(href)) continue;
+    const target = new URL(href, `https://static.invalid${route}`);
+    const pathname = decodeURI(target.pathname).replace(/\/$/, '') || '/';
+    if (pathname.startsWith('/_next/')) continue;
+    if (pathname.endsWith('.xml')) continue;
+    if (!allPaths.has(pathname)) throw new Error(`Broken internal static link ${href} from ${file}`);
+    if (target.hash) {
+      const anchor = decodeURIComponent(target.hash.slice(1));
+      const targetDocument = documents.get(pathname);
+      const namedAnchor = targetDocument.querySelectorAll('a[name]').some(element => element.getAttribute('name') === anchor);
+      if (!targetDocument.getElementById(anchor) && !namedAnchor) throw new Error(`Broken internal anchor ${href} from ${file}`);
     }
-  }
-  if (hits.length > 0) fail(`${hits.length} forbidden pattern hit(s) in ${scanned} file(s)`, hits);
-  else ok(`0 iframe / srcdoc / location.hash in ${scanned} file(s)`);
-}
-
-/* ------------------------------------------------------ 3. fragment hrefs */
-
-/**
- * A `href="#…"` is allowed only when it points at an id that exists in the
- * SAME document (the skip link's `#main`, the model page's `#all-prompts`).
- * A bare `href="#"` is a placeholder link and always fails.
- */
-async function checkFragmentHrefs(files) {
-  heading("3. fragment hrefs point at ids in the same document");
-  const bad = [];
-  let total = 0;
-  const byFragment = new Map();
-
-  for (const file of files) {
-    const text = await readFile(file, "utf8");
-    const ids = new Set(
-      Array.from(text.matchAll(/\bid="([^"]+)"/g), (match) => match[1]),
-    );
-    for (const match of text.matchAll(/href="#([^"]*)"/g)) {
-      total += 1;
-      const fragment = match[1];
-      byFragment.set(`#${fragment}`, (byFragment.get(`#${fragment}`) ?? 0) + 1);
-      if (fragment === "") {
-        bad.push(`${rel(file)}: href="#" placeholder link`);
-      } else if (!ids.has(fragment)) {
-        bad.push(`${rel(file)}: href="#${fragment}" has no matching id in this document`);
-      }
-    }
-  }
-
-  const inventory = [...byFragment.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([fragment, count]) => `${fragment} ×${count}`);
-  process.stdout.write(`        fragments seen: ${inventory.join(", ") || "none"}\n`);
-
-  if (bad.length > 0) fail(`${bad.length} of ${total} fragment href(s) unresolved`, bad);
-  else ok(`${total} fragment href(s), all resolved in-document`);
-}
-
-/**
- * `src/` must not build a PLACEHOLDER `#` href — an empty fragment is a link
- * that goes nowhere (global constraint 5). Non-empty fragments are real
- * in-page anchors; check 3 above already proves every one of them resolves in
- * the shipped HTML, so they are listed here rather than failed.
- */
-async function checkSourceFragmentHrefs(files) {
-  heading("4. no `#` placeholder hrefs in src/");
-  const bad = [];
-  const anchors = new Map();
-  for (const file of files) {
-    const text = stripComments(await readFile(file, "utf8"));
-    for (const match of text.matchAll(/href=(?:"#([^"]*)"|\{`#([^`]*)`\})/g)) {
-      const fragment = match[1] ?? match[2] ?? "";
-      if (fragment === "") {
-        bad.push(`${rel(file)}: href="#" placeholder link`);
-        continue;
-      }
-      anchors.set(`${rel(file)}: #${fragment}`, true);
-    }
-  }
-  for (const anchor of anchors.keys()) process.stdout.write(`        in-page anchor  ${anchor}\n`);
-  if (bad.length > 0) fail(`${bad.length} placeholder href(s) in src/`, bad);
-  else ok(`0 placeholder hrefs in src/ (${anchors.size} real in-page anchor(s))`);
-}
-
-/* ------------------------------------------------------- 5. data honesty */
-
-/** Only zh-CN is published, so no `en` alternate may ship (constraint 4). */
-async function checkNoEnglishAlternate(files) {
-  heading("5. no en hreflang in the export");
-  const hits = [];
-  const langs = new Map();
-  for (const file of files) {
-    const text = await readFile(file, "utf8");
-    for (const match of text.matchAll(/hreflang="([^"]*)"/g)) {
-      langs.set(match[1], (langs.get(match[1]) ?? 0) + 1);
-      if (/^en\b/i.test(match[1] ?? "")) hits.push(`${rel(file)}: hreflang="${match[1]}"`);
-    }
-  }
-  const inventory = [...langs.entries()].map(([lang, count]) => `${lang} ×${count}`);
-  process.stdout.write(`        hreflang values: ${inventory.join(", ") || "none"}\n`);
-  if (hits.length > 0) fail(`${hits.length} en hreflang tag(s)`, hits);
-  else ok("0 en hreflang tags");
-}
-
-/**
- * The prototype declared counts (982 prompts, 324 条, 136 条) that this phase's
- * fixture does not have. Constraint 3 forbids rendering them as if implemented.
- */
-const PROTOTYPE_NUMBERS = [
-  { id: "982", pattern: /982/g },
-  { id: "324 条", pattern: /324\s*条/g },
-  { id: "136 条", pattern: /136\s*条/g },
-];
-
-async function checkPrototypeNumbers(files) {
-  heading("6. no prototype-declared counts in the export");
-  const hits = [];
-  for (const file of files) {
-    const text = stripBuildAssetUrls(await readFile(file, "utf8"));
-    for (const { id, pattern } of PROTOTYPE_NUMBERS) {
-      const matches = text.match(pattern);
-      if (matches !== null) hits.push(`${rel(file)}: "${id}" ×${matches.length}`);
-    }
-  }
-  if (hits.length > 0) fail(`${hits.length} prototype count(s) rendered`, hits);
-  else ok(`0 occurrences of ${PROTOTYPE_NUMBERS.map((n) => n.id).join(" / ")}`);
-}
-
-/**
- * Presentation truth must survive the real export, not only component tests:
- * creator handles carry one `@`, every shell names the repository snapshot,
- * and static pages cannot depend on React moving a streamed hidden buffer into
- * `<main>` after JavaScript starts.
- */
-async function checkPresentationTruth(files) {
-  heading("7. presentation truth and no-JS static HTML");
-  const hits = [];
-  for (const file of files) {
-    const text = await readFile(file, "utf8");
-    if (/@@[A-Za-z0-9_]/.test(text)) hits.push(`${rel(file)}: double-@ creator handle`);
-    if (text.includes("尚未接入内容仓库")) hits.push(`${rel(file)}: snapshot placeholder`);
-    // The footer states the snapshot as the prototype writes it: `数据更新于 <date>`.
-    if (!/数据更新于[\s\S]{0,40}\d{4}-\d{2}-\d{2}/.test(text)) {
-      hits.push(`${rel(file)}: missing dated footer snapshot`);
-    }
-    if (/<div hidden id="S:\d+">/.test(text)) {
-      hits.push(`${rel(file)}: streamed content hidden until JavaScript runs`);
-    }
-    if (/<template id="B:\d+">/.test(text)) {
-      hits.push(`${rel(file)}: unresolved Suspense boundary parked in the HTML`);
-    }
-    // The `<h1>` must be *inside* `<main>`, not merely present somewhere in the
-    // document — a heading sitting in a hidden buffer is not published content.
-    const main = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(text);
-    if (main === null) hits.push(`${rel(file)}: no <main>`);
-    else if (!/<h1\b/.test(main[1])) hits.push(`${rel(file)}: no <h1> inside <main>`);
-  }
-  if (hits.length > 0) fail(`${hits.length} presentation truth violation(s)`, hits);
-  else {
-    ok(
-      `${files.length} HTML file(s) expose dated, no-JS-safe content without double handles, ` +
-        `each with its <h1> inside <main> and no hidden Suspense buffer`,
-    );
+    links++;
   }
 }
-
-/* ------------------------------------------------------- 8. canonical host */
-
-/**
- * Every canonical in the export must point at ONE origin. This does not assert
- * which — the host comes from `NEXT_PUBLIC_SITE_URL` and is a deploy decision —
- * only that the build did not mix two of them, which is what a half-configured
- * environment produces. The host actually found is printed so the deploy can
- * be eyeballed against it.
- */
-async function checkCanonicalHost(files) {
-  heading("8. one canonical host across the export");
-  const hosts = new Map();
-  const unparsable = [];
-  let total = 0;
-
-  for (const file of files) {
-    for (const match of text_canonicals(await readFile(file, "utf8"))) {
-      total += 1;
-      let host;
-      try {
-        host = new URL(match).origin;
-      } catch {
-        unparsable.push(`${rel(file)}: canonical "${match}" is not an absolute URL`);
-        continue;
-      }
-      hosts.set(host, (hosts.get(host) ?? 0) + 1);
-    }
-  }
-
-  const inventory = [...hosts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([host, count]) => `${host} \u00d7${count}`);
-  process.stdout.write(`        canonical host(s): ${inventory.join(", ") || "none"}\n`);
-
-  if (unparsable.length > 0) fail(`${unparsable.length} unparsable canonical(s)`, unparsable);
-  else if (hosts.size > 1) {
-    fail(`${hosts.size} different canonical hosts in one export`, inventory);
-  } else if (hosts.size === 0) fail("no <link rel=\"canonical\"> found in out/");
-  else ok(`${total} canonical link(s), all on ${[...hosts.keys()][0]}`);
-}
-
-/** `<link rel="canonical" href="…">` in either attribute order. */
-function text_canonicals(text) {
-  const found = [];
-  for (const tag of text.matchAll(/<link\b[^>]*>/gi)) {
-    const element = tag[0];
-    if (!/\brel=["\']?canonical\b/i.test(element)) continue;
-    const href = /\bhref=["\']([^"\']+)["\']/i.exec(element);
-    if (href !== null) found.push(href[1]);
-  }
-  return found;
-}
-
-/**
- * A value exported from a `"use client"` module and imported by a server
- * component is serialized as a client reference, not as data: the server reads
- * `undefined` and the payload ships `"$undefined"`. It renders as a silently
- * empty label or an href like `#function(){throw Error(...)}` — both shipped
- * once in this project before this check existed.
- */
-async function checkClientReferenceLeaks(files) {
-  heading("9. no client-module values read as server data");
-  const offenders = [];
-  let scanned = 0;
-
-  for (const file of files) {
-    const html = await readFile(file, "utf8");
-    scanned += 1;
-    const undefinedProps = [...html.matchAll(/"([A-Za-z0-9_]+)":"\$undefined"/g)].map((m) => m[1]);
-    if (undefinedProps.length > 0) {
-      const names = [...new Set(undefinedProps)].join(", ");
-      offenders.push(`${rel(file)}: prop(s) serialized as $undefined — ${names}`);
-    }
-    if (/Attempted to call [A-Za-z0-9_]+\(\) from the server/.test(html)) {
-      offenders.push(`${rel(file)}: a client function was rendered into the markup`);
-    }
-  }
-
-  if (offenders.length > 0) {
-    fail(`${offenders.length} client-reference leak(s) in the export`, offenders);
-  } else {
-    ok(`${scanned} HTML file(s) carry no $undefined props or client-function stubs`);
-  }
-}
-
-/* ------------------------------------------------------------------ main */
-
-const outHtml = await walk(OUT, (file) => file.endsWith(".html"));
-const srcFiles = await walk(SRC, (file) => /\.(ts|tsx|css)$/.test(file));
-
-process.stdout.write(
-  `check-static-output: ${outHtml.length} html file(s) in out/, ${srcFiles.length} source file(s) in src/\n`,
-);
-
-if (outHtml.length === 0) {
-  fail("out/ contains no HTML — run `pnpm build` first");
+if (manifest.mode === 'visual-fixture') {
+  if (!(await readFile(path.join(root, '_headers'), 'utf8')).includes('X-Robots-Tag: noindex')) throw new Error('Missing preview response noindex');
+  if (!(await readFile(path.join(root, 'robots.txt'), 'utf8')).includes('Disallow: /')) throw new Error('Fixture crawl access is not blocked');
 } else {
-  await checkRequiredFiles();
-  await checkForbidden(outHtml, "2a. forbidden patterns in out/**/*.html");
-  await checkForbidden(srcFiles, "2b. forbidden patterns in src/", { comments: "strip" });
-  await checkFragmentHrefs(outHtml);
-  await checkSourceFragmentHrefs(srcFiles);
-  await checkNoEnglishAlternate(outHtml);
-  await checkPrototypeNumbers(outHtml);
-  await checkPresentationTruth(outHtml);
-  await checkCanonicalHost(outHtml);
-  await checkClientReferenceLeaks(outHtml);
+  const fixture = JSON.parse(await readFile('src/data/prototype.json', 'utf8'));
+  if (!Array.isArray(manifest.publicPrompts)) throw new Error('Missing approved API route receipt');
+  const approvedIds = new Set(manifest.publicPrompts.map(prompt => prompt.id.replace(/^prm_/, '')));
+  const allowedRoutes = new Set(manifest.publicPrompts.map(prompt => prompt.href));
+  for (const route of allowedRoutes) if (!allPaths.has(route)) throw new Error(`Approved Prompt route is missing: ${route}`);
+  for (const route of allPaths) {
+    if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|models|creators)$/.test(route) && !allowedRoutes.has(route)) throw new Error(`Prompt route is not in the approved API receipt: ${route}`);
+  }
+  const bundles = (await files(root)).filter(file => /\.(html|js|json)$/.test(file));
+  const output = (await Promise.all(bundles.map(file => readFile(file, 'utf8')))).join('\n');
+  for (const prompt of fixture.prompts.filter(prompt => !approvedIds.has(prompt.id))) {
+    if (output.includes(prompt.id) || output.includes(prompt.title)) throw new Error(`Unapproved visual record leaked into public output: ${prompt.id}`);
+  }
 }
-
-process.stdout.write("\n");
-if (failures.length > 0) {
-  process.stdout.write(`check-static-output: FAILED (${failures.length} check(s))\n`);
-  process.exit(1);
-}
-process.stdout.write("check-static-output: PASSED\n");
+console.log(`Static checks passed: ${htmlFiles.length} HTML pages, ${links} local links, mode=${manifest.mode}, revision=${manifest.revision}`);

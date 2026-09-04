@@ -1,0 +1,92 @@
+[
+  {
+    "url": "http://127.0.0.1:8765/l4.html",
+    "compatMode": "BackCompat",
+    "form": {
+      "height": 111.234375,
+      "marginTop": "0px",
+      "marginBottom": "15px",
+      "padding": "0px",
+      "lineHeight": "24px",
+      "fontSize": "15px",
+      "display": "block"
+    },
+    "fieldset": {
+      "height": 111.234375,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "14px",
+      "lineHeight": "24px",
+      "fontSize": "15px",
+      "display": "block"
+    },
+    "legend": {
+      "height": 24.75,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "0px 0px 9px",
+      "lineHeight": "15.75px",
+      "fontSize": "10.5px",
+      "display": "block"
+    },
+    "varLabel": {
+      "height": 14.484375,
+      "marginTop": "0px",
+      "marginBottom": "9px",
+      "padding": "0px",
+      "lineHeight": "15.75px",
+      "fontSize": "10.5px",
+      "display": "block"
+    },
+    "varopts": {
+      "height": 34,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "0px",
+      "lineHeight": "24px",
+      "fontSize": "15px",
+      "display": "flex"
+    }
+  },
+  {
+    "url": "http://127.0.0.1:3000/zh-CN/prompts/country-miniature-stamp-poster",
+    "compatMode": "CSS1Compat",
+    "form": null,
+    "fieldset": {
+      "height": 112.5,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "14px",
+      "lineHeight": "24px",
+      "fontSize": "15px",
+      "display": "block"
+    },
+    "legend": {
+      "height": 24.75,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "0px 0px 9px",
+      "lineHeight": "15.75px",
+      "fontSize": "10.5px",
+      "display": "block"
+    },
+    "varLabel": {
+      "height": 15.75,
+      "marginTop": "0px",
+      "marginBottom": "9px",
+      "padding": "0px",
+      "lineHeight": "15.75px",
+      "fontSize": "10.5px",
+      "display": "block"
+    },
+    "varopts": {
+      "height": 34,
+      "marginTop": "0px",
+      "marginBottom": "0px",
+      "padding": "0px",
+      "lineHeight": "24px",
+      "fontSize": "15px",
+      "display": "flex"
+    }
+  }
+]

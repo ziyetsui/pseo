@@ -1,0 +1,430 @@
+name: sync CMS public snapshot
+
+on:
+  schedule:
+    - cron: '23 */4 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - cms-publication-approved
+      - cms-publication-takedown
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prompt-lab-cms-mirror-main
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.repository == 'ziyetsui/prompt-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      base_sha: ${{ steps.package.outputs.base_sha }}
+      bundle_sha256: ${{ steps.package.outputs.bundle_sha256 }}
+      changed: ${{ steps.changes.outputs.changed }}
+      export_revision: ${{ steps.package.outputs.export_revision }}
+      head_sha: ${{ steps.package.outputs.head_sha }}
+      manifest_sha256: ${{ steps.package.outputs.manifest_sha256 }}
+      metadata_sha256: ${{ steps.package.outputs.metadata_sha256 }}
+    steps:
+      - name: Check out observed main without stored credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Record observed main and immutable revision history
+        id: base
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git log --first-parent --format='%(trailers:key=CMS-Export-Revision,valueonly)' HEAD > "$RUNNER_TEMP/prompt-lab-seen-revisions.txt"
+
+      # This token-bearing step executes only pinned workflow text and curl. It
+      # never runs scripts from the checked-out repository.
+      - name: Fetch immutable CMS snapshot with read-only credential
+        shell: bash
+        env:
+          CMS_SNAPSHOT_URL: ${{ vars.CMS_SNAPSHOT_URL }}
+          CMS_SNAPSHOT_TOKEN: ${{ secrets.CMS_SNAPSHOT_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          test -n "$CMS_SNAPSHOT_URL"
+          [[ "$CMS_SNAPSHOT_TOKEN" =~ ^[A-Za-z0-9._~-]{32,512}$ ]]
+          if [[ -n "$CF_ACCESS_CLIENT_ID" || -n "$CF_ACCESS_CLIENT_SECRET" ]]; then
+            test -n "$CF_ACCESS_CLIENT_ID"
+            test -n "$CF_ACCESS_CLIENT_SECRET"
+            [[ "$CF_ACCESS_CLIENT_ID" =~ ^[a-f0-9]{32}\.access$ ]]
+            if [[ "$CF_ACCESS_CLIENT_SECRET" =~ ^[a-f0-9]{64}$ ]]; then
+              :
+            else
+              [[ "$CF_ACCESS_CLIENT_SECRET" =~ ^cfast_[A-Za-z0-9]{48}$ ]]
+            fi
+          fi
+          node --input-type=module -e '
+            import { lookup } from "node:dns/promises";
+            import { writeFile } from "node:fs/promises";
+            import { BlockList, isIP } from "node:net";
+            const value = process.env.CMS_SNAPSHOT_URL;
+            let url;
+            try { url = new URL(value); } catch { process.exit(2); }
+            const host = url.hostname.replace(/^\[|\]$/g, "").replace(/\.+$/g, "").toLowerCase();
+            const ip = isIP(host);
+            const denied = new BlockList();
+            for (const [network, prefix] of [
+              ["0.0.0.0", 8], ["10.0.0.0", 8], ["100.64.0.0", 10], ["127.0.0.0", 8],
+              ["169.254.0.0", 16], ["172.16.0.0", 12], ["192.0.0.0", 24], ["192.0.2.0", 24],
+              ["192.31.196.0", 24], ["192.52.193.0", 24], ["192.88.99.0", 24], ["192.168.0.0", 16],
+              ["192.175.48.0", 24], ["198.18.0.0", 15], ["198.51.100.0", 24], ["203.0.113.0", 24],
+              ["224.0.0.0", 4], ["240.0.0.0", 4],
+            ]) denied.addSubnet(network, prefix, "ipv4");
+            for (const [network, prefix] of [
+              ["::", 96], ["::ffff:0:0", 96], ["64:ff9b::", 96], ["64:ff9b:1::", 48],
+              ["100::", 64], ["2001::", 23], ["2001:db8::", 32], ["2002::", 16],
+              ["3fff::", 20], ["fc00::", 7], ["fe80::", 10], ["ff00::", 8],
+            ]) denied.addSubnet(network, prefix, "ipv6");
+            const blocked = (address) => {
+              const kind = isIP(address);
+              return kind === 0 || denied.check(address, kind === 4 ? "ipv4" : "ipv6");
+            };
+            const localName = host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || host.endsWith(".internal") || (!ip && !host.includes("."));
+            if (url.protocol !== "https:" || url.username || url.password || url.hash || url.hostname.endsWith(".") || localName) process.exit(2);
+            const addresses = ip ? [{ address: host }] : await lookup(host, { all: true, verbatim: true });
+            if (addresses.length === 0 || addresses.some(({ address }) => blocked(address))) process.exit(2);
+            const port = url.port || "443";
+            const lines = addresses.map(({ address }) => `resolve = "${host}:${port}:${address.includes(":") ? `[${address}]` : address}"`).join("\n");
+            await writeFile(`${process.env.RUNNER_TEMP}/prompt-lab-curl-resolve.conf`, `${lines}\n`, { mode: 0o600 });
+          '
+          umask 077
+          auth_config="$RUNNER_TEMP/prompt-lab-curl-auth.conf"
+          resolve_config="$RUNNER_TEMP/prompt-lab-curl-resolve.conf"
+          snapshot_file="$RUNNER_TEMP/prompt-lab-cms-snapshot.json"
+          trap 'rm -f "$auth_config" "$resolve_config"' EXIT
+          printf 'header = "Authorization: Bearer %s"\n' "$CMS_SNAPSHOT_TOKEN" > "$auth_config"
+          if [[ -n "$CF_ACCESS_CLIENT_ID" ]]; then
+            printf 'header = "CF-Access-Client-Id: %s"\n' "$CF_ACCESS_CLIENT_ID" >> "$auth_config"
+            printf 'header = "CF-Access-Client-Secret: %s"\n' "$CF_ACCESS_CLIENT_SECRET" >> "$auth_config"
+          fi
+          curl --disable \
+            --config "$auth_config" \
+            --config "$resolve_config" \
+            --connect-timeout 10 \
+            --fail \
+            --max-filesize 50331648 \
+            --max-redirs 0 \
+            --max-time 30 \
+            --noproxy '*' \
+            --output "$snapshot_file" \
+            --proto '=https' \
+            --silent \
+            --show-error \
+            "$CMS_SNAPSHOT_URL"
+
+      - name: Validate and transactionally apply snapshot without credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/sync-cms-snapshot.mjs \
+            --root . \
+            --snapshot-file "$RUNNER_TEMP/prompt-lab-cms-snapshot.json" \
+            --seen-revisions-stdin < "$RUNNER_TEMP/prompt-lab-seen-revisions.txt"
+          node scripts/sync-cms-snapshot.mjs --root . --verify-worktree
+
+      - name: Stage and verify the prospective Git index
+        id: changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --name-only -z | node scripts/sync-cms-snapshot.mjs --check-paths
+          node scripts/sync-cms-snapshot.mjs --root . --verify-git-index
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          node --input-type=module -e 'import { createHash } from "node:crypto"; import { appendFileSync, readFileSync } from "node:fs"; const bytes = readFileSync("mirror-manifest.json"); const manifest = JSON.parse(bytes); const hash = `sha256:${createHash("sha256").update(bytes).digest("hex")}`; appendFileSync(process.env.GITHUB_OUTPUT, `export_revision=${manifest.exportRevision}\nexporter_version=${manifest.exporterVersion}\nmanifest_sha256=${hash}\n`);'
+
+      - name: Commit verified generated tree without credentials
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        env:
+          EXPORT_REVISION: ${{ steps.changes.outputs.export_revision }}
+          EXPORTER_VERSION: ${{ steps.changes.outputs.exporter_version }}
+          MANIFEST_SHA256: ${{ steps.changes.outputs.manifest_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPORT_REVISION" =~ ^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$ ]]
+          [[ "$EXPORTER_VERSION" =~ ^[A-Za-z0-9][A-Za-z0-9._+-]{0,63}$ ]]
+          [[ "$MANIFEST_SHA256" =~ ^sha256:[a-f0-9]{64}$ ]]
+          git config user.name 'prompt-lab-mirror[bot]'
+          git config user.email 'prompt-lab-mirror[bot]@users.noreply.github.com'
+          trailers=$(printf '%s\n' \
+            "CMS-Export-Revision: $EXPORT_REVISION" \
+            "Mirror-Manifest-SHA256: $MANIFEST_SHA256" \
+            "Exporter-Version: $EXPORTER_VERSION" \
+            "Trigger: $GITHUB_EVENT_NAME")
+          git -c core.hooksPath=/dev/null commit \
+            -m "Mirror CMS snapshot $EXPORT_REVISION" \
+            -m "$trailers"
+          node scripts/sync-cms-snapshot.mjs --root . --verify-git-tree
+
+      - name: Package inert one-commit Git bundle
+        if: steps.changes.outputs.changed == 'true'
+        id: package
+        shell: bash
+        env:
+          BASE_SHA: ${{ steps.base.outputs.sha }}
+          EXPORT_REVISION: ${{ steps.changes.outputs.export_revision }}
+          MANIFEST_SHA256: ${{ steps.changes.outputs.manifest_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$BASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$EXPORT_REVISION" =~ ^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$ ]]
+          [[ "$MANIFEST_SHA256" =~ ^sha256:[a-f0-9]{64}$ ]]
+          artifact_root="$RUNNER_TEMP/prompt-lab-mirror-artifact"
+          mkdir -m 700 "$artifact_root"
+          head_sha=$(git rev-parse HEAD)
+          test "$(git rev-parse HEAD^)" = "$BASE_SHA"
+          git bundle create "$artifact_root/mirror-update.bundle" HEAD "^$BASE_SHA"
+          bundle_sha256=$(sha256sum "$artifact_root/mirror-update.bundle" | cut -d' ' -f1)
+          printf '%s\n' \
+            'schema_version=1' \
+            'repository=ziyetsui/prompt-lab' \
+            "base_sha=$BASE_SHA" \
+            "head_sha=$head_sha" \
+            "export_revision=$EXPORT_REVISION" \
+            "manifest_sha256=$MANIFEST_SHA256" \
+            "bundle_sha256=$bundle_sha256" \
+            > "$artifact_root/mirror-update.meta"
+          metadata_sha256=$(sha256sum "$artifact_root/mirror-update.meta" | cut -d' ' -f1)
+          echo "base_sha=$BASE_SHA" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
+          echo "export_revision=$EXPORT_REVISION" >> "$GITHUB_OUTPUT"
+          echo "manifest_sha256=$MANIFEST_SHA256" >> "$GITHUB_OUTPUT"
+          echo "bundle_sha256=$bundle_sha256" >> "$GITHUB_OUTPUT"
+          echo "metadata_sha256=$metadata_sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Upload inert mirror bundle
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: prompt-lab-mirror-update-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/prompt-lab-mirror-artifact
+          compression-level: 0
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 1
+
+      - name: Remove fetched snapshot
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/prompt-lab-cms-snapshot.json" "$RUNNER_TEMP/prompt-lab-seen-revisions.txt"
+
+  push:
+    needs: prepare
+    if: needs.prepare.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # This pinned action receives no repository write credential and extracts
+      # only inert data into RUNNER_TEMP. This job never checks out repository code.
+      - name: Download inert mirror bundle
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: prompt-lab-mirror-update-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/prompt-lab-mirror-artifact
+
+      # Only this final step receives the repository-scoped SSH deploy key.
+      # It executes trusted inline Python and system Git/OpenSSH only.
+      - name: Verify inert bundle and compare-and-swap fast-forward main
+        shell: /bin/bash --noprofile --norc -euo pipefail {0}
+        env:
+          BASH_ENV: /dev/null
+          ENV: /dev/null
+          GIT_CONFIG_GLOBAL: /dev/null
+          GIT_CONFIG_NOSYSTEM: '1'
+          GIT_TERMINAL_PROMPT: '0'
+          HOME: ${{ runner.temp }}/prompt-lab-clean-home
+          LD_PRELOAD: ''
+          NODE_OPTIONS: ''
+          PATH: /usr/bin:/bin
+          PYTHONHOME: ''
+          PYTHONPATH: ''
+          EXPECTED_BASE_SHA: ${{ needs.prepare.outputs.base_sha }}
+          EXPECTED_BUNDLE_SHA256: ${{ needs.prepare.outputs.bundle_sha256 }}
+          EXPECTED_EXPORT_REVISION: ${{ needs.prepare.outputs.export_revision }}
+          EXPECTED_HEAD_SHA: ${{ needs.prepare.outputs.head_sha }}
+          EXPECTED_MANIFEST_SHA256: ${{ needs.prepare.outputs.manifest_sha256 }}
+          EXPECTED_METADATA_SHA256: ${{ needs.prepare.outputs.metadata_sha256 }}
+          MIRROR_DEPLOY_KEY: ${{ secrets.MIRROR_DEPLOY_KEY }}
+        run: |
+          umask 077
+          unset CDPATH GIT_ASKPASS GIT_CONFIG GIT_CONFIG_COUNT GIT_DIR GIT_SSH GIT_SSH_COMMAND GIT_WORK_TREE SSH_ASKPASS SSH_AUTH_SOCK
+          test "$GITHUB_REPOSITORY" = 'ziyetsui/prompt-lab'
+          test -n "$MIRROR_DEPLOY_KEY"
+          test "${#MIRROR_DEPLOY_KEY}" -le 16384
+          [[ "$MIRROR_DEPLOY_KEY" != *$'\r'* ]]
+          [[ "$EXPECTED_BASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$EXPECTED_HEAD_SHA" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$EXPECTED_BUNDLE_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          [[ "$EXPECTED_METADATA_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          [[ "$EXPECTED_MANIFEST_SHA256" =~ ^sha256:[a-f0-9]{64}$ ]]
+          [[ "$EXPECTED_EXPORT_REVISION" =~ ^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$ ]]
+          mkdir -m 700 "$HOME"
+          artifact_root="$RUNNER_TEMP/prompt-lab-mirror-artifact"
+          bundle="$artifact_root/mirror-update.bundle"
+          metadata="$artifact_root/mirror-update.meta"
+          /usr/bin/python3 -I - "$artifact_root" "$EXPECTED_BASE_SHA" "$EXPECTED_HEAD_SHA" "$EXPECTED_EXPORT_REVISION" "$EXPECTED_MANIFEST_SHA256" "$EXPECTED_BUNDLE_SHA256" "$EXPECTED_METADATA_SHA256" <<'PY'
+          import hashlib, pathlib, stat, sys
+          root = pathlib.Path(sys.argv[1])
+          base, head, revision, manifest_hash, bundle_hash, metadata_hash = sys.argv[2:]
+          entries = sorted(root.iterdir(), key=lambda item: item.name)
+          if [item.name for item in entries] != ['mirror-update.bundle', 'mirror-update.meta']:
+              raise SystemExit('artifact file set is invalid')
+          for item in entries:
+              mode = item.lstat().st_mode
+              if not stat.S_ISREG(mode) or item.is_symlink():
+                  raise SystemExit('artifact entries must be regular files')
+          bundle_bytes = (root / 'mirror-update.bundle').read_bytes()
+          metadata_bytes = (root / 'mirror-update.meta').read_bytes()
+          if hashlib.sha256(bundle_bytes).hexdigest() != bundle_hash:
+              raise SystemExit('bundle digest mismatch')
+          if hashlib.sha256(metadata_bytes).hexdigest() != metadata_hash:
+              raise SystemExit('metadata digest mismatch')
+          wanted = ''.join(f'{line}\n' for line in [
+              'schema_version=1', 'repository=ziyetsui/prompt-lab',
+              f'base_sha={base}', f'head_sha={head}', f'export_revision={revision}',
+              f'manifest_sha256={manifest_hash}', f'bundle_sha256={bundle_hash}',
+          ]).encode()
+          if metadata_bytes != wanted:
+              raise SystemExit('metadata content mismatch')
+          PY
+          push_root="$RUNNER_TEMP/prompt-lab-push-repository"
+          git init -q "$push_root"
+          cd "$push_root"
+          git remote add origin 'git@github.com:ziyetsui/prompt-lab.git'
+          deploy_key="$RUNNER_TEMP/prompt-lab-mirror-deploy-key"
+          deploy_public_key="$RUNNER_TEMP/prompt-lab-mirror-deploy-key.pub"
+          known_hosts="$RUNNER_TEMP/prompt-lab-github-known-hosts"
+          ssh_wrapper="$RUNNER_TEMP/prompt-lab-git-ssh.sh"
+          trap 'rm -f "$deploy_key" "$deploy_public_key" "$known_hosts" "$ssh_wrapper"' EXIT
+          printf '%s\n' "$MIRROR_DEPLOY_KEY" > "$deploy_key"
+          unset MIRROR_DEPLOY_KEY
+          chmod 600 "$deploy_key"
+          /usr/bin/timeout 5 /usr/bin/ssh-keygen -y -f "$deploy_key" > "$deploy_public_key"
+          [[ "$(<"$deploy_public_key")" =~ ^ssh-ed25519\ [A-Za-z0-9+/]+={0,2}$ ]]
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$known_hosts"
+          test "$(/usr/bin/ssh-keygen -lf "$known_hosts" -E sha256 | /usr/bin/awk '{print $2}')" = 'SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU'
+          printf '%s\n' '#!/bin/sh' \
+            'exec /usr/bin/ssh -i "$MIRROR_DEPLOY_KEY_FILE" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$MIRROR_KNOWN_HOSTS_FILE" -o GlobalKnownHostsFile=/dev/null -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=publickey -o ConnectTimeout=10 "$@"' \
+            > "$ssh_wrapper"
+          chmod 700 "$ssh_wrapper"
+          export GIT_SSH_COMMAND="$ssh_wrapper"
+          export MIRROR_DEPLOY_KEY_FILE="$deploy_key"
+          export MIRROR_KNOWN_HOSTS_FILE="$known_hosts"
+          git -c credential.helper= fetch --no-tags --depth=1 origin refs/heads/main:refs/remotes/origin/main
+          test "$(git rev-parse refs/remotes/origin/main)" = "$EXPECTED_BASE_SHA"
+          git bundle verify "$bundle"
+          git fetch --no-tags "$bundle" HEAD:refs/heads/candidate
+          test "$(git rev-parse refs/heads/candidate)" = "$EXPECTED_HEAD_SHA"
+          test "$(git rev-list --count "$EXPECTED_BASE_SHA"..refs/heads/candidate)" = '1'
+          test "$(git rev-parse refs/heads/candidate^)" = "$EXPECTED_BASE_SHA"
+          /usr/bin/python3 -I - "$push_root" "$EXPECTED_BASE_SHA" "$EXPECTED_HEAD_SHA" "$EXPECTED_EXPORT_REVISION" "$EXPECTED_MANIFEST_SHA256" <<'PY'
+          import hashlib, json, os, re, subprocess, sys
+          root, base, head, revision, expected_manifest_hash = sys.argv[1:]
+          env = {'GIT_CONFIG_GLOBAL': '/dev/null', 'GIT_CONFIG_NOSYSTEM': '1', 'GIT_TERMINAL_PROMPT': '0', 'HOME': os.environ['HOME'], 'LANG': 'C', 'LC_ALL': 'C', 'PATH': '/usr/bin:/bin'}
+          def git(*args):
+              return subprocess.run(['/usr/bin/git', '-C', root, *args], env=env, check=True, stdout=subprocess.PIPE).stdout
+          allowed = re.compile(r'^(?:README(?:_(?:en|zh-CN))?\.md|catalog\.json|mirror-manifest\.json|content/site\.json|governance/(?:content-rights|publication-audit)\.json|locales/(?:en|zh-CN)/(?:README\.md|index\.json|taxonomies\.json)|content/prompts/prm_[a-z0-9_]{8,64}/(?:en|zh-CN)\.md|content/taxonomies/(?:content-type/cty_[a-z0-9_]{3,64}|model/mdl_[a-z0-9_]{3,64})/(?:en|zh-CN)\.json)$')
+          allowed_change = re.compile(r'^(?:content/README\.md|governance/(?:README\.md|rights-clearances\.json))$')
+          changed = [item.decode('ascii') for item in git('diff-tree', '--no-commit-id', '--name-only', '-r', '-z', base, head).split(b'\0') if item]
+          if not changed or any(not (allowed.fullmatch(item) or allowed_change.fullmatch(item)) for item in changed):
+              raise SystemExit('candidate changed-path set is invalid')
+          manifest_bytes = git('show', f'{head}:mirror-manifest.json')
+          if f'sha256:{hashlib.sha256(manifest_bytes).hexdigest()}' != expected_manifest_hash:
+              raise SystemExit('candidate manifest digest mismatch')
+          manifest = json.loads(manifest_bytes)
+          if set(manifest) != {'schemaVersion', 'exportRevision', 'exporterVersion', 'counts', 'files'} or manifest.get('schemaVersion') != 1 or manifest.get('exportRevision') != revision:
+              raise SystemExit('candidate manifest identity is invalid')
+          files = manifest.get('files')
+          if not isinstance(files, list):
+              raise SystemExit('candidate manifest files are invalid')
+          expected_paths, records, previous = {'mirror-manifest.json'}, {}, None
+          for record in files:
+              if not isinstance(record, dict) or set(record) != {'path', 'sha256', 'bytes'}:
+                  raise SystemExit('candidate manifest record is invalid')
+              path, digest, size = record.get('path'), record.get('sha256'), record.get('bytes')
+              if not isinstance(path, str) or not allowed.fullmatch(path) or path == 'mirror-manifest.json' or previous is not None and previous >= path:
+                  raise SystemExit('candidate manifest path is invalid')
+              if not isinstance(digest, str) or not re.fullmatch(r'sha256:[a-f0-9]{64}', digest) or not isinstance(size, int) or isinstance(size, bool) or size < 0 or size > 8 * 1024 * 1024:
+                  raise SystemExit('candidate manifest metadata is invalid')
+              previous, records[path] = path, (digest, size)
+              expected_paths.add(path)
+          managed = {}
+          for raw in git('ls-tree', '-rz', '--full-tree', head).split(b'\0'):
+              if not raw:
+                  continue
+              metadata, raw_path = raw.split(b'\t', 1)
+              path = raw_path.decode('ascii')
+              folded = path.lower()
+              is_managed = folded.startswith(('content/', 'locales/', 'governance/')) or folded in {'catalog.json', 'mirror-manifest.json', 'readme.md'} or folded.startswith('readme_')
+              if not is_managed:
+                  continue
+              mode, kind, object_id = metadata.decode('ascii').split(' ')
+              if mode != '100644' or kind != 'blob' or not allowed.fullmatch(path):
+                  raise SystemExit('candidate generated tree entry is invalid')
+              managed[path] = object_id
+          if set(managed) != expected_paths:
+              raise SystemExit('candidate generated tree does not match manifest paths')
+          for path, (digest, size) in records.items():
+              content = git('cat-file', 'blob', managed[path])
+              if len(content) != size or f'sha256:{hashlib.sha256(content).hexdigest()}' != digest:
+                  raise SystemExit('candidate generated bytes do not match manifest')
+          trailer_revision = git('log', '-1', '--format=%(trailers:key=CMS-Export-Revision,valueonly)', head).decode().strip()
+          trailer_manifest = git('log', '-1', '--format=%(trailers:key=Mirror-Manifest-SHA256,valueonly)', head).decode().strip()
+          if trailer_revision != revision or trailer_manifest != expected_manifest_hash:
+              raise SystemExit('candidate commit trailers do not match metadata')
+          PY
+          git -c credential.helper= -c core.hooksPath=/dev/null push origin refs/heads/candidate:refs/heads/main
+
+  verify-pushed-main:
+    needs:
+      - prepare
+      - push
+    if: needs.push.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out pushed main without stored credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Verify exact pushed main from a fresh checkout
+        env:
+          EXPECTED_HEAD_SHA: ${{ needs.prepare.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_HEAD_SHA" =~ ^[a-f0-9]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
+          node scripts/sync-cms-snapshot.mjs --root . --verify-git-tree

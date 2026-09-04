@@ -8,11 +8,10 @@ import {
   projectPreviewCatalog,
   type PreviewCatalogDocuments,
 } from '../src/preview/index.ts'
+import { buildFirstPromptSeedFixture, firstPromptSeedConstants } from '../src/seed/firstPrompt.ts'
 import { buildWireframeSeedFixture } from '../src/seed/wireframe.ts'
 
 const validEnvironment: NodeJS.ProcessEnv = {
-  CMS_GIT_PUBLISHER: 'mock',
-  CMS_MOCK_GIT_BASE_SHA: '0000000000000000000000000000000000000000',
   DATABASE_URI: 'postgres://payload:payload@127.0.0.1:5432/pseo_cms',
   NODE_ENV: 'test',
   PAYLOAD_PUBLIC_SERVER_URL: 'http://localhost:3001/',
@@ -328,6 +327,31 @@ function buildDocuments(): PreviewCatalogDocuments {
   }
 }
 
+function withCmsNativeGoldenPrompt(documents: PreviewCatalogDocuments): PreviewCatalogDocuments {
+  const golden = buildFirstPromptSeedFixture({
+    reviewedAt: '2026-09-02T00:00:00.000Z',
+    sourceUrl: 'https://github.com/ziyetsui/prompt-lab/issues/1',
+  })
+  const artifactId = golden.artifact.naturalKey
+  const primarySource = golden.sourceEvidence.find((item) => item.data.recordType === 'source')
+  assert.ok(primarySource)
+  return {
+    artifacts: [...documents.artifacts, { id: artifactId, ...golden.artifact.data }],
+    localeVariants: [
+      ...documents.localeVariants,
+      { id: golden.localeVariant.naturalKey, artifact: artifactId, ...golden.localeVariant.data },
+    ],
+    sources: [
+      ...documents.sources,
+      { id: primarySource.naturalKey, artifact: artifactId, ...primarySource.data },
+    ],
+    taxonomies: [
+      ...documents.taxonomies,
+      ...golden.taxonomies.map((item) => ({ id: item.naturalKey, ...item.data })),
+    ],
+  }
+}
+
 function enabledEnvironment() {
   return readCmsEnvironment({
     ...validEnvironment,
@@ -411,6 +435,7 @@ test('projector returns the complete fixture universe with normal editable CMS f
   assert.equal(first.sourceUrl, 'https://x.com/edited/status/1')
   assert.equal(first.likes, 9001)
   assert.equal(first.media[0]?.src, 'https://example.com/edited.jpg')
+  assert.equal(first.media[0]?.srcSet, null)
   assert.deepEqual(first.variables, [
     {
       token: '[SUBJECT]',
@@ -509,8 +534,24 @@ test('projector consumes Task 1 natural keys and merged model metadata without d
   assert.ok(projected.prompts.every((prompt) => !prompt.creatorId.startsWith('db-')))
 })
 
+test('the 36-record CMS seed keeps its non-wireframe text golden Prompt outside the 35-record wireframe Preview', () => {
+  const documents = withCmsNativeGoldenPrompt(buildDocuments())
+  const projected = projectPreviewCatalog(documents, 'zh-CN')
+
+  assert.equal(documents.artifacts.length, 36)
+  assert.equal(documents.localeVariants.length, 36)
+  assert.equal(documents.taxonomies.length, 71)
+  assert.equal(projected.prompts.length, 35)
+  assert.equal(projected.taxonomies.length, 42)
+  assert.equal(projected.creators.length, 21)
+  assert.equal(projected.models.length, 11)
+  assert.equal(projected.collections.length, 6)
+  assert.equal(projected.prompts.some((prompt) => prompt.id === firstPromptSeedConstants.artifactKey), false)
+})
+
 test('successful endpoint response uses safe headers, stable Local API queries and a secret-free DTO', async () => {
-  const documents = buildDocuments()
+  const documents = withCmsNativeGoldenPrompt(buildDocuments())
+  assert.equal(documents.artifacts.length, 36)
   const calls: Document[] = []
   const payload = {
     async find(args: Document) {
@@ -545,6 +586,8 @@ test('successful endpoint response uses safe headers, stable Local API queries a
     ],
   )
   const body = await response.text()
+  const envelope = JSON.parse(body) as { data: { prompts: unknown[] } }
+  assert.equal(envelope.data.prompts.length, 35)
   assert.doesNotMatch(body, /preview-token-that-is-at-least-32-characters/u)
   assert.doesNotMatch(body, /must-never-leak/u)
   assert.doesNotMatch(body, /db-artifact|db-source|db-variant|db-model/u)

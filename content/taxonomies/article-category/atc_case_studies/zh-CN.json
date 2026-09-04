@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "atc_case_studies",
+  "type": "article-taxonomy",
+  "axis": "article-category",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "case-studies",
+  "name": "案例复盘",
+  "description": "从复制提示词到出片的完整案例复盘。",
+  "url": null,
+  "status": "draft",
+  "indexable": false,
+  "fixture": true,
+  "sourceRef": "frontend/src/data/wireframe/articles.ts",
+  "seo": {
+    "title": "Prompt 案例复盘",
+    "description": "记录从理解变量、替换内容到检查输出的 Internal Beta 示例案例，当前保持草稿与 noindex。",
+    "canonical": "https://ancher.space/zh-CN/blog/category/case-studies",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": null,
+    "updatedAt": "2026-08-20T00:00:00Z",
+    "sourceRevision": null
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": null,
+    "reviewer": null
+  }
+}

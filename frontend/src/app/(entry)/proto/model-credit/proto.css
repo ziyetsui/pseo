@@ -1,0 +1,513 @@
+/* ── PROTOTYPE-ONLY display face ─────────────────────────────────────────
+   Instrument Serif, SIL Open Font License 1.1, from the same jsdelivr package
+   path the project used to source Inter (see public/fonts/README.md). Loaded
+   from the CDN here and NOT added to public/fonts, because that directory is
+   production and this is a throwaway.
+
+   Promoting a variant that uses it means following the pipeline that README
+   documents: download both files, record the SHA-256, copy the OFL, serve from
+   /fonts. The italic is a real italic file, not a synthesised slant, and the
+   page sets font-synthesis: none so a failed load is an obvious regression
+   rather than a quiet fake. */
+@font-face {
+  font-family: "InstrumentSerifProto";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InstrumentSerifProto";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+.mh-root { --mh-display: "InstrumentSerifProto", ui-serif, Georgia, "Times New Roman", serif; }
+
+/* PROTOTYPE styles for /proto/model-hero. Every rule is scoped to .mh-* or
+   .proto-picker; nothing here can reach production markup. Delete with the
+   directory.
+
+   The composer's surface follows the surfaces skill rather than the page's
+   older .genbox: the plate is a radius/padding pair with the box's radius
+   derived (outer − padding), and depth in this dark theme is a single 1px
+   white ring, never a stacked light-mode shadow. */
+
+.mh-root { overflow-x: clip; }
+
+/* ── the plate every direction shares ────────────────────────────────────── */
+.mh-plate {
+  --mh-plate-r: 20px;
+  --mh-plate-p: 10px;
+  position: relative;
+  border-radius: var(--mh-plate-r);
+  padding: var(--mh-plate-p);
+  background: var(--card);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .09);
+  transition: box-shadow 150ms ease-out;
+}
+/* Focus-within lifts the whole plate, so the ring reads as one control rather
+   than a textarea sitting inside a decoration. */
+.mh-plate:focus-within { box-shadow: 0 0 0 1px rgb(255 255 255 / .22); }
+
+.mh-box {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  /* Derived: 20 − 10. Copying the plate's radius here pinches the corner. */
+  border-radius: calc(var(--mh-plate-r) - var(--mh-plate-p));
+  border: 0;
+  background: var(--bg);
+  color: var(--fg);
+  /* 16px on phones or iOS Safari zooms the page on focus. */
+  font: 16px/1.6 var(--sans);
+  padding: 14px 16px;
+  outline: none;
+}
+@media (min-width: 768px) { .mh-box { font-size: 15px; } }
+.mh-box::placeholder { color: var(--faint-fg); }
+/* Mono, but never below 16px on a phone: it overrode .mh-box's 16px at every
+   width, and iOS Safari zooms the whole page into any field under 16. The
+   13px setting starts where the zoom rule stops applying. */
+.mh-box-tall { min-height: 210px; font-family: var(--mono); font-size: 16px; line-height: 1.62; }
+@media (min-width: 768px) { .mh-box-tall { font-size: 13px; } }
+
+.mh-platefoot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 6px 2px; }
+.mh-sp { flex: 1; }
+.mh-count { font: 11px/1.5 var(--mono); color: var(--faint-fg); font-variant-numeric: tabular-nums; }
+.mh-kbd {
+  font: 10px/1 var(--mono); color: var(--faint-fg);
+  border: 1px solid var(--border); border-radius: 5px; padding: 5px 6px;
+}
+
+/* The primary action. One per screen in every direction. */
+.mh-gen {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 18px; border: 0; border-radius: 11px;
+  background: var(--fg); color: var(--bg);
+  font: 500 14px/1 var(--sans); cursor: pointer; text-decoration: none;
+  transition: opacity 150ms ease-out, scale 150ms ease-out;
+}
+.mh-gen-big { min-height: 48px; padding: 0 24px; font-size: 15px; }
+.mh-gen:active { scale: .97; }
+.mh-gen:disabled { opacity: .45; cursor: not-allowed; }
+@media (hover: hover) and (pointer: fine) { .mh-gen:not(:disabled):hover { opacity: .88; } }
+
+.mh-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 14px; border-radius: 11px;
+  border: 1px solid var(--border); background: transparent; color: var(--muted-fg);
+  font: 13px/1 var(--sans); cursor: pointer; text-decoration: none;
+  transition: color 150ms ease-out, border-color 150ms ease-out;
+}
+.mh-ghost:active { scale: .97; }
+@media (hover: hover) and (pointer: fine) { .mh-ghost:hover { color: var(--fg); border-color: var(--border-strong); } }
+
+/* Model version, as a real radio group — three states that are mutually
+   exclusive and must survive a keyboard, which a row of buttons would not. */
+.mh-members { display: flex; gap: 4px; border: 0; margin: 0; padding: 0; }
+.mh-member { display: inline-flex; }
+.mh-member > span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 11px;
+  border-radius: 999px; font: 12px/1 var(--mono); color: var(--faint-fg);
+  cursor: pointer; transition: color 150ms ease-out, background-color 150ms ease-out;
+}
+.mh-member input:checked + span { background: color-mix(in oklab, var(--fg) 12%, transparent); color: var(--fg); }
+.mh-member input:focus-visible + span { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .mh-member > span:hover { color: var(--muted-fg); } }
+
+/* ── the moving wall, shared by all five ────────────────────────────────── */
+.mh-hero { position: relative; margin-inline: calc(50% - 50vw); isolation: isolate; overflow: hidden;
+           display: grid; }
+.mh-wallwrap { position: absolute; inset: 0; z-index: 0; }
+.mh-drift-lanes { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mh-drift-lane { display: flex; flex-direction: column; gap: 6px; will-change: transform;
+                 animation: mh-drift-up linear infinite; }
+/* -50% of the element is half of (two copies + the gap between them), which
+   overshoots by half a gap and walks the seam a few pixels every loop.
+   Backing the gap out makes the loop exact. */
+@keyframes mh-drift-up { from { transform: translateY(0); } to { transform: translateY(calc(-50% - 3px)); } }
+.mh-drift-lane[data-lane="0"] { animation-duration: 68s; }
+.mh-drift-lane[data-lane="1"] { animation-duration: 92s; animation-direction: reverse; }
+.mh-drift-lane[data-lane="2"] { animation-duration: 78s; }
+.mh-drift-lane[data-lane="3"] { animation-duration: 106s; animation-direction: reverse; }
+.mh-wallwrap[data-paused] .mh-drift-lane { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .mh-drift-lane { animation: none; } }
+.mh-drift-tile { flex: none; aspect-ratio: 1; overflow: hidden; background: var(--surface); }
+.mh-drift-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mh-drift-word { display: grid; place-content: center; height: 100%; padding: 10px; text-align: center;
+                 font: 12px/1.4 var(--sans); color: var(--faint-fg); }
+
+/* Three scrim tones, because where the darkness is spent depends on where the
+   words are. Flat-and-heavy would bury the wall, which is the one thing this
+   backdrop exists to show. */
+.mh-drift-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.mh-drift-scrim[data-tone="centre"] {
+  background:
+    radial-gradient(ellipse 62% 64% at 50% 50%, rgb(10 10 11 / .95) 0%, rgb(10 10 11 / .90) 42%, rgb(10 10 11 / .30) 100%),
+    linear-gradient(to bottom, rgb(10 10 11 / .86) 0%, rgb(10 10 11 / .34) 22%, rgb(10 10 11 / .34) 74%, rgb(10 10 11 / .96) 100%);
+}
+.mh-drift-scrim[data-tone="even"] {
+  background: linear-gradient(to bottom, rgb(10 10 11 / .92) 0%, rgb(10 10 11 / .66) 34%, rgb(10 10 11 / .70) 62%, rgb(10 10 11 / .97) 100%);
+}
+/* Corner puts its words down the left edge, so the darkness follows them and
+   the right two thirds of the wall stay bright. */
+.mh-drift-scrim[data-tone="left"] {
+  background:
+    linear-gradient(to right, rgb(10 10 11 / .95) 0%, rgb(10 10 11 / .82) 34%, rgb(10 10 11 / .22) 72%, rgb(10 10 11 / .18) 100%),
+    linear-gradient(to bottom, rgb(10 10 11 / .70) 0%, rgb(10 10 11 / .25) 30%, rgb(10 10 11 / .55) 100%);
+}
+
+.mh-front { position: relative; z-index: 2; width: 100%; max-width: 1160px; margin-inline: auto; padding-inline: 24px; }
+
+/* The wordmark. One rule, so the four cuts share a voice and differ only in
+   what surrounds it. text-wrap:balance is pointless on a two-word name and
+   would only risk an odd break, so it is left off deliberately. */
+.mh-mark { font-size: clamp(40px, 7vw, 92px); line-height: .98; letter-spacing: -.03em; margin: 0; }
+.mh-facts { font: 12px/1.6 var(--mono); color: var(--muted-fg); letter-spacing: .04em;
+            font-variant-numeric: tabular-nums; margin: 12px 0 0; }
+
+/* Version links, in place of round one's radio group that changed nothing. */
+.mh-versions { display: flex; gap: 8px; flex-wrap: wrap; }
+.mh-version {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 13px;
+  border-radius: 999px; border: 1px solid var(--border);
+  font: 12px/1 var(--mono); color: var(--muted-fg); text-decoration: none;
+  background: rgb(10 10 11 / .42);
+  transition-property: color, border-color, background-color;
+  transition-duration: 150ms; transition-timing-function: ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .mh-version:hover { color: var(--fg); border-color: var(--border-strong); background: rgb(10 10 11 / .7); }
+}
+
+/* ══ V1 · Drift — the reference ═════════════════════════════════════════ */
+.mh-h-drift { min-height: min(76vh, 700px); align-items: center; }
+.mh-h-drift .mh-front { max-width: 748px; text-align: center; padding-block: 56px; }
+.mh-h-drift .eyebrow { justify-content: center; }
+.mh-drift-h1 { max-width: 15ch; margin-inline: auto; }
+.mh-drift-lede { margin-inline: auto; text-wrap: pretty; }
+.mh-plate-centre { margin-top: 28px; text-align: start; }
+
+/* ══ V2 · Marquee — wordmark only ═══════════════════════════════════════ */
+.mh-h-marquee { min-height: min(78vh, 720px); align-items: center; }
+.mh-h-marquee .mh-front { max-width: 748px; text-align: center; padding-block: 56px;
+                          display: flex; flex-direction: column; align-items: center; }
+.mh-h-marquee .mh-plate-centre { width: 100%; }
+.mh-h-marquee .mh-versions { margin-top: 18px; justify-content: center; }
+
+/* ══ V3 · Ticker — the hero is one line ═════════════════════════════════ */
+.mh-h-ticker { min-height: min(72vh, 660px); align-items: center; }
+.mh-h-ticker .mh-front { max-width: 900px; padding-block: 44px; }
+.mh-tickerline { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+                 padding-bottom: 14px; border-bottom: 1px solid var(--border-strong); }
+.mh-ticker-name { font-size: clamp(24px, 2.8vw, 34px); line-height: 1.1; letter-spacing: -.022em; margin: 0; }
+.mh-ticker-count { font: 12px/1.6 var(--mono); color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+.mh-h-ticker .mh-versions { align-items: center; }
+.mh-plate-wide { margin-top: 20px; }
+
+/* ══ V4 · Plaque — one object on the wall ═══════════════════════════════ */
+.mh-h-plaque { min-height: min(76vh, 700px); align-items: center; }
+.mh-h-plaque .mh-front { max-width: 720px; padding-block: 56px; }
+/* The plate carries the name, so the composer inside it loses its own surface
+   and the ring belongs to the whole object. Inner radius derived: 22 - 12. */
+.mh-plaque { --mh-plate-r: 22px; --mh-plate-p: 12px;
+  border-radius: var(--mh-plate-r); padding: var(--mh-plate-p);
+  background: rgb(20 21 22 / .93); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .1);
+  transition: box-shadow 150ms ease-out; }
+.mh-plaque:focus-within { box-shadow: 0 0 0 1px rgb(255 255 255 / .24); }
+.mh-plaque-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 8px 8px 14px; }
+.mh-plaque-name { font-size: clamp(26px, 3.2vw, 40px); line-height: 1.05; letter-spacing: -.026em; margin: 0; }
+.mh-plaque-fact { font: 11.5px/1.6 var(--mono); color: var(--faint-fg); font-variant-numeric: tabular-nums; }
+/* Flush: no second surface, no second ring, no nested radius to get wrong. */
+.mh-plate-flush { background: none; box-shadow: none; padding: 0; border-radius: 0; }
+.mh-plate-flush:focus-within { box-shadow: none; }
+.mh-plate-flush .mh-box { border-radius: calc(22px - 12px); }
+.mh-h-plaque .mh-versions { padding: 12px 8px 4px; }
+
+/* ══ V5 · Corner — the wall gets the middle ═════════════════════════════ */
+.mh-h-corner { min-height: min(88vh, 820px); }
+.mh-h-corner .mh-front { display: flex; flex-direction: column; justify-content: space-between;
+                         padding-block: 48px 40px; }
+.mh-corner-top { max-width: 15ch; }
+.mh-corner-name { text-wrap: balance; }
+.mh-corner-bottom { display: flex; flex-direction: column; gap: 16px; align-items: flex-start;
+                    max-width: 620px; width: 100%; }
+.mh-plate-corner { width: 100%; }
+
+/* ── the graft: two marked suppressions on the REAL page below ───────────
+   Both are prototype-only. Promoting a variant means doing them for real in
+   components/AnthologyReader.tsx, not shipping this stylesheet. */
+/* 1. The variant hero carries the H1 now, so the real hero's heading block
+      would be a second H1 saying the same name. Its index (.toc) is real
+      navigation and stays. */
+.mh-real .hero > .eyebrow,
+.mh-real .hero > h1,
+.mh-real .hero > .lede,
+.mh-real .hero > .tagline { display: none; }
+.mh-real .hero { padding-top: 0; }
+/* 2. The composer has moved to the first screen. Two composers on one page is
+      not a design anyone is choosing, so the "Write your own" scratchpad goes
+      — display:none, not opacity, so it leaves the accessibility tree too. */
+.mh-real section.sec:has(.genbox) { display: none; }
+
+@media (max-width: 900px) {
+  .mh-drift-lanes { grid-template-columns: repeat(3, 1fr); }
+  .mh-h-drift, .mh-h-marquee, .mh-h-ticker, .mh-h-plaque { min-height: 0; }
+  .mh-h-drift .mh-front, .mh-h-marquee .mh-front, .mh-h-plaque .mh-front { padding-block: 44px; }
+  .mh-h-corner { min-height: 0; }
+  .mh-h-corner .mh-front { gap: 40px; padding-block: 40px; }
+  .mh-corner-top { max-width: none; }
+  /* Left-weighted darkness only makes sense while there is a right to spare. */
+  .mh-drift-scrim[data-tone="left"] {
+    background: linear-gradient(to bottom, rgb(10 10 11 / .90) 0%, rgb(10 10 11 / .62) 34%, rgb(10 10 11 / .95) 100%);
+  }
+}
+@media (max-width: 560px) {
+  .mh-drift-lanes { grid-template-columns: repeat(2, 1fr); }
+  .mh-tickerline { gap: 8px; }
+}
+
+/* ══ the credit line ════════════════════════════════════════════════════════
+   Five treatments, one slot: directly after the facts line, before the box. */
+.mh-front > [class^="mh-cr-"] { margin-block: 0; }
+
+[class^="mh-cr-"] a {
+  color: inherit; text-decoration: none; position: relative;
+  transition-property: color, opacity, transform;
+  transition-duration: 150ms; transition-timing-function: ease-out;
+}
+/* Two ways to reach 44px, picked by register. The display-scale credits are
+   tall enough to say so with min-height. The metadata-scale ones are 12px
+   lines, where a 44px min-height inflates the paragraph to 44px for a 19px
+   line — a hit area that moves the layout is the thing the rule prevents, not
+   causes. Those grow through a pseudo-element, vertically only, because the
+   two names share a line and a horizontal expansion would overlap. */
+.mh-cr-colophon a, .mh-cr-signature a, .mh-cr-duet a {
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+.mh-cr-byline a::after, .mh-cr-ribbonlinks a::after {
+  content: ""; position: absolute; inset: -15px 0;
+}
+[class^="mh-cr-"] a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 3px; }
+
+/* ── V1 · Byline ──────────────────────────────────────────────────────── */
+.mh-cr-byline { font: 12px/1.6 var(--mono); color: var(--muted-fg); letter-spacing: .04em; margin: 6px 0 0; }
+.mh-cr-byline a { color: var(--fg); text-decoration: underline;
+  text-decoration-thickness: from-font; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, var(--fg) 35%, transparent); }
+@media (hover: hover) and (pointer: fine) { .mh-cr-byline a:hover { text-decoration-color: currentColor; } }
+
+/* ── V2 · Colophon ────────────────────────────────────────────────────── */
+.mh-cr-colophon { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.mh-cr-rule {
+  display: block; width: min(340px, 70%); height: 1px; background: var(--border-strong);
+  transform: scaleX(0); transform-origin: left center;
+  animation: mh-cr-draw 520ms cubic-bezier(.32, .72, 0, 1) 120ms both;
+  margin-bottom: 14px;
+}
+@keyframes mh-cr-draw { to { transform: scaleX(1); } }
+.mh-cr-label { font: 10.5px/1.6 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--faint-fg); margin: 0; }
+.mh-cr-names { margin: 4px 0 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; justify-content: center;
+               font-family: var(--mh-display); font-size: clamp(21px, 2.4vw, 28px); line-height: 1.15; letter-spacing: 0; }
+.mh-cr-name { display: inline-flex; align-items: baseline; gap: 10px;
+  animation: mh-cr-rise 420ms cubic-bezier(.32, .72, 0, 1) both;
+  animation-delay: calc(320ms + var(--i, 0) * 60ms); }
+@keyframes mh-cr-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.mh-cr-amp { color: var(--faint-fg); font-family: var(--mh-display); font-style: italic; }
+@media (hover: hover) and (pointer: fine) {
+  .mh-cr-colophon a:hover { color: var(--fg); text-decoration: underline;
+    text-decoration-thickness: from-font; text-underline-offset: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mh-cr-rule { animation: none; transform: none; }
+  .mh-cr-name { animation: none; }
+}
+
+/* ── V3 · Signature ───────────────────────────────────────────────────── */
+.mh-cr-signature { margin-top: 20px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.mh-cr-pre { font: 10.5px/1.6 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--faint-fg); }
+.mh-cr-sig { display: inline-flex; align-items: baseline; gap: 10px; }
+.mh-cr-sig a { flex-direction: column; align-items: flex-start; justify-content: center; }
+/* A real italic file, not a slanted roman. */
+.mh-cr-sigtext { font-family: var(--mh-display); font-style: italic;
+  font-size: clamp(24px, 2.8vw, 34px); line-height: 1.1; letter-spacing: .002em; }
+/* The sweep is transform-only, so the drawn stroke keeps its shape and the
+   compositor does the work. Embellishment: the link is a link without it. */
+.mh-cr-stroke {
+  display: block; width: 100%; height: 8px; margin-top: -2px; color: var(--fg);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 320ms cubic-bezier(.32, .72, 0, 1);
+}
+.mh-cr-stroke svg { display: block; width: 100%; height: 100%; overflow: visible; }
+@media (hover: hover) and (pointer: fine) { .mh-cr-sig a:hover .mh-cr-stroke { transform: scaleX(1); } }
+.mh-cr-sig a:focus-visible .mh-cr-stroke { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .mh-cr-stroke { transition: none; } }
+
+/* ── V4 · Ribbon ──────────────────────────────────────────────────────── */
+/* Full-bleed on purpose: a ribbon that runs edge to edge is the strongest form
+   of this idea, so it is declared rather than left to spill out of its 748px
+   measure by accident. */
+.mh-cr-ribbon { margin-top: 22px; width: 100%; }
+.mh-cr-track { display: flex; width: 100vw; margin-inline: calc(50% - 50vw); overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
+.mh-cr-run { display: flex; flex: none; will-change: transform; animation: mh-cr-slide 26s linear infinite; }
+@keyframes mh-cr-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+/* Off-screen pause rides the wall's own observer — not a hover state. */
+.mh-hero[data-credit="ribbon"] .mh-wallwrap[data-paused] ~ * .mh-cr-run { animation-play-state: paused; }
+@media (hover: hover) and (pointer: fine) { .mh-cr-ribbon:hover .mh-cr-run { animation-play-state: paused; } }
+.mh-cr-cell { display: inline-flex; align-items: center; gap: 14px; padding-right: 14px; white-space: nowrap;
+  font-family: var(--mh-display); font-size: 18px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted-fg); }
+.mh-cr-word { color: var(--faint-fg); }
+.mh-cr-who { color: var(--fg); }
+.mh-cr-dash { color: var(--faint-fg); }
+/* A moving target is not a target, so the links sit still underneath it. */
+.mh-cr-ribbonlinks { margin: 8px 0 0; font: 12px/1.6 var(--mono); color: var(--muted-fg); letter-spacing: .04em; }
+.mh-cr-ribbonlinks a { color: var(--fg); text-decoration: underline;
+  text-decoration-thickness: from-font; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, var(--fg) 35%, transparent); }
+@media (hover: hover) and (pointer: fine) { .mh-cr-ribbonlinks a:hover { text-decoration-color: currentColor; } }
+@media (prefers-reduced-motion: reduce) {
+  .mh-cr-run { animation: none; }
+  .mh-cr-track { justify-content: center; mask-image: none; -webkit-mask-image: none; }
+  .mh-cr-run:nth-child(2) { display: none; }
+}
+
+/* ── V5 · Duet ────────────────────────────────────────────────────────── */
+.mh-cr-duet { margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.mh-cr-pair { margin: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.02; }
+.mh-cr-big { font-family: var(--mh-display); font-size: clamp(30px, 4.4vw, 54px); letter-spacing: -.012em; color: var(--fg); }
+/* The ampersand sits between the two names, not inside the first link — it was
+   colliding with the "u" of "Wu" and riding along in the link's box. */
+.mh-cr-line { display: flex; align-items: baseline; justify-content: center; gap: .28em; }
+.mh-cr-amp-duet { font-family: var(--mh-display); font-style: italic;
+  font-size: clamp(18px, 2vw, 26px); color: var(--faint-fg); line-height: 1; }
+/* Lift one, dim the other. transform and opacity only — never font-weight,
+   which would reflow the name under the pointer. */
+@media (hover: hover) and (pointer: fine) {
+  .mh-cr-pair:hover .mh-cr-big { opacity: .4; }
+  .mh-cr-pair:hover .mh-cr-big:hover { opacity: 1; transform: translateY(-2px); }
+}
+.mh-cr-pair:focus-within .mh-cr-big { opacity: .4; }
+.mh-cr-pair .mh-cr-big:focus-visible { opacity: 1; transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .mh-cr-big { transition-property: opacity; }
+  .mh-cr-pair .mh-cr-big:focus-visible { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+  .mh-cr-pair:hover .mh-cr-big:hover { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .mh-cr-signature, .mh-cr-names { justify-content: center; }
+  .mh-cr-cell { font-size: 15px; letter-spacing: .14em; }
+}
+
+/* ─── Picker · harness chrome, copied verbatim from PICKER.md ──────────── */
+.proto-picker {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.82);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 8px 24px rgba(0, 0, 0, 0.24),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.proto-picker-highlight {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  will-change: transform;
+}
+
+/* The slide is enabled only after first paint (data-ready), so load doesn't animate. */
+.proto-picker[data-ready] .proto-picker-highlight {
+  transition:
+    transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+    width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+}
+
+.proto-picker-item {
+  position: relative; /* sits above the highlight */
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font: inherit;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.proto-picker-item:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.proto-picker-item:active {
+  transform: scale(0.97);
+}
+
+.proto-picker-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.proto-picker-item[data-active] {
+  color: #fff;
+}
+
+.proto-picker-divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.proto-picker-replay {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.proto-picker[data-position="top"] {
+  bottom: auto;
+  top: 24px;
+}
+
+/* Below ~700px five names span edge to edge; the labels stay on one line and
+   the pill scrolls, so the 28px highlight keeps its geometry. */
+@media (max-width: 700px) {
+  .proto-picker {
+    left: 8px; right: 8px; transform: none;
+    max-width: calc(100vw - 16px);
+    overflow-x: auto; scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .proto-picker::-webkit-scrollbar { display: none; }
+  .proto-picker-item { padding: 0 9px; font-size: 12px; white-space: nowrap; flex: none; }
+}

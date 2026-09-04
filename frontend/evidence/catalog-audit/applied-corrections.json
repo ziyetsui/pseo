@@ -1,0 +1,671 @@
+[
+  {
+    "id": "2019849202591789460",
+    "field": "styles",
+    "remove": [
+      "Anime / illustrated"
+    ],
+    "add": [],
+    "evidence": "Positive style is photorealistic; cartoon, illustration, painting occur only inside negative_prompt.",
+    "confidence": "high",
+    "before": [
+      "Anime / illustrated",
+      "Photorealistic"
+    ],
+    "after": [
+      "Photorealistic"
+    ]
+  },
+  {
+    "id": "2060203818785370400",
+    "field": "uses",
+    "remove": [
+      "Web & motion design"
+    ],
+    "add": [],
+    "evidence": "Requested output is a static 4:5 FIFA campaign poster. UI-inspired design elements do not constitute a website or motion-design task.",
+    "confidence": "high",
+    "before": [
+      "Advertising",
+      "Fashion",
+      "Web & motion design"
+    ],
+    "after": [
+      "Advertising",
+      "Fashion"
+    ]
+  },
+  {
+    "id": "2085640281941307648",
+    "field": "uses",
+    "remove": [
+      "Food & beverage"
+    ],
+    "add": [],
+    "evidence": "Seven-shot bedroom montage centers on woman, cat and phone call. Food is only the spoken explanation for the doorbell; no food or beverage output is directed.",
+    "confidence": "high",
+    "before": [
+      "Food & beverage"
+    ],
+    "after": []
+  },
+  {
+    "id": "2047862141894681076",
+    "field": "styles",
+    "remove": [
+      "Cinematic"
+    ],
+    "add": [],
+    "evidence": "The positive style ends with an explicit constraint: slightly grainy, not cinematic.",
+    "confidence": "high",
+    "before": [
+      "Cinematic",
+      "Photorealistic"
+    ],
+    "after": [
+      "Photorealistic"
+    ]
+  },
+  {
+    "id": "2087155737784918460",
+    "field": "uses",
+    "remove": [
+      "Advertising"
+    ],
+    "add": [],
+    "evidence": "Explicit authentic everyday footage, not a polished commercial; the requested output is a personal coffee-run vlog without a product campaign.",
+    "confidence": "high",
+    "before": [
+      "Advertising",
+      "Beauty",
+      "Food & beverage",
+      "UGC"
+    ],
+    "after": [
+      "Beauty",
+      "Food & beverage",
+      "UGC"
+    ]
+  },
+  {
+    "id": "1992826251220754540",
+    "field": "uses",
+    "remove": [
+      "Web & motion design"
+    ],
+    "add": [
+      "Advertising",
+      "Product marketing"
+    ],
+    "evidence": "High-quality promotional post showcasing [DEVICE], full specification sheet; [DEVICE-WEBSITE] is only a style reference for a static product poster.",
+    "confidence": "high",
+    "before": [
+      "Web & motion design"
+    ],
+    "after": [
+      "Advertising",
+      "Product marketing"
+    ]
+  },
+  {
+    "id": "2018792341192990900",
+    "field": "uses",
+    "remove": [
+      "Food & beverage"
+    ],
+    "add": [],
+    "evidence": "The requested output is a candid Spider-Man superhero portrait; a disposable coffee cup is a hand prop, not the intended food/beverage task.",
+    "confidence": "high",
+    "before": [
+      "Food & beverage"
+    ],
+    "after": []
+  },
+  {
+    "id": "2051559171452215583",
+    "field": "styles",
+    "remove": [
+      "Anime / illustrated"
+    ],
+    "add": [],
+    "evidence": "Photorealistic smartphone selfie; anime/manga qualifies a real makeup eyelash effect, not the image rendering style.",
+    "confidence": "high",
+    "before": [
+      "Anime / illustrated",
+      "Photorealistic"
+    ],
+    "after": [
+      "Photorealistic"
+    ]
+  },
+  {
+    "id": "2065638647886659855",
+    "field": "styles",
+    "remove": [
+      "Anime / illustrated"
+    ],
+    "add": [],
+    "evidence": "Explicit photorealistic editorial portrait; cartoon is only a negative-prompt exclusion.",
+    "confidence": "high",
+    "before": [
+      "Anime / illustrated",
+      "Cinematic",
+      "Luxury",
+      "Photorealistic",
+      "Retro / vintage"
+    ],
+    "after": [
+      "Cinematic",
+      "Luxury",
+      "Photorealistic",
+      "Retro / vintage"
+    ]
+  },
+  {
+    "id": "2068543924055240801",
+    "field": "styles",
+    "remove": [
+      "Cinematic"
+    ],
+    "add": [],
+    "evidence": "Explicit no cinematic color grading, no studio lighting, unedited phone-camera look.",
+    "confidence": "high",
+    "before": [
+      "Cinematic",
+      "Photorealistic"
+    ],
+    "after": [
+      "Photorealistic"
+    ]
+  },
+  {
+    "id": "2068543924055240801",
+    "field": "uses",
+    "remove": [
+      "Food & beverage"
+    ],
+    "add": [],
+    "evidence": "Student portrait holding a book; drink bottles are refrigerator background. No food/beverage campaign or preparation is requested.",
+    "confidence": "high",
+    "before": [
+      "Food & beverage"
+    ],
+    "after": []
+  },
+  {
+    "id": "2019849202591789460",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Two young women are the stated subjects of the gym selfie.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2071174186978951379",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Final subject/character is a young woman in the cafe.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2078814921756754352",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Music video names a woman main subject throughout.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2083168602363150527",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Eight shots follow the same woman filming herself.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2029632175482507599",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Portrait explicitly specifies biometric identity and human facial/body features.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2084387316286595436",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Script follows named human sitcom characters speaking and reacting.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2085640281941307648",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Seven shots follow the woman and cat in a bedroom.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2047862141894681076",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "The entire tight phone-recording composition is a young woman.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2085931701088174312",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Five selfies follow the same young Korean woman.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2048450197085474925",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Lead racers are kids on go-karts, whose expressions are directed.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2019109812341207229",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "First three shots portray a man driving a 1970s sedan.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2087155737784918460",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Elena is the explicit named vlogger and recurring subject.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2089932434351734933",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Woman is explicitly clear visual focus and locked character reference.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2031703969882382558",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Human biometric subject and mirror selfie are the main content, but current subject list only says Architecture / interior.",
+    "confidence": "high",
+    "before": [
+      "Architecture / interior"
+    ],
+    "after": [
+      "Architecture / interior",
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2051559171452215583",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Person / portrait"
+    ],
+    "evidence": "Close-range selfie with detailed human appearance; current subject list only says Architecture / interior.",
+    "confidence": "high",
+    "before": [
+      "Architecture / interior"
+    ],
+    "after": [
+      "Architecture / interior",
+      "Person / portrait"
+    ]
+  },
+  {
+    "id": "2071174186978951379",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Food / drink"
+    ],
+    "evidence": "The final cafe shot explicitly centers on eating a hamburger with a drink; this also supports retaining Food & beverage despite Earth thumbnail.",
+    "confidence": "high",
+    "before": [
+      "Person / portrait"
+    ],
+    "after": [
+      "Person / portrait",
+      "Food / drink"
+    ]
+  },
+  {
+    "id": "2088866007918268515",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Architecture / interior"
+    ],
+    "evidence": "The central generated object is a handcrafted paper city: streets, buildings, bridges and skyline.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Architecture / interior"
+    ]
+  },
+  {
+    "id": "2088866007918268515",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Multi-shot / storyboard",
+      "微缩摄影"
+    ],
+    "evidence": "Six timed shots with distinct lenses/positions; director explicitly calls it realistic miniature photography.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language",
+      "Transition / morph / match cut"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Transition / morph / match cut",
+      "Multi-shot / storyboard",
+      "微缩摄影"
+    ]
+  },
+  {
+    "id": "2084387316286595436",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Multi-shot / storyboard"
+    ],
+    "evidence": "Camera cuts from Michael/Stanley to Jim and holds; this is a sequenced sitcom script with explicit shot changes.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language",
+      "Lip sync / dialogue"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ]
+  },
+  {
+    "id": "2048450197085474925",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Vehicle"
+    ],
+    "evidence": "Go-karts with rocket thrusters and gliders are the central action objects.",
+    "confidence": "high",
+    "before": [
+      "Person / portrait"
+    ],
+    "after": [
+      "Person / portrait",
+      "Vehicle"
+    ]
+  },
+  {
+    "id": "2019109812341207229",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Vehicle"
+    ],
+    "evidence": "1970s sedan, interior controls, grille and license plate are explicitly featured across all four shots.",
+    "confidence": "high",
+    "before": [
+      "Person / portrait"
+    ],
+    "after": [
+      "Person / portrait",
+      "Vehicle"
+    ]
+  },
+  {
+    "id": "2089932434351734933",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Product"
+    ],
+    "evidence": "Sunglasses, earbuds, packaging and cases are locked product references and final product hero shot.",
+    "confidence": "high",
+    "before": [
+      "Person / portrait"
+    ],
+    "after": [
+      "Person / portrait",
+      "Product"
+    ]
+  },
+  {
+    "id": "2089932434351734933",
+    "field": "uses",
+    "remove": [],
+    "add": [
+      "Product marketing"
+    ],
+    "evidence": "UGC product review demonstrates sunglasses and earbuds and ends with an explicit purchase-oriented endorsement.",
+    "confidence": "high",
+    "before": [
+      "Advertising",
+      "Beauty",
+      "Fashion",
+      "UGC"
+    ],
+    "after": [
+      "Advertising",
+      "Beauty",
+      "Fashion",
+      "UGC",
+      "Product marketing"
+    ]
+  },
+  {
+    "id": "2089932434351734933",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Character consistency",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ],
+    "evidence": "Explicit preserve exact facial identity throughout; perfect lip synchronization; five timed sections plus ending shot.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language",
+      "Transition / morph / match cut"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Transition / morph / match cut",
+      "Character consistency",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ]
+  },
+  {
+    "id": "1992826251220754540",
+    "field": "subjects",
+    "remove": [],
+    "add": [
+      "Product"
+    ],
+    "evidence": "[DEVICE] and its hardware specification sheet are the requested promotional subject.",
+    "confidence": "high",
+    "before": [],
+    "after": [
+      "Product"
+    ]
+  },
+  {
+    "id": "2027628259467313402",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Character consistency"
+    ],
+    "evidence": "Strict identity lock requires the uploaded reference face, skin tone, expression and hairstyle to match exactly.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Character consistency"
+    ]
+  },
+  {
+    "id": "2083168602363150527",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Character consistency"
+    ],
+    "evidence": "Subject must 100% match reference, hair/necklace/ring identical throughout; continuity explicitly required.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard",
+      "Character consistency"
+    ]
+  },
+  {
+    "id": "2087155737784918460",
+    "field": "techs",
+    "remove": [],
+    "add": [
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ],
+    "evidence": "Vlogger speaks quoted lines in selfie footage; scenes move from handheld walk to propped kiosk wide shot and seawall.",
+    "confidence": "high",
+    "before": [
+      "Camera movement / shot language"
+    ],
+    "after": [
+      "Camera movement / shot language",
+      "Lip sync / dialogue",
+      "Multi-shot / storyboard"
+    ]
+  },
+  {
+    "id": "2063871161998745877",
+    "field": "uses",
+    "remove": [],
+    "add": [
+      "Product marketing"
+    ],
+    "evidence": "Requested output is explicitly a premium product campaign poster with the product in hero focus.",
+    "confidence": "high",
+    "before": [
+      "Advertising",
+      "Beauty",
+      "Food & beverage"
+    ],
+    "after": [
+      "Advertising",
+      "Beauty",
+      "Food & beverage",
+      "Product marketing"
+    ]
+  }
+]

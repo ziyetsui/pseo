@@ -1,0 +1,31 @@
+{
+  "name": "@pseo/content-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fail-closed compatibility shell for the retired Markdown/Git content runner",
+  "type": "module",
+  "exports": {
+    ".": "./src/runner.ts",
+    "./cms-proposal-client": "./src/cms-proposal-client.ts"
+  },
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types src/cli.ts",
+    "submit:cms-prompt": "node --experimental-strip-types src/cms-proposal-cli.ts",
+    "smoke:sdk": "node --experimental-strip-types src/smoke-sdk.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "verify": "pnpm typecheck && pnpm test"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.152.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.4",
+    "typescript": "5.9.3"
+  }
+}

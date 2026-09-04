@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated, canEditDrafts, denyAll } from '@/access'
+import { canEditDrafts, canReadEditorial, denyAll } from '@/access'
 import { enforceDraftOnly, validateLocaleVariant } from '@/hooks'
 
 import {
@@ -24,7 +24,7 @@ export const LocaleVariants: CollectionConfig = {
   },
   access: {
     create: canEditDrafts,
-    read: authenticated,
+    read: canReadEditorial,
     update: canEditDrafts,
     delete: denyAll,
   },

@@ -1,0 +1,574 @@
+[
+  {
+    "source": "reference",
+    "section": "l1-results",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-results-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 2
+  },
+  {
+    "source": "implementation",
+    "section": "l1-results",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-results-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 2
+  },
+  {
+    "source": "reference",
+    "section": "l1-browse",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-browse-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HK3K6roakAAKzV9.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l1-browse",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-browse-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HK3K6roakAAKzV9.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "reference",
+    "section": "l1-footer",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-footer-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [],
+    "footerLinks": 36,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "implementation",
+    "section": "l1-footer",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-footer-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [],
+    "footerLinks": 36,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "reference",
+    "section": "l2-deck",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l2-deck-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 24
+  },
+  {
+    "source": "implementation",
+    "section": "l2-deck",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l2-deck-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 23
+  },
+  {
+    "source": "reference",
+    "section": "l2-footer",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l2-footer-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "implementation",
+    "section": "l2-footer",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l2-footer-1440.png",
+    "overflow": false,
+    "navTop": 0,
+    "images": [],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "reference",
+    "section": "l3-body",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l3-body-1440.png",
+    "overflow": false,
+    "navTop": -982,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l3-body",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l3-body-1440.png",
+    "overflow": false,
+    "navTop": -982,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "reference",
+    "section": "l3-scratchpad",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l3-scratchpad-1440.png",
+    "overflow": false,
+    "navTop": -13968,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1997170504713883651/mr6aPbte_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2017948625058287616/AUHPq1dP_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l3-scratchpad",
+    "width": 1440,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l3-scratchpad-1440.png",
+    "overflow": false,
+    "navTop": -13968,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1997170504713883651/mr6aPbte_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2017948625058287616/AUHPq1dP_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "reference",
+    "section": "l1-results",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-results-375.png",
+    "overflow": false,
+    "navTop": -1618,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l1-results",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-results-375.png",
+    "overflow": false,
+    "navTop": -1618,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "reference",
+    "section": "l1-browse",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-browse-375.png",
+    "overflow": false,
+    "navTop": -24152,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l1-browse",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-browse-375.png",
+    "overflow": false,
+    "navTop": -24152,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 36,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "reference",
+    "section": "l1-footer",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l1-footer-375.png",
+    "overflow": false,
+    "navTop": -32345,
+    "images": [],
+    "footerLinks": 36,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "implementation",
+    "section": "l1-footer",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l1-footer-375.png",
+    "overflow": false,
+    "navTop": -32345,
+    "images": [],
+    "footerLinks": 36,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "reference",
+    "section": "l2-deck",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l2-deck-375.png",
+    "overflow": false,
+    "navTop": -1076,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 24
+  },
+  {
+    "source": "implementation",
+    "section": "l2-deck",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l2-deck-375.png",
+    "overflow": false,
+    "navTop": -1073,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 23
+  },
+  {
+    "source": "reference",
+    "section": "l2-footer",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l2-footer-375.png",
+    "overflow": false,
+    "navTop": -4096,
+    "images": [],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "implementation",
+    "section": "l2-footer",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l2-footer-375.png",
+    "overflow": false,
+    "navTop": -4049,
+    "images": [],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "reference",
+    "section": "l3-body",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l3-body-375.png",
+    "overflow": false,
+    "navTop": -1619,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "implementation",
+    "section": "l3-body",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l3-body-375.png",
+    "overflow": false,
+    "navTop": -1619,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 0
+  },
+  {
+    "source": "reference",
+    "section": "l3-scratchpad",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/reference-l3-scratchpad-375.png",
+    "overflow": false,
+    "navTop": -27122,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1997170504713883651/mr6aPbte_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  },
+  {
+    "source": "implementation",
+    "section": "l3-scratchpad",
+    "width": 375,
+    "status": 200,
+    "screenshot": "evidence/sections/implementation-l3-scratchpad-375.png",
+    "overflow": false,
+    "navTop": -27122,
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1997170504713883651/mr6aPbte_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "footerLinks": 33,
+    "visibleCopyButtons": 1
+  }
+]

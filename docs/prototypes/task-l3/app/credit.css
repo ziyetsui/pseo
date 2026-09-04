@@ -1,0 +1,99 @@
+/* The credit line under the first screen's argument. Everything above it is untouched: each
+   direction renders the shipped block and passes only this as a child. Scoped to .cr-*. */
+@font-face{
+  /* The one new face in this set, for the Signature direction only. Instrument Serif, SIL OFL —
+     but this repository keeps no font licence record (frontend/AGENTS.md §7), so adopting that
+     direction means registering the licence and self-hosting the file rather than a CDN. */
+  font-family:"Instrument Serif";
+  font-style:italic;font-weight:400;font-display:swap;
+  src:url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+.prototype-magnetic .cr{--cr-ease:cubic-bezier(.32,.72,0,1)}
+.prototype-magnetic .cr-label{font:var(--w-semi) 11px/1.5 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+@keyframes cr-rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cr-wipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes cr-pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes cr-amp{from{opacity:0;transform:rotate(-9deg) scale(.9)}to{opacity:1;transform:none}}
+@keyframes cr-deal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── Colophon ──────────────────────────────────────────────────────────── */
+.prototype-magnetic .cr-colophon{max-width:410px;margin:34px auto 0;text-align:left}
+.prototype-magnetic .cr-rule{display:block;width:56px;height:1px;background:var(--border-strong);transform-origin:left center;
+  animation:cr-wipe 380ms var(--cr-ease) both}
+.prototype-magnetic .cr-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px;margin-top:15px}
+.prototype-magnetic .cr-name{animation:cr-rise 420ms var(--cr-ease) both;animation-delay:calc(140ms + var(--i) * 70ms)}
+.prototype-magnetic .cr-name a{position:relative;font:20px/1.4 var(--font-serif);letter-spacing:-.01em;color:var(--foreground)}
+/* The hit area is a pseudo-element: 20px of text plus 12px either side clears 44px without
+   changing the line box, and 4px of horizontal bleed cannot reach the neighbouring name. */
+.prototype-magnetic .cr-name a::before{content:"";position:absolute;inset:-12px -4px}
+.prototype-magnetic .cr-name a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left center;transition:transform 220ms var(--cr-ease)}
+.prototype-magnetic .cr-amp{margin-left:10px;font:italic 18px/1 var(--font-serif);color:var(--faint)}
+
+/* ── Signature ─────────────────────────────────────────────────────────── */
+/* 42px, not 52: at 1440x1000 the taller setting put the names under the fold, and a credit
+   that has to be scrolled to is not on the first screen. */
+.prototype-magnetic .cr-signature{max-width:640px;margin:30px auto 0;text-align:center}
+.prototype-magnetic .cr-label-centred{margin-bottom:12px}
+.prototype-magnetic .cr-sig{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0 20px;
+  font-family:"Instrument Serif",var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(30px,4.4vw,42px);line-height:1.06;letter-spacing:-.012em;text-wrap:balance}
+/* 32px tall at 375 where the clamp bottoms out; the extension carries it to 44 there and leaves
+   the 55px desktop size alone. */
+.prototype-magnetic .cr-sig-name::before{content:"";position:absolute;inset:-7px -6px}
+.prototype-magnetic .cr-sig-name{position:relative;display:inline-block;color:var(--foreground);
+  animation:cr-rise 520ms var(--cr-ease) both;animation-delay:calc(160ms + var(--i) * 90ms)}
+.prototype-magnetic .cr-sig-amp{display:inline-block;font-size:.72em;color:var(--faint);
+  animation:cr-amp 560ms var(--cr-ease) both;animation-delay:300ms}
+.prototype-magnetic .cr-stroke{position:absolute;left:0;right:0;bottom:.02em;height:2px;border-radius:2px;background:currentColor;
+  transform:scaleX(0);transform-origin:left center;transition:transform 280ms var(--cr-ease)}
+
+/* ── Plaque ────────────────────────────────────────────────────────────── */
+.prototype-magnetic .cr-plaque{max-width:410px;margin:34px auto 0;text-align:left}
+.prototype-magnetic .cr-card{margin-top:12px;border:var(--hairline) solid var(--border);border-radius:12px;background:var(--card);overflow:hidden;
+  animation:cr-pop 420ms var(--cr-ease) both;animation-delay:120ms}
+.prototype-magnetic .cr-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;align-items:center;min-height:52px;padding:0 16px;
+  color:var(--foreground);transition-property:background-color;transition-duration:var(--t-out);transition-timing-function:var(--e-out)}
+.prototype-magnetic .cr-row + .cr-row{border-top:var(--hairline) solid var(--border)}
+.prototype-magnetic .cr-row-name{font-size:15.5px;font-weight:var(--w-medium);letter-spacing:-.01em}
+.prototype-magnetic .cr-row-handle{font:12px/1.5 var(--font-mono);color:var(--faint)}
+.prototype-magnetic .cr-row-go{color:var(--faint);font-size:13px;transition:transform var(--t-out) var(--e-out)}
+
+/* ── Kinetic ───────────────────────────────────────────────────────────── */
+.prototype-magnetic .cr-kinetic{max-width:410px;margin:34px auto 0;text-align:left}
+.prototype-magnetic .cr-kin{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 12px;margin-top:14px;
+  font-family:var(--font-serif);font-size:clamp(25px,3.6vw,36px);line-height:1.18;letter-spacing:-.015em}
+.prototype-magnetic .cr-kin-part{display:inline-flex;align-items:baseline;gap:0 12px}
+.prototype-magnetic .cr-kin-name{position:relative;display:inline-block;color:var(--foreground)}
+/* Measured 42px tall at 1440 and 30px at 375 — the extension carries both past 44 without
+   touching the line box, and 4px of horizontal bleed cannot reach the ampersand 12px away. */
+.prototype-magnetic .cr-kin-name::before{content:"";position:absolute;inset:-8px -4px}
+.prototype-magnetic .cr-glyph{display:inline-block;white-space:pre;animation:cr-deal 460ms var(--cr-ease) both;
+  animation-delay:calc(120ms + var(--i) * 26ms)}
+.prototype-magnetic .cr-kin-amp{display:inline-block;font-style:italic;color:var(--faint);
+  animation:cr-deal 460ms var(--cr-ease) both;animation-delay:calc(120ms + var(--i) * 26ms)}
+
+/* ── Interaction ───────────────────────────────────────────────────────── */
+@media (hover:hover) and (pointer:fine){
+  .prototype-magnetic .cr-name a:hover::after,
+  .prototype-magnetic .cr-sig-name:hover .cr-stroke,
+  .prototype-magnetic .cr-kin-name:hover .cr-stroke{transform:scaleX(1)}
+  .prototype-magnetic .cr-row:hover{background:var(--surface)}
+  .prototype-magnetic .cr-row:hover .cr-row-go{transform:translateX(2px)}
+}
+/* Focus gets the same stroke as hover: a keyboard reader should see what a pointer reader sees. */
+.prototype-magnetic .cr-sig-name:focus-visible .cr-stroke,
+.prototype-magnetic .cr-kin-name:focus-visible .cr-stroke,
+.prototype-magnetic .cr-name a:focus-visible::after{transform:scaleX(1)}
+.prototype-magnetic .cr-row:active{background:var(--surface);transform:scale(.98)}
+@media (prefers-reduced-motion:reduce){
+  .prototype-magnetic .cr *,.prototype-magnetic .cr{animation:none!important;transition:none!important}
+  .prototype-magnetic .cr-row:active{transform:none}
+}
+
+/* ── Narrow ────────────────────────────────────────────────────────────── */
+@media (max-width:700px){
+  .prototype-magnetic .cr-colophon,.prototype-magnetic .cr-plaque,.prototype-magnetic .cr-kinetic{margin-top:28px}
+  .prototype-magnetic .cr-signature{margin-top:30px}
+  .prototype-magnetic .cr-kin{gap:0 10px}
+}

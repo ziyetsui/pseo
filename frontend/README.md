@@ -1,146 +1,61 @@
-# pseo frontend
+# Prompt Library frontend
 
-Next.js 16 (App Router) static export for the SEO-first prompt/blog site.
-Everything under `frontend/` is owned by the frontend agent; see `AGENTS.md`
-in this directory for the binding collaboration rules.
+Next.js App Router、strict TypeScript、CSS 与 Tailwind CSS。L1 采用 `../docs/wireframes/proto-continuous-peek.html?v=2` 的 Magnetic 原型和动效；L2–L4 来自 `../specs/images/flow-proto-full.html` 的 Images Deck、Videos Deck、Anthology、Recipe。协作规范见 [AGENTS.md](./AGENTS.md)。
 
-## Commands
+## 本地查看
 
-Package manager is **pnpm** (`pnpm-lock.yaml` is the source of truth — do not
-mix in npm/yarn/bun). Run everything from `frontend/`.
-
-| Command | What it does |
-| --- | --- |
-| `pnpm dev` | Local dev server on http://localhost:3000 |
-| `pnpm build` | `next build` → static export into `out/` |
-| `pnpm lint` | ESLint flat config (`eslint-config-next` 16) |
-| `pnpm typecheck` | `tsc --noEmit`, strict + `noUncheckedIndexedAccess` |
-| `pnpm test` | Vitest (jsdom + Testing Library) unit tests |
-| `pnpm test:e2e` | Playwright against the built `out/` served on :43117 |
-| `pnpm check:static` | Static-output gate over `out/` + `src/` (routes, iframe/srcdoc/hash, `#` links, hreflang, prototype counts) |
-| `pnpm screenshots` | Full-page PNGs of L1–L4 at 1440×1200 and 375×812 into `evidence/screenshots/` |
-
-Gate before any delivery: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
-
-### The visual system
-
-There is one visual system and no theme switch. Its tokens are the prototype's
-own (`docs/wireframes/flow-proto.html`), set out in a design-engineering idiom:
-a platform sans that puts PingFang SC in front of the Chinese glyphs,
-translucent hairline rules, layered soft shadows, a 12px radius (10px for
-controls), and a real dark mode via `light-dark()`. The Bauhaus system that used
-to ship beside it behind `NEXT_PUBLIC_THEME` was retired on 2026-09-03; nothing
-reads that variable any more.
-
-Every value lives in `src/styles/globals.css`, which is the only place a token
-is defined. Components consume the semantic utilities that come out of it and
-never spell a colour, a shadow or a radius themselves.
-
-Colour scheme is a reader preference, not a theme, and has three states: no
-attribute at all follows the operating system, and an explicit
-`data-color-scheme="light|dark"` anywhere under `:root` pins it.
-
-`pnpm test:e2e`, `pnpm check:static` and `pnpm screenshots` all read the built
-`out/`, so run `pnpm build` first. Playwright's `webServer` serves `out/` on
-:43117 and never reuses an already-running server.
-
-**Install the browser once** before the first Playwright run — the repo does not
-vendor it:
-
-```bash
-pnpm exec playwright install chromium
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-Both Playwright projects (`desktop` 1440×1200, `mobile` Pixel 7 @ 375×812) are
-Chromium, so `chromium` is the only download needed. `pnpm screenshots` uses two
-separate projects (`screenshots-desktop` / `screenshots-mobile`) so a plain
-`pnpm test:e2e` never rewrites the committed PNGs in `evidence/screenshots/`.
+打开 `http://127.0.0.1:3000/zh-CN/prompts`。`dev` 显式启用隔离的视觉样本；保留母版英文文案。这个模式不会代表 CMS 审核或生产发布，所有导出页面和响应规则均 noindex。
 
-The current e2e result and the open product findings are recorded in
-[`evidence/test-run.md`](./evidence/test-run.md) — read it before assuming a red
-run is your fault.
+按 2026-09-04 用户要求，全站默认 Linear 暗色，沿用母版暗色 token；系统浅色偏好不覆盖站点默认主题。
 
-## Directory map
+L1 `/zh-CN/prompts` → L2 `/image` 或 `/video` → L3 `/models/{slug}` → L4 `/{promptSlug}`。页面可直接打开和刷新，筛选写入 URL，支持浏览器前进/后退；模型全文、变量、Deck 键盘、目录与本地 scratchpad 均可用。复制按钮已按用户要求移除；图片/视频 CTA 分别为 Generate image / Generate video，列表入口进入对应 L4。
 
-```text
-frontend/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx            # <html lang> + next/font (Outfit, JetBrains Mono)
-│   │   ├── not-found.tsx         # 404 → exported as out/404.html
-│   │   └── [locale]/             # every public, indexable page
-│   ├── components/layout/        # SiteHeader / SiteFooter / MobileNav / BrandMark
-│   ├── lib/
-│   │   ├── i18n/                 # locale config + the only route builders
-│   │   └── seo/                  # metadata, canonical, hreflang, JSON-LD
-│   └── styles/globals.css        # the ONLY place design tokens are defined
-└── tests/{unit,e2e}/
+## 公共数据构建
+
+数据只通过现有匿名只读 Backend API 获取，类型由 OpenAPI 生成。构建完整遍历分页并取得全文，固定同一版本；任何 schema、revision、locale 或数量不一致都会失败。
+
+```sh
+FRONTEND_DATA_MODE=public-api \
+FRONTEND_API_URL=http://127.0.0.1:8000 \
+FRONTEND_EXPECTED_REVISION=sha256:<完整64位摘要> \
+FRONTEND_SITE_URL=https://<实际公开域名> \
+FRONTEND_STATIC_DIR=/absolute/path/to/verified/infra/generated/static \
+pnpm build
+pnpm check:static
 ```
 
-## Conventions worth knowing
+`FRONTEND_SITE_URL` 在 public-api 模式下必填，必须是实际公开站点的 HTTPS origin，不得包含用户名、密码、路径、query 或 fragment。缺失或非法值会使构建失败。即使 Backend API 和静态服务在本机运行，也必须使用实际 canonical origin，不能把 localhost 作为公开域名。视觉 fixture 不要求此配置，仍保持 noindex 和 robots 全站禁抓取。
 
-- **Design tokens.** `src/styles/globals.css` is the single source of truth.
-  Components consume semantic Tailwind utilities (`bg-canvas`, `text-foreground`,
-  `border-foreground`, `shadow-hard-md`, `bg-accent-red`, `rounded-pill`).
-  No hex values, arbitrary shadows or magic numbers in JSX.
-- **Links.** Every internal href comes from `src/lib/i18n/routes.ts`. There are
-  no `#` placeholder links; routes that do not exist yet are not rendered as
-  links at all.
-- **Static export.** `output: "export"`, `trailingSlash: false`,
-  `images.unoptimized: true`. Every dynamic segment needs `generateStaticParams`
-  and `dynamicParams = false`. There is no server runtime, no ISR, no redirects —
-  the locale root uses a `<meta http-equiv="refresh">` plus a real link.
-- **No route-level `loading.tsx`.** Deliberate, and enforced by
-  `tests/e2e/no-js.spec.ts`. A `loading.tsx` is a Suspense boundary, and in a
-  static export React prerenders the *fallback* into `<main>` while the real
-  page is flushed at the end of `<body>` inside `<div hidden id="S:…">` and only
-  moved into place by an inline `$RC(...)` script. With JavaScript off the page
-  is then just `加载中`. Since every page resolves its data at build time there
-  is nothing to wait for anyway. Observable loading states belong to client
-  transitions and use `StateBlock variant="loading"`; `error.tsx` files stay.
-- **Locales.** Only `zh-CN` is published. `en` is not translated and must not
-  appear in routes, `alternates.languages` or copy until real content is merged.
+`FRONTEND_STATIC_DIR` 可选。配置后必须与 API 同 revision，并通过 manifest 的文件哈希校验；Blog、RSS 与 sitemap 从该不可变编译投影读取。L1/Blog 仅在已验证 sitemap 中具备资格时输出 index；Prompt 同时遵守 API 与 compiler 的更严格资格，避免 Internal Beta 页面被误索引。导出时 sitemap 中每个 URL 必须对应可索引且 canonical 一致的 HTML。未配置时 Blog 明确显示不可用，Prompt 继续采用 API SEO 合同。未启用/未审核的 locale 不生成内容页，不回退为其他语言。
 
-## Data status (internal-beta fixture)
+输出为 `out/`。`out/frontend-build.json` 记录数据模式、revision、允许的 Prompt 路由与可选 mirror SHA；这份本地构建记录不证明 production release。当前实现不需要 CMS、Git mirror 或部署凭据，不启用 CMS draft Preview。
 
-The internal-beta UI ships the typed fixture extracted from
-`docs/wireframes/flow-proto.html`: **35 prompts, 21 creators, 11 models and 6
-collections**, observed on `2026-08-20`. Pages read it only through the
-`ContentRepository` boundary and derive every visible count from the current
-fixture; prototype-declared library totals are retained as metadata but never
-rendered as achieved counts. See `evidence/fixture-extraction.md` for the exact
-merge rules and provenance.
+## 验证
 
-This fixture is the complete wireframe-backed MVP, not the long-term
-publication source. The shared `getContentRepository()` factory intentionally
-stays fixture-only and client-safe; server-rendered preview entry points use the
-isolated factory below.
-
-### Local CMS preview data
-
-The checked-in fixture remains the default and the production/static source.
-For the internal beta only, server layouts/pages can import
-`createServerContentContext` from `src/lib/content/server.ts`. Preview mode is
-enabled only when all four server-side variables are present:
-
-```bash
-PSEO_CONTENT_SOURCE=cms-preview
-PSEO_PREVIEW=1
-PSEO_PREVIEW_API_BASE_URL=http://127.0.0.1:3001
-PSEO_PREVIEW_API_TOKEN=<private bearer token>
+```sh
+pnpm generate:api
+node scripts/generate-api.mjs --check
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build:visual
+pnpm check:static
+pnpm dev
+# 另一个终端，或对已运行的本地静态服务设置 FRONTEND_TEST_URL
+pnpm test:e2e
 ```
 
-The token must never use a `NEXT_PUBLIC_` name. Partial or invalid preview
-configuration and API failures stop the preview build/request; they never fall
-back to fixture content. The returned context exposes `mode` and `revision` so
-the beta UI can display an explicit preview marker. Each context fetches and
-validates one closed catalog envelope, then binds its repository to that single
-revision.
+本机后端联调：`FRONTEND_CONTRACT_API_URL=http://127.0.0.1:8000 pnpm exec vitest run --config tests/api.integration.config.ts`。
 
-CMS currently has no Article collection. In CMS preview mode only the prompt,
-taxonomy, creator, model, collection and snapshot data come from CMS; blog
-methods deliberately continue to use the unchanged wireframe blog fixture.
+从仓库根目录运行 `node scripts/check-public-frontend.mjs` 可一次验证 compiler → 临时本机 Backend API → 同 revision 前端构建 → 静态链接检查。先安装 frontend 与 backend 锁定依赖；脚本自行启动、关闭临时 API，不占用正在使用的 8000 端口。它使用仓库合同 fixture，不代表 CMS public snapshot 已接通。运行后 `frontend/out` 是 public-api 工程产物；如需视觉样本导出，重新运行 `pnpm build:visual`。
 
-`NEXT_PUBLIC_SITE_URL` is unset, so canonical/OG URLs are built against the
-placeholder origin `https://example.invalid`. Set the env var before a real
-deploy.
+对该 public-api 导出启动本机静态服务器后，运行 `FRONTEND_STATIC_TEST_URL=http://127.0.0.1:<端口> node scripts/smoke-public.mjs`，检查全部 zh-CN 嵌套分类/详情、真实 404、结构化数据和无 JavaScript 内容。CI 的 Preview artifact 使用同一工程链并追加 noindex；它不是 CMS 草稿预览或生产部署。
+
+设计 CSS 由 `node scripts/extract-design.mjs` 从母版提取并限定作用域，交互/可访问性补丁在 `src/styles/interaction.css` 与 `globals.css`。`evidence/` 记录实际视觉截图、文案映射、接口验证和剩余外部限制。Blog 为同一体系的派生设计，原型没有对应定稿。
+
+后端尚无合集、创作者详情、Article HTTP API 或生成接口。相关浏览使用已有筛选/静态文章投影；L4 的 Generate 按钮统一打开 `https://bo.video/home`，正文仍完整可读、可选择。Anthology scratchpad 的生成链接仍依赖有效的 `actions.tryUrl`。

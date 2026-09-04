@@ -1,0 +1,142 @@
+[
+  {
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "entries": 7,
+    "violations": []
+  },
+  {
+    "variant": "Current",
+    "width": 1440,
+    "automotiveVisible": false
+  },
+  {
+    "variant": "Plate",
+    "width": 1440,
+    "overflow": false,
+    "entries": 34,
+    "violations": []
+  },
+  {
+    "variant": "Plate",
+    "width": 1440,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Ledger",
+    "width": 1440,
+    "overflow": false,
+    "entries": 8,
+    "violations": []
+  },
+  {
+    "variant": "Ledger",
+    "width": 1440,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Field",
+    "width": 1440,
+    "overflow": false,
+    "entries": 8,
+    "violations": []
+  },
+  {
+    "variant": "Field",
+    "width": 1440,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Directory",
+    "width": 1440,
+    "overflow": false,
+    "entries": 12,
+    "violations": []
+  },
+  {
+    "variant": "Directory",
+    "width": 1440,
+    "automotiveVisible": true
+  },
+  {
+    "width": 1440,
+    "cellHref": "/tasks/beauty?model=nano-banana-pro",
+    "scoped": "7 / 13 prompts",
+    "cleared": "13 / 13 prompts"
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "entries": 7,
+    "violations": []
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "automotiveVisible": false
+  },
+  {
+    "variant": "Plate",
+    "width": 375,
+    "overflow": false,
+    "entries": 34,
+    "violations": []
+  },
+  {
+    "variant": "Plate",
+    "width": 375,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Ledger",
+    "width": 375,
+    "overflow": false,
+    "entries": 8,
+    "violations": []
+  },
+  {
+    "variant": "Ledger",
+    "width": 375,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Field",
+    "width": 375,
+    "overflow": false,
+    "entries": 8,
+    "violations": []
+  },
+  {
+    "variant": "Field",
+    "width": 375,
+    "automotiveVisible": true
+  },
+  {
+    "variant": "Directory",
+    "width": 375,
+    "overflow": false,
+    "entries": 12,
+    "violations": []
+  },
+  {
+    "variant": "Directory",
+    "width": 375,
+    "automotiveVisible": true
+  },
+  {
+    "width": 375,
+    "cellHref": "/tasks/beauty?model=nano-banana-pro",
+    "scoped": "7 / 13 prompts",
+    "cleared": "13 / 13 prompts"
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

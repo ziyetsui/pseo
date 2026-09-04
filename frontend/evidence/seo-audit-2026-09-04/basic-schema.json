@@ -1,0 +1,9 @@
+{
+  "url": "frontend/evidence/seo-audit-2026-09-04/html/%2Fzh-CN%2Fprompts%2Fmodel-families%2Fnano-banana.html",
+  "status": "info",
+  "schemas": [],
+  "inferred_page_type": "unknown",
+  "expected_types": [],
+  "detail": "No JSON-LD found. Page type unclear — may not require structured data.",
+  "llm_review_required": true
+}

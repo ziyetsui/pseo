@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { MockGitPublisher } from "../src/publication/mockGitPublisher.ts";
 import { runCmsPreviewLoop } from "../src/integration/previewLoop.ts";
 
 const ORIGINAL_TITLE = "Original CMS title";
@@ -64,7 +63,7 @@ function fixture() {
   return { artifact, payload, updates, variant };
 }
 
-test("the local loop proves edit, preview headers, safe draft state, restore, and mock-only submit", async () => {
+test("the local loop proves edit, preview headers, safe draft state, and restore", async () => {
   const { payload, updates, variant } = fixture();
   const previewToken = "private-preview-token-never-in-html";
   const fetchImpl: typeof fetch = async (input) => {
@@ -83,8 +82,6 @@ test("the local loop proves edit, preview headers, safe draft state, restore, an
     cmsBaseUrl: "http://127.0.0.1:3001",
     fetchImpl,
     frontendBaseUrl: "http://127.0.0.1:3200",
-    mockBaseSha: "a".repeat(40),
-    mockGitPublisher: new MockGitPublisher({ expectedBaseSha: "a".repeat(40) }),
     payload,
     previewToken,
   });
@@ -93,15 +90,6 @@ test("the local loop proves edit, preview headers, safe draft state, restore, an
   assert.equal(evidence.initialRevision, REVISION_A);
   assert.equal(evidence.editedRevision, REVISION_B);
   assert.equal(evidence.restoredRevision, REVISION_A);
-  assert.equal(evidence.submitReview.status, "mock_accepted");
-  assert.equal(evidence.submitReview.provider, "mock");
-  assert.match(evidence.submitReview.plannedBranch, /^content\//u);
-  assert.equal(evidence.submitReview.branch, null);
-  assert.equal(evidence.submitReview.commitSha, null);
-  assert.equal(evidence.submitReview.pullRequestNumber, null);
-  assert.equal(evidence.submitReview.pullRequestUrl, null);
-  assert.equal(evidence.submitReview.mergeSha, null);
-  assert.equal(evidence.submitReview.releasedAt, null);
   assert.deepEqual(updates, [`${ORIGINAL_TITLE} · CMS Preview E2E`, ORIGINAL_TITLE]);
   assert.equal(variant.title, ORIGINAL_TITLE);
 });
@@ -120,8 +108,6 @@ test("a failed browser assertion still restores the developer draft", async () =
       cmsBaseUrl: "http://127.0.0.1:3001",
       fetchImpl,
       frontendBaseUrl: "http://127.0.0.1:3200",
-      mockBaseSha: "a".repeat(40),
-      mockGitPublisher: new MockGitPublisher({ expectedBaseSha: "a".repeat(40) }),
       payload,
       previewToken: "private-preview-token-never-in-html",
       retry: { attempts: 1, delayMs: 0 },

@@ -1,0 +1,78 @@
+/* Findings v4: selected only for Browse by task landing pages. */
+.prototype-task-findings .vfd .wrap{max-width:var(--w-page)}
+.prototype-task-findings .vfd .arg{max-width:410px;margin-inline:auto}
+.prototype-task-findings .vfd .open{padding-block:92px 42px;text-align:center}
+.prototype-task-findings .vfd h1{font-family:var(--font-serif);font-weight:400;
+        font-size:clamp(40px,7.6vw,96px);line-height:1;letter-spacing:normal;
+        text-wrap:balance;max-width:15ch;margin-inline:auto}
+.prototype-task-findings .vfd .open .lede{font-size:17px;line-height:1.6;letter-spacing:normal;color:var(--muted);
+                 margin:28px auto 0;text-wrap:pretty}
+.prototype-task-findings .vfd .finding{border-top:var(--hairline) solid var(--border);padding-block:54px}
+/* The number carries the claim, so it is set at reading size in the serif
+   rather than shrunk into a caption. */
+.prototype-task-findings .vfd .finding h2{font-family:var(--font-serif);font-weight:400;font-size:26px;line-height:1.24;
+                 letter-spacing:normal;text-align:center;text-wrap:balance;
+                 max-width:22ch;margin-inline:auto}
+.prototype-task-findings .vfd .finding .arg p{font-size:17px;line-height:1.6;letter-spacing:normal;margin-top:16px;
+                     text-wrap:pretty;color:var(--muted)}
+.prototype-task-findings .vfd .spec{max-width:648px;margin:36px auto 0}
+.prototype-task-findings .vfd .spec .sno{font:var(--w-semi) 10.5px/1.6 var(--font-mono);letter-spacing:.17em;
+                text-transform:uppercase;color:var(--faint);font-variant-numeric:tabular-nums;
+                padding-bottom:8px;margin-bottom:14px;
+                border-bottom:var(--hairline) solid var(--border-strong);
+                display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.prototype-task-findings .vfd .spec figure img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.prototype-task-findings .vfd .spec h3{font-family:var(--font-serif);font-weight:400;font-size:21px;line-height:1.22;
+              letter-spacing:-.012em;text-wrap:balance;margin-top:16px}
+.prototype-task-findings .vfd .spec .verbatim{font:12.5px/1.62 var(--font-mono);white-space:pre-wrap;
+                     overflow-wrap:anywhere;color:var(--foreground);margin-top:14px;
+                     border-left:2px solid var(--foreground);padding-left:14px;
+                     display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
+.prototype-task-findings .vfd .spec .cred{font:11px/1.7 var(--font-mono);color:var(--faint);letter-spacing:.06em;
+                 text-transform:uppercase;font-variant-numeric:tabular-nums;margin-top:12px;
+                 display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.prototype-task-findings .vfd .spec .rr{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.prototype-task-findings .vfd .allof{max-width:648px;margin:24px auto 0;font-family:var(--font-serif);font-size:19px;
+            line-height:2.05;letter-spacing:-.006em;text-align:justify;hyphens:auto;
+            color:var(--muted);overflow-wrap:break-word}
+/* Thirty underlines in one paragraph at --border-strong read as a rule under
+   the whole block; the hairline keeps the affordance without hover. */
+.prototype-task-findings .vfd .allof a{color:var(--foreground);border-bottom:var(--hairline) solid var(--border);
+              transition-property:border-color;transition-duration:150ms;
+              transition-timing-function:var(--e-out)}
+@media (hover:hover) and (pointer:fine){ .prototype-task-findings .vfd .allof a:hover{border-bottom-color:var(--foreground)} }
+.prototype-task-findings .vfd .allof .sep{padding-inline:5px;color:var(--faint)}
+.prototype-task-findings .vfd .empty{max-width:648px;margin-inline:auto}
+@media (max-width:620px){
+  .prototype-task-findings .vfd .open{padding-block:56px 30px}
+  .prototype-task-findings .vfd .allof{text-align:left;font-size:18px}
+}
+
+
+.prototype-task-findings .ctrl{position:sticky;top:73px;z-index:40;background:var(--background);border-block:var(--hairline) solid var(--border)}
+.prototype-task-findings .bar{display:flex;flex-direction:column;gap:9px;padding-block:11px}
+.prototype-task-findings .row{display:flex;gap:10px;align-items:center;min-width:0}
+.prototype-task-findings .lbl{font:var(--w-semi) 10.5px/1.6 var(--font-mono);letter-spacing:.15em;text-transform:uppercase;color:var(--faint);flex:none}
+.prototype-task-findings .scroller{display:flex;gap:10px;overflow-x:auto;padding:5px 2px;scrollbar-width:none;min-width:0}
+.prototype-task-findings .scroller::-webkit-scrollbar{display:none}
+.prototype-task-findings .scroller .chip{flex:none;white-space:nowrap}
+.prototype-task-findings .chip[aria-current="page"]{background:var(--foreground);color:var(--background);border-color:var(--foreground)}
+.prototype-task-findings .chip small{opacity:1}
+.prototype-task-findings .btn{min-height:44px}
+.prototype-task-findings .btn::after{inset:0}
+.prototype-task-findings .vfd .spec figure video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.prototype-task-findings .spec .sno a{display:inline-flex;align-items:center;min-height:44px;margin-block:-12px;text-underline-offset:4px}
+.prototype-task-findings .spec .note{text-transform:none;letter-spacing:normal}
+.prototype-task-findings .spec .rr{display:flex}
+.prototype-task-findings .task-start{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.prototype-task-findings .task-start .btn{padding-inline:20px}
+.prototype-task-findings .people{grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr))}
+.prototype-task-findings .allof a{padding-block:11px}
+.prototype-task-findings .footnav a{min-height:44px}
+.prototype-task-findings .empty{overflow-wrap:anywhere}
+.prototype-task-findings [id]{scroll-margin-top:210px}
+@media(max-width:700px){.prototype-task-findings .ctrl{top:0}.prototype-task-findings .nav{position:static}}
+@media(max-width:620px){.prototype-task-findings .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.prototype-task-findings .row{gap:0}}
+/* The shared header keeps the wide frame; Findings narrows only page content. */
+.prototype-task-findings .vfd .nav .wrap{max-width:var(--w-wide)}
+.prototype-task-findings .vfd .spec .cred.note{text-transform:none;letter-spacing:normal}

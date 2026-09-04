@@ -1,0 +1,80 @@
+[
+  {
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "links": 7,
+    "violations": []
+  },
+  {
+    "variant": "Plate",
+    "width": 1440,
+    "overflow": false,
+    "links": 34,
+    "violations": []
+  },
+  {
+    "variant": "Ledger",
+    "width": 1440,
+    "overflow": false,
+    "links": 8,
+    "violations": []
+  },
+  {
+    "variant": "Field",
+    "width": 1440,
+    "overflow": false,
+    "links": 8,
+    "violations": []
+  },
+  {
+    "variant": "Directory",
+    "width": 1440,
+    "overflow": false,
+    "links": 31,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "links": 7,
+    "violations": []
+  },
+  {
+    "variant": "Plate",
+    "width": 375,
+    "overflow": false,
+    "links": 34,
+    "violations": []
+  },
+  {
+    "variant": "Ledger",
+    "width": 375,
+    "overflow": false,
+    "links": 8,
+    "violations": []
+  },
+  {
+    "variant": "Field",
+    "width": 375,
+    "overflow": false,
+    "links": 8,
+    "violations": []
+  },
+  {
+    "variant": "Directory",
+    "width": 375,
+    "overflow": false,
+    "links": 31,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

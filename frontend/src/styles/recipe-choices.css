@@ -1,0 +1,11 @@
+.prototype-recipe .varopts { gap:8px; }
+.prototype-recipe .varopt { max-width:100%; min-width:0; }
+/* Keep the native radio above the pressed label so its transform cannot intercept clicks. */
+.prototype-recipe .varopt input { inset:0; width:100%; height:100%; z-index:1; scroll-margin-block:80px; }
+.prototype-recipe .varopt span { pointer-events:none; }
+/* Switch foreground and background together: interpolating inverted colors loses contrast. */
+.prototype-recipe .varopt span { min-height:44px; max-width:100%; padding:10px 12px; border-radius:10px; line-height:1.45; overflow-wrap:anywhere; transition-property:border-color,transform;transition-duration:150ms;transition-timing-function:var(--e-out); }
+.prototype-recipe .varopt input:active + span { transform:scale(.98); }
+.prototype-recipe .varset:disabled .varopt { opacity:.6; }
+.prototype-recipe .varset:disabled .varopt input { cursor:wait; }
+.prototype-recipe .varopts + .recipe-variable-input { margin-top:10px; min-height:44px; }

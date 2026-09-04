@@ -1,0 +1,56 @@
+/* Production behaviors added to the selected prototype layouts. */
+.hub-search { margin-top: 24px; }
+.hub-chips, .filter-axis-inline { display: flex; flex-wrap: wrap; gap: 8px; }
+.hub-chips { margin-top: 16px; }
+.clear-filters { margin-top: 16px; }
+.prototype-deck .media > img, .prototype-deck .media > video { width: 100%; height: 100%; object-fit: cover; }
+.prototype-deck .deck { outline-offset: 6px; }
+.prototype-deck .dc pre.prompt:focus-visible { outline-offset: -3px; }
+.prototype-anthology .entry .plate .noimg { min-height: 160px; }
+.prototype-anthology .genrow .btn:disabled { opacity: .45; cursor: not-allowed; }
+.prototype-hub .btn:disabled { opacity: .45; cursor: not-allowed; }
+.filter-axis-inline { display: contents; }
+
+/* A scoped page is not the document scroller: hidden would capture sticky navigation. */
+.prototype-hub, .prototype-deck, .prototype-anthology { overflow-x: clip; }
+/* Avoid an anonymous baseline row inserted by JSX after the textarea. */
+.prototype-anthology .genbox textarea { display: block; }
+/* Keep the standards property separate: the bundled CSS optimizer drops the
+   prototype's adjacent legacy-prefixed declaration pair. */
+.prototype-hub .taste .nav, .prototype-deck .taste .nav { backdrop-filter: blur(20px); }
+
+/* L1 Magnetic uses the reference geometry and keeps the document as sticky scroller. */
+.prototype-magnetic { overflow-x: clip; }
+.prototype-magnetic .taste .nav { backdrop-filter: blur(20px); }
+.prototype-magnetic .exp .fig video { width:100%; height:100%; object-fit:cover; }
+.prototype-magnetic .chip small { opacity:1; }
+/* Reduced motion also overrides the prototype's later touch press transform. */
+@media (prefers-reduced-motion: reduce) {
+  .prototype-magnetic .m-run[data-field] .t { transform:none; transition:none; }
+}
+
+/* Version links are navigation controls on the derived model-family page. */
+.prototype-anthology .model-versions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.prototype-anthology .model-versions .pill { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; }
+
+/* The filter rails hide their scrollbar, so nothing told you the row continued
+   past the edge. Fade the overflowing side only: scroll-driven where that is
+   available, a static right-hand fade elsewhere, and nothing when it all fits. */
+@property --rail-fade-l { syntax: "<length>"; inherits: false; initial-value: 0px }
+@property --rail-fade-r { syntax: "<length>"; inherits: false; initial-value: 28px }
+.prototype-style-plate .scroller, .prototype-task-findings .scroller {
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--rail-fade-l),
+              #000 calc(100% - var(--rail-fade-r)), transparent 100%);
+}
+/* The rail is left-aligned, so a right-hand fade over a row that already fits
+   only touches empty space: the static base hides itself when there is no
+   overflow, and stands in wherever a scroll timeline cannot resolve. */
+@supports (animation-timeline: scroll()) {
+  .prototype-style-plate .scroller, .prototype-task-findings .scroller {
+    animation: rail-fade-l linear both, rail-fade-r linear both;
+    animation-timeline: scroll(self inline), scroll(self inline);
+    animation-range: 0 40px, calc(100% - 40px) 100%;
+  }
+  @keyframes rail-fade-l { from { --rail-fade-l: 0px } to { --rail-fade-l: 28px } }
+  @keyframes rail-fade-r { from { --rail-fade-r: 28px } to { --rail-fade-r: 0px } }
+}

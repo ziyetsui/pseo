@@ -1,0 +1,7 @@
+{
+  "url": "http://127.0.0.1:3000/zh-CN/prompts/model-families/nano-banana",
+  "final_url": "http://127.0.0.1:3000/zh-CN/prompts/model-families/nano-banana",
+  "http_status": null,
+  "redirect_chain": [],
+  "error": "Blocked: resolves to private IP (127.0.0.1)"
+}

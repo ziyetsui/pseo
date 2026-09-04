@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "atc_guides",
+  "type": "article-taxonomy",
+  "axis": "article-category",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "guides",
+  "name": "指南",
+  "description": "怎么用这些提示词：变量替换、复制流程、来源与版权。",
+  "url": null,
+  "status": "draft",
+  "indexable": false,
+  "fixture": true,
+  "sourceRef": "frontend/src/data/wireframe/articles.ts",
+  "seo": {
+    "title": "Prompt 使用指南",
+    "description": "收录变量替换、复制流程、来源与版权说明的 Internal Beta 示例文章分类，当前尚未公开发布。",
+    "canonical": "https://ancher.space/zh-CN/blog/category/guides",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": null,
+    "updatedAt": "2026-08-20T00:00:00Z",
+    "sourceRevision": null
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": null,
+    "reviewer": null
+  }
+}

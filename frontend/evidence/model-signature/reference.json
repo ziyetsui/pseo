@@ -1,0 +1,11 @@
+{
+  "url": "http://127.0.0.1:3000/proto/model-hero?v=3",
+  "userLabel": "Signature",
+  "sourceVariant": "Ticker",
+  "files": {
+    "frontend/src/app/(entry)/proto/model-hero/Harness.tsx": "a0224aec1ccfae35b3752f426aab3a2ae1527e87e3977764f5e4d0aa96485464",
+    "frontend/src/app/(entry)/proto/model-hero/variants.tsx": "8b5a80093c1a82b469fddafc72c19ee70fd5cc2b54c04e8afa83b881df0d1a69",
+    "frontend/src/app/(entry)/proto/model-hero/page.tsx": "c26014ad5d14ccaa5048178d70ffec5ba251d1d0d74166a22a660ae2391f67ba",
+    "frontend/src/app/(entry)/proto/model-hero/proto.css": "24b053b7a457ca9406ad4cc3c4838d0cf109accb7c56db9b01c6c18d7f003262"
+  }
+}

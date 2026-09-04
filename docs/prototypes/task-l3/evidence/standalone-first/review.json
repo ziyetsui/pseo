@@ -1,0 +1,80 @@
+[
+  {
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "l2": 2,
+    "violations": []
+  },
+  {
+    "variant": "Board",
+    "width": 1440,
+    "overflow": false,
+    "l2": 14,
+    "violations": []
+  },
+  {
+    "variant": "Quilt",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "variant": "Statement",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "variant": "Split",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "l2": 2,
+    "violations": []
+  },
+  {
+    "variant": "Board",
+    "width": 375,
+    "overflow": false,
+    "l2": 14,
+    "violations": []
+  },
+  {
+    "variant": "Quilt",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "variant": "Statement",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "variant": "Split",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

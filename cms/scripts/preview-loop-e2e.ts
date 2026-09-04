@@ -1,7 +1,6 @@
 import { createRequire, register } from "node:module";
 
 import { runCmsPreviewLoop } from "../src/integration/previewLoop.ts";
-import { MockGitPublisher } from "../src/publication/mockGitPublisher.ts";
 
 type NextEnvLoader = (cwd: string, dev?: boolean) => unknown;
 
@@ -40,9 +39,7 @@ async function main(): Promise<void> {
   loadEnvConfig(process.cwd(), process.env.NODE_ENV !== "production");
 
   const previewToken = process.env.CMS_PREVIEW_TOKEN?.trim();
-  const mockBaseSha = process.env.CMS_MOCK_GIT_BASE_SHA?.trim();
   if (!previewToken || previewToken.length < 32) throw new Error("CMS_PREVIEW_TOKEN is required");
-  if (!mockBaseSha) throw new Error("CMS_MOCK_GIT_BASE_SHA is required");
 
   const { getPayload } = await import("payload");
   const config = (await import("../src/payload.config.ts")).default;
@@ -57,8 +54,6 @@ async function main(): Promise<void> {
     const evidence = await runCmsPreviewLoop({
       cmsBaseUrl: process.env.PSEO_PREVIEW_API_BASE_URL ?? "http://127.0.0.1:3001",
       frontendBaseUrl: process.env.PSEO_PREVIEW_FRONTEND_URL ?? "http://127.0.0.1:3200",
-      mockBaseSha,
-      mockGitPublisher: new MockGitPublisher({ expectedBaseSha: mockBaseSha }),
       payload,
       previewToken,
     });

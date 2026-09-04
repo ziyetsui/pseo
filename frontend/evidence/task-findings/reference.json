@@ -1,0 +1,124 @@
+[
+  {
+    "width": 1440,
+    "values": [
+      {
+        "selector": "wrap open",
+        "text": "\n      Beauty prompts are specifications.\n      Not wishes. Everything below is counted from the\n        13 prompts this",
+        "width": 1024,
+        "font": "",
+        "padding": "92px 28px 42px"
+      },
+      {
+        "selector": "H1",
+        "text": "Beauty prompts are specifications.",
+        "width": 883.828125,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "ctrl",
+        "text": "\n    Task\n      Beauty 13Food & beverage 8Advertising 5Fashion 5Web & motion design 3UGC 2Automotive 1\n    Within\n      ",
+        "width": 1440,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "bar",
+        "text": "\n    Task\n      Beauty 13Food & beverage 8Advertising 5Fashion 5Web & motion design 3UGC 2Automotive 1\n    Within\n      ",
+        "width": 968,
+        "font": "",
+        "padding": "11px 0px"
+      },
+      {
+        "selector": "chip",
+        "text": "Beauty 13",
+        "width": 86.265625,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Food & beverage 8",
+        "width": 140.6875,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Advertising 5",
+        "width": 106.421875,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Fashion 5",
+        "width": 84.46875,
+        "font": "",
+        "padding": "0px 11px"
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "values": [
+      {
+        "selector": "wrap open",
+        "text": "\n      Beauty prompts are specifications.\n      Not wishes. Everything below is counted from the\n        13 prompts this",
+        "width": 375,
+        "font": "",
+        "padding": "56px 28px 30px"
+      },
+      {
+        "selector": "H1",
+        "text": "Beauty prompts are specifications.",
+        "width": 319,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "ctrl",
+        "text": "\n    Task\n      Beauty 13Food & beverage 8Advertising 5Fashion 5Web & motion design 3UGC 2Automotive 1\n    Within\n      ",
+        "width": 375,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "bar",
+        "text": "\n    Task\n      Beauty 13Food & beverage 8Advertising 5Fashion 5Web & motion design 3UGC 2Automotive 1\n    Within\n      ",
+        "width": 319,
+        "font": "",
+        "padding": "11px 0px"
+      },
+      {
+        "selector": "chip",
+        "text": "Beauty 13",
+        "width": 86.265625,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Food & beverage 8",
+        "width": 140.6875,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Advertising 5",
+        "width": 106.421875,
+        "font": "",
+        "padding": "0px 11px"
+      },
+      {
+        "selector": "chip",
+        "text": "Fashion 5",
+        "width": 84.46875,
+        "font": "",
+        "padding": "0px 11px"
+      }
+    ]
+  }
+]

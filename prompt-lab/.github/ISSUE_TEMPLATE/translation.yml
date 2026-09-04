@@ -1,0 +1,40 @@
+name: Prompt translation
+description: Propose one localized explanation for an existing CMS Prompt.
+title: "[Translation candidate]: "
+labels: ["translation", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: "Translate the surrounding explanation, not the original Prompt text, unless the source itself has that language. Approved Issues sync to CMS; generated mirror files are not edited directly."
+  - type: input
+    id: prompt_id
+    attributes:
+      label: Existing immutable Prompt ID
+    validations:
+      required: true
+  - type: input
+    id: locale
+    attributes:
+      label: Target locale
+    validations:
+      required: true
+  - type: textarea
+    id: translation
+    attributes:
+      label: Localized title, summary, and usage explanation
+      description: Do not translate the original Prompt text unless the source itself has that language.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Terminology or cultural notes
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review acknowledgement
+      options:
+        - label: I created this translation or have authority to contribute it under CC BY 4.0.
+          required: true
+        - label: I understand approval applies only to this exact Issue revision and CMS validation is still required.
+          required: true

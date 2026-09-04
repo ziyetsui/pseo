@@ -1,0 +1,13 @@
+{
+  "source": "docs/wireframes/proto-continuous-peek.html",
+  "url": "http://127.0.0.1:8766/proto-continuous-peek.html?v=2",
+  "variant": "variants[1] / vMagnet",
+  "sha256": "6df0025c968a49aea5cd63ba74a15a86aaa0e6f8a657b6de899cb372b49f88a6",
+  "theme": "linear-dark",
+  "overrides": [
+    "No hero signature",
+    "No copy buttons",
+    "Generate image / Generate video / Generate → actual prompt L4",
+    "No prototype picker or theme toggle"
+  ]
+}

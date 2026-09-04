@@ -1,0 +1,537 @@
+{
+  "2073529429838696592": [
+    {
+      "token": "[PROJECT_BRIEF]",
+      "source": "this brief",
+      "label": "Project brief"
+    },
+    {
+      "token": "[MOTION_ASSETS]",
+      "source": "the hero sting and one b-roll clip per section",
+      "label": "Motion assets"
+    },
+    {
+      "token": "[FINISHING_EFFECTS]",
+      "source": "film grain, particles, vignette, glass cards, color tints",
+      "label": "Finishing effects"
+    }
+  ],
+  "2019849202591789460": [
+    {
+      "token": "[LEFT_OUTFIT_COLOR]",
+      "source": "light blue",
+      "label": "Left outfit color"
+    },
+    {
+      "token": "[RIGHT_OUTFIT_COLOR]",
+      "source": "light purple",
+      "label": "Right outfit color"
+    },
+    {
+      "token": "[PHONE]",
+      "source": "iPhone",
+      "label": "Phone"
+    }
+  ],
+  "2071174186978951379": [
+    {
+      "token": "[CAFE_NAME]",
+      "source": "LUMOS",
+      "label": "Cafe name"
+    },
+    {
+      "token": "[FOOD]",
+      "source": "hamburger",
+      "label": "Food"
+    },
+    {
+      "token": "[OUTFIT]",
+      "source": "denim shorts and a white shirt",
+      "label": "Outfit"
+    }
+  ],
+  "2015726421990056336": [
+    {
+      "token": "[SUBJECT]",
+      "source": "Ana de Armas",
+      "label": "Subject"
+    },
+    {
+      "token": "[LOCATION]",
+      "source": "walk of fame in los angeles",
+      "label": "Location"
+    },
+    {
+      "token": "[EYE_COLOR]",
+      "source": "light blue",
+      "label": "Eye color"
+    }
+  ],
+  "2078814921756754352": [
+    {
+      "token": "[STUDIO]",
+      "source": "dark modern dance studio",
+      "label": "Studio"
+    },
+    {
+      "token": "[OUTFIT]",
+      "source": "tight black fishnet bodysuit",
+      "label": "Outfit"
+    },
+    {
+      "token": "[DANCER_OUTFITS]",
+      "source": "black tank tops and black wide pants",
+      "label": "Dancer outfits"
+    }
+  ],
+  "2083168602363150527": [
+    {
+      "token": "[CITY]",
+      "source": "New York",
+      "label": "City"
+    },
+    {
+      "token": "[SHIRT_PATTERN]",
+      "source": "white diamond-stripe pattern",
+      "label": "Shirt pattern"
+    },
+    {
+      "token": "[ROOM_SCULPTURES]",
+      "source": "two black organic sculptures",
+      "label": "Room sculptures"
+    }
+  ],
+  "2029632175482507599": [
+    {
+      "token": "[SUBJECT]",
+      "source": "Sydney Sweeney",
+      "label": "Subject"
+    },
+    {
+      "token": "[HAIR_COLOR]",
+      "source": "honey blonde (#AF8F55) with platinum highlights (#E8D1A7)",
+      "label": "Hair color"
+    },
+    {
+      "token": "[OUTFIT]",
+      "source": "mauve-colored bodysuit (#8E5A63)",
+      "label": "Outfit"
+    }
+  ],
+  "2088866007918268515": [
+    {
+      "token": "[LANDSCAPE]",
+      "source": "miniature rivers",
+      "label": "Landscape"
+    },
+    {
+      "token": "[BUILDING_DETAIL]",
+      "source": "a tiny paper clock",
+      "label": "Building detail"
+    },
+    {
+      "token": "[STUDIO_WINDOW]",
+      "source": "a large studio window",
+      "label": "Studio window"
+    }
+  ],
+  "2008952931484098637": [
+    {
+      "token": "[POSE]",
+      "source": "[INSERT POSE, e.g., Sitting naturally]",
+      "label": "Pose, e.g. sitting naturally"
+    },
+    {
+      "token": "[PROP_1]",
+      "source": "[INSERT PROP 1, e.g., Vintage Vespa]",
+      "label": "First prop, e.g. vintage Vespa"
+    },
+    {
+      "token": "[PROP_2]",
+      "source": "[INSERT PROP 2, e.g., Pizza and Wine]",
+      "label": "Second prop, e.g. pizza and wine"
+    }
+  ],
+  "2060203818785370400": [
+    {
+      "token": "[TEAM]",
+      "source": "Portugal",
+      "label": "Team"
+    },
+    {
+      "token": "[PLAYER_NAME]",
+      "source": "Sarah",
+      "label": "Player name"
+    },
+    {
+      "token": "[JERSEY_NUMBER]",
+      "source": "7",
+      "label": "Jersey number"
+    }
+  ],
+  "2084387316286595436": [
+    {
+      "token": "[OFFICE]",
+      "source": "Dunder Mifflin conference room",
+      "label": "Office"
+    },
+    {
+      "token": "[FIRST_TOPIC]",
+      "source": "Large language models. L-L-Ms.",
+      "label": "First topic"
+    },
+    {
+      "token": "[NEXT_TOPIC]",
+      "source": "Prompt engineering.",
+      "label": "Next topic"
+    }
+  ],
+  "2085640281941307648": [
+    {
+      "token": "[PAJAMAS]",
+      "source": "matching cotton pajama set",
+      "label": "Pajamas"
+    },
+    {
+      "token": "[PHONE]",
+      "source": "black smartphone",
+      "label": "Phone"
+    },
+    {
+      "token": "[BEDROOM]",
+      "source": "her bedroom",
+      "label": "Bedroom"
+    }
+  ],
+  "2047862141894681076": [
+    {
+      "token": "[SUBJECT]",
+      "source": "young woman",
+      "label": "Subject"
+    },
+    {
+      "token": "[EXPRESSION]",
+      "source": "thoughtful, slightly shy, natural",
+      "label": "Expression"
+    },
+    {
+      "token": "[CLOTHING]",
+      "source": "relaxed clothing",
+      "label": "Clothing"
+    }
+  ],
+  "2063871161998745877": [],
+  "2085931701088174312": [
+    {
+      "token": "[TOP]",
+      "source": "oversized cream-white T-shirt",
+      "label": "Top"
+    },
+    {
+      "token": "[PILLOW]",
+      "source": "fluffy pillow",
+      "label": "Pillow"
+    },
+    {
+      "token": "[KEEPSAKE]",
+      "source": "small photo frame",
+      "label": "Keepsake"
+    }
+  ],
+  "2009912753650323721": [
+    {
+      "token": "[VENUE]",
+      "source": "indoor public venue",
+      "label": "Venue"
+    },
+    {
+      "token": "[DRESS]",
+      "source": "off-shoulder patterned dress",
+      "label": "Dress"
+    },
+    {
+      "token": "[SHIRT]",
+      "source": "white button-up shirt, partially unbuttoned",
+      "label": "Shirt"
+    }
+  ],
+  "2048450197085474925": [
+    {
+      "token": "[RACE_TERRAIN]",
+      "source": "grassy slope",
+      "label": "Race terrain"
+    },
+    {
+      "token": "[EXHAUST_COLOR]",
+      "source": "blue flames",
+      "label": "Exhaust flames"
+    },
+    {
+      "token": "[LANDSCAPE]",
+      "source": "Sunny rural landscape",
+      "label": "Landscape"
+    }
+  ],
+  "2019109812341207229": [
+    {
+      "token": "[SUBJECT]",
+      "source": "Black man with an afro, mustache, and vintage sunglasses",
+      "label": "Subject"
+    },
+    {
+      "token": "[CAR]",
+      "source": "beige 1970s sedan",
+      "label": "Car"
+    },
+    {
+      "token": "[LICENSE_PLATE]",
+      "source": "HIGGS",
+      "label": "License plate text"
+    }
+  ],
+  "2087155737784918460": [
+    {
+      "token": "[OUTFIT]",
+      "source": "oversized white linen shirt, denim shorts, leather sandals",
+      "label": "Outfit"
+    },
+    {
+      "token": "[TOWN]",
+      "source": "sun-washed coastal old town",
+      "label": "Town"
+    },
+    {
+      "token": "[COFFEE_ORDER]",
+      "source": "an iced coffee",
+      "label": "Coffee order"
+    }
+  ],
+  "2089932434351734933": [
+    {
+      "token": "[TOP_COLOR]",
+      "source": "PINK",
+      "label": "Top color"
+    },
+    {
+      "token": "[SHORTS_COLOR]",
+      "source": "WHITE",
+      "label": "Shorts color"
+    },
+    {
+      "token": "[PACKAGING_COLOR]",
+      "source": "orange",
+      "label": "Packaging color"
+    }
+  ],
+  "1992826251220754540": [],
+  "2016908153284088004": [
+    {
+      "token": "[HAIR]",
+      "source": "long, wavy blonde hair",
+      "label": "Hair"
+    },
+    {
+      "token": "[CABINET_TEXT]",
+      "source": "SUPER KEOR BIKES",
+      "label": "Arcade cabinet text"
+    },
+    {
+      "token": "[SIGN_TEXT]",
+      "source": "Ready to Play?",
+      "label": "Neon sign text"
+    }
+  ],
+  "2018792341192990900": [
+    {
+      "token": "[SUBJECT]",
+      "source": "actress Sadie Sink",
+      "label": "Subject"
+    },
+    {
+      "token": "[CUP]",
+      "source": "white disposable coffee cup with a cardboard sleeve",
+      "label": "Cup"
+    },
+    {
+      "token": "[EXPRESSION]",
+      "source": "Playful, pursed lips in a 'kissy face' or 'duck face' expression",
+      "label": "Expression"
+    }
+  ],
+  "2026574551207792783": [
+    {
+      "token": "[POSTER_TEXT]",
+      "source": "HEIS",
+      "label": "Poster text"
+    },
+    {
+      "token": "[HAIR]",
+      "source": "platinum blonde bob haircut",
+      "label": "Hair"
+    },
+    {
+      "token": "[BACKGROUND_GRADIENT]",
+      "source": "soft magenta to deep purple",
+      "label": "Background gradient"
+    },
+    {
+      "token": "[COLOR_PALETTE]",
+      "source": "bubblegum pink, deep violet, and lavender",
+      "label": "Color palette"
+    }
+  ],
+  "2027628259467313402": [
+    {
+      "token": "[BACKGROUND_COLOR]",
+      "source": "soft warm beige",
+      "label": "Background color"
+    },
+    {
+      "token": "[CITY_SCENE]",
+      "source": "an empty destroyed city road",
+      "label": "City scene"
+    },
+    {
+      "token": "[ATMOSPHERE]",
+      "source": "Moody yet hopeful",
+      "label": "Atmosphere"
+    }
+  ],
+  "2031703969882382558": [
+    {
+      "token": "[SUBJECT]",
+      "source": "Sabrina Carpenter",
+      "label": "Subject"
+    },
+    {
+      "token": "[IRIS_COLOR]",
+      "source": "blue irises, #73C2FB",
+      "label": "Iris color"
+    },
+    {
+      "token": "[ROOM]",
+      "source": "Modern luxury high-rise, floor-to-ceiling panoramic windows, urban cityscape view",
+      "label": "Room"
+    }
+  ],
+  "2032169264963338327": [
+    {
+      "token": "[SUBJECT]",
+      "source": "Anya Taylor-Joy",
+      "label": "Subject"
+    },
+    {
+      "token": "[WALL_TEXT]",
+      "source": "KeorUnreal",
+      "label": "Wall text"
+    },
+    {
+      "token": "[OUTFIT]",
+      "source": "Orange crop top and matching neon yellow ribbed cotton leggings.",
+      "label": "Outfit"
+    }
+  ],
+  "2041085548928930146": [
+    {
+      "token": "[HAIR]",
+      "source": "long straight blonde hair",
+      "label": "Hair"
+    },
+    {
+      "token": "[ROOM]",
+      "source": "Luxurious ancient Greek-style decorated room",
+      "label": "Room"
+    },
+    {
+      "token": "[WALL_POSTER]",
+      "source": "Superman",
+      "label": "Wall poster character"
+    }
+  ],
+  "2051559171452215583": [
+    {
+      "token": "[EYE_COLOR]",
+      "source": "dark brown eyes",
+      "label": "Eyes"
+    },
+    {
+      "token": "[LIP_COLOR]",
+      "source": "dusty pink",
+      "label": "Lip color"
+    },
+    {
+      "token": "[PENDANT_STONE]",
+      "source": "transparent pink stone",
+      "label": "Pendant stone"
+    }
+  ],
+  "2052012370373812240": [
+    {
+      "token": "[HAIR]",
+      "source": "long, straight blonde hair pulled into a high ponytail",
+      "label": "Hair"
+    },
+    {
+      "token": "[EMBROIDERED_TEXT]",
+      "source": "Keor",
+      "label": "Embroidered text"
+    },
+    {
+      "token": "[GARMENT]",
+      "source": "one-piece swimsuit",
+      "label": "Garment"
+    }
+  ],
+  "2060557083679076537": [
+    {
+      "token": "[TOP]",
+      "source": "blue-gray paisley halter crop top",
+      "label": "Top"
+    },
+    {
+      "token": "[SKIRT]",
+      "source": "flowing white maxi skirt",
+      "label": "Skirt"
+    },
+    {
+      "token": "[HAIR]",
+      "source": "Long wavy black hair",
+      "label": "Hair"
+    }
+  ],
+  "2063814043631280180": [],
+  "2065638647886659855": [
+    {
+      "token": "[VILLA]",
+      "source": "luxurious Italian coastal villa",
+      "label": "Villa"
+    },
+    {
+      "token": "[DRESS_PATTERN]",
+      "source": "pink-and-white micro pinstripe",
+      "label": "Dress pattern"
+    },
+    {
+      "token": "[EARRINGS]",
+      "source": "ruby-red drop earrings",
+      "label": "Earrings"
+    }
+  ],
+  "2068543924055240801": [
+    {
+      "token": "[TOP]",
+      "source": "mint green polo shirt",
+      "label": "Top"
+    },
+    {
+      "token": "[SKIRT]",
+      "source": "blue plaid skirt",
+      "label": "Skirt"
+    },
+    {
+      "token": "[BOOK]",
+      "source": "open book",
+      "label": "Book"
+    }
+  ]
+}

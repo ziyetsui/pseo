@@ -1,0 +1,36 @@
+name: Prompt correction
+description: Propose a sourced correction for an existing CMS record.
+title: "[Correction]: "
+labels: ["correction", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: "A maintainer may approve this exact Issue revision for CMS intake. Generated GitHub content is not edited directly. Use the takedown form for urgent rights or removal requests."
+  - type: input
+    id: prompt_id
+    attributes:
+      label: Prompt ID and locale
+      placeholder: prm_example / en
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and source links
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review acknowledgement
+      options:
+        - label: I confirm the evidence above is accurate to the best of my knowledge.
+          required: true
+        - label: I understand that approval applies only to this exact Issue revision and CMS remains the content authority.
+          required: true

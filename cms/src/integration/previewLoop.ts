@@ -1,5 +1,3 @@
-import type { GitPublisher } from "../domain/publication.ts";
-
 type UnknownRecord = Record<string, unknown>;
 
 export interface PreviewLoopPayload {
@@ -11,8 +9,6 @@ export interface PreviewLoopOptions {
   cmsBaseUrl: string;
   fetchImpl?: typeof fetch;
   frontendBaseUrl: string;
-  mockBaseSha: string;
-  mockGitPublisher: GitPublisher;
   payload: PreviewLoopPayload;
   previewToken: string;
   retry?: { attempts: number; delayMs: number };
@@ -23,17 +19,6 @@ export interface PreviewLoopEvidence {
   initialRevision: string;
   editedRevision: string;
   restoredRevision: string;
-  submitReview: {
-    status: "mock_accepted";
-    provider: "mock";
-    plannedBranch: string;
-    branch: null;
-    commitSha: null;
-    pullRequestNumber: null;
-    pullRequestUrl: null;
-    mergeSha: null;
-    releasedAt: null;
-  };
 }
 
 function record(value: unknown, label: string): UnknownRecord {
@@ -194,6 +179,7 @@ export async function runCmsPreviewLoop(options: PreviewLoopOptions): Promise<Pr
   const originalTitle = requiredString(variant.title, "locale title");
   const editedTitle = `${originalTitle} · CMS Preview E2E`;
   let editedRevision = "";
+  let restoredRevision = "";
   let primaryError: unknown;
 
   try {
@@ -226,51 +212,6 @@ export async function runCmsPreviewLoop(options: PreviewLoopOptions): Promise<Pr
     if (html.includes(options.previewToken) || html.includes(options.cmsBaseUrl)) {
       throw new Error("frontend HTML exposed private CMS preview configuration");
     }
-
-    const receipt = await options.mockGitPublisher.requestPublication({
-      artifactId: requiredString(artifact.artifactKey, "artifact key"),
-      commitMessage: "content: verify local beta mock",
-      expectedBaseSha: options.mockBaseSha,
-      expectedContentRevision: changed.revision,
-      expectedSourceRevision: changed.revision,
-      idempotencyKey: "cms-preview-e2e-mock-only",
-      locales: ["zh-CN"],
-      requestFingerprint: "cms-preview-e2e-mock-only",
-      requestId: "cms-preview-e2e",
-      validatedContentRevision: changed.revision,
-      validatedSourceRevision: changed.revision,
-    });
-    if (
-      receipt.status !== "mock_accepted" ||
-      receipt.provider !== "mock" ||
-      receipt.plannedBranch.length === 0 ||
-      receipt.branch !== null ||
-      receipt.commitSha !== null ||
-      receipt.pullRequestNumber !== null ||
-      receipt.pullRequestUrl !== null
-    ) {
-      throw new Error("Submit Review mock receipt contains a real Git publication result");
-    }
-
-    return {
-      slug,
-      initialRevision: before.revision,
-      editedRevision,
-      // Populated after restore below; the return object is intentionally
-      // assembled in finally-safe mutable state.
-      restoredRevision: before.revision,
-      submitReview: {
-        status: receipt.status,
-        provider: receipt.provider,
-        plannedBranch: receipt.plannedBranch,
-        branch: null,
-        commitSha: null,
-        pullRequestNumber: null,
-        pullRequestUrl: null,
-        mergeSha: null,
-        releasedAt: null,
-      },
-    };
   } catch (error: unknown) {
     primaryError = error;
     throw error;
@@ -284,12 +225,13 @@ export async function runCmsPreviewLoop(options: PreviewLoopOptions): Promise<Pr
         overrideAccess: true,
       }), "restored locale variant");
       assertSafeDraftState(restored, artifact);
-      await retry(
+      const restoredSnapshot = await retry(
         options,
         () => loadPreview(options),
         (snapshot) => snapshot.revision === before.revision && promptTitle(snapshot, slug) === originalTitle,
         "restored CMS draft did not return to its original revision",
       );
+      restoredRevision = restoredSnapshot.revision;
     } catch (restoreError: unknown) {
       if (primaryError !== undefined) {
         throw new AggregateError([primaryError, restoreError], "preview loop failed and draft restoration failed");
@@ -297,4 +239,11 @@ export async function runCmsPreviewLoop(options: PreviewLoopOptions): Promise<Pr
       throw restoreError;
     }
   }
+
+  return {
+    slug,
+    initialRevision: before.revision,
+    editedRevision,
+    restoredRevision,
+  };
 }

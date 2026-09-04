@@ -1,0 +1,81 @@
+// Generated from backend/openapi/openapi.json. Run pnpm generate:api.
+export type BrowseSchema = { "models": Array<LocalizedRefSchema>; "styles": Array<LocalizedRefSchema>; "techniques": Array<LocalizedRefSchema>; "useCases": Array<LocalizedRefSchema>; };
+export type CategoryAxisParam = "content-type" | "use-case" | "technique" | "style" | "subject";
+export type CategoryEntitySchema = { "axis": "content-type" | "use-case" | "technique" | "style" | "subject"; "description": string; "id": string; "localeVariants": Array<LocaleVariantRefSchema>; "name": string; "seo": SeoSchema; "slug": string; "updatedAt": string; };
+export type CategoryProjectionSchema = { "entity": CategoryEntitySchema; "facets": FacetSetSchema; "items": Array<PromptSummarySchema>; "page": PageSchema; };
+export type DependencyHealthSchema = { "catalog": "ok"; };
+export type EvidenceSchema = { "confidence": number | null; "type": string; "url": string | null; };
+export type FacetSetSchema = { "creators": Array<FacetValueSchema>; "models": Array<FacetValueSchema>; "styles": Array<FacetValueSchema>; "subjects": Array<FacetValueSchema>; "techniques": Array<FacetValueSchema>; "useCases": Array<FacetValueSchema>; };
+export type FacetValueSchema = { "count": number; "id": string; "label": string; "selected": boolean; "slug": string; };
+export type HTTPValidationError = { "detail"?: Array<ValidationError>; };
+export type HealthSchema = { "dependencies": DependencyHealthSchema; "indexRevision": string; "service": string; "status": "ok"; };
+export type HomeDataSchema = { "browse": BrowseSchema; "collections": Array<LocalizedRefSchema>; "creators": Array<LocalizedRefSchema>; "featured": Array<PromptSummarySchema>; "stats": HomeStatsSchema; "trending": Array<TrendingSchema>; };
+export type HomeStatsSchema = { "indexVersion": string; "modelCount": number; "promptCount": number; "updatedAt": string; };
+export type LocaleInfoSchema = { "default": boolean; "displayName": string; "enabled": boolean; "href": string; "locale": string; };
+export type LocaleVariantRefSchema = { "href": string; "locale": string; "slug": string; };
+export type LocalizedRefSchema = { "href": string; "id": string; "name": string; "slug": string; };
+export type MediaSchema = { "alt": string; "assetId": string; "height": number; "posterUrl": string | null; "type": "image" | "video"; "url": string; "width": number; };
+export type MetricsSchema = { "bookmarks": number | null; "comments": number | null; "likes": number | null; "observedAt": string; "reposts": number | null; "views": number | null; };
+export type ModelEntitySchema = { "capabilities": Array<string>; "description": string; "id": string; "inputs": Array<string>; "limitations": Array<string>; "localeVariants": Array<LocaleVariantRefSchema>; "name": string; "officialUrl": string | null; "outputs": Array<string>; "seo": SeoSchema; "slug": string; "updatedAt": string; };
+export type ModelProjectionSchema = { "entity": ModelEntitySchema; "facets": FacetSetSchema; "items": Array<PromptSummarySchema>; "page": PageSchema; };
+export type PageSchema = { "hasMore": boolean; "limit": number; "nextCursor": string | null; "total": number; };
+export type ProblemFieldErrorSchema = { "code": string; "message": string; "meta"?: ProblemLocaleMetaSchema | null; "path": string; };
+export type ProblemLocaleMetaSchema = { "localeVariants": Array<LocaleVariantRefSchema>; };
+export type ProblemSchema = { "code": string; "detail": string; "errors": Array<ProblemFieldErrorSchema>; "instance": string; "status": number; "title": string; "traceId": string; "type": string; };
+export type PromptActionsSchema = { "canCopy": boolean; "tryUrl": string | null; };
+export type PromptBodySchema = { "language": string; "text": string; "variables": Array<PromptVariableSchema>; };
+export type PromptDetailSchema = { "actions": PromptActionsSchema; "evidence": Array<EvidenceSchema>; "examples": Array<PromptExampleSchema>; "identity": PromptIdentitySchema; "inputs": PromptInputsSchema; "localeVariants": Array<LocaleVariantRefSchema>; "outcome": PromptOutcomeSchema; "parameters": Array<PromptParameterSchema>; "prompt": PromptBodySchema; "relations": PromptRelationsSchema; "revision": string; "seo": SeoSchema; "source": SourceSummarySchema; "summary": PromptSummarySchema; "variations": Array<PromptSummarySchema>; "workflow": Array<WorkflowStepSchema>; };
+export type PromptExampleSchema = { "caption": string | null; "id": string; "input": string | null; "output": MediaSchema; };
+export type PromptIdentitySchema = { "contentType": string; "summary": string; "title": string; };
+export type PromptInputsSchema = { "optional": Array<string>; "required": Array<string>; };
+export type PromptOutcomeSchema = { "characteristics": Array<string>; "outputType": string; "platforms": Array<string>; "purpose": string; };
+export type PromptPageEnvelope = { "data": Array<PromptSummarySchema>; "facets": FacetSetSchema | null; "meta": ResponseMetaSchema; "page": PageSchema; };
+export type PromptParameterSchema = { "key": string; "label": string; "options": Array<string>; "required": boolean; "type": "text" | "number" | "enum" | "boolean"; };
+export type PromptRelationsSchema = { "creator": LocalizedRefSchema | null; "models": Array<LocalizedRefSchema>; "relatedPrompts": Array<PromptSummarySchema>; "styles": Array<LocalizedRefSchema>; "subjects": Array<LocalizedRefSchema>; "techniques": Array<LocalizedRefSchema>; "useCases": Array<LocalizedRefSchema>; };
+export type PromptSort = "relevance" | "trending" | "value" | "newest";
+export type PromptSummarySchema = { "contentType": "image" | "video" | "text" | "other"; "excerpt": string; "href": string; "id": string; "locale": string; "media": Array<MediaSchema>; "metrics": MetricsSchema; "models": Array<LocalizedRefSchema>; "promptPreview": string; "publishedAt": string; "slug": string; "source": SourceSummarySchema; "styles": Array<LocalizedRefSchema>; "subjects": Array<LocalizedRefSchema>; "techniques": Array<LocalizedRefSchema>; "title": string; "updatedAt": string; "useCases": Array<LocalizedRefSchema>; };
+export type PromptVariableSchema = { "defaultValue": string | null; "key": string; "label": string; "options": Array<string>; "required": boolean; };
+export type PublicEnvelope_CategoryProjectionSchema_ = { "data": CategoryProjectionSchema; "meta": ResponseMetaSchema; };
+export type PublicEnvelope_FacetSetSchema_ = { "data": FacetSetSchema; "meta": ResponseMetaSchema; };
+export type PublicEnvelope_HomeDataSchema_ = { "data": HomeDataSchema; "meta": ResponseMetaSchema; };
+export type PublicEnvelope_ModelProjectionSchema_ = { "data": ModelProjectionSchema; "meta": ResponseMetaSchema; };
+export type PublicEnvelope_PromptDetailSchema_ = { "data": PromptDetailSchema; "meta": ResponseMetaSchema; };
+export type PublicEnvelope_list_LocaleInfoSchema__ = { "data": Array<LocaleInfoSchema>; "meta": ResponseMetaSchema; };
+export type ResponseMetaSchema = { "contentRevision": string; "indexVersion": string; "rankingVersion": string; "requestId": string; };
+export type SeoSchema = { "canonicalUrl": string; "description": string; "hreflang": { [key: string]: string; }; "robots": "index,follow" | "noindex,nofollow"; "title": string; };
+export type SourceSummarySchema = { "authorHandle": string | null; "observedAt": string; "platform": "x" | "rss" | "url" | "manual"; "sourceId": string; "url": string; };
+export type TrendingSchema = { "items": Array<PromptSummarySchema>; "rankingVersion": string; "window": "7d" | "30d" | "all"; };
+export type ValidationError = { "ctx"?: Record<string, unknown>; "input"?: unknown; "loc": Array<string | number>; "msg": string; "type": string; };
+export type Window = "7d" | "30d" | "all";
+export type WorkflowStepSchema = { "body": string; "position": number; "title": string; };
+export interface ApiQueries {
+  "/api/v1/categories/{axis}/{slug}": { "locale": string; "cursor"?: string | null; "limit"?: number; "sort"?: PromptSort; };
+  "/api/v1/facets": { "locale": string; "q"?: string | null; "contentType"?: Array<string> | null; "model"?: Array<string> | null; "useCase"?: Array<string> | null; "technique"?: Array<string> | null; "style"?: Array<string> | null; "subject"?: Array<string> | null; "creator"?: Array<string> | null; "window"?: Window; };
+  "/api/v1/home": { "locale": string; };
+  "/api/v1/locales": Record<string, never>;
+  "/api/v1/models/{slug}": { "locale": string; "cursor"?: string | null; "limit"?: number; "sort"?: PromptSort; };
+  "/api/v1/prompts": { "locale": string; "q"?: string | null; "contentType"?: Array<string> | null; "model"?: Array<string> | null; "useCase"?: Array<string> | null; "technique"?: Array<string> | null; "style"?: Array<string> | null; "subject"?: Array<string> | null; "creator"?: Array<string> | null; "window"?: Window; "sort"?: PromptSort; "cursor"?: string | null; "limit"?: number; };
+  "/api/v1/prompts/{slug}": { "locale": string; };
+  "/healthz": Record<string, never>;
+}
+export interface ApiPathParams {
+  "/api/v1/categories/{axis}/{slug}": { "axis": CategoryAxisParam; "slug": string; };
+  "/api/v1/facets": Record<string, never>;
+  "/api/v1/home": Record<string, never>;
+  "/api/v1/locales": Record<string, never>;
+  "/api/v1/models/{slug}": { "slug": string; };
+  "/api/v1/prompts": Record<string, never>;
+  "/api/v1/prompts/{slug}": { "slug": string; };
+  "/healthz": Record<string, never>;
+}
+export interface ApiResponses {
+  "/api/v1/categories/{axis}/{slug}": PublicEnvelope_CategoryProjectionSchema_;
+  "/api/v1/facets": PublicEnvelope_FacetSetSchema_;
+  "/api/v1/home": PublicEnvelope_HomeDataSchema_;
+  "/api/v1/locales": PublicEnvelope_list_LocaleInfoSchema__;
+  "/api/v1/models/{slug}": PublicEnvelope_ModelProjectionSchema_;
+  "/api/v1/prompts": PromptPageEnvelope;
+  "/api/v1/prompts/{slug}": PublicEnvelope_PromptDetailSchema_;
+  "/healthz": HealthSchema;
+}
+export type ApiPath = keyof ApiResponses;

@@ -163,7 +163,7 @@ async function main() {
     cms: "http://127.0.0.1:3001/admin",
     frontend: "http://127.0.0.1:3200/zh-CN/prompts",
     protectedContent: "unchanged",
-    submitReview: "mock-only",
+    reviewFlow: "cms-preview-and-approval-only",
   });
 
   if (verifyAndStop) return;

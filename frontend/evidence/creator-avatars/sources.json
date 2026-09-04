@@ -1,0 +1,101 @@
+{
+  "scope": "Local visual-fixture avatar enrichment only; not CMS publication or rights approval.",
+  "records": [
+    {
+      "handle": "AIWithRay",
+      "profileUrl": "https://x.com/AIWithRay",
+      "photoPageUrl": "https://x.com/AIWithRay/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2032335013354831873/gVSSy4xN_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "Kiber_Alla",
+      "profileUrl": "https://x.com/Kiber_Alla",
+      "photoPageUrl": "https://x.com/Kiber_Alla/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1993005256200818689/it9ps5u0_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "AIwithSynthia",
+      "profileUrl": "https://x.com/AIwithSynthia",
+      "photoPageUrl": "https://x.com/AIwithSynthia/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2010801415007191042/y6jILtcn_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "Aqsahere_",
+      "profileUrl": "https://x.com/Aqsahere_",
+      "photoPageUrl": "https://x.com/Aqsahere_/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2058848213046579200/qU5kj8IY_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "HaniaAi12",
+      "profileUrl": "https://x.com/HaniaAi12",
+      "photoPageUrl": "https://x.com/HaniaAi12/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2074843144366202880/piSvdd1N_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "oggii_0",
+      "profileUrl": "https://x.com/oggii_0",
+      "photoPageUrl": "https://x.com/oggii_0/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2008212741434269696/N7S0tqfn_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "PhedEU",
+      "profileUrl": "https://x.com/PhedEU",
+      "photoPageUrl": "https://x.com/PhedEU/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1654562828966150145/Cd_K-hes_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "rovvmut_",
+      "profileUrl": "https://x.com/rovvmut_",
+      "photoPageUrl": "https://x.com/rovvmut_/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2061782278959935488/zxfVzXuw_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "saniaspeaks_",
+      "profileUrl": "https://x.com/saniaspeaks_",
+      "photoPageUrl": "https://x.com/saniaspeaks_/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2029511617373958144/6Tn2GF7m_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "ShamsAmin56",
+      "profileUrl": "https://x.com/ShamsAmin56",
+      "photoPageUrl": "https://x.com/ShamsAmin56/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1973122364503199744/vpKVkGyH_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "zackpaid",
+      "profileUrl": "https://x.com/zackpaid",
+      "photoPageUrl": "https://x.com/zackpaid/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2055480268564123649/5ijM3Y6V_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    },
+    {
+      "handle": "zeuuss_01",
+      "profileUrl": "https://x.com/zeuuss_01",
+      "photoPageUrl": "https://x.com/zeuuss_01/photo",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/2059046904944611328/gjHlGwaU_400x400.jpg",
+      "observedAt": "2026-09-04",
+      "evidence": "Account-matched profile photo link and img.src read from the public profile DOM in Chrome."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+import {chromium} from '@playwright/test';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch();const measurements=[];
+try{for(const width of [1440,375]){const page=await browser.newPage({viewport:{width,height:1000},colorScheme:'dark'});await page.goto('http://127.0.0.1:8766/proto-l1-editorial.html?v=3');await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:new URL(`./reference-${width}.png`,import.meta.url).pathname});measurements.push({width,values:await page.locator('.vpl h1,.vpl .titlepage,.vpl .ctrl,.vpl .plate,.vpl .mount,.vpl .cap').evaluateAll(es=>es.slice(0,8).map(e=>({selector:e.className||e.tagName,text:e.textContent.slice(0,120),width:e.getBoundingClientRect().width,font:getComputedStyle(e).font,padding:getComputedStyle(e).padding})))});await page.close()}}finally{await browser.close()}await writeFile(new URL('./reference.json',import.meta.url),JSON.stringify(measurements,null,2));

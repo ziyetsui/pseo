@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.89">
+<site url="http://127.0.0.1:3000" crawled="102" date="2026-09-04T08:51:47.258Z"/>
+<score overall="25" grade="F">
+ <group name="SEO" score="63" errors="2" warnings="828"/>
+ <group name="Performance" score="39" errors="4" warnings="413"/>
+ <group name="Security" score="37" errors="102" warnings="3"/>
+ <group name="Agents" score="47" errors="0" warnings="83"/>
+ <cat name="Security" score="34"/>
+ <cat name="Performance" score="39"/>
+ <cat name="Accessibility" score="92"/>
+ <cat name="Crawlability" score="93"/>
+ <cat name="Core SEO" score="40"/>
+ <cat name="URL Structure" score="50"/>
+ <cat name="Images" score="61"/>
+ <cat name="Agent Experience" score="47"/>
+ <cat name="Links" score="76"/>
+ <cat name="Content" score="78"/>
+ <cat name="E-E-A-T" score="44"/>
+ <cat name="Legal Compliance" score="44"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Site Integrity" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Social Media" score="100"/>
+</score>
+<summary passed="9473" warnings="1636" failed="108"/>
+<scan-scope origin="cli" crawled="102" max-pages="200" capped="false"/>
+<technologies first-scan="false" added="0" removed="0">
+ <tech name="React" cat="framework" version="19.2.8"/>
+ <tech name="Next.js" cat="framework"/>
+ <tech name="Webpack" cat="other"/>
+</technologies>
+<issues>
+ <rule id="crawl/robots-txt" severity="error" category="Crawlability" group="seo" status="fail" docs="https://docs.squirrelscan.com/rules/crawl/robots-txt">
+  robots.txt blocks all crawling
+ </rule>
+ <rule id="security/https" severity="error" category="Security" group="security" status="fail" docs="https://docs.squirrelscan.com/rules/security/https">
+  Page not served over HTTPS
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="perf/js-file-size" severity="error" category="Performance" group="performance" status="fail" docs="https://docs.squirrelscan.com/rules/perf/js-file-size">
+  1 JS file(s) exceed 1.0 MB; 2 JS file(s) exceed 250.0 KB
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (3):
+   - /_next/static/chunks/01ou_next_dist_compiled_react-dom_1wv8t7_._.js [sizeBytes: 1065705, size: 1.0 MB, status: 200, contentType: application/javascript; charset=UTF-8] (from: /zh-CN/prompts, /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783; +97 more)
+   - /_next/static/chunks/01ou_next_dist_client_1kxgwwc._.js [sizeBytes: 983367, size: 960.3 KB, status: 200, contentType: application/javascript; charset=UTF-8] (from: /zh-CN/prompts, /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783; +97 more)
+   - /_next/static/chunks/01ou_next_dist_compiled_next-devtools_index_17m0yjx.js [sizeBytes: 864322, size: 844.1 KB, status: 200, contentType: application/javascript; charset=UTF-8] (from: /zh-CN/prompts, /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783; +97 more)
+ </rule>
+ <rule id="a11y/aria-required-children" severity="error" category="Accessibility" group="seo" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-required-children">
+  1 element(s) missing required child roles
+  Pages (1): /zh-CN/prompts/country-miniature-stamp-poster
+  Items (1):
+   - div[role=&quot;radiogroup&quot;]: needs child with role=radio
+ </rule>
+ <rule id="perf/http2" severity="info" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/http2">
+  HTTP/2 requires HTTPS
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/102):
+   - /zh-CN/prompts (HTTP/2 requires HTTPS)
+   - /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515 (HTTP/2 requires HTTPS)
+   - /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352 (HTTP/2 requires HTTPS)
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076 (HTTP/2 requires HTTPS)
+   - /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783 (HTTP/2 requires HTTPS)
+ </rule>
+ <rule id="perf/source-maps" severity="info" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/source-maps">
+  11 potential source map(s) detected; 1 inline source map(s) found
+  Pages (5/112): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/11):
+   - /_next/static/chunks/%22 (from /_next/static/chunks/01ou_next_dist_compiled_react-server-dom-turbopack_1e1_6fe._.js)
+   - /_next/static/chunks/01ou_next_dist_1qdsesq._.js.map (from /_next/static/chunks/01ou_next_dist_1qdsesq._.js)
+   - /_next/static/chunks/01ou_next_dist_client_1kxgwwc._.js.map (from /_next/static/chunks/01ou_next_dist_client_1kxgwwc._.js)
+   - /_next/static/chunks/01ou_next_dist_compiled_16-21n4._.js.map (from /_next/static/chunks/01ou_next_dist_compiled_16-21n4._.js)
+   - /_next/static/chunks/01ou_next_dist_compiled_next-devtools_index_17m0yjx.js.map (from /_next/static/chunks/01ou_next_dist_compiled_next-devtools_index_17m0yjx.js)
+ </rule>
+ <rule id="legal/subprocessor-disclosure" severity="info" category="Legal Compliance" group="security" status="warn" docs="https://docs.squirrelscan.com/rules/legal/subprocessor-disclosure">
+  No sub-processor / data-processing (DPA) disclosure found
+ </rule>
+ <rule id="ax/llms-txt" severity="info" category="Agent Experience" group="ai" status="warn" docs="https://docs.squirrelscan.com/rules/ax/llms-txt">
+  No /llms.txt found — consider adding one so AI agents can discover your key content
+ </rule>
+ <rule id="ax/markdown-response" severity="info" category="Agent Experience" group="ai" status="warn" docs="https://docs.squirrelscan.com/rules/ax/markdown-response">
+  No Markdown response — consider honoring Accept: text/markdown or publishing a .md variant so agents get clean content
+ </rule>
+ <rule id="crawl/sitemap-coverage" severity="warning" category="Crawlability" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-coverage">
+  102 indexable page(s) not in sitemap (100%)
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/102):
+   - /zh-CN/prompts
+   - /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515
+   - /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076
+   - /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783
+ </rule>
+ <rule id="core/meta-title" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-title">
+  Title too short
+  Pages (5/25): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/25):
+   - /zh-CN/prompts (The library · Prompt Library (28 chars))
+   - /zh-CN/prompts/creators (Creators · Prompt Library (25 chars))
+   - /zh-CN/prompts/models (Models · Prompt Library (23 chars))
+   - /zh-CN/prompts/models/sora (Sora prompts · Prompt Library (29 chars))
+   - /zh-CN/prompts/models/veo (Veo prompts · Prompt Library (28 chars))
+ </rule>
+ <rule id="core/meta-description" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-description">
+  Description too short
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/102):
+   - /zh-CN/prompts (Original prompts, their results, and the people wh (63 chars))
+   - /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515 (Paper world, 30-second cinematic short (38 chars))
+   - /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352 (Neon dance-studio music video, 15 seconds (41 chars))
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076 (Bedroom phone recording, late afternoon light (45 chars))
+   - /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783 (Synthwave poster with block HEIS type (37 chars))
+ </rule>
+ <rule id="core/canonical" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/canonical">
+  Missing canonical URL
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="core/og-tags" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/og-tags">
+  Missing og:image - social shares will lack imagery
+  Pages (5/69): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="core/robots-meta" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/robots-meta">
+  Page is set to noindex and nofollow
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="core/title-unique" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/title-unique">
+  5 duplicate title(s) affecting 37 pages
+  Pages (5/37): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5):
+   - gpt image prompts · prompt library (&quot;gpt image prompts · prompt library...&quot; (2 pages)) [pageCount: 2] (from: /zh-CN/prompts/model-families/gpt-image, /zh-CN/prompts/models/gpt-image)
+   - image prompts · prompt library (&quot;image prompts · prompt library...&quot; (6 pages)) [pageCount: 6] (from: /zh-CN/prompts/image, /zh-CN/prompts/image?useCase=advertising, /zh-CN/prompts/image?useCase=beauty, /zh-CN/prompts/image?useCase=fashion, /zh-CN/prompts/image?useCase=food-beverage; +1 more)
+   - nano banana prompts · prompt library (&quot;nano banana prompts · prompt library...&quot; (2 pages)) [pageCount: 2] (from: /zh-CN/prompts/model-families/nano-banana, /zh-CN/prompts/models/nano-banana)
+   - the library · prompt library (&quot;the library · prompt library...&quot; (19 pages)) [pageCount: 19] (from: /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage; +14 more)
+   - video prompts · prompt library (&quot;video prompts · prompt library...&quot; (8 pages)) [pageCount: 8] (from: /zh-CN/prompts/video, /zh-CN/prompts/video?useCase=advertising, /zh-CN/prompts/video?useCase=beauty, /zh-CN/prompts/video?useCase=fashion, /zh-CN/prompts/video?useCase=food-beverage; +3 more)
+ </rule>
+ <rule id="core/favicon" severity="warning" category="Core SEO" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/core/favicon">
+  No favicon found
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="security/csp" severity="warning" category="Security" group="security" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+  No Content-Security-Policy header
+ </rule>
+ <rule id="security/x-frame-options" severity="warning" category="Security" group="security" status="warn" docs="https://docs.squirrelscan.com/rules/security/x-frame-options">
+  No clickjacking protection
+ </rule>
+ <rule id="links/internal-links" severity="warning" category="Links" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/links/internal-links">
+  Too many internal links (N, max N)
+  Pages (5/37): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/37):
+   - /zh-CN/prompts (Too many internal links (122, max 100))
+   - /zh-CN/prompts/image (Too many internal links (229, max 100))
+   - /zh-CN/prompts/image?useCase=advertising (Too many internal links (229, max 100))
+   - /zh-CN/prompts/image?useCase=beauty (Too many internal links (229, max 100))
+   - /zh-CN/prompts/image?useCase=fashion (Too many internal links (229, max 100))
+ </rule>
+ <rule id="links/no-contextual-inbound" severity="warning" category="Links" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/links/no-contextual-inbound">
+  9 page(s) are linked only from sitewide chrome
+  Pages (5/9): /zh-CN/prompts/creators, /zh-CN/prompts/models, /zh-CN/prompts/styles/anime-illustrated, /zh-CN/prompts/styles/surreal-fantasy, /zh-CN/prompts/subjects/architecture-interior
+  Items (5/9):
+   - /zh-CN/prompts/creators
+   - /zh-CN/prompts/models
+   - /zh-CN/prompts/styles/anime-illustrated
+   - /zh-CN/prompts/styles/surreal-fantasy
+   - /zh-CN/prompts/subjects/architecture-interior
+ </rule>
+ <rule id="content/duplicate-title" severity="warning" category="Content" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-title">
+  5 duplicate title(s) found across 37 pages
+  Pages (5/37): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5):
+   - gpt image prompts · prompt library (&quot;gpt image prompts · prompt library...&quot; (2 pages)) [pageCount: 2] (from: /zh-CN/prompts/model-families/gpt-image, /zh-CN/prompts/models/gpt-image)
+   - image prompts · prompt library (&quot;image prompts · prompt library...&quot; (6 pages)) [pageCount: 6] (from: /zh-CN/prompts/image, /zh-CN/prompts/image?useCase=advertising, /zh-CN/prompts/image?useCase=beauty, /zh-CN/prompts/image?useCase=fashion, /zh-CN/prompts/image?useCase=food-beverage; +1 more)
+   - nano banana prompts · prompt library (&quot;nano banana prompts · prompt library...&quot; (2 pages)) [pageCount: 2] (from: /zh-CN/prompts/model-families/nano-banana, /zh-CN/prompts/models/nano-banana)
+   - the library · prompt library (&quot;the library · prompt library...&quot; (19 pages)) [pageCount: 19] (from: /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage; +14 more)
+   - video prompts · prompt library (&quot;video prompts · prompt library...&quot; (8 pages)) [pageCount: 8] (from: /zh-CN/prompts/video, /zh-CN/prompts/video?useCase=advertising, /zh-CN/prompts/video?useCase=beauty, /zh-CN/prompts/video?useCase=fashion, /zh-CN/prompts/video?useCase=food-beverage; +3 more)
+ </rule>
+ <rule id="content/duplicate-description" severity="warning" category="Content" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-description">
+  1 duplicate description(s) found across 68 pages
+  Pages (5/68): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (1):
+   - original prompts, their results, and the people who wrote th (&quot;original prompts, their results, and the...&quot; (68 pages)) [pageCount: 68] (from: /zh-CN/prompts, /zh-CN/prompts/creators, /zh-CN/prompts/image, /zh-CN/prompts/image?useCase=advertising, /zh-CN/prompts/image?useCase=beauty; +63 more)
+ </rule>
+ <rule id="content/keyword-stuffing" severity="warning" category="Content" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/content/keyword-stuffing">
+  N word(s) may be overused
+  Pages (5/8): /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/country-miniature-stamp-poster, /zh-CN/prompts/create-a-photorealistic-premium-product-camp-2063871161998745877, /zh-CN/prompts/creators, /zh-CN/prompts/styles/anime-illustrated
+  Items (5/7):
+   - country (&quot;country&quot; (3.0%)) [count: 11, density: 3.0136986301369864]
+   - paper (&quot;paper&quot; (3.0%)) [count: 19, density: 3.035143769968051]
+   - portrait (&quot;portrait&quot; (4.2%)) [count: 10, density: 4.201680672268908]
+   - product (&quot;product&quot; (4.1%)) [count: 11, density: 4.089219330855019]
+   - prompt (&quot;prompt&quot; (10.2%)) [count: 11, density: 10.185185185185185]
+ </rule>
+ <rule id="content/word-count" severity="warning" category="Content" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/content/word-count">
+  Thin content: N words (min N)
+  Pages (5/15): /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/creators, /zh-CN/prompts/design-high-quality-promotional-post-showcas-1992826251220754540, /zh-CN/prompts/models, /zh-CN/prompts/models/kling
+  Items (5/15):
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076 (Thin content: 297 words (min 300))
+   - /zh-CN/prompts/creators (Thin content: 97 words (min 300))
+   - /zh-CN/prompts/design-high-quality-promotional-post-showcas-1992826251220754540 (Thin content: 267 words (min 300))
+   - /zh-CN/prompts/models (Thin content: 87 words (min 300))
+   - /zh-CN/prompts/models/kling (Thin content: 239 words (min 300))
+ </rule>
+ <rule id="images/responsive-size" severity="warning" category="Images" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/images/responsive-size">
+  N small image(s) may be serving oversized files
+  Pages (5/91): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/72):
+   - 6Tn2GF7m_400x400.jpg (22x22, no srcset)
+   - 6Tn2GF7m_400x400.jpg (26x26, no srcset)
+   - 6Tn2GF7m_400x400.jpg (34x34, no srcset)
+   - 907a7JTU_400x400.jpg (20x20, no srcset)
+   - 907a7JTU_400x400.jpg (22x22, no srcset)
+ </rule>
+ <rule id="perf/lcp-hints" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+  1 likely-LCP image loaded without preload
+  Pages (5/47): /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783, /zh-CN/prompts/camera-handheld-dv-16mm-daily-vlog-footage-2087155737784918460
+  Items (5/47):
+   - /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515 (1 likely-LCP image loaded without preload)
+   - /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352 (1 likely-LCP image loaded without preload)
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076 (1 likely-LCP image loaded without preload)
+   - /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783 (1 likely-LCP image loaded without preload)
+   - /zh-CN/prompts/camera-handheld-dv-16mm-daily-vlog-footage-2087155737784918460 (1 likely-LCP image loaded without preload)
+ </rule>
+ <rule id="perf/css-file-size" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/css-file-size">
+  1 CSS file(s) exceed 150.0 KB
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (1):
+   - /_next/static/chunks/src_styles_globals_0lh-0-j.css [sizeBytes: 180733, size: 176.5 KB, status: 200, contentType: text/css; charset=UTF-8] (from: /zh-CN/prompts, /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783; +97 more)
+ </rule>
+ <rule id="perf/total-byte-weight" severity="warning" category="Performance" group="performance" status="fail" docs="https://docs.squirrelscan.com/rules/perf/total-byte-weight">
+  Total tracked resources: 12862KB (very heavy)
+ </rule>
+ <rule id="perf/bad-caching" severity="warning" category="Performance" group="performance" status="fail" docs="https://docs.squirrelscan.com/rules/perf/bad-caching">
+  102/102 pages lack a caching freshness lifetime; 102/102 pages lack an ETag or Last-Modified validator
+  Pages (5): /zh-CN/prompts, /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515, /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352, /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076, /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783
+ </rule>
+ <rule id="perf/critical-request-chains" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+  2 critical request chain(s) found
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (2):
+   - CSS: /_next/static/chunks/src_styles_globals_0lh-0-j.css
+   - JS: /_next/static/chunks/01ou_next_dist_build_polyfills_polyfill-nomodule.js
+ </rule>
+ <rule id="perf/lazy-above-fold" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+  N above-fold image(s) with lazy loading
+  Pages (5/88): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/30):
+   - https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small
+   - https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small
+   - https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small
+   - https://pbs.twimg.com/amplify_video_thumb/2083165874983424000/img/L7v_JTJr0f72f2Z_.jpg?name=small
+   - https://pbs.twimg.com/amplify_video_thumb/2085931637343420416/img/HZ3NABsiLrAmXz8m.jpg?name=small
+ </rule>
+ <rule id="perf/unminified-js" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-js">
+  9 JavaScript file(s) appear unminified
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5):
+   - 01ou_next_dist_client_1kxgwwc._.js (960.3KB, ~437.6KB savings) [reason: high newlines (1.82%), 4286 comments, long function names, formatted code, excessive whitespace]
+   - 01ou_next_dist_compiled_16-21n4._.js (147.7KB, ~59.3KB savings) [reason: high newlines (1.93%), 160 comments, long function names, formatted code, excessive whitespace]
+   - 01ou_next_dist_compiled_next-devtools_index_17m0yjx.js (844.1KB, ~4.9KB savings) [reason: high newlines (0.58%)]
+   - 01ou_next_dist_compiled_react-dom_1wv8t7_._.js (1040.7KB, ~257.7KB savings) [reason: high newlines (1.58%), 32 comments, long function names, formatted code, excessive whitespace]
+   - 01ou_next_dist_compiled_react-server-dom-turbopack_1e1_6fe._.js (174.4KB, ~53.6KB savings) [reason: high newlines (1.63%), 8 comments, long function names, formatted code, excessive whitespace]
+ </rule>
+ <rule id="perf/cache-headers" severity="warning" category="Performance" group="performance" status="warn" docs="https://docs.squirrelscan.com/rules/perf/cache-headers">
+  no-cache without ETag or Last-Modified
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="a11y/identical-links-same-purpose" severity="warning" category="Accessibility" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/identical-links-same-purpose">
+  N link text(s) lead to different destinations
+  Pages (5/58): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/49):
+   - &quot;@aiwithsarah_ ↗&quot; → 2 different URLs
+   - &quot;@aiwithsarah_&quot; → 2 different URLs
+   - &quot;@arminn_ai&quot; → 2 different URLs
+   - &quot;@chillaikalan__ ↗&quot; → 2 different URLs
+   - &quot;@chillaikalan__&quot; → 2 different URLs
+ </rule>
+ <rule id="a11y/image-redundant-alt" severity="warning" category="Accessibility" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/image-redundant-alt">
+  N image(s) with redundant alt text
+  Pages (5): /zh-CN/prompts/styles/cinematic, /zh-CN/prompts/styles/luxury, /zh-CN/prompts/styles/photorealistic, /zh-CN/prompts/styles/retro-vintage, /zh-CN/prompts/styles/sci-fi-cyberpunk
+  Items (5/25):
+   - &quot;A day in New York, f...&quot; duplicates figcaption
+   - &quot;Bedroom phone record...&quot; duplicates figcaption
+   - &quot;Device spec sheet as...&quot; duplicates figcaption
+   - &quot;Double-exposure prof...&quot; duplicates figcaption
+   - &quot;FIFA 2026 player pos...&quot; duplicates figcaption
+ </rule>
+ <rule id="a11y/input-types" severity="warning" category="Accessibility" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/input-types">
+  1 multi-field form(s) set no enterkeyhint; 1 field(s) use type=&quot;text&quot; where a specific type is correct
+  Pages (2): /zh-CN/prompts/concept-2008952931484098637, /zh-CN/prompts/design-high-quality-promotional-post-showcas-1992826251220754540
+  Items (2):
+   - form:nth-of-type(1) (3-field form, no field sets enterkeyhint) | &lt;form class=&quot;recipe-placeholder-form&quot; style=&quot;margin:0 0 15px&quot;&gt; [reason: missing-enterkeyhint, fields: 3]
+   - input[type=&quot;text&quot;] (type=&quot;text&quot; where type=&quot;url&quot; is correct) | &lt;input class=&quot;recipe-variable-input&quot; type=&quot;text&quot; aria-labelledby=&quot;placeholder-label-1&quot; placeholder=&quot;DEVICE-WEBSITE&quot; value=&quot;&quot;&gt; [reason: wrong-type, actual: text, expected: url]
+ </rule>
+ <rule id="url/lowercase" severity="warning" category="URL Structure" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/url/lowercase">
+  URL contains uppercase characters
+  Pages (5/102): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+ </rule>
+ <rule id="eeat/about-page" severity="warning" category="E-E-A-T" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/about-page">
+  No About page found
+ </rule>
+ <rule id="eeat/contact-page" severity="warning" category="E-E-A-T" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/contact-page">
+  No Contact page found
+ </rule>
+ <rule id="eeat/privacy-policy" severity="warning" category="E-E-A-T" group="seo" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/privacy-policy">
+  No Privacy Policy page found
+ </rule>
+ <rule id="legal/privacy-policy" severity="warning" category="Legal Compliance" group="security" status="warn" docs="https://docs.squirrelscan.com/rules/legal/privacy-policy">
+  No privacy policy link found across site
+ </rule>
+ <rule id="ax/token-weight" severity="warning" category="Agent Experience" group="ai" status="warn" docs="https://docs.squirrelscan.com/rules/ax/token-weight">
+  Visible text is under 15% of the page HTML — agents pay token cost mostly for markup, scripts, and styles
+  Pages (5/81): /zh-CN/prompts, /zh-CN/prompts?style=cinematic, /zh-CN/prompts?style=luxury, /zh-CN/prompts?style=photorealistic, /zh-CN/prompts?style=retro-vintage
+  Items (5/81):
+   - /zh-CN/prompts (~12% of HTML is visible text (~78,310 est. tokens))
+   - /zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515 (~11% of HTML is visible text (~11,968 est. tokens))
+   - /zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352 (~10% of HTML is visible text (~11,639 est. tokens))
+   - /zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076 (~5% of HTML is visible text (~10,333 est. tokens))
+   - /zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783 (~6% of HTML is visible text (~10,440 est. tokens))
+ </rule>
+ <rule id="ax/ai-crawlers" severity="warning" category="Agent Experience" group="ai" status="warn" docs="https://docs.squirrelscan.com/rules/ax/ai-crawlers">
+  robots.txt blocks AI-search indexers (OAI-SearchBot, Claude-SearchBot, PerplexityBot, DuckAssistBot, YouBot) — lost AI citations; user-action fetchers (ChatGPT-User, Claude-User, Perplexity-User, Meta-ExternalFetcher, MistralAI-User) — breaks live requests users made inside an assistant. These are separate user-agents from the training bots — blocking ClaudeBot (training) does not block Claude-User (user-action); check the block was intended.; robots.txt blocks archive crawlers — this removes the site from the Wayback Machine and/or the Common Crawl corpus, the archives AI training sets are built from. Blocking CCBot opts you out of every model trained on Common Crawl, not just one vendor.
+  Items (5/13):
+   - ChatGPT-User (ChatGPT-User (OpenAI, user-action fetcher) — blocked)
+   - Claude-SearchBot (Claude-SearchBot (Anthropic, AI-search indexer) — blocked)
+   - Claude-User (Claude-User (Anthropic, user-action fetcher) — blocked)
+   - DuckAssistBot (DuckAssistBot (DuckDuckGo, AI-search indexer) — blocked)
+   - Meta-ExternalFetcher (Meta-ExternalFetcher (Meta, user-action fetcher) — blocked)
+ </rule>
+</issues>
+</audit>

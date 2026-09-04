@@ -1,0 +1,126 @@
+/* Browse-band exploration. Every value is a token from the L1 material set (magnetic.css); the
+   only additions are the density ramp and the mosaic packing, which the shipped band has no
+   equivalent of. Scoped to .bx-* so nothing here can reach the neighbouring shipped bands. */
+.prototype-magnetic .bx-intro{padding-block:64px 4px}
+.prototype-magnetic .bx-intro .dek{margin-top:16px}
+.prototype-magnetic .bx-end{margin-left:auto;font:11.5px/1.5 var(--font-mono);color:var(--faint);font-variant-numeric:tabular-nums}
+.prototype-magnetic .bx-note{font:11.5px/1.6 var(--font-mono);color:var(--faint);max-width:78ch;margin:0 0 14px;text-wrap:pretty}
+.prototype-magnetic .bx-foot{font:11.5px/1.6 var(--font-mono);color:var(--faint);margin-top:18px;text-wrap:pretty}
+
+/* ── Plate ─────────────────────────────────────────────────────────────── */
+/* contain:paint, not decoration: without it the 940px plate keeps contributing to the document's
+   own scroll width even though it scrolls inside this box, and the whole page slides sideways on a
+   phone — measured at 375px, documentElement.scrollWidth 769 and a real 394px horizontal scroll. */
+.prototype-magnetic .bx-map{overflow-x:auto;contain:paint;border:var(--hairline) solid var(--border);border-radius:10px;background:var(--background)}
+/* separate, not collapse: Chrome drops the borders of a position:sticky cell in a collapsed
+   table, which is exactly what the frozen task column is. */
+.prototype-magnetic .bx-map table{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;font-variant-numeric:tabular-nums}
+.prototype-magnetic .bx-map th,.prototype-magnetic .bx-map td{padding:0;border-right:var(--hairline) solid var(--border);border-bottom:var(--hairline) solid var(--border);vertical-align:middle}
+.prototype-magnetic .bx-map tr>*:last-child{border-right:0}
+.prototype-magnetic .bx-map tbody tr:last-child>*{border-bottom:0}
+.prototype-magnetic .bx-map thead th{vertical-align:bottom;padding:14px 10px;font:var(--w-semi) 10.5px/1.35 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left}
+.prototype-magnetic .bx-map thead th em{display:block;font-style:normal;letter-spacing:0;color:var(--faint);margin-top:6px}
+.prototype-magnetic .bx-map thead th.bx-corner,.prototype-magnetic .bx-map tbody th{position:sticky;left:0;background:var(--background);z-index:var(--z-cell);width:206px;min-width:206px}
+.prototype-magnetic .bx-map thead th.bx-corner{color:var(--faint)}
+.prototype-magnetic .bx-map tbody th{vertical-align:middle;text-align:left}
+.prototype-magnetic .bx-task{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 12px;font-size:14.5px;font-weight:var(--w-medium);letter-spacing:-.009em;color:inherit;
+  transition-property:background-color;transition-duration:var(--t-quick);transition-timing-function:var(--e-out)}
+.prototype-magnetic .bx-task em{font-style:normal;font:11px/1 var(--font-mono);color:var(--faint);margin-left:auto}
+.prototype-magnetic .bx-shade{background:color-mix(in oklab,var(--foreground) var(--d,0%),transparent);
+  transition-property:box-shadow;transition-duration:var(--t-quick);transition-timing-function:var(--e-out)}
+.prototype-magnetic .bx-cell{display:flex;min-height:52px;height:100%;align-items:center;justify-content:center;font-size:14px;font-weight:var(--w-medium);color:inherit}
+.prototype-magnetic .bx-nil{display:flex;min-height:52px;align-items:center;justify-content:center;color:var(--faint);font:12px/1 var(--font-mono)}
+.prototype-magnetic .bx-legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;font:11.5px/1.6 var(--font-mono);color:var(--faint);font-variant-numeric:tabular-nums}
+.prototype-magnetic .bx-ramp{display:flex;gap:2px}
+.prototype-magnetic .bx-legend>span:last-child{margin-left:auto;text-align:right}
+.prototype-magnetic .bx-ramp i{width:22px;height:12px;border-radius:2px;background:color-mix(in oklab,var(--foreground) var(--d,0%),transparent);box-shadow:inset 0 0 0 1px var(--border)}
+
+/* ── Ledger ────────────────────────────────────────────────────────────── */
+.prototype-magnetic .bx-ledger{list-style:none;margin:0;padding:0;border-top:var(--hairline) solid var(--border)}
+.prototype-magnetic .bx-row{display:grid;grid-template-columns:32px minmax(0,1fr) minmax(200px,268px) 152px;gap:24px;align-items:center;padding:14px 4px;border-bottom:var(--hairline) solid var(--border);
+  transition-property:background-color;transition-duration:var(--t-quick);transition-timing-function:var(--e-out)}
+.prototype-magnetic .bx-rank{font:11px/1 var(--font-mono);color:var(--faint);font-variant-numeric:tabular-nums}
+.prototype-magnetic .bx-lede{display:grid;gap:6px;min-width:0}
+.prototype-magnetic .bx-name{font-size:19px;font-weight:var(--w-medium);letter-spacing:-.015em;line-height:1.3;display:inline-flex;align-items:center;min-height:44px;text-wrap:pretty}
+.prototype-magnetic .bx-models{font:11.5px/1.5 var(--font-mono);color:var(--faint);overflow-wrap:break-word}
+.prototype-magnetic .bx-measure{display:grid;gap:9px;min-width:0}
+.prototype-magnetic .bx-bar{display:flex;width:var(--w);min-width:8px;height:6px;border-radius:999px;overflow:hidden}
+.prototype-magnetic .bx-bar i{display:block}
+.prototype-magnetic .bx-img{background:color-mix(in oklab,var(--foreground) 66%,transparent)}
+.prototype-magnetic .bx-vid{background:color-mix(in oklab,var(--foreground) 28%,transparent)}
+.prototype-magnetic .bx-split{font:11.5px/1.5 var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.prototype-magnetic .bx-split span{color:var(--faint)}
+.prototype-magnetic .bx-shots{display:flex;gap:4px;justify-content:flex-end}
+.prototype-magnetic .bx-shots img{width:44px;height:44px;object-fit:cover;border-radius:5px;outline:1px solid var(--img-outline);outline-offset:-1px}
+.prototype-magnetic .bx-noshot{font:11px/1.5 var(--font-mono);color:var(--faint)}
+
+/* ── Field ─────────────────────────────────────────────────────────────── */
+.prototype-magnetic .bx-field{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:24px 18px}
+.prototype-magnetic .bx-sheet{display:grid;gap:12px;min-width:0}
+.prototype-magnetic .bx-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--surface)}
+.prototype-magnetic .bx-mosaic img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}
+.prototype-magnetic .bx-mosaic[data-shots="1"],.prototype-magnetic .bx-mosaic[data-shots="0"]{grid-template-columns:1fr;grid-template-rows:1fr}
+.prototype-magnetic .bx-mosaic[data-shots="2"]{grid-template-rows:1fr}
+.prototype-magnetic .bx-mosaic[data-shots="3"] img:first-child{grid-row:span 2}
+.prototype-magnetic .bx-blank{grid-column:1/-1;display:grid;place-content:center;text-align:center;padding:18px;font:11.5px/1.6 var(--font-mono);color:var(--faint)}
+.prototype-magnetic .bx-caption{display:grid;gap:4px}
+.prototype-magnetic .bx-caption b{font-size:15px;font-weight:var(--w-semi);letter-spacing:-.01em;line-height:1.3;text-wrap:pretty}
+.prototype-magnetic .bx-caption span{font:11.5px/1.5 var(--font-mono);color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* ── Directory ─────────────────────────────────────────────────────────── */
+.prototype-magnetic .bx-directory{border-top:var(--hairline) solid var(--border)}
+.prototype-magnetic .bx-entry{display:grid;grid-template-columns:minmax(0,264px) minmax(0,1fr);gap:20px 40px;padding:22px 0;border-bottom:var(--hairline) solid var(--border)}
+.prototype-magnetic .bx-entry h3{font-size:22px;font-weight:var(--w-medium);letter-spacing:-.02em;line-height:1.25;text-wrap:balance}
+.prototype-magnetic .bx-entry h3 a{display:inline-flex;align-items:center;min-height:44px}
+.prototype-magnetic .bx-entry-meta{font:11.5px/1.7 var(--font-mono);color:var(--faint);font-variant-numeric:tabular-nums;margin-top:2px}
+.prototype-magnetic .bx-titles{list-style:none;margin:0;padding:0;display:grid;gap:2px;align-content:start}
+.prototype-magnetic .bx-titles li{display:flex;gap:20px;align-items:baseline;justify-content:space-between;border-bottom:var(--hairline) solid var(--border)}
+.prototype-magnetic .bx-titles li:last-child{border-bottom:0}
+.prototype-magnetic .bx-titles a{font-size:14.5px;line-height:1.5;color:var(--muted);display:flex;align-items:center;min-height:44px;padding-right:8px;text-wrap:pretty;
+  transition-property:color;transition-duration:var(--t-out);transition-timing-function:var(--e-out)}
+.prototype-magnetic .bx-titles li>span{font:11px/1.5 var(--font-mono);color:var(--faint);white-space:nowrap}
+.prototype-magnetic .bx-more a{font-size:13px;color:var(--foreground);gap:8px}
+
+/* ── Interaction ───────────────────────────────────────────────────────── */
+@media (hover:hover) and (pointer:fine){
+  .prototype-magnetic .bx-task:hover{background:var(--surface)}
+  .prototype-magnetic .bx-shade:has(.bx-cell:hover){box-shadow:inset 0 0 0 2px var(--border-strong)}
+  .prototype-magnetic .bx-row:has(a:hover){background:var(--surface)}
+  .prototype-magnetic .bx-sheet:hover .bx-mosaic img{transform:scale(1.03)}
+  .prototype-magnetic .bx-mosaic img{transition:transform var(--t-regular) var(--e-out)}
+  .prototype-magnetic .bx-titles a:hover,.prototype-magnetic .bx-name:hover{color:var(--foreground)}
+}
+.prototype-magnetic .bx-cell:active,.prototype-magnetic .bx-sheet:active .bx-mosaic{transform:scale(.98)}
+@media (prefers-reduced-motion:reduce){
+  .prototype-magnetic .bx-cell:active,.prototype-magnetic .bx-sheet:active .bx-mosaic{transform:none}
+  .prototype-magnetic .bx-sheet:hover .bx-mosaic img{transform:none}
+}
+
+/* ── Narrow ────────────────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .prototype-magnetic .bx-row{grid-template-columns:28px minmax(0,1fr) 132px;gap:16px}
+  .prototype-magnetic .bx-shots{display:none}
+  .prototype-magnetic .bx-entry{grid-template-columns:minmax(0,1fr);gap:12px}
+  .prototype-magnetic .bx-entry-meta{margin-top:0}
+}
+@media (max-width:620px){
+  .prototype-magnetic .bx-map table{min-width:760px}
+  .prototype-magnetic .bx-map thead th.bx-corner,.prototype-magnetic .bx-map tbody th{width:150px;min-width:150px}
+  /* One column: a 116px measure column turns "13 prompts · 10 images · 3 videos" into three
+     ragged lines, and the bar loses the length comparison it exists for. */
+  .prototype-magnetic .bx-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:16px 4px}
+  .prototype-magnetic .bx-rank{display:none}
+  .prototype-magnetic .bx-name{min-height:0;margin-bottom:2px}
+  .prototype-magnetic .bx-field{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .prototype-magnetic .bx-name{font-size:17px}
+  /* The handle stops competing with the title for the same line and takes its own. */
+  .prototype-magnetic .bx-titles li{flex-wrap:wrap;gap:0 12px}
+  .prototype-magnetic .bx-titles li>span{flex-basis:100%;padding-bottom:10px}
+  .prototype-magnetic .bx-titles a{padding-right:0}
+}
+
+/* The model chip the plate's cells arrive with, on the task page. */
+.task-shell .filter-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid var(--border-strong);border-radius:999px;background:var(--card);font-size:13px;
+  transition-property:border-color;transition-duration:150ms;transition-timing-function:var(--ease)}
+.task-shell .filter-chip span{color:var(--faint);font-size:15px}
+@media (hover:hover) and (pointer:fine){.task-shell .filter-chip:hover{border-color:var(--foreground)}}

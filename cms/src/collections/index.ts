@@ -1,3 +1,7 @@
+export { AgentProposalAudits } from './AgentProposalAudits'
+export { ContentApprovals } from './ContentApprovals'
+export { ContentWithdrawals } from './ContentWithdrawals'
+export { PublicationDecisionSequences } from './PublicationDecisionSequences'
 export { LocaleVariants } from './LocaleVariants'
 export { PromptArtifacts } from './PromptArtifacts'
 export { PublicationRequests } from './PublicationRequests'

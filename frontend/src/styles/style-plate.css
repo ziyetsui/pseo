@@ -1,0 +1,108 @@
+/* Style landing pages only. Plate: proto-l1-editorial v3. */
+.prototype-style-plate .vpl .titlepage{padding-block:88px 44px;text-align:center}
+.prototype-style-plate .vpl .titlepage h1{font-family:var(--font-serif);font-weight:400;
+                   font-size:clamp(34px,4.3vw,58px);line-height:1.04;letter-spacing:-.014em}
+.prototype-style-plate .vpl .titlepage .dek{margin:20px auto 0;text-align:center;max-width:52ch}
+.prototype-style-plate .vpl .lopwrap{border-top:var(--hairline) solid var(--border);padding-block:36px 44px}
+.prototype-style-plate .vpl .lop{columns:3;column-gap:40px;margin-top:14px}
+.prototype-style-plate .vpl .lop a{display:flex;gap:12px;align-items:baseline;break-inside:avoid;
+            min-height:44px;padding-block:4px;font-size:13.5px;color:var(--muted);
+            transition-property:color;transition-duration:150ms;transition-timing-function:var(--e-out)}
+@media (hover:hover) and (pointer:fine){ .prototype-style-plate .vpl .lop a:hover{color:var(--foreground)} }
+.prototype-style-plate .vpl .lop .fno{font:11px/1.9 var(--font-mono);color:var(--faint);flex:none;
+               font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.prototype-style-plate .vpl .lop .t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prototype-style-plate .vpl .plate{border-top:var(--hairline) solid var(--border);padding-block:78px;
+            display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:0 48px;align-items:start}
+/* Recto / verso: the caption changes side plate by plate, as a bound
+   catalogue does. DOM order stays figure → caption; only the paint flips. */
+.prototype-style-plate .vpl .plate.verso{grid-template-columns:268px minmax(0,1fr)}
+.prototype-style-plate .vpl .plate.verso .cap{order:-1}
+.prototype-style-plate .vpl .well{display:flex;flex-direction:column;gap:16px;min-width:0}
+.prototype-style-plate .vpl .frames{display:flex;gap:16px;min-width:0}
+/* The mount holds the aspect so nothing shifts on load, and object-fit
+   contain means the work is never cropped to fill it. */
+.prototype-style-plate .vpl .mount{flex:1 1 0;min-width:0;aspect-ratio:4/3;max-height:72vh;display:flex;
+            align-items:center;justify-content:center;overflow:hidden}
+.prototype-style-plate .vpl .frames.multi .mount{aspect-ratio:1}
+.prototype-style-plate .vpl .mount img{max-width:100%;max-height:100%;width:auto;height:auto;
+                object-fit:contain;display:block}
+/* A record with no picture gets a text plate: the words take the wall. */
+.prototype-style-plate .vpl .textplate{font-family:var(--font-serif);font-weight:400;
+                font-size:clamp(19px,2.2vw,29px);line-height:1.34;letter-spacing:-.014em;
+                max-width:34ch;padding-block:30px;
+                border-top:2px solid var(--foreground);
+                display:-webkit-box;-webkit-line-clamp:12;-webkit-box-orient:vertical;overflow:hidden}
+.prototype-style-plate .vpl .cap{position:sticky;top:104px;align-self:start;display:flex;flex-direction:column;gap:13px}
+.prototype-style-plate .vpl .cap .fig{font:var(--w-semi) 10.5px/1.6 var(--font-mono);letter-spacing:.17em;
+               text-transform:uppercase;color:var(--faint);font-variant-numeric:tabular-nums;
+               padding-bottom:9px;border-bottom:var(--hairline) solid var(--border-strong)}
+.prototype-style-plate .vpl .cap h3{font-family:var(--font-serif);font-weight:400;font-style:italic;font-size:19px;
+             line-height:1.26;letter-spacing:-.01em;text-wrap:balance}
+.prototype-style-plate .vpl .cap dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;
+             font:11px/1.65 var(--font-mono);font-variant-numeric:tabular-nums}
+.prototype-style-plate .vpl .cap dt{color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
+.prototype-style-plate .vpl .cap dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
+.prototype-style-plate .vpl .cap .wall{font-size:12.5px;line-height:1.62;color:var(--muted);text-wrap:pretty;
+                display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
+.prototype-style-plate .vpl .cap .rr{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:1000px){ .prototype-style-plate .vpl .lop{columns:2} }
+@media (max-width:860px){
+  .prototype-style-plate .vpl .plate,.prototype-style-plate .vpl .plate.verso{grid-template-columns:minmax(0,1fr);gap:26px}
+  .prototype-style-plate .vpl .plate.verso .cap{order:0}
+  .prototype-style-plate .vpl .cap{position:static}
+  .prototype-style-plate .vpl .frames{flex-wrap:wrap}
+}
+@media (max-width:620px){ .prototype-style-plate .vpl .lop{columns:1} .prototype-style-plate .vpl .plate{padding-block:48px} }
+
+
+.prototype-style-plate .vpl h2{font-family:var(--font-serif);font-weight:400;font-size:29px;letter-spacing:-.02em}
+.prototype-style-plate .vpl .cta h2{font-size:clamp(28px,3.6vw,42px)}
+.prototype-style-plate .ctrl{position:sticky;top:73px;z-index:40;background:var(--background);border-block:var(--hairline) solid var(--border)}
+.prototype-style-plate .bar{display:flex;gap:12px;align-items:center;padding-block:11px}
+.prototype-style-plate .search{max-width:270px;flex:none;min-width:0}
+.prototype-style-plate .search input{width:100%}
+.prototype-style-plate .scroller{display:flex;gap:10px;overflow-x:auto;padding:5px 2px;scrollbar-width:none;min-width:0}
+.prototype-style-plate .scroller::-webkit-scrollbar{display:none}
+.prototype-style-plate .scroller .chip,.prototype-style-plate .clear{flex:none;white-space:nowrap}
+.prototype-style-plate .chip small{opacity:1}
+.prototype-style-plate .vpl .mount{position:relative}
+/* A definite mount bounds tall source media without cropping or layout shifts. */
+.prototype-style-plate .vpl .mount img,.prototype-style-plate .vpl .mount video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;outline:0}
+.prototype-style-plate .vpl .mount .media-fallback{width:100%;height:100%;min-height:0}
+.prototype-style-plate .vpl .cap{top:174px;min-width:0}
+.prototype-style-plate .vpl .cap .wall{white-space:pre-wrap;overflow-wrap:anywhere}
+.prototype-style-plate .vpl .textplate{white-space:pre-wrap;overflow-wrap:anywhere}
+.prototype-style-plate .vpl .plate{scroll-margin-top:175px}
+.prototype-style-plate #style-index{scroll-margin-top:155px}
+.prototype-style-plate .btn{min-height:44px}.prototype-style-plate .btn::after{inset:0}
+.prototype-style-plate .plate-index-link{display:inline-flex;align-items:center;min-height:44px;font:11px/1.5 var(--font-mono);color:var(--muted)}
+.prototype-style-plate .vpl .cap dd a{display:inline-flex;align-items:center;min-height:44px}
+.prototype-style-plate .footnav a{min-height:44px}
+.prototype-style-plate .empty-wrap{padding-block:48px}
+@media(max-width:700px){.prototype-style-plate .ctrl{top:0}.prototype-style-plate .bar{flex-wrap:wrap}.prototype-style-plate .search{max-width:none;flex:1 1 100%}.prototype-style-plate .scroller{flex:1}.prototype-style-plate .nav{position:static}.prototype-style-plate .vpl .plate{scroll-margin-top:175px}}
+
+/* Style landing navigation keeps thumbnail cards in a single scrollable row. */
+.prototype-style-plate .browse-row { padding-block: 36px; scroll-margin-top: 160px; }
+.prototype-style-plate .browse-row .cat,
+.prototype-style-plate .browse-row .tiles {
+  display: grid;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(180px, calc((100% - 48px) / 5), 260px);
+  gap: 12px;
+  align-items: stretch;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  padding: 3px 2px 10px;
+}
+.prototype-style-plate .browse-row .tile { display: flex; flex-direction: column; min-width: 0; scroll-snap-align: start; }
+.prototype-style-plate .browse-row .th { aspect-ratio: 16 / 10; }
+.prototype-style-plate .browse-row .th img,
+.prototype-style-plate .browse-row .th video { width: 100%; height: 100%; object-fit: cover; }
+.prototype-style-plate .browse-row .th .media-fallback { min-height: 0; height: 100%; padding: 12px; font-size: 10px; }
+.prototype-style-plate .browse-row .tb { gap: 4px; padding: 10px 12px 12px; }
+.prototype-style-plate .browse-row .tb h3 { font: 500 13px/1.4 var(--font-sans); overflow-wrap: anywhere; }
+.prototype-style-plate .browse-row .tb p { margin: 0; font-size: 10px; }

@@ -1,6 +1,12 @@
-.env
-.env.local
+.env*
+!.env.example
+.dev.vars*
+!.dev.vars.example
 .next/
+.open-next/
+.wrangler/
+cloudflare-env.d.ts
+wrangler.postgres.jsonc
 coverage/
 node_modules/
 src/payload-types.ts

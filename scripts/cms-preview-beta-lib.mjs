@@ -41,15 +41,24 @@ export function buildBetaEnvironment(processEnvironment, cmsEnvironment, random 
   const payloadSecret = required(merged, "PAYLOAD_SECRET");
   if (payloadSecret.length < 32) throw new Error("PAYLOAD_SECRET must contain at least 32 characters");
   required(merged, "DATABASE_URI");
-  required(merged, "CMS_MOCK_GIT_BASE_SHA");
 
   const token = merged.CMS_PREVIEW_TOKEN?.trim() || random(32).toString("hex");
   if (token.length < 32) throw new Error("CMS_PREVIEW_TOKEN must contain at least 32 characters");
 
+  const environment = { ...merged };
+  for (const retiredKey of [
+    "CMS_GIT_PUBLISHER",
+    "CMS_MOCK_GIT_BASE_SHA",
+    "CMS_GITHUB_TOKEN",
+    "CMS_GITHUB_REPOSITORY",
+    "CMS_GITHUB_BASE_BRANCH",
+  ]) {
+    delete environment[retiredKey];
+  }
+
   return {
-    ...merged,
+    ...environment,
     PAYLOAD_PUBLIC_SERVER_URL: "http://127.0.0.1:3001",
-    CMS_GIT_PUBLISHER: "mock",
     CMS_PREVIEW_ENABLED: "true",
     CMS_PREVIEW_TOKEN: token,
     PSEO_CONTENT_SOURCE: "cms-preview",

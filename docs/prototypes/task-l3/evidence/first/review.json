@@ -1,0 +1,98 @@
+[
+  {
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "l2": 2,
+    "firstLinkY": 1029,
+    "violations": []
+  },
+  {
+    "variant": "Board",
+    "width": 1440,
+    "overflow": false,
+    "l2": 14,
+    "firstLinkY": 314,
+    "violations": []
+  },
+  {
+    "variant": "Quilt",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 310,
+    "violations": []
+  },
+  {
+    "variant": "Statement",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 411,
+    "violations": []
+  },
+  {
+    "variant": "Split",
+    "width": 1440,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 317,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "cellHref": "http://127.0.0.1:3000/zh-CN/prompts/video?useCase=web-motion-design"
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "l2": 2,
+    "firstLinkY": 952,
+    "violations": []
+  },
+  {
+    "variant": "Board",
+    "width": 375,
+    "overflow": false,
+    "l2": 14,
+    "firstLinkY": 403,
+    "violations": []
+  },
+  {
+    "variant": "Quilt",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 399,
+    "violations": []
+  },
+  {
+    "variant": "Statement",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 442,
+    "violations": []
+  },
+  {
+    "variant": "Split",
+    "width": 375,
+    "overflow": false,
+    "l2": 3,
+    "firstLinkY": 377,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "cellHref": "http://127.0.0.1:3000/zh-CN/prompts/video?useCase=web-motion-design"
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

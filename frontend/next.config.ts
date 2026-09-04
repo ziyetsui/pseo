@@ -1,17 +1,12 @@
-import type { NextConfig } from "next";
-
-/**
- * Static export target (Cloudflare Pages): no server runtime, no ISR,
- * no image optimizer. Every dynamic segment must supply `generateStaticParams`
- * and set `dynamicParams = false`.
- */
-const nextConfig: NextConfig = {
-  output: "export",
+import type { NextConfig } from 'next';
+const config: NextConfig = {
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
+  output: 'export',
   trailingSlash: false,
+  images: { unoptimized: true },
   reactStrictMode: true,
-  images: {
-    unoptimized: true,
-  },
+  devIndicators: false,
+  agentRules: false,
+  experimental: { globalNotFound: true },
 };
-
-export default nextConfig;
+export default config;

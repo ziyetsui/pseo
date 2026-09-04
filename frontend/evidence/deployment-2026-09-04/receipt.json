@@ -1,0 +1,287 @@
+{
+  "receiptVersion": 1,
+  "date": "2026-09-04",
+  "timezone": "Asia/Shanghai",
+  "scope": "protected_frontend_visual_preview",
+  "productionRelease": false,
+  "source": {
+    "scope": "captured_frontend_directory",
+    "workingTreeDirty": true,
+    "fileCount": 160,
+    "digest": "sha256:bd0243884fd100da7d048839456bda448ba7173e53e90986797f34d9741d774a",
+    "deploymentGitLabel": "0ae558e",
+    "gitLabelIdentifiesCompleteSource": false
+  },
+  "artifact": {
+    "mode": "visual-fixture",
+    "revision": "sha256:73d488642d1168a16137b8ec48eb567e032d2393df24c343b26720d99d993948",
+    "digest": "sha256:65ccf580155aa0c05c4ab87b92f6f9ce8432615a1e3835e2abdb959febf72f0a",
+    "fileCount": 425,
+    "htmlCount": 77,
+    "excluded": ["proto/"],
+    "publicPromptCount": 0,
+    "feedCount": 0,
+    "sourceMirrorSha": null,
+    "checks": {
+      "noindexHtmlCount": 77,
+      "robotsDisallow": true,
+      "headersNoindex": true,
+      "symlinkCount": 0,
+      "oversizeFileCount": 0,
+      "sensitivePatternHitCount": 0,
+      "protoPathCount": 0
+    }
+  },
+  "deployment": {
+    "provider": "Cloudflare Pages",
+    "project": "pseo-internal-beta-preview",
+    "environment": "Preview",
+    "branch": "frontend-design",
+    "id": "93ffa110-7fe2-42f2-9708-744fbd3364c3",
+    "status": "uploaded",
+    "url": "https://93ffa110.pseo-internal-beta-preview.pages.dev",
+    "branchUrl": "https://frontend-design.pseo-internal-beta-preview.pages.dev"
+  },
+  "customDomain": {
+    "zone": "ancher.site",
+    "hostname": "beta.ancher.site",
+    "url": "https://beta.ancher.site",
+    "targetSelection": "explicitly_authorized",
+    "pagesRegistration": "registered",
+    "pagesStatus": "active",
+    "verificationStatus": "active",
+    "validationStatus": "active",
+    "checkedAt": "2026-09-04T14:01:31.298Z",
+    "zoneStatus": "active_verified_in_dashboard",
+    "existingApexWorkerChanged": false,
+    "approval": {
+      "action": "register_pages_custom_domain_and_save_dns",
+      "status": "explicitly_authorized_by_user",
+      "history": "Automatic approval review initially rejected registration before execution; the user then explicitly approved the exact subdomain and binding target.",
+      "pagesProject": "pseo-internal-beta-preview",
+      "pendingUserApproval": false
+    },
+    "dns": {
+      "status": "saved_verified_in_dashboard",
+      "previousRecordSearch": "no_records_found",
+      "recordCountBefore": 73,
+      "recordCountAfter": 74,
+      "type": "CNAME",
+      "name": "beta.ancher.site",
+      "target": "frontend-design.pseo-internal-beta-preview.pages.dev",
+      "proxied": true,
+      "ttl": "automatic"
+    },
+    "publicReachabilityVerified": true,
+    "publicReachabilityScope": "https_and_anonymous_access_redirect_only"
+  },
+  "supersededCustomDomains": [{
+    "zone": "ancher.space",
+    "hostname": "beta.ancher.space",
+    "status": "superseded_configuration_retained",
+    "pagesRegistration": "registered",
+    "pagesStatus": "pending",
+    "verificationStatus": "pending",
+    "validationStatus": "pending",
+    "zoneStatus": "pending_nameserver_activation",
+    "dns": {
+      "status": "saved_verified_in_dashboard",
+      "type": "CNAME",
+      "name": "beta.ancher.space",
+      "target": "frontend-design.pseo-internal-beta-preview.pages.dev",
+      "proxied": true,
+      "ttl": "automatic"
+    },
+    "registrar": "Namecheap",
+    "registrarSession": "not_signed_in",
+    "nameserverChange": "pending_user_action",
+    "publicReachabilityVerified": false
+  }],
+  "access": {
+    "customHostname": "beta.ancher.site",
+    "customHostnameAdded": true,
+    "status": "saved_verified_in_dashboard",
+    "targetCount": 3,
+    "previousTargetsRetained": 2,
+    "policyCount": 2,
+    "existingPolicyConditionsChanged": false,
+    "anonymousChecks": [
+      {"entry": "deployment_url", "httpStatus": 302, "redirectsToAccess": true},
+      {"entry": "branch_url", "httpStatus": 302, "redirectsToAccess": true}
+    ],
+    "customHostnameAnonymousCheck": "passed_tls_verified_http_302_to_access",
+    "loginRedirectRepair": {
+      "status": "saved_and_authenticated_entry_verified",
+      "observedFailure": "Post-login multi-domain eager redirect reached the inactive superseded beta.ancher.space hostname.",
+      "eagerRedirectCookieSettingBefore": true,
+      "eagerRedirectCookieSettingAfter": false,
+      "launcherDomain": "beta.ancher.site",
+      "saveValidationResolved": "Selected the existing domain after an empty custom launcher URL triggered a required-field validation.",
+      "applicationTargetsRetained": 3,
+      "policiesRetained": 2,
+      "ownerServicePolicyConditionsChanged": false,
+      "oldDomainResourcesRemoved": false,
+      "repairComplete": true,
+      "authenticatedReturnHomeWithoutOldDomainRedirect": true,
+      "officialReference": "https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/#multi-domain-applications"
+    }
+  },
+  "validation": {
+    "lint": {"status": "passed", "errors": 0, "warnings": 13, "warningRule": "@next/next/no-img-element", "command": "node_modules/.bin/eslint ."},
+    "typecheck": {"status": "passed"},
+    "unitTests": {"status": "passed", "files": 22, "passed": 138, "failed": 0, "command": "node_modules/.bin/vitest run"},
+    "apiContract": {"status": "passed", "command": "node scripts/generate-api.mjs --check"},
+    "staticBuild": {"status": "passed", "finalizer": "passed"},
+    "finalArtifactLinks": {"status": "passed", "checked": 4281},
+    "domainSwitchDriftCheck": {
+      "status": "passed",
+      "sourceFilesChecked": 160,
+      "artifactFilesChecked": 425,
+      "perFileHashesMatch": true,
+      "perFileByteCountsMatch": true,
+      "runtimeDrift": false,
+      "rebuildRequired": false
+    },
+    "localStaticE2e": {
+      "status": "passed",
+      "suites": ["accessibility.spec.ts", "journey.spec.ts"],
+      "projects": ["desktop", "mobile"],
+      "passed": 28,
+      "failed": 0,
+      "testRetries": 0,
+      "durationSeconds": 15.6,
+      "against": "same_static_artifact_before_upload",
+      "isOnlineSmoke": false
+    },
+    "compilerFixture": {
+      "scope": "engineering_contract_fixture_not_deployment_content",
+      "revision": "sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01",
+      "validate": {"status": "passed", "documents": 2, "taxonomies": 4, "surfaces": 4},
+      "build": {"status": "passed", "publishedLocales": 1, "files": 9, "outputLocation": "operating_system_temporary_directory"},
+      "tests": {"status": "passed", "passed": 18, "failed": 0}
+    },
+    "executionNotes": [
+      "pnpm lint/test initially stopped at an automatic dependency-install TTY requirement; equivalent existing binaries then passed without dependency installation or purge.",
+      "Playwright initially could not launch Chromium under the macOS sandbox; one permitted execution completed all 28 tests without test changes or test retries."
+    ]
+  },
+  "publication": {
+    "cmsProposal": "not_submitted",
+    "cmsPublic": "not_changed",
+    "cmsSnapshotRevision": null,
+    "snapshotStatus": "no_cms_public_snapshot_used",
+    "rightsApproval": "not_performed",
+    "mirror": "not_changed",
+    "productionDeployment": "not_performed",
+    "released": false
+  },
+  "smoke": {
+    "anonymousPagesAccess": "passed",
+    "authenticatedOnline": "passed_limited_scope",
+    "authenticatedOnlineScope": "hub_search_filter_peek_detail_images_radio_category_navigation_and_noindex",
+    "authenticatedContent": {
+      "browser": "in_app_browser",
+      "session": "existing_user_login",
+      "route": "/zh-CN/prompts",
+      "title": "Image and video prompts · Prompt Library",
+      "h1": "Somebody already wrote this",
+      "promptCount": 34,
+      "stylesheetCount": 3,
+      "styledScreenshotReviewed": true,
+      "robots": "noindex,nofollow",
+      "search": {"query": "Gym mirror selfie", "before": 34, "after": 1, "status": "passed"},
+      "peek": {"status": "passed", "observed": ["prompt", "image", "source", "Generate image detail link"]},
+      "categoryAndDetailNavigation": "passed",
+      "detail": {
+        "route": "/zh-CN/prompts/image-analysis-overall-scene-provocative-gym-2019849202591789460",
+        "title": "Gym mirror selfie under blue-purple LED",
+        "enteredVia": "expanded_prompt_generate_image_internal_link",
+        "observed": ["body", "author", "source", "placeholder_section"],
+        "mainImages": 2,
+        "allMainImagesCompleteWithNaturalWidth": true,
+        "robots": "noindex,nofollow",
+        "iphoneRadioEnabledAfterHydration": true,
+        "externalGenerationPerformed": false
+      },
+      "imageCategory": {
+        "route": "/zh-CN/prompts/image",
+        "h1": "Image prompts",
+        "displayedCount": "22 of 22",
+        "enteredVia": "Images_link",
+        "status": "passed"
+      },
+      "returnHome": {
+        "route": "/zh-CN/prompts",
+        "titleVerified": true,
+        "redirectedToSupersededDomain": false,
+        "status": "passed"
+      },
+      "online404": "not_covered",
+      "fullSiteOnlineE2e": "not_executed"
+    },
+    "anonymousAfterLoginFix": {
+      "checkedAt": "2026-09-04T14:11:32.028Z",
+      "httpStatus": 302,
+      "tlsVerified": true,
+      "redirectsToAccess": true,
+      "anonymousAccessStillProtected": true
+    },
+    "customDomain": "passed_tls_verified_http_302_to_access",
+    "customDomainCheck": {
+      "checkedAt": "2026-09-04T14:02:04.330Z",
+      "dnsResolution": "normal_public_dns",
+      "tlsSucceeded": true,
+      "tlsVerified": true,
+      "httpStatus": 302,
+      "redirectsToAccess": true,
+      "accessEnforcementVerified": true
+    },
+    "publicDns": {
+      "status": "passed",
+      "resolver": "Google Public DNS",
+      "recordType": "A",
+      "answers": ["172.67.182.205", "104.21.32.44"]
+    },
+    "browserLoginPage": {
+      "browser": "in_app_browser",
+      "status": "passed",
+      "observed": ["Cloudflare Access login page", "Email", "Send login code"],
+      "authenticated": false,
+      "scope": "historical_anonymous_login_page_check"
+    },
+    "chromeEnvironment": {
+      "status": "connection_error",
+      "error": "ERR_CONNECTION_CLOSED",
+      "otherVerifiedSurfaces": ["normal_dns_https_request", "in_app_browser"]
+    },
+    "historicalCustomDomainFailure": {
+      "checkedAt": "2026-09-04T13:59:57.847438+00:00",
+      "tlsSucceeded": false,
+      "httpStatus": null,
+      "errorType": "SSLEOFError",
+      "supersededBy": "successful_final_custom_domain_check"
+    },
+    "branchAliasRecheck": {
+      "checkedAt": "2026-09-04T13:59:59.177570+00:00",
+      "tlsSucceeded": true,
+      "httpStatus": 302,
+      "redirectsToAccess": true
+    }
+  },
+  "remaining": [],
+  "verificationLimits": [
+    "Online 404, other routes and full-site online E2E were not covered by the limited authenticated smoke; these are not outstanding steps for this login repair.",
+    "The 28 local E2E checks remain separate evidence for the pre-upload static artifact.",
+    "Protected visual preview only; no CMS, rights, mirror or production publication transition."
+  ],
+  "evidenceHandling": {
+    "kind": "summary_only",
+    "rawReceiptNames": ["source-receipt.json", "artifact-receipt.json", "deployment-receipt.json", "domain-receipt.json", "domain-site-receipt.json", "site-anonymous-smoke.json", "site-final-anonymous-smoke.json", "site-after-login-fix-smoke.json", "artifact-check.json"],
+    "remoteConfigurationEvidence": "session_dashboard_save_and_readback",
+    "anonymousAccessEvidence": "session_http_checks",
+    "fullLogsIncluded": false,
+    "personalEmailsIncluded": false,
+    "credentialsIncluded": false,
+    "dashboardUrlsIncluded": false
+  }
+}

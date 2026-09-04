@@ -1,0 +1,91 @@
+{
+  "revision": "sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01",
+  "routes": [
+    {
+      "route": "/zh-CN/blog",
+      "status": 200,
+      "heading": "The notebook",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts",
+      "status": 200,
+      "heading": "Somebody already wrote this",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/country-miniature-stamp-poster",
+      "status": 200,
+      "heading": "国家主题微缩邮票海报",
+      "jsonLd": 1,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/creators",
+      "status": 200,
+      "heading": "Creators",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/image",
+      "status": 200,
+      "heading": "Image prompts",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/models",
+      "status": 200,
+      "heading": "Models",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/models/gpt-image-2",
+      "status": 200,
+      "heading": "gpt-image-2",
+      "jsonLd": 1,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/models/nano-banana-pro",
+      "status": 200,
+      "heading": "Nano Banana Pro",
+      "jsonLd": 1,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/styles/photorealistic",
+      "status": 200,
+      "heading": "photorealistic.One prompt, one plate.",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/subjects/miniature-landmark",
+      "status": 200,
+      "heading": "miniature-landmark prompts",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/use-cases/country-city-poster",
+      "status": 200,
+      "heading": "country-city-poster prompts are specifications.",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    },
+    {
+      "route": "/zh-CN/prompts/video",
+      "status": 200,
+      "heading": "Video prompts",
+      "jsonLd": 0,
+      "lang": "zh-CN"
+    }
+  ],
+  "missingRoutes404": true,
+  "noJs": true
+}

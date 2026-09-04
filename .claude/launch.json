@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wireframes",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        ".claude/serve-wireframes.mjs"
+      ],
+      "port": 8899
+    },
+    {
+      "name": "frontend",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "frontend",
+        "dev"
+      ],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}

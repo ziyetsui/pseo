@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pseo-cms-local",
+  "main": "src/worker.ts",
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2026-08-06",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "CMS_DATABASE_ADAPTER": "d1",
+    "CMS_DEPLOYMENT_ENV": "local",
+    "CMS_PREVIEW_ENABLED": "false",
+    "PAYLOAD_PUBLIC_SERVER_URL": "http://localhost:3001"
+  },
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "pseo-cms-local",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "remote": false
+    }
+  ],
+  "env": {
+    "production": {
+      "name": "pseo-cms-beta",
+      "workers_dev": true,
+      "preview_urls": false,
+      "vars": {
+        "CMS_DATABASE_ADAPTER": "d1",
+        "CMS_DEPLOYMENT_ENV": "production",
+        "CMS_PREVIEW_ENABLED": "false",
+        "PAYLOAD_PUBLIC_SERVER_URL": "https://pseo-cms-beta.codex-cloudflare-20260612.workers.dev"
+      },
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_name": "pseo-cms-beta",
+          "database_id": "aeec1c88-bc9c-4d6e-a4c2-9f8bda4f7a7b",
+          "remote": true
+        }
+      ]
+    }
+  }
+}

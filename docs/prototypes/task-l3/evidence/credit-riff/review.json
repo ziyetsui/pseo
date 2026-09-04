@@ -1,0 +1,370 @@
+[
+  {
+    "variant": "Kinetic",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1004,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Ink",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1004,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Gather",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1004,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Ampersand",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1009,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Hairline",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1017,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "variant": "Kinetic",
+    "width": 375,
+    "overflow": false,
+    "bottom": 957,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Ink",
+    "width": 375,
+    "overflow": false,
+    "bottom": 957,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Gather",
+    "width": 375,
+    "overflow": false,
+    "bottom": 957,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Ampersand",
+    "width": 375,
+    "overflow": false,
+    "bottom": 952,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Hairline",
+    "width": 375,
+    "overflow": false,
+    "bottom": 970,
+    "links": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            ".chip[data-value=\"Nano Banana Pro\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Seedance\"][data-facet=\"models\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Beauty\"][data-facet=\"uses\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Photorealistic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Cinematic\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-value=\"Luxury\"][data-facet=\"styles\"] > small"
+          ],
+          [
+            ".chip[data-facet=\"techs\"][type=\"button\"]:nth-child(13) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

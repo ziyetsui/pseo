@@ -5,20 +5,23 @@
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "dev": "next dev",
-    "extract:wireframe": "node scripts/extract-wireframe.mjs",
-    "build": "next build",
+    "dev": "FRONTEND_DATA_MODE=visual-fixture next dev --hostname 127.0.0.1",
+    "build": "next build --webpack && node scripts/finalize-export.mjs",
+    "build:visual": "FRONTEND_DATA_MODE=visual-fixture pnpm build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test --project=desktop --project=mobile",
-    "screenshots": "playwright test --project=screenshots-desktop --project=screenshots-mobile",
-    "check:static": "node scripts/check-static-output.mjs"
+    "test:e2e": "playwright test",
+    "check:static": "node scripts/check-static-output.mjs",
+    "generate:api": "node scripts/generate-api.mjs"
   },
   "dependencies": {
     "next": "16.3.4",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1",
+    "server-only": "0.0.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
@@ -38,6 +41,7 @@
     "serve": "14.2.6",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
-    "vitest": "4.1.11"
+    "vitest": "4.1.11",
+    "openapi-typescript": "7.13.0"
   }
 }

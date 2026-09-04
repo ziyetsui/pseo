@@ -30,12 +30,14 @@ jobs:
           cache-dependency-path: frontend/pnpm-lock.yaml
       - name: Install locked frontend dependencies
         run: pnpm --dir frontend install --frozen-lockfile
-      - name: Build frontend static export
-        run: pnpm --dir frontend build
-      - name: Validate and generate static content
-        run: |
-          node infra/bin/content.mjs validate
-          node infra/bin/content.mjs build
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked backend dependencies
+        run: uv sync --project backend --all-groups
+      - name: Verify repository fixture API and build revision-pinned frontend
+        run: node scripts/check-public-frontend.mjs
       - name: Merge and harden Preview package
         run: node infra/bin/prepare-preview.mjs
       - name: Verify Preview noindex contract

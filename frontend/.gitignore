@@ -1,28 +1,9 @@
-# dependencies
 node_modules/
-.pnpm-store/
-
-# next.js
 .next/
+.next-dev/
 out/
-# `pnpm build:bauhaus` exports the comparison theme here and puts the default
-# build back where it found it, so `out/` always holds the theme that ships.
-out-bauhaus/
-out.prev/
-next-env.d.ts
-
-# test output
-coverage/
 playwright-report/
 test-results/
-.playwright/
-
-# NOTE: evidence/ and evidence/screenshots are intentionally NOT ignored —
-# later tasks commit screenshots and extraction evidence as deliverables.
-
-# misc
-.DS_Store
 *.tsbuildinfo
-.env
-.env.local
-.env*.local
+.env*
+!.env.example

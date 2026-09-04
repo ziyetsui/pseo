@@ -1,0 +1,1192 @@
+{
+  "prompts": [
+    {
+      "id": "2073529429838696592",
+      "slug": "concept-scroll-read-this-brief-script-the-sc-2073529429838696592",
+      "title": "Scroll-scripted site build, shot by shot",
+      "prompt": "concept + scroll: \"read this brief, script the scroll - what the visitor feels at second 3, 15, 40. scaffold the site with GSAP ScrollTrigger + Lenis.\" motion assets: \"generate the hero sting and one b-roll clip per section from the story. 3–5s, high-res.\" polish pass: \"bake in film grain, particles, vignette, glass cards, color tints, scroll pacing. no config.\" QA: \"check load speed, mobile breakpoints, and whether the scroll actually lands. rewrite whatever doesn't.\" WHAT THIS REPLACES: → web studio build: $6,000-$35,000+ → motion artist: $800-2,000/project → front-end dev: $2,000-10,000/project → weeks of handoffs: gone Fable 5 + Higgsfield: a subscription + a few dollars of credits. one session. SETUP IN 10 MINUTES: - install Claude Code - add the Higgsfield MCP + authenticate - drop your brief + references - let it scaffold, generate, and animate in one pass - preview, send fixes in plain English, ship the pipeline was the moat. it just became a prompt. Follow me, comment \"WEB\" and I'll send you the full step-by-step Playbook. full breakdown in the article 👇",
+      "models": [],
+      "uses": [
+        "Web & motion design"
+      ],
+      "styles": [
+        "Cinematic"
+      ],
+      "techs": [],
+      "subjects": [],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 14,
+      "handle": "@zeuuss_01",
+      "likes": 2512,
+      "saves": 6127,
+      "hv": true,
+      "score": 99.9
+    },
+    {
+      "id": "2019849202591789460",
+      "slug": "image-analysis-overall-scene-provocative-gym-2019849202591789460",
+      "title": "Gym mirror selfie under blue-purple LED",
+      "prompt": "{ \"image_analysis\": { \"overall_scene\": \"Provocative gym mirror selfie of two young smiling women viewed from behind, posing to emphasize glutes and lower bodies, one holding phone, under cool blue-purple ambient lighting.\", \"subjects\": [ { \"position\": \"left\", \"identity\": \"Natalia Dyer resemblance\", \"age_appearance\": \"Early 20s\", \"build\": \"Curvy athletic hourglass, pronounced glutes, toned legs, fair smooth skin\", \"hair\": \"Medium-length curly brown in high messy bun with loose strands\", \"face\": \"Visible smiling at camera\", \"other_details\": \"None prominent\" }, { \"position\": \"right (holding phone)\", \"identity\": \"Sadie Sink resemblance\", \"age_appearance\": \"Early 20s\", \"build\": \"Curvy athletic, pronounced glutes, toned legs/back, fair smooth skin\", \"hair\": \"Long wavy reddish-auburn/orange, loose over shoulders\", \"face\": \"Visible smiling at camera\", \"other_details\": \"Holding iPhone\" } ], \"pose\": \"Rear-view mirror selfie: legs slightly apart, hands on hips, backs arched to accentuate glutes and scrunch-butt leggings, confident teasing gym pose\", \"clothing\": { \"left_woman\": \"White long-sleeve open-back crop top with twisted back, light blue high-waisted scrunch-butt leggings with ruched seam\", \"right_woman\": \"White halter-neck sports bra, light purple high-waisted scrunch-butt leggings with ruched seam\" }, \"lighting_and_color\": { \"lighting\": \"Cool blue/purple LED ambient, moody highlights on skin/fabric, mirror reflections\", \"color_palette\": \"Cool tones dominant: white tops, blue/purple leggings, dark gym floor\" }, \"background\": \"Modern gym in mirrors: cardio machines left, weights right, exposed ducts, dark rubber floor, blurred distant gym-goers\", \"photography_style\": \"Photorealistic vertical mirror selfie, high-res sharp details on ruched fabric/skin/hair, rear lower-body focus\" }, \"generated_prompt\": { \"full_text_prompt\": \"photorealistic vertical gym mirror selfie from behind of two beautiful athletic young women early 20s, left with curly brown high messy bun wearing white open-back long-sleeve crop top and light blue scrunch-butt leggings, right with long wavy reddish hair wearing white halter sports bra and light purple scrunch-butt leggings holding iPhone, both hands on hips backs arched emphasizing pronounced glutes/toned legs, modern gym mirrors cardio/weight equipment cool blue-purple lighting, highly detailed ruched textures skin sheen hair, sharp lower-body focus, confident teasing fitness vibe, 8k masterpiece\", \"negative_prompt\": \"deformed, ugly, bad anatomy, extra limbs, blurry, low quality, cartoon, illustration, painting, watermark, text, over/underexposed, children, elderly, mutated hands, front view\", \"recommended_parameters\": { \"style\": \"photorealistic gym mirror selfie\", \"quality_tags\": \"masterpiece, ultra detailed, sharp focus, realistic fabric/skin textures, moody lighting\", \"aspect_ratio\": \"9:16 vertical\", \"camera\": \"smartphone mirror shot, 28mm equiv, f/2.0, shallow DOF\" } } }",
+      "models": [
+        "Nano Banana",
+        "Nano Banana Pro"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 3849,
+      "saves": 2361,
+      "hv": true,
+      "score": 99.2
+    },
+    {
+      "id": "2071174186978951379",
+      "slug": "scene-a-seamless-ultra-cinematic-one-take-sh-2071174186978951379",
+      "title": "One take from deep space to a cafe table",
+      "prompt": "Scene: A seamless ultra-cinematic one-take shot starting from deep space and ending in an intimate café moment. The sequence emphasizes speed, scale, and immersive transition from cosmic to human scale. Subject / Character: Final subject is @img1 — a young woman sitting in an open-air café named “LUMOS”, wearing denim shorts and a white shirt, casually eating a hamburger with a drink beside her. Action Timeline (TOTAL: 15s): 0–4s (Space → Earth Approach): Wide cinematic shot of Earth in deep space. Camera accelerates forward smoothly. Earth rapidly grows in frame. Subtle light streaks, atmospheric glow becomes visible. Motion builds gradually but feels grand. 4–8s (Atmospheric Entry → Fast Descent): Camera pierces atmosphere with intense glow and motion blur. Clouds rush past. Continents and terrain sweep underneath at high speed. Strong sense of acceleration. 8–11s (City Dive → Street Flow): Camera locks onto a city and dives sharply. Skyscrapers rise fast. Transition into street-level movement — fluid glide through streets, passing buildings, corners, and urban elements with dynamic motion. 11–12s (Café Target Lock): Camera spots outdoor café with large “LUMOS” sign. Rapid but smooth deceleration begins. Focus tightens. 12–15s (Final Scene – Character): Camera settles into a medium shot of @img1. She sits casually, eating a hamburger, drink on table. Natural motion (taking a bite, relaxed posture). Warm, calm contrast to previous high-speed sequence. Camera: One continuous shot, no cuts. Extreme speed ramping: slow → ultra-fast → controlled slowdown. Wide lens in space → natural cinematic lens at final shot. Smooth stabilization with slight handheld realism at the end. Audio: Cinematic rise from deep space ambience → intense whooshing during descent → city ambience → soft café sounds (light chatter, ambient noise). Style: Cinematic color grading: cool tones in space/descent → gradually warmer tones at street/café. High contrast, subtle film grain, volumetric lighting, atmospheric particles, ultra-detailed, 8K, photorealistic.",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [
+        "Food & beverage"
+      ],
+      "styles": [
+        "Cinematic",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Transition / morph / match cut"
+      ],
+      "subjects": [
+        "Person / portrait",
+        "Food / drink"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@Naiknelofar788",
+      "likes": 1024,
+      "saves": 1263,
+      "hv": true,
+      "score": 98.9
+    },
+    {
+      "id": "2015726421990056336",
+      "slug": "prompt-portrait-photography-from-above-ana-d-2015726421990056336",
+      "title": "Overhead portrait on the LA Walk of Fame",
+      "prompt": "{ \"prompt\": \"Portrait photography from above, Ana de Armas with long brown shoulder length ponytail hair, looking up directly at camera, both hands resting resting kneels, sitting or kneeling on concrete walk of fame in los angeles, wearing a white off-shoulder sleeveless top with ruffle details on sleeves with V deep necklace, natural freckles scattered across face nose and forehead, light brown eyes with long dark eyelashes, red mauve lips, multiple gold and diamonds rings on fingers, small gold hoop earrings, gold chain with stone ruby necklace, fair skin with sun freckles, soft natural golden hour sunlight creating diagonal shadow on pavement, outdoor sidewalk setting, intimate close-up portrait, looking up at camera with soft neutral expression, iPhone style portrait photography, warm afternoon lighting\", \"negative_prompt\": \"indoor, studio lighting, heavy makeup, dark hair, side angle, full body, harsh shadows\", \"style\": \"natural portrait photography, golden hour outdoor, intimate close-up, social media aesthetic\", \"aspect_ratio\": \"3:4\", \"camera\": { \"type\": \"smartphone portrait or mirrorless camera\", \"angle\": \"high overhead angle looking down at subject looking up\", \"framing\": \"close-up portrait, head shoulders and hands visible\" }, \"lighting\": { \"type\": \"natural golden hour sunlight\", \"quality\": \"warm soft afternoon sun, diagonal light creating gentle shadow on concrete\", \"atmosphere\": \"warm outdoor natural light, intimate mood\" }, \"mood\": \"intimate, soft, natural, candid, warm, gentle\", \"color_palette\": \"long straight black, purple clothing, gold jewelry accents, warm skin tones, grey concrete, natural freckle tones\", \"subject_features\": { \"hair\": \"long black straight shoulder length, soft waves, middle parted, natural texture\", \"skin\": \"fair with natural freckles across nose cheeks and forehead, sun-kissed\", \"eyes\": \"light blue, large, looking directly up at camera, long dark lashes\", \"lips\": \"red mauve, soft full shape\", \"eyebrows\": \"natural dark brown, well groomed\", \"expression\": \"soft neutral, intimate, slightly pouty, direct eye contact\", \"freckles\": \"natural scattered freckles prominent across nose bridge, cheeks, forehead\" }, \"accessories\": { \"piercings\": \"small silver hoop on belly\", \"earrings\": \"small diamond spirals hoop earrings\", \"rings\": \"multiple gold and diamonds stacking rings on both hands fingers\", \"necklace\": \"delicate gold chain necklace with skull pendant\" }, \"wardrobe\": { \"top\": \"white off-shoulder sleeveless top, ribbed texture, ruffle frill details on sleeve cuffs, bare shoulders exposed,\" \"bottom\": \"short denim miniskirt,\" }, \"pose\": { \"position\": \"sitting or kneeling on ground of walk of fame in los angeles with gold star vip on the ground\", \"hands\": \"both resting on kneels\", \"gaze\": \"looking straight up at camera above\" }, \"setting\": { \"location\": \"outdoor walk of fame in los angeles\", \"background\": \"gold star on charcoal-colored terrazzo with diagonal sunlight shadow\", \"time\": \"golden hour, late afternoon\" } }",
+      "models": [
+        "Nano Banana",
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 851,
+      "saves": 653,
+      "hv": true,
+      "score": 97.6
+    },
+    {
+      "id": "2078814921756754352",
+      "slug": "a-cinematic-15-second-music-video-shot-in-a--2078814921756754352",
+      "title": "Neon dance-studio music video, 15 seconds",
+      "prompt": "A cinematic 15-second music video shot in a dark modern dance studio with smooth grey reflective floor, black walls and horizontal neon light tubes. Continuous dynamic camera movement, mostly medium shots and close-ups, never too wide. The woman is constantly moving, no freezes or static poses. Main subject: young woman with messy medium-length wavy brown hair with bangs partially covering her face, freckles on nose and cheeks, blue-grey eyes, full glossy lips. She wears a tight black fishnet bodysuit. She is singing the entire time with clear, precise lip-sync, mouth actively moving, intense emotional expression. Lyrics: \"Ye! Ye! You keep a box of names / In the drawer by your bed / Polaroids and ticket stubs / Stuffed under the red / You never take one thing / You take the whole last spark / Leave a little thumbprint / On every private heart\". 0-2s: Tight medium close-up. She leans her upper body back, head tilting, singing passionately with strong lip-sync, hair falling over her face, body arching, one hand sliding across her chest. 2-4s: Camera slowly pushes in and circles. She comes out of the deep arch, torso still bent forward, hands on her thighs, lifting her head and looking straight into camera while singing with aggressive lip-sync. Three male dancers of different appearances (different ethnicities, hair styles and builds) wearing black tank tops and black wide pants are already close around her, moving with her in low tense postures. The other two men are visible at the edges of the frame, approaching. 4-7s: Medium close-up. She drops lower, body still in constant motion, hair swinging, singing intensely with clear mouth movements, sharp head turns, eyes locked on camera. Male dancers stay close, their hands lightly touching her as they move together. 8-12s: Medium shot with slow camera drift. Exactly five male dancers of completely different appearances, all wearing black tank tops and black wide pants, surround her tightly on the floor in a dense, intertwined formation. She is in the center, body still moving, upper body rising and shifting, singing with strong lip-sync. All five men move subtly with her, never static. The men never fully obscure her body. 13-15s: Dynamic medium shot. The five diverse male dancers lift her into the air in a powerful deep backbend. Her body is fully extended and arched, head thrown back, still singing with clear lip-sync. While holding her they gently rock her up and down in time with the beat. The camera starts from a clear side view of her arched body and smoothly transitions to a frontal view of her face. At the end they lower her smoothly onto her feet; she lands and immediately continues singing as the five men stay low on the floor around her. The men never fully obscure her. High fashion dance energy, sweaty skin, sharp timing, continuous fluid motion of the woman, priority on accurate lip-sync in every frame. Rules: no hand morphing, no body distortions, clean stable anatomy, fingers and hands remain consistent and natural throughout the entire video. #AIvideo #AIMusicVideo #AIFilmmaking",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [
+        "Fashion"
+      ],
+      "styles": [
+        "Cinematic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Lip sync / dialogue"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@Kiber_Alla",
+      "likes": 562,
+      "saves": 671,
+      "hv": true,
+      "score": 96.3
+    },
+    {
+      "id": "2083168602363150527",
+      "slug": "scene-a-day-in-new-york-shot-entirely-by-the-2083168602363150527",
+      "title": "A day in New York, filmed by the subject",
+      "prompt": "SCENE A day in New York shot entirely by the subject herself: waking in her hotel suite, coffee, getting ready, out into the city, back to the room at night. ACTIVE REFERENCES @ image1 — the hotel suite. Curved cove ceiling with warm LED coving, deep red carpet, cream walls, two black organic sculptures above a light wood headboard, white bedding with red pillows, twin bedside lamps, pale sofa, oval coffee table, sheer curtains, dark door. @ image2 — the subject. Young woman, shoulder-length wavy blonde hair with curtain bangs and highlights, light freckles, thin gold necklace, silver ring, dark brown off-the-shoulder knit with white diamond-stripe pattern. 100% matches the reference. CAMERA OWNERSHIP LOCK Only two positions exist. HELD: arm extended, camera 0.4-0.7m from her face, visible arm tension, tilt and step-bounce. PROPPED: camera on a surface she placed it on, crooked and fixed, with her moving in and out of frame. No operator shots, no tracking, nothing she could not have filmed alone. FORMAT Eight shots, 30s, seven HARD CUTS, no fades. Real-time. 0-4s SHOT 1 — PROPPED, morning room. 84° diagonal field of view, camera on the sideboard 3m from the bed at 1.1m, static and tilted. The suite matches @ image1: cove light on, curtains half open, cool daylight across the red carpet. @ image2 visible at 0.0s, sitting up on the bed edge x66 y58. No empty frame. She rubs her face and croaks at the running camera: \"It's seven. In New York. Why am I awake.\" Stands, walks out screen-right. HARD CUT. 4-7s SHOT 2 — HELD, window light. 84°, arm's length 0.5m, above eye line. She is x50 y42 at the sheer curtain screen-left, cool daylight on the near side of her face, cove warmth behind. She pulls the curtain, squints at the street below, then into the lens: \"Okay. It's actually happening.\" Arm wobble throughout. HARD CUT. 7-11s SHOT 3 — PROPPED, coffee. 47°, camera on the oval coffee table 0.8m away, low, looking up past a cup. She sits into frame at x55 y45, pours, tastes, pulls a face at the running camera: \"Hotel coffee. We'll fix that outside.\" Steam bends in the light. HARD CUT. 11-15s SHOT 4 — HELD, mirror. 47°, camera at chest height reflected in the suite mirror. She is x45 y50 in the reflection, camera visible in her hand, working through her hair with the other. Bed and sculptures behind. At 13s: \"This is as good as it gets. Let's go.\" HARD CUT. 15-18s SHOT 5 — HELD, leaving. 107° wide rectilinear, camera held low at waist height, turned forward. She crosses the red carpet to the door at x55, lens swinging with her stride. She opens it and corridor light floods the frame. Off-frame, breathy: \"Downtown first.\" HARD CUT. 18-22s SHOT 6 — PROPPED, street. 47°, camera on a stoop rail 3m away, static, crooked. A New York block behind her — brownstone steps, fire escapes, yellow cabs, steam from a vent. She walks in from screen-left at 18.5s, stands at x60 y50, spreads her arms: \"Look at this street.\" Then walks to the lens and takes it at 21.5s. Passers-by cross the foreground. HARD CUT. 22-26s SHOT 7 — PROPPED, diner. 84° wide, camera on the counter behind a plate, 0.7m from her, looking up. She is x55 y38, sits into frame, takes a bite, eyes widen, mouth full: \"Okay, that's the one.\" Laughs, keeps eating. HARD CUT. 26-30s SHOT 8 — HELD, night, back in the room. 84°, arm's length 0.5m, held above her. She lies back across the white bedding at x50 y55, hair spread, in the brown knit again. Bedside lamps and cove light are the only sources, windows black with city glow. Into the lens: \"Twenty thousand steps. Everything hurts.\" Softer: \"Same time tomorrow.\" Wave, the frame tilts as she lowers the camera. 30.0s black. SPEECH Only the quoted lines are spoken, at the timings given, all in her voice. Lips still at all other times. No voiceover, no second speaker, no offscreen voices. Delivery is casual, unrehearsed, mid-breath, sometimes trailing off. Volume rises over street noise in Shot 6, near-whisper in Shot 8. CONTINUITY The suite matches @ image1 in both interior sequences — same carpet, sculptures, headboard, sofa, lamps. Hair, necklace and ring identical throughout. PHYSICS Loose knit slides on the shoulder with every arm movement. Wavy hair lags a frame behind head turns. Bedding creases under her weight. Step energy visible in every HELD frame. LIGHTING Shots 1-4: cool daylight from the curtains screen-left as key, warm cove LED as fill, red carpet bouncing warmth into the shadows. Shot 5: corridor light through the doorway. Shots 6-7: hard street daylight, warm diner practicals. Shot 8: lamps and cove light only. AUDIO Diegetic only, from the same camera — room tone, footsteps, door, traffic, sirens, steam vents, diner clatter, wind. Ambience ducks under her lines. No music. LOCKS Photoreal live action, 4K detail, fine grain, warm consumer-camera colour, mild rolling shutter and auto-exposure hunting. She is the only person who speaks; background figures anonymous and unfocused. No subtitles.",
+      "models": [
+        "Higgsfield Soul",
+        "Seedance"
+      ],
+      "uses": [
+        "Food & beverage"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Lip sync / dialogue",
+        "Multi-shot / storyboard",
+        "Character consistency"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2083165874983424000/img/L7v_JTJr0f72f2Z_.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2083165874983424000/img/L7v_JTJr0f72f2Z_.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 29,
+      "handle": "@higgsfield_ai",
+      "likes": 589,
+      "saves": 457,
+      "hv": true,
+      "score": 96.1
+    },
+    {
+      "id": "2029632175482507599",
+      "slug": "subject-identity-biometric-reference-sydney--2029632175482507599",
+      "title": "Forensic-detail beauty portrait, hooded eyes",
+      "prompt": "{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sydney Sweeney\", \"facial_forensics\": { \"structure\": \"Soft-edged heart-shaped facial morphology, high malar bones with specific 120-degree zygomatic arch projection, refined orthognathic profile.\", \"eyes\": \"Large, almond-shaped hooded eyes, deep set; iris pattern features complex radial fibers in cerulean blue (#96B9D0) with a distinct dark grey limbal ring; natural eyelashes with varied lengths.\", \"dentition\": \"Natural dental alignment, slight prominence of the maxillary central incisors, translucent incisal edges, anatomical gum contouring without artificial whitening.\", \"skin_physics\": \"Fitzpatrick Scale Type II (#F7E2D3); visible dermal pores, subtle telangiectasia, natural freckle distribution across the nasal bridge and malar regions; subsurface scattering enabled for realistic light penetration.\" }, \"body_morphology\": { \"somatotype\": \"Mesomorphic-ectomorphic hybrid with pronounced hourglass proportions; specific waist-to-hip ratio of 0.70.\", \"anatomical_details\": \"Well-defined clavicles, subtle suprasternal notch, natural breast volume with anatomical gravitational sag in prone position; soft muscle definition in the rectus abdominis and external obliques; detailed phalanges and metacarpal structures on hands.\" } }, \"hair\": { \"texture\": \"Fine, wavy hair fibers with multi-tonal layering; base color honey blonde (#AF8F55) with platinum highlights (#E8D1A7).\", \"physics\": \"Individual strand rendering, natural flyaways, specular highlights on hair curves.\" } }, \"wardrobe\": { \"primary_piece\": { \"description\": \"Sleeveless mauve-colored bodysuit (#8E5A63) with a functional silver metallic front zipper.\", \"material_science\": \"Polyester-elastane blend with micro-ribbed texture; high-tension seams; subsurface scattering on fabric edges; zero logos or branding.\", \"fit\": \"Compression fit following the anatomical curvature of the torso and hips; high-cut leg openings.\" } }, \"pose_action\": { \"description\": \"The subject is in a prone position on a billiard table, propped up on her forearms and elbows. Her back is slightly arched, legs are bent at the knees with feet raised toward the ceiling in a relaxed, natural position. The head is turned 45 degrees to her right, looking away from the camera with a neutral, non-smiling facial expression.\", \"hand_placement\": \"Left hand resting over the right hand on the billiard table surface near a yellow billiard ball.\" }, \"scene\": { \"environment\": \"A dimly lit, classic wood-paneled billiard room.\", \"elements\": [ { \"object\": \"Billiard table\", \"details\": \"Professional-grade green felt surface (#2E5A31); dark mahogany wood rails with matte finish.\" }, { \"object\": \"Billiard accessories\", \"details\": \"Scattered billiard balls including the black 8-ball, red 15-ball, and yellow 9-ball; a polished wooden cue stick lying horizontally across the foreground; a triangular rack mounted on the dark wood wall in the background.\" } ], \"reflection_integrity_rules\": \"All reflective surfaces (billiard balls, wooden rails, polished cue) must accurately reflect the surrounding environment and the subject's silhouette without distortion. Surface physics must account for the absorption coefficient of the green felt.\" }, \"lighting\": { \"setup\": \"Single-point high-intensity key light mimicking a camera flash from the front-left; hard shadows with minimal fill; high specular highlights on skin oils and billiard balls.\", \"color_temperature\": \"5500K (Daylight Balanced).\" }, \"camera\": { \"technical_specs\": \"9:16 aspect ratio, 50mm prime lens, f/2.8 aperture for shallow depth of field, ISO 100, 8K resolution, photorealistic rendering engine.\", \"perspective\": \"Low-angle medium shot focusing on the subject's entire form.\" }, \"negative_constraints\": [ \"no logos\", \"no text\", \"no symbols\", \"no beautify smoothing\", \"no airbrushed skin\", \"no extra limbs\", \"no distorted fingers\", \"no overlapping textures\", \"no smile\", \"no artificial teeth whitening\", \"no makeup artifacts\" ] }",
+      "models": [
+        "Nano Banana",
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HCqzkiOXEAE3uDT.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HCqzkiOXEAE3uDT.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@PinodiArt",
+      "likes": 2434,
+      "saves": 1151,
+      "hv": true,
+      "score": 95.6
+    },
+    {
+      "id": "2088866007918268515",
+      "slug": "30-second-cinematic-short-create-a-30-second-2088866007918268515",
+      "title": "Paper world, 30-second cinematic short",
+      "prompt": "30-SECOND CINEMATIC SHORT Create a 30-second cinematic sequence with the visual discipline of a major feature film. The world is entirely made from paper, cardboard, ink, and delicate handcrafted materials. 00:00–00:05 — THE FIRST FOLD Begin with an extreme macro shot of a blank sheet of textured paper. A single fold slowly forms across its surface. Lens: 100mm macro Camera: Completely static Soft daylight moves across the paper as the fold continues. Cut precisely as the paper reaches its final shape. 00:05–00:11 — THE CITY EMERGES Transition into a 50mm shot. The folded paper begins forming miniature streets and architectural structures. Buildings rise naturally from the surface through carefully constructed paper folds. The camera slowly tracks sideways. Tiny windows catch the light. Nothing feels computer-generated; every surface should have believable paper fibers, folds, shadows, and imperfections. 00:11–00:17 — THE REVEAL Move into a 35mm shot. The camera pulls backward. The small arrangement is revealed as an enormous handcrafted paper city stretching across a large table. Roads connect different districts. Bridges cross miniature rivers. Paper trees move gently from an unseen breeze. 00:17–00:23 — MORNING Transition into a slow overhead crane shot. Warm sunlight gradually spreads across the paper city. Shadows from the buildings become longer and more defined. Tiny paper windows begin reflecting the sunlight. The camera continues rising, revealing the geometric relationship between the streets and buildings. 00:23–00:27 — THE DETAIL Cut to an 85mm close-up. Focus on a tiny paper clock mounted on one building. The clock moves forward by one minute. Rack focus from the clock to the miniature skyline behind it. 00:27–00:30 — FINAL IMAGE Return to an extreme wide shot. The entire paper city sits beneath a large studio window. The morning light completely fills the miniature world. Camera slowly pulls backward until the city becomes a small object within the larger room. Fade to black. CINEMATOGRAPHY Large-format feature-film aesthetic. 100mm macro for texture. 85mm for detail. 50mm for natural perspective. 35mm for environmental shots. Controlled dolly and crane movements. Realistic depth of field. Natural focus transitions. Soft motion blur. Subtle lens imperfections. No artificial camera shake. MATERIAL DIRECTION Every surface must visibly behave like physical paper. Visible paper fibers. Natural folds. Tiny imperfections. Soft cardboard edges. Realistic contact shadows. Believable paper thickness. Natural material deformation. LIGHTING Soft morning daylight. Large window as the primary source. Natural bounce light. Gentle shadows. Subtle warm highlights. No artificial neon effects. No excessive visual effects. CONTINUITY The same paper city throughout the entire sequence. Buildings maintain identical shapes and positions. Roads remain connected. Paper materials remain consistent. No random transformations. No flickering. No duplicated structures. No sudden environmental changes. DIRECTOR’S NOTE Treat this as a miniature feature film, not a visual-effects demonstration. The camera should discover the world gradually. Start intimate. Reveal scale. Return to detail. Finish wide. The audience should feel that they are watching a real handcrafted world photographed with a cinema camera. Photorealistic 4K • tactile materials • feature-film cinematography • sophisticated lighting • realistic miniature photography • cinematic depth • precise camera movement • seamless visual continuity.",
+      "models": [
+        "GPT Image",
+        "Seedance"
+      ],
+      "uses": [],
+      "styles": [
+        "Cinematic",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Transition / morph / match cut",
+        "Multi-shot / storyboard",
+        "微缩摄影"
+      ],
+      "subjects": [
+        "Architecture / interior"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2088865943921528832/img/ACj33PYyBD5RI7qH.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2088865943921528832/img/ACj33PYyBD5RI7qH.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 30,
+      "handle": "@ChillaiKalan__",
+      "likes": 407,
+      "saves": 409,
+      "hv": true,
+      "score": 95.3
+    },
+    {
+      "id": "2008952931484098637",
+      "slug": "concept-2008952931484098637",
+      "title": "Isometric diorama of [LOCATION] on a round base",
+      "prompt": "Concept: A hyper-realistic 3D isometric view of a [INSERT LOCATION] scene on a circular base. Subject (Visuals): A full-body, realistic human [INSERT DESCRIPTION]. * Texture Rule: The subject must have \"Living Human Skin\" texture (subsurface scattering, pores, natural imperfections). * Important: He is NOT a toy/doll. He looks like a real person inserted into the scene. * Pose: [INSERT POSE, e.g., Sitting naturally]. Composition & Scale (Crucial): * Camera: Isometric wide shot (Full view). ensure the entire circular base, the subject, and all props are visible within the frame. * Proportions: PERFECT RELATIVE SCALE. The props (e.g., scooter, table etc.) must be the correct size relative to the human. Do not make the human giant or the props tiny. Environment: A realistic section of a [INSERT WALL/BUILDING] behind the subject. * Material: Real weathered textures (brick, cement, wood), not painted model textures. Props: * [INSERT PROP 1, e.g., Vintage Vespa] (Real metal and chrome texture). * [INSERT PROP 2, e.g., Pizza and Wine] (Real food texture). * *Note:* Ensure all props are present and grounded on the base. Technical Specs: Unreal Engine 5 render style, 8k resolution, global illumination, raytracing, sharp focus on the entire scene (deep depth of field), solid neutral grey background. Negative Prompt: Toy, plastic, doll, action figure, clay, resin, shallow depth of field (blur), close-up, cropped, distorted proportions, giant head, cartoonish, missing limbs, unfinished.",
+      "models": [
+        "Nano Banana",
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Food & beverage"
+      ],
+      "styles": [
+        "Photorealistic",
+        "Retro / vintage"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Food / drink",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@Arminn_Ai",
+      "likes": 299,
+      "saves": 564,
+      "hv": true,
+      "score": 93.8
+    },
+    {
+      "id": "2060203818785370400",
+      "slug": "design-a-hyper-realistic-fifa-2026-football--2060203818785370400",
+      "title": "FIFA 2026 player poster in team colours",
+      "prompt": "Design a hyper-realistic FIFA 2026 football poster inspired by premium sports editorial photography and minimalist World Cup branding. Create a centered composition of a football player sitting confidently on a geometric block inside a clean studio-style environment. The player faces forward with elbows resting on knees and hands clasped naturally, giving a calm, focused, determined expression toward the camera. TEAM CUSTOMIZATION: Automatically adapt the entire design to Portugal colors, flag accents, and national football identity. Use official-inspired jersey colors, sock stripes, typography accents, and subtle national design motifs throughout the poster. PLAYER DETAILS: - Jersey Number: 7 - Team Name: Portugal - Player Name: Sarah - Official-inspired modern football kit with realistic fabric texture - Matching socks, boots, captain armband if needed - Natural athletic body proportions - Ultra-realistic skin texture and facial detail LAYOUT & COMPOSITION: - Large oversized transparent player number placed behind the player vertically - Matching number integrated beneath the seat/platform - Minimal geometric graphic lines and thin UI-inspired football design elements around composition - Small national flag accents on sides - FIFA World Cup 2026 badge/logo placement in upper corner - Balanced negative space with ultra-clean layout COLOR DIRECTION: Use the exact national team palette throughout: - Brazil → yellow, green, blue - Argentina → sky blue, white, silver - Portugal → deep red, green - France → navy blue, white, red - Japan → blue, white - Morocco → red, green etc. LIGHTING: Soft cinematic studio lighting, subtle rim light, realistic shadows, premium sports-poster contrast, slightly desaturated editorial tones. STYLE: modern FIFA World Cup campaign aesthetic, Nike/Adidas football editorial, cinematic athlete portrait, ultra-clean sports branding, realistic football photography. TEXTURES: realistic jersey fabric, soft paper grain, stadium-inspired haze, glossy lighting reflections, subtle vintage print texture. OUTPUT: 4:5 vertical composition, ultra-realistic sports campaign poster, minimalist luxury football aesthetic, clean beige/off-white background, no clutter.",
+      "models": [
+        "GPT Image",
+        "GPT Image 2"
+      ],
+      "uses": [
+        "Advertising",
+        "Fashion"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic",
+        "Retro / vintage"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HJdQdAobUAA0Naq.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HJdQdAobUAA0Naq.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@AIwithSarah_",
+      "likes": 385,
+      "saves": 314,
+      "hv": true,
+      "score": 93.6
+    },
+    {
+      "id": "2084387316286595436",
+      "slug": "the-office-us-mockumentary-style-2084387316286595436",
+      "title": "The Office mockumentary, conference room",
+      "prompt": "The Office (US) mockumentary style. Dunder Mifflin conference room, mid-afternoon, harsh fluorescent lighting, cheap office chairs, whiteboard at the front. Handheld documentary camera, slightly unsteady, with sudden reframes and quick zooms toward whoever is reacting. Michael Scott stands at the whiteboard, overly excited, marker in hand, badly drawn diagram behind him. The staff sit around the table looking exhausted. Stanley Hudson sits at the far end, glasses on, head down over a folded crossword puzzle, completely disengaged. DIALOGUE: MICHAEL (loud, proud): \"Okay everybody, listen up. Large language models. L-L-Ms. This is the future of the paper industry.\" Beat. Nobody reacts. Camera pushes in slowly on Stanley — he does not look up, does not blink, keeps filling in his crossword. MICHAEL: \"Which is why corporate is giving a bonus to whoever—\" Instant snap zoom to Stanley. His head lifts. He takes off his glasses. Dead serious. STANLEY: \"I'm listening.\" MICHAEL (waving him off): \"—anyway. Moving on. Next topic. Prompt engineering.\" Snap zoom back to Stanley. He immediately puts his glasses back on, lowers his head, and returns to the crossword as if nothing happened. Cut to Jim, who slowly turns his head and looks directly into the camera lens with a flat, knowing expression. Hold for two seconds. STYLE: single-camera sitcom shot like a documentary crew is present, natural performances, no laugh track, muted office color palette, slightly soft consumer-camera look, characters occasionally glancing at the lens.",
+      "models": [],
+      "uses": [],
+      "styles": [],
+      "techs": [
+        "Camera movement / shot language",
+        "Lip sync / dialogue",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2084387230844346368/img/3q3PrcBYVZsGJ3lW.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2084387230844346368/img/3q3PrcBYVZsGJ3lW.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@Arminn_Ai",
+      "likes": 446,
+      "saves": 383,
+      "hv": true,
+      "score": 93.6
+    },
+    {
+      "id": "2085640281941307648",
+      "slug": "montage-multi-shot-candid-observational-foot-2085640281941307648",
+      "title": "Seven-shot handheld observational montage",
+      "prompt": "Montage, multi-shot candid observational footage. Do not use a single camera angle or continuous take. Handheld documentary style with the feeling of accidental real-life capture. Slightly imperfect framing, subtle handheld shake, tiny reframing adjustments, gentle exposure breathing, and autofocus that settles half a beat late. Realistic skin texture, soft indoor natural light, film grain, shallow depth of field. Relaxed breathing, natural blinking, restrained and authentic performance. Total of 7 shots. The woman from @ Image 1 is wearing a matching cotton pajama set consisting of a scoop-neck sleeveless top and loose shorts made from the same fabric and design. Barefoot, she lies on her stomach across a lived-in, slightly messy bed in her bedroom, browsing a mobile shopping page on a black smartphone. A house cat jumps onto the bed seeking attention, and she affectionately plays with it. Moments later, a friend calls. She answers, chats, and eventually bursts into laughter. The doorbell rings, so she ends the call and gets up to collect her dinner. Shot 1 (0–2s): She is already moving. One thumb scrolls through a shopping page while she frowns slightly, thinking. She quietly mutters in Korean: \"아, 뭐 살랬더라…\" (\"Ah... what was I going to buy again?\"). Lips synchronize naturally. Her bare feet gently sway behind her. A low handheld camera glides along the edge of the mattress, with soft bedding partially obscuring the foreground. Shot 2 (2–4s): The house cat jumps onto the bed, compressing the blanket as it walks toward her forearm and lets out a single meow. The camera gives a slight jolt from the impact, then quickly reframes from the phone to an over-the-shoulder view that includes her face, hands, phone, and cat. Shot 3 (4–6s): She turns warmly toward the cat, stroking it once from its forehead to its shoulders. In a gentle, affectionate tone she says: \"우리 애기 왔어?\" (\"Did my baby come?\"). Lip sync is clear and natural. The camera pushes in briefly through the cat's softly blurred foreground toward her face and hand. Shot 4 (6–8s): A friend's ringtone sounds. She glances down, confirms the caller, swipes to answer, and brings the phone to her ear. The camera moves in a loose semicircle from a slightly tilted overhead angle, capturing the entire answering motion. Shot 5 (8–11s): Her friend begins talking. She responds first with confusion, then disbelief: \"어, 왜? 진짜 거짓말.\" (\"Huh? Why? No way, you're kidding.\"). Immediately afterward she naturally bursts into laughter. The cat kneads the blanket beside her. A close handheld side angle keeps both her phone and profile within the same focal plane. Shot 6 (11–13s): A clear doorbell interrupts the laughter. Both she and the cat turn toward the bedroom door. She braces one hand on the mattress to get up. The camera reacts a fraction too late, briefly turning toward the door before naturally correcting back to her rising movement. Shot 7 (13–15s): Still on the phone, she hurriedly says: \"어, 나 밥 왔다. 끊어.\" (\"My food's here. I'll hang up.\"). She ends the call with her thumb, gets off the bed, and walks toward the door while the cat follows across the blankets. The camera slides low beneath her elbow and tilts upward as she stands in one continuous motion. Sound: No music. Only raw production sound: bedding rustling, quiet breathing, finger taps on the phone, the soft impact of the cat jumping onto the bed, one natural meow, faint purring, a single short incoming ringtone, call connection tone, the friend's voice through the phone, the woman's four Korean lines with accurate lip sync, a genuine brief laugh, one clear doorbell, the tap ending the call, and soft cat footsteps. No subtitles, no on-screen text, no logo, no watermark. Never render a reference sheet or duplicate the subject.",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Lip sync / dialogue",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2085640247682224128/img/Wj08brZzXojtfWtv.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2085640247682224128/img/Wj08brZzXojtfWtv.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@oggii_0",
+      "likes": 297,
+      "saves": 232,
+      "hv": true,
+      "score": 93.6
+    },
+    {
+      "id": "2047862141894681076",
+      "slug": "a-realistic-young-woman-sitting-casually-in--2047862141894681076",
+      "title": "Bedroom phone recording, late afternoon light",
+      "prompt": "A realistic young woman sitting casually in a softly lit bedroom during late afternoon. She is holding her phone very close to her face as if recording a private video or voice note. Framing is tight and slightly imperfect. Expression: thoughtful, slightly shy, natural. Minimal makeup, natural skin texture, relaxed clothing. Lighting: warm natural light fading from a window, soft shadows. Environment: simple bedroom, calm and lived-in. Style: ultra-realistic, looks like a real phone recording, slightly grainy, not cinematic.",
+      "models": [
+        "GPT Image",
+        "Seedance"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HGt3trjbwAA7Bkt.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HGt3trjbwAA7Bkt.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@ChillaiKalan__",
+      "likes": 316,
+      "saves": 293,
+      "hv": true,
+      "score": 93.5
+    },
+    {
+      "id": "2063871161998745877",
+      "slug": "create-a-photorealistic-premium-product-camp-2063871161998745877",
+      "title": "Premium product campaign poster, 4:5",
+      "prompt": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio. Product: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH / BEAUTY / FOOD / DRINK] Main subject: A confident model holding or presenting the product close to the camera, with the product in sharp focus and the model slightly behind it. Use a strong perspective angle so the product feels powerful, premium, and hero-like.",
+      "models": [
+        "GPT Image",
+        "GPT Image 2"
+      ],
+      "uses": [
+        "Advertising",
+        "Beauty",
+        "Food & beverage",
+        "Product marketing"
+      ],
+      "styles": [
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Food / drink",
+        "Person / portrait",
+        "Product"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HKRX36vbsAAskMp.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HKRX36vbsAAskMp.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@AIwithSarah_",
+      "likes": 267,
+      "saves": 269,
+      "hv": true,
+      "score": 92.2
+    },
+    {
+      "id": "2085931701088174312",
+      "slug": "ultra-realistic-cinematic-vertical-video-10--2085931701088174312",
+      "title": "Korean bedroom evening vlog, 10 seconds",
+      "prompt": "Ultra-realistic cinematic vertical video, 10 seconds. A beautiful young Korean woman spends a peaceful evening in her cozy bedroom, wearing the same oversized cream-white T-shirt. Soft warm lamp light mixes with cool moonlight coming through the window, creating a calm late-night atmosphere. The video is filmed entirely as natural handheld smartphone selfies, like a personal vlog. Shot 1 (0–2s): Close front selfie. She looks out the window for a moment, then turns toward the camera with a gentle smile and softly tucks a strand of hair behind her ear. Shot 2 (2–4s): Slightly high-angle selfie. She sits on the bed hugging a fluffy pillow, tilts her head playfully, then smiles with a natural blink while the phone gently shakes. Shot 3 (4–6s): Mirror selfie. She slowly walks toward a full-length mirror, briefly looks at her reflection, then smiles at the phone with relaxed confidence. Warm fairy lights softly glow in the background. Shot 4 (6–8s): Side-profile selfie near the bedside table. She picks up a small photo frame, smiles nostalgically, then looks back into the camera with a subtle laugh. Her hair sways naturally as she moves. Shot 5 (8–10s): Front close-up selfie. She leans comfortably against the headboard, gives a tiny finger-heart toward the camera, then finishes with a warm smile while the camera slowly pulls away, revealing the cozy bedroom ambiance. Style: Ultra-photorealistic, realistic Korean beauty, authentic smartphone handheld movement, natural blinking, subtle breathing, lifelike hair simulation, soft warm lamp lighting with gentle moonlight, cinematic shallow depth of field, premium film color grading, 24 fps, 8K, intimate cozy Korean bedroom aesthetic.",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2085931637343420416/img/HZ3NABsiLrAmXz8m.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2085931637343420416/img/HZ3NABsiLrAmXz8m.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 10,
+      "handle": "@Aqsahere_",
+      "likes": 199,
+      "saves": 143,
+      "hv": true,
+      "score": 90.2
+    },
+    {
+      "id": "2009912753650323721",
+      "slug": "scene-type-indoor-close-up-lifestyle-selfie--2009912753650323721",
+      "title": "Cheek-to-cheek selfie in an industrial venue",
+      "prompt": "{ \"scene_type\": \"indoor close-up lifestyle selfie\", \"setting\": { \"location_type\": \"indoor public venue\", \"environment_style\": \"industrial casual\", \"materials\": [\"exposed ceiling beams\", \"metal framework\"], \"background_elements\": [\"ceiling structure\", \"soft ambient lights\"], \"background_blur\": \"minimal blur, shallow depth due to proximity\" }, \"composition\": { \"framing\": \"tight close-up\", \"orientation\": \"vertical\", \"subject_placement\": \"faces filling majority of frame, cheek-to-cheek\", \"camera_angle\": \"slightly above eye-level selfie angle\", \"pose\": \"intimate, playful; male hand touching chin, female leaning in\", \"cropping\": \"foreheads to upper chest, very tight crop\" }, \"subjects\": [ { \"gender_presentation\": \"female\", \"age_range\": \"mid-to-late 20s\", \"build\": \"average-slim\", \"skin_tone\": \"light to medium\", \"hair\": { \"color\": \"dark brown\", \"length\": \"shoulder-length\", \"style\": \"loose waves, side-parted\" }, \"makeup\": { \"finish\": \"soft glam\", \"details\": [\"defined brows\", \"subtle eyeliner\", \"mascara\", \"warm nude lipstick\"] }, \"expression\": \"gentle smile, playful\", \"eye_direction\": \"looking directly at camera\", \"clothing\": { \"top\": \"off-shoulder patterned dress\", \"pattern\": \"dark base with light abstract dots\" } }, { \"gender_presentation\": \"male\", \"age_range\": \"mid-to-late 20s\", \"build\": \"average\", \"skin_tone\": \"light to medium\", \"hair\": { \"color\": \"dark brown\", \"style\": \"short, slightly tousled, side-swept\" }, \"facial_hair\": \"light stubble beard and mustache\", \"expression\": \"neutral to mildly sultry\", \"eye_direction\": \"looking directly at camera\", \"clothing\": { \"top\": \"white button-up shirt, partially unbuttoned\", \"accessories\": [\"metal wristwatch\"] } } ], \"interaction\": { \"relationship_cue\": \"romantic couple\", \"physical_contact\": \"faces touching; male hand posed on chin\", \"body_language\": \"close, affectionate, relaxed\" }, \"lighting\": { \"type\": \"ambient artificial lighting\", \"key_light\": \"overhead warm lights\", \"fill\": \"soft environmental bounce\", \"shadow_quality\": \"soft, low contrast\", \"skin_rendering\": \"warm, slightly textured, natural highlights\" }, \"color_palette\": { \"dominant_colors\": [\"warm beige\", \"soft browns\", \"navy\", \"white\"], \"accent_colors\": [\"skin tones\", \"metallic silver\"], \"temperature\": \"warm\" }, \"technical_characteristics\": { \"camera_type\": \"smartphone front-facing camera\", \"lens_look\": \"wide-angle selfie distortion\", \"sharpness\": \"moderate, softened by low light\", \"noise_level\": \"visible fine grain\", \"dynamic_range\": \"limited, highlights slightly muted\", \"white_balance\": \"warm, indoor-balanced\" }, \"artistic_style\": { \"genre\": \"social media couple selfie\", \"mood\": \"intimate, cozy, flirtatious\", \"editing_style\": \"warm filter, slight grain, low contrast\" }, \"typography\": null, \"overall_aesthetic\": \"authentic, romantic, casual lifestyle portrait with cozy indoor ambiance\" }",
+      "models": [
+        "Higgsfield Soul",
+        "Nano Banana",
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/G-Sk_ERasAMwxXc.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/G-Sk_ERasAMwxXc.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@ZaraIrahh",
+      "likes": 232,
+      "saves": 81,
+      "hv": true,
+      "score": 89.9
+    },
+    {
+      "id": "2048450197085474925",
+      "slug": "subject-downhill-kart-race-style-hyper-reali-2048450197085474925",
+      "title": "Downhill go-karts that launch off the cliff",
+      "prompt": "Subject: Downhill Kart Race Style: Hyper-realistic, Action Adventure, GoPro Aesthetic Action: A fast downhill race following a lead pack of kids on go-karts. They speed down a grassy slope, drifting through uneven terrain with dust and grass clippings flying. The \"insane\" twist: As the karts reach the edge of the valley, the lead racer pulls a hidden lever. Suddenly, the karts deploy makeshift, rocket-powered thrusters and makeshift gliders. The karts don't stop at the cliff’s edge; they launch into the air, soaring over the village below as the engines roar and blue flames erupt from the exhaust. Camera Movement: Dynamic Chase Cam. The camera moves forward rapidly, weaving between racers. As they hit the cliff edge, the camera performs a seamless transition into a dizzying free-fall perspective, tilting downward to show the massive drop before leveling out to follow the karts gliding through the air. Environment: Sunny rural landscape, vibrant greens and blues. The peaceful valley floor is now a mile below, with the village looking like a miniature model set. Details: Motion blur on the edges, intense vibration of the karts. New details: Heat haze shimmering from the rocket thrusters, lens flares as the sun hits the metallic gliders, and the visible shock on the racers' faces through their goggles as they break the sound of wind with a sudden sonic pop. @HFcollaborators",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Transition / morph / match cut"
+      ],
+      "subjects": [
+        "Person / portrait",
+        "Vehicle"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2048449587044855808/img/PNSS3kDNbKbMmysD.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2048449587044855808/img/PNSS3kDNbKbMmysD.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@IqrasaifiAI",
+      "likes": 239,
+      "saves": 154,
+      "hv": true,
+      "score": 88.3
+    },
+    {
+      "id": "2019109812341207229",
+      "slug": "shot-1-side-profile-medium-shot-of-a-black-m-2019109812341207229",
+      "title": "1970s sedan, four-shot street sequence",
+      "prompt": "Shot 1: Side profile medium shot of a Black man with an afro, mustache, and vintage sunglasses sitting in a beige 1970s sedan. The car is parked on a sun-drenched city street with retro storefronts and pedestrians in period-accurate clothing walking by in the background. Shot 2: A close-up reflection in the car's rearview mirror showing the man's eyes behind his sunglasses as he looks ahead with a calm expression. Shot 3: A low-angle interior shot focusing on the driver's profile as he looks out the window, followed by a close-up of his hand shifting the wooden gear stick into drive. Shot 4: A wide front-facing shot of the car pulling away from the curb. The camera zooms in smoothly on the front grille and then cuts to a close-up of the rear license plate which reads \"\"HIGGS\"\" on a weathered, yellowed plate.",
+      "models": [],
+      "uses": [
+        "Automotive"
+      ],
+      "styles": [
+        "Retro / vintage"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait",
+        "Vehicle"
+      ],
+      "kind": "unknown",
+      "img": null,
+      "imgs": [],
+      "n": 0,
+      "dur": null,
+      "handle": "@higgsfield_ai",
+      "likes": 178,
+      "saves": 42,
+      "hv": false,
+      "score": 84.3
+    },
+    {
+      "id": "2087155737784918460",
+      "slug": "camera-handheld-dv-16mm-daily-vlog-footage-2087155737784918460",
+      "title": "Handheld DV vlog through a stone-street town",
+      "prompt": "CAMERA: Handheld DV 16mm daily vlog footage. The video MUST begin with her holding the camera at arm's length in selfie mode while stepping out of an old stone doorway into a narrow street. The first 20–30 seconds are entirely handheld. Later she occasionally sets the camera on a windowsill, café ledge, or low seawall for wider shots. Keep subtle handheld shake, drifting composition, autofocus hunting, rushed reframing, uneven zooms, exposure breathing, brief accidental face cropping, and imperfect framing throughout. The camera itself is never visible. LOOK: Warm analog tape texture with gentle film grain, softened sharpness, subtle halation where sunlight cuts between buildings, faint salt-air haze, realistic skin tones, low contrast, tiny exposure shifts, natural motion blur. Authentic everyday footage, not a polished commercial. STYLE: A quiet Mediterranean morning coffee-run vlog. Unhurried, warm, spontaneous. She talks to the camera in short sentences with comfortable pauses, reacts to the street around her, laughs easily. CHARACTER: ELENA — a Mediterranean woman in her mid-20s. Dark wavy hair in a loose bun, olive skin, minimal makeup, small gold hoops, oversized white linen shirt, denim shorts, leather sandals, canvas tote on one shoulder. SETTING: A sun-washed coastal old town just after sunrise. Narrow limestone alleys, pastel shutters, bougainvillea spilling over walls, glimpses of the sea between buildings, distant church bells and scooters, almost no people. A sleepy stray cat on a warm step. SCENES: The vlog opens in selfie mode as Elena steps out of the doorway into the bright alley, squinting. \"Morning.\" She walks, sunlight strobing between buildings across her face. \"Okay it's already hot. Of course it is.\" She reaches a tiny corner kiosk and orders an iced coffee, camera still handheld, framing half-wrong. She sets the camera on the counter ledge for a wide shot while she waits, drumming her fingers. A stray cat appears at her feet and stares up. She crouches down to it. \"Hi. You again.\" The cat rubs against her leg. She laughs. \"I have a bodyguard now.\" She picks the camera back up, coffee in the other hand, and walks toward the water, the cat trotting behind for a few steps. She sits on the low seawall, sea behind her, and takes the first sip. \"Worth it. Every time.\" She looks off at the water for a moment, hair moving in the breeze, then back to the lens. \"Okay. Work now.\" A small wave. \"See you later.\"",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [
+        "Beauty",
+        "Food & beverage",
+        "UGC"
+      ],
+      "styles": [
+        "Photorealistic",
+        "Retro / vintage"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Lip sync / dialogue",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2087155707795607552/img/GvPt7yiUAlXPgSXk.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2087155707795607552/img/GvPt7yiUAlXPgSXk.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 15,
+      "handle": "@PhedEU",
+      "likes": 133,
+      "saves": 160,
+      "hv": false,
+      "score": 83.9
+    },
+    {
+      "id": "2089932434351734933",
+      "slug": "use-the-uploaded-reference-image-as-the-exac-2089932434351734933",
+      "title": "Locked product and identity, outfit swapped",
+      "prompt": "Use the uploaded reference image as the exact character and product reference. Preserve the woman’s facial identity, hairstyle, eye color, makeup, skin tone, body proportions, jewelry, and overall appearance consistently throughout the entire video. Change her outfit to a fitted sleeveless PINK top with clean WHITE shorts and keep the outfit identical in every shot. Use the uploaded sunglasses, earbuds, orange retail packaging, and carrying cases as LOCKED product references. Preserve their exact shapes, colors, materials, proportions, buttons, lenses, hinges, charging case, textures, and every visible product detail. Do not redesign, replace, or invent any product elements. Create an ultra-realistic UGC luxury lifestyle review filmed inside a modern luxury bedroom during warm golden hour. The woman is the clear visual focus, with authentic creator energy and natural expressions. Use warm sunlight coming through the bedroom windows, soft realistic shadows, natural skin texture, shallow depth of field, subtle handheld smartphone movement, realistic autofocus behavior, natural motion blur, and premium commercial-quality cinematography. Include a realistic cat naturally interacting with her only where specified, without distracting from the products. 0–5 seconds: The woman sits comfortably on the edge of the bed with the cat resting naturally in her lap. The orange product packaging is clearly visible beside her. She looks directly into the camera, smiles warmly, and says: “Okay, these two have seriously upgraded my everyday routine.” 5–11 seconds: She gently moves the cat beside her, picks up the sunglasses, opens the orange packaging, and slowly reveals the sunglasses. She brings them closer to the camera and rotates them naturally so the frame, lenses, hinges, and finish are clearly visible. She says: “The sunglasses immediately caught my attention—the finish, the shape, everything feels so premium.” 11–18 seconds: She puts on the sunglasses naturally, adjusts them lightly at the temple, and looks toward the bright bedroom window. Capture a flattering side-profile moment with realistic reflections in the lenses. She then turns back toward the camera and says: “They’re lightweight, comfortable, and honestly look even better in natural light.” 18–24 seconds: She picks up the earbuds and opens their black charging case. Transition into a detailed macro close-up of the case opening and the earbuds inside. Show the actual product design with accurate proportions, realistic materials, subtle reflections, and authentic hand interaction. She says: “And the earbuds are the perfect everyday companion—small, sleek, and ridiculously easy to carry.” 24–30 seconds: She places the sunglasses and earbuds together beside their orange packaging and carrying cases. She then picks both products up, holds them naturally toward the camera, and gives a confident warm smile. She says: “If you love accessories that actually look as good as they perform, these are definitely worth checking out.” Ending shot: End with a slow, smooth cinematic push-in toward the sunglasses, earbuds, orange packaging, and carrying cases arranged beautifully on the softly textured bed. Keep the woman subtly visible in the background with natural depth-of-field separation. Allow the golden-hour light to create premium highlights across the products. Visual direction: Ultra-realistic UGC, authentic influencer energy, natural facial expressions, perfect lip synchronization, realistic hand anatomy and movements, physically accurate product interaction, premium fashion/lifestyle aesthetic, detailed macro product shots, accurate lens reflections, realistic materials and textures, warm golden-hour lighting, handheld smartphone cinematography, subtle focus breathing, natural exposure changes, 4K HDR, cinematic depth of field.",
+      "models": [
+        "Seedance"
+      ],
+      "uses": [
+        "Advertising",
+        "Beauty",
+        "Fashion",
+        "UGC",
+        "Product marketing"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Transition / morph / match cut",
+        "Character consistency",
+        "Lip sync / dialogue",
+        "Multi-shot / storyboard"
+      ],
+      "subjects": [
+        "Person / portrait",
+        "Product"
+      ],
+      "kind": "video",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2089932382531133440/img/k05-QTjlyxToORTd.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/amplify_video_thumb/2089932382531133440/img/k05-QTjlyxToORTd.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": 30,
+      "handle": "@AIwithSynthia",
+      "likes": 124,
+      "saves": 60,
+      "hv": false,
+      "score": 83.4
+    },
+    {
+      "id": "1992826251220754540",
+      "slug": "design-high-quality-promotional-post-showcas-1992826251220754540",
+      "title": "Device spec sheet as a product poster",
+      "prompt": "Design, high-quality promotional post showcasing the [DEVICE]. The layout should mimic [DEVICE-WEBSITE] clean and modern website style, set on an elegant off-white background. Include a full specification sheet (RAM, GPU, CPU, Chipset, etc.), and ensure the visuals are crisp, premium, and eye-catching.",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Advertising",
+        "Product marketing"
+      ],
+      "styles": [
+        "Luxury"
+      ],
+      "techs": [],
+      "subjects": [
+        "Product"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/G6fw59VXYAAHd8R.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/G6fw59VXYAAHd8R.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@ShamsAmin56",
+      "likes": 35,
+      "saves": 6,
+      "hv": false,
+      "score": 0
+    },
+    {
+      "id": "2016908153284088004",
+      "slug": "prompt-structure-subject-appearance-young-wo-2016908153284088004",
+      "title": "Arcade motorcycle portrait, red crop top",
+      "prompt": "{ \"prompt_structure\": { \"subject\": { \"appearance\": \"Young woman with long, wavy blonde hair and a radiant, joyful expression featuring a wide smile.\", \"pose\": \"Seated on a electric fuchsia arcade motorcycle game, leaning slightly forward with hands on the handlebars, body angled in profile while turning head to face the camera making visible clearly her fit curvaceous low back.\" }, \"attire\": { \"top\": \"Strapless red knit crop top with deep V neckline featuring distressed/ripped texture and a decorative buckle strap across the chest.\", \"bottoms\": \"Matching tight white latex shorts.\", \"accessories\": \"Visible white Dolce & Gabbana waistband with black logo text peering above the shorts.\" }, \"environment\": { \"location\": \"Indoor amusement arcade.\", \"foreground\": \"Bright electric yellow 'SUPER KEOR BIKES' arcade racing cabinet with a realistic motorcycle seat and dashboard.\", \"background\": \"Blurry array of other arcade machines, including game screens and a neon sign reading 'Ready to Play?.\", \"lighting\": \"Vibrant, high-contrast arcade lighting with dominant orange LED strips outlining the machines and cool electric blue ambient light in the background.\" }, \"style\": { \"aesthetic\": \"Energetic, playful, and vibrant.\", \"color_palette\": \"Saturated red and pink (outfit), neon orange, electric blue, and deep shadows.\", \"photography_style\": \"Medium shot, high-flash or bright environmental lighting, sharp focus on the subject with a shallow depth of field background.\" } } }",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/G_1_Q_MXgAAg26K.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/G_1_Q_MXgAAg26K.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 633,
+      "saves": 496,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2018792341192990900",
+      "slug": "prompt-description-ultra-photorealistic-cand-2018792341192990900",
+      "title": "Spider-Man suit portrait, playful expression",
+      "prompt": "{ \"prompt_description\": \"Ultra Photorealistic Candid Portrait of a Superhero\", \"subject\": { \"appearance\": \"Young woman with shoulder-length red hair pulled back, fair skin, light freckles.\", \"expression\": \"Playful, pursed lips in a 'kissy face' or 'duck face' expression, looking directly at the camera.\", \"likeness\": \"Resembles actress Sadie Sink.\" }, \"outfit\": { \"garment\": \"Full-body Spider-Man superhero suit.\", \"colors\": \"Classic vibrant red and deep blue.\", \"texture\": \"High-quality textured spandex/mesh material with visible fabric grain.\", \"details\": \"Black web pattern overlays, spider emblem on the chest, realistic fabric folds around the joints.\" }, \"pose\": { \"stance\": \"Standing upright, casual posture.\", \"hands\": \"Right hand holding a white disposable coffee cup with a cardboard sleeve near the chest. Left hand raised making a peace (V) sign.\", \"mood\": \"Candid, 'off-duty', fun, casual, confident.\" }, \"environment\": { \"location\": \"New York City street during the day.\", \"background\": \"Red brick apartment buildings with black fire escapes, typical NYC architecture.\", \"surroundings\": \"Concrete sidewalk, blurred pedestrians in winter coats walking in the background.\", \"depth\": \"Background is out of focus (bokeh) to emphasize the subject.\" }, \"lighting\": { \"type\": \"Natural daylight.\", \"quality\": \"Soft, diffused, overcast sky lighting.\", \"effect\": \"Even illumination on the face, no harsh shadows, realistic reflections on the suit's texture.\" }, \"camera_settings\": { \"style\": \"Cinematic street photography.\", \"lens\": \"85mm portrait lens.\", \"aperture\": \"f/1.8 (shallow depth of field).\", \"resolution\": \"8K, ultra-detailed.\", \"focus\": \"Sharp focus on the subject's face and suit texture.\" }, \"tech_specs\": { \"engine_style\": \"Unreal Engine 5 render style, ray tracing.\", \"quality_tags\": \"Ultra photorealistic, hyper-realistic, highly detailed skin texture, raw photo, HDR.\" } }",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [],
+      "styles": [
+        "Cinematic",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HAQw7YJXgAA4GIV.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HAQw7YJXgAA4GIV.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 603,
+      "saves": 358,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2026574551207792783",
+      "slug": "a-stylized-retro-futuristic-music-poster-in--2026574551207792783",
+      "title": "Synthwave poster with block HEIS type",
+      "prompt": "A stylized, retro-futuristic music poster in a synthwave aesthetic. The central focus is a woman in profile with a platinum blonde bob haircut, wearing oversized, chunky pink opaque visor sunglasses and a high-collar, extremely glossy pink vinyl jacket with visible zipper detail. Behind her, the word \"HEIS\" is written in massive, dark purple, condensed block typography, partially hidden by her head. The background is a clean gradient shifting from soft magenta to deep purple, overlaid with a subtle film grain texture. Lighting: Soft studio lighting with high-specular highlights on the glossy jacket and rim lighting on the hair. Color Palette: Dominant shades of bubblegum pink, deep violet, and lavender. Graphics: A small barcode on the left, a minimalist star logo in the bottom-left corner, and four lines of small sans-serif song lyrics in the bottom-right corner. Atmosphere: High-fashion, electronic dance music vibe, clean and polished composition.",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Fashion"
+      ],
+      "styles": [
+        "Retro / vintage",
+        "Sci-fi / cyberpunk"
+      ],
+      "techs": [],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HB_W0AYaMAkOKVS.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HB_W0AYaMAkOKVS.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@rovvmut_",
+      "likes": 189,
+      "saves": 172,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2027628259467313402",
+      "slug": "use-the-uploaded-picture-as-a-reference-stri-2027628259467313402",
+      "title": "Double-exposure profile from a reference photo",
+      "prompt": "Use the uploaded picture as a reference (Strict identity lock, the face must match the attached reference photo exactly, preserving facial structure, skin tone, expression, and hairstyle (same haircut and hair texture) to create an ultra-realistic cinematic double exposure portrait of me in a clean left-facing side profile, sharp jawline and natural facial structure clearly defined. The outer silhouette is dark and well-contoured against a soft warm beige sunset background. Inside the silhouette, seamlessly blend a dramatic urban street scene at golden hour: a lone me walking forward in the center of an empty destroyed city road, symmetrical perspective lines, damaged buildings on both sides, broken debris scattered along sidewalks, electric poles and cables stretching into the distance. The sun positioned directly at the horizon behind the walking figure, creating strong backlight glow and long stretched shadow toward the camera. Warm orange sunlight flooding through the internal city scene, high contrast, cinematic depth, realistic textures, smooth blending edges between portrait and environment. Moody yet hopeful atmosphere, 8K resolution, sharp detail, soft vignette. size 4 5 image generate.",
+      "models": [
+        "Nano Banana 2"
+      ],
+      "uses": [],
+      "styles": [
+        "Cinematic",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language",
+        "Character consistency"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HCOVJ5QWUAA1DNU.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HCOVJ5QWUAA1DNU.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@HaniaAi12",
+      "likes": 535,
+      "saves": 361,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2031703969882382558",
+      "slug": "subject-identity-biometric-reference-sabrina-2031703969882382558",
+      "title": "Forensic-detail portrait, heart-shaped face",
+      "prompt": "{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sabrina Carpenter\", \"facial_structure\": \"Heart-shaped face morphology, prominent zygomatic arches, defined jawline, specific philtrum depth, and characteristic Cupid's bow\", \"dentition\": \"Natural dental alignment, upper central incisors slightly visible, realistic enamel gloss\", \"iris_pattern\": \"Highly detailed blue irises, #73C2FB, with distinct radial furrows and a dark pupillary border\", \"skin_texture\": \"Pore-level detail, natural epidermal imperfections, subsurface scattering, #F5E1D2 base tone\" }, \"body\": { \"somatotype\": \"Petite ecto-mesomorph, 152cm height reference\", \"morphology\": \"Natural waist-to-hip ratio, defined clavicles, realistic muscle tone in thighs and midriff\", \"anatomical_integrity\": \"Correct five-finger hand structure, anatomical joint placement, zero-deviation limb proportions\" } }, \"wardrobe\": { \"upper_body\": \"Ornate pink damask corset, #F4C2C2, with vertical boning, front hook-and-eye closures, and lace-up ribbon detail\", \"lower_body\": \"Tiered pink and white gingham ruffled miniskirt, #FFB7C5, featuring delicate white floral lace trim on each layer\", \"accessories\": [ \"Plush white feline ear headband with pink inner lining\", \"Pink leather choker, #FFC0CB, with a small silver bell pendant\", \"White and pink horizontal striped thigh-high stockings\", \"Gold minimalist bracelets on both wrists, #D4AF37\" ] }, \"pose_action\": { \"description\": \"Mirror selfie, subject holding a modern smartphone in a vertical grip, gentle and refined facial expression with the mouth closed and a slight smile, head tilted at a 15-degree angle\", \"reflection_mechanics\": \"Two-point perspective with identical spatial consistency between subject and mirror reflection\" }, \"scene\": { \"environment\": \"Modern luxury high-rise, floor-to-ceiling panoramic windows, urban cityscape view\", \"background_elements\": [ \"Large tan plush teddy bear on floor, #D2B48C\", \"Minimalist white armchair\", \"Wood-grain shelving with trailing green ivy vines\", \"Grey slate-textured accent wall\" ], \"surface_physics\": \"Highly reflective mirror, realistic floor tile specularity\" }, \"lighting\": { \"primary_source\": \"Natural diffused daylight, 5500K color temperature\", \"secondary_lighting\": \"Soft interior overhead fill\", \"effects\": \"Specular highlights on corset silk, realistic micro-shadows in fabric and hair\" }, \"camera\": { \"specification\": \"Professional full-frame DSLR, 35mm prime lens\", \"settings\": \"f/2.8, ISO 100, 8k resolution, RAW format\", \"aspect_ratio\": \"9:16\" }, \"negative_constraints\": { \"prohibited_elements\": [ \"no logos\", \"no text\", \"no watermarks\", \"no brand names on phone or clothing\", \"no extra limbs\", \"no distorted fingers\", \"no beautify smoothing filters\", \"no merged textures\", \"no anatomical anomalies\" ], \"reflection_integrity_rules\": \"No discrepancies between subject and reflected image, consistent lighting\" } }",
+      "models": [
+        "Nano Banana 2"
+      ],
+      "uses": [],
+      "styles": [
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HDIP6V5WgAEocdY.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HDIP6V5WgAEocdY.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@PinodiArt",
+      "likes": 665,
+      "saves": 321,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2032169264963338327",
+      "slug": "meta-quality-ultra-photorealistic-raw-style--2032169264963338327",
+      "title": "Pink neon apartment portrait, shot on iPhone",
+      "prompt": "{ “meta”: { “quality”: “ultra_photorealistic, raw style, 8k”, “camera”: “iPhone 15 Pro Max”, “lighting”: “intimate indoor setting, dominated by striking linear pink neon LED lights on the ceiling, with soft ambient fill”, “style”: “cinematic low-angle portrait, detailed character study”, “aspect_ratio”: “9:16” }, “scene”: { “location”: “A modern luxury apartment living room with a textured white sofa and neutral walls. Linear pink neon LED light strips are visible on the ceiling and a white medical device labeled is in the far background, a neon purple written 'KeorUnreal' in backdrop on wall.”, “atmosphere”: “Relaxed, intimate, contemporary with a strong pop of color.” }, “subject”: { “gender”: “female”, “name”: “Anya Taylor-Joy ”, “body”: { “type”: “Realistic, naturally proportioned figure with clean, well-moisturized skin. The forearms are completely clean, with no tattoos on either arm.”, “nails”: { “description”: “All fingernails and toenails are meticulously painted with a glossy red nail polish.” } }, “face”: { “features”: “Medium blonde hair, natural makeup, confident and approachable smile, gazing directly at the camera.”, “expression”: “Warm and poised.” }, “outfit”: { “description”: “Orange crop top and matching neon yellow ribbed cotton leggings.”, “fit”: “Casually fitted, modern.” }, “accessories”: { “details”: “The silver beaded bracelet on her left wrist, the single silver ring on her left index finger, and the delicate gold chain necklace are all present.” }, “pose”: “Seated cross-legged on a red sofa, viewed from a low and close perspective. Her right leg is tucked, with the large bare foot tattoed with a snake tattoo on it in the immediate foreground, followed by the left foot. Both feet have red-painted toenails. Her left hand, with yellow-painted fingernails, is resting on sofa. Her right hand rests near her right knee.” }, “composition”: “Close-up, low-angle shot focused sharply on the bare feet and the subject’s face. The white sofa and pink neon lights are prominent visual elements, with the background elements softly blurred, but the text remains visible. The perspective makes the feet very large and detailed, highlighting the red nail polish on both hands and feet.” }",
+      "models": [
+        "Higgsfield Soul",
+        "Nano Banana 2"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HDO3Kb_XUAAs9jz.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HDO3Kb_XUAAs9jz.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 610,
+      "saves": 442,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2041085548928930146",
+      "slug": "subject-desc-young-woman-with-strong-resembl-2041085548928930146",
+      "title": "Latex Aquaman cosplay in emerald and gold",
+      "prompt": "{ \"subject\": { \"desc\": \"Young woman with strong resemblance to a realistic female latex version of Aquaman cosplay, fair skin with subtle golden undertone, long straight blonde hair over shoulders/back flowing in heroic waves, symmetrical face with full lips, defined eyebrows, piercing blue eyes\", \"apparel\": { \"item\": \"Iconic Aquaman inspired female latex bodysuit\", \"style\": \"Halter-neck sleeveless, high-cut legs, regal and powerful\", \"color\": \"Deep emerald green base with gold scale-like patterns and trident emblem on chest, gold accents and scale trims on legs and sides\", \"details\": \"Tight stretch latex fabric emphasizing curves, emerald green/gold thigh-high boots with metallic shine, golden armbands and subtle scale crown detail\" }, \"anatomy\": { \"body_type\": \"Exaggerated voluptuous hourglass\", \"bust\": \"Large full voluminous with strong forward projection, tightly contained\", \"hips\": \"Very wide hips, thick thighs, narrow waist\", \"skin\": \"Smooth fair with natural tone variation, subtle heroic glow\" } }, \"pose\": { \"posture\": \"Standing upright, weight shifted to right hip (viewer's left) for pelvic tilt, torso slightly angled toward camera\", \"limbs\": { \"right_arm\": \"Extended down, hand resting on ornate marble countertop\", \"left_arm\": \"Holding the iconic golden trident firmly in a powerful grip\", \"head\": \"Slight tilt, facing forward\" }, \"gaze\": \"Direct eye contact, soft neutral confident expression\" }, \"environment\": { \"location\": \"Luxurious ancient Greek-style decorated room\", \"elements\": [ \"White marble countertop with golden Greek key border and carved motifs (left foreground)\", \"Heavy wooden door with ornate bronze fittings and tall frosted glass panel featuring Greek patterns (right background)\", \"Towel bar with embroidered white towels with gold trim (background left)\", \"Large framed poster of Superman in dramatic heroic pose on marble wall (not mirrored/reflected)\", \"Iconic decorations: golden tridents, ancient Greek columns, seashell motifs, and subtle underwater-themed accents\" ] }, \"camera\": { \"shot\": \"Medium (thighs up), vertical 3:4\", \"angle\": \"Eye-level slightly frontal\", \"lens\": \"50-85mm portrait\", \"dof\": \"Moderate, sharp subject, slightly soft distinct background\", \"framing\": \"Centered subject\" }, \"lighting\": \"Soft diffuse warm torchlight and natural daylight through high arched windows, overhead/slightly frontal, even illumination, soft shadows under bust/hips, highlights on body contours, fabric sheen, gold details and marble surfaces\", \"mood\": \"Confident calm sultry, mythical intimate ancient atmosphere with heroic elegance\", \"style\": \"Photorealistic smartphone photography, high-fidelity detailed fabric/skin textures, natural color grading, unstyled physical proportions\", \"colors\": \"Dominant vibrant emerald green and gold suit, white marble with gold accents, warm wood tones, neutral cream walls with Greek patterns, natural contrast/saturation with mythical warmth\", \"quality\": \"High-def sharp focus on eyes/face/trident and emblem, low noise, minimal grain\", \"negative_prompt\": \"small/reduced/flattened bust, lifted breasts, slimmed torso/hips, proportion averaging, plastic/airbrushed skin, beautification, stylization, depth flattening, wide distortion, mirror selfies, reflections, phone-in-hand\" }",
+      "models": [
+        "Higgsfield Soul",
+        "Nano Banana Pro"
+      ],
+      "uses": [],
+      "styles": [
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HFNkegpXEAAriop.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HFNkegpXEAAriop.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 698,
+      "saves": 359,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2051559171452215583",
+      "slug": "photorealistic-3-4-image-2051559171452215583",
+      "title": "Candid selfie with iPhone-5 grain",
+      "prompt": "Photorealistic 3:4 image. SHOOTING: natural smartphone photo, slight imperfection in framing, feeling of a candid captured moment. Soft focus with emphasis on the eyes, but without excessive sharpness. Noise/grain like an iPhone 5. SCENE: classic close-range selfie pose; head slightly tilted toward the right shoulder, torso slightly turned; right arm extended toward the camera, creating a diagonal composition; gaze directed straight into the lens, creating a direct and alluring connection. Neck slightly extended forward toward the camera. APPEARANCE: fair skin, neat eyebrows, dark brown eyes. Expressive eye and lip makeup: long winged eyeliner extended toward the temples. Cluster false lashes creating a “spiky” anime (manga lashes) effect. Bright highlighter in the inner corners of the eyes. Full lips with dusty pink matte lipstick topped with gloss. Lip contour slightly blurred and slightly overlined (kissed lips effect). Subtle natural highlighter on cheekbones and nose bridge. Hair below the waist, thick, flowing forward framing the face, healthy shine with natural texture and visible fine strands. OUTFIT: fitted basic black top made of ribbed knit fabric with thin vertical texture; deep U-shaped neckline emphasizing a fuller bust; thin straps. On the neck, a delicate gold chain with a refined pendant featuring a transparent pink stone in a setting. Hair slightly messy and natural, with fine strands falling casually over the forehead and face. ANGLE: top-down angle (from the perspective of the extended arm). BACKGROUND: minimalist interior filled with sunset light; on the left — a plain wall appearing bright yellow or orange due to lighting, with sharp graphic shadows from blinds or window frames; on the right — a dark doorway creating strong contrast with the lit side. LIGHTING: golden hour lighting, very warm, directional, and contrasty; bright sunlight illuminating the left side of the face and shoulder, creating long soft shadows and enhancing facial features and body contours. ATMOSPHERE: warm, aesthetic, and captivating; conveys a carefree summer evening mood, confidence, and modern social media visual culture. QUALITY: high quality, high texture detail, 8K resolution.",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HHiaL2FbsAAImQ3.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HHiaL2FbsAAImQ3.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@AIWithRay",
+      "likes": 305,
+      "saves": 241,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2052012370373812240",
+      "slug": "prompt-details-medium-raw-photograph-quality-2052012370373812240",
+      "title": "Venetian bridge portrait, everything in focus",
+      "prompt": "{ \"prompt_details\": { \"medium\": \"RAW photograph\", \"quality_tags\": [ \"unretouched RAW photo\", \"straight out of camera (SOOC)\", \"4k resolution\", \"ultra HD\", \"highly detailed\", \"photorealistic\", \"shot on DSLR\", \"deep depth of field\", \"infinite focus\", \"f/16 aperture\", \"no background blur\", \"everything in sharp focus from foreground to background\", \"crisp background details\" ], \"subject\": { \"type\": \"young woman\", \"pose\": \"leaning forward against the stone railing of a Venetian bridge, both hands gripping the edge behind her, head turned over her shoulder with a confident gaze\", \"physical_attributes\": { \"skin\": \"tanned, realistic skin texture, visible pores, glowing with natural highlights from the sun\", \"hair\": \"long, straight blonde hair pulled into a high ponytail, blowing in the wind, sharp individual strands\", \"makeup\": \"defined eyeliner, contoured features\" }, \"clothing\": { \"garment\": \"one-piece swimsuit\", \"style\": \"athletic cut, thin straps with small sign 'Keor' embroidered on border\", \"pattern\": \"solid\", \"colors\": [ \"Pink\" ] }, \"accessories\": [ \"pink scrunchie in hair\", \"small hoop earrings\", \"thin gold necklace\" ] }, \"setting\": { \"location\": \"Venice, Italy\", \"time_of_day\": \"daytime, bright harsh sunlight\", \"foreground\": { \"element\": \"ancient stone bridge railing\", \"details\": \"highly textured weathered stone with moss and centuries-old patina, ornate carved details, sharp architectural edges\" }, \"background\": { \"sky\": \"clear, vivid blue sky without clouds, sharp horizon line\", \"terrain\": \"iconic Venetian canal with rippling water reflections\", \"distant_elements\": [ \"classic Venetian palazzos with colorful facades, arched windows and balconies\", \"gondolas gliding on the canal, historic bridges in the distance, and the iconic domes of Basilica di Santa Maria della Salute visible\" ] } }, \"composition\": { \"angle\": \"slightly low angle, framed from the mid-thigh up\", \"lighting\": \"bright, natural sunlight casting distinct, hard-edged shadows on the stone railing and highlighting the subject's skin organically\" } } }",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HHo2XVdWgAQV_Zd.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HHo2XVdWgAQV_Zd.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@KeorUnreal",
+      "likes": 913,
+      "saves": 636,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2060557083679076537",
+      "slug": "image-type-portrait-travel-photography-promp-2060557083679076537",
+      "title": "Lakeside blue-hour portrait, palace behind",
+      "prompt": "{\"image_type\":\"portrait_travel_photography\",\"prompt\":\"Ultra-realistic evening portrait of a woman standing beside a lakeside railing, wearing a blue-gray paisley halter crop top and flowing white maxi skirt with a delicate gold waist chain and gold arm cuff. Long wavy black hair, natural glamorous makeup, relaxed confident pose, one hand holding the skirt, looking at camera. Scenic illuminated historic palace complex across a calm lake at blue hour, warm architectural lights reflecting on deep blue water, distant hills, twilight sky. Centered composition, full-body framing, shallow depth of field with softly detailed background, cinematic travel aesthetic, luxurious destination vibe, natural skin tones, high detail fabric texture, subtle reflections, professional photography, crisp focus on subject, soft ambient dusk lighting with gentle front fill light, balanced warm and cool color contrast, premium social media influencer style, realistic proportions, HDR, 85mm lens look, f/2.8, high dynamic range, ultra sharp, photorealistic.\",\"composition\":{\"orientation\":\"vertical\",\"framing\":\"full-body portrait\",\"subject_position\":\"center\",\"camera_angle\":\"eye_level\",\"perspective\":\"slightly compressed telephoto look\"},\"lighting\":{\"time_of_day\":\"blue_hour\",\"key_light\":\"soft frontal fill\",\"ambient\":\"twilight natural light\",\"background_lighting\":\"warm architectural illumination\",\"contrast\":\"moderate\"},\"color_palette\":{\"primary\":[\"deep blue\",\"white\",\"warm gold\"],\"secondary\":[\"gray-blue\",\"black\"]},\"environment\":{\"location_type\":\"lakeside promenade\",\"foreground\":[\"metal railing\",\"stone walkway\"],\"midground\":[\"water surface with ripples\"],\"background\":[\"illuminated palace architecture\",\"trees\",\"hills\",\"evening sky\"]},\"style\":{\"genre\":\"luxury travel influencer photography\",\"mood\":\"elegant, serene, sophisticated\",\"realism\":\"highly photorealistic\"},\"technical\":{\"lens\":\"85mm equivalent\",\"aperture\":\"f/2.8\",\"quality\":\"high resolution\",\"detail_level\":\"ultra detailed\"}}",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HJiRu4PXoAABMQQ.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HJiRu4PXoAABMQQ.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@ZaraIrahh",
+      "likes": 245,
+      "saves": 161,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2063814043631280180",
+      "slug": "country-miniature-stamp-poster",
+      "title": "Country stamp built as a breaking-out miniature",
+      "prompt": "A hyper-realistic macro photography shot of a giant, freestanding vintage postage stamp from [COUNTRY] standing upright against a seamless, soft, color-coordinated pastel studio background. The stamp features an intricately detailed 3D diorama of the most iconic and recognizable landmark from [COUNTRY] that pops out and actively breaks the perforated borders, extending outward into the physical space. Lush flora and fauna native to [COUNTRY] grows and spills out from the bottom right corner of the stamp's frame. A tiny, miniature figurine of a person wearing recognizable traditional cultural attire from [COUNTRY] stands on the ground at the bottom left, looking up in awe at the massive stamp, establishing a striking miniature world scale. The stamp's design includes the word \"[COUNTRY]\" in classic serif typography, subtext in the local language, a realistic local currency denomination, and a stamped black ink cancellation postmark in the top right corner featuring the capital city of [COUNTRY] and a realistic date. Soft, diffused, magical studio lighting with a tilt-shift lens effect and shallow depth of field. Gently floating botanical elements native to [COUNTRY] drift through the air around the scene. 8k resolution, octane render, highly detailed miniature art.",
+      "models": [
+        "GPT Image 2"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "微缩摄影"
+      ],
+      "subjects": [],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HKQj4k7bkAA0Aov.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HKQj4k7bkAA0Aov.jpg?name=small",
+        "https://pbs.twimg.com/media/HKQj4khaIAIGhDU.jpg?name=small",
+        "https://pbs.twimg.com/media/HKQj4k5bQAA0ro2.jpg?name=small",
+        "https://pbs.twimg.com/media/HKQj4kkagAA8F13.jpg?name=small"
+      ],
+      "n": 4,
+      "dur": null,
+      "handle": "@Naiknelofar788",
+      "likes": 185,
+      "saves": 122,
+      "hv": false,
+      "score": 0
+    },
+    {
+      "id": "2065638647886659855",
+      "slug": "photorealistic-romantic-european-travel-edit-2065638647886659855",
+      "title": "Italian villa balcony, pinstripe sundress",
+      "prompt": "Photorealistic romantic European travel editorial portrait of a beautiful young woman, standing in an open crimson-red balcony doorway of a luxurious Italian coastal villa. She wears a pink-and-white micro pinstripe sundress with a deep plunging neckline with delicate red velvet floral ruffle trim along the inner V-neckline. Front buttons, thin straps, elegant ruby-red drop earrings, delicate gold with red stone bracelet. Fair pinkish flawless skin, natural soft-glam makeup, large brown striking eyes, subtle peach blush, pink-rosy plumpy lips. Dark brown hair styled in a messy romantic low updo with loose face-framing wavy strands. Her body is turned slightly away from camera while leaning gently against the doorframe, hands relaxed together in front of her body. She looks toward the camera with a soft dreamy expression, lips slightly parted. Vintage floral wallpaper, lace-covered table, flowers and antique decor inside the room. Bright Mediterranean coastline, turquoise water, white cliffside buildings and flower boxes visible outside the balcony. Eye-level shot, medium portrait framing, 85mm lens, f/1.8, shallow depth of field, creamy bokeh, natural window light, soft diffused daylight, warm filmic tones, luxury travel magazine aesthetic, highly detailed, photorealistic, cinematic, elegant, romantic atmosphere. Negative prompt: standing centered, ruffles around entire cups, dark moody lighting, harsh shadows, heavy makeup, modern interior, wide-angle distortion, cartoon, CGI, blur, watermark.",
+      "models": [
+        "Nano Banana Pro"
+      ],
+      "uses": [
+        "Beauty",
+        "Fashion"
+      ],
+      "styles": [
+        "Cinematic",
+        "Luxury",
+        "Photorealistic",
+        "Retro / vintage"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HKqcr_TakAACa5Y.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HKqcr_TakAACa5Y.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@ZaraIrahh",
+      "likes": 275,
+      "saves": 90,
+      "hv": true,
+      "score": 0
+    },
+    {
+      "id": "2068543924055240801",
+      "slug": "japanese-girl-with-long-straight-black-hair--2068543924055240801",
+      "title": "Convenience-store student, mint polo",
+      "prompt": "Japanese girl with long straight black hair and soft wispy bangs, wearing a mint green polo shirt and a blue plaid skirt, standing casually in front of a convenience store refrigerator filled with colorful drinks. Holding an open book in one hand, relaxed posture, soft natural expression, everyday student vibe. Bright fluorescent store lighting, realistic reflections on the refrigerator doors, visible drink labels, convenience store interior, candid moment during a normal day. Captured with a smartphone camera, handheld iPhone photo, slight softness, natural colors, authentic mobile HDR processing, realistic skin texture, casual social media snapshot, unedited phone-camera look, ordinary convenience store atmosphere, slightly imperfect framing, no professional posing, no studio lighting, no cinematic color grading, photorealistic, high-quality mobile photography, everyday lifestyle aesthetic, spontaneous and natural.",
+      "models": [
+        "GPT Image 2"
+      ],
+      "uses": [],
+      "styles": [
+        "Photorealistic"
+      ],
+      "techs": [
+        "Camera movement / shot language"
+      ],
+      "subjects": [
+        "Architecture / interior",
+        "Person / portrait"
+      ],
+      "kind": "image",
+      "img": "https://pbs.twimg.com/media/HLTxa8GWAAAPS-S.jpg?name=small",
+      "imgs": [
+        "https://pbs.twimg.com/media/HLTxa8GWAAAPS-S.jpg?name=small"
+      ],
+      "n": 1,
+      "dur": null,
+      "handle": "@saniaspeaks_",
+      "likes": 278,
+      "saves": 156,
+      "hv": true,
+      "score": 0
+    }
+  ],
+  "avatars": {
+    "PrometheanAIX": "https://pbs.twimg.com/profile_images/2043694345749196800/vsv-cxdT_400x400.jpg",
+    "higgsfield_ai": "https://pbs.twimg.com/profile_images/1906739239183630336/907a7JTU_400x400.jpg",
+    "KeorUnreal": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+    "ManuAGI01": "https://pbs.twimg.com/profile_images/1792389743503929344/5NAkgng7_400x400.jpg",
+    "CHAO2U_AI": "https://pbs.twimg.com/profile_images/2018484655750840320/6ZfNMPHb_400x400.jpg",
+    "IqrasaifiAI": "https://pbs.twimg.com/profile_images/2070883209731248128/BZnJwoPG_400x400.jpg",
+    "ChillaiKalan__": "https://pbs.twimg.com/profile_images/2042898125573197824/Em0FFxRw_400x400.jpg",
+    "ZaraIrahh": "https://pbs.twimg.com/profile_images/1997170504713883651/mr6aPbte_400x400.jpg",
+    "Naiknelofar788": "https://pbs.twimg.com/profile_images/2014919869259735040/MbBiQ58q_400x400.jpg",
+    "PinodiArt": "https://pbs.twimg.com/profile_images/2017948625058287616/AUHPq1dP_400x400.jpg",
+    "Arminn_Ai": "https://pbs.twimg.com/profile_images/1934377885055246336/TPOvBcnQ_400x400.jpg",
+    "AIwithSarah_": "https://pbs.twimg.com/profile_images/2016454047679832064/qf_DsgPV_400x400.jpg",
+    "AIWithRay": "https://pbs.twimg.com/profile_images/2032335013354831873/gVSSy4xN_400x400.jpg",
+    "Kiber_Alla": "https://pbs.twimg.com/profile_images/1993005256200818689/it9ps5u0_400x400.jpg",
+    "AIwithSynthia": "https://pbs.twimg.com/profile_images/2010801415007191042/y6jILtcn_400x400.jpg",
+    "Aqsahere_": "https://pbs.twimg.com/profile_images/2058848213046579200/qU5kj8IY_400x400.jpg",
+    "HaniaAi12": "https://pbs.twimg.com/profile_images/2074843144366202880/piSvdd1N_400x400.jpg",
+    "oggii_0": "https://pbs.twimg.com/profile_images/2008212741434269696/N7S0tqfn_400x400.jpg",
+    "PhedEU": "https://pbs.twimg.com/profile_images/1654562828966150145/Cd_K-hes_400x400.jpg",
+    "rovvmut_": "https://pbs.twimg.com/profile_images/2061782278959935488/zxfVzXuw_400x400.jpg",
+    "saniaspeaks_": "https://pbs.twimg.com/profile_images/2029511617373958144/6Tn2GF7m_400x400.jpg",
+    "ShamsAmin56": "https://pbs.twimg.com/profile_images/1973122364503199744/vpKVkGyH_400x400.jpg",
+    "zackpaid": "https://pbs.twimg.com/profile_images/2055480268564123649/5ijM3Y6V_400x400.jpg",
+    "zeuuss_01": "https://pbs.twimg.com/profile_images/2059046904944611328/gjHlGwaU_400x400.jpg"
+  }
+}

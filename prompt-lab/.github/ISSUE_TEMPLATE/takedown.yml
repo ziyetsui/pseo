@@ -1,0 +1,68 @@
+name: Rights or takedown request
+description: Request correction, restriction or removal of public PromptLab material.
+title: "[Rights / Takedown]: "
+labels: ["takedown-request", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Verified restrictions and takedowns receive priority processing. Do not put government IDs, private addresses, credentials or other sensitive evidence in this public form. Use the configured private rights contact when identity evidence must remain confidential.
+
+        Opening an Issue records a request; a maintainer must verify the target and scope before the CMS decision changes. Ordinary removal cannot erase existing Git history or third-party forks.
+  - type: input
+    id: prompt_id
+    attributes:
+      label: Prompt ID and locale
+      placeholder: prm_example / en
+    validations:
+      required: true
+  - type: input
+    id: public_url
+    attributes:
+      label: Public PromptLab URL
+      description: Link to the affected generated page or GitHub file.
+    validations:
+      required: true
+  - type: input
+    id: original_source
+    attributes:
+      label: Original source URL
+      description: Provide the original post or rights-holder source when available.
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship to the material
+      options:
+        - Original author or rights holder
+        - Authorized representative
+        - Person depicted or affected
+        - Community reporter
+    validations:
+      required: true
+  - type: dropdown
+    id: requested_action
+    attributes:
+      label: Requested action
+      options:
+        - Correct attribution or source
+        - Temporarily restrict while reviewed
+        - Remove from current public mirror
+        - Contact me through a private channel
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason and public evidence
+      description: Explain the issue and include only evidence safe to publish.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I believe this report is accurate and submitted in good faith.
+          required: true
+        - label: I did not include sensitive identity evidence or credentials in this public Issue.
+          required: true

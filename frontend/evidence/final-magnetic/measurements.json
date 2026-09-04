@@ -1,0 +1,183 @@
+{
+  "unchanged": [
+    ".after (including peek markup and Browse)",
+    ".nav",
+    ".foot"
+  ],
+  "measurements": [
+    {
+      "width": 1440,
+      "ref": true,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "128px",
+          "400",
+          "128px",
+          1099.875,
+          256
+        ],
+        "body": [
+          410,
+          353.4375,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "112px",
+          "96px"
+        ]
+      }
+    },
+    {
+      "width": 1440,
+      "ref": false,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "128px",
+          "400",
+          "128px",
+          1099.875,
+          256
+        ],
+        "body": [
+          410,
+          353.4375,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "112px",
+          "96px"
+        ]
+      }
+    },
+    {
+      "width": 698,
+      "ref": true,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "62.82px",
+          "400",
+          "62.82px",
+          539.796875,
+          125.625
+        ],
+        "body": [
+          410,
+          353.4375,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "64px",
+          "56px"
+        ]
+      }
+    },
+    {
+      "width": 698,
+      "ref": false,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "62.82px",
+          "400",
+          "62.82px",
+          539.796875,
+          125.625
+        ],
+        "body": [
+          410,
+          353.4375,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "64px",
+          "56px"
+        ]
+      }
+    },
+    {
+      "width": 375,
+      "ref": true,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "46px",
+          "400",
+          "46px",
+          319,
+          138
+        ],
+        "body": [
+          319,
+          462.1875,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "64px",
+          "56px"
+        ]
+      }
+    },
+    {
+      "width": 375,
+      "ref": false,
+      "data": {
+        "heading": "Somebody already wrote this",
+        "copy": [
+          "Every prompt in this library was published in the open by the person who wrote it, and then mostly lost — buried under a feed that is optimised for the next thing rather than the useful thing.",
+          "So the whole of the work here is not editing. No paraphrase, no house style, no distillation into a template. The text you copy is the text they posted, down to the render settings at the end that look like noise and are not.",
+          "What we add is the index, the attribution, and a link back. That is the entire product."
+        ],
+        "h1": [
+          "46px",
+          "400",
+          "46px",
+          319,
+          138
+        ],
+        "body": [
+          319,
+          462.1875,
+          "17px",
+          "27.2px"
+        ],
+        "padding": [
+          "64px",
+          "56px"
+        ]
+      }
+    }
+  ]
+}

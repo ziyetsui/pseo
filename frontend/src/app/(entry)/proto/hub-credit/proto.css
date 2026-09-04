@@ -1,0 +1,244 @@
+/* PROTOTYPE styles for /proto/hub-credit. Every rule is scoped to .hc-* or
+   .proto-picker; nothing here can reach production markup. Delete with the
+   directory.
+
+   The .sig slot itself is NOT restyled — magnetic.css already owns its
+   position, measure and ink (38px after the body, 410px, 11.5px mono at
+   --faint). These rules only describe what goes inside it. */
+
+/* Scoped on .sig rather than on an attribute prefix: the credit roots carry
+   class="sig hc-clause", so [class^="hc-"] matched none of them — the
+   attribute starts with "sig". Clause shipped with unstyled links and no hit
+   area at all because of it. Every credit link in all five lives inside .sig,
+   and .hc-root confines these rules to this prototype route.
+
+   Shared: every credit link is a real link first, and none of them changes
+   layout on interaction. The hit area grows through a pseudo-element, so an
+   11.5px line stays an 11.5px line — a target that moves the type is the
+   thing the 44px rule is supposed to prevent, not cause. Vertical only: the
+   two names share a line and a horizontal expansion would overlap its
+   neighbour. */
+.hc-root .sig a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--foreground) 32%, transparent);
+  position: relative;
+  transition-property: text-decoration-color, color, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+/* -16px, not -15: the 11.5px line's inline box measures ~13px, so -15 landed at 43. */
+.hc-root .sig a::after { content: ""; position: absolute; inset: -16px 0; }
+@media (hover: hover) and (pointer: fine) {
+  .hc-root .sig a:hover { text-decoration-color: currentColor; }
+}
+.hc-root .sig a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 3px; }
+.hc-amp { color: var(--faint); }
+/* The names lifted into the page's own display voice — the same family as the
+   128px headline above them, so the credit belongs to this screen rather than
+   arriving from another typeface. */
+.hc-serif { font-family: var(--font-serif); font-size: 15.5px; letter-spacing: normal; }
+.hc-facts { margin: 0; }
+
+/* ══ V1 · Clause ═══════════════════════════════════════════════════════════
+   Nothing to add: it is the master's line with one more clause, so it inherits
+   .sig wholesale and only the links are styled. */
+.hc-clause { margin-block: 38px 0; }
+
+/* ══ V2 · Dateline ═════════════════════════════════════════════════════════ */
+.hc-dateline { display: flex; flex-direction: column; gap: 10px; }
+/* The rule is what makes line two a different kind of statement; without it
+   the two lines read as one wrapped sentence. */
+.hc-rule {
+  display: block; width: 100%; height: 1px; background: var(--border);
+  transform: scaleX(0); transform-origin: left center;
+  animation: hc-draw 560ms cubic-bezier(.32, .72, 0, 1) 140ms both;
+}
+@keyframes hc-draw { to { transform: scaleX(1); } }
+.hc-credit { margin: 0; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .hc-rule { animation: none; transform: none; } }
+
+/* ══ V3 · Seal ═════════════════════════════════════════════════════════════ */
+.hc-seal { display: flex; flex-direction: column; gap: 26px; }
+/* The one deliberate break from the body's left alignment: the argument is a
+   column, the seal closes it. */
+.hc-stamp { display: flex; align-items: center; gap: 14px; justify-content: center; }
+.hc-wing {
+  flex: 1 1 0; height: 1px; background: var(--border);
+  transform: scaleX(0);
+  animation: hc-draw 520ms cubic-bezier(.32, .72, 0, 1) 220ms both;
+}
+.hc-stamp .hc-wing:first-child { transform-origin: right center; }
+.hc-stamp .hc-wing:last-child { transform-origin: left center; }
+.hc-stampinner { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: none; text-align: center; }
+.hc-label {
+  font: 10px/1.6 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--faint);
+}
+.hc-names { display: flex; align-items: baseline; gap: 2px; flex-wrap: wrap; justify-content: center; }
+.hc-seal .hc-serif { font-size: 17px; }
+@media (prefers-reduced-motion: reduce) { .hc-wing { animation: none; transform: none; } }
+
+/* ══ V4 · Ink ══════════════════════════════════════════════════════════════
+   The body's own register: 17px, the body's line-height, the serif italic the
+   argument already uses for `not editing`. */
+.hc-ink { display: flex; flex-direction: column; gap: 20px; }
+.hc-line {
+  margin: 0; font-size: 17px; line-height: 1.6; letter-spacing: normal; color: var(--muted);
+}
+.hc-inkname { position: relative; }
+.hc-inktext {
+  font-family: var(--font-serif); font-style: italic; font-size: 18.5px;
+  color: var(--foreground); letter-spacing: normal;
+}
+/* The link carries its own sweep, so the native underline steps aside here. */
+.hc-ink .hc-line a { text-decoration: none; display: inline-block; }
+.hc-sweep {
+  position: absolute; left: 0; right: 0; bottom: -3px; height: 1px;
+  background: currentColor; color: var(--foreground);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 320ms cubic-bezier(.32, .72, 0, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hc-ink .hc-line a:hover .hc-sweep { transform: scaleX(1); }
+}
+.hc-ink .hc-line a:focus-visible .hc-sweep { transform: scaleX(1); }
+.hc-after { color: var(--faint); }
+@media (prefers-reduced-motion: reduce) {
+  .hc-sweep { transition: none; }
+  /* With no sweep to show state, the underline comes back so the link is
+     still visibly a link. */
+  .hc-ink .hc-line a { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+/* ══ V5 · Arrival ══════════════════════════════════════════════════════════
+   The row is in the DOM from the first frame and holds its own height, so
+   nothing below it moves when the credit appears — only the ink arrives. */
+.hc-arrival { display: flex; flex-direction: column; gap: 10px; }
+.hc-late {
+  margin: 0; color: var(--muted);
+  opacity: 0; transform: translateY(5px);
+  animation: hc-arrive 380ms cubic-bezier(.32, .72, 0, 1) 1100ms both;
+}
+@keyframes hc-arrive { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  /* No arrival to watch, so it is simply there. */
+  .hc-late { animation: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px) {
+  .hc-stamp { gap: 10px; }
+  .hc-seal .hc-serif { font-size: 16px; }
+  .hc-inktext { font-size: 17.5px; }
+}
+
+/* ─── Picker · harness chrome, copied verbatim from PICKER.md ──────────── */
+.proto-picker {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.82);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 8px 24px rgba(0, 0, 0, 0.24),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.proto-picker-highlight {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  will-change: transform;
+}
+
+/* The slide is enabled only after first paint (data-ready), so load doesn't animate. */
+.proto-picker[data-ready] .proto-picker-highlight {
+  transition:
+    transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+    width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+}
+
+.proto-picker-item {
+  position: relative; /* sits above the highlight */
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font: inherit;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.proto-picker-item:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.proto-picker-item:active {
+  transform: scale(0.97);
+}
+
+.proto-picker-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.proto-picker-item[data-active] {
+  color: #fff;
+}
+
+.proto-picker-divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.proto-picker-replay {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.proto-picker[data-position="top"] {
+  bottom: auto;
+  top: 24px;
+}
+
+/* Below ~700px five names span edge to edge; labels stay on one line and the
+   pill scrolls, so the 28px highlight keeps its geometry. */
+@media (max-width: 700px) {
+  .proto-picker {
+    left: 8px; right: 8px; transform: none;
+    max-width: calc(100vw - 16px);
+    overflow-x: auto; scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .proto-picker::-webkit-scrollbar { display: none; }
+  .proto-picker-item { padding: 0 9px; font-size: 12px; white-space: nowrap; flex: none; }
+}

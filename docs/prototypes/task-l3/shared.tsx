@@ -1,0 +1,26 @@
+'use client';
+import { useState, useRef, useEffect } from 'react';
+import type { Catalog, Prompt, Ref } from '@/lib/catalog/types';
+import { PromptMedia } from '@/components/PromptMedia';
+import { generationLabel } from '@/components/generation-label';
+export type Props = {catalog:Catalog;task:Ref;variant:number;initialModel?:string};
+export const terms=(rows:Prompt[],key:'models'|'styles')=>{
+ const values=new Map<string,Ref>(); rows.forEach(p=>p[key].forEach(r=>values.set(r.slug,{...r,count:(values.get(r.slug)?.count||0)+1})));
+ return [...values.values()].sort((a,b)=>b.count-a.count);
+};
+export function Explorer({catalog,task,variant,intro,initialModel,children}:Props & {intro:string;children:(rows:Prompt[])=>React.ReactNode}){
+ const [q,setQ]=useState(''),[kind,setKind]=useState('all'),[model,setModel]=useState(initialModel??'');
+ /* The browse plate selects a task and a model in one click, so the task page has to arrive with
+    that model already applied — and say so, removably, rather than silently showing a subset. */
+ const modelLabel=catalog.models.find(r=>r.slug===model)?.label??model;
+ const all=catalog.prompts.filter(p=>p.useCases.some(r=>r.slug===task.slug));
+ const rows=all.filter(p=>(kind==='all'||p.kind===kind)&&(!model||p.models.some(r=>r.slug===model))&&[p.title,p.prompt,p.handle,...p.models.map(r=>r.label)].join(' ').toLowerCase().includes(q.toLowerCase()));
+ return <div className="task-shell"><header className="task-nav"><a className="brand" href="/browse#tasks">Prompt Library</a><a href="/browse#tasks">Browse by task ↗</a></header><main id="main" className="task-main"><nav className="crumb" aria-label="Breadcrumb"><a href="/browse#tasks">Tasks</a><span>/</span><span>{task.label}</span></nav><section className="task-heading"><div><p className="proto-overline">The task collection</p><h1>{task.label} prompts<span className="title-count">{all.length}</span></h1><p className="intro">{intro}</p></div><label className="task-switch">Explore another task<select value={task.slug} onChange={e=>location.assign(`/tasks/${e.target.value}?v=${variant+1}`)}>{catalog.useCases.filter(t=>t.count).map(t=><option key={t.slug} value={t.slug}>{t.label} · {t.count}</option>)}</select></label></section><form className="toolbar" role="search" onSubmit={e=>e.preventDefault()}><label className="search-control"><span className="proto-overline">Search this task</span><input type="search" autoComplete="off" spellCheck={false} value={q} onChange={e=>setQ(e.target.value)} placeholder={`Search ${task.label.toLowerCase()} prompts…`}/></label><fieldset className="type-switch"><legend className="proto-overline">Output</legend>{['all','image','video'].map(type=><button key={type} type="button" aria-pressed={kind===type} onClick={()=>setKind(type)}>{type==='all'?'All':type==='image'?'Images':'Videos'}</button>)}</fieldset>{model&&<button type="button" className="filter-chip" aria-label={`Remove the ${modelLabel} filter`} onClick={()=>setModel('')}>Model: {modelLabel} <span aria-hidden="true">×</span></button>}<span className="result-count" role="status">{rows.length} / {all.length} prompts</span></form>{rows.length?children(rows):<div className="empty-task"><h2>No prompts match this search.</h2><p>Try another phrase or return to every {task.label.toLowerCase()} prompt.</p><button onClick={()=>{setQ('');setKind('all');setModel('')}}>Clear filters</button></div>}<footer className="task-footer">Prompt Library <span>Prompts remain the property of their authors. Every record links to its source.</span></footer></main></div>;
+}
+export function PromptDetail({prompt}:{prompt:Prompt}){return <article className="prompt-detail"><div className="detail-media"><PromptMedia prompt={prompt} width={640} height={480}/></div><div className="detail-copy"><p className="proto-overline">{prompt.kind} prompt · {prompt.models.map(r=>r.label).join(' / ')||'No model named'}</p><h2>{prompt.title}</h2><div className="detail-actions"><a className="primary-action" href={prompt.href}>{generationLabel(prompt.kind)} ↗</a><a href={prompt.source.url} target="_blank" rel="nofollow noopener noreferrer">{prompt.handle} ↗</a></div><pre lang={prompt.language}>{prompt.prompt}</pre></div></article>}
+export function PeekDialog({prompt,onClose}:{prompt:Prompt|null;onClose:()=>void}){
+ const ref=useRef<HTMLDialogElement>(null);
+ useEffect(()=>{if(prompt)ref.current?.showModal();else ref.current?.close()},[prompt]);
+ return <dialog className="task-dialog" ref={ref} onClose={onClose} onClick={e=>{if(e.target===ref.current)onClose()}}><div className="dialog-top"><span className="proto-overline">Prompt preview</span><button onClick={onClose}>Close ×</button></div>{prompt&&<PromptDetail prompt={prompt}/>}</dialog>;
+}
+export function PromptCard({prompt,onOpen}:{prompt:Prompt;onOpen:()=>void}){return <article className="prompt-card"><button className="card-image" onClick={onOpen} aria-label={`Preview ${prompt.title}`}><PromptMedia prompt={prompt} width={400} height={300}/><span className="media-kind">{prompt.kind}</span></button><div className="card-text"><h3><button onClick={onOpen}>{prompt.title}</button></h3><p className="card-source">{prompt.handle}</p><a href={prompt.href}>{generationLabel(prompt.kind)} <span>↗</span></a></div></article>}

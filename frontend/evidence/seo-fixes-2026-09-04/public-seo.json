@@ -1,0 +1,286 @@
+{
+  "pages": [
+    {
+      "path": "/zh-CN/blog",
+      "title": "The notebook · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/blog",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/country-miniature-stamp-poster",
+      "title": "国家主题微缩邮票海报 Prompt",
+      "robots": "noindex, nofollow",
+      "canonical": "https://ancher.space/zh-CN/prompts/country-miniature-stamp-poster",
+      "hreflang": [
+        {
+          "rel": "alternate",
+          "hrefLang": "zh-CN",
+          "href": "https://ancher.space/zh-CN/prompts/country-miniature-stamp-poster"
+        }
+      ],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/creators",
+      "title": "Prompt creators · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/creators",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/image",
+      "title": "Image prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/image",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/models/gpt-image-2",
+      "title": "gpt-image-2 Prompt projection",
+      "robots": "noindex, nofollow",
+      "canonical": "https://ancher.space/zh-CN/prompts/models/gpt-image-2",
+      "hreflang": [
+        {
+          "rel": "alternate",
+          "hrefLang": "zh-CN",
+          "href": "https://ancher.space/zh-CN/prompts/models/gpt-image-2"
+        }
+      ],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/models/nano-banana-pro",
+      "title": "Nano Banana Pro Prompt",
+      "robots": "noindex, nofollow",
+      "canonical": "https://ancher.space/zh-CN/prompts/models/nano-banana-pro",
+      "hreflang": [
+        {
+          "rel": "alternate",
+          "hrefLang": "zh-CN",
+          "href": "https://ancher.space/zh-CN/prompts/models/nano-banana-pro"
+        }
+      ],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/models",
+      "title": "AI model families and prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/models",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/styles/photorealistic",
+      "title": "photorealistic prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/styles/photorealistic",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/subjects/miniature-landmark",
+      "title": "miniature-landmark prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/subjects/miniature-landmark",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/use-cases/country-city-poster",
+      "title": "country-city-poster prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/use-cases/country-city-poster",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts/video",
+      "title": "Video prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts/video",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "path": "/zh-CN/prompts",
+      "title": "Image and video prompts · Prompt Library",
+      "robots": "noindex, follow",
+      "canonical": "https://ancher.space/zh-CN/prompts",
+      "hreflang": [],
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico",
+          "sizes": "64x64",
+          "type": "image/x-icon"
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "robots": "User-Agent: *\nAllow: /\n\nSitemap: https://ancher.space/sitemap.xml\n",
+  "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n</urlset>\n",
+  "icons": [
+    {
+      "file": "favicon.ico",
+      "bytes": 225
+    },
+    {
+      "file": "favicon.svg",
+      "bytes": 186
+    }
+  ]
+}

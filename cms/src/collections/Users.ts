@@ -4,7 +4,7 @@ import { adminOnly, adminOrFirstUser, selfOrAdmin } from '@/access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
-  auth: true,
+  auth: { useAPIKey: true },
   admin: {
     group: 'Administration',
     useAsTitle: 'email',
@@ -34,6 +34,7 @@ export const Users: CollectionConfig = {
       saveToJWT: true,
       defaultValue: ['editor'],
       options: [
+        { label: 'Agent proposer', value: 'agent_proposer' },
         { label: 'Editor', value: 'editor' },
         { label: 'Reviewer', value: 'reviewer' },
         { label: 'Publisher', value: 'publisher' },

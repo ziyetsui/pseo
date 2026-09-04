@@ -1,6 +1,15 @@
 # CMS → Frontend Local Beta Integration Plan
 
-Spec: `specs/0008-prd.md`, `specs/0009-pseo-tech-arch.md`
+> **Superseded for content publication (2026-09-03):** this document records
+> the earlier local-preview/Git-first experiment. Its per-content branch, PR,
+> merge, mock publisher, and Git-as-content-authority requirements are retired
+> by `specs/0011-promptlab-youmind-cms-publication.md`. They must not be
+> implemented, deployed, or used as a rollback path. The current flow is CMS
+> review → immutable public snapshot → validated generated mirror → dedicated
+> bot fast-forward push to `main`. Ordinary engineering changes still use PRs.
+
+Historical specs: `specs/0008-prd.md`, `specs/0009-pseo-tech-arch.md`
+Current publication spec: `specs/0011-promptlab-youmind-cms-publication.md`
 
 ## Goal
 

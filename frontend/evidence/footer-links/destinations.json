@@ -1,0 +1,182 @@
+[
+  {
+    "href": "/zh-CN/prompts/models/nano-banana-pro",
+    "status": 200,
+    "heading": "Nano Banana Pro prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/higgsfield-soul",
+    "status": 200,
+    "heading": "Higgsfield Soul prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/gpt-image-2",
+    "status": 200,
+    "heading": "GPT Image 2 prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/nano-banana-2",
+    "status": 200,
+    "heading": "Nano Banana 2 prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/nano-banana",
+    "status": 200,
+    "heading": "Nano Banana prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/gpt-image",
+    "status": 200,
+    "heading": "GPT Image prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/kling",
+    "status": 200,
+    "heading": "Kling prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/seedance",
+    "status": 200,
+    "heading": "Seedance prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/veo",
+    "status": 200,
+    "heading": "Veo prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/sora",
+    "status": 200,
+    "heading": "Sora prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/models/wan",
+    "status": 200,
+    "heading": "Wan prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/fashion",
+    "status": 200,
+    "heading": "Fashion prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/beauty",
+    "status": 200,
+    "heading": "Beauty prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/advertising",
+    "status": 200,
+    "heading": "Advertising prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/food-beverage",
+    "status": 200,
+    "heading": "Food & beverage prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/automotive",
+    "status": 200,
+    "heading": "Automotive prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/web-motion-design",
+    "status": 200,
+    "heading": "Web & motion design prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/ugc",
+    "status": 200,
+    "heading": "UGC prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/use-cases/product-marketing",
+    "status": 200,
+    "heading": "Product marketing prompts are specifications."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/photorealistic",
+    "status": 200,
+    "heading": "Photorealistic.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/cinematic",
+    "status": 200,
+    "heading": "Cinematic.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/luxury",
+    "status": 200,
+    "heading": "Luxury.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/anime-illustrated",
+    "status": 200,
+    "heading": "Anime / illustrated.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/retro-vintage",
+    "status": 200,
+    "heading": "Retro / vintage.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/sci-fi-cyberpunk",
+    "status": 200,
+    "heading": "Sci-fi / cyberpunk.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/styles/surreal-fantasy",
+    "status": 200,
+    "heading": "Surreal / fantasy.One prompt, one plate."
+  },
+  {
+    "href": "/zh-CN/prompts/subjects/person-portrait",
+    "status": 200,
+    "heading": "Person / portrait prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/subjects/architecture-interior",
+    "status": 200,
+    "heading": "Architecture / interior prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/subjects/product",
+    "status": 200,
+    "heading": "Product prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/subjects/food-drink",
+    "status": 200,
+    "heading": "Food / drink prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/subjects/vehicle",
+    "status": 200,
+    "heading": "Vehicle prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/image",
+    "status": 200,
+    "heading": "Image prompts"
+  },
+  {
+    "href": "/zh-CN/prompts/video",
+    "status": 200,
+    "heading": "Video prompts"
+  },
+  {
+    "href": "/zh-CN/prompts",
+    "status": 200,
+    "heading": "Somebody already wrote this"
+  },
+  {
+    "href": "/zh-CN/prompts/models",
+    "status": 200,
+    "heading": "Models"
+  },
+  {
+    "href": "/zh-CN/prompts/creators",
+    "status": 200,
+    "heading": "Creators"
+  }
+]

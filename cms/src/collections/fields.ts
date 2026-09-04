@@ -18,9 +18,10 @@ export function createMediaFields(): Field[] {
 
 export const gitPublicationField: Field = {
   name: 'gitPublication',
+  label: 'Legacy Git publication audit',
   type: 'group',
   admin: {
-    description: 'Read-only projection of protected Git/PR state. It is never Payload publish state.',
+    description: 'Read-only historical projection from the retired per-content PR flow. Do not use for new publication decisions.',
     readOnly: true,
   },
   fields: [
@@ -39,11 +40,6 @@ export const gitPublicationField: Field = {
         { label: 'Conflicted', value: 'conflicted' },
       ],
     },
-    {
-      name: 'lastRequest',
-      type: 'relationship',
-      relationTo: 'publication-requests',
-    },
     { name: 'pullRequestNumber', type: 'number', min: 1 },
     { name: 'pullRequestUrl', type: 'text' },
     { name: 'mergeSha', type: 'text' },
@@ -53,8 +49,7 @@ export const gitPublicationField: Field = {
 
 /**
  * Wireframe-only metadata for the local beta preview. This is deliberately
- * excluded by the publication validator, which serializes an explicit
- * allowlist of editorial fields to the Git content contract.
+ * excluded by the approval validator and CMS public-snapshot projection.
  */
 export const betaPreviewField: Field = {
   name: 'betaPreview',
@@ -74,7 +69,7 @@ export const translationFields: Field[] = [
       { label: 'Missing', value: 'missing' },
       { label: 'Draft', value: 'draft' },
       { label: 'In review', value: 'review' },
-      { label: 'Ready for publication request', value: 'ready' },
+      { label: 'Ready for CMS approval', value: 'ready' },
       { label: 'Stale', value: 'stale' },
     ],
   },
@@ -92,7 +87,7 @@ export const seoFields: Field[] = [
     defaultValue: 'noindex,nofollow',
     options: [
       { label: 'Draft / no index', value: 'noindex,nofollow' },
-      { label: 'Index after Git release', value: 'index,follow' },
+      { label: 'Public snapshot projection', value: 'index,follow' },
     ],
   },
 ]

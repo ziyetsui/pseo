@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Prompt Library — Image &amp; Video Prompts with Credit</title>
+<meta name="description" content="Every prompt is reproduced verbatim from the post its author published on X, next to the image or video it produced, with a link back to the original.">
+<style>
+:root{
+  color-scheme: light dark;
+  --bg: light-dark(rgb(255 255 255), rgb(22 22 24));
+  --surface: light-dark(rgb(250 250 251), rgb(28 28 31));
+  --fg: light-dark(rgb(24 26 29), rgb(250 250 252));
+  --muted: light-dark(rgb(24 26 29 / 58%), rgb(250 250 252 / 58%));
+  --faint: light-dark(rgb(24 26 29 / 38%), rgb(250 250 252 / 38%));
+  --card: light-dark(rgb(255 255 255), rgb(32 32 36));
+  --line: light-dark(rgb(24 26 29 / 11%), rgb(255 255 255 / 13%));
+  --line-strong: light-dark(rgb(24 26 29 / 20%), rgb(255 255 255 / 24%));
+  --accent: light-dark(rgb(51 126 255), rgb(131 180 255));
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --r: 12px; --r-in: 8px; --wrap: 1160px;
+  --ease: cubic-bezier(.32,.72,0,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;
+     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none;
+     padding-bottom:96px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+img{max-width:100%;display:block}
+
+/* ---- shared type scale (one ladder, roles named) ---- */
+.t-page{font-size:clamp(34px,5vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:600;
+        text-wrap:balance}
+.t-sec{font-size:clamp(20px,2.4vw,24px);line-height:1.25;letter-spacing:-.02em;font-weight:600}
+.t-lead{font-size:18px;line-height:1.6;font-weight:400;color:var(--muted);max-width:62ch;
+        text-wrap:pretty}
+.t-body{font-size:16px;line-height:1.6}
+.t-ui{font-size:14px;line-height:1.5}
+.t-micro{font-size:12px;line-height:1.4;letter-spacing:.02em;font-weight:600;color:var(--faint)}
+.tnum{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---- shared chrome ---- */
+.nav{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:40}
+.nav .wrap{display:flex;align-items:center;gap:22px;min-height:60px;flex-wrap:wrap}
+.brand{font-weight:600;letter-spacing:-.02em;margin-right:auto}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.navlinks a{transition:color 150ms ease-out}
+.navlinks a:hover{color:var(--fg)}
+
+.hero{padding:56px 0 40px}
+.searchrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;align-items:center;
+  border:1px solid var(--line-strong);border-radius:var(--r);padding:7px;background:var(--card);max-width:720px}
+.searchrow input{flex:1 1 240px;min-width:0;border:0;background:transparent;color:var(--fg);
+  font:inherit;font-size:16px;padding:10px}
+.searchrow input::placeholder{color:var(--faint)}
+.btn{border:1px solid var(--line-strong);background:var(--bg);color:var(--fg);border-radius:8px;
+  padding:10px 16px;font-size:14px;white-space:nowrap;min-height:44px;
+  transition:border-color 150ms ease-out,background-color 150ms ease-out}
+.btn:hover{border-color:var(--fg)}
+.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--fg);color:var(--bg);border-color:transparent}
+.sec{padding:52px 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.sec-h .end{margin-left:auto;font-size:14px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;
+  padding:5px 12px;font-size:13px;color:var(--muted);background:var(--bg);white-space:nowrap;
+  min-height:32px;transition:border-color 150ms ease-out,color 150ms ease-out}
+.chip:hover{border-color:var(--line-strong);color:var(--fg)}
+.chip small{opacity:.6;font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.copy{border:1px solid var(--line-strong);background:var(--bg);border-radius:8px;padding:0 14px;
+  font-size:13px;font-weight:600;min-height:36px;min-width:104px;display:inline-flex;
+  align-items:center;justify-content:center;
+  transition:border-color 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out}
+.copy:hover{border-color:var(--fg)}
+.copy[data-done]{background:var(--fg);color:var(--bg);border-color:transparent}
+.ph{background:var(--surface);border-radius:var(--r-in);overflow:hidden;position:relative;
+  display:grid;place-items:center}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .none{font:12px var(--mono);color:var(--faint);padding:12px;text-align:center}
+.mono{font-family:var(--mono);font-size:13px;line-height:1.7;white-space:pre-wrap;
+  overflow-wrap:break-word;color:var(--muted)}
+.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.clamp1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+h1,h2,h3,p,td,a{overflow-wrap:break-word}
+
+/* ---- footer: the crawl surface, identical in every variant ---- */
+.foot{border-top:1px solid var(--line);background:var(--surface);padding:48px 0 40px;margin-top:8px}
+.footcols{display:grid;gap:28px 24px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.footcols h3{font-size:12px;letter-spacing:.06em;color:var(--faint);margin-bottom:12px;font-weight:600}
+.footcols ul{list-style:none;margin:0;padding:0}
+.footcols li{margin:8px 0}
+.footcols a{font-size:14px;color:var(--muted);transition:color 150ms ease-out}
+.footcols a:hover{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+.about{border-top:1px solid var(--line);padding:44px 0}
+.about h2{font-size:22px;line-height:1.25;letter-spacing:-.02em;font-weight:600;margin-bottom:14px}
+.about p{max-width:68ch;color:var(--muted);margin-bottom:12px}
+.band{padding:40px 0;border-top:1px solid var(--line)}
+.tiles{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.tile{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:14px 16px;
+  display:grid;gap:4px;transition:border-color 150ms ease-out}
+.tile:hover{border-color:var(--line-strong)}
+.tile b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.tile span{font-size:13px;color:var(--faint)}
+.footlegal{display:flex;gap:18px;flex-wrap:wrap;margin-top:32px;padding-top:20px;
+  border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+
+
+/* ============ A · 现状 baseline ============ */
+.a-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.a-card{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:16px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:border-color 150ms ease-out}
+.a-card:hover{border-color:var(--line-strong)}
+.a-card .ph{aspect-ratio:16/9}
+.a-card h3{font-size:16px;line-height:1.5;font-weight:600;letter-spacing:-.01em}
+.a-card h3 a{text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;
+  transition:text-decoration-color 150ms ease-out}
+.a-card:hover h3 a{text-decoration-color:var(--line-strong)}
+.a-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--faint);
+  margin-top:auto}
+.a-act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* ============ B · 图先 image-first ============ */
+.b-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.b-cell{position:relative;border-radius:var(--r);overflow:hidden;background:var(--surface);
+  border:1px solid var(--line)}
+.b-cell .ph{aspect-ratio:4/5;border-radius:0}
+.b-cap{position:absolute;inset:auto 0 0 0;padding:14px 14px 12px;
+  background:linear-gradient(to top,rgb(0 0 0/.82) 0%,rgb(0 0 0/.62) 45%,rgb(0 0 0/0) 100%);
+  color:#fff;display:grid;gap:6px}
+.b-cap .who{font-size:12px;letter-spacing:.02em;opacity:.82;font-weight:600}
+.b-cap .what{font-size:14px;line-height:1.45;font-weight:600;text-wrap:pretty}
+.b-hover{position:absolute;inset:0;background:var(--bg);padding:16px;display:grid;
+  grid-template-rows:1fr auto;gap:12px;opacity:0;pointer-events:none;
+  transition:opacity 180ms var(--ease)}
+.b-cell:hover .b-hover,.b-cell:focus-within .b-hover{opacity:1;pointer-events:auto}
+.b-hover .mono{overflow:hidden}
+.b-nomedia{display:grid;place-items:center;aspect-ratio:4/5;padding:20px;text-align:center}
+
+/* ============ C · 结构化 structured ============ */
+.c-list{display:grid;gap:0}
+.c-row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:20px;align-items:start;
+  padding:20px 0;border-top:1px solid var(--line)}
+.c-row:first-child{border-top:0}
+.c-row .ph{aspect-ratio:1;border-radius:var(--r-in)}
+.c-desc{font-size:17px;line-height:1.5;font-weight:600;letter-spacing:-.01em;text-wrap:pretty}
+.c-desc .dim{color:var(--muted);font-weight:400}
+.c-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.c-tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;
+  padding:3px 9px;white-space:nowrap}
+.c-ex{margin-top:10px;max-width:68ch}
+.c-side{display:grid;gap:8px;justify-items:end;text-align:end}
+
+/* ============ D · 速取 fast-grab ============ */
+.d-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.d-table{width:100%;border-collapse:collapse}
+.d-table thead th{text-align:start;font-size:12px;letter-spacing:.02em;color:var(--faint);
+  font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line-strong)}
+.d-table td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+.d-table tbody tr{transition:background-color 120ms ease-out}
+.d-table tbody tr:hover{background:var(--surface)}
+.d-thumb{width:48px;height:48px;border-radius:6px}
+.d-txt{font-size:14px;line-height:1.5;max-width:62ch}
+.d-txt a{font-weight:600}
+.d-model{font-size:13px;color:var(--muted);white-space:nowrap}
+.d-who{font-size:13px;color:var(--faint);white-space:nowrap}
+@media (max-width:860px){
+  .d-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .d-table td{display:block;border:0;padding:2px 0}
+  .d-table tbody tr{display:grid;grid-template-columns:48px 1fr;gap:4px 12px;
+    padding:14px 0;border-bottom:1px solid var(--line)}
+  .d-table td:first-child{grid-row:span 4}
+}
+@media (max-width:640px){
+  .c-row{grid-template-columns:72px minmax(0,1fr)}
+  .c-side{grid-column:2;justify-items:start;text-align:start}
+}
+
+.proto-picker {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.82);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 8px 24px rgba(0, 0, 0, 0.24),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.proto-picker-highlight {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  will-change: transform;
+}
+
+/* The slide is enabled only after first paint (data-ready), so load doesn't animate. */
+.proto-picker[data-ready] .proto-picker-highlight {
+  transition:
+    transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+    width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+}
+
+.proto-picker-item {
+  position: relative; /* sits above the highlight */
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font: inherit;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.proto-picker-item:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.proto-picker-item:active {
+  transform: scale(0.97);
+}
+
+.proto-picker-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.proto-picker-item[data-active] {
+  color: #fff;
+}
+
+.proto-picker-divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.proto-picker-replay {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.proto-picker[data-position="top"] {
+  bottom: auto;
+  top: 24px;
+}
+
+</style>
+</head>
+<body>
+<div id="stage"></div>
+
+<nav class="proto-picker" aria-label="Prototype variants">
+  <span class="proto-picker-highlight" aria-hidden="true"></span>
+  <button class="proto-picker-item" data-active aria-current="true">A Baseline</button>
+  <button class="proto-picker-item">B Image-first</button>
+  <button class="proto-picker-item">C Structured</button>
+  <button class="proto-picker-item">D Index</button>
+</nav>
+
+<script>window.__DATA__ = {"items":[{"id":"1992826251220754540","title":"Design, high-quality promotional post showcasing the [DEVICE]","excerpt":"Design, high-quality promotional post showcasing the [DEVICE]. The layout should mimic [DEVICE-WEBSITE] clean and modern website style, set on an elegant off-wh…","href":"/zh-CN/prompts/design-high-quality-promotional-post-showcas-1992826251220754540","model":"Nano Banana Pro","useCase":"Web & motion design","style":"Luxury","subject":null,"technique":null,"handle":"@ShamsAmin56","img":"https://pbs.twimg.com/media/G6fw59VXYAAHd8R.jpg?name=small","kind":"image","vars":true},{"id":"2008952931484098637","title":"Concept: A hyper-realistic 3D isometric view of a [INSERT LOCATI…","excerpt":"Concept: A hyper-realistic 3D isometric view of a [INSERT LOCATION] scene on a circular base. Subject (Visuals): A full-body, realistic human [INSERT DESCRIPTIO…","href":"/zh-CN/prompts/concept-2008952931484098637","model":"Nano Banana","useCase":"Food & beverage","style":"Photorealistic","subject":"Food / drink","technique":"Camera movement / shot language","handle":"@Arminn_Ai","img":"https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small","kind":"image","vars":true},{"id":"2009912753650323721","title":"{ \"scene_type\": \"indoor close-up lifestyle selfie\", \"setting\": {","excerpt":"{ \"scene_type\": \"indoor close-up lifestyle selfie\", \"setting\": { \"location_type\": \"indoor public venue\", \"environment_style\": \"industrial casual\", \"materials\":…","href":"/zh-CN/prompts/scene-type-indoor-close-up-lifestyle-selfie--2009912753650323721","model":"Higgsfield Soul","useCase":"Beauty","style":null,"subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@ZaraIrahh","img":"https://pbs.twimg.com/media/G-Sk_ERasAMwxXc.jpg?name=small","kind":"image","vars":false},{"id":"2015726421990056336","title":"{ \"prompt\": \"Portrait photography from above, Ana de Armas with long brown","excerpt":"{ \"prompt\": \"Portrait photography from above, Ana de Armas with long brown shoulder length ponytail hair, looking up directly at camera, both hands resting rest…","href":"/zh-CN/prompts/prompt-portrait-photography-from-above-ana-d-2015726421990056336","model":"Nano Banana","useCase":"Beauty","style":"Photorealistic","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small","kind":"image","vars":false},{"id":"2016908153284088004","title":"{ \"prompt_structure\": { \"subject\": { \"appearance\": \"Young woman with long,","excerpt":"{ \"prompt_structure\": { \"subject\": { \"appearance\": \"Young woman with long, wavy blonde hair and a radiant, joyful expression featuring a wide smile.\", \"pose\": \"…","href":"/zh-CN/prompts/prompt-structure-subject-appearance-young-wo-2016908153284088004","model":"Nano Banana Pro","useCase":null,"style":"Photorealistic","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/G_1_Q_MXgAAg26K.jpg?name=small","kind":"image","vars":false},{"id":"2018792341192990900","title":"{ \"prompt_description\": \"Ultra Photorealistic Candid Portrait of a","excerpt":"{ \"prompt_description\": \"Ultra Photorealistic Candid Portrait of a Superhero\", \"subject\": { \"appearance\": \"Young woman with shoulder-length red hair pulled back…","href":"/zh-CN/prompts/prompt-description-ultra-photorealistic-cand-2018792341192990900","model":"Nano Banana Pro","useCase":"Food & beverage","style":"Cinematic","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/HAQw7YJXgAA4GIV.jpg?name=small","kind":"image","vars":false},{"id":"2019109812341207229","title":"Shot 1: Side profile medium shot of a Black man with an afro, mu…","excerpt":"Shot 1: Side profile medium shot of a Black man with an afro, mustache, and vintage sunglasses sitting in a beige 1970s sedan. The car is parked on a sun-drench…","href":"/zh-CN/prompts/shot-1-side-profile-medium-shot-of-a-black-m-2019109812341207229","model":null,"useCase":"Automotive","style":"Retro / vintage","subject":null,"technique":"Camera movement / shot language","handle":"@higgsfield_ai","img":null,"kind":null,"vars":false},{"id":"2019849202591789460","title":"{ \"image_analysis\": { \"overall_scene\": \"Provocative gym mirror selfie of","excerpt":"{ \"image_analysis\": { \"overall_scene\": \"Provocative gym mirror selfie of two young smiling women viewed from behind, posing to emphasize glutes and lower bodies…","href":"/zh-CN/prompts/image-analysis-overall-scene-provocative-gym-2019849202591789460","model":"Nano Banana","useCase":null,"style":"Anime / illustrated","subject":null,"technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small","kind":"image","vars":false},{"id":"2026574551207792783","title":"A stylized, retro-futuristic music poster in a synthwave aesthetic","excerpt":"A stylized, retro-futuristic music poster in a synthwave aesthetic. The central focus is a woman in profile with a platinum blonde bob haircut, wearing oversize…","href":"/zh-CN/prompts/a-stylized-retro-futuristic-music-poster-in--2026574551207792783","model":"Nano Banana Pro","useCase":"Fashion","style":"Retro / vintage","subject":"Person / portrait","technique":null,"handle":"@rovvmut_","img":"https://pbs.twimg.com/media/HB_W0AYaMAkOKVS.jpg?name=small","kind":"image","vars":false},{"id":"2027628259467313402","title":"Use the uploaded picture as a reference (Strict identity lock, the face","excerpt":"Use the uploaded picture as a reference (Strict identity lock, the face must match the attached reference photo exactly, preserving facial structure, skin tone,…","href":"/zh-CN/prompts/use-the-uploaded-picture-as-a-reference-stri-2027628259467313402","model":"Nano Banana 2","useCase":null,"style":"Cinematic","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@HaniaAi12","img":"https://pbs.twimg.com/media/HCOVJ5QWUAA1DNU.jpg?name=small","kind":"image","vars":false},{"id":"2029632175482507599","title":"{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sydney Sweeney\",","excerpt":"{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sydney Sweeney\", \"facial_forensics\": { \"structure\": \"Soft-edged heart-shaped facial morphology, high malar…","href":"/zh-CN/prompts/subject-identity-biometric-reference-sydney--2029632175482507599","model":"Nano Banana","useCase":"Beauty","style":"Photorealistic","subject":null,"technique":"Camera movement / shot language","handle":"@PinodiArt","img":"https://pbs.twimg.com/media/HCqzkiOXEAE3uDT.jpg?name=small","kind":"image","vars":false},{"id":"2031703969882382558","title":"{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sabrina Carpenter\",","excerpt":"{ \"subject\": { \"identity\": { \"biometric_reference\": \"Sabrina Carpenter\", \"facial_structure\": \"Heart-shaped face morphology, prominent zygomatic arches, defined…","href":"/zh-CN/prompts/subject-identity-biometric-reference-sabrina-2031703969882382558","model":"Nano Banana 2","useCase":null,"style":"Luxury","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@PinodiArt","img":"https://pbs.twimg.com/media/HDIP6V5WgAEocdY.jpg?name=small","kind":"image","vars":false},{"id":"2032169264963338327","title":"{ “meta”: { “quality”: “ultra_photorealistic, raw style, 8k”, “camera”:","excerpt":"{ “meta”: { “quality”: “ultra_photorealistic, raw style, 8k”, “camera”: “iPhone 15 Pro Max”, “lighting”: “intimate indoor setting, dominated by striking linear…","href":"/zh-CN/prompts/meta-quality-ultra-photorealistic-raw-style--2032169264963338327","model":"Higgsfield Soul","useCase":"Beauty","style":"Cinematic","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/HDO3Kb_XUAAs9jz.jpg?name=small","kind":"image","vars":false},{"id":"2041085548928930146","title":"{ \"subject\": { \"desc\": \"Young woman with strong resemblance to a realistic","excerpt":"{ \"subject\": { \"desc\": \"Young woman with strong resemblance to a realistic female latex version of Aquaman cosplay, fair skin with subtle golden undertone, long…","href":"/zh-CN/prompts/subject-desc-young-woman-with-strong-resembl-2041085548928930146","model":"Higgsfield Soul","useCase":null,"style":"Luxury","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/HFNkegpXEAAriop.jpg?name=small","kind":"image","vars":false},{"id":"2047862141894681076","title":"A realistic young woman sitting casually in a softly lit bedroom…","excerpt":"A realistic young woman sitting casually in a softly lit bedroom during late afternoon. She is holding her phone very close to her face as if recording a privat…","href":"/zh-CN/prompts/a-realistic-young-woman-sitting-casually-in--2047862141894681076","model":"GPT Image","useCase":"Beauty","style":"Cinematic","subject":null,"technique":null,"handle":"@ChillaiKalan__","img":"https://pbs.twimg.com/media/HGt3trjbwAA7Bkt.jpg?name=small","kind":"image","vars":false},{"id":"2048450197085474925","title":"Subject: Downhill Kart Race Style: Hyper-realistic, Action Adven…","excerpt":"Subject: Downhill Kart Race Style: Hyper-realistic, Action Adventure, GoPro Aesthetic Action: A fast downhill race following a lead pack of kids on go-karts. Th…","href":"/zh-CN/prompts/subject-downhill-kart-race-style-hyper-reali-2048450197085474925","model":"Seedance","useCase":null,"style":"Photorealistic","subject":null,"technique":"Camera movement / shot language","handle":"@IqrasaifiAI","img":"https://pbs.twimg.com/amplify_video_thumb/2048449587044855808/img/PNSS3kDNbKbMmysD.jpg?name=small","kind":"video","vars":false},{"id":"2051559171452215583","title":"Photorealistic 3:4 image","excerpt":"Photorealistic 3:4 image. SHOOTING: natural smartphone photo, slight imperfection in framing, feeling of a candid captured moment. Soft focus with emphasis on t…","href":"/zh-CN/prompts/photorealistic-3-4-image-2051559171452215583","model":"Nano Banana Pro","useCase":"Beauty","style":"Anime / illustrated","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@AIWithRay","img":"https://pbs.twimg.com/media/HHiaL2FbsAAImQ3.jpg?name=small","kind":"image","vars":false},{"id":"2052012370373812240","title":"{ \"prompt_details\": { \"medium\": \"RAW photograph\", \"quality_tags\": [","excerpt":"{ \"prompt_details\": { \"medium\": \"RAW photograph\", \"quality_tags\": [ \"unretouched RAW photo\", \"straight out of camera (SOOC)\", \"4k resolution\", \"ultra HD\", \"high…","href":"/zh-CN/prompts/prompt-details-medium-raw-photograph-quality-2052012370373812240","model":"Nano Banana Pro","useCase":"Beauty","style":"Photorealistic","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@KeorUnreal","img":"https://pbs.twimg.com/media/HHo2XVdWgAQV_Zd.jpg?name=small","kind":"image","vars":false},{"id":"2060203818785370400","title":"Design a hyper-realistic FIFA 2026 football poster inspired by premium","excerpt":"Design a hyper-realistic FIFA 2026 football poster inspired by premium sports editorial photography and minimalist World Cup branding. Create a centered composi…","href":"/zh-CN/prompts/design-a-hyper-realistic-fifa-2026-football--2060203818785370400","model":"GPT Image","useCase":"Advertising","style":"Cinematic","subject":"Person / portrait","technique":"Camera movement / shot language","handle":"@AIwithSarah_","img":"https://pbs.twimg.com/media/HJdQdAobUAA0Naq.jpg?name=small","kind":"image","vars":false},{"id":"2060557083679076537","title":"{\"image_type\":\"portrait_travel_photography\",\"prompt\":\"Ultra-realistic","excerpt":"{\"image_type\":\"portrait_travel_photography\",\"prompt\":\"Ultra-realistic evening portrait of a woman standing beside a lakeside railing, wearing a blue-gray paisle…","href":"/zh-CN/prompts/image-type-portrait-travel-photography-promp-2060557083679076537","model":"Nano Banana Pro","useCase":"Beauty","style":"Cinematic","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@ZaraIrahh","img":"https://pbs.twimg.com/media/HJiRu4PXoAABMQQ.jpg?name=small","kind":"image","vars":false},{"id":"2063814043631280180","title":"国家主题微缩邮票海报","excerpt":"以任一国家为变量，生成一张超写实微距摄影：巨型复古邮票立于柔和粉彩影棚背景中， 该国地标以立体透视冲破齿孔边缘向外延伸，本地动植物自邮票右下角溢出。 换一个国家，地标、动植物、服饰、货币与邮戳整套联动更换。","href":"/zh-CN/prompts/country-miniature-stamp-poster","model":"GPT Image 2","useCase":null,"style":"Photorealistic","subject":null,"technique":"微缩摄影","handle":"@Naiknelofar788","img":"https://pbs.twimg.com/media/HKQj4k7bkAA0Aov.jpg?name=small","kind":"image","vars":true},{"id":"2063871161998745877","title":"Create a photorealistic premium product campaign poster in a 4:5 vertical","excerpt":"Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio. Product: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH /…","href":"/zh-CN/prompts/create-a-photorealistic-premium-product-camp-2063871161998745877","model":"GPT Image","useCase":"Advertising","style":"Luxury","subject":"Food / drink","technique":"Camera movement / shot language","handle":"@AIwithSarah_","img":"https://pbs.twimg.com/media/HKRX36vbsAAskMp.jpg?name=small","kind":"image","vars":true},{"id":"2065638647886659855","title":"Photorealistic romantic European travel editorial portrait of a beautiful","excerpt":"Photorealistic romantic European travel editorial portrait of a beautiful young woman, standing in an open crimson-red balcony doorway of a luxurious Italian co…","href":"/zh-CN/prompts/photorealistic-romantic-european-travel-edit-2065638647886659855","model":"Nano Banana Pro","useCase":"Beauty","style":"Anime / illustrated","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@ZaraIrahh","img":"https://pbs.twimg.com/media/HKqcr_TakAACa5Y.jpg?name=small","kind":"image","vars":false},{"id":"2066531004924436614","title":"produces an ICP pain map plus 7 ad angles ranked by differentiat…","excerpt":"produces an ICP pain map plus 7 ad angles ranked by differentiation (this is the angle that found an $8.4M-premium insurance hook) → creative strategy + copy st…","href":"/zh-CN/prompts/produces-an-icp-pain-map-plus-7-ad-angles-ra-2066531004924436614","model":"Kling","useCase":"Advertising","style":"Luxury","subject":null,"technique":null,"handle":"@zackpaid","img":"https://pbs.twimg.com/media/HK3K6roakAAKzV9.jpg?name=small","kind":"image","vars":false},{"id":"2068543924055240801","title":"Japanese girl with long straight black hair and soft wispy bangs, wearing a","excerpt":"Japanese girl with long straight black hair and soft wispy bangs, wearing a mint green polo shirt and a blue plaid skirt, standing casually in front of a conven…","href":"/zh-CN/prompts/japanese-girl-with-long-straight-black-hair--2068543924055240801","model":"GPT Image 2","useCase":"Food & beverage","style":"Cinematic","subject":"Architecture / interior","technique":"Camera movement / shot language","handle":"@saniaspeaks_","img":"https://pbs.twimg.com/media/HLTxa8GWAAAPS-S.jpg?name=small","kind":"image","vars":false},{"id":"2071174186978951379","title":"Scene: A seamless ultra-cinematic one-take shot starting from de…","excerpt":"Scene: A seamless ultra-cinematic one-take shot starting from deep space and ending in an intimate café moment. The sequence emphasizes speed, scale, and immers…","href":"/zh-CN/prompts/scene-a-seamless-ultra-cinematic-one-take-sh-2071174186978951379","model":"Seedance","useCase":"Food & beverage","style":"Cinematic","subject":null,"technique":"Camera movement / shot language","handle":"@Naiknelofar788","img":"https://pbs.twimg.com/amplify_video_thumb/2071173989758828544/img/XrApo3brHZspKnV-.jpg?name=small","kind":"video","vars":true},{"id":"2073529429838696592","title":"concept + scroll: \"read this brief, script the scroll","excerpt":"concept + scroll: \"read this brief, script the scroll - what the visitor feels at second 3, 15, 40. scaffold the site with GSAP ScrollTrigger + Lenis.\" motion a…","href":"/zh-CN/prompts/concept-scroll-read-this-brief-script-the-sc-2073529429838696592","model":null,"useCase":"Web & motion design","style":"Cinematic","subject":null,"technique":null,"handle":"@zeuuss_01","img":"https://pbs.twimg.com/amplify_video_thumb/2073529353984479232/img/zW1OLkU6lbHMkqFA.jpg?name=small","kind":"video","vars":false},{"id":"2078814921756754352","title":"A cinematic 15-second music video shot in a dark modern dance st…","excerpt":"A cinematic 15-second music video shot in a dark modern dance studio with smooth grey reflective floor, black walls and horizontal neon light tubes. Continuous…","href":"/zh-CN/prompts/a-cinematic-15-second-music-video-shot-in-a--2078814921756754352","model":"Seedance","useCase":"Fashion","style":"Cinematic","subject":null,"technique":"Camera movement / shot language","handle":"@Kiber_Alla","img":"https://pbs.twimg.com/amplify_video_thumb/2078813993645273089/img/4nQRj3B5LpuYV0XW.jpg?name=small","kind":"video","vars":false},{"id":"2083168602363150527","title":"SCENE A day in New York shot entirely by the subject herself: wa…","excerpt":"SCENE A day in New York shot entirely by the subject herself: waking in her hotel suite, coffee, getting ready, out into the city, back to the room at night. AC…","href":"/zh-CN/prompts/scene-a-day-in-new-york-shot-entirely-by-the-2083168602363150527","model":"Higgsfield Soul","useCase":"Food & beverage","style":"Photorealistic","subject":null,"technique":"Camera movement / shot language","handle":"@higgsfield_ai","img":"https://pbs.twimg.com/amplify_video_thumb/2083165874983424000/img/L7v_JTJr0f72f2Z_.jpg?name=small","kind":"video","vars":false},{"id":"2084387316286595436","title":"The Office (US) mockumentary style","excerpt":"The Office (US) mockumentary style. Dunder Mifflin conference room, mid-afternoon, harsh fluorescent lighting, cheap office chairs, whiteboard at the front. Han…","href":"/zh-CN/prompts/the-office-us-mockumentary-style-2084387316286595436","model":null,"useCase":null,"style":null,"subject":null,"technique":"Camera movement / shot language","handle":"@Arminn_Ai","img":"https://pbs.twimg.com/amplify_video_thumb/2084387230844346368/img/3q3PrcBYVZsGJ3lW.jpg?name=small","kind":"video","vars":false},{"id":"2085640281941307648","title":"Montage, multi-shot candid observational footage","excerpt":"Montage, multi-shot candid observational footage. Do not use a single camera angle or continuous take. Handheld documentary style with the feeling of accidental…","href":"/zh-CN/prompts/montage-multi-shot-candid-observational-foot-2085640281941307648","model":"Seedance","useCase":"Food & beverage","style":"Photorealistic","subject":null,"technique":"Camera movement / shot language","handle":"@oggii_0","img":"https://pbs.twimg.com/amplify_video_thumb/2085640247682224128/img/Wj08brZzXojtfWtv.jpg?name=small","kind":"video","vars":false},{"id":"2085931701088174312","title":"Ultra-realistic cinematic vertical video, 10 seconds","excerpt":"Ultra-realistic cinematic vertical video, 10 seconds. A beautiful young Korean woman spends a peaceful evening in her cozy bedroom, wearing the same oversized c…","href":"/zh-CN/prompts/ultra-realistic-cinematic-vertical-video-10--2085931701088174312","model":"Seedance","useCase":"Beauty","style":"Cinematic","subject":null,"technique":"Camera movement / shot language","handle":"@Aqsahere_","img":"https://pbs.twimg.com/amplify_video_thumb/2085931637343420416/img/HZ3NABsiLrAmXz8m.jpg?name=small","kind":"video","vars":false},{"id":"2087155737784918460","title":"CAMERA: Handheld DV 16mm daily vlog footage","excerpt":"CAMERA: Handheld DV 16mm daily vlog footage. The video MUST begin with her holding the camera at arm's length in selfie mode while stepping out of an old stone…","href":"/zh-CN/prompts/camera-handheld-dv-16mm-daily-vlog-footage-2087155737784918460","model":"Seedance","useCase":"Advertising","style":"Photorealistic","subject":null,"technique":"Camera movement / shot language","handle":"@PhedEU","img":"https://pbs.twimg.com/amplify_video_thumb/2087155707795607552/img/GvPt7yiUAlXPgSXk.jpg?name=small","kind":"video","vars":false},{"id":"2088866007918268515","title":"30-SECOND CINEMATIC SHORT Create a 30-second cinematic sequence…","excerpt":"30-SECOND CINEMATIC SHORT Create a 30-second cinematic sequence with the visual discipline of a major feature film. The world is entirely made from paper, cardb…","href":"/zh-CN/prompts/30-second-cinematic-short-create-a-30-second-2088866007918268515","model":"GPT Image","useCase":null,"style":"Cinematic","subject":null,"technique":"Camera movement / shot language","handle":"@ChillaiKalan__","img":"https://pbs.twimg.com/amplify_video_thumb/2088865943921528832/img/ACj33PYyBD5RI7qH.jpg?name=small","kind":"video","vars":false},{"id":"2089932434351734933","title":"Use the uploaded reference image as the exact character and prod…","excerpt":"Use the uploaded reference image as the exact character and product reference. Preserve the woman’s facial identity, hairstyle, eye color, makeup, skin tone, bo…","href":"/zh-CN/prompts/use-the-uploaded-reference-image-as-the-exac-2089932434351734933","model":"Seedance","useCase":"Advertising","style":"Cinematic","subject":null,"technique":"Camera movement / shot language","handle":"@AIwithSynthia","img":"https://pbs.twimg.com/amplify_video_thumb/2089932382531133440/img/k05-QTjlyxToORTd.jpg?name=small","kind":"video","vars":false}],"axes":{"model":[{"label":"Nano Banana Pro","slug":"nano-banana-pro","count":14,"href":"/zh-CN/prompts/models/nano-banana-pro"},{"label":"Seedance","slug":"seedance","count":11,"href":"/zh-CN/prompts/models/seedance"},{"label":"Nano Banana","slug":"nano-banana","count":5,"href":"/zh-CN/prompts/models/nano-banana"},{"label":"GPT Image","slug":"gpt-image","count":4,"href":"/zh-CN/prompts/models/gpt-image"},{"label":"GPT Image 2","slug":"gpt-image-2","count":4,"href":"/zh-CN/prompts/models/gpt-image-2"},{"label":"Higgsfield Soul","slug":"higgsfield-soul","count":4,"href":"/zh-CN/prompts/models/higgsfield-soul"},{"label":"Nano Banana 2","slug":"nano-banana-2","count":3,"href":"/zh-CN/prompts/models/nano-banana-2"},{"label":"Kling","slug":"kling","count":1,"href":"/zh-CN/prompts/models/kling"},{"label":"Veo","slug":"veo","count":1,"href":"/zh-CN/prompts/models/veo"}],"useCase":[{"label":"Beauty","slug":"beauty","count":13,"href":null},{"label":"Food & beverage","slug":"food-beverage","count":8,"href":null},{"label":"Advertising","slug":"advertising","count":5,"href":null},{"label":"Fashion","slug":"fashion","count":5,"href":null},{"label":"Web & motion design","slug":"web-motion-design","count":3,"href":null},{"label":"UGC","slug":"ugc","count":2,"href":null},{"label":"Automotive","slug":"automotive","count":1,"href":null}],"technique":[{"label":"Camera movement / shot language","slug":"camera-movement-shot-language","count":29,"href":null},{"label":"Lip sync / dialogue","slug":"lip-sync-dialogue","count":4,"href":null},{"label":"Multi-shot / storyboard","slug":"multi-shot-storyboard","count":4,"href":null},{"label":"Transition / morph / match cut","slug":"transition-morph-match-cut","count":4,"href":null},{"label":"微缩摄影","slug":"miniature-photography","count":1,"href":null}],"style":[{"label":"Photorealistic","slug":"photorealistic","count":27,"href":null},{"label":"Cinematic","slug":"cinematic","count":14,"href":null},{"label":"Luxury","slug":"luxury","count":11,"href":null},{"label":"Retro / vintage","slug":"retro-vintage","count":6,"href":null},{"label":"Anime / illustrated","slug":"anime-illustrated","count":3,"href":null},{"label":"Sci-fi / cyberpunk","slug":"sci-fi-cyberpunk","count":1,"href":null}],"subject":[{"label":"Person / portrait","slug":"person-portrait","count":15,"href":null},{"label":"Architecture / interior","slug":"architecture-interior","count":7,"href":null},{"label":"Food / drink","slug":"food-drink","count":2,"href":null},{"label":"Product","slug":"product","count":1,"href":null}]},"total":35};</script>
+<script>
+const D = window.__DATA__;
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* A title that starts with `{` is a JSON blob the extractor could not name.
+   Eleven of thirty-five records are in that state, so every variant needs an
+   answer for it — each one answers differently, which is the point. */
+const isJunk = (t) => /^[{\[]/.test(t.trim());
+
+/* A human-readable label for a record.
+ *
+ * Eleven of thirty-five records carry JSON as BOTH their title and their prompt
+ * text, so "use the first sentence instead" does not help — the first sentence
+ * is `{ "subject": { "identity": {`. What does help is that the JSON always
+ * contains prose somewhere in it: a `prompt`, an `overall_scene`, a `desc`.
+ * This pulls the first string VALUE that reads like a sentence, whatever its
+ * key is called — key names differ across all eleven records, and the excerpt
+ * is truncated mid-value, so neither a key list nor a JSON parse would work.
+ *
+ * It recovers ten of the eleven. The last one's prose sits past the truncation
+ * point, so it falls back to the record's taxonomy, and if that is missing too,
+ * to a plain statement that the source gave no readable title — never to the
+ * raw JSON, and never to an invented sentence. */
+/* The descriptor variant C leads with: built from taxonomy the record carries,
+   never invented. Missing axes are simply absent. */
+function descriptor(item) {
+  const bits = [item.subject, item.useCase, item.style].filter(Boolean);
+  if (!bits.length) return null;
+  return bits;
+}
+
+const PROSE = /[:：]\s*["\u201c]([^"\u201c\u201d]{25,})/;
+function readableLabel(item) {
+  const src = (item.excerpt || "").replace(/\s+/g, " ").trim();
+  if (!/^[{[]/.test(src)) {
+    const m = src.match(/^[^.。!?！？]{12,120}[.。!?！？]/);
+    return (m ? m[0] : src.slice(0, 110)).trim();
+  }
+  const hit = src.match(PROSE);
+  if (hit && hit[1].includes(" ")) return hit[1].trim().replace(/[,;:]$/, "");
+  const bits = descriptor(item);
+  return bits ? bits.join(" · ") : "Untitled by its author";
+}
+const firstSentence = readableLabel;
+
+
+function media(item, cls = "") {
+  if (!item.img) return `<div class="ph ${cls}"><span class="none">No media<br>in the original post</span></div>`;
+  const tag = item.kind === "video" ? "Video" : "Image";
+  return `<div class="ph ${cls}"><img src="${esc(item.img)}" alt="${esc(tag)} generated by this prompt: ${esc(readableLabel(item).slice(0,60))}" loading="lazy" referrerpolicy="no-referrer"></div>`;
+}
+
+const copyBtn = (item) =>
+  `<button class="copy" data-copy="${esc(item.id)}" type="button">Copy prompt</button>`;
+
+
+function browseBand(id, heading, blurb, terms, unit) {
+  return `<section class="band" id="${id}"><div class="wrap">
+    <div class="sec-h"><h2 class="t-sec">${heading}</h2><span class="end tnum">${terms.length} ${unit}</span></div>
+    <p class="t-lead" style="font-size:16px;margin:-10px 0 20px">${blurb}</p>
+    <div class="tiles">
+      ${terms.map((t) => `<a class="tile" href="${esc(t.href || "#browse")}">
+        <b>${esc(t.label)}</b><span class="tnum">${t.count} prompts</span></a>`).join("")}
+    </div>
+  </div></section>`;
+}
+
+/* The prose answer to the query the page is for. It is a PSEO device — an H2
+   phrased as the question, answered in plain sentences — and it doubles as the
+   passage an LLM quotes when asked what this library is. Everything in it is
+   checkable against the data. */
+function about() {
+  return `<section class="about"><div class="wrap">
+    <h2>What is this prompt library?</h2>
+    <p>A collection of ${D.total} image and video prompts that creators published openly on X.
+       Each one is stored word for word, next to the picture or clip it produced, and credited to
+       the account that wrote it.</p>
+    <p>Copy a prompt, swap the subject or the style, and run it in the model it was written
+       for. Browse by model, by use case, by technique, by style or by subject — or search the
+       whole library from the box at the top.</p>
+    <p>Nothing here is rewritten or paraphrased. A prompt that its author published as JSON is
+       shown as JSON; a prompt with a <code>[VARIABLE]</code> placeholder keeps it.</p>
+  </div></section>`;
+}
+
+/* ---------------- shared chrome ---------------- */
+function chrome(inner, opts = {}) {
+  return `
+<nav class="nav" aria-label="主导航"><div class="wrap">
+  <span class="brand">Higgsfield Prompt Library</span>
+  <span class="navlinks">
+    <a href="#browse">Browse</a><a href="#by-model">Models</a><a href="#by-use-case">Use cases</a><a href="#by-style">Styles</a>
+  </span>
+</div></nav>
+
+<main id="main">
+  <section class="hero"><div class="wrap">
+    <h1 class="t-page">AI image &amp; video prompts,<br>copied from their authors</h1>
+    <p class="t-lead" style="margin-top:16px">${esc(opts.lead || `Every entry shows the exact prompt behind the result beside it — reproduced verbatim from the post its author published on X, with the model it was written for and a link back to the original.`)}</p>
+    <form class="searchrow" role="search" onsubmit="return false">
+      <label for="q" class="t-micro" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Search prompts</label>
+      <input id="q" type="search" placeholder="Search prompts, models, styles, creators…" autocomplete="off">
+      <button class="btn pri" type="submit">Search</button>
+    </form>
+    <div class="chips" style="margin-top:16px">
+      ${D.axes.model.slice(0, 6).map((t) => `<a class="chip" href="#browse">${esc(t.label)}<small class="tnum">${t.count}</small></a>`).join("")}
+    </div>
+  </div></section>
+
+  ${inner}
+
+  ${browseBand("by-model", "Browse by model", "Every model that has prompts in the library, and how many each has.", D.axes.model, "models")}
+  ${browseBand("by-use-case", "Browse by use case", "What the prompt was made for: campaigns, portraits, product shots, food.", D.axes.useCase, "use cases")}
+  ${browseBand("by-style", "Browse by style", "The look the prompt asks the model for.", D.axes.style, "styles")}
+
+  ${about()}
+</main>
+
+${footer()}`;
+}
+
+/* The footer is the site's crawl surface: EVERY term on every axis, in every
+   variant, unconditionally. It is the one part of this exploration that is not
+   up for redesign. */
+function footer() {
+  const groups = [
+    ["By model", D.axes.model], ["By use case", D.axes.useCase],
+    ["By technique", D.axes.technique], ["By style", D.axes.style], ["By subject", D.axes.subject],
+  ];
+  const total = groups.reduce((n, [, t]) => n + t.length, 0);
+  return `<footer class="foot"><div class="wrap">
+  <nav aria-label="页脚导航"><div class="footcols">
+    ${groups.map(([title, terms]) => `<div>
+      <h3>${title}</h3>
+      <ul>${terms.map((t) => `<li><a href="${esc(t.href || "#")}">${esc(t.label)} prompts</a></li>`).join("")}</ul>
+    </div>`).join("")}
+  </div></nav>
+  <div class="footlegal">
+    <span>Higgsfield Prompt Library</span>
+    <span>Prompts remain the property of their authors; every page credits the source.</span>
+    <span class="tnum">${total} internal links</span>
+  </div>
+</div></footer>`;
+}
+
+/* ================= A · 现状 =================
+   Axis: the record's own title leads. What ships today. */
+function variantA() {
+  const rows = D.items.map((it) => `
+    <article class="a-card">
+      ${media(it)}
+      <h3><a class="clamp1" style="display:block" href="${esc(it.href)}" title="${esc(it.title)}">${esc(it.title)}</a></h3>
+      <p class="mono clamp3">${esc(it.excerpt)}</p>
+      <div class="a-meta">
+        ${it.model ? `<span class="chip">${esc(it.model)}</span>` : ""}
+        <span>${esc(it.handle)}</span>
+      </div>
+      <div class="a-act">${copyBtn(it)}</div>
+    </article>`).join("");
+  return chrome(`<section class="sec" id="browse"><div class="wrap">
+    <div class="sec-h"><h2 class="t-sec">All ${D.total} image &amp; video prompts</h2><span class="end tnum">updated 2026-08-20</span></div>
+    <div class="a-grid">${rows}</div>
+  </div></section>`);
+}
+
+/* ================= B · 图先 =================
+   Axis: the picture identifies the record; text is a caption, and the prompt
+   is revealed on demand. Answers the JSON-title problem by not printing it. */
+function variantB() {
+  const cells = D.items.map((it) => `
+    <article class="b-cell">
+      ${it.img ? media(it) : `<div class="ph b-nomedia"><span class="none">No media<br>${esc(it.model || "")}</span></div>`}
+      <div class="b-cap">
+        <span class="who">${esc(it.model || "Model not stated")} · ${esc(it.handle)}</span>
+        <span class="what clamp2">${esc(readableLabel(it))}</span>
+      </div>
+      <div class="b-hover">
+        <p class="mono clamp3">${esc(it.excerpt)}</p>
+        <div class="a-act">${copyBtn(it)}<a class="btn" href="${esc(it.href)}" style="min-height:36px;padding:0 12px;display:inline-flex;align-items:center;font-size:13px">Open</a></div>
+      </div>
+    </article>`).join("");
+  return chrome(`<section class="sec" id="browse"><div class="wrap">
+    <div class="sec-h"><h2 class="t-sec">All ${D.total} image &amp; video prompts</h2><span class="end tnum">point at a card for its text</span></div>
+    <div class="b-grid">${cells}</div>
+  </div></section>`,
+  { lead: "See the result first. Every image below was produced by the prompt behind it — point at a card to read the text." });
+}
+
+/* ================= C · 结构化 =================
+   Axis: a descriptor derived from the record's own taxonomy replaces the raw
+   title entirely. Nothing invented — a record with no taxonomy shows its first
+   sentence instead. */
+function variantC() {
+  const rows = D.items.map((it) => {
+    const bits = descriptor(it);
+    const head = bits
+      ? bits.map((b, i) => i === 0 ? `<span>${esc(b)}</span>` : `<span class="dim"> · </span><span>${esc(b)}</span>`).join("")
+      : `<span>${esc(readableLabel(it))}</span>`;
+    return `
+    <article class="c-row">
+      ${media(it)}
+      <div>
+        <h3 class="c-desc"><a href="${esc(it.href)}">${head}</a></h3>
+        <div class="c-tags">
+          ${it.model ? `<span class="c-tag">${esc(it.model)}</span>` : ""}
+          ${it.technique ? `<span class="c-tag">${esc(it.technique)}</span>` : ""}
+          ${it.vars ? `<span class="c-tag">Has variables</span>` : ""}
+        </div>
+        <p class="mono clamp2 c-ex">${esc(it.excerpt)}</p>
+      </div>
+      <div class="c-side">
+        ${copyBtn(it)}
+        <span class="t-micro">${esc(it.handle)}</span>
+      </div>
+    </article>`;
+  }).join("");
+  return chrome(`<section class="sec" id="browse"><div class="wrap">
+    <div class="sec-h"><h2 class="t-sec">All ${D.total} image &amp; video prompts</h2><span class="end tnum">updated 2026-08-20</span></div>
+    <div class="c-list">${rows}</div>
+  </div></section>`,
+  { lead: "Grouped by subject, use case and style. Each label is built from those three, because a third of these prompts were published with no title a reader could use." });
+}
+
+/* ================= D · 速取 =================
+   Axis: density and task completion — thirty-five rows on one screen, copy
+   always visible, no card chrome between the reader and the action. */
+function variantD() {
+  const rows = D.items.map((it) => `
+    <tr>
+      <td>${media(it, "d-thumb")}</td>
+      <td class="d-txt"><a href="${esc(it.href)}">${esc(readableLabel(it))}</a></td>
+      <td class="d-model">${esc(it.model || "—")}</td>
+      <td class="d-who">${esc(it.handle)}</td>
+      <td>${copyBtn(it)}</td>
+    </tr>`).join("");
+  return chrome(`<section class="sec" id="browse"><div class="wrap">
+    <div class="sec-h"><h2 class="t-sec">All ${D.total} image &amp; video prompts</h2><span class="end tnum">updated 2026-08-20</span></div>
+    <div class="d-tools">
+      ${D.axes.style.slice(0,5).map((t)=>`<a class="chip" href="#browse">${esc(t.label)}<small class="tnum">${t.count}</small></a>`).join("")}
+    </div>
+    <table class="d-table">
+      <thead><tr><th><span class="sr">Preview</span></th><th>Prompt</th><th>Model</th><th>Author</th><th><span class="sr">Copy</span></th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div></section>`,
+  { lead: `All ${D.total} prompts on one screen. Copy from the row — nothing to open first.` });
+}
+
+const variants = [variantA, variantB, variantC, variantD];
+
+/* copy — real clipboard, label swaps in place, width reserved by CSS */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-copy]");
+  if (!btn) return;
+  const item = D.items.find((x) => x.id === btn.dataset.copy);
+  const text = item ? item.excerpt : "";
+  const done = (ok) => {
+    btn.textContent = ok ? "Copied" : "Copy failed";
+    btn.toggleAttribute("data-done", ok);
+    setTimeout(() => { btn.textContent = "Copy prompt"; btn.removeAttribute("data-done"); }, 1500);
+  };
+  (navigator.clipboard?.writeText(text) ?? Promise.reject()).then(() => done(true), () => done(false));
+});
+
+// `variants` is an array of render functions, one per variant, in picker order.
+const stage = document.getElementById('stage');
+const picker = document.querySelector('.proto-picker');
+const highlight = picker.querySelector('.proto-picker-highlight');
+const items = [...picker.querySelectorAll('.proto-picker-item:not(.proto-picker-replay)')];
+const replay = picker.querySelector('.proto-picker-replay');
+let current = 0;
+
+function moveHighlight() {
+  const el = items[current];
+  highlight.style.width = el.offsetWidth + 'px';
+  highlight.style.transform = `translateX(${el.offsetLeft}px)`;
+}
+
+function mount(i) {
+  stage.innerHTML = '';
+  // Clear first, render next frame, so entrance animations re-run.
+  requestAnimationFrame(() => { stage.innerHTML = variants[i](); });
+}
+
+function setActive(i) {
+  if (i < 0 || i >= variants.length) return;
+  current = i;
+  items.forEach((el, j) => {
+    el.toggleAttribute('data-active', j === i);
+    if (j === i) el.setAttribute('aria-current', 'true');
+    else el.removeAttribute('aria-current');
+  });
+  moveHighlight();
+  const url = new URL(location);
+  url.searchParams.set('v', i + 1);
+  history.replaceState(null, '', url);
+  mount(i);
+}
+
+items.forEach((el, i) => el.addEventListener('click', () => setActive(i)));
+replay?.addEventListener('click', () => mount(current));
+window.addEventListener('resize', moveHighlight);
+
+document.addEventListener('keydown', (e) => {
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const num = parseInt(e.key, 10);
+  if (num >= 1 && num <= variants.length) setActive(num - 1);
+  else if (e.key === 'ArrowRight') setActive((current + 1) % variants.length);
+  else if (e.key === 'ArrowLeft') setActive((current - 1 + variants.length) % variants.length);
+  else if (e.key === 'r' || e.key === 'R') mount(current);
+});
+
+setActive((parseInt(new URLSearchParams(location.search).get('v'), 10) || 1) - 1);
+// Enable the slide only after first paint, so load doesn't animate.
+requestAnimationFrame(() => requestAnimationFrame(() => picker.setAttribute('data-ready', '')));
+
+</script>
+</body>
+</html>

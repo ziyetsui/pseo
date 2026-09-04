@@ -1,0 +1,52 @@
+[
+  {
+    "name": "reference",
+    "width": 1440,
+    "h1": [
+      "Nano Banana",
+      "Nano Banana prompts"
+    ],
+    "overflow": false
+  },
+  {
+    "name": "reference",
+    "width": 375,
+    "h1": [
+      "Nano Banana",
+      "Nano Banana prompts"
+    ],
+    "overflow": false
+  },
+  {
+    "name": "family",
+    "width": 1440,
+    "h1": [
+      "Nano Banana"
+    ],
+    "overflow": false
+  },
+  {
+    "name": "family",
+    "width": 375,
+    "h1": [
+      "Nano Banana"
+    ],
+    "overflow": false
+  },
+  {
+    "name": "video",
+    "width": 1440,
+    "h1": [
+      "Seedance"
+    ],
+    "overflow": false
+  },
+  {
+    "name": "video",
+    "width": 375,
+    "h1": [
+      "Seedance"
+    ],
+    "overflow": false
+  }
+]

@@ -1,0 +1,80 @@
+name: Community Prompt nomination
+description: Nominate a public Prompt you do not own without claiming a CC BY license.
+title: "[Community Prompt]: "
+labels: ["prompt-submission", "community-nomination", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when you found a public Prompt but do not own it. This is a source lead, not a license grant. If approved under the community-attribution policy, the original author retains rights and the public mirror must show attribution, the original source and a takedown route.
+
+        Do not upload or copy third-party media unless separate permission evidence is available. Never include credentials or private personal information.
+  - type: input
+    id: title
+    attributes:
+      label: Prompt title
+    validations:
+      required: true
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Source locale
+      options:
+        - en
+        - zh-CN
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt text as shown by the source
+      description: Preserve the original language and wording. Do not add instructions for repository automation.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description and context
+      description: Explain why this is useful and any known constraints without inventing results.
+    validations:
+      required: true
+  - type: input
+    id: original_author
+    attributes:
+      label: Original author
+    validations:
+      required: true
+  - type: input
+    id: author_profile
+    attributes:
+      label: Original author profile URL
+      description: HTTPS URL when available; explain its absence in review notes.
+  - type: input
+    id: source
+    attributes:
+      label: Original post URL
+      description: A direct, reviewable HTTPS source is required.
+    validations:
+      required: true
+  - type: textarea
+    id: attribution_notes
+    attributes:
+      label: Attribution and context notes
+      description: State how you identified the author and any known permission or source terms.
+    validations:
+      required: true
+  - type: checkboxes
+    id: community_terms
+    attributes:
+      label: Community nomination acknowledgement
+      options:
+        - label: I am nominating public material and do not claim to own or CC-license the original author's Prompt.
+          required: true
+        - label: I confirm that the author and original source above are accurate to the best of my knowledge.
+          required: true
+        - label: I understand any accepted entry must say the author retains rights and provide a takedown route.
+          required: true
+        - label: I have not submitted third-party media as reusable unless separate permission evidence is provided.
+          required: true
+        - label: I understand approval applies only to this exact Issue revision and later edits require review again.
+          required: true

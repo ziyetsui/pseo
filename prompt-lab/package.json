@@ -1,0 +1,23 @@
+{
+  "name": "public-prompt-lab-template",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "generate:legacy": "node scripts/catalog.mjs generate",
+    "check:legacy": "node scripts/catalog.mjs check",
+    "validate:legacy": "node scripts/catalog.mjs validate",
+    "verify:legacy": "npm run validate:legacy && npm run check:legacy",
+    "sync:cms": "node scripts/sync-cms-snapshot.mjs",
+    "check:cms": "node scripts/sync-cms-snapshot.mjs --check",
+    "validate:mirror": "node scripts/sync-cms-snapshot.mjs --verify-worktree",
+    "check:mirror": "node scripts/sync-cms-snapshot.mjs --verify-worktree",
+    "validate": "node scripts/verify-repository.mjs",
+    "check": "node scripts/verify-repository.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "npm run test && npm run validate"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

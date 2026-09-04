@@ -1,6 +1,6 @@
 import type { CollectionConfig, Field } from 'payload'
 
-import { authenticated, canEditDrafts, denyAll } from '@/access'
+import { canEditDrafts, canReadEditorial, denyAll } from '@/access'
 import { enforceDraftOnly } from '@/hooks'
 
 import {
@@ -27,11 +27,18 @@ export const PromptArtifacts: CollectionConfig = {
     group: 'Editorial',
     useAsTitle: 'artifactKey',
     defaultColumns: ['artifactKey', 'contentType', 'draftWorkflowState', 'updatedAt'],
-    description: 'Draft projection only. The protected Git main branch is the publication authority.',
+    description: 'Canonical CMS content. Public export requires revision-bound human approval; content PR publication is retired.',
+    components: {
+      edit: {
+        beforeDocumentControls: [
+          '@/components/ApproveContentButton#ApproveContentButton',
+        ],
+      },
+    },
   },
   access: {
     create: canEditDrafts,
-    read: authenticated,
+    read: canReadEditorial,
     update: canEditDrafts,
     delete: denyAll,
   },
@@ -71,7 +78,7 @@ export const PromptArtifacts: CollectionConfig = {
         { label: 'Rejected', value: 'rejected' },
         { label: 'Archived', value: 'archived' },
       ],
-      admin: { description: 'Editorial state only; deliberately has no published value.' },
+      admin: { description: 'Editorial work state. Public approval is a separate revision-bound decision.' },
     },
     {
       name: 'prompt',

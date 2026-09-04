@@ -36,15 +36,23 @@ function constantTimeTokenMatches(candidate: string | null, expected: string): b
   return timingSafeEqual(candidateDigest, expectedDigest) && candidate !== null
 }
 
-function assertCompleteSeededCatalog(data: CmsPreviewData): void {
+const WIREFRAME_PREVIEW_COUNTS = {
+  prompts: 35,
+  taxonomies: 42,
+  creators: 21,
+  models: 11,
+  collections: 6,
+} as const
+
+function assertCompleteWireframePreviewCatalog(data: CmsPreviewData): void {
   if (
-    data.prompts.length !== 35 ||
-    data.taxonomies.length !== 42 ||
-    data.creators.length !== 21 ||
-    data.models.length !== 11 ||
-    data.collections.length !== 6
+    data.prompts.length !== WIREFRAME_PREVIEW_COUNTS.prompts ||
+    data.taxonomies.length !== WIREFRAME_PREVIEW_COUNTS.taxonomies ||
+    data.creators.length !== WIREFRAME_PREVIEW_COUNTS.creators ||
+    data.models.length !== WIREFRAME_PREVIEW_COUNTS.models ||
+    data.collections.length !== WIREFRAME_PREVIEW_COUNTS.collections
   ) {
-    throw new Error('The CMS preview seed is incomplete')
+    throw new Error('The CMS wireframe preview projection is incomplete')
   }
 }
 
@@ -81,7 +89,10 @@ export function createPreviewCatalogEndpoint(
           locale,
         )
         const data = projectPreviewCatalog(documents, locale)
-        assertCompleteSeededCatalog(data)
+        // This endpoint is the wireframe-compatible Internal Beta projection.
+        // Canonical non-wireframe records (including the separate text golden
+        // Prompt) remain outside it until the shared Preview DTO supports them.
+        assertCompleteWireframePreviewCatalog(data)
         const envelope = buildCmsPreviewEnvelope(data, options.now?.() ?? new Date().toISOString())
         return Response.json(envelope, {
           status: 200,

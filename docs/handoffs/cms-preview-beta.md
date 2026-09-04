@@ -1,5 +1,12 @@
 # CMS Preview Beta handoff
 
+> **Historical local-preview handoff (superseded 2026-09-03):** the mock Git
+> publisher, `Submit Review` → PublicationRequest, and per-content PR path
+> described below have been removed from the deployable runtime. Do not restore
+> them. Current publication is defined by
+> `specs/0011-promptlab-youmind-cms-publication.md`: CMS approval → immutable
+> snapshot → validated generated mirror → dedicated bot fast-forward `main`.
+
 Status: local CMS edit → server-rendered frontend refresh is verified. Production/static content selection remains the checked-in fixture/Git path.
 
 ## Start the Beta loop

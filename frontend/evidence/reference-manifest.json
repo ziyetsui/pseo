@@ -1,0 +1,14 @@
+{
+  "source": "specs/images/flow-proto-full.html",
+  "sha256": "7bc354e93c6399533b48a1bf6681d92a0e895f4b40af486c9b45029292e4256c",
+  "pages": {
+    "l1": "Quotations / variants[2]",
+    "l2": "Images Deck / variants[2]",
+    "l2v": "Videos Deck / variants[2]",
+    "l3": "Anthology / variants[2]",
+    "l4": "Recipe / variants[1]"
+  },
+  "theme": "system light-dark; no forced theme",
+  "css": "selectors scoped per page; comments omitted; unchanged Inter font served locally under OFL",
+  "l1SupersededBy": "magnetic-reference.json"
+}

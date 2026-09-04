@@ -1,0 +1,34 @@
+.DS_Store
+.pnpm-store/
+
+# Dependencies and generated build/cache files
+node_modules/
+.next/
+.next-dev/
+.open-next/
+.wrangler/
+.venv/
+.venv-workers/
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+playwright-report/
+test-results*/
+
+# Local credentials and runtime configuration; keep shareable examples
+.env*
+!.env.example
+.dev.vars*
+!.dev.vars.example
+*.log
+
+# Local scratch files, raw source captures, and unrelated generated artifacts
+/.tmp/
+/tmp/
+/assets/raw/
+/artifacts/
+/reports/

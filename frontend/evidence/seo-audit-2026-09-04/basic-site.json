@@ -1,0 +1,20 @@
+{
+  "origin": "http://127.0.0.1:3000",
+  "robots": {
+    "status": "error",
+    "http_status": null,
+    "disallow_all": false,
+    "googlebot_blocked": false,
+    "sitemap_directives": [],
+    "sitemap_directive": null,
+    "detail": "Fetch error: Blocked: resolves to private IP (127.0.0.1)"
+  },
+  "sitemap": {
+    "status": "fail",
+    "http_status": null,
+    "url_count": 0,
+    "is_index": false,
+    "checked_url": "http://127.0.0.1:3000/sitemap.xml",
+    "detail": "No accessible sitemap found. Checked: http://127.0.0.1:3000/sitemap.xml. Ensure a valid XML sitemap exists and is referenced in robots.txt."
+  }
+}

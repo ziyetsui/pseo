@@ -1,0 +1,266 @@
+[
+  {
+    "source": "reference",
+    "key": "l1-320",
+    "width": 320,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/reference-l1-320.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": 156.59375,
+        "width": 264,
+        "height": 138,
+        "fontSize": "46px",
+        "fontFamily": "ui-serif, Georgia, \"Times New Roman\", serif",
+        "lineHeight": "46px"
+      },
+      ".argument .body": {
+        "x": 28,
+        "y": 332.59375,
+        "width": 264,
+        "height": 516.5625,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, system-ui, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", sans-serif",
+        "lineHeight": "24px"
+      }
+    },
+    "images": [],
+    "errors": []
+  },
+  {
+    "source": "implementation",
+    "key": "l1-320",
+    "width": 320,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/implementation-l1-320.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": 156.59375,
+        "width": 264,
+        "height": 138,
+        "fontSize": "46px",
+        "fontFamily": "ui-serif, Georgia, \"Times New Roman\", serif",
+        "lineHeight": "46px"
+      },
+      ".argument .body": {
+        "x": 28,
+        "y": 332.59375,
+        "width": 264,
+        "height": 516.5625,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, system-ui, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", sans-serif",
+        "lineHeight": "24px"
+      }
+    },
+    "images": [],
+    "errors": []
+  },
+  {
+    "source": "reference",
+    "key": "l2-deck-768",
+    "width": 768,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/reference-l2-deck-768.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": -683.5,
+        "width": 712,
+        "height": 32,
+        "fontSize": "32px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "32px"
+      },
+      ".deck": {
+        "x": 28,
+        "y": 117.6875,
+        "width": 688,
+        "height": 720,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top]": {
+        "x": 28,
+        "y": 117.6875,
+        "width": 688,
+        "height": 720,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top] .media": {
+        "x": 29,
+        "y": 118.6875,
+        "width": 686,
+        "height": 190,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top] .side": {
+        "x": 29,
+        "y": 308.6875,
+        "width": 686,
+        "height": 528,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      }
+    },
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "source": "implementation",
+    "key": "l2-deck-768",
+    "width": 768,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/implementation-l2-deck-768.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": -680.5,
+        "width": 712,
+        "height": 32,
+        "fontSize": "32px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "32px"
+      },
+      ".deck": {
+        "x": 28,
+        "y": 117.6875,
+        "width": 688,
+        "height": 720,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top]": {
+        "x": 28,
+        "y": 117.6875,
+        "width": 688,
+        "height": 720,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top] .media": {
+        "x": 29,
+        "y": 118.6875,
+        "width": 686,
+        "height": 190,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      },
+      ".dc[data-top] .side": {
+        "x": 29,
+        "y": 308.6875,
+        "width": 686,
+        "height": 528,
+        "fontSize": "15px",
+        "fontFamily": "InterVariable, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "24px"
+      }
+    },
+    "images": [
+      {
+        "src": "https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small",
+        "loaded": true
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/2038274199379443712/HGEFaPvT_400x400.jpg",
+        "loaded": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "source": "reference",
+    "key": "l3-1024",
+    "width": 1024,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/reference-l3-1024.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": 207.5,
+        "width": 968,
+        "height": 64.46875,
+        "fontSize": "62px",
+        "fontFamily": "ui-serif, Georgia, \"Times New Roman\", serif",
+        "lineHeight": "64.48px"
+      },
+      ".toc": {
+        "x": 28,
+        "y": 360.46875,
+        "width": 968,
+        "height": 282,
+        "fontSize": "15px",
+        "fontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "23.25px"
+      }
+    },
+    "images": [],
+    "errors": []
+  },
+  {
+    "source": "implementation",
+    "key": "l3-1024",
+    "width": 1024,
+    "height": 900,
+    "status": 200,
+    "screenshot": "evidence/responsive/implementation-l3-1024.png",
+    "overflow": false,
+    "fonts": "loaded",
+    "boxes": {
+      "h1": {
+        "x": 28,
+        "y": 207.5,
+        "width": 968,
+        "height": 64.46875,
+        "fontSize": "62px",
+        "fontFamily": "ui-serif, Georgia, \"Times New Roman\", serif",
+        "lineHeight": "64.48px"
+      },
+      ".toc": {
+        "x": 28,
+        "y": 360.46875,
+        "width": 968,
+        "height": 282,
+        "fontSize": "15px",
+        "fontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "lineHeight": "23.25px"
+      }
+    },
+    "images": [],
+    "errors": []
+  }
+]

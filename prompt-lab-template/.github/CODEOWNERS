@@ -1,6 +1,0 @@
-# Replace the placeholder with the confirmed user or team, then uncomment
-# these rules before enabling required CODEOWNERS review.
-# /content/ @REPLACE_WITH_MAINTAINER_TEAM
-# /lib/ @REPLACE_WITH_MAINTAINER_TEAM
-# /scripts/ @REPLACE_WITH_MAINTAINER_TEAM
-# /.github/workflows/ @REPLACE_WITH_MAINTAINER_TEAM

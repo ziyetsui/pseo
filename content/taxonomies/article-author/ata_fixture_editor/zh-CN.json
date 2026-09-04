@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "ata_fixture_editor",
+  "type": "article-taxonomy",
+  "axis": "article-author",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "fixture-editor",
+  "name": "站点编辑（fixture）",
+  "description": "仅用于 Internal Beta 博客路由验证的明确标记示例署名。",
+  "url": null,
+  "status": "draft",
+  "indexable": false,
+  "fixture": true,
+  "sourceRef": "frontend/src/data/wireframe/articles.ts",
+  "seo": {
+    "title": "站点编辑 fixture 文章",
+    "description": "仅用于 Internal Beta 博客路由、排版与内容合同验证的示例署名，不代表正式作者档案。",
+    "canonical": "https://ancher.space/zh-CN/blog?author=fixture-editor",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": null,
+    "updatedAt": "2026-08-20T00:00:00Z",
+    "sourceRevision": null
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": null,
+    "reviewer": null
+  }
+}

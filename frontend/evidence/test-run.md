@@ -1,507 +1,95 @@
-# Task 9 — E2E / axe / responsive / screenshots / static-output gate
+# 前端重建验收 — 2026-09-04
 
-Run date: **2026-09-02**. Machine: macOS (darwin 25.3.0), Node v24.14.0, pnpm 11.7.0,
-Playwright 1.62.1 + `@axe-core/playwright` 4.13.0, Chromium installed with
-`pnpm exec playwright install chromium` (exit code 0).
+本轮在用户确认主动清空的 `frontend/` 上重建。采用 Next.js App Router、React、strict TypeScript、CSS、Tailwind；三个 subagent 分别负责 API、视觉组件和 Recipe/文档。保留工作区其他并发修改，没有恢复旧前端整包、提交 Git、推送或部署。
 
-Everything below is the real, trimmed console output of the commands as run from
-`frontend/`. Nothing is summarised as "passed" without its numbers.
+## 实现范围
 
-> **Sections 1–6 are run 1 and are historical.** They record the suite going red
-> on three real product defects. Those defects are fixed; the current state of
-> the suite is **"Run 2 — 2026-09-02, after the three product fixes"** at the
-> bottom of this file (42 passed / 0 failed / 12 skipped). The findings text in
-> §5 is kept verbatim as the record of what was broken and why.
+- `AGENTS.md`：技术边界、真实接口、CMS-first、五页定稿与 L1–L4 跳转、无障碍及验收约束。
+- `src/components/`、`src/styles/`：Quotations、Images/Videos Deck、Anthology、Recipe 的选中母版；真实路由、搜索筛选、Deck 键盘/边界、全文展开/复制、变量替换、目录和持久 scratchpad。
+- `src/lib/api/`、`src/lib/catalog/`：从 OpenAPI 生成 DTO/runtime schema；固定 revision 的只读目录、完整分页与全文，正式数据失败不回退样本。
+- `src/site/`、`src/app/`：locale、独立静态页面、metadata、JSON-LD、Blog 静态投影、sitemap/RSS/robots、真实 404。Blog 没有母版，属于派生页面。
+- `scripts/`：设计提取、API 合同生成、静态输出/样本隔离检查、截图与本地正式数据 smoke。
 
----
+## 实际工程检查
 
-## 1. Commands and results
-
-| Command | Result |
+| 检查 | 本轮结果 |
 | --- | --- |
-| `pnpm lint` | exit 0, no findings |
-| `pnpm typecheck` | exit 0 |
-| `pnpm test` | 34 files, **324 tests passed** |
-| `pnpm build` | exit 0, **55 static pages** into `out/` |
-| `pnpm check:static` | **PASSED** (exit 0) |
-| `pnpm test:e2e` | **36 passed, 6 failed, 12 skipped** — all 6 failures are the product findings in §5 |
-| `pnpm screenshots` | **9 passed, 1 skipped** (blog is desktop-only) |
-
-### 1.1 `pnpm build`
-
-```text
-$ next build
-▲ Next.js 16.3.4 (Turbopack)
-✓ Compiled successfully in 373ms
-  Running TypeScript ...
-✓ Generating static pages using 11 workers (55/55) in 395ms
-Route (app)
-┌ ○ /_not-found
-├   /[locale]                       └ ● /zh-CN
-├   /[locale]/blog                  └ ● /zh-CN/blog
-├   /[locale]/blog/[slug]           ● 3 paths
-├   /[locale]/blog/category/[slug]  ● 2 paths
-├   /[locale]/prompts               └ ● /zh-CN/prompts
-├   /[locale]/prompts/[promptSlug]  ● 35 paths
-├   /[locale]/prompts/image         └ ● /zh-CN/prompts/image
-└   /[locale]/prompts/models/[modelSlug]  ● 9 paths
-```
-
-### 1.2 `pnpm check:static`
-
-```text
-$ node scripts/check-static-output.mjs
-check-static-output: 55 html file(s) in out/, 105 source file(s) in src/
-
-1. required routes in out/
-  ok    8 required route files present
-  ok    3 blog article page(s)
-
-2a. forbidden patterns in out/**/*.html
-  ok    0 iframe / srcdoc / location.hash in 55 file(s)
-
-2b. forbidden patterns in src/
-  ok    0 iframe / srcdoc / location.hash in 105 file(s)
-
-3. fragment hrefs point at ids in the same document
-        fragments seen: #main ×55, #all-prompts ×9
-  ok    64 fragment href(s), all resolved in-document
-
-4. no `#` placeholder hrefs in src/
-        in-page anchor  src/components/layout/SiteShell.tsx: #main
-        in-page anchor  src/features/model/ModelBrowse.tsx: #${ALL_PROMPTS_ID}
-  ok    0 placeholder hrefs in src/ (2 real in-page anchor(s))
-
-5. no en hreflang in the export
-        hreflang values: none
-  ok    0 en hreflang tags
-
-6. no prototype-declared counts in the export
-  ok    0 occurrences of 982 / 324 条 / 136 条
-
-check-static-output: PASSED
-```
-
-Every `href="#…"` in the export is verified against the ids present **in the same
-document**, so `#main` (skip link) and `#all-prompts` (L3 in-page jump) pass while a
-bare `href="#"` would always fail. `982` is grepped as a bare number and currently has
-zero occurrences anywhere in `out/**/*.html`; `_next/…` asset URLs are stripped before
-that scan so a build-hash digit can never fake a hit.
-
-### 1.3 `pnpm test:e2e`
-
-```text
-$ playwright test --project=desktop --project=mobile
-Running 54 tests using 9 workers
-…
-  6 failed
-    [desktop] › tests/e2e/a11y.spec.ts:33:3 › axe: L3 模型页 has no critical or serious violations
-    [desktop] › tests/e2e/no-js.spec.ts:21:3 › without JavaScript › L1 still lists prompts and offers a working GET search form
-    [desktop] › tests/e2e/no-js.spec.ts:54:3 › without JavaScript › the golden L4 page still publishes the prompt verbatim
-    [desktop] › tests/e2e/responsive.spec.ts:19:3 › L3 模型页 never scrolls horizontally
-    [mobile] › tests/e2e/no-js.spec.ts:21:3 › without JavaScript › L1 still lists prompts and offers a working GET search form
-    [mobile] › tests/e2e/no-js.spec.ts:54:3 › without JavaScript › the golden L4 page still publishes the prompt verbatim
-  12 skipped
-  36 passed (14.0s)
-```
-
-The 12 skips are deliberate project scoping, not silent holes:
-`filters.spec.ts` (5 tests) is desktop-only, `mobile-nav.spec.ts` (3) is mobile-only,
-`responsive.spec.ts` (4) drives its own viewport widths so it runs once. 5 + 3 + 4 = 12.
-
----
-
-## 2. Per-spec results
-
-| Spec | desktop | mobile | Covers |
-| --- | --- | --- | --- |
-| `journey.spec.ts` (2) | 2 pass | 2 pass | L1→L2→L3→L4 by clicking real `<main>` links; one `<h1>` and a working `#main` skip link on all five pages; the three L3 generate controls are `aria-disabled` with a stated reason |
-| `filters.spec.ts` (5) | 5 pass | skipped | GET search writes `q`; same-axis OR; cross-axis AND; `role="status"` count == rendered cards; removal link; reload; back/forward; unknown value and unknown param both reported with a recovery link |
-| `copy.spec.ts` (2) | 2 pass | 2 pass | clipboard grant + `readText()`; France substitution; rejected `writeText` shows 复制失败 and never 已复制 |
-| `not-found.spec.ts` (2) | 2 pass | 2 pass | unknown slug → HTTP 404 + H1 页面不存在; `/404.html` recovery links resolve 200 |
-| `mobile-nav.spec.ts` (3) | skipped | 3 pass | `aria-expanded` toggle, Enter/Space/Escape, focus return, panel links navigate |
-| `a11y.spec.ts` (7) | 6 pass / **1 fail** | 7 pass | axe on L1–L4 + blog list + blog article + 404 |
-| `responsive.spec.ts` (4) | 3 pass / **1 fail** | skipped | 320/375/768/1024/1440 × L1–L4 |
-| `no-js.spec.ts` (2) | **2 fail** | **2 fail** | `javaScriptEnabled: false` on L1 and the golden L4 |
-
-### 2.1 Filter contract, measured
-
-The OR/AND assertions are relative, not hardcoded to fixture counts: the spec reads the
-model axis's own chip hrefs, applies value A alone, value B alone, then both, and requires
-`count(A∪B) ≥ count(A)` and `≥ count(B)`; adding a style chip must give `count ≤ count(A∪B)`.
-After every change the `role="status"` number is compared against
-`section[aria-labelledby="prompt-explorer-results"] ul > li` — the announced count and the
-rendered cards cannot drift apart without failing.
-
----
-
-## 3. axe results per page
-
-`@axe-core/playwright` with tags `wcag2a, wcag2aa, wcag21a, wcag21aa`. Full output is
-attached to each test as `axe-<page>`; the console lines are reproduced verbatim.
-
-```text
-[axe] desktop L1 提示词库:    0 violation(s)
-[axe] desktop L2 图片提示词:  0 violation(s)
-[axe] desktop L3 模型页:      1 violation(s)
-serious	scrollable-region-focusable	1 node(s)
-[axe] desktop L4 提示词详情:  0 violation(s)
-[axe] desktop Blog 列表:      0 violation(s)
-[axe] desktop Blog 文章:      0 violation(s)
-[axe] desktop 404:            0 violation(s)
-
-[axe] mobile L1 提示词库:     0 violation(s)
-[axe] mobile L2 图片提示词:   0 violation(s)
-[axe] mobile L3 模型页:       0 violation(s)
-[axe] mobile L4 提示词详情:   0 violation(s)
-[axe] mobile Blog 列表:       0 violation(s)
-[axe] mobile Blog 文章:       0 violation(s)
-[axe] mobile 404:             0 violation(s)
-```
-
-13 of 14 page × viewport combinations are clean at every impact level — not just clean of
-critical/serious. The single violation is Finding 2 below; it appears only at 1440px,
-because that is the width at which the offending `<pre>` actually becomes scrollable.
-
----
-
-## 4. Screenshots
-
-`pnpm screenshots` → `evidence/screenshots/`, captured with `scale: "css"` so the PNG is
-1440 or 375 CSS px wide (the Pixel 7 profile's 2.625 DPR would otherwise make ~7× larger
-files of the same picture).
-
-| File | Size (px) |
-| --- | --- |
-| `l1-desktop.png` | 1440 × 7482 |
-| `l1-mobile.png` | 375 × 14207 |
-| `l2-desktop.png` | 1440 × 8928 |
-| `l2-mobile.png` | 375 × 10858 |
-| `l3-desktop.png` | 1440 × 11351 |
-| `l3-mobile.png` | **714** × 26129 — the width itself is Finding 3 |
-| `l4-desktop.png` | 1440 × 4895 |
-| `l4-mobile.png` | 375 × 5890 |
-| `blog-desktop.png` | 1440 × 2096 (bonus) |
-| `finding-1-l1-no-js.png` | 1440 × 1200 — evidence for Finding 1, not a level shot |
-
-`l3-mobile.png` is 714px wide at a 375px viewport. That is not a capture setting; it is the
-page genuinely being 714px wide, which is Finding 3 rendered as a picture.
-
----
-
-## 5. Findings for the controller
-
-Three genuine product defects. Per the task rules I did **not** touch page code; each one
-is left as a failing test because it violates a global constraint.
-
-### Finding 1 — the export ships its page body inside `<div hidden>`; with JS off there is only a skeleton (violates global constraint 11)
-
-**Severity: high.** This is the SEO/no-JS guarantee of the whole project.
-
-- **Files:** `src/app/[locale]/prompts/loading.tsx`, `.../prompts/image/loading.tsx`,
-  `.../prompts/models/[modelSlug]/loading.tsx`, `.../prompts/[promptSlug]/loading.tsx`,
-  `.../blog/loading.tsx`, `.../blog/[slug]/loading.tsx` (route-level Suspense fallbacks),
-  plus whatever makes those page components resolve after React's first flush.
-- **Reproduce:**
-  ```bash
-  pnpm build
-  grep -o '<main[^>]*>.\{0,60\}' out/zh-CN/prompts.html
-  # <main id="main" class="flex-1"><!--$?--><template id="B:0"></template><div class="mx-auto …
-  grep -c 'div hidden id="S:0"' out/zh-CN/prompts.html   # → 1
-  ```
-  or in a browser with JavaScript disabled, open `/zh-CN/prompts`:
-  `document.querySelectorAll('main h1').length === 0`, and `main.innerText === "加载中"`.
-  Screenshot: `evidence/screenshots/finding-1-l1-no-js.png`.
-- **Expected:** the H1, the summary, the first screenful of the listing and the internal
-  links are rendered by RSC **into `<main>`** in the exported HTML.
-- **Actual:** `<main>` contains only the route's `loading.tsx` skeleton (`加载中`). The real
-  page is appended at the end of `<body>` inside `<div hidden id="S:0">` and only moved into
-  place by React's inline `$RC(...)` bootstrap script. Without JavaScript it is never shown.
-- **Scope, measured over the 8 sampled routes:**
-
-  | Page | body parked in `<div hidden>` | `BAILOUT_TO_CLIENT_SIDE_RENDERING` templates |
-  | --- | --- | --- |
-  | `out/zh-CN.html` | no | 0 |
-  | `out/zh-CN/prompts.html` | **yes** | 2 |
-  | `out/zh-CN/prompts/image.html` | **yes** | 1 |
-  | `out/zh-CN/prompts/models/nano-banana-pro.html` | **yes** | 1 |
-  | `out/zh-CN/prompts/country-miniature-stamp-poster.html` | **yes** | 0 |
-  | `out/zh-CN/blog.html` | **yes** | 0 |
-  | `out/zh-CN/blog/stamp-poster-case-study.html` | **yes** | 0 |
-  | `out/zh-CN/blog/category/guides.html` | no | 0 |
-  | `out/404.html` | no | 0 |
-
-  `blog/category/guides` has a `loading.tsx` like the others yet resolved inside the first
-  flush, so this is **build-timing dependent**: a rebuild can move a page between the two
-  states. Do not treat "it looked fine on my build" as a fix.
-- **Suggested direction (controller's call, not mine):** in a static export nothing loads at
-  request time, so the route-level `loading.tsx` files buy nothing and are exactly what
-  non-JS readers end up seeing. Removing them (or otherwise ensuring the page's data is
-  resolved before the shell is flushed) should put the RSC output back inside `<main>`.
-  Note the two `BAILOUT_TO_CLIENT_SIDE_RENDERING` templates on L1 are a separate, expected
-  consequence of `useSearchParams` in `PromptExplorer`; its own `Suspense fallback={browse}`
-  is designed to cover that, and would work once the outer boundary stops swallowing the page.
-- **Failing tests:** `tests/e2e/no-js.spec.ts` (both tests, both projects).
-
-### Finding 2 — a scrollable `<pre>` on prompt cards has no keyboard access (violates global constraint 8; axe *serious*)
-
-- **File:** `src/features/prompt/PromptText.tsx:21-29` — the `<pre>` gets
-  `overflow-x-auto` but no `tabIndex`. (`PromptSourceText.tsx` on L4 does set `tabIndex={0}`,
-  which is why L4 is clean.)
-- **Reproduce:** open `/zh-CN/prompts/models/nano-banana-pro` at 1440×1200, run axe.
-  ```text
-  VIOLATION serious scrollable-region-focusable | Scrollable region must have keyboard access
-    target: ["#model-all-2060557083679076537"]
-    html:   <pre id="model-all-2060557083679076537" class="overflow-x-auto border-2 … whitespace-pre-wrap select-text md:text-sm">
-    msg:    Element should have focusable content; Element should be focusable
-  ```
-- **Expected:** 0 critical/serious violations; a region a mouse can scroll must be reachable
-  by keyboard.
-- **Actual:** 1 serious violation. A keyboard-only reader cannot scroll that prompt.
-- **Note:** the same component is used by every card on L1/L2/L3, so this will surface
-  wherever a card's prompt happens to overflow; L3 at 1440px is simply where it does today.
-- **Failing test:** `tests/e2e/a11y.spec.ts` — `axe: L3 模型页` (desktop project).
-
-### Finding 3 — L3's prompt grid forces a 714px page at 320px and 375px (violates global constraint 8)
-
-- **File:** `src/features/model/ModelBrowse.tsx:57` and `:81` —
-  `<ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">`.
-- **Reproduce:** open `/zh-CN/prompts/models/nano-banana-pro` at a 320px or 375px viewport.
-  ```text
-  Error: /zh-CN/prompts/models/nano-banana-pro horizontal overflow
-    + "320px: scrollWidth 714 > clientWidth 320",
-    + "375px: scrollWidth 714 > clientWidth 375",
-  ```
-  The computed grid track is the giveaway: with the `<ul>` itself only 288px wide,
-  `getComputedStyle(ul).gridTemplateColumns === "697.594px"`. The single implicit column is
-  sized to its items' min-content instead of being clamped to the container.
-- **Expected:** `document.documentElement.scrollWidth <= clientWidth` at all of
-  320/375/768/1024/1440. L1, L2 and L4 all pass.
-- **Actual:** the page is 714px wide at both mobile widths, so the whole document scrolls
-  sideways. Visible in `evidence/screenshots/l3-mobile.png` (714px wide at a 375px viewport).
-- **Likely cause:** a grid item cannot shrink below its content's min-content size unless the
-  track is `minmax(0, 1fr)` (or the item gets `min-w-0`). The prompt `<pre>` inside the card
-  supplies a very large min-content width.
-- **Watch out:** `src/features/search/PromptResults.tsx:41` uses the same
-  `grid gap-6 …-cols-2 …-cols-3` shape for L1/L2/L3 *filter results*. Those results only
-  render once a filter is active, so the responsive spec (which loads the unfiltered page)
-  does not exercise them — the same defect may well be there. Worth checking while fixing L3.
-- **Failing test:** `tests/e2e/responsive.spec.ts` — `L3 模型页 never scrolls horizontally`.
-
----
-
-## 6. Notes, limits and concerns
-
-- **The suite is red on purpose.** All 6 failures map 1:1 to the three findings above. Once
-  they are fixed the expected result is 42 passed / 0 failed / 12 skipped. Nothing was
-  marked `test.fixme`, because every finding breaks a stated global constraint rather than
-  being a nice-to-have.
-- **Serving.** The default `serve out -l 3100` resolves `/zh-CN/prompts` → `prompts.html`
-  and `/zh-CN/prompts/image` → `image.html` correctly with its built-in clean-URL handling,
-  and answers unknown paths with `out/404.html` at a real HTTP 404. No `serve.json` was
-  needed. `/404.html` 301-redirects to `/404`; Playwright follows it, so the spec asserts on
-  the page it lands on.
-- **Clipboard.** `context.grantPermissions(['clipboard-read','clipboard-write'])` is
-  Chromium-specific; both projects are Chromium, so the copy spec runs in both. The failure
-  case does not need any permission — it replaces `navigator.clipboard` via `addInitScript`.
-- **Variable substitution is measured, not assumed.** The copy test counts `[COUNTRY]` in the
-  published `<pre>` (currently 7) and `France` in the same text (currently 0), then requires
-  the clipboard content to contain 0 tokens, `0 + 7` occurrences of `France`, and to equal
-  `source.split('[COUNTRY]').join('France')` exactly. No count is hardcoded.
-- **Screenshots are excluded from `pnpm test:e2e`** (separate Playwright projects), so a
-  normal test run never rewrites committed PNGs.
-- **Not covered here.** Real-device browsers (only Chromium is installed), Firefox/WebKit,
-  visual regression diffing, and the L1/L2 filter-result grid at mobile widths (see the
-  Finding 3 note).
-
----
-
-# Run 2 — 2026-09-02, after the three product fixes
-
-Same machine and toolchain as run 1 (darwin 25.3.0, Node v24.14.0, pnpm 11.7.0,
-Playwright 1.62.1 + `@axe-core/playwright` 4.13.0, Chromium already installed).
-This section records the verification of the fixes for Findings 1–3 above; the
-findings text is kept verbatim as the record of what was broken.
-
-## R2.1 Commands and results
-
-| Command | Result |
-| --- | --- |
-| `pnpm lint` | exit 0, no findings |
-| `pnpm typecheck` | exit 0 |
-| `pnpm test` | 36 files, **336 tests passed** |
-| `pnpm build` | exit 0, **55 static pages** into `out/` |
-| `pnpm check:static` | **PASSED** (exit 0) |
-| `pnpm test:e2e` | **42 passed, 0 failed, 12 skipped** |
-| `pnpm screenshots` | **9 passed, 1 skipped** (blog is desktop-only) |
-
-```text
-$ pnpm lint
-$ eslint .
-                                        # exit 0, no output
-
-$ pnpm typecheck
-$ tsc --noEmit
-                                        # exit 0, no output
-
-$ pnpm test
-$ vitest run
- Test Files  36 passed (36)
-      Tests  336 passed (336)
-   Duration  5.00s
-
-$ pnpm build
-$ next build
-▲ Next.js 16.3.4 (Turbopack)
-✓ Compiled successfully
-✓ Generating static pages (55/55)
-```
-
-## R2.2 Finding 1 — grep evidence on the rebuilt export
-
-Every route-level `loading.tsx` under `src/app/[locale]/**` was deleted (7 files:
-`prompts`, `prompts/image`, `prompts/models/[modelSlug]`, `prompts/[promptSlug]`,
-`blog`, `blog/[slug]`, `blog/category/[slug]`). All `error.tsx` files were kept.
-
-```text
-$ grep -rl 'div hidden id="S:' out --include='*.html' | wc -l
-       0
-$ grep -rl '<template id="B:' out --include='*.html' | wc -l
-       0
-$ grep -rho 'id="S:[0-9]*"' out --include='*.html' | sort | uniq -c
-                                        # (no output — zero matches)
-$ grep -rl '\$RC(' out --include='*.html' | wc -l
-       0
-$ grep -o '<main[^>]*>.\{0,200\}' out/zh-CN/prompts.html
-<main id="main" class="flex-1"><div class="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14"><script
-type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList", …
-$ grep -o '<h1[^>]*>.\{0,80\}' out/zh-CN/prompts.html | head -1
-<h1 class="text-4xl font-black tracking-tighter uppercase md:text-6xl">35<!-- --> 条提示词，复制即用</h1>
-```
-
-Checked mechanically over the whole export, not one page: all **55** exported HTML
-files have an `<h1>` inside `<main>` and carry no hidden Suspense buffer. That
-check is now part of the `check:static` gate (section 7), so it cannot silently
-regress on a later build.
-
-### The `PromptExplorer` Suspense boundary, exactly as it renders now
-
-`useSearchParams` still forces a client-side-rendering bailout in a static export,
-but it no longer parks anything: the marker sits **inline inside `<main>`,
-immediately followed by the fallback (the server-rendered browse content)**.
-There is no hidden duplicate anywhere in the document.
-
-```text
-$ grep -o '.\{80\}BAILOUT_TO_CLIENT_SIDE_RENDERING.\{80\}' out/zh-CN/prompts.html | head -1
-…数量与热度均按当前收录内容计算。</p></header><div class="mt-10"><!--$!--><template
-data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template><div class="flex flex-col gap-8"><section
-aria-labelledby="prompt-e…
-```
-
-Note the shape: `<template data-dgst="…">` with **no `id="B:n"`** and no matching
-`<div hidden id="S:n">` — the boundary is already resolved in the HTML, and the
-`<div class="flex flex-col gap-8">` that follows is the real browse content. 11
-files carry this marker (L1, L2 and the 9 model pages); all 11 pass the no-JS and
-`<h1>`-inside-`<main>` checks.
-
-`evidence/screenshots/finding-1-l1-no-js.png` is retained as the **pre-fix**
-picture of this defect; it is not a current-state screenshot.
-
-## R2.3 `pnpm check:static`
-
-```text
-$ node scripts/check-static-output.mjs
-check-static-output: 55 html file(s) in out/, 99 source file(s) in src/
-
-1. required routes in out/
-  ok    8 required route files present
-  ok    3 blog article page(s)
-2a. forbidden patterns in out/**/*.html
-  ok    0 iframe / srcdoc / location.hash in 55 file(s)
-2b. forbidden patterns in src/
-  ok    0 iframe / srcdoc / location.hash in 99 file(s)
-3. fragment hrefs point at ids in the same document
-        fragments seen: #main ×55, #all-prompts ×9
-  ok    64 fragment href(s), all resolved in-document
-4. no `#` placeholder hrefs in src/
-  ok    0 placeholder hrefs in src/ (2 real in-page anchor(s))
-5. no en hreflang in the export
-  ok    0 en hreflang tags
-6. no prototype-declared counts in the export
-  ok    0 occurrences of 982 / 324 条 / 136 条
-7. presentation truth and no-JS static HTML
-  ok    55 HTML file(s) expose dated, no-JS-safe content without double handles,
-        each with its <h1> inside <main> and no hidden Suspense buffer
-
-check-static-output: PASSED
-```
-
-## R2.4 `pnpm test:e2e`
-
-```text
-$ playwright test --project=desktop --project=mobile
-Running 54 tests using 9 workers
-…
-  12 skipped
-  42 passed (9.8s)
-```
-
-| Project | passed | failed | skipped |
-| --- | --- | --- | --- |
-| `desktop` (1440×1200) | 24 | 0 | 3 (`mobile-nav`, mobile-only by design) |
-| `mobile` (Pixel 7 @ 375×812) | 18 | 0 | 9 (`filters` ×5 desktop-only, `responsive` ×4 drives its own widths) |
-| **total** | **42** | **0** | **12** |
-
-The 12 skips are the same deliberate project scoping as in run 1 (5 + 3 + 4).
-`no-js.spec.ts` (Finding 1), `a11y.spec.ts` L3 desktop (Finding 2) and
-`responsive.spec.ts` L3 (Finding 3) all pass now.
-
-## R2.5 axe results per page — 14 of 14 clean
-
-```text
-[axe] desktop L1 提示词库:    0 violation(s)
-[axe] desktop L2 图片提示词:  0 violation(s)
-[axe] desktop L3 模型页:      0 violation(s)
-[axe] desktop L4 提示词详情:  0 violation(s)
-[axe] desktop Blog 列表:      0 violation(s)
-[axe] desktop Blog 文章:      0 violation(s)
-[axe] desktop 404:            0 violation(s)
-[axe] mobile L1 提示词库:     0 violation(s)
-[axe] mobile L2 图片提示词:   0 violation(s)
-[axe] mobile L3 模型页:       0 violation(s)
-[axe] mobile L4 提示词详情:   0 violation(s)
-[axe] mobile Blog 列表:       0 violation(s)
-[axe] mobile Blog 文章:       0 violation(s)
-[axe] mobile 404:             0 violation(s)
-```
-
-Counts are **all** violations at every impact level, not just critical/serious.
-The single `scrollable-region-focusable` (Finding 2) is gone: both prompt `<pre>`
-elements are now `tabIndex={0}` with `role="group"` and
-`aria-label="提示词原文"`. The explicit role is load-bearing — `aria-label` on a
-role-less element is prohibited ARIA and axe's `aria-prohibited-attr` would have
-traded one serious violation for another.
-
-## R2.6 Screenshots, regenerated
-
-```text
-$ pnpm screenshots
-  1 skipped
-  9 passed (6.0s)
-```
-
-| File | Size (px) | Bytes | vs run 1 |
-| --- | --- | --- | --- |
-| `l1-desktop.png` | 1440 × 7482 | 1.4M | unchanged geometry |
-| `l1-mobile.png` | 375 × 14207 | 1.1M | unchanged geometry |
-| `l2-desktop.png` | 1440 × 8928 | 3.5M | unchanged geometry |
-| `l2-mobile.png` | 375 × 10858 | 960K | unchanged geometry |
-| `l3-desktop.png` | 1440 × 11351 | 4.5M | unchanged geometry |
-| `l3-mobile.png` | **375** × 25599 | 3.5M | **was 714 × 26129 / 6.8M — Finding 3 fixed** |
-| `l4-desktop.png` | 1440 × 4895 | 1.2M | unchanged geometry |
-| `l4-mobile.png` | 375 × 5890 | 404K | unchanged geometry |
-| `blog-desktop.png` | 1440 × 2096 | 204K | unchanged |
-| `finding-1-l1-no-js.png` | 1440 × 1200 | 44K | kept as pre-fix evidence |
-
-`l3-mobile.png` is now exactly 375 CSS px wide — the page no longer scrolls
-sideways, which is Finding 3 fixed and rendered as a picture.
+| `pnpm lint` | 0 errors；9 条 `@next/next/no-img-element` 提示。当前为有尺寸的静态导出原生图片，未隐藏这些提示。 |
+| `pnpm typecheck` | 通过。 |
+| `pnpm test` | 3 个文件，24/24 通过：API/目录 14、Recipe 4、Article adapter 6。 |
+| `node scripts/generate-api.mjs --check` | 生成物与 Backend OpenAPI 一致。 |
+| `pnpm build:visual` | 通过；56 个 HTML 页面，Next 显示 58 个静态生成项。 |
+| `pnpm check:static`（visual） | 通过；56 个 HTML、3110 个内部链接；无假 `href="#"`、无 iframe/srcdoc，检查 noindex 和路由目标。 |
+| `FRONTEND_TEST_URL=http://localhost:61091 pnpm test:e2e` | 对真实静态导出运行，28/28 通过。不是只对开发服务器测试。 |
+| `pnpm build`（public-api，固定 revision） | 通过；详见 `public-build.json`。 |
+| `pnpm check:static`（public） | 通过；13 个 HTML、202 个内部链接；核对允许的 Prompt 路由，并检查未授权 fixture 标题/ID 不进入 HTML/JS/JSON。 |
+| `node scripts/smoke-public.mjs` | 7 个真实静态页面及 2 个真实 404 通过；检查 JSON-LD 与无 JS 主体，详见 `public-smoke.json`。 |
+| Live FastAPI integration | 2/2 通过，覆盖实际 public GET 合同、4 种排序、3 种时间窗、全文/revision、禁用语言与缺失详情；详见 `api-contract.md`。 |
+| CMS seed/Preview projector 单元测试 | 21/21 通过。没有访问 CMS DB，也不代表 live draft Preview 已接通。 |
+| 根 compiler validate/build | `node infra/bin/content.mjs validate` 和 `build --output infra/generated/static` 通过。 |
+| `node --test infra/tests/*.test.mjs` | 18/18 通过。 |
+
+28 个浏览器检查覆盖两条图片/视频 L1→L2→L3→L4 路径、直达/返回/reload、URL 同轴 OR/跨轴 AND、Deck 单一可交互卡/左右键/空结果、TOC 编号、scratchpad、五页无 JS 正文、404/未启用译文、320px 和 768/1024px 布局、桌面/手机以及暗色/reduced-motion。
+
+五页执行 axe WCAG 2 A/AA、2.1 AA 规则，最终无 critical/serious violation。此结果不是完整人工 WCAG 2.2 认证，也不是全浏览器兼容性保证。
+
+整套 28 项通过后，Recipe 仅补齐原型 quirks-mode form 的显式底部间距与 token 行高；该局部修改另跑 Recipe 4/4 单测及 1440/375px 布局复测，通过后再执行最终 public build、静态检查和 HTTP smoke。
+
+## 移动 Lighthouse
+
+本机静态 HTTP 服务、Lighthouse 13.4.1、Headless Chrome 151，mobile/Moto G Power 模拟；网络 RTT 150ms、吞吐 1638.4Kbps、CPU 4× slowdown。测量时没有同时运行自动化截图/回归。以下是实验室单次测量，不能替代线上真实用户 Core Web Vitals。
+
+| 最终首页构建 | Performance | Accessibility | SEO | FCP | LCP | CLS | TBT |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| visual-fixture，35 条 | 98 | 100 | 66 | 1.4s | 2.4s | 0.011 | 20ms |
+| public-api，本地 1 条 | 98 | 100 | 63 | 1.2s | 2.3s | 0.011 | 50ms |
+
+报告为 `lighthouse-visual-hub.json`、`lighthouse-public-hub-final.json`。字体本地化前同一本地 public 首页 Performance 为 86（`lighthouse-public-hub.json`），使用原样 Inter 的本地副本后复测为 98。没有改变测试节流设置或为测量禁用业务代码。
+
+Performance/Accessibility ≥90 与 CLS <0.1 达标；**SEO 总分未达到 90**。最终 public 报告唯一失败的有权重 SEO 项为 “Page is blocked from indexing”：本地样本按内容资格保留 meta noindex，未配置生产站点时 robots 也禁止抓取；视觉样本同样必须 noindex。没有为提高分数移除这些约束。正式已审核且具有可索引资格的部署需要单独复测，不能把本地评分写成正式 SEO gate 已通过。
+
+## 验收中发现并修复的问题
+
+- 原始 scoped `overflow-x:hidden` 破坏 sticky；改为 clip，并修复编译产物中丢失的 backdrop blur。
+- 加载边界使无 JS 正文落在 hidden Suspense 容器；移除该边界，静态正文直接可读。
+- 多 root layout 的默认 404 缺少语言/样式；使用 Next 本地文档支持的 `globalNotFound` 完整文档。
+- 筛选计数、L3 正文标记与状态标签对比度不足；保留颜色关系并加深至可读范围。
+- L4 遗留的中文变量 note 不属于最终母版；仅从视觉 fixture 排除，真实公开 note 仍按数据展示。
+- L4 母版在 quirks mode 中有默认 form 底距；在 standards mode 显式保留该间距与 token 行高，使步骤 03 两宽坐标与参考一致。
+- 外部 Inter 请求拖慢加载；同一字节字体已放入 `public/fonts/` 并保留 OFL 与来源/hash，字体栈和字形不变。
+- 早期 public build 的 `no-store` 被 Next 判为动态；static adapter 使用包含固定 revision 的 fetch cache key，仍校验 schema/header/body/revision。
+
+失败的中间轮次用于定位以上问题，最终通过结果来自修复后实际执行，没有删除断言或把失败改为跳过。
+
+## 视觉与文案证据
+
+母版 hash 和选中 variant 见 `reference-manifest.json`；逐区文案定位、派生内容及真实性差异见 `copy-map.md`。首屏截图在 `reference/`、`implementation/`。早期首屏截图未等待所有远端图片，不能凭其空白媒体判定一致；后续有加载检查的 section 截图作为主体/页尾证据。
+
+`visual-review.md` 记录 L1–L3 的 14 对截图、54/54 个可见图像出现位置加载成功、无横向溢出及实际看图结论。其他宽度和 Recipe 的补充结论分别见 `responsive-review.md`、`recipe-visual-review.md`。报告明确区分原样还原、功能性修正和派生模块；没有声称零像素差或给出无依据的相似度。
+
+## 数据与发布状态
+
+视觉样本：35 条，revision `sha256:268ea6de403be07d656c4c566213bd6bf6a0585cefd84d35bea8785bbcd080a4`，显式 visual-fixture/noindex。
+
+本地 public 合同：revision `sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01`，1 条 zh-CN Prompt、0 篇 Article、en 禁用。它是本轮仓库只读合同 fixture，不证明线上最新 CMS snapshot。`sourceMirrorSha` 未提供，`productionRelease=false`。
+
+后端尚无 Article/合集/创作者详情/生成 HTTP 能力；前端已有相应静态读取或真实筛选入口，没有猜测接口。没有 `actions.tryUrl` 时不启用 Generate。受保护的 live CMS draft Preview 本轮未启用；旧 preview-loop 未执行。全部具体边界见 `contract-gaps.md`。
+
+本轮没有 CMS editorial/rights approval、CMS public 变更、mirror 写入、生产部署或生产 smoke；本地构建与 smoke 不冒充这些阶段完成。
+
+## 后续用户调整：移除复制按钮、按内容类型显示 CTA
+
+2026-09-04：按用户要求移除 L1–L4 与 scratchpad 的复制按钮及 CopyButton/剪贴板状态代码。图片/视频 CTA 分别显示 Generate image / Generate video，未分类内容显示 Generate。单条列表 CTA 保持进入对应 L4；真实生成链接的可用性规则不变。首页通用 CTA 分为图片/视频两个分类入口。
+
+- TypeScript、ESLint（0 errors，原有 9 条 img warnings）、visual build 与静态检查通过：56 个 HTML、3221 个内部链接。
+- 单测 23/23 通过。复制功能已删除，因此移除其剪贴板失败测试，保留并更新变量、原文和无复制按钮的验证。
+- 两类内容的桌面/手机 L1–L4 链路均通过，验证 CTA 名称、真实 href、复制按钮缺席和 L4 未提供生成链接时的禁用状态。首次测试误把模型首条内容假定为视频；根据混合内容事实改为选择实际类型后通过，没有修改内容分类来迎合测试。
+- 最后整套浏览器检查 27/28 通过，一次桌面 scratchpad 焦点检查失败；该检查随后的独立三次复测均通过。未能稳定重现这次开发服务器焦点失败，未删断言、添加重试或把该完整轮次写成 28/28。
+
+这些结果属于本地前端调整；没有重新运行生产发布或线上 smoke。
+
+## 2026-09-04 — L1 Magnetic / continuous peek
+
+Replaced Quotations L1 with the selected `proto-continuous-peek.html?v=2` Magnetic design, maintaining dark default and typed Generate-to-L4 links. `magnetic-visual-review.md` and `magnetic/measurements.json` hold this round's visual evidence; old L1 screenshots are superseded.
+
+Typecheck passed; lint 0 errors (9 pre-existing static image warnings); 23 unit tests passed; visual build passed; complete E2E 31 passed / 1 intentional mobile fine-pointer skip. Final affected journey/Magnetic rerun 13 passed / same skip. Static checks passed (56 HTML pages, 3116 local links). Root validate/build and 18 infra tests passed. Initial Chromium attempts were blocked by process sandbox; reruns with authorized browser process escalation succeeded. No production deployment or CMS/mirror mutation.

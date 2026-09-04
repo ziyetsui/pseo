@@ -1,0 +1,115 @@
+{
+  "unchanged": [
+    ".argument h1",
+    ".argument .body",
+    ".after",
+    ".foot",
+    ".nav"
+  ],
+  "results": [
+    {
+      "width": 1440,
+      "reference": true,
+      "styles": {
+        "width": 410,
+        "gap": "14px",
+        "marginTop": "34px",
+        "mark": "40px",
+        "name": "15px"
+      },
+      "links": [
+        {
+          "text": "Vincent Wu",
+          "href": "https://x.com/VincentWu11",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        },
+        {
+          "text": "Steve Li",
+          "href": "https://x.com/st3v3li",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "reference": false,
+      "styles": {
+        "width": 410,
+        "gap": "14px",
+        "marginTop": "34px",
+        "mark": "40px",
+        "name": "15px"
+      },
+      "links": [
+        {
+          "text": "Vincent Wu",
+          "href": "https://x.com/VincentWu11",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        },
+        {
+          "text": "Steve Li",
+          "href": "https://x.com/st3v3li",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "reference": true,
+      "styles": {
+        "width": 319,
+        "gap": "14px",
+        "marginTop": "30px",
+        "mark": "34px",
+        "name": "15px"
+      },
+      "links": [
+        {
+          "text": "Vincent Wu",
+          "href": "https://x.com/VincentWu11",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        },
+        {
+          "text": "Steve Li",
+          "href": "https://x.com/st3v3li",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "reference": false,
+      "styles": {
+        "width": 319,
+        "gap": "14px",
+        "marginTop": "30px",
+        "mark": "34px",
+        "name": "15px"
+      },
+      "links": [
+        {
+          "text": "Vincent Wu",
+          "href": "https://x.com/VincentWu11",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        },
+        {
+          "text": "Steve Li",
+          "href": "https://x.com/st3v3li",
+          "target": "_blank",
+          "rel": "nofollow noopener noreferrer"
+        }
+      ],
+      "overflow": false
+    }
+  ]
+}

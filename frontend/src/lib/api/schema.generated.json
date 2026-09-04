@@ -1,0 +1,1856 @@
+{
+  "components": {
+    "schemas": {
+      "BrowseSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Models",
+            "type": "array"
+          },
+          "styles": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "techniques": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Techniques",
+            "type": "array"
+          },
+          "useCases": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Usecases",
+            "type": "array"
+          }
+        },
+        "required": [
+          "models",
+          "useCases",
+          "techniques",
+          "styles"
+        ],
+        "title": "BrowseSchema",
+        "type": "object"
+      },
+      "CategoryAxisParam": {
+        "enum": [
+          "content-type",
+          "use-case",
+          "technique",
+          "style",
+          "subject"
+        ],
+        "title": "CategoryAxisParam",
+        "type": "string"
+      },
+      "CategoryEntitySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "enum": [
+              "content-type",
+              "use-case",
+              "technique",
+              "style",
+              "subject"
+            ],
+            "title": "Axis",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "localeVariants": {
+            "items": {
+              "$ref": "#/components/schemas/LocaleVariantRefSchema"
+            },
+            "title": "Localevariants",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SeoSchema"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Updatedat",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "localeVariants",
+          "seo",
+          "axis",
+          "updatedAt"
+        ],
+        "title": "CategoryEntitySchema",
+        "type": "object"
+      },
+      "CategoryProjectionSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/CategoryEntitySchema"
+          },
+          "facets": {
+            "$ref": "#/components/schemas/FacetSetSchema"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageSchema"
+          }
+        },
+        "required": [
+          "entity",
+          "items",
+          "page",
+          "facets"
+        ],
+        "title": "CategoryProjectionSchema",
+        "type": "object"
+      },
+      "DependencyHealthSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "catalog": {
+            "const": "ok",
+            "title": "Catalog",
+            "type": "string"
+          }
+        },
+        "required": [
+          "catalog"
+        ],
+        "title": "DependencyHealthSchema",
+        "type": "object"
+      },
+      "EvidenceSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "type",
+          "url",
+          "confidence"
+        ],
+        "title": "EvidenceSchema",
+        "type": "object"
+      },
+      "FacetSetSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "creators": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Creators",
+            "type": "array"
+          },
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Models",
+            "type": "array"
+          },
+          "styles": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "subjects": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Subjects",
+            "type": "array"
+          },
+          "techniques": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Techniques",
+            "type": "array"
+          },
+          "useCases": {
+            "items": {
+              "$ref": "#/components/schemas/FacetValueSchema"
+            },
+            "title": "Usecases",
+            "type": "array"
+          }
+        },
+        "required": [
+          "models",
+          "useCases",
+          "techniques",
+          "styles",
+          "subjects",
+          "creators"
+        ],
+        "title": "FacetSetSchema",
+        "type": "object"
+      },
+      "FacetValueSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "minimum": 0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "selected": {
+            "title": "Selected",
+            "type": "boolean"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "label",
+          "count",
+          "selected"
+        ],
+        "title": "FacetValueSchema",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "dependencies": {
+            "$ref": "#/components/schemas/DependencyHealthSchema"
+          },
+          "indexRevision": {
+            "title": "Indexrevision",
+            "type": "string"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "const": "ok",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service",
+          "status",
+          "indexRevision",
+          "dependencies"
+        ],
+        "title": "HealthSchema",
+        "type": "object"
+      },
+      "HomeDataSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "browse": {
+            "$ref": "#/components/schemas/BrowseSchema"
+          },
+          "collections": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Collections",
+            "type": "array"
+          },
+          "creators": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Creators",
+            "type": "array"
+          },
+          "featured": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Featured",
+            "type": "array"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/HomeStatsSchema"
+          },
+          "trending": {
+            "items": {
+              "$ref": "#/components/schemas/TrendingSchema"
+            },
+            "title": "Trending",
+            "type": "array"
+          }
+        },
+        "required": [
+          "stats",
+          "featured",
+          "trending",
+          "browse",
+          "collections",
+          "creators"
+        ],
+        "title": "HomeDataSchema",
+        "type": "object"
+      },
+      "HomeStatsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "indexVersion": {
+            "title": "Indexversion",
+            "type": "string"
+          },
+          "modelCount": {
+            "title": "Modelcount",
+            "type": "integer"
+          },
+          "promptCount": {
+            "title": "Promptcount",
+            "type": "integer"
+          },
+          "updatedAt": {
+            "title": "Updatedat",
+            "type": "string"
+          }
+        },
+        "required": [
+          "promptCount",
+          "modelCount",
+          "updatedAt",
+          "indexVersion"
+        ],
+        "title": "HomeStatsSchema",
+        "type": "object"
+      },
+      "LocaleInfoSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "default": {
+            "title": "Default",
+            "type": "boolean"
+          },
+          "displayName": {
+            "title": "Displayname",
+            "type": "string"
+          },
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "href": {
+            "title": "Href",
+            "type": "string"
+          },
+          "locale": {
+            "title": "Locale",
+            "type": "string"
+          }
+        },
+        "required": [
+          "locale",
+          "displayName",
+          "default",
+          "enabled",
+          "href"
+        ],
+        "title": "LocaleInfoSchema",
+        "type": "object"
+      },
+      "LocaleVariantRefSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "href": {
+            "title": "Href",
+            "type": "string"
+          },
+          "locale": {
+            "title": "Locale",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "locale",
+          "slug",
+          "href"
+        ],
+        "title": "LocaleVariantRefSchema",
+        "type": "object"
+      },
+      "LocalizedRefSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "href": {
+            "title": "Href",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "href"
+        ],
+        "title": "LocalizedRefSchema",
+        "type": "object"
+      },
+      "MediaSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alt": {
+            "title": "Alt",
+            "type": "string"
+          },
+          "assetId": {
+            "title": "Assetid",
+            "type": "string"
+          },
+          "height": {
+            "exclusiveMinimum": 0,
+            "title": "Height",
+            "type": "integer"
+          },
+          "posterUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Posterurl"
+          },
+          "type": {
+            "enum": [
+              "image",
+              "video"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "width": {
+            "exclusiveMinimum": 0,
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "assetId",
+          "type",
+          "url",
+          "width",
+          "height",
+          "alt",
+          "posterUrl"
+        ],
+        "title": "MediaSchema",
+        "type": "object"
+      },
+      "MetricsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bookmarks": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bookmarks"
+          },
+          "comments": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comments"
+          },
+          "likes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Likes"
+          },
+          "observedAt": {
+            "title": "Observedat",
+            "type": "string"
+          },
+          "reposts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reposts"
+          },
+          "views": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Views"
+          }
+        },
+        "required": [
+          "likes",
+          "bookmarks",
+          "comments",
+          "reposts",
+          "views",
+          "observedAt"
+        ],
+        "title": "MetricsSchema",
+        "type": "object"
+      },
+      "ModelEntitySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capabilities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Capabilities",
+            "type": "array"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "inputs": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Inputs",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "localeVariants": {
+            "items": {
+              "$ref": "#/components/schemas/LocaleVariantRefSchema"
+            },
+            "title": "Localevariants",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "officialUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Officialurl"
+          },
+          "outputs": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Outputs",
+            "type": "array"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SeoSchema"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Updatedat",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "localeVariants",
+          "seo",
+          "officialUrl",
+          "updatedAt",
+          "capabilities",
+          "inputs",
+          "outputs",
+          "limitations"
+        ],
+        "title": "ModelEntitySchema",
+        "type": "object"
+      },
+      "ModelProjectionSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/ModelEntitySchema"
+          },
+          "facets": {
+            "$ref": "#/components/schemas/FacetSetSchema"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageSchema"
+          }
+        },
+        "required": [
+          "entity",
+          "items",
+          "page",
+          "facets"
+        ],
+        "title": "ModelProjectionSchema",
+        "type": "object"
+      },
+      "PageSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hasMore": {
+            "title": "Hasmore",
+            "type": "boolean"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nextcursor"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "nextCursor",
+          "hasMore",
+          "limit",
+          "total"
+        ],
+        "title": "PageSchema",
+        "type": "object"
+      },
+      "ProblemFieldErrorSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProblemLocaleMetaSchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "code",
+          "message"
+        ],
+        "title": "ProblemFieldErrorSchema",
+        "type": "object"
+      },
+      "ProblemLocaleMetaSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "localeVariants": {
+            "items": {
+              "$ref": "#/components/schemas/LocaleVariantRefSchema"
+            },
+            "title": "Localevariants",
+            "type": "array"
+          }
+        },
+        "required": [
+          "localeVariants"
+        ],
+        "title": "ProblemLocaleMetaSchema",
+        "type": "object"
+      },
+      "ProblemSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ProblemFieldErrorSchema"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "traceId": {
+            "title": "Traceid",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "detail",
+          "instance",
+          "traceId",
+          "errors"
+        ],
+        "title": "ProblemSchema",
+        "type": "object"
+      },
+      "PromptActionsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "canCopy": {
+            "title": "Cancopy",
+            "type": "boolean"
+          },
+          "tryUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tryurl"
+          }
+        },
+        "required": [
+          "canCopy",
+          "tryUrl"
+        ],
+        "title": "PromptActionsSchema",
+        "type": "object"
+      },
+      "PromptBodySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "variables": {
+            "items": {
+              "$ref": "#/components/schemas/PromptVariableSchema"
+            },
+            "title": "Variables",
+            "type": "array"
+          }
+        },
+        "required": [
+          "language",
+          "text",
+          "variables"
+        ],
+        "title": "PromptBodySchema",
+        "type": "object"
+      },
+      "PromptDetailSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "$ref": "#/components/schemas/PromptActionsSchema"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceSchema"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "examples": {
+            "items": {
+              "$ref": "#/components/schemas/PromptExampleSchema"
+            },
+            "title": "Examples",
+            "type": "array"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/PromptIdentitySchema"
+          },
+          "inputs": {
+            "$ref": "#/components/schemas/PromptInputsSchema"
+          },
+          "localeVariants": {
+            "items": {
+              "$ref": "#/components/schemas/LocaleVariantRefSchema"
+            },
+            "title": "Localevariants",
+            "type": "array"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/PromptOutcomeSchema"
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/PromptParameterSchema"
+            },
+            "title": "Parameters",
+            "type": "array"
+          },
+          "prompt": {
+            "$ref": "#/components/schemas/PromptBodySchema"
+          },
+          "relations": {
+            "$ref": "#/components/schemas/PromptRelationsSchema"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SeoSchema"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceSummarySchema"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/PromptSummarySchema"
+          },
+          "variations": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Variations",
+            "type": "array"
+          },
+          "workflow": {
+            "items": {
+              "$ref": "#/components/schemas/WorkflowStepSchema"
+            },
+            "title": "Workflow",
+            "type": "array"
+          }
+        },
+        "required": [
+          "summary",
+          "localeVariants",
+          "identity",
+          "outcome",
+          "prompt",
+          "inputs",
+          "parameters",
+          "examples",
+          "workflow",
+          "variations",
+          "source",
+          "evidence",
+          "relations",
+          "actions",
+          "seo",
+          "revision"
+        ],
+        "title": "PromptDetailSchema",
+        "type": "object"
+      },
+      "PromptExampleSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "input": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input"
+          },
+          "output": {
+            "$ref": "#/components/schemas/MediaSchema"
+          }
+        },
+        "required": [
+          "id",
+          "input",
+          "output",
+          "caption"
+        ],
+        "title": "PromptExampleSchema",
+        "type": "object"
+      },
+      "PromptIdentitySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "contentType": {
+            "title": "Contenttype",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "summary",
+          "contentType"
+        ],
+        "title": "PromptIdentitySchema",
+        "type": "object"
+      },
+      "PromptInputsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "optional": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Optional",
+            "type": "array"
+          },
+          "required": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Required",
+            "type": "array"
+          }
+        },
+        "required": [
+          "required",
+          "optional"
+        ],
+        "title": "PromptInputsSchema",
+        "type": "object"
+      },
+      "PromptOutcomeSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "characteristics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Characteristics",
+            "type": "array"
+          },
+          "outputType": {
+            "title": "Outputtype",
+            "type": "string"
+          },
+          "platforms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Platforms",
+            "type": "array"
+          },
+          "purpose": {
+            "title": "Purpose",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outputType",
+          "purpose",
+          "platforms",
+          "characteristics"
+        ],
+        "title": "PromptOutcomeSchema",
+        "type": "object"
+      },
+      "PromptPageEnvelope": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "facets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FacetSetSchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageSchema"
+          }
+        },
+        "required": [
+          "data",
+          "page",
+          "facets",
+          "meta"
+        ],
+        "title": "PromptPageEnvelope",
+        "type": "object"
+      },
+      "PromptParameterSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "required": {
+            "title": "Required",
+            "type": "boolean"
+          },
+          "type": {
+            "enum": [
+              "text",
+              "number",
+              "enum",
+              "boolean"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "type",
+          "required",
+          "options"
+        ],
+        "title": "PromptParameterSchema",
+        "type": "object"
+      },
+      "PromptRelationsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "creator": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LocalizedRefSchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Models",
+            "type": "array"
+          },
+          "relatedPrompts": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Relatedprompts",
+            "type": "array"
+          },
+          "styles": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "subjects": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Subjects",
+            "type": "array"
+          },
+          "techniques": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Techniques",
+            "type": "array"
+          },
+          "useCases": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Usecases",
+            "type": "array"
+          }
+        },
+        "required": [
+          "models",
+          "useCases",
+          "techniques",
+          "styles",
+          "subjects",
+          "creator",
+          "relatedPrompts"
+        ],
+        "title": "PromptRelationsSchema",
+        "type": "object"
+      },
+      "PromptSort": {
+        "enum": [
+          "relevance",
+          "trending",
+          "value",
+          "newest"
+        ],
+        "title": "PromptSort",
+        "type": "string"
+      },
+      "PromptSummarySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "contentType": {
+            "enum": [
+              "image",
+              "video",
+              "text",
+              "other"
+            ],
+            "title": "Contenttype",
+            "type": "string"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "href": {
+            "title": "Href",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "locale": {
+            "title": "Locale",
+            "type": "string"
+          },
+          "media": {
+            "items": {
+              "$ref": "#/components/schemas/MediaSchema"
+            },
+            "title": "Media",
+            "type": "array"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/MetricsSchema"
+          },
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Models",
+            "type": "array"
+          },
+          "promptPreview": {
+            "title": "Promptpreview",
+            "type": "string"
+          },
+          "publishedAt": {
+            "title": "Publishedat",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceSummarySchema"
+          },
+          "styles": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "subjects": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Subjects",
+            "type": "array"
+          },
+          "techniques": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Techniques",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Updatedat",
+            "type": "string"
+          },
+          "useCases": {
+            "items": {
+              "$ref": "#/components/schemas/LocalizedRefSchema"
+            },
+            "title": "Usecases",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "href",
+          "locale",
+          "title",
+          "excerpt",
+          "contentType",
+          "promptPreview",
+          "models",
+          "useCases",
+          "techniques",
+          "styles",
+          "subjects",
+          "media",
+          "source",
+          "metrics",
+          "publishedAt",
+          "updatedAt"
+        ],
+        "title": "PromptSummarySchema",
+        "type": "object"
+      },
+      "PromptVariableSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "defaultValue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Defaultvalue"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "required": {
+            "title": "Required",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "required",
+          "defaultValue",
+          "options"
+        ],
+        "title": "PromptVariableSchema",
+        "type": "object"
+      },
+      "PublicEnvelope_CategoryProjectionSchema_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CategoryProjectionSchema"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[CategoryProjectionSchema]",
+        "type": "object"
+      },
+      "PublicEnvelope_FacetSetSchema_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FacetSetSchema"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[FacetSetSchema]",
+        "type": "object"
+      },
+      "PublicEnvelope_HomeDataSchema_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/HomeDataSchema"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[HomeDataSchema]",
+        "type": "object"
+      },
+      "PublicEnvelope_ModelProjectionSchema_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ModelProjectionSchema"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[ModelProjectionSchema]",
+        "type": "object"
+      },
+      "PublicEnvelope_PromptDetailSchema_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PromptDetailSchema"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[PromptDetailSchema]",
+        "type": "object"
+      },
+      "PublicEnvelope_list_LocaleInfoSchema__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/LocaleInfoSchema"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaSchema"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "PublicEnvelope[list[LocaleInfoSchema]]",
+        "type": "object"
+      },
+      "ResponseMetaSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "contentRevision": {
+            "title": "Contentrevision",
+            "type": "string"
+          },
+          "indexVersion": {
+            "title": "Indexversion",
+            "type": "string"
+          },
+          "rankingVersion": {
+            "title": "Rankingversion",
+            "type": "string"
+          },
+          "requestId": {
+            "title": "Requestid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "requestId",
+          "contentRevision",
+          "indexVersion",
+          "rankingVersion"
+        ],
+        "title": "ResponseMetaSchema",
+        "type": "object"
+      },
+      "SeoSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "canonicalUrl": {
+            "title": "Canonicalurl",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "hreflang": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Hreflang",
+            "type": "object"
+          },
+          "robots": {
+            "enum": [
+              "index,follow",
+              "noindex,nofollow"
+            ],
+            "title": "Robots",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "canonicalUrl",
+          "hreflang",
+          "robots"
+        ],
+        "title": "SeoSchema",
+        "type": "object"
+      },
+      "SourceSummarySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "authorHandle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorhandle"
+          },
+          "observedAt": {
+            "title": "Observedat",
+            "type": "string"
+          },
+          "platform": {
+            "enum": [
+              "x",
+              "rss",
+              "url",
+              "manual"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "sourceId",
+          "url",
+          "authorHandle",
+          "observedAt"
+        ],
+        "title": "SourceSummarySchema",
+        "type": "object"
+      },
+      "TrendingSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PromptSummarySchema"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "rankingVersion": {
+            "title": "Rankingversion",
+            "type": "string"
+          },
+          "window": {
+            "enum": [
+              "7d",
+              "30d",
+              "all"
+            ],
+            "title": "Window",
+            "type": "string"
+          }
+        },
+        "required": [
+          "window",
+          "rankingVersion",
+          "items"
+        ],
+        "title": "TrendingSchema",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "Window": {
+        "enum": [
+          "7d",
+          "30d",
+          "all"
+        ],
+        "title": "Window",
+        "type": "string"
+      },
+      "WorkflowStepSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "position": {
+            "minimum": 1,
+            "title": "Position",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "position",
+          "title",
+          "body"
+        ],
+        "title": "WorkflowStepSchema",
+        "type": "object"
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/categories/{axis}/{slug}": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_CategoryProjectionSchema_"
+      }
+    },
+    "/api/v1/facets": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_FacetSetSchema_"
+      }
+    },
+    "/api/v1/home": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_HomeDataSchema_"
+      }
+    },
+    "/api/v1/locales": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_list_LocaleInfoSchema__"
+      }
+    },
+    "/api/v1/models/{slug}": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_ModelProjectionSchema_"
+      }
+    },
+    "/api/v1/prompts": {
+      "response": {
+        "$ref": "#/components/schemas/PromptPageEnvelope"
+      }
+    },
+    "/api/v1/prompts/{slug}": {
+      "response": {
+        "$ref": "#/components/schemas/PublicEnvelope_PromptDetailSchema_"
+      }
+    },
+    "/healthz": {
+      "response": {
+        "$ref": "#/components/schemas/HealthSchema"
+      }
+    }
+  }
+}

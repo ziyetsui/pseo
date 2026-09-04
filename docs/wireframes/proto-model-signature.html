@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en" style="color-scheme:dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Nano Banana — first screen, Signature credit</title>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   Model page first screen — Drift wall + Marquee hero + SIGNATURE credit.
+   Self-contained: no build step, no dev server, no CSS chunk to arrive late.
+   Open the file and it is the finished thing.
+
+   Chosen from /proto/model-credit (Byline · Colophon · SIGNATURE · Ribbon ·
+   Duet). No picker here — this is the one direction, on its own.
+
+   Tokens are the live values read off .prototype-anthology .v4 on 2026-09-04,
+   not approximations. Data is the real 17 Nano Banana prompts and their real
+   result images. The two X links are the handles recorded in
+   docs/prototypes/task-l3/README-credit.md as supplied by the user.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --bg:#181818; --fg:#fff;
+  --muted-fg:#ffffffb3; --faint-fg:#ffffff9e;
+  --border:#ffffff17; --border-strong:#fff3;
+  --card:color-mix(in oklab, #fff 4%, transparent);
+  --surface:#202024;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --hairline:1px;
+}
+@media only screen and (min-resolution:192dpi){ :root{ --hairline:.5px } }
+
+/* The one display face. Instrument Serif, SIL Open Font License 1.1, from the
+   same jsdelivr package path the project used to source Inter (see
+   public/fonts/README.md). Shipping it means following that README: download
+   both files, record the SHA-256, copy the OFL, serve from /fonts. The italic
+   is a real italic file — font-synthesis:none below means a failed load shows
+   up as an obvious regression rather than a quietly faked slant. */
+@font-face{
+  font-family:"InstrumentSerif";
+  font-style:normal; font-weight:400; font-display:swap;
+  src:url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-normal.woff2") format("woff2");
+}
+@font-face{
+  font-family:"InstrumentSerif";
+  font-style:italic; font-weight:400; font-display:swap;
+  src:url("https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/files/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+:root{ --display:"InstrumentSerif", ui-serif, Georgia, "Times New Roman", serif; }
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-synthesis:none; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+button,a,input,textarea{touch-action:manipulation}
+:focus-visible{outline:2px solid var(--fg);outline-offset:2px;border-radius:5px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+img{outline:1px solid rgb(255 255 255 / .1);outline-offset:-1px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.nav{border-bottom:var(--hairline) solid var(--border);background:var(--bg);position:sticky;top:0;z-index:40}
+.nav .row{display:flex;align-items:center;gap:22px;min-height:58px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;letter-spacing:-.02em;font-size:16px;margin-right:auto}
+.brand i{width:9px;height:9px;background:var(--fg);border-radius:2px;display:block}
+.navlinks{display:flex;gap:20px;font-size:13.5px;color:var(--muted-fg);flex-wrap:wrap}
+.navlinks a{display:inline-flex;align-items:center;min-height:44px;
+  transition-property:color;transition-duration:150ms;transition-timing-function:ease-out}
+.navlinks a[aria-current]{color:var(--fg)}
+@media (hover:hover) and (pointer:fine){ .navlinks a:hover{color:var(--fg)} }
+.crumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  font:12px/1.6 var(--mono);color:var(--faint-fg);padding-block:16px}
+.crumbs a{display:inline-flex;align-items:center;min-height:32px}
+@media (hover:hover) and (pointer:fine){ .crumbs a:hover{color:var(--fg)} }
+
+/* ── the drift wall ─────────────────────────────────────────────────────── */
+.hero{position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(76vh,700px);display:grid;align-items:center}
+.wallwrap{position:absolute;inset:0;z-index:0}
+.lanes{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.lane{display:flex;flex-direction:column;gap:6px;will-change:transform;
+  animation:drift linear infinite}
+/* -50% of the element is half of (two copies + the gap between them), which
+   overshoots one copy by half a gap and walks the seam every loop. Backing the
+   gap out makes the loop exact. */
+@keyframes drift{ from{transform:translateY(0)} to{transform:translateY(calc(-50% - 3px))} }
+.lane[data-lane="0"]{animation-duration:68s}
+.lane[data-lane="1"]{animation-duration:92s;animation-direction:reverse}
+.lane[data-lane="2"]{animation-duration:78s}
+.lane[data-lane="3"]{animation-duration:106s;animation-direction:reverse}
+/* Off-screen costs nothing, and reduced motion stops it outright rather than
+   speeding it up — a frozen wall is still a wall. */
+.wallwrap[data-paused] .lane{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){ .lane{animation:none} }
+.tile{flex:none;aspect-ratio:1;overflow:hidden;background:var(--surface)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Wall can't afford a flat heavy scrim — at that strength the lanes are black
+   sliding behind black. Darkness is spent where the words are and released at
+   the edges: an ellipse protects the headline and the plate, the linear layer
+   keeps the top and bottom seams flush with the page. */
+.scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 62% 64% at 50% 50%, rgb(10 10 11 / .95) 0%, rgb(10 10 11 / .90) 42%, rgb(10 10 11 / .30) 100%),
+    linear-gradient(to bottom, rgb(10 10 11 / .86) 0%, rgb(10 10 11 / .34) 22%, rgb(10 10 11 / .34) 74%, rgb(10 10 11 / .96) 100%);
+}
+
+/* ── the hero ───────────────────────────────────────────────────────────── */
+.front{position:relative;z-index:2;width:100%;max-width:748px;margin-inline:auto;
+  padding:56px 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.mark{font-size:clamp(40px,7vw,92px);line-height:.98;letter-spacing:-.03em;font-weight:500}
+.facts{font:12px/1.6 var(--mono);color:var(--muted-fg);letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;margin-top:12px}
+
+/* ── SIGNATURE ──────────────────────────────────────────────────────────── */
+.sig{margin-top:20px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center}
+.sig-pre{font:10.5px/1.6 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--faint-fg)}
+.sig-one{display:inline-flex;align-items:baseline;gap:10px}
+.sig-one a{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  min-height:44px;position:relative;
+  transition-property:color;transition-duration:150ms;transition-timing-function:ease-out}
+/* A real italic file, not a slanted roman. */
+.sig-name{font-family:var(--display);font-style:italic;
+  font-size:clamp(24px,2.8vw,34px);line-height:1.1;letter-spacing:.002em}
+.sig-amp{color:var(--faint-fg);font-family:var(--display);font-style:italic}
+/* The sweep is transform-only, so the drawn stroke keeps its shape and the
+   compositor does the work. It is embellishment: the link is a link without
+   it, and focus gets exactly what hover gets. */
+.sig-stroke{display:block;width:100%;height:8px;margin-top:-2px;color:var(--fg);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform 320ms cubic-bezier(.32,.72,0,1)}
+.sig-stroke svg{display:block;width:100%;height:100%;overflow:visible}
+@media (hover:hover) and (pointer:fine){ .sig-one a:hover .sig-stroke{transform:scaleX(1)} }
+.sig-one a:focus-visible .sig-stroke{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){ .sig-stroke{transition:none} }
+
+/* ── composer ───────────────────────────────────────────────────────────── */
+.plate{--r:20px;--p:10px;position:relative;width:100%;margin-top:28px;text-align:start;
+  border-radius:var(--r);padding:var(--p);background:var(--card);
+  box-shadow:0 0 0 1px rgb(255 255 255 / .09);
+  transition:box-shadow 150ms ease-out}
+.plate:focus-within{box-shadow:0 0 0 1px rgb(255 255 255 / .22)}
+/* Inner radius derived: 20 − 10. Copying the plate's radius pinches the corner. */
+.box{display:block;width:100%;resize:vertical;border:0;border-radius:calc(var(--r) - var(--p));
+  background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans);padding:14px 16px;outline:none}
+@media (min-width:768px){ .box{font-size:15px} }
+.box::placeholder{color:var(--faint-fg)}
+.platefoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 6px 2px}
+.sp{flex:1}
+.count{font:11px/1.5 var(--mono);color:var(--faint-fg);font-variant-numeric:tabular-nums}
+.kbd{font:10px/1 var(--mono);color:var(--faint-fg);border:1px solid var(--border);border-radius:5px;padding:5px 6px}
+.gen{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;
+  border:0;border-radius:11px;background:var(--fg);color:var(--bg);
+  font:500 15px/1 var(--sans);cursor:pointer;
+  transition-property:opacity,scale;transition-duration:150ms;transition-timing-function:ease-out}
+.gen:active{scale:.97}
+.gen:disabled{opacity:.45;cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){ .gen:not(:disabled):hover{opacity:.88} }
+
+.versions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.version{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border-radius:999px;
+  border:1px solid var(--border);font:12px/1 var(--mono);color:var(--muted-fg);
+  background:rgb(10 10 11 / .42);
+  transition-property:color,border-color,background-color;transition-duration:150ms;transition-timing-function:ease-out}
+@media (hover:hover) and (pointer:fine){
+  .version:hover{color:var(--fg);border-color:var(--border-strong);background:rgb(10 10 11 / .7)}
+}
+
+/* ── the index below, so the fold is real ───────────────────────────────── */
+.sec{border-top:var(--hairline) solid var(--border);padding-block:44px 56px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.sec-head h2{font-size:23px;letter-spacing:-.025em;font-weight:500}
+.sec-head .end{margin-left:auto;font:11.5px/1.6 var(--mono);color:var(--faint-fg);font-variant-numeric:tabular-nums}
+.subline{color:var(--muted-fg);font-size:13.5px;margin-bottom:22px;max-width:70ch;text-wrap:pretty}
+.toc{border-top:1px solid var(--border-strong);border-bottom:1px solid var(--border-strong)}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:34px}
+.toc li{break-inside:avoid}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:40px;padding:2px 0;
+  transition-property:color;transition-duration:150ms;transition-timing-function:ease-out}
+.toc .i{font:11px/1 var(--mono);color:var(--faint-fg);font-variant-numeric:tabular-nums;flex:none;width:20px}
+.toc .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted-fg)}
+.toc .l{font:11px/1 var(--mono);color:var(--faint-fg);font-variant-numeric:tabular-nums;flex:none}
+@media (hover:hover) and (pointer:fine){ .toc a:hover .t{color:var(--fg)} }
+@media (max-width:700px){ .toc ol{columns:1} }
+
+@media (max-width:900px){ .lanes{grid-template-columns:repeat(3,1fr)} .hero{min-height:min(82vh,640px)} .front{padding-block:44px} }
+@media (max-width:560px){ .lanes{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+<a class="vh" href="#main">Skip to content</a>
+
+<nav class="nav"><div class="wrap row">
+  <span class="brand"><i aria-hidden="true"></i>Prompt Library</span>
+  <span class="navlinks">
+    <a href="/zh-CN/prompts">Home</a>
+    <a href="/zh-CN/prompts/image">Images</a>
+    <a href="/zh-CN/prompts/models" aria-current="page">Models</a>
+  </span>
+</div></nav>
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/zh-CN/prompts">Prompt Library</a><span>/</span>
+    <a href="/zh-CN/prompts/image">Images</a><span>/</span>
+    <a href="/zh-CN/prompts/models">Models</a><span>/</span>
+    <span>Nano Banana</span>
+  </nav>
+</div>
+
+<main id="main">
+  <section class="hero">
+    <div class="wallwrap" id="wall" aria-hidden="true">
+      <div class="lanes" id="lanes"></div>
+    </div>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <div class="front">
+      <h1 class="mark">Nano Banana</h1>
+      <p class="facts">17 prompts · 3 versions · printed whole</p>
+
+      <!-- SIGNATURE. The {" "}-equivalent literal spaces between the flex
+           children are deliberate: whitespace-only text nodes are ignored by
+           flex layout, so they change nothing visually, but they land in
+           textContent and the accessibility tree. Without them the line is
+           announced as "Credit toVincent Wu&Steve Li" — the gap is CSS, and a
+           CSS gap is not a word boundary to a screen reader. -->
+      <p class="sig" id="sig"></p>
+
+      <form class="plate" id="composer">
+        <label class="vh" for="box">Your prompt</label>
+        <textarea id="box" class="box" rows="3" spellcheck="false"
+          placeholder="Describe the image you want…"></textarea>
+        <div class="platefoot">
+          <span class="count" id="count">17 prompts below</span>
+          <span class="sp"></span>
+          <kbd class="kbd" id="kbd">Ctrl↵</kbd>
+          <!-- Disabled, with the reason, exactly as the shipped page does:
+               generation depends on a real actions.tryUrl and there is none
+               for a blank box. A hero button that lies is worse than one that
+               explains itself. -->
+          <button class="gen" type="button" disabled
+            title="Pick a prompt below to start from — this page hands you the words, it does not run them.">Generate image</button>
+        </div>
+      </form>
+
+      <nav class="versions" id="versions" aria-label="Model versions"></nav>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><h2>All prompts</h2><span class="end">17 in full</span></div>
+    <p class="subline">The index is here so the fold is real — this is what sits under the first screen on the shipped page.</p>
+    <nav class="toc" aria-label="Index of prompts"><ol id="toc"></ol></nav>
+  </section>
+</main>
+
+<script>
+const DATA = {"model":{"label":"Nano Banana","total":17,"members":[
+ {"label":"Nano Banana","href":"/zh-CN/prompts/models/nano-banana"},
+ {"label":"Nano Banana 2","href":"/zh-CN/prompts/models/nano-banana-2"},
+ {"label":"Nano Banana Pro","href":"/zh-CN/prompts/models/nano-banana-pro"}]},
+"credit":[{"name":"Vincent Wu","url":"https://x.com/VincentWu11"},{"name":"Steve Li","url":"https://x.com/st3v3li"}],
+"imgs":["https://pbs.twimg.com/media/HAfyGmXXUAAXUk2.jpg?name=small","https://pbs.twimg.com/media/G-Sk_ERasAMwxXc.jpg?name=small","https://pbs.twimg.com/media/HB_W0AYaMAkOKVS.jpg?name=small","https://pbs.twimg.com/media/HFNkegpXEAAriop.jpg?name=small","https://pbs.twimg.com/media/HKqcr_TakAACa5Y.jpg?name=small","https://pbs.twimg.com/media/G_lMfTjWsAAB7k7.jpg?name=small","https://pbs.twimg.com/media/G6fw59VXYAAHd8R.jpg?name=small","https://pbs.twimg.com/media/HCOVJ5QWUAA1DNU.jpg?name=small","https://pbs.twimg.com/media/HHiaL2FbsAAImQ3.jpg?name=small","https://pbs.twimg.com/media/HCqzkiOXEAE3uDT.jpg?name=small","https://pbs.twimg.com/media/G_1_Q_MXgAAg26K.jpg?name=small","https://pbs.twimg.com/media/HDIP6V5WgAEocdY.jpg?name=small","https://pbs.twimg.com/media/HHo2XVdWgAQV_Zd.jpg?name=small","https://pbs.twimg.com/media/G-E77p2WIAAbR1j.jpg?name=small","https://pbs.twimg.com/media/HAQw7YJXgAA4GIV.jpg?name=small","https://pbs.twimg.com/media/HDO3Kb_XUAAs9jz.jpg?name=small","https://pbs.twimg.com/media/HJiRu4PXoAABMQQ.jpg?name=small"],
+"toc":[{"title":"Isometric diorama of [LOCATION] on a round base","len":"1,499"},{"title":"Device spec sheet as a product poster","len":"303"},{"title":"Synthwave poster with block HEIS type","len":"963"},{"title":"Double-exposure profile from a reference photo","len":"1,214"},{"title":"Candid selfie with iPhone-5 grain","len":"2,216"},{"title":"Italian villa balcony, pinstripe sundress","len":"1,519"},{"title":"Gym mirror selfie under blue-purple LED","len":"2,946"},{"title":"Overhead portrait on the LA Walk of Fame","len":"2,999"},{"title":"Forensic-detail beauty portrait, hooded eyes","len":"3,990"},{"title":"Cheek-to-cheek selfie in an industrial venue","len":"2,832"},{"title":"Arcade motorcycle portrait, red crop top","len":"1,483"},{"title":"Spider-Man suit portrait, playful expression","len":"1,896"},{"title":"Forensic-detail portrait, heart-shaped face","len":"2,888"},{"title":"Pink neon apartment portrait, shot on iPhone","len":"2,231"},{"title":"Latex Aquaman cosplay in emerald and gold","len":"3,272"},{"title":"Venetian bridge portrait, everything in focus","len":"2,048"},{"title":"Lakeside blue-hour portrait, palace behind","len":"1,976"}]};
+
+const esc = s => String(s == null ? "" : s)
+  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+/* ── the wall ─────────────────────────────────────────────────────────────
+   Four lanes, each a different slice so no frame repeats across lanes, and
+   each doubled so the translate loops seamlessly. */
+const lanes = [[],[],[],[]];
+DATA.imgs.forEach((src, i) => lanes[i % 4].push(src));
+document.getElementById('lanes').innerHTML = lanes.map((lane, n) => {
+  const doubled = lane.concat(lane);
+  return '<div class="lane" data-lane="' + n + '">' + doubled.map((src, i) =>
+    '<span class="tile"><img src="' + esc(src) + '" alt="" width="300" height="300" ' +
+    'loading="' + (i < 3 ? 'eager' : 'lazy') + '" fetchpriority="' + (i < 2 ? 'high' : 'auto') + '" ' +
+    'referrerpolicy="no-referrer"></span>').join('') + '</div>';
+}).join('');
+
+/* Off-screen the wall stops. Toggling an attribute rather than state: a
+   scroll-driven pause has no business doing anything else. */
+const wall = document.getElementById('wall');
+if (typeof IntersectionObserver !== 'undefined') {
+  new IntersectionObserver(entries => {
+    wall.toggleAttribute('data-paused', !entries[0].isIntersecting);
+  }, { rootMargin: '100px' }).observe(wall);
+}
+
+/* ── the signature ─────────────────────────────────────────────────────── */
+const STROKE = '<span class="sig-stroke" aria-hidden="true">'
+  + '<svg viewBox="0 0 120 8" preserveAspectRatio="none" focusable="false">'
+  + '<path d="M1 5.4C22 2.1 44 1.4 66 3.2c18 1.5 36 3.1 53 1.2" fill="none" stroke="currentColor" '
+  + 'stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span>';
+
+document.getElementById('sig').innerHTML =
+  '<span class="sig-pre">Credit to</span> '
+  + DATA.credit.map((person, i) =>
+      '<span class="sig-one">'
+      + (i > 0 ? ' <span class="sig-amp" aria-hidden="true">&amp;</span> ' : '')
+      + '<a href="' + esc(person.url) + '" target="_blank" rel="nofollow noopener noreferrer">'
+      + '<span class="sig-name">' + esc(person.name) + '</span>' + STROKE + '</a></span>'
+    ).join(' ');
+
+/* ── versions and index ────────────────────────────────────────────────── */
+document.getElementById('versions').innerHTML = DATA.model.members.map(m =>
+  '<a class="version" href="' + esc(m.href) + '">' + esc(m.label) + '</a>').join('');
+
+document.getElementById('toc').innerHTML = DATA.toc.map((row, i) =>
+  '<li><a href="#main"><span class="i">' + String(i + 1).padStart(2, '0') + '</span>'
+  + '<span class="t">' + esc(row.title) + '</span>'
+  + '<span class="l">' + esc(row.len) + '</span></a></li>').join('');
+
+/* ── composer ──────────────────────────────────────────────────────────── */
+const box = document.getElementById('box');
+const count = document.getElementById('count');
+box.addEventListener('input', () => {
+  count.textContent = box.value
+    ? box.value.length.toLocaleString('en-US') + ' characters'
+    : '17 prompts below';
+});
+document.getElementById('composer').addEventListener('submit', e => e.preventDefault());
+/* Enter still inserts a newline — a prompt is multi-line text, and swallowing
+   Return would be worse than having no shortcut. */
+document.getElementById('kbd').textContent =
+  (/Mac|iP(hone|ad|od)/.test(navigator.platform || navigator.userAgent) ? '⌘' : 'Ctrl') + '↵';
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "bottom": null,
+    "links": 0,
+    "violations": []
+  },
+  {
+    "variant": "Colophon",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 910,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Signature",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 935,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Plaque",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 1001,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Kinetic",
+    "width": 1440,
+    "overflow": false,
+    "bottom": 939,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "errors": [],
+    "reducedMotionStill": true
+  },
+  {
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "bottom": null,
+    "links": 0,
+    "violations": []
+  },
+  {
+    "variant": "Colophon",
+    "width": 375,
+    "overflow": false,
+    "bottom": 867,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Signature",
+    "width": 375,
+    "overflow": false,
+    "bottom": 885,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Plaque",
+    "width": 375,
+    "overflow": false,
+    "bottom": 957,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "variant": "Kinetic",
+    "width": 375,
+    "overflow": false,
+    "bottom": 883,
+    "links": 2,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "errors": [],
+    "reducedMotionStill": true
+  }
+]

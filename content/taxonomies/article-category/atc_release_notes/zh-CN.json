@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "atc_release_notes",
+  "type": "article-taxonomy",
+  "axis": "article-category",
+  "locale": "zh-CN",
+  "sourceLocale": "zh-CN",
+  "slug": "release-notes",
+  "name": "更新日志",
+  "description": "记录内容库版本变更的计划分类，目前还没有对应文章。",
+  "url": null,
+  "status": "draft",
+  "indexable": false,
+  "fixture": true,
+  "sourceRef": "frontend/src/data/wireframe/articles.ts",
+  "seo": {
+    "title": "Prompt Library 更新日志",
+    "description": "用于验证空分类不会生成公开路由的 Internal Beta 示例分类，当前没有文章且保持 noindex。",
+    "canonical": "https://ancher.space/zh-CN/blog/category/release-notes",
+    "robots": "noindex,nofollow"
+  },
+  "publication": {
+    "publishedAt": null,
+    "updatedAt": "2026-08-20T00:00:00Z",
+    "sourceRevision": null
+  },
+  "translation": {
+    "status": "draft",
+    "translatedFromRevision": null,
+    "reviewer": null
+  }
+}

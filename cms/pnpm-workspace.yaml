@@ -1,2 +1,5 @@
 allowBuilds:
   esbuild: true
+  # Wrangler's runtime package only selects and validates Cloudflare's
+  # platform-specific, integrity-pinned workerd binary.
+  workerd: true

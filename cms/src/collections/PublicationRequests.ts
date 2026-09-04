@@ -1,20 +1,21 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated, denyAll } from '@/access'
+import { canReadEditorial, denyAll } from '@/access'
 import { INTERNAL_BETA_LOCALES, PUBLICATION_REQUEST_STATUSES } from '@/domain'
 
 export const PublicationRequests: CollectionConfig = {
   slug: 'publication-requests',
-  labels: { singular: 'Publication Request', plural: 'Publication Requests' },
+  labels: { singular: 'Legacy Publication Audit', plural: 'Legacy Publication Audits' },
   admin: {
+    hidden: true,
     group: 'Publication audit',
     useAsTitle: 'idempotencyKey',
     defaultColumns: ['artifactKey', 'status', 'provider', 'plannedBranch', 'updatedAt'],
-    description: 'Append-only audit projection. Submit via the protected endpoint; never edit directly.',
+    description: 'Read-only history from the retired per-content PR experiment. No active endpoint writes these records.',
   },
   access: {
     create: denyAll,
-    read: authenticated,
+    read: canReadEditorial,
     update: denyAll,
     delete: denyAll,
   },
@@ -28,7 +29,10 @@ export const PublicationRequests: CollectionConfig = {
     },
     { name: 'artifactKey', type: 'text', required: true, index: true },
     {
-      name: 'locales',
+      // `locales` collides with Payload Postgres' reserved <table>_locales
+      // relation naming and makes Drizzle request a non-existent `_locales`.
+      name: 'requestedLocales',
+      label: 'Locales',
       type: 'array',
       required: true,
       minRows: 1,

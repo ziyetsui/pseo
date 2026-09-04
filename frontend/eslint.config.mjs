@@ -10,6 +10,7 @@ const config = [
     ignores: [
       "node_modules/**",
       ".next/**",
+      ".next-dev/**",
       "out/**",
       "coverage/**",
       "playwright-report/**",
@@ -28,8 +29,8 @@ const config = [
       ],
       /**
        * Data boundary: pages, components and features talk to
-       * `getContentRepository()`, never to the generated wireframe fixture.
-       * Only `src/lib/content/fixture-repository.ts` (the adapter), the fixture
+       * `loadCatalog()`, never to the generated wireframe fixture.
+       * Only `src/lib/catalog/fixture.ts` (the adapter), the fixture
        * modules themselves and tests may reach into `@/data/wireframe`.
        */
       "no-restricted-imports": [
@@ -39,7 +40,7 @@ const config = [
             {
               group: ["@/data/wireframe", "@/data/wireframe/*", "**/data/wireframe", "**/data/wireframe/*"],
               message:
-                "Import data through getContentRepository() (src/lib/content). Only fixture-repository.ts may read @/data/wireframe.",
+                "Import data through loadCatalog() (src/lib/catalog). Only the isolated fixture adapter may read @/data/wireframe.",
             },
           ],
         },
@@ -47,7 +48,7 @@ const config = [
     },
   },
   {
-    files: ["src/lib/content/fixture-repository.ts", "src/data/wireframe/**", "tests/**"],
+    files: ["src/lib/catalog/fixture.ts", "src/data/wireframe/**", "tests/**"],
     rules: { "no-restricted-imports": "off" },
   },
   {

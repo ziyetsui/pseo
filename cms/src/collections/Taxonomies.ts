@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated, canReview, denyAll } from '@/access'
+import { canReadEditorial, canReview, denyAll } from '@/access'
 import { enforceDraftOnly, validateLocaleVariant } from '@/hooks'
 
 import {
@@ -23,7 +23,7 @@ export const Taxonomies: CollectionConfig = {
   },
   access: {
     create: canReview,
-    read: authenticated,
+    read: canReadEditorial,
     update: canReview,
     delete: denyAll,
   },

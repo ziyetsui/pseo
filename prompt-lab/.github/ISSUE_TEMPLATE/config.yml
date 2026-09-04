@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/ziyetsui/prompt-lab/security/advisories/new
+    about: Configure this private reporting URL before launch; do not disclose vulnerabilities publicly.
+  - name: Private rights contact
+    url: https://github.com/ziyetsui/prompt-lab/security
+    about: Use the private contact configured here when a rights report requires sensitive identity evidence.

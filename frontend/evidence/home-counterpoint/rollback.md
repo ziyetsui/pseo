@@ -1,0 +1,3 @@
+# Counterpoint rollback
+
+Rolled back the screenshot-identified Counterpoint change: Hub markup/import removed, dedicated home-credit.css removed, animation-specific accessibility test wait removed, and appended credit rules removed from frontend AGENTS/PRD/Tech Arch. The homepage main, navigation and footer HTML exactly match before.html captured before the Counterpoint task. Existing global CSS files predate that capture and were not edited in this sequence. Prior screenshots and verification scripts in this folder are historical evidence of the now-reverted design. Current rendering: restored-before-credit.png. No CMS or deployment changes.

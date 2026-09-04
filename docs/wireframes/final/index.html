@@ -1,0 +1,60 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final masters — one per level</title>
+<style>
+  :root{ color-scheme: light dark; --fg: light-dark(#181a1d,#f7f8f8); --bg: light-dark(#fff,#08090a);
+         --muted: light-dark(#5c6066,#8a8f98); --line: light-dark(#e6e7e9,#23252a); }
+  body{ margin:0; background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased;
+        font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif; }
+  main{ max-width:900px; margin:0 auto; padding:56px 24px 80px; }
+  h1{ font-size:28px; letter-spacing:-.02em; margin:0 0 6px; }
+  .lede{ color:var(--muted); margin:0 0 36px; max-width:62ch; text-wrap:pretty; }
+  ol{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+  li{ border-bottom:1px solid var(--line); }
+  a.row{ display:grid; grid-template-columns:76px minmax(0,1fr) auto; gap:20px; align-items:baseline;
+         padding:18px 4px; color:inherit; text-decoration:none; }
+  a.row:hover .t{ text-decoration:underline; text-underline-offset:3px; }
+  a.row:focus-visible{ outline:2px solid currentColor; outline-offset:2px; border-radius:6px; }
+  .lvl{ font:600 11px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em;
+        text-transform:uppercase; color:var(--muted); }
+  .t{ font-weight:500; }
+  .v{ display:block; color:var(--muted); font-size:13.5px; margin-top:2px; }
+  .file{ color:var(--muted); font:11px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:nowrap; }
+  p.note{ color:var(--muted); font-size:13px; margin-top:32px; max-width:62ch; }
+  @media (max-width:640px){ a.row{ grid-template-columns:60px minmax(0,1fr); } .file{ display:none; } }
+</style>
+<main>
+  <h1>Final masters</h1>
+  <p class="lede">The prototypes actually selected, one per level. Each file carries its own
+    variant picker — that picker is harness, not product; the link below already selects the
+    decided variant. See <code>README.md</code> in this folder for the source paths and hashes.</p>
+  <ol>
+    <li><a class="row" href="L1-hub-magnetic.html?v=2"><span class="lvl">L1</span>
+      <span><span class="t">Hub</span><span class="v">Magnetic · variants[1]/vMagnet</span></span>
+      <span class="file">proto-continuous-peek</span></a></li>
+    <li><a class="row" href="L2-L4-deck-anthology-recipe.html#/l2"><span class="lvl">L2</span>
+      <span><span class="t">Images deck</span><span class="v">Deck · variants[2]/v4</span></span>
+      <span class="file">flow-proto-full</span></a></li>
+    <li><a class="row" href="L2-L4-deck-anthology-recipe.html#/l2v"><span class="lvl">L2</span>
+      <span><span class="t">Videos deck</span><span class="v">Deck · variants[2]/v4</span></span>
+      <span class="file">flow-proto-full</span></a></li>
+    <li><a class="row" href="L2-L4-deck-anthology-recipe.html#/l3"><span class="lvl">L3</span>
+      <span><span class="t">Model anthology</span><span class="v">Anthology · variants[2]/v4</span></span>
+      <span class="file">flow-proto-full</span></a></li>
+    <li><a class="row" href="L3-task-findings.html?v=4"><span class="lvl">L3</span>
+      <span><span class="t">Task findings</span><span class="v">Findings · variants[3]/vfd</span></span>
+      <span class="file">proto-l3-task</span></a></li>
+    <li><a class="row" href="L3-style-plate.html?v=3"><span class="lvl">L3</span>
+      <span><span class="t">Style plate</span><span class="v">Plate · variants[2]/vpl</span></span>
+      <span class="file">proto-l1-editorial</span></a></li>
+    <li><a class="row" href="L2-L4-deck-anthology-recipe.html#/l4"><span class="lvl">L4</span>
+      <span><span class="t">Recipe</span><span class="v">Recipe · variants[1]/v3</span></span>
+      <span class="file">flow-proto-full</span></a></li>
+    <li><a class="row" href="sign-in-gate-weight.html?v=3"><span class="lvl">CTA</span>
+      <span><span class="t">Sign-in gate</span><span class="v">Weight · already promoted to frontend/src/components/SignInGate.tsx</span></span>
+      <span class="file">proto-login-cta</span></a></li>
+  </ol>
+  <p class="note">Copies, not the source of truth. Two of these masters are read by code at their
+    original paths, so nothing here was moved or renamed at the source.</p>
+</main>

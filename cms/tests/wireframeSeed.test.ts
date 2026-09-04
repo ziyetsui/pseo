@@ -230,22 +230,16 @@ test('the strict publication validator rejects an incomplete seeded draft', asyn
       if (args.collection === 'locale-variants') return { docs: [variant] }
       return { docs: [source] }
     },
-    async create() { throw new Error('not used') },
-    async update() { throw new Error('not used') },
   })
 
   await assert.rejects(
     validator.validate({
       artifactId: String(record(artifact).artifactKey),
-      commitMessage: 'content: should not publish a wireframe draft',
-      expectedBaseSha: '0'.repeat(40),
-      expectedContentRevision: `sha256:${'0'.repeat(64)}`,
-      expectedSourceRevision: `sha256:${'0'.repeat(64)}`,
-      idempotencyKey: 'wireframe-draft-must-not-publish',
       locales: ['zh-CN'],
     }),
     (error: unknown) => error instanceof PublicationContentValidationError &&
       error.issues.some((issue) => issue.code === 'NOT_VALIDATED') &&
-      error.issues.some((issue) => issue.code === 'LOCALE_NOT_READY'),
+      error.issues.some((issue) => issue.code === 'LOCALE_NOT_READY') &&
+      error.issues.some((issue) => issue.code === 'RIGHTS_NOT_CLEARED'),
   )
 })

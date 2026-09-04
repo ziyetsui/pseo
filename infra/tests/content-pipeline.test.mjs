@@ -10,6 +10,7 @@ import {
   repositoryRoot,
   validateContent,
 } from '../lib/content-pipeline.mjs'
+import { validateJsonSchema } from '../lib/json-schema.mjs'
 
 async function temporaryRoot(t) {
   const root = await mkdtemp(path.join(os.tmpdir(), 'pseo-content-test-'))
@@ -88,6 +89,52 @@ test('supported locales are independent and only the configured locale is publis
   assert.ok(result.taxonomies.filter((record) => record.value.locale === 'en').every((record) => record.value.status === 'draft'))
   assert.deepEqual(result.surfaces.map((surface) => surface.level), ['L1', 'L2', 'L3', 'L4'])
   assert.ok(result.surfaces.every((surface) => surface.locale === 'zh-CN' && surface.robots === 'noindex,nofollow'))
+})
+
+test('draft Prompt and taxonomy records may keep publication.publishedAt null', async (t) => {
+  const paths = await fixture(t)
+  const schema = JSON.parse(await readFile(path.join(paths.schemaRoot, 'content.schema.json'), 'utf8'))
+  const publicationSchema = schema.$defs.publication
+  assert.deepEqual(validateJsonSchema(publicationSchema, {
+    publishedAt: null,
+    updatedAt: '2026-09-03T00:00:00Z',
+    sourceRevision: `sha256:${'0'.repeat(64)}`,
+  }), [])
+  const taxonomySchema = JSON.parse(await readFile(path.join(paths.schemaRoot, 'taxonomy.schema.json'), 'utf8'))
+  const taxonomyPublicationSchema = {
+    ...taxonomySchema.properties.publication,
+    $defs: taxonomySchema.$defs,
+  }
+  assert.deepEqual(validateJsonSchema(taxonomyPublicationSchema, {
+    publishedAt: null,
+    updatedAt: '2026-09-03T00:00:00Z',
+    sourceRevision: `sha256:${'0'.repeat(64)}`,
+  }), [])
+})
+
+test('taxonomy sourceRef accepts only wireframes or owner evidence issues', async () => {
+  const schema = JSON.parse(await readFile(path.join(repositoryRoot, 'schemas/taxonomy.schema.json'), 'utf8'))
+  const sourceRefSchema = schema.properties.sourceRef
+  for (const sourceRef of [
+    'docs/wireframes/flow-proto.html#l2',
+    'docs/wireframes/flow-proto.html#l3',
+    'https://github.com/ziyetsui/prompt-lab/issues/1',
+    'https://github.com/ziyetsui/prompt-lab/issues/987654',
+  ]) {
+    assert.deepEqual(validateJsonSchema(sourceRefSchema, sourceRef), [], sourceRef)
+  }
+  for (const sourceRef of [
+    'https://example.com/ziyetsui/prompt-lab/issues/1',
+    'https://github.com/another-owner/prompt-lab/issues/1',
+    'https://github.com/ziyetsui/another-repo/issues/1',
+    'https://github.com/ziyetsui/prompt-lab/issues/../1',
+    'https://github.com/ziyetsui/prompt-lab/issues/0',
+    'https://github.com/ziyetsui/prompt-lab/issues/01',
+    'https://github.com/ziyetsui/prompt-lab/issues/-1',
+    'https://github.com/ziyetsui/prompt-lab/issues/1?draft=true',
+  ]) {
+    assert.ok(validateJsonSchema(sourceRefSchema, sourceRef).some((error) => error.keyword === 'pattern'), sourceRef)
+  }
 })
 
 test('static indexes, feeds, and sitemap are deterministic and reciprocal', async (t) => {
@@ -186,19 +233,36 @@ test('a missing published locale fails closed', async (t) => {
   assert.ok(codes.includes('locale_not_published'))
 })
 
-test('a repository with no publishable Prompt fails the release gate', async (t) => {
+test('a removal snapshot may contain zero public Prompts while preserving safe locale outputs', async (t) => {
   const paths = await fixture(t)
-  const zhPath = path.join(paths.contentRoot, 'prompts/prm_2063814043631280180/zh-CN.md')
-  const source = await readFile(zhPath, 'utf8')
-  await writeFile(
-    zhPath,
-    source
-      .replace('"status": "published",', '"status": "draft",')
-      .replace('"indexable": true,', '"indexable": false,')
-      .replace('"robots": "index,follow"', '"robots": "noindex,nofollow"'),
+  await rm(path.join(paths.contentRoot, 'prompts'), { force: true, recursive: true })
+  await rm(path.join(paths.contentRoot, 'articles'), { force: true, recursive: true })
+  await rm(path.join(paths.contentRoot, 'taxonomies'), { force: true, recursive: true })
+
+  const validated = await validateContent(paths)
+  assert.equal(validated.documents.length, 0)
+  assert.equal(validated.taxonomies.length, 0)
+  assert.deepEqual(validated.site.publishedLocales, ['zh-CN'])
+  assert.deepEqual(validated.surfaces.map((surface) => surface.level), ['L1'])
+
+  const outputRoot = path.join(paths.root, 'generated')
+  const manifest = await buildStaticContent({ ...paths, outputRoot })
+  assert.deepEqual(manifest.publishedLocales, ['zh-CN'])
+  assert.deepEqual(manifest.counts, { 'zh-CN': 0 })
+  assert.deepEqual(
+    JSON.parse(await readFile(path.join(outputRoot, 'zh-CN/prompts/index.json'), 'utf8')).items,
+    [],
   )
-  const codes = await diagnosticCodes(validateContent(paths))
-  assert.ok(codes.includes('published_content_empty'))
+  assert.deepEqual(
+    JSON.parse(await readFile(path.join(outputRoot, 'zh-CN/taxonomies/index.json'), 'utf8')).items,
+    [],
+  )
+  assert.doesNotMatch(await readFile(path.join(outputRoot, 'zh-CN/prompts/rss.xml'), 'utf8'), /<item>/)
+  assert.doesNotMatch(await readFile(path.join(outputRoot, 'sitemap.xml'), 'utf8'), /\/prompts\//)
+  assert.equal(await readFile(path.join(outputRoot, 'robots.txt'), 'utf8'), 'User-agent: *\nDisallow: /\n')
+  const routeManifest = JSON.parse(await readFile(path.join(outputRoot, 'route-manifest.json'), 'utf8'))
+  assert.deepEqual(routeManifest.publishedLocales, ['zh-CN'])
+  assert.deepEqual(routeManifest.routes.map((route) => route.kind), ['prompt-hub'])
 })
 
 test('Prompt body drift and stale translation are rejected', async (t) => {

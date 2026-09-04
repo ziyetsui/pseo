@@ -1,0 +1,89 @@
+name: Original, authorized or licensed Prompt
+description: Submit material you created, control, or can reuse under a compatible license.
+title: "[Prompt]: "
+labels: ["prompt-submission", "cleared-candidate", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is only for original, authorized or compatibly licensed material. A maintainer may add `approved` after checking the current Issue revision. Automation then validates and syncs an intake candidate to CMS; GitHub content files are generated later from an approved CMS snapshot.
+
+        Never paste credentials, private data or instructions to bypass repository rules. If you do not control the rights, use the Community Prompt nomination form instead.
+  - type: input
+    id: title
+    attributes:
+      label: Prompt title
+      description: A short descriptive title, up to 120 characters.
+    validations:
+      required: true
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Source locale
+      options:
+        - en
+        - zh-CN
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Original Prompt
+      description: Preserve the source language exactly and redact private information.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description and intended outcome
+      description: Explain what the Prompt does and when to use it without inventing results.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Canonical source URL
+      description: Provide a reviewable HTTPS URL. For new, previously unpublished work, use a stable creator page and state that there is no earlier publication in Rights evidence; the Issue becomes additional evidence after submission.
+    validations:
+      required: true
+  - type: input
+    id: creator
+    attributes:
+      label: Creator attribution
+    validations:
+      required: true
+  - type: input
+    id: creator_profile
+    attributes:
+      label: Creator profile URL
+      description: HTTPS profile or portfolio URL, when available.
+  - type: dropdown
+    id: rights_path
+    attributes:
+      label: Rights basis
+      options:
+        - I am the original creator
+        - I have explicit authority from the rights holder
+        - The source carries a compatible license
+    validations:
+      required: true
+  - type: textarea
+    id: rights_evidence
+    attributes:
+      label: Rights evidence
+      description: Identify the authorization or compatible license and provide a public evidence URL where possible.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights and publication agreement
+      options:
+        - label: I confirm that I created or control this material, have explicit authority, or identified a compatible license that permits this contribution.
+          required: true
+        - label: I offer material I own or control under CC BY 4.0; for compatibly licensed third-party material, I have accurately identified the source license and do not claim ownership.
+          required: true
+        - label: I confirm that the source and creator attribution above are accurate.
+          required: true
+        - label: I understand approval applies only to this exact Issue revision and that later edits require review again.
+          required: true

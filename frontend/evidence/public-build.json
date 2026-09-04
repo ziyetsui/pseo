@@ -1,0 +1,20 @@
+{
+  "mode": "public-api",
+  "revision": "sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01",
+  "feeds": [
+    "sitemap.xml",
+    "zh-CN/blog/rss.xml",
+    "zh-CN/prompts/rss.xml"
+  ],
+  "publicPrompts": [
+    {
+      "id": "prm_2063814043631280180",
+      "slug": "country-miniature-stamp-poster",
+      "href": "/zh-CN/prompts/country-miniature-stamp-poster",
+      "locale": "zh-CN",
+      "title": "国家主题微缩邮票海报"
+    }
+  ],
+  "sourceMirrorSha": null,
+  "productionRelease": false
+}

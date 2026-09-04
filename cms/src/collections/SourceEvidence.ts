@@ -1,7 +1,12 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated, canEditDrafts, denyAll } from '@/access'
-import { enforceDraftOnly, validateSourceEvidence } from '@/hooks'
+import { canEditDrafts, canReadEditorial, denyAll } from '@/access'
+import {
+  enforceDraftOnly,
+  rightsDecisionFieldAccess,
+  rightsEvidenceUrlFieldAccess,
+  validateSourceEvidence,
+} from '@/hooks'
 
 import { betaPreviewField, draftVersions, gitPublicationField } from './fields'
 
@@ -16,7 +21,7 @@ export const SourceEvidence: CollectionConfig = {
   },
   access: {
     create: canEditDrafts,
-    read: authenticated,
+    read: canReadEditorial,
     update: canEditDrafts,
     delete: denyAll,
   },
@@ -68,7 +73,8 @@ export const SourceEvidence: CollectionConfig = {
       type: 'date',
       admin: {
         condition: (_, siblingData) => siblingData.recordType === 'source',
-        description: 'Original publication date projected to source.publishedDate in Git content.',
+        date: { pickerAppearance: 'dayOnly' },
+        description: 'Original calendar date, normalized to UTC midnight and projected to source.publishedDate in Git content.',
       },
     },
     {
@@ -84,7 +90,12 @@ export const SourceEvidence: CollectionConfig = {
     {
       name: 'evidenceUrl',
       type: 'text',
-      admin: { condition: (_, siblingData) => siblingData.recordType === 'evidence' },
+      access: rightsEvidenceUrlFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'evidence' || siblingData.recordType === 'source',
+        description: 'Evidence URL for evidence rows; human permission/reuse evidence for source rows.',
+      },
     },
     {
       name: 'confidence',
@@ -99,7 +110,194 @@ export const SourceEvidence: CollectionConfig = {
       type: 'select',
       required: true,
       defaultValue: 'review_required',
-      options: ['unknown', 'review_required', 'cleared', 'restricted', 'takedown'],
+      access: rightsDecisionFieldAccess,
+      options: [
+        'unknown',
+        'review_required',
+        'cleared',
+        'community_attributed',
+        'restricted',
+        'takedown',
+      ],
+    },
+    {
+      name: 'basis',
+      type: 'textarea',
+      minLength: 12,
+      maxLength: 500,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) => siblingData.recordType === 'source',
+        description: 'Human-supplied rights basis. Agents must not infer or approve this value.',
+      },
+    },
+    {
+      name: 'reviewedBy',
+      type: 'text',
+      maxLength: 100,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) => siblingData.recordType === 'source',
+        description: 'Identity of the human who reviewed content reuse rights.',
+      },
+    },
+    {
+      name: 'reviewedAt',
+      type: 'date',
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) => siblingData.recordType === 'source',
+        description: 'RFC 3339 timestamp recorded by the human rights review.',
+      },
+    },
+    {
+      name: 'licenseReference',
+      type: 'text',
+      maxLength: 240,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) => siblingData.recordType === 'source',
+        description: 'Human-supplied license or permission reference, for example CC BY 4.0.',
+      },
+    },
+    {
+      name: 'authorName',
+      type: 'text',
+      maxLength: 160,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'Public author attribution for the community-attributed rights path.',
+      },
+    },
+    {
+      name: 'authorHandle',
+      type: 'text',
+      maxLength: 160,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'Public author handle. Either this field or authorUrl is required.',
+      },
+    },
+    {
+      name: 'authorUrl',
+      type: 'text',
+      maxLength: 2048,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'HTTPS author profile. Either this field or authorHandle is required.',
+      },
+    },
+    {
+      name: 'originalPostUrl',
+      type: 'text',
+      maxLength: 2048,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'HTTPS URL of the original community post.',
+      },
+    },
+    {
+      name: 'policyVersion',
+      type: 'text',
+      maxLength: 100,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'Version of the approved notice-and-takedown policy used for this decision.',
+      },
+    },
+    {
+      name: 'riskAcceptedBy',
+      type: 'text',
+      maxLength: 100,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'Authorized human who accepted the community-publication risk.',
+      },
+    },
+    {
+      name: 'riskAcceptedAt',
+      type: 'date',
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'UTC timestamp of the human risk-acceptance decision.',
+      },
+    },
+    {
+      name: 'takedownUrl',
+      type: 'text',
+      maxLength: 2048,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' &&
+          siblingData.rightsStatus === 'community_attributed',
+        description: 'Public HTTPS request route for correction or removal.',
+      },
+    },
+    {
+      name: 'takedownCaseId',
+      type: 'text',
+      maxLength: 160,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' && siblingData.rightsStatus === 'takedown',
+        description: 'Immutable case identifier for this takedown decision.',
+      },
+    },
+    {
+      name: 'takedownHandledBy',
+      type: 'text',
+      maxLength: 100,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' && siblingData.rightsStatus === 'takedown',
+        description: 'Authorized human who handled the takedown decision.',
+      },
+    },
+    {
+      name: 'takedownHandledAt',
+      type: 'date',
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' && siblingData.rightsStatus === 'takedown',
+        description: 'UTC timestamp of the takedown decision.',
+      },
+    },
+    {
+      name: 'takedownScope',
+      type: 'textarea',
+      minLength: 3,
+      maxLength: 500,
+      access: rightsDecisionFieldAccess,
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData.recordType === 'source' && siblingData.rightsStatus === 'takedown',
+        description: 'Exact content IDs, locales, routes, or media covered by the decision.',
+      },
     },
     { name: 'isPrimarySource', type: 'checkbox', defaultValue: false },
     betaPreviewField,

@@ -1,0 +1,124 @@
+[
+  {
+    "width": 1440,
+    "values": [
+      {
+        "selector": "wrap titlepage",
+        "text": "\n      Catalogue\n      One prompt, one plate.\n      Each result is reproduced whole and uncropped, with its caption set ",
+        "width": 1436,
+        "font": "",
+        "padding": "88px 28px 44px"
+      },
+      {
+        "selector": "H1",
+        "text": "One prompt, one plate.",
+        "width": 1380,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "ctrl",
+        "text": "\n    \n      \n    \n    Nano Banana Pro 14Seedance 11Nano Banana 5Beauty 13Food & beverage 8Advertising 5Photorealistic 27",
+        "width": 1440,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "plate",
+        "text": "\n    \n      \n            \n    \n    \n      Plate 01\n      Scroll-scripted site build, shot by shot\n      \n        Mediumn",
+        "width": 1380,
+        "font": "",
+        "padding": "78px 0px"
+      },
+      {
+        "selector": "mount",
+        "text": "",
+        "width": 1064,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "cap",
+        "text": "\n      Plate 01\n      Scroll-scripted site build, shot by shot\n      \n        Mediumno model named\n        Credit@zeuuss",
+        "width": 268,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "plate verso",
+        "text": "\n    \n      \n            \n    \n    \n      Plate 02\n      Gym mirror selfie under blue-purple LED\n      \n        MediumNa",
+        "width": 1380,
+        "font": "",
+        "padding": "78px 0px"
+      },
+      {
+        "selector": "mount",
+        "text": "",
+        "width": 1064,
+        "font": "",
+        "padding": "0px"
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "values": [
+      {
+        "selector": "wrap titlepage",
+        "text": "\n      Catalogue\n      One prompt, one plate.\n      Each result is reproduced whole and uncropped, with its caption set ",
+        "width": 375,
+        "font": "",
+        "padding": "88px 28px 44px"
+      },
+      {
+        "selector": "H1",
+        "text": "One prompt, one plate.",
+        "width": 319,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "ctrl",
+        "text": "\n    \n      \n    \n    Nano Banana Pro 14Seedance 11Nano Banana 5Beauty 13Food & beverage 8Advertising 5Photorealistic 27",
+        "width": 375,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "plate",
+        "text": "\n    \n      \n            \n    \n    \n      Plate 01\n      Scroll-scripted site build, shot by shot\n      \n        Mediumn",
+        "width": 319,
+        "font": "",
+        "padding": "48px 0px"
+      },
+      {
+        "selector": "mount",
+        "text": "",
+        "width": 319,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "cap",
+        "text": "\n      Plate 01\n      Scroll-scripted site build, shot by shot\n      \n        Mediumno model named\n        Credit@zeuuss",
+        "width": 319,
+        "font": "",
+        "padding": "0px"
+      },
+      {
+        "selector": "plate verso",
+        "text": "\n    \n      \n            \n    \n    \n      Plate 02\n      Gym mirror selfie under blue-purple LED\n      \n        MediumNa",
+        "width": 319,
+        "font": "",
+        "padding": "48px 0px"
+      },
+      {
+        "selector": "mount",
+        "text": "",
+        "width": 319,
+        "font": "",
+        "padding": "0px"
+      }
+    ]
+  }
+]

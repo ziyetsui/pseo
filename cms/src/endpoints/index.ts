@@ -1,2 +1,6 @@
-export * from './createPublicationRequest'
+export * from './createContentApproval'
+export * from './createPromptProposal'
+export * from './createContentWithdrawal'
+export * from './prepareContentApproval'
 export * from './previewCatalog'
+export * from './publicSnapshot'

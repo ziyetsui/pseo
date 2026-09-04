@@ -1,0 +1,439 @@
+{
+  "contentRevision": "sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01",
+  "schemaVersion": 1,
+  "snapshot": {
+    "categories": [
+      {
+        "axis": "content-type",
+        "description": "围绕图片生成任务聚合当前 Git 发布快照中的 Prompt；成员数量在构建时从内容关系计算。",
+        "id": "cty_image",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/image",
+            "locale": "zh-CN",
+            "slug": "image"
+          }
+        ],
+        "name": "图片 Prompt",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/image",
+          "description": "浏览当前 Git 发布快照中的图片生成 Prompt；页面数量由可追溯内容实时计算。",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/image"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "图片 Prompt"
+        },
+        "slug": "image",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "axis": "style",
+        "description": "Derived from 1 published Prompt record(s); standalone taxonomy editorial metadata is not published.",
+        "id": "sty_photorealistic",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/styles/photorealistic",
+            "locale": "zh-CN",
+            "slug": "photorealistic"
+          }
+        ],
+        "name": "photorealistic",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/styles/photorealistic",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/styles/photorealistic"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "photorealistic Prompt projection"
+        },
+        "slug": "photorealistic",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "axis": "subject",
+        "description": "Derived from 1 published Prompt record(s); standalone taxonomy editorial metadata is not published.",
+        "id": "sub_miniature_landmark",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/subjects/miniature-landmark",
+            "locale": "zh-CN",
+            "slug": "miniature-landmark"
+          }
+        ],
+        "name": "miniature-landmark",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/subjects/miniature-landmark",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/subjects/miniature-landmark"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "miniature-landmark Prompt projection"
+        },
+        "slug": "miniature-landmark",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "axis": "technique",
+        "description": "Derived from 1 published Prompt record(s); standalone taxonomy editorial metadata is not published.",
+        "id": "tec_macro_photography",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/techniques/macro-photography",
+            "locale": "zh-CN",
+            "slug": "macro-photography"
+          }
+        ],
+        "name": "macro-photography",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/techniques/macro-photography",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/techniques/macro-photography"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "macro-photography Prompt projection"
+        },
+        "slug": "macro-photography",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "axis": "technique",
+        "description": "Derived from 1 published Prompt record(s); standalone taxonomy editorial metadata is not published.",
+        "id": "tec_variable_template",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/techniques/variable-template",
+            "locale": "zh-CN",
+            "slug": "variable-template"
+          }
+        ],
+        "name": "variable-template",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/techniques/variable-template",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/techniques/variable-template"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "variable-template Prompt projection"
+        },
+        "slug": "variable-template",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "axis": "use-case",
+        "description": "Derived from 1 published Prompt record(s); standalone taxonomy editorial metadata is not published.",
+        "id": "usc_country_city_poster",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/use-cases/country-city-poster",
+            "locale": "zh-CN",
+            "slug": "country-city-poster"
+          }
+        ],
+        "name": "country-city-poster",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/use-cases/country-city-poster",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/use-cases/country-city-poster"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "country-city-poster Prompt projection"
+        },
+        "slug": "country-city-poster",
+        "updated_at": "2026-09-02T00:00:00Z"
+      }
+    ],
+    "content_revision": "sha256:133521b6a07f71ad2455e1e4bd25634cabf3f79c5643a2e81ce87c4c90952a01",
+    "generated_at": "2026-09-02T00:00:00Z",
+    "index_version": "git-static-v1",
+    "locales": [
+      {
+        "display_name": "English",
+        "enabled": false,
+        "is_default": false,
+        "locale": "en"
+      },
+      {
+        "display_name": "简体中文",
+        "enabled": true,
+        "is_default": true,
+        "locale": "zh-CN"
+      }
+    ],
+    "models": [
+      {
+        "capabilities": [],
+        "description": "Derived from 1 published Prompt record(s); standalone model editorial metadata is not published.",
+        "id": "mdl_gpt_image_2",
+        "inputs": [],
+        "limitations": [],
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/models/gpt-image-2",
+            "locale": "zh-CN",
+            "slug": "gpt-image-2"
+          }
+        ],
+        "name": "gpt-image-2",
+        "official_url": null,
+        "outputs": [],
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/models/gpt-image-2",
+          "description": "Derived from published Prompt metadata; standalone editorial content is absent.",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/models/gpt-image-2"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "gpt-image-2 Prompt projection"
+        },
+        "slug": "gpt-image-2",
+        "updated_at": "2026-09-02T00:00:00Z"
+      },
+      {
+        "capabilities": [],
+        "description": "Nano Banana Pro 的模型页；只展示当前 Git 发布快照中明确关联该模型的 Prompt，不沿用 wireframe 的历史数量。",
+        "id": "mdl_nano_banana_pro",
+        "inputs": [],
+        "limitations": [],
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/models/nano-banana-pro",
+            "locale": "zh-CN",
+            "slug": "nano-banana-pro"
+          }
+        ],
+        "name": "Nano Banana Pro",
+        "official_url": null,
+        "outputs": [],
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/models/nano-banana-pro",
+          "description": "查看当前 Git 发布快照中明确关联 Nano Banana Pro 的 Prompt；不使用 wireframe 中的历史统计。",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/models/nano-banana-pro"
+            ]
+          ],
+          "robots": "noindex,nofollow",
+          "title": "Nano Banana Pro Prompt"
+        },
+        "slug": "nano-banana-pro",
+        "updated_at": "2026-09-02T00:00:00Z"
+      }
+    ],
+    "prompts": [
+      {
+        "can_copy": true,
+        "characteristics": [
+          "超写实微距摄影",
+          "微缩立体场景",
+          "移轴浅景深"
+        ],
+        "content_type": "image",
+        "creator": null,
+        "evidence": [
+          {
+            "confidence": null,
+            "evidence_type": "source-post",
+            "url": "https://x.com/Naiknelofar788/status/2063814043631280180"
+          }
+        ],
+        "examples": [],
+        "featured": false,
+        "id": "prm_2063814043631280180",
+        "locale": "zh-CN",
+        "locale_variants": [
+          {
+            "href": "/zh-CN/prompts/country-miniature-stamp-poster",
+            "locale": "zh-CN",
+            "slug": "country-miniature-stamp-poster"
+          }
+        ],
+        "media": [],
+        "metrics": {
+          "bookmarks": null,
+          "comments": null,
+          "likes": null,
+          "observed_at": "2026-09-02T00:00:00Z",
+          "reposts": null,
+          "views": null
+        },
+        "models": [
+          {
+            "href": "/zh-CN/prompts/models/gpt-image-2",
+            "id": "mdl_gpt_image_2",
+            "name": "gpt-image-2",
+            "slug": "gpt-image-2"
+          }
+        ],
+        "optional_inputs": [],
+        "outcome_type": "image",
+        "parameters": [
+          {
+            "key": "COUNTRY",
+            "label": "国家",
+            "options": [
+              "Japan",
+              "France",
+              "Egypt",
+              "Brazil",
+              "India",
+              "Mexico"
+            ],
+            "parameter_type": "enum",
+            "required": true
+          }
+        ],
+        "platforms": [
+          "higgsfield"
+        ],
+        "prompt_language": "en",
+        "prompt_text": "A hyper-realistic macro photography shot of a giant, freestanding vintage postage stamp from [COUNTRY] standing upright against a seamless, soft, color-coordinated pastel studio background. The stamp features an intricately detailed 3D diorama of the most iconic and recognizable landmark from [COUNTRY] that pops out and actively breaks the perforated borders, extending outward into the physical space. Lush flora and fauna native to [COUNTRY] grows and spills out from the bottom right corner of the stamp's frame. A tiny, miniature figurine of a person wearing recognizable traditional cultural attire from [COUNTRY] stands on the ground at the bottom left, looking up in awe at the massive stamp, establishing a striking miniature world scale. The stamp's design includes the word \"[COUNTRY]\" in classic serif typography, subtext in the local language, a realistic local currency denomination, and a stamped black ink cancellation postmark in the top right corner featuring the capital city of [COUNTRY] and a realistic date. Soft, diffused, magical studio lighting with a tilt-shift lens effect and shallow depth of field. Gently floating botanical elements native to [COUNTRY] drift through the air around the scene. 8k resolution, octane render, highly detailed miniature art.",
+        "published_at": "2026-09-02T00:00:00Z",
+        "purpose": "生成国家主题微缩邮票海报。",
+        "related_prompt_ids": [],
+        "required_inputs": [
+          "一个国家名称"
+        ],
+        "revision": "sha256:329ee8fb29b020664c2a642c539d2fac6e94c3b4b6b9779526a89c06ed15c8d1",
+        "seo": {
+          "canonical_url": "https://ancher.space/zh-CN/prompts/country-miniature-stamp-poster",
+          "description": "复制原始 Prompt 并替换一个国家变量，生成超写实微缩邮票海报。",
+          "hreflang": [
+            [
+              "zh-CN",
+              "https://ancher.space/zh-CN/prompts/country-miniature-stamp-poster"
+            ]
+          ],
+          "robots": "index,follow",
+          "title": "国家主题微缩邮票海报 Prompt"
+        },
+        "slug": "country-miniature-stamp-poster",
+        "source": {
+          "author_handle": "Naiknelofar788",
+          "observed_at": "2026-09-02T00:00:00Z",
+          "platform": "x",
+          "source_id": "2063814043631280180",
+          "url": "https://x.com/Naiknelofar788/status/2063814043631280180"
+        },
+        "styles": [
+          {
+            "href": "/zh-CN/prompts/styles/photorealistic",
+            "id": "sty_photorealistic",
+            "name": "photorealistic",
+            "slug": "photorealistic"
+          }
+        ],
+        "subjects": [
+          {
+            "href": "/zh-CN/prompts/subjects/miniature-landmark",
+            "id": "sub_miniature_landmark",
+            "name": "miniature-landmark",
+            "slug": "miniature-landmark"
+          }
+        ],
+        "summary": "替换一个国家变量，生成包含地标、本地动植物、传统服饰、货币与首都邮戳的超写实微缩邮票海报。",
+        "techniques": [
+          {
+            "href": "/zh-CN/prompts/techniques/macro-photography",
+            "id": "tec_macro_photography",
+            "name": "macro-photography",
+            "slug": "macro-photography"
+          },
+          {
+            "href": "/zh-CN/prompts/techniques/variable-template",
+            "id": "tec_variable_template",
+            "name": "variable-template",
+            "slug": "variable-template"
+          }
+        ],
+        "title": "国家主题微缩邮票海报",
+        "try_url": null,
+        "updated_at": "2026-09-02T00:00:00Z",
+        "use_cases": [
+          {
+            "href": "/zh-CN/prompts/use-cases/country-city-poster",
+            "id": "usc_country_city_poster",
+            "name": "country-city-poster",
+            "slug": "country-city-poster"
+          }
+        ],
+        "variables": [
+          {
+            "default_value": "Japan",
+            "key": "[COUNTRY]",
+            "label": "国家",
+            "options": [
+              "Japan",
+              "France",
+              "Egypt",
+              "Brazil",
+              "India",
+              "Mexico"
+            ],
+            "required": true
+          }
+        ],
+        "workflow": [
+          {
+            "body": "在模型列表中选择 GPT Image 2。",
+            "position": 1,
+            "title": "打开生成工具"
+          },
+          {
+            "body": "保留 Prompt 尾部的渲染细节。",
+            "position": 2,
+            "title": "粘贴完整 Prompt"
+          },
+          {
+            "body": "把每一处变量替换为同一个国家名。",
+            "position": 3,
+            "title": "替换 [COUNTRY]"
+          },
+          {
+            "body": "生成多个结果，比较地标冲破邮票边框的构图。",
+            "position": 4,
+            "title": "生成并比较"
+          }
+        ]
+      }
+    ],
+    "ranking_version": "unranked-v1"
+  },
+  "snapshotSha256": "sha256:e3f31305b045f06aaf15c5eae86845b8de16dc0109bbee15f11f94e0c29fd488",
+  "source": "verified-git-publication"
+}

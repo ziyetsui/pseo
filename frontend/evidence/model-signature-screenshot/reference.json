@@ -1,0 +1,6 @@
+{
+  "reference": "reference.png",
+  "sha256": "890584012599798db61eebd27d284d23f0db3afcb1d4561bf0014764c17e97be",
+  "replaces": "URL v=3 / Ticker selection from previous round",
+  "page": "/zh-CN/prompts/model-families/nano-banana"
+}

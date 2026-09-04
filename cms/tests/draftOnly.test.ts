@@ -4,7 +4,6 @@ import test from 'node:test'
 import {
   DirectPayloadPublishError,
   enforceDraftProjection,
-  GIT_PROJECTION_CONTEXT_KEY,
   GitProjectionMutationError,
 } from '../src/hooks/enforceDraftOnly.ts'
 
@@ -41,7 +40,6 @@ test('ordinary saves remain drafts and cannot mutate Git publication state', () 
 test('Payload-normalized unpublished defaults are allowed only for an initial projection', () => {
   const normalizedInitial = {
     state: 'unpublished',
-    lastRequest: null,
     pullRequestNumber: null,
     pullRequestUrl: null,
     mergeSha: null,
@@ -85,14 +83,11 @@ test('Payload-normalized unpublished defaults are allowed only for an initial pr
   }
 })
 
-test('verified Git projection context may update Git fields but never Payload _status', () => {
-  const saved = enforceDraftProjection({
-    context: { [GIT_PROJECTION_CONTEXT_KEY]: true },
-    data: {
-      _status: 'draft',
-      gitPublication: { state: 'released', mergeSha: 'abc1234' },
-    },
-  })
-  assert.equal(saved._status, 'draft')
-  assert.deepEqual(saved.gitPublication, { state: 'released', mergeSha: 'abc1234' })
+test('legacy Git audit state has no internal mutation bypass', () => {
+  assert.throws(
+    () => enforceDraftProjection({
+      data: { gitPublication: { state: 'pr_open', pullRequestNumber: 42 } },
+    }),
+    GitProjectionMutationError,
+  )
 })

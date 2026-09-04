@@ -1,0 +1,291 @@
+[
+  {
+    "surface": "L1 first screen",
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Board",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Quilt",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Statement",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Split",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Plate",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Ledger",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Field",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Directory",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Matrix",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Lanes",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Index",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Current",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Colophon",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Signature",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Plaque",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Kinetic",
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Board",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Quilt",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Statement",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "L1 first screen",
+    "variant": "Split",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Plate",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Ledger",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Field",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Browse by task",
+    "variant": "Directory",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "targets": [
+          [
+            "iframe",
+            ".filter-axis-inline:nth-child(2) > .chip[type=\"button\"]:nth-child(1)"
+          ],
+          [
+            "iframe",
+            ".filter-axis-inline:nth-child(2) > .chip[type=\"button\"]:nth-child(1) > small"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "surface": "Task page",
+    "variant": "Matrix",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Lanes",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "Task page",
+    "variant": "Index",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Current",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Colophon",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Signature",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Plaque",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "surface": "First-screen credit",
+    "variant": "Kinetic",
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]

@@ -1,6 +1,6 @@
 import type { Access } from 'payload'
 
-export const CMS_ROLES = ['editor', 'reviewer', 'publisher', 'admin'] as const
+export const CMS_ROLES = ['agent_proposer', 'editor', 'reviewer', 'publisher', 'admin'] as const
 
 export type CmsRole = (typeof CMS_ROLES)[number]
 
@@ -24,6 +24,14 @@ export function hasAnyRole(user: unknown, allowed: readonly CmsRole[]): boolean 
 }
 
 export const authenticated: Access = ({ req }) => Boolean(req.user)
+
+/**
+ * Human CMS roles may browse editorial records. Machine proposal identities are
+ * intentionally excluded so an API key cannot be reused as a general CMS read
+ * credential; proposal writes go only through the bounded custom endpoint.
+ */
+export const canReadEditorial: Access = ({ req }) =>
+  hasAnyRole(req.user, ['editor', 'reviewer', 'publisher', 'admin'])
 
 export const canEditDrafts: Access = ({ req }) =>
   hasAnyRole(req.user, ['editor', 'reviewer', 'admin'])

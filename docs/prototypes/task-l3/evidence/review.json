@@ -1,0 +1,46 @@
+[
+  {
+    "v": 2,
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "v": 3,
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "v": 4,
+    "width": 1440,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "errors": []
+  },
+  {
+    "v": 2,
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "v": 3,
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "v": 4,
+    "width": 375,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 375,
+    "errors": []
+  }
+]
