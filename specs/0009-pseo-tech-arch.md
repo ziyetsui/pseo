@@ -1391,6 +1391,8 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 
 ## 18. 一手资料
 
+2026-09-16：[0014](./0014-public-pseo-skills.md) 扩展静态工具路由、确定性技能分发及公开安装验证。工程源与 CMS 内容源保持各自合同，现有 public snapshot 不因此改变。
+
 - [YouMind Markdown generator](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts/main/scripts/utils/markdown-generator.ts)
 - [YouMind CMS client](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts/main/scripts/utils/cms-client.ts)
 - [YouMind Issue → CMS workflow](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts/main/.github/workflows/sync-approved-to-cms.yml)

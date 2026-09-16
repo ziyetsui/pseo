@@ -1,0 +1,204 @@
+{
+  "phases": [
+    {
+      "id": "entry",
+      "title": "Entry points",
+      "description": "Start with /pseo when a site already exists; it reads the project record and picks the next step. Start with the wireframe when there is only an idea.",
+      "number": ""
+    },
+    {
+      "id": "direction",
+      "title": "01 · Direction",
+      "description": "Understand the site as it is, choose the first page family, and cluster what users are actually asking for.",
+      "number": "01"
+    },
+    {
+      "id": "data",
+      "title": "02 · Data",
+      "description": "Decide where the facts come from, bring them in with boundaries, and model entities and relations before any page exists. The graph now exports the neighborhood view every page footer is built from.",
+      "number": "02"
+    },
+    {
+      "id": "pages",
+      "title": "03 · Pages",
+      "description": "Decide which pages deserve to exist, specify what each must show, prototype it with real records, then make it look designed. The IA footer is a required module.",
+      "number": "03"
+    },
+    {
+      "id": "integration",
+      "title": "04 · Integration",
+      "description": "Plug into the stack the site already runs on, implement the first family, and verify the real HTML.",
+      "number": "04"
+    },
+    {
+      "id": "release",
+      "title": "05 · Release",
+      "description": "Define who drafts and who reviews, gate every page, and ship only with authorization and receipts.",
+      "number": "05"
+    },
+    {
+      "id": "learning",
+      "title": "06 · Learning",
+      "description": "Get a baseline, fix what is already live, and only then decide the next batch.",
+      "number": "06"
+    },
+    {
+      "id": "promptlab",
+      "title": "PromptLab only",
+      "description": "Loaded only when the target is confirmed to be the PromptLab repository. The main table leaves these out on purpose.",
+      "number": ""
+    }
+  ],
+  "skills": [
+    {
+      "id": "pseo",
+      "title": "pseo",
+      "description": "Use it first: it reads docs/pseo/project.json, tells you which stage you're in, and picks the next skill.",
+      "phase": "entry"
+    },
+    {
+      "id": "pseo-wireframe",
+      "title": "pseo-wireframe",
+      "description": "Use it when you only have an idea and want to walk, option by option, to a browsable wireframe of the whole site.",
+      "phase": "entry"
+    },
+    {
+      "id": "pseo-site-audit",
+      "title": "pseo-site-audit",
+      "description": "Use it when you already have a website and want to know where PSEO should start.",
+      "phase": "direction"
+    },
+    {
+      "id": "pseo-opportunity",
+      "title": "pseo-opportunity",
+      "description": "Use it when you have a few directions and need to pick the one page family worth validating first.",
+      "phase": "direction"
+    },
+    {
+      "id": "pseo-intents",
+      "title": "pseo-intents",
+      "description": "Use it when you have keywords or customer questions and need to know which ones one page should answer.",
+      "phase": "direction"
+    },
+    {
+      "id": "pseo-sources",
+      "title": "pseo-sources",
+      "description": "Use it when the direction is chosen but you don't know what data will keep the pages alive.",
+      "phase": "data"
+    },
+    {
+      "id": "pseo-ingest",
+      "title": "pseo-ingest",
+      "description": "Use it when API, CSV, or web material has to become data you can check and re-run.",
+      "phase": "data"
+    },
+    {
+      "id": "pseo-graph",
+      "title": "pseo-graph",
+      "description": "Use it when you have a pile of material and need entities, attributes, and relations pages can reuse.",
+      "phase": "data"
+    },
+    {
+      "id": "pseo-page-plan",
+      "title": "pseo-page-plan",
+      "description": "Use it when data and user tasks exist and you need to decide which pages, navigation, and internal links deserve to exist.",
+      "phase": "pages"
+    },
+    {
+      "id": "pseo-page-spec",
+      "title": "pseo-page-spec",
+      "description": "Use it when you know which pages to build and must define what each one has to show.",
+      "phase": "pages"
+    },
+    {
+      "id": "pseo-prototype",
+      "title": "pseo-prototype",
+      "description": "Use it when you want to see the page before development and check that it really completes the user's task.",
+      "phase": "pages"
+    },
+    {
+      "id": "pseo-prototype-polish",
+      "title": "pseo-prototype-polish",
+      "description": "Use it when the prototype works but looks assembled, and you want it to look designed, or to compare a few directions.",
+      "phase": "pages"
+    },
+    {
+      "id": "pseo-architecture",
+      "title": "pseo-architecture",
+      "description": "Use it when the prototype is settled and you have to decide how data, templates, and publishing plug into the existing site.",
+      "phase": "integration"
+    },
+    {
+      "id": "pseo-implement",
+      "title": "pseo-implement",
+      "description": "Use it when the spec is clear and you're wiring data and templates into real code.",
+      "phase": "integration"
+    },
+    {
+      "id": "pseo-technical-seo",
+      "title": "pseo-technical-seo",
+      "description": "Use it when the pages work but you need proof they're crawlable, URL-consistent, and free of index conflicts.",
+      "phase": "integration"
+    },
+    {
+      "id": "pseo-content-workflow",
+      "title": "pseo-content-workflow",
+      "description": "Use it when content will keep coming and you need to say who edits, who reviews, and where it publishes from.",
+      "phase": "release"
+    },
+    {
+      "id": "pseo-quality-gate",
+      "title": "pseo-quality-gate",
+      "description": "Use it when you have candidate pages and want to know which can go to release review and which must be stopped.",
+      "phase": "release"
+    },
+    {
+      "id": "pseo-release",
+      "title": "pseo-release",
+      "description": "Use it when the first batch has been reviewed and needs a safe, authorized release with real receipts.",
+      "phase": "release"
+    },
+    {
+      "id": "pseo-measure",
+      "title": "pseo-measure",
+      "description": "Use it when pages are live, or before that, to define how you'll judge whether they work.",
+      "phase": "learning"
+    },
+    {
+      "id": "pseo-refresh",
+      "title": "pseo-refresh",
+      "description": "Use it when pages are stale, slipping, or overlapping and you want to fix them before adding more.",
+      "phase": "learning"
+    },
+    {
+      "id": "pseo-expand",
+      "title": "pseo-expand",
+      "description": "Use it when the first page family is proven and you're deciding what the next batch should be.",
+      "phase": "learning"
+    },
+    {
+      "id": "pseo-content-create",
+      "title": "pseo-content-create",
+      "description": "PromptLab only: draft a bounded CMS proposal for a Prompt or Article without touching the generated Git mirror.",
+      "phase": "promptlab"
+    },
+    {
+      "id": "pseo-content-edit",
+      "title": "pseo-content-edit",
+      "description": "PromptLab only: prepare a revision-bound CMS proposal for an existing Prompt or Article.",
+      "phase": "promptlab"
+    },
+    {
+      "id": "pseo-content-validate",
+      "title": "pseo-content-validate",
+      "description": "PromptLab only: validate a CMS proposal or mirror fixture; Git content is never the publication authority.",
+      "phase": "promptlab"
+    },
+    {
+      "id": "pseo-content-pr",
+      "title": "pseo-content-pr",
+      "description": "PromptLab legacy name: prepare a human-review package; publication no longer uses per-item Git PRs.",
+      "phase": "promptlab"
+    }
+  ]
+}

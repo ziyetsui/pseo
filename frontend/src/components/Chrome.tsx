@@ -4,15 +4,15 @@ import { modelFamilies } from '@/lib/catalog/model-families';
 import { isPromptCreator } from '@/lib/catalog/creator-match';
 
 type Level = 'hub' | 'deck' | 'model' | 'prompt';
-export function SiteHeader({ level, locale, contentType, sectionNavigation = 'local' }: { level: Level; locale: Locale; contentType?: 'image' | 'video'; sectionNavigation?: 'local' | 'library' }) {
-  const hub = `/${locale}/prompts`;
+export function SiteHeader({ level, locale, contentType, sectionNavigation = 'local', activeSection, libraryLocale = locale }: { level: Level; locale: Locale; contentType?: 'image' | 'video'; sectionNavigation?: 'local' | 'library'; activeSection?: 'skills'; libraryLocale?: Locale }) {
+  const hub = `/${libraryLocale}/prompts`;
   const sectionBase = sectionNavigation === 'library' ? hub : '';
   const links = level === 'hub'
-    ? [['Tasks', `${sectionBase}#tasks`], ['Models', `${sectionBase}#models`], ['Styles', `${sectionBase}#styles`], ['Creators', `${sectionBase}#creators`]]
-    : [['Home', hub], ['Images', `${hub}/image`], ...(level === 'deck' ? [['Videos', `${hub}/video`]] : []), ['Models', `${hub}#models`]];
+    ? [['Tasks', `${sectionBase}#tasks`], ['Models', `${sectionBase}#models`], ['Styles', `${sectionBase}#styles`], ['Creators', `${sectionBase}#creators`], ['Skills', `/${locale}/skills`]]
+    : [['Home', hub], ['Images', `${hub}/image`], ...(level === 'deck' ? [['Videos', `${hub}/video`]] : []), ['Models', `${hub}#models`], ['Skills', `/${locale}/skills`]];
   const inner = <>
     <a className="brand" href={hub}>{level === 'deck' || level === 'model' ? <i aria-hidden="true" /> : null}Prompt Library</a>
-    <div className="navlinks">{links.map(([label, href]) => <a key={label} href={href} aria-current={level === 'model' && label === 'Models' || level === 'deck' && contentType && label === (contentType === 'video' ? 'Videos' : 'Images') ? 'page' : undefined}>{label}</a>)}</div>
+    <div className="navlinks">{links.map(([label, href]) => <a key={label} href={href} aria-current={activeSection === 'skills' && label === 'Skills' || level === 'model' && label === 'Models' || level === 'deck' && contentType && label === (contentType === 'video' ? 'Videos' : 'Images') ? 'page' : undefined}>{label}</a>)}</div>
   </>;
   return <>
     <a className="skip" href="#main">Skip to content</a>

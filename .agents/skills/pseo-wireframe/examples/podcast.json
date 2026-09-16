@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "播客制作手册 · 示例",
+  "kind": "knowledge",
+  "audience": "准备发布第一期播客的创作者",
+  "goal": "learn",
+  "task": "从准备到发布，找到当前步骤的操作说明",
+  "action": "copy",
+  "sampleMode": "illustrative",
+  "categoryLabel": "阶段",
+  "collectionLabel": "任务",
+  "density": "comfortable",
+  "records": [
+    {
+      "id": "prep-1",
+      "title": "录音前检查 · 示例",
+      "category": "准备",
+      "collection": "设备与环境",
+      "summary": "示例结构：检查一次录音会话的输入。",
+      "body": "以下是结构示例，请替换为你的真实方法。\n1. 明确使用场景。\n2. 填写检查项目。\n3. 记录通过与失败条件。",
+      "source": ""
+    },
+    {
+      "id": "prep-2",
+      "title": "测试录音 · 示例",
+      "category": "准备",
+      "collection": "设备与环境",
+      "summary": "示例结构：记录测试结果。",
+      "body": "结构示例：填写实际测试方法、样本与验收标准。",
+      "source": ""
+    },
+    {
+      "id": "publish-1",
+      "title": "发布核对 · 示例",
+      "category": "发布",
+      "collection": "交付检查",
+      "summary": "示例结构：核对最终文件与说明。",
+      "body": "结构示例：填写发布前需要核对的真实事项。",
+      "source": ""
+    }
+  ]
+}

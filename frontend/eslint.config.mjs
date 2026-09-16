@@ -12,6 +12,7 @@ const config = [
       ".next/**",
       ".next-dev/**",
       "out/**",
+      "public/skills/source/**", // Downloadable skill tools, validated by tools/pseo-site; not frontend code.
       "coverage/**",
       "playwright-report/**",
       "test-results/**",

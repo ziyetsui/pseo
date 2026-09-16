@@ -5,6 +5,8 @@ description: Validate a CMS proposal or deterministic mirror engineering fixture
 
 # Validate CMS proposals and mirror contracts
 
+**Scope: PromptLab only.** Use only when the target repository is confirmed as PromptLab and contains its CMS publication contract (`specs/0011-promptlab-youmind-cms-publication.md`). On other projects use `pseo-content-workflow` and the host project’s own rules. Installation does not install a CMS adapter, schema, credentials, or deployment access.
+
 Use after preparing a Prompt/Article CMS proposal, or for an explicitly authorized compiler/schema fixture change.
 
 - For a proposal, validate the proposal schema, immutable identity, locale/slug, relationships, source/evidence, media, unsafe HTML/URLs, secret patterns, and expected CMS revision. Missing facts remain missing; validation never upgrades editorial or rights status.

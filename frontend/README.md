@@ -1,5 +1,11 @@
 # Prompt Library frontend
 
+## PSEO Skills
+
+Homepage navigation includes Skills at `/zh-CN/skills` (also `/en/skills`), with 25 complete skill pages. The existing library links follow the enabled catalog locale; English Skills pages do not imply an English Prompt translation exists. The tool UI is English and original skill instructions remain Chinese.
+
+`pnpm skills:build` deterministically packages the allowlisted source skills using Python 3; `pnpm build` runs it automatically. `python3 ../tools/pseo-site/build.py --check` checks generated assets. The public content-addressed ZIP contains the complete workflow and its resources. Visitors can copy the terminal command or the fuller instructions to their Coding Agent; the pinned installer requires Node.js 22.20.0+ and npm. See `../tools/pseo-site/README.md` for installation validation and `../specs/0014-public-pseo-skills.md` for the delivery contract.
+
 Next.js App Router、strict TypeScript、CSS 与 Tailwind CSS。L1 采用 `../docs/wireframes/proto-continuous-peek.html?v=2` 的 Magnetic 原型和动效；L2–L4 来自 `../specs/images/flow-proto-full.html` 的 Images Deck、Videos Deck、Anthology、Recipe。协作规范见 [AGENTS.md](./AGENTS.md)。
 
 ## 本地查看

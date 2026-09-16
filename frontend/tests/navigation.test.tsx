@@ -25,9 +25,13 @@ describe('Task page primary navigation', () => {
     for (const task of catalog.useCases) {
       const page = parse(renderToStaticMarkup(createElement(TaskFindings, { catalog, task })));
       const links = page.querySelectorAll('.navlinks a');
-      expect(links).toHaveLength(4);
+      expect(links).toHaveLength(5);
       for (const link of links) {
         const href = link.getAttribute('href') ?? '';
+        if (link.text === 'Skills') {
+          expect(href).toBe(`/${catalog.locale}/skills`);
+          continue;
+        }
         expect(href, `${task.slug}: ${link.text}`).toBe(`${hub}#${link.text.toLowerCase()}`);
         const anchor = href.split('#')[1] ?? '';
         expect(destination.getElementById(anchor), href).not.toBeNull();

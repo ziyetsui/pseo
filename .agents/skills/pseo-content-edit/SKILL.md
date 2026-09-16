@@ -5,6 +5,8 @@ description: Prepare a revision-bound CMS proposal for an existing Prompt or Art
 
 # Edit CMS content through a proposal
 
+**Scope: PromptLab only.** Use only when the target repository is confirmed as PromptLab and contains its CMS publication contract (`specs/0011-promptlab-youmind-cms-publication.md`). On other projects use `pseo-content-workflow` and the host project’s own rules. Installation does not install a CMS adapter, schema, credentials, or deployment access.
+
 Use for requests such as “改标题”, “修改 Prompt”, “更新文章正文”, or “挂到 /blog”. Resolve the exact type, immutable ID, locale, current CMS revision, requested fields, and user-supplied facts.
 
 - Preserve immutable identity. Scope title, slug, body, summary, SEO, translation, or relationship changes to the requested locale unless the CMS contract requires another exact relation.

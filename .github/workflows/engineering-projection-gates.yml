@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - codex/cms-preview-integration
     paths:
       - "content/**"
       - "schemas/**"
@@ -77,6 +78,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build the publication fixture required by backend imports
+        run: node infra/bin/content.mjs build --output infra/generated/static
       - uses: astral-sh/setup-uv@v6
       - uses: actions/setup-python@v5
         with:
