@@ -5,6 +5,8 @@ description: Create a bounded CMS draft proposal for a Prompt or Article; never 
 
 # Create a CMS content proposal
 
+**Scope: PromptLab only.** Use only when the target repository is confirmed as PromptLab and contains its CMS publication contract (`specs/0011-promptlab-youmind-cms-publication.md`). On other projects use `pseo-content-workflow` and the host project’s own rules. Installation does not install a CMS adapter, schema, credentials, or deployment access.
+
 Use for requests such as “新增 Prompt”, “加一篇博客”, or “add an Article”. Read the repository rules, `specs/0011-promptlab-youmind-cms-publication.md`, the applicable CMS proposal contract, schema, taxonomy, and a nearby record before preparing a proposal.
 
 - Identify content type, immutable ID, locale, user-provided body/brief, source/evidence, and intended relationships. Allocate a schema-valid `prm_*` or `art_*` ID only when the CMS contract requires it; never change an existing identity.

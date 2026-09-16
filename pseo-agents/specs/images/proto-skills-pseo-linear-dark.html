@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PSEO Skills · Linear dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&display=swap">
+<style>
+/* ============================================================
+   Linear dark token layer
+   Structure, spacing and type scale are measured 1:1 from
+   aiforui.dev/learn/skills (Geist tokens); only the colour
+   layer is remapped to Linear's dark palette.
+   ============================================================ */
+:root {
+  --bg:              #08090a;  /* page + header            (was gray-100  #111110) */
+  --bg-elevated:     #0f1011;  /* skill card               (was          #0E0E0C) */
+  --bg-code:         #0c0d0f;  /* code block               (was          #0D0D0C) */
+  --bg-hover:        #141517;  /* row hover                (was gray-200  #191918) */
+  --bg-control:      #1c1d20;  /* copy button              (was gray-200  #191918) */
+  --bg-control-hi:   #25272b;  /* copy button hover        (was gray-300  #222221) */
+
+  --border:          #23252a;  /* card border              (was gray-300  #222221) */
+  --border-soft:     #1c1e22;  /* row divider              (was gray-300  #222221) */
+  --border-control:  #2c2e33;  /* control border           (was gray-400  #2a2a28) */
+  --ring-inset:      rgba(255,255,255,.07);
+
+  --text:            #f7f8f8;  /* primary                  (was foreground-100 #fff)     */
+  --text-body:       #d0d6e0;  /* paragraphs               (was            #d2d2d0)      */
+  --text-row:        #c8ccd4;  /* row description          (was foreground-200 #ededed)  */
+  --text-muted:      #8a8f98;  /* nav, count               (was gray-1100  #b5b3ad)      */
+
+  --accent:          #7170ff;  /* Linear indigo */
+  --accent-dim:      #5e6ad2;
+
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Byte-identical to the reference's stack. An extra "SF Mono"
+     entry resolves to a different face and shifts every wrap
+     point in the inline code.                                  */
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, p, pre { margin: 0; }
+
+/* ---------- header ---------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+}
+@media (min-width: 768px) { .masthead { padding: 20px; } }
+
+.logo {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  flex-shrink: 0;
+}
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #2c2d43 0%, #16171d 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.09);
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+.nav {
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 768px) { .nav ul { gap: 24px; } }
+
+.nav-link {
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: color 150ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.nav-discord { display: none; }
+@media (min-width: 768px) { .nav-discord { display: inline; } }
+
+.account {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 150ms cubic-bezier(.4, 0, .2, 1);
+}
+.account svg { width: 20px; height: 20px; }
+
+/* No nav entry animation — verified against the reference:
+   document.getAnimations() === 0 and nav links compute to
+   opacity 1 on load. The nav is seen on every page view;
+   animating it every time is exactly the case Emil's
+   frequency rule says to leave alone.                       */
+
+/* ---------- content --------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+@media (min-width: 640px) { .wrap { margin: 80px auto; } }
+@media (min-width: 768px) { .wrap { margin: 96px auto; padding: 0 24px; } }
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  color: var(--text);
+}
+@media (min-width: 640px) { h1 { font-size: 34px; } }
+
+.paragraph {
+  color: var(--text-body);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -.01em;
+}
+/* No mobile step-down here. The reference scopes that rule to
+   the homepage — `@media (max-width:600px){ .home .paragraph }`
+   — so on /learn/skills the body stays 17px at every width.   */
+.paragraph-tiny { font-size: 15px; }
+
+.lede { margin: 20px 0; }
+.cmd-note { margin-top: 24px; }
+
+/* ---------- install command ------------------------------- */
+
+.cmd {
+  position: relative;
+  margin: 8px 0 16px;
+}
+
+.cmd pre {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--bg-code);
+  box-shadow: inset 0 0 0 1px var(--ring-inset);
+  padding: 16px 0;
+  font-size: 12px;
+}
+.cmd code {
+  display: grid;
+  font-family: var(--mono);
+}
+.cmd .line {
+  display: block;
+  overflow: hidden;
+  padding: 0 48px 0 16px;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tok-cmd  { color: #b392f0; }
+.tok-arg  { color: #e1e4e8; }
+.tok-flag { color: var(--accent); }
+.tok-val  { color: var(--accent-dim); }
+
+.copy {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-control);
+  border-radius: 8px;
+  background: var(--bg-control);
+  color: var(--text);
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: background-color 150ms cubic-bezier(.4,0,.2,1),
+              border-color   150ms cubic-bezier(.4,0,.2,1),
+              opacity        150ms cubic-bezier(.4,0,.2,1),
+              transform      160ms var(--ease-out);
+}
+.copy:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.copy:active { transform: translateY(-50%) scale(.97); }
+
+.copy-icons { position: relative; width: 20px; height: 20px; }
+.copy-icons svg {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  /* blur masks the swap so the eye reads one shape morphing,
+     not two icons crossfading */
+  transition: opacity 200ms ease, filter 200ms ease, transform 200ms ease;
+}
+.copy .icon-check,
+.copy[data-copied] .icon-clipboard { opacity: 0; filter: blur(2px); transform: scale(.9); }
+.copy[data-copied] .icon-check { opacity: 1; filter: blur(0); transform: none; }
+
+.inline-code {
+  padding: 2px 3.6px;
+  border: 1px solid var(--border-control);
+  border-radius: 6px;
+  background: var(--bg-control);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+/* ---------- available skills ------------------------------ */
+
+.sechead {
+  margin: 56px 0 32px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) { .sechead { margin-top: 64px; } }
+
+.sechead h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  color: var(--text);
+}
+.sechead .count {
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.sechead p { margin: 0; max-width: 620px; }
+
+.groups { display: flex; flex-direction: column; gap: 48px; }
+
+.section-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  color: var(--text);
+}
+.section-blurb { margin: 0 0 16px; max-width: 550px; }
+
+.card {
+  margin: 0 -16px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+@media (min-width: 768px) {
+  .card { border: 1px solid var(--border); border-radius: 12px; }
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 16px;
+  /* Rows are scanned dozens of times in a sitting — the
+     reference deliberately leaves the hover fill instant and
+     only transitions colour. Kept as-is.                      */
+  transition: color 200ms;
+}
+.row + .row { border-top: 1px solid var(--border-soft); }
+.row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ---------- hover, gated ----------------------------------
+   The reference gates every hover behind (hover: hover) —
+   Tailwind v4 does it by default, 5 such queries on the live
+   page. Ungated, a tap on a phone leaves the row stuck in its
+   hover fill until you tap somewhere else.                   */
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover,
+  .account:hover   { color: var(--text); }
+  .row:hover       { background: var(--bg-hover); }
+  .cmd:hover .copy { opacity: 1; }
+  .copy:hover      { background: var(--bg-control-hi); }
+}
+
+/* Touch has no hover to reveal it with, so the copy
+   affordance has to stand on its own.                        */
+@media (hover: none) {
+  .copy { opacity: 1; }
+}
+
+.row-body { min-width: 0; flex: 1 1 0%; }
+
+.row-name {
+  display: block;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 575;
+}
+.row-desc {
+  display: block;
+  max-width: 40ch;
+  margin-top: 4px;
+  color: var(--text-row);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy, .copy-icons svg { transition: opacity 150ms ease; }
+  .copy:active { transform: translateY(-50%); }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div>
+    <a class="logo" href="/" aria-label="Home">
+      <span class="logo-mark" aria-hidden="true">p</span>
+    </a>
+  </div>
+  <nav class="nav" aria-label="Main">
+    <ul>
+      <li><a class="nav-link" href="/flow">Flow</a></li>
+      <li><a class="nav-link" href="/skills" aria-current="page">Skills</a></li>
+      <li><a class="nav-link" href="/records">Records</a></li>
+      <li><a class="nav-link nav-discord" href="https://github.com/ziyetsui/pseo">GitHub</a></li>
+      <li>
+        <button type="button" class="account" aria-haspopup="menu" aria-expanded="false">Account
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 14.5303C11.7626 14.8232 12.2374 14.8232 12.5303 14.5303L16.5303 10.5303C16.8232 10.2374 16.8232 9.76256 16.5303 9.46967C16.2374 9.17678 15.7626 9.17678 15.4697 9.46967L12 12.9393L8.53033 9.46967C8.23744 9.17678 7.76256 9.17678 7.46967 9.46967C7.17678 9.76256 7.17678 10.2374 7.46967 10.5303L11.4697 14.5303Z" fill="currentColor"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+  <h1>A skill for every step of programmatic SEO</h1>
+  <p class="paragraph lede">Install them into your coding agents with a single command:</p>
+
+  <div class="cmd">
+    <pre tabindex="-1"><code data-language="bash"><span class="line"><span class="tok-cmd">npx</span><span class="tok-arg"> skills add ziyetsui/pseo </span><span class="tok-flag">--skill </span><span class="tok-val">pseo</span></span></code></pre>
+    <button class="copy" type="button" aria-label="Copy code" data-copy="npx skills add ziyetsui/pseo --skill pseo">
+      <span class="copy-icons">
+        <svg class="icon-clipboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9V5.25C9 4.00736 10.0074 3 11.25 3H18.75C19.9926 3 21 4.00736 21 5.25V12.75C21 13.9926 19.9926 15 18.75 15H15M12.75 9H5.25C4.00736 9 3 10.0074 3 11.25V18.75C3 19.9926 4.00736 21 5.25 21H12.75C13.9926 21 15 19.9926 15 18.75V11.25C15 10.0074 13.9926 9 12.75 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(270 12 12)"/></svg>
+        <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <p class="paragraph cmd-note">Run it in your terminal, choose whether to install into the current project or globally, and pick the skills you want. The entry point <code class="inline-code">/pseo</code> reads <code class="inline-code">docs/pseo/project.json</code>, works out which stage you're in, and calls the next skill. You can also grab one directly, like <code class="inline-code">npx skills add ziyetsui/pseo --skill pseo-site-audit</code>.</p>
+
+  <div class="sechead">
+    <h2>Available skills <span class="count">25</span></h2>
+    <p class="paragraph">Grouped by the six phases of the main /pseo table, in the order a real project runs them. Click any skill to see what it does, what it needs, and what it delivers.</p>
+  </div>
+
+  <div class="groups">
+    <section class="group-section">
+      <h3 class="section-title">Entry points</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Start with /pseo when a site already exists; it reads the project record and picks the next step. Start with the wireframe when there is only an idea.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo">
+          <span class="row-body">
+            <span class="row-name">/pseo</span>
+            <span class="row-desc">Use it first: it reads docs/pseo/project.json, tells you which stage you&#x27;re in, and picks the next skill.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-wireframe">
+          <span class="row-body">
+            <span class="row-name">/pseo-wireframe</span>
+            <span class="row-desc">Use it when you only have an idea and want to walk, option by option, to a browsable wireframe of the whole site.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">01 · Direction</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Understand the site as it is, choose the first page family, and cluster what users are actually asking for.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-site-audit">
+          <span class="row-body">
+            <span class="row-name">/pseo-site-audit</span>
+            <span class="row-desc">Use it when you already have a website and want to know where PSEO should start.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-opportunity">
+          <span class="row-body">
+            <span class="row-name">/pseo-opportunity</span>
+            <span class="row-desc">Use it when you have a few directions and need to pick the one page family worth validating first.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-intents">
+          <span class="row-body">
+            <span class="row-name">/pseo-intents</span>
+            <span class="row-desc">Use it when you have keywords or customer questions and need to know which ones one page should answer.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">02 · Data</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Decide where the facts come from, bring them in with boundaries, and model entities and relations before any page exists. The graph now exports the neighborhood view every page footer is built from.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-sources">
+          <span class="row-body">
+            <span class="row-name">/pseo-sources</span>
+            <span class="row-desc">Use it when the direction is chosen but you don&#x27;t know what data will keep the pages alive.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-ingest">
+          <span class="row-body">
+            <span class="row-name">/pseo-ingest</span>
+            <span class="row-desc">Use it when API, CSV, or web material has to become data you can check and re-run.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-graph">
+          <span class="row-body">
+            <span class="row-name">/pseo-graph</span>
+            <span class="row-desc">Use it when you have a pile of material and need entities, attributes, and relations pages can reuse.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">03 · Pages</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Decide which pages deserve to exist, specify what each must show, prototype it with real records, then make it look designed. The IA footer is a required module.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-page-plan">
+          <span class="row-body">
+            <span class="row-name">/pseo-page-plan</span>
+            <span class="row-desc">Use it when data and user tasks exist and you need to decide which pages, navigation, and internal links deserve to exist.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-page-spec">
+          <span class="row-body">
+            <span class="row-name">/pseo-page-spec</span>
+            <span class="row-desc">Use it when you know which pages to build and must define what each one has to show.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-prototype">
+          <span class="row-body">
+            <span class="row-name">/pseo-prototype</span>
+            <span class="row-desc">Use it when you want to see the page before development and check that it really completes the user&#x27;s task.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-prototype-polish">
+          <span class="row-body">
+            <span class="row-name">/pseo-prototype-polish</span>
+            <span class="row-desc">Use it when the prototype works but looks assembled, and you want it to look designed, or to compare a few directions.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">04 · Integration</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Plug into the stack the site already runs on, implement the first family, and verify the real HTML.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-architecture">
+          <span class="row-body">
+            <span class="row-name">/pseo-architecture</span>
+            <span class="row-desc">Use it when the prototype is settled and you have to decide how data, templates, and publishing plug into the existing site.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-implement">
+          <span class="row-body">
+            <span class="row-name">/pseo-implement</span>
+            <span class="row-desc">Use it when the spec is clear and you&#x27;re wiring data and templates into real code.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-technical-seo">
+          <span class="row-body">
+            <span class="row-name">/pseo-technical-seo</span>
+            <span class="row-desc">Use it when the pages work but you need proof they&#x27;re crawlable, URL-consistent, and free of index conflicts.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">05 · Release</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Define who drafts and who reviews, gate every page, and ship only with authorization and receipts.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-content-workflow">
+          <span class="row-body">
+            <span class="row-name">/pseo-content-workflow</span>
+            <span class="row-desc">Use it when content will keep coming and you need to say who edits, who reviews, and where it publishes from.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-quality-gate">
+          <span class="row-body">
+            <span class="row-name">/pseo-quality-gate</span>
+            <span class="row-desc">Use it when you have candidate pages and want to know which can go to release review and which must be stopped.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-release">
+          <span class="row-body">
+            <span class="row-name">/pseo-release</span>
+            <span class="row-desc">Use it when the first batch has been reviewed and needs a safe, authorized release with real receipts.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">06 · Learning</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Get a baseline, fix what is already live, and only then decide the next batch.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-measure">
+          <span class="row-body">
+            <span class="row-name">/pseo-measure</span>
+            <span class="row-desc">Use it when pages are live, or before that, to define how you&#x27;ll judge whether they work.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-refresh">
+          <span class="row-body">
+            <span class="row-name">/pseo-refresh</span>
+            <span class="row-desc">Use it when pages are stale, slipping, or overlapping and you want to fix them before adding more.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-expand">
+          <span class="row-body">
+            <span class="row-name">/pseo-expand</span>
+            <span class="row-desc">Use it when the first page family is proven and you&#x27;re deciding what the next batch should be.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section class="group-section">
+      <h3 class="section-title">PromptLab only</h3>
+      <p class="paragraph paragraph-tiny section-blurb">Loaded only when the target is confirmed to be the PromptLab repository. The main table leaves these out on purpose.</p>
+      <div class="card">
+        <a class="row" href="/skills/pseo-content-create">
+          <span class="row-body">
+            <span class="row-name">/pseo-content-create</span>
+            <span class="row-desc">PromptLab only: draft a bounded CMS proposal for a Prompt or Article without touching the generated Git mirror.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-content-edit">
+          <span class="row-body">
+            <span class="row-name">/pseo-content-edit</span>
+            <span class="row-desc">PromptLab only: prepare a revision-bound CMS proposal for an existing Prompt or Article.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-content-validate">
+          <span class="row-body">
+            <span class="row-name">/pseo-content-validate</span>
+            <span class="row-desc">PromptLab only: validate a CMS proposal or mirror fixture; Git content is never the publication authority.</span>
+          </span>
+        </a>
+        <a class="row" href="/skills/pseo-content-pr">
+          <span class="row-body">
+            <span class="row-name">/pseo-content-pr</span>
+            <span class="row-desc">PromptLab legacy name: prepare a human-review package; publication no longer uses per-item Git PRs.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  document.querySelector('.copy').addEventListener('click', function (e) {
+    var btn = e.currentTarget;
+    var text = btn.getAttribute('data-copy');
+    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {});
+    btn.setAttribute('data-copied', '');
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function () { btn.removeAttribute('data-copied'); }, 1600);
+  });
+</script>
+
+</body>
+</html>

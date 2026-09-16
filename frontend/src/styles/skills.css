@@ -1,0 +1,79 @@
+/* Main-content geometry and palette from the approved PSEO Skills Linear dark prototype. */
+.skills-page {
+  --skills-bg: #08090a;
+  --skills-card: #0f1011;
+  --skills-code: #0c0d0f;
+  --skills-border: #23252a;
+  --skills-body: #d0d6e0;
+  --skills-muted: #999fa9;
+  --skills-accent: #a6a0ff;
+  width: 100%; max-width: 760px; margin: 48px auto 0; padding: 0 16px 80px;
+  color: #f7f8f8; background: var(--skills-bg);
+  font-family: "InterVariable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased;
+}
+.skills-page h1,.skills-page h2,.skills-page h3,.skills-page p,.skills-page pre { margin: 0; }
+.skills-page a { color: inherit; text-decoration: none; }
+.skills-page h1 { font-size: 28px; line-height: 1.15; font-weight: 500; letter-spacing: -.025em; text-wrap: balance; overflow-wrap: anywhere; }
+.skills-page .skills-paragraph { color: var(--skills-body); font-size: 17px; line-height: 1.6; letter-spacing: -.01em; }
+.skills-page .skills-lede { margin: 20px 0; }
+.skills-page code,.skills-page pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.skills-page p code { padding: 2px 3.6px; border: 1px solid #2c2e33; border-radius: 6px; background: #1c1d20; color: #f7f8f8; font-size: 13px; overflow-wrap: anywhere; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.skills-command { position: relative; margin: 8px 0 16px; }
+.skills-command pre { border: 1px solid var(--skills-border); border-radius: 12px; background: var(--skills-code); padding: 18px 62px 18px 16px; }
+.skills-command code { display: block; overflow: auto; font-size: 13px; line-height: 20px; white-space: pre-wrap; overflow-wrap: anywhere; color: #e1e4e8; }
+.skills-command-name { color: #c0a0f5; }
+.skills-copy-wrap { position: relative; display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.skills-copy-wrap-icon { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); }
+.skills-copy { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; border: 1px solid #2c2e33; border-radius: 8px; padding: 9px 12px; background: #1c1d20; color: #f7f8f8; font-family: inherit; font-size: 13px; font-weight: 500; line-height: 20px; cursor: pointer; }
+.skills-copy-icon { width: 44px; padding: 10px; }
+.skills-copy-feedback:not(.skills-copy-error) { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skills-copy-error { display: block; color: #ffb8b8; font-size: 12px; line-height: 1.5; }
+.skills-copy-wrap-icon .skills-copy-error { position: absolute; top: calc(100% + 8px); right: 0; width: min(240px,65vw); padding: 8px 12px; z-index: 2; border: 1px solid #764747; background: #25191b; border-radius: 6px; box-shadow: 0 4px 20px #0008; }
+.skills-page .skills-command-note { margin-top: 24px; }
+.skills-agent-instructions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px 20px; margin-top: 22px; }
+.skills-agent-instructions details { min-width: 0; flex: 1 1 190px; }
+.skills-page summary { display: list-item; width: fit-content; min-height: 44px; padding: 11px 0; font-size: 13px; line-height: 22px; color: var(--skills-muted); cursor: pointer; }
+.skills-agent-instructions pre,.skills-raw-source pre { background: var(--skills-code); border: 1px solid var(--skills-border); border-radius: 8px; padding: 16px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--skills-body); font-size: 12px; line-height: 1.7; }
+.skills-page .skills-install-note { margin-top: 16px; color: var(--skills-muted); font-size: 13px; line-height: 1.7; }
+.skills-install-note a { text-decoration: underline; text-underline-offset: 3px; }
+.skills-section-heading { margin: 56px 0 32px; padding-top: 40px; border-top: 1px solid var(--skills-border); }
+.skills-page .skills-section-heading h2 { margin-bottom: 8px; font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -.025em; }
+.skills-section-heading h2 span { margin-left: 7px; color: var(--skills-muted); font: 400 18px/28px ui-monospace,monospace; }
+.skills-section-heading p { max-width: 620px; }
+.skills-groups { display: flex; flex-direction: column; gap: 48px; }
+.skills-page .skills-section-title { margin-bottom: 6px; font-size: 17px; line-height: 1.5; font-weight: 500; letter-spacing: -.025em; }
+.skills-page .skills-section-blurb { max-width: 550px; margin-bottom: 16px; font-size: 15px; }
+.skills-card { margin: 0 -16px; overflow: hidden; background: var(--skills-card); border-top: 1px solid var(--skills-border); border-bottom: 1px solid var(--skills-border); }
+.skills-row { display: flex; align-items: flex-start; gap: 16px; padding: 14px 16px; }
+.skills-row + .skills-row { border-top: 1px solid #1c1e22; }
+.skills-row-body { min-width: 0; flex: 1 1 0%; }
+.skills-row-name { display: block; color: #f7f8f8; font-size: 14px; line-height: 20px; font-weight: 575; overflow-wrap: anywhere; }
+.skills-row-description { display: block; max-width: 40ch; margin-top: 4px; color: #c8ccd4; font-size: 14px; line-height: 22px; }
+.skills-page .skills-back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 20px; font-size: 14px; color: var(--skills-muted); }
+.skills-page .skills-eyebrow { margin-bottom: 12px; font-size: 13px; line-height: 1.5; color: var(--skills-muted); }
+.skills-document,.skills-related { border-top: 1px solid var(--skills-border); margin-top: 48px; padding-top: 32px; }
+.skills-document > h2,.skills-related > h2 { font-size: 20px; line-height: 1.4; font-weight: 500; }
+.skills-related > h2 { margin-bottom: 20px; }
+.skills-markdown { margin-top: 32px; color: var(--skills-body); font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
+.skills-markdown h2,.skills-markdown h3,.skills-markdown h4,.skills-markdown h5,.skills-markdown h6 { margin: 32px 0 12px; color: #f7f8f8; font-weight: 550; letter-spacing: -.02em; }
+.skills-markdown h2 { font-size: 24px; }.skills-markdown h3 { font-size: 20px; }.skills-markdown h4,.skills-markdown h5,.skills-markdown h6 { font-size: 17px; }
+.skills-markdown p { margin-block: 16px; white-space: pre-line; }
+.skills-markdown ul,.skills-markdown ol { margin-block: 16px; padding-left: 24px; }
+.skills-markdown li { padding-left: 3px; margin-block: 8px; }
+.skills-markdown a { color: var(--skills-accent); text-decoration: underline; text-underline-offset: 3px; }
+.skills-markdown code { font-size: .86em; }
+.skills-markdown pre { background: var(--skills-code); border: 1px solid var(--skills-border); border-radius: 8px; padding: 16px; overflow: auto; margin-block: 20px; font-size: 13px; line-height: 1.7; }
+.skills-markdown pre code { font-size: inherit; }
+.skills-markdown blockquote { margin: 20px 0; border-left: 2px solid #7170ff; padding-left: 18px; white-space: pre-line; }
+.skills-table-scroll { width: 100%; overflow-x: auto; margin-block: 20px; }
+.skills-markdown table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.7; }
+.skills-markdown th,.skills-markdown td { min-width: 120px; padding: 10px 12px; border: 1px solid var(--skills-border); text-align: left; vertical-align: top; }
+.skills-markdown th { background: #141517; color: #f7f8f8; }
+.skills-markdown hr { border: 0; border-top: 1px solid var(--skills-border); margin-block: 24px; }
+.skills-raw-source { margin-top: 32px; }
+.skills-page :is(a,button,summary,pre,[tabindex]):focus-visible { outline: 2px solid var(--skills-accent); outline-offset: 3px; }
+.skills-row:focus-visible { outline-offset: -3px !important; }
+@media(min-width:640px) { .skills-page { margin-top: 80px; }.skills-page h1 { font-size: 34px; }.skills-section-heading { margin-top: 64px; } }
+@media(min-width:768px) { .skills-page { margin-top: 96px; padding-inline: 24px; }.skills-card { border: 1px solid var(--skills-border); border-radius: 12px; } }
+@media(hover:hover) and (pointer:fine) { .skills-row:hover { background: #141517; }.skills-copy:hover { background: #25272b; }.skills-back:hover { color: #f7f8f8; } }

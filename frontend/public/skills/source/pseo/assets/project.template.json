@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "kitVersion": "0.1.0",
+  "website": null,
+  "objective": null,
+  "audience": null,
+  "locales": [],
+  "stack": null,
+  "canonicalSource": null,
+  "evidence": [],
+  "steps": {
+    "pseo-site-audit": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-opportunity": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-intents": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-sources": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-ingest": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-graph": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-page-plan": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-page-spec": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-prototype": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-prototype-polish": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-architecture": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-implement": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-technical-seo": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-content-workflow": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-quality-gate": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-release": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-measure": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-refresh": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    },
+    "pseo-expand": {
+      "status": "not_started",
+      "artifacts": [],
+      "checks": [],
+      "inputRevision": null,
+      "needsRecheck": false,
+      "blocker": null
+    }
+  },
+  "next": {
+    "skill": "pseo-site-audit",
+    "reason": "从已有网站与业务目标建立基线"
+  },
+  "release": {
+    "contentRevision": null,
+    "mirrorRevision": null,
+    "deploymentRef": null,
+    "smokeRef": null,
+    "notes": "未验证；是否需要 mirror 取决于宿主"
+  },
+  "updatedAt": null
+}

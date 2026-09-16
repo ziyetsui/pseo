@@ -6,7 +6,8 @@
   "packageManager": "pnpm@11.7.0",
   "scripts": {
     "dev": "FRONTEND_DATA_MODE=visual-fixture next dev --hostname 127.0.0.1",
-    "build": "next build --webpack && node scripts/finalize-export.mjs",
+    "build": "pnpm skills:build && next build --webpack && node scripts/finalize-export.mjs",
+    "skills:build": "python3 ../tools/pseo-site/build.py",
     "build:visual": "FRONTEND_DATA_MODE=visual-fixture pnpm build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

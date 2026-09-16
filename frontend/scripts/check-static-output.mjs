@@ -7,7 +7,9 @@ async function files(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   return (await Promise.all(entries.map(entry => entry.isDirectory() ? files(path.join(directory, entry.name)) : path.join(directory, entry.name)))).flat();
 }
-const htmlFiles = (await files(root)).filter(file => file.endsWith('.html'));
+const outputFiles = await files(root);
+const assetPaths = new Set(outputFiles.map(file => '/' + path.relative(root, file).split(path.sep).join('/')));
+const htmlFiles = outputFiles.filter(file => file.endsWith('.html'));
 if (htmlFiles.length < 3) throw new Error('Static route output is incomplete');
 let links = 0;
 const routeForFile = file => ('/' + path.relative(root, file).replace(/\.html$/, '').replace(/(^|\/)index$/, '')).replace(/\/$/, '') || '/';
@@ -27,6 +29,7 @@ for (const file of htmlFiles) {
     const pathname = decodeURI(target.pathname).replace(/\/$/, '') || '/';
     if (pathname.startsWith('/_next/')) continue;
     if (pathname.endsWith('.xml')) continue;
+    if (assetPaths.has(pathname) && !allPaths.has(pathname)) { links++; continue; }
     if (!allPaths.has(pathname)) throw new Error(`Broken internal static link ${href} from ${file}`);
     if (target.hash) {
       const anchor = decodeURIComponent(target.hash.slice(1));

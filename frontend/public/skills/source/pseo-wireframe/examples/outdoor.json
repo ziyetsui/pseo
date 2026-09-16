@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "户外装备目录 · 示例",
+  "kind": "catalog",
+  "audience": "准备首次短途露营的人",
+  "goal": "decide",
+  "task": "按使用场景查找装备资料并核对原始说明",
+  "action": "source",
+  "sampleMode": "illustrative",
+  "categoryLabel": "装备类型",
+  "collectionLabel": "使用场景",
+  "density": "compact",
+  "records": [
+    {
+      "id": "tent-a",
+      "title": "帐篷 A · 示例",
+      "category": "住宿",
+      "collection": "短途露营",
+      "summary": "结构示例：填入实际适用条件。",
+      "body": "此为虚构样本。真实尺寸、重量、适用环境和限制待补。",
+      "source": "https://example.com/tent-a"
+    },
+    {
+      "id": "bag-b",
+      "title": "睡袋 B · 示例",
+      "category": "住宿",
+      "collection": "过夜保暖",
+      "summary": "结构示例：补充使用范围。",
+      "body": "此为虚构样本。温标、材料和证据待补。",
+      "source": ""
+    },
+    {
+      "id": "cook-c",
+      "title": "炉具 C · 示例",
+      "category": "烹饪",
+      "collection": "短途露营",
+      "summary": "结构示例：填写使用条件与限制。",
+      "body": "此为虚构样本。燃料兼容、环境约束和原始说明待补。",
+      "source": ""
+    }
+  ]
+}
