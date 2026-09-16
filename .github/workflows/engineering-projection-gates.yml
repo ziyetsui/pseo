@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - codex/cms-preview-integration
     paths:
       - "content/**"
       - "schemas/**"
