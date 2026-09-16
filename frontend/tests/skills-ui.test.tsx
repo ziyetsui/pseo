@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { SkillsCopy } from '../src/components/SkillsCopy';
 import { SkillsIndex, SkillDetail } from '../src/components/Skills';
@@ -9,6 +10,21 @@ import { skills, ALL_SKILLS_INSTALL_COMMAND } from '../src/lib/skills';
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
 describe('skills distribution UI', () => {
+  it('keeps copying disabled in server HTML until hydration attaches the clipboard handler', async () => {
+    const element = <SkillsCopy text={ALL_SKILLS_INSTALL_COMMAND} label="Copy install command" iconOnly />;
+    const container = document.createElement('div');
+    container.innerHTML = renderToString(element);
+    document.body.appendChild(container);
+    expect(container.querySelector('button')?.disabled).toBe(true);
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    render(element, { container, hydrate: true });
+    await waitFor(() => expect(container.querySelector('button')?.disabled).toBe(false));
+    fireEvent.click(screen.getByRole('button', { name: 'Copy install command' }));
+    await waitFor(() => expect(screen.getByRole('status').textContent).toBe('Copied to clipboard.'));
+    expect(writeText).toHaveBeenCalledWith(ALL_SKILLS_INSTALL_COMMAND);
+  });
+
   it('exposes all skills as real locale routes and preserves full source in every detail', () => {
     const index = render(<SkillsIndex locale="zh-CN" />);
     for (const skill of skills) {

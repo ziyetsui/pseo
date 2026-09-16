@@ -12,7 +12,7 @@ The 25-entry allowlist includes 21 general workflow skills and four clearly mark
 
 - Frontend lint: 0 errors; 13 existing image-element warnings.
 - TypeScript: passed.
-- Unit tests: 142 passed (23 files), including new clipboard success/rejection and safe Markdown rendering tests.
+- Unit tests: 143 passed (23 files), including clipboard hydration readiness, success/rejection and safe Markdown rendering tests.
 - Static build: 132 HTML routes and 5,036 valid local links, including both Skills locale routes and all details.
 - Static artifact Skills + accessibility E2E: 26 passed, including clipboard exact values, mobile widths, keyboard, no-JS, all detail paths, 404s, and axe serious/critical checks.
 - Generator: 2 tests passed; deterministic archive and stale asset check passed.
@@ -20,6 +20,8 @@ The 25-entry allowlist includes 21 general workflow skills and four clearly mark
 - Root compiler validate/build passed; 18 infra tests passed. The compiler fixture is not the deployed Beta data.
 
 A first full E2E run against Next development server passed 82 tests, skipped three touch-inapplicable cases, and observed one transient HTTP 500 on the disabled `/en/prompts` route. The same route returns the expected 404 in the static export; the complete static Skills/accessibility rerun passed all 26 checks. A full-suite static rerun is recorded in the delivery receipt.
+
+Full static E2E rerun: 83 passed, three intentionally skipped on touch devices. Initial live smoke identified a clipboard hydration race on mobile; copy buttons now remain disabled until their client event handlers are attached. A dedicated SSR-to-hydration unit test verifies this behavior.
 
 ## Content and release boundary
 
