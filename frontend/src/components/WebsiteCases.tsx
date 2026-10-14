@@ -1,29 +1,29 @@
-import type { Catalog, WebsiteCase, WebsiteView } from '@/lib/catalog/types';
+import type { Catalog, WebsiteCase, WebsiteView, Ref } from '@/lib/catalog/types';
 import { websiteRef } from '@/lib/catalog/website';
-import { websiteViewEntries, websiteViewsForCase } from '@/lib/catalog/website-views';
+import { websiteViewEntries, websiteViews, websiteViewsForCase } from '@/lib/catalog/website-views';
 import { WebsiteViews } from './WebsiteViews';
 import { SiteHeader, SiteFooter } from './Chrome';
 import { WebsiteCasesReader } from './WebsiteCasesReader';
 
-export function WebsiteGallery({ catalog }: { catalog: Catalog }) {
-  return <WebsiteViews catalog={catalog} />;
-}
+export function WebsiteGallery({ catalog }: { catalog: Catalog }) { return <WebsiteViews catalog={catalog} />; }
 export function WebsiteViewGallery({ catalog, view }: { catalog: Catalog; view: WebsiteView }) {
-  const entries = websiteViewEntries(catalog, view);
-  return <div className="prototype-magnetic website-library"><div className="taste"><SiteHeader level="hub" locale={catalog.locale} sectionNavigation="library" /><main id="main">
-    <section className="wrap sec"><p className="dek"><a href={websiteRef(catalog).href}>Explore Website views</a></p><div className="sec-h"><h1>{view.label}</h1></div><p className="dek">{view.count} website cases{view.axis === 'all' ? ' across the complete collection' : ` in this ${view.axis === 'use-case' ? 'purpose' : view.axis === 'tool' ? 'technology' : 'model'} view`}. Explore their previews, sources and available project links.</p>
-      <WebsiteCasesReader entries={entries} href={view.href} />
-    </section></main><SiteFooter catalog={catalog} /></div></div>;
+  const entries=websiteViewEntries(catalog,view),presentation=view.axis==='all'?'deck':view.axis==='use-case'?'findings':'anthology';
+  const reference=(view:WebsiteView):Ref=>({id:view.id,slug:view.slug,label:view.label,href:view.href,count:view.count});
+  const navigation=websiteViews(catalog).filter(item=>item.axis===view.axis).map(reference);
+  const topics=Object.fromEntries(entries.map(entry=>[entry.id,websiteViewsForCase(catalog,entry.id).map(reference)]));
+  const promptTexts=Object.fromEntries(catalog.prompts.filter(prompt=>entries.some(entry=>entry.id===prompt.id)).map(prompt=>[prompt.id,prompt.prompt]));
+  const reader=<WebsiteCasesReader entries={entries} href={view.href} presentation={presentation} title={view.label} locale={catalog.locale} navigation={navigation} topics={topics} promptTexts={promptTexts} />;
+  if(presentation==='anthology') return <div className="prototype-anthology website-aligned"><div className="v4"><SiteHeader level="model" locale={catalog.locale} /><div className="page"><main id="main">{reader}</main><SiteFooter catalog={catalog} level="model" /></div></div></div>;
+  if(presentation==='findings') return <div className="prototype-magnetic prototype-task-findings website-aligned"><div className="taste vfd"><SiteHeader level="hub" locale={catalog.locale} sectionNavigation="library" /><main id="main"><section className="wrap open"><h1>{view.label}</h1><div className="arg"><p className="lede">{view.count} website cases, connected by purpose. Explore their sources, previews and the project links supplied with them.</p></div></section>{reader}</main><SiteFooter catalog={catalog} /></div></div>;
+  return <div className="prototype-deck website-aligned"><div className="v4 taste"><SiteHeader level="deck" locale={catalog.locale} contentType="website" /><main id="main"><div className="wrap"><header className="hero"><p className="eyebrow">Website gallery</p><h1 className="tier-index">{view.label}</h1><p className="lede">{view.count} website cases, one project at a time. Use the buttons or arrow keys to explore the deck.</p></header>{reader}</div></main><SiteFooter catalog={catalog} level="deck" /></div></div>;
 }
 export function WebsiteCaseDetail({ catalog, entry }: { catalog: Catalog; entry: WebsiteCase }) {
-  const href = websiteRef(catalog).href;
-  return <div className="prototype-magnetic website-library"><div className="taste"><SiteHeader level="prompt" locale={catalog.locale} /><main id="main"><article className="wrap sec website-detail">
-    <p className="dek"><a href={href}>Explore Website views</a></p><h1>{entry.title}</h1><p className="dek">{entry.summary}</p>
-    <p><a href={entry.source.url} target="_blank" rel="noopener noreferrer nofollow">{entry.attribution || 'Original source'} ↗</a></p>
-    <figure>{entry.cover && <img src={entry.cover} alt={entry.title} width={960} height={600} />}</figure>
-    <section><h2>Explore the project</h2><div className="website-actions"><a className="btn pri" href={entry.source.url} target="_blank" rel="noopener noreferrer nofollow">View original source ↗</a>{entry.demoUrl && <a className="btn" href={entry.demoUrl} target="_blank" rel="noopener noreferrer nofollow">Open demo ↗</a>}{entry.codeUrl && <a className="btn" href={entry.codeUrl} target="_blank" rel="noopener noreferrer nofollow">View code ↗</a>}</div></section>
-    <section><h2>Prompt</h2>{entry.promptHref ? <a className="btn" href={entry.promptHref}>Read the supplied prompt</a> : <p className="dek">No prompt was included in the collected source. Follow the original post for the author’s project notes.</p>}</section>
-    <section><h2>Related views</h2><div className="website-actions">{websiteViewsForCase(catalog, entry.id).map(view => <a className="chip" key={view.id} href={view.href}>{view.label} · {view.count} {view.count === 1 ? 'case' : 'cases'}</a>)}</div>{entry.tools.length > 0 && <p className="dek">{entry.tools.join(' · ')}</p>}</section>
-    {entry.relatedSources.length > 0 && <section><h2>More from the source</h2><ul>{entry.relatedSources.map(url => <li key={url}><a href={url} target="_blank" rel="noopener noreferrer nofollow">Related source post ↗</a></li>)}</ul></section>}
-  </article></main><SiteFooter catalog={catalog} /></div></div>;
+  const prompt=catalog.prompts.find(prompt=>prompt.id===entry.id),views=websiteViewsForCase(catalog,entry.id);
+  return <div className="prototype-recipe website-aligned"><div className="v3"><SiteHeader level="prompt" locale={catalog.locale} /><main id="main"><div className="wrap">
+    <header className="website-recipe-title"><h1>{entry.title}</h1><p className="dek">{entry.summary}</p><div className="byline"><span>by <a href={entry.source.url} target="_blank" rel="noopener noreferrer nofollow">{entry.attribution || 'Original source'}</a></span><a href={websiteRef(catalog).href}>Website views</a></div></header>
+    <section className="step" aria-labelledby="website-result"><div className="num" aria-hidden="true">01</div><div><h2 id="website-result">See what it makes</h2><p className="lede">A preview collected with this project. Follow the source for the creator’s context.</p><figure className="website-result">{entry.cover&&<img src={entry.cover} alt={entry.title} width={960} height={600} />}</figure></div></section>
+    <section className="step" aria-labelledby="website-inputs"><div className="num" aria-hidden="true">02</div><div><h2 id="website-inputs">Set the placeholders</h2>{prompt?.variables.length?<><p className="lede">The supplied prompt defines {prompt.variables.length} replaceable {prompt.variables.length===1?'field':'fields'}.</p><ul>{prompt.variables.map(variable=><li key={variable.token}><code>{variable.token}</code> · {variable.label}</li>)}</ul><a className="btn" href={entry.promptHref!}>Customize the supplied prompt</a></>:<p className="lede">No configurable placeholders were supplied with this case.</p>}{entry.tools.length>0&&<div className="kv"><span>Technology</span><span>{entry.tools.join(' · ')}</span></div>}</div></section>
+    <section className="step" aria-labelledby="website-text"><div className="num" aria-hidden="true">03</div><div><h2 id="website-text">Take the text</h2>{prompt?<><pre className="website-prompt" tabIndex={0} aria-label="Supplied prompt">{prompt.prompt}</pre><a className="btn" href={entry.promptHref!}>Read the supplied prompt</a></>:<p className="lede">No prompt was included in the collected source. Follow the original post for the author’s project notes.</p>}</div></section>
+    <section className="step" aria-labelledby="website-run"><div className="num" aria-hidden="true">04</div><div><h2 id="website-run">Run it</h2><p className="lede">Explore the creator’s project using the links supplied with the source.</p><div className="acts"><a className="btn pri" href={entry.source.url} target="_blank" rel="noopener noreferrer nofollow">View original source ↗</a>{entry.demoUrl&&<a className="btn" href={entry.demoUrl} target="_blank" rel="noopener noreferrer nofollow">Open demo ↗</a>}{entry.codeUrl&&<a className="btn" href={entry.codeUrl} target="_blank" rel="noopener noreferrer nofollow">View code ↗</a>}</div><div className="kv"><span>Related views</span><span>{views.map((view,index)=><span key={view.id}>{index>0&&' · '}<a href={view.href}>{view.label} · {view.count} {view.count===1?'case':'cases'}</a></span>)}</span></div>{entry.relatedSources.map(url=><div className="kv" key={url}><span>Related source</span><a href={url} target="_blank" rel="noopener noreferrer nofollow">Related source post ↗</a></div>)}</div></section>
+  </div></main><SiteFooter catalog={catalog} level="prompt" /></div></div>;
 }

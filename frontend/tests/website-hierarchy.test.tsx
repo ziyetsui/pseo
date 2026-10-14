@@ -1,0 +1,38 @@
+import { describe, it, expect } from 'vitest';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { parse } from 'node-html-parser';
+import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
+import { websiteViews } from '@/lib/catalog/website-views';
+import { WebsiteGallery, WebsiteViewGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
+import { SiteFooter } from '@/components/Chrome';
+import { catalogPaths } from '@/site/routes';
+const catalog = createGitBetaCatalog('zh-CN'), views = websiteViews(catalog);
+const html = (node: React.ReactNode) => parse(renderToStaticMarkup(node));
+describe('Website prototype levels and navigation', () => {
+  it('uses Deck for Website entry while retaining independent view navigation', () => {
+    const root = html(<WebsiteGallery catalog={catalog} />);
+    expect(root.querySelector('.prototype-deck .v4 .deck')).not.toBeNull();
+    expect(root.querySelectorAll('[data-website-view]')).toHaveLength(30);
+    expect(root.querySelectorAll('[data-website-case]')).toHaveLength(0);
+  });
+  it('uses Findings for purposes and Signature/Anthology for models and technologies', () => {
+    for (const view of views.filter(view => view.axis !== 'all')) {
+      const root = html(<WebsiteViewGallery catalog={catalog} view={view} />);
+      expect(root.querySelector(view.axis === 'use-case' ? '.prototype-task-findings .finding' : '.prototype-anthology .model-signature')).not.toBeNull();
+      expect(root.querySelectorAll('[data-website-case]')).toHaveLength(view.count);
+    }
+  });
+  it('uses the four Recipe steps even when the collected case has no prompt', () => {
+    const entry = catalog.websites!.find(entry => !entry.promptHref)!;
+    const root = html(<WebsiteCaseDetail catalog={catalog} entry={entry} />);
+    expect(root.querySelector('.prototype-recipe .v3')).not.toBeNull();
+    expect(root.querySelectorAll('.step .num').map(el => el.text)).toEqual(['01','02','03','04']);
+    expect(root.querySelector('[data-generation-cta]')).toBeNull();
+  });
+  it('includes every populated Website view in Footer IA and exports a Library index route', () => {
+    const root = html(<SiteFooter catalog={catalog} />), links = new Set(root.querySelectorAll('a').map(el=>el.getAttribute('href')));
+    for (const view of views) expect(links.has(view.href)).toBe(true);
+    expect(links.has('/zh-CN/prompts/library-index')).toBe(true);
+    expect(catalogPaths(catalog)).toContain('/zh-CN/prompts/library-index');
+  });
+});

@@ -34,7 +34,7 @@ test('published Git beta exposes real image and Website counts, sources and proj
   await page.locator('[data-website-view][data-view-axis=all]').click();
   await expect(page.locator('h1')).toHaveText('All website cases');
   await expect(page.locator('[data-website-case]')).toHaveCount(60);
-  await page.locator('[data-website-case]').nth(1).locator('h2 a').click();
+  await page.locator('.website-title-index a[data-case-title]').nth(1).click();
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('a').filter({hasText:'View original source'})).toHaveAttribute('href', /^https:\/\/x.com\//);
   await expect(page.getByText('No prompt was included', {exact:false})).toBeVisible();
@@ -90,8 +90,8 @@ test('independent graph view URLs retain their scope through details, filters an
   await expect(page).toHaveURL(/website\/views\/use-case\/website-fun$/);
   await expect(page.locator('h1')).toHaveText('Play & exploration');
   await expect(page.locator('[data-website-case]')).toHaveCount(19);
-  await page.locator('[data-website-case]').first().locator('h2 a').click();
-  await page.getByRole('link', {name:'Play & exploration · 19 cases',exact:true}).click();
+  await page.locator('[data-website-case]').first().locator('a[data-case-title]').click();
+  await page.locator('main').getByRole('link', {name:'Play & exploration · 19 cases',exact:true}).click();
   await expect(page.locator('[data-website-case]')).toHaveCount(19);
   await page.getByLabel('Search cases').fill('Halloween pool');
   await page.getByRole('button', {name:'Filter',exact:true}).click();

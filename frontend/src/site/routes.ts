@@ -9,6 +9,7 @@ export function catalogPaths(catalog: Catalog): string[] {
   hrefs.push(...catalog.subjects.map(subject => subjectHref(catalog.locale, subject.slug)));
   hrefs.push(...modelFamilies(catalog).map(family => family.href));
   hrefs.push(...websiteViews(catalog).map(view => view.href));
+  if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`);
   return [...new Set(hrefs.filter(href => (href === `/${catalog.locale}` || href.startsWith(`/${catalog.locale}/`)) && !href.includes('?') && !href.includes('#')))];
 }
 

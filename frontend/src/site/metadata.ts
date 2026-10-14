@@ -8,6 +8,7 @@ import type { SurfaceSeo } from './surface-seo';
 
 function navigationCopy(catalog: Catalog, path: string, title: string, entity?: Ref) {
   const hub = `/${catalog.locale}/prompts`;
+  if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return {title:'Library index',description:'Explore every published prompt, Website case and graph view in the library by medium, purpose, model and technology.'};
   const website = catalog.websites?.find(item => item.href === path);
   if (website) return { title: website.title, description: website.summary || 'Explore this website case, its preview and original source.' };
   const view = websiteViewForPath(catalog, path);
