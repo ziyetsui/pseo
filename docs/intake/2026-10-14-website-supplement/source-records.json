@@ -90,7 +90,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2059610234818109916",
     "source_text": "Here are the exact prompts I used:\n\nPrompt 1 – Rick and Morty Planets Website:\n\nBuild me a cool website about planets Rick visited in Rick and Morty.\nUse a dark night sky theme with stars and space atmosphere.\nFor each planet show:\n- Planet name\n- Episode it appeared in\n- One memory / moment from the visit\n- A generated image (I'll generate them with Grok Imagine using prompts you create)\nStart with these planets:\n- Gazorpazorp\n- Purge Planet\n- Blips and Chitz\n- Unity's Planet\n- Pluto\n- Snake Planet\n- Resort Planet\nMake it visually impressive. Use a modern stack (Next.js + Tailwind + Framer Motion recommended).\nRequirements:\n- Nice grid of planet cards\n- Click a card to open a modal with more details and the image\n- Smooth animations\n- Search or filter option\n- Make it feel premium and atmospheric, not basic\nWork fast. Research the planets first, create good image prompts, then build the site. Use parallel work where it makes sense. Focus on making it look good quickly.\n\nPrompt 2 - Photographer Portfolio:\n\nBuild a professional dark cinematic portfolio website for a travel and street photographer.\n**Design Direction:**\n- Dark, moody, and cinematic aesthetic\n- Full screen hero image with strong atmosphere\n- Elegant typography and generous spacing\n- High-end, minimalist feel (think high fashion or serious photography portfolios)\n**Required Sections:**\n1. **Full-screen Hero** — Striking full-screen image with the photographer’s name and a short powerful tagline.\n2. **About** — Short, professional about section.\n3. **Portfolio** — Filterable gallery with categories (example categories: Travel, Street, Cities, People, Landscapes). Support both images and videos.\n4. **Contact** — Simple and clean contact section (form or direct links).\n**Technical Requirements:**\n- Use **Next.js 14 + TypeScript + Tailwind CSS + Framer Motion**\n- Make the portfolio gallery beautiful (masonry or clean grid)\n- Clicking an image/video should open a nice modal/lightbox\n- Smooth animations and interactions\n- Fully responsive\n**Images:**\n- Use Grok Imagine to generate atmospheric, cinematic photography-style images.\n- Create strong, detailed image prompts for the hero and portfolio pieces.\n**Instructions:**\n- Work in parallel where possible (data structure, components, styling).\n- Focus on visual quality and atmosphere.\n- Keep the code clean and well structured.\n- Make it feel premium and professional, not generic.\nStart by setting up the project and creating the image prompts, then build the site.\n\nYou can copy and modify them.",
     "start": 80,
-    "end": 986,
+    "end": 984,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
@@ -106,7 +106,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2059610234818109916",
     "source_text": "Here are the exact prompts I used:\n\nPrompt 1 – Rick and Morty Planets Website:\n\nBuild me a cool website about planets Rick visited in Rick and Morty.\nUse a dark night sky theme with stars and space atmosphere.\nFor each planet show:\n- Planet name\n- Episode it appeared in\n- One memory / moment from the visit\n- A generated image (I'll generate them with Grok Imagine using prompts you create)\nStart with these planets:\n- Gazorpazorp\n- Purge Planet\n- Blips and Chitz\n- Unity's Planet\n- Pluto\n- Snake Planet\n- Resort Planet\nMake it visually impressive. Use a modern stack (Next.js + Tailwind + Framer Motion recommended).\nRequirements:\n- Nice grid of planet cards\n- Click a card to open a modal with more details and the image\n- Smooth animations\n- Search or filter option\n- Make it feel premium and atmospheric, not basic\nWork fast. Research the planets first, create good image prompts, then build the site. Use parallel work where it makes sense. Focus on making it look good quickly.\n\nPrompt 2 - Photographer Portfolio:\n\nBuild a professional dark cinematic portfolio website for a travel and street photographer.\n**Design Direction:**\n- Dark, moody, and cinematic aesthetic\n- Full screen hero image with strong atmosphere\n- Elegant typography and generous spacing\n- High-end, minimalist feel (think high fashion or serious photography portfolios)\n**Required Sections:**\n1. **Full-screen Hero** — Striking full-screen image with the photographer’s name and a short powerful tagline.\n2. **About** — Short, professional about section.\n3. **Portfolio** — Filterable gallery with categories (example categories: Travel, Street, Cities, People, Landscapes). Support both images and videos.\n4. **Contact** — Simple and clean contact section (form or direct links).\n**Technical Requirements:**\n- Use **Next.js 14 + TypeScript + Tailwind CSS + Framer Motion**\n- Make the portfolio gallery beautiful (masonry or clean grid)\n- Clicking an image/video should open a nice modal/lightbox\n- Smooth animations and interactions\n- Fully responsive\n**Images:**\n- Use Grok Imagine to generate atmospheric, cinematic photography-style images.\n- Create strong, detailed image prompts for the hero and portfolio pieces.\n**Instructions:**\n- Work in parallel where possible (data structure, components, styling).\n- Focus on visual quality and atmosphere.\n- Keep the code clean and well structured.\n- Make it feel premium and professional, not generic.\nStart by setting up the project and creating the image prompts, then build the site.\n\nYou can copy and modify them.",
     "start": 1022,
-    "end": 2514,
+    "end": 2512,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
@@ -634,7 +634,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2081643249631101275",
     "source_text": "We tested Opus 5 on my landing page generator skill using a one-shot ecommerce website prompt.   \n\nPrompt : Make an ecommerce website for a tech gadgets business.  \n\nThis was the result :  \n- a galaxy themed visually aesthetic design. \n- toggleable multicolor preview of products. \n- insane animation, fully responsive throughout. \n- add to cart and checkout feature.  \n\nAll this at half the cost of Fable 5.  \n\nWhat do you think about Opus 5?  \n\nSkill in replies👇",
     "start": 108,
-    "end": 164,
+    "end": 162,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
@@ -650,7 +650,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2062195913746202848",
     "source_text": "🚨 BREAKING: Claude Opus 4.8 is INSANE!\n\nIt just one-shot a 1,500$ client landing page in 15 minutes.\n\nPrompt: create a minimalistic black/white landing page for an analytics saas called \"BUZZ\". animate the hero seciton with a background video https://t.co/A7UboUALZu",
     "start": 110,
-    "end": 266,
+    "end": 242,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
@@ -713,8 +713,6 @@
     "published_at": "2026-09-30T21:45:49+00:00",
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2105413835637350486",
     "source_text": "Do you want TradingView charts for free? Their lite weight charts are open source. \n\nhttps://t.co/PEXIjWYM8B\n\nGive that to @OpenAI or @claudeai with this prompt; “You are a senior quant-platform engineer and graphics engineer.\n\nBuild an open-source, production-quality trading charting platform using open-source libraries. Do NOT use TradingView Advanced Charts, proprietary chart SDKs, embedded TradingView widgets, or paid charting components.\n\nUse these as building blocks/reference implementations where useful:\n- TradingView Lightweight Charts:\n  https://t.co/PEXIjWYM8B\n- PixiJS:\n  https://t.co/9rUDbw7aOJ\n- uPlot:\n  https://t.co/x3vTva9Clr\n- Apache ECharts:\n  https://t.co/mJuK9ZP6Le\n\nPRIMARY GOAL\n\nCreate a modular trading-chart engine that can eventually support a TradingView-style charting experience while allowing any market-data provider to be plugged in.\n\nDo not make a demo. Build the foundation of a real charting product.\n\nCORE CHART\n\nImplement:\n\n- Candlestick, bar, line, area, and Heikin-Ashi charts\n- Volume\n- Multiple synchronized panes\n- Multiple price scales\n- Timeframe switching\n- Symbol switching\n- Smooth mouse/touch pan and zoom\n- Crosshair synchronized across panes\n- Price/time tooltips\n- Autoscaling\n- Logarithmic and percentage scales\n- Extended-hours sessions\n- Session breaks\n- Real-time candle updates\n- Historical pagination when scrolling backward\n- Efficient handling of hundreds of thousands of bars\n\nINDICATOR ENGINE\n\nCreate an indicator architecture separate from the renderer.\n\nInclude initially:\n\n- SMA\n- EMA\n- VWAP\n- RSI\n- MACD\n- Bollinger Bands\n- ATR\n- Volume Profile\n\nIndicators must be dynamically added/removed and able to render either over the price chart or in independent panes.\n\nDesign the API so community-created indicators can eventually be loaded as plugins.\n\nDRAWING ENGINE\n\nImplement an independent drawing-object system supporting:\n\n- Trend line\n- Horizontal line\n- Vertical line\n- Ray\n- Rectangle\n- Price range\n- Date range\n- Fibonacci retracement\n- Parallel channel\n\nEvery drawing must support:\n\n- Selection\n- Dragging\n- Resizing\n- Deleting\n- Style properties\n- Serialization\n- Restoration\n- Undo/redo\n\nDo not tightly couple drawings to Lightweight Charts internals.\n\nDATA ARCHITECTURE\n\nDo NOT hard-code a market-data provider.\n\nCreate interfaces such as:\n\n- MarketDataProvider\n- HistoricalBarsProvider\n- RealtimeTradesProvider\n- RealtimeQuotesProvider\n\nSupport normalized events such as:\n\n- Trade\n- Quote\n- Bar\n\nA market-data provider should be replaceable without changing the charting system.\n\nBuild a WebSocket ingestion layer capable of batching high-frequency updates before sending them to the renderer.\n\nPERFORMANCE\n\nTreat performance as a first-class requirement.\n\nUse where appropriate:\n\n- Canvas/WebGL/WebGPU\n- Typed arrays\n- Object pooling\n- requestAnimationFrame batching\n- Incremental calculations\n- Web Workers for expensive indicators\n- Viewport-based rendering\n- Intelligent downsampling\n\nAvoid rerendering React/Angular components on every market tick.\n\nThe architecture should remain responsive with large historical datasets and high-frequency real-time updates.\n\nUI\n\nKeep the interface minimal and professional.\n\nDesktop-first layout:\n\nTop:\n- Symbol search\n- Timeframe controls\n- Chart type\n- Indicators\n\nLeft:\n- Drawing toolbar\n\nCenter:\n- Main chart\n\nRight:\n- Optional watchlist/details panel\n\nBottom:\n- Optional indicator panes\n\nUse a dark neutral appearance.\n\nDo not waste time building a marketing interface.\n\nFocus on the charting engine.\n\nARCHITECTURE\n\nSplit the project into clear packages/modules such as:\n\n- chart-core\n- chart-renderer\n- data-engine\n- indicator-engine\n- drawing-engine\n- provider-sdk\n- ui\n\nKeep the core engine framework-agnostic wherever practical.\n\nDELIVERABLES\n\nProduce:\n\n1. A working application.\n2. Complete source code.\n3. README explaining the architecture.\n4. Data-provider interface documentation.\n5. Indicator plugin documentation.",
-    "start": 163,
-    "end": 3952,
     "source_parts": [
       {
         "text": "6. Drawing-tool architecture documentation.\n7. Performance benchmarks.\n8. Tests for calculations and coordinate transformations.\n9. Example simulated real-time market-data feed.\n\nBuild vertically rather than creating hundreds of empty abstractions.\n\nFirst get:\n\ncandles → historical data → streaming updates → indicators → drawings → multiple panes → persistence\n\nworking end-to-end.\n\nRun the project, test it in the browser, profile it, identify bottlenecks, and fix them.\n\nDo not stop at a plan.\n\nImplement the software.",
@@ -728,7 +726,8 @@
     ],
     "use_case": "creation",
     "use_case_label": "Creation & development",
-    "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
+    "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow.",
+    "extraction": "Combined verbatim prompt text from the root post and the explicitly linked author continuation."
   },
   {
     "id": "2110267228494963178",
@@ -805,7 +804,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2110071798629036542",
     "source_text": "Gemini 4 Argon 1 shot - High Reasoning - 27k Tokens - 0.27 USD cost ($2 input/$10 output)\n\nPrompt: \nCreate a ultra realistic, high quality forest environment that i can navigate. single html file. https://t.co/CcF9jTle0M",
     "start": 100,
-    "end": 220,
+    "end": 196,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
@@ -965,7 +964,7 @@
     "prompt_evidence_ref": "docs/pseo/100-scenarios/supplement-2026-10-14/posts.json#id=2110072841081397753",
     "source_text": "Gemini 4 Argon just generated this entire New York skyline using pure JavaScript in a single HTML file. \n\nPrompt : draw a picture using javascript, of \"new york skylines\", it should look like a real drawing and very realistic in one html file https://t.co/o0ilYv7Dih",
     "start": 115,
-    "end": 266,
+    "end": 242,
     "use_case": "creation",
     "use_case_label": "Creation & development",
     "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
