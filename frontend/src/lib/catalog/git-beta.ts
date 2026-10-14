@@ -1,3 +1,4 @@
+import displayCopy from '../../data/localized-case-copy.json';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
@@ -29,7 +30,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
     const node = object(value), id = text(node.id);

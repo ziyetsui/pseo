@@ -46,3 +46,5 @@ it('binds the Git beta revision to every graph and preview change', async () => 
   expect(gitBetaRevision('base', { nodes: [1] }, { cover: 'a' })).not.toBe(gitBetaRevision('base', { nodes: [2] }, { cover: 'a' }));
   expect(gitBetaRevision('base', { nodes: [1] }, { cover: 'a' })).not.toBe(gitBetaRevision('base', { nodes: [1] }, { cover: 'b' }));
 });
+
+it('binds the revision to display translations',async()=>{const {gitBetaRevision}=await import('@/lib/catalog/git-beta-revision');expect(gitBetaRevision('base',{}, {}, {title:'first'})).not.toBe(gitBetaRevision('base',{}, {}, {title:'second'}));});

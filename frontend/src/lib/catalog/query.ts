@@ -52,7 +52,7 @@ export function filterPrompts(catalog: Catalog, filters: Filters = {}): Prompt[]
   const collection = filters.collection ? catalog.collections.find((item) => item.slug === filters.collection) : null;
   const epoch = catalog.observedAt ? Date.parse(catalog.observedAt) : NaN;
   const results = catalog.prompts.filter((prompt) => {
-    if (query && !(prompt.ranking?.searchText ?? [prompt.title, prompt.summary, prompt.prompt, prompt.handle, ...axes.flatMap((axis) => prompt[fields[axis]].flatMap((ref) => [...(ref.searchLabels ?? [ref.label, ref.sourceLabel ?? ref.label]), ref.slug]))].join(" ").toLocaleLowerCase()).includes(query)) return false;
+    if (query && !(prompt.ranking?.searchText ?? [prompt.title, prompt.summary, ...(prompt.searchLabels ?? []), prompt.prompt, prompt.handle, ...axes.flatMap((axis) => prompt[fields[axis]].flatMap((ref) => [...(ref.searchLabels ?? [ref.label, ref.sourceLabel ?? ref.label]), ref.slug]))].join(" ").toLocaleLowerCase()).includes(query)) return false;
     if (filters.contentType?.length && !filters.contentType.includes(prompt.kind)) return false;
     if (filters.creator?.length && (!prompt.creatorRef || !filters.creator.some((creator) => creator === prompt.creatorRef?.id || creator === prompt.creatorRef?.slug))) return false;
     if (filters.collection && (!collection || !collection.promptIds.includes(prompt.id))) return false;
