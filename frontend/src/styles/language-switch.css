@@ -9,3 +9,4 @@
 .language-switch summary:focus-visible,.language-switch-options a:focus-visible{outline:2px solid var(--foreground);outline-offset:3px}
 .nav:has(.language-switch) .navlinks{min-width:0;flex-wrap:wrap}
 @media(max-width:620px){.language-switch{margin-inline-start:6px}.language-switch summary{padding-inline:10px}.language-switch-options{inset-inline-start:0;inset-inline-end:auto}.nav:has(.language-switch) .navlinks{gap:10px}}
+@media(max-width:620px){.nav>.language-switch .language-switch-options{inset-inline-start:auto;inset-inline-end:0}}

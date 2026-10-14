@@ -65,7 +65,8 @@ test('bilingual layouts fit, remain accessible and switch without JavaScript',as
 });
 
 test('language choices stay inside the viewport and close with Escape',async({page})=>{
- await page.goto('/en/prompts/library-index',{waitUntil:'networkidle'});
+ for(const path of ['library-index','models/nano-banana','website/views/tool/three-js']){
+ await page.goto(`/en/prompts/${path}`,{waitUntil:'networkidle'});
  const picker=page.locator('[data-language-picker]');
  await picker.locator('summary').click();
  await expect(picker.getByRole('link',{name:'中文',exact:true})).toBeVisible();
@@ -74,4 +75,5 @@ test('language choices stay inside the viewport and close with Escape',async({pa
  expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
  await page.keyboard.press('Escape');await expect(picker).not.toHaveAttribute('open');
  await expect(picker.locator('summary')).toBeFocused();
+ }
  });
