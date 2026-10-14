@@ -2,8 +2,9 @@ import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/co
 import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
 import { gitBetaRevision } from './git-beta-revision';
+import { websiteEntries } from './website';
 import { filterHref, modelHref } from './query';
-import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase } from './types';
+import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase, WebsiteGraph } from './types';
 
 type RecordValue = Record<string, unknown>;
 function object(value: unknown): RecordValue {
@@ -104,6 +105,26 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   }
   for (const axis of Object.keys(axes) as Axis[]) for (const ref of registries[axis].values()) ref.count = prompts.filter(prompt => prompt[axes[axis]].some(term => term.id === ref.id)).length;
   for (const creator of creators.values()) creator.count = prompts.filter(prompt => prompt.creatorRef?.id === creator.id).length;
-  return { ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites,
+  const caseEntries = websiteEntries({ ...base, prompts, websites }), caseIds = new Set(caseEntries.map(entry => entry.id));
+  const websiteGraph: WebsiteGraph = { nodes: [], edges: [] };
+  const websiteNodeIds = new Set(caseIds);
+  for (const from of caseIds) for (const type of ['used_for', 'designed_for', 'built_with']) for (const target of linked(from,type)) {
+    const to = text(target.id); websiteNodeIds.add(to); websiteGraph.edges.push({ from, to, type });
+  }
+  for (const id of websiteNodeIds) {
+    const node = nodes.get(id);
+    if (node) websiteGraph.nodes.push({ id, type: text(node.type), slug: optionalText(node.slug) ?? id, label: text(node.label ?? node.title) });
+  }
+  // The existing Website prompt contributes its real relationships alongside the intake objects.
+  for (const entry of caseEntries.filter(entry => !nodes.has(entry.id))) {
+    websiteGraph.nodes.push({ id: entry.id, type: 'prompt', slug: entry.slug, label: entry.title });
+    for (const [type, refs, kind] of [['used_for', entry.useCases, 'use-case'], ['designed_for', entry.models, 'model']] as const) for (const ref of refs) {
+      const existing = websiteGraph.nodes.find(node => node.type === kind && node.slug === ref.slug);
+      const to = existing?.id ?? ref.id;
+      if (!existing) websiteGraph.nodes.push({ id: to, type: kind, slug: ref.slug, label: ref.label });
+      websiteGraph.edges.push({ from: entry.id, to, type });
+    }
+  }
+  return { ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
     models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] };
 }

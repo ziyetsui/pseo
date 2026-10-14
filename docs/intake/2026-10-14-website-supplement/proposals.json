@@ -1,6 +1,6 @@
 [
   {
-    "idempotencyKey": "case-import-v1:prm_00772f146164256dd15eb8f062c1fe4d:ff4cb819e5e10210df36cc35",
+    "idempotencyKey": "case-import-v1:prm_00772f146164256dd15eb8f062c1fe4d:25520c5ad9a53e90f2aa6107",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -24,12 +24,12 @@
         "id": "2075036700502581714",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_052f6c4a655687a66d47a1ec7c47f596:6d7f6172b00b4c67356ac6bb",
+    "idempotencyKey": "case-import-v1:prm_052f6c4a655687a66d47a1ec7c47f596:97a21c835a10fd68d5d9f32f",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -53,12 +53,12 @@
         "id": "2109716394862317928",
         "creatorHandle": "KavianCoin",
         "publishedDate": "2026-10-12",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_052f8b966b50591e744d11476eecafe6:e180032d120a28d8551597ea",
+    "idempotencyKey": "case-import-v1:prm_052f8b966b50591e744d11476eecafe6:7c1688e0b43e843ca45911c8",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -82,12 +82,12 @@
         "id": "2108232717900841089",
         "creatorHandle": "painn_x",
         "publishedDate": "2026-10-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_0577f01a2ab30c8810d6683805480c9b:50d08a71fb95ee6dc6dfaf12",
+    "idempotencyKey": "case-import-v1:prm_0577f01a2ab30c8810d6683805480c9b:40b77a55d7f7987e8ed4c8de",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -111,12 +111,41 @@
         "id": "1790043307386536313",
         "creatorHandle": "AbhinavGirdhar",
         "publishedDate": "2024-05-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_06c0bce68939c4b1a3ec8df637dd1814:57726c8b85086e9d5a9b3eef",
+    "idempotencyKey": "case-import-v1:prm_063ee079d7b821e73e382a27e057ae64:5a3f2c5b507ffab6da27fadd",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_063ee079d7b821e73e382a27e057ae64",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as a web performance and accessibility specialist. Optimize my interactive website to comply with Core Web Vitals, responsive rendering, lazy loading, image optimization, accessibility standards, SEO, structured data, analytics, caching, and deployment.\nCreate a comprehensive quality control checklist before launch. Restriction: always prioritize performance without sacrificing the premium experience."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-063ee079d7b821e73e382a27",
+        "title": "交互网站性能与无障碍优化",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518236195017207",
+        "id": "2108518236195017207",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_06c0bce68939c4b1a3ec8df637dd1814:9fc9c289c6b57e93bbbb36fc",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -140,12 +169,12 @@
         "id": "2105413835637350486",
         "creatorHandle": "bryanlytics",
         "publishedDate": "2026-09-30",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_0727bd50bcd595107796f4e9d7511a0e:e814346a1db3f9bb0acf6711",
+    "idempotencyKey": "case-import-v1:prm_0727bd50bcd595107796f4e9d7511a0e:22c8902a72277a52d84bb9c5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -169,12 +198,12 @@
         "id": "2056986590405439527",
         "creatorHandle": "alexroyhe",
         "publishedDate": "2026-05-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_08a596de87e38951aa2a3500213c67f9:1c735bf9ffea8415992f95b1",
+    "idempotencyKey": "case-import-v1:prm_08a596de87e38951aa2a3500213c67f9:c7eb1455462cdcafbdebc012",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -198,12 +227,12 @@
         "id": "2074834643786907898",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_090109b66cca11b0c2f47dd19342ce54:18d3678b64b93c9afe0f8b17",
+    "idempotencyKey": "case-import-v1:prm_090109b66cca11b0c2f47dd19342ce54:014e6acd8b59849826d64eb5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -227,12 +256,12 @@
         "id": "2084998979021099457",
         "creatorHandle": "Div_pradeep",
         "publishedDate": "2026-08-05",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_0b21c820ceec4c4090c6fccf796a9235:7746fb02622fdcb9269cdc22",
+    "idempotencyKey": "case-import-v1:prm_0b21c820ceec4c4090c6fccf796a9235:82a71c3fc058a6f98ee4b78e",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -256,12 +285,12 @@
         "id": "1770409667568493054",
         "creatorHandle": "Mr_AllenT",
         "publishedDate": "2024-03-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_0df954e070c4321f997dbdecf58f1d93:80a37d62b58ffe7e2a19716a",
+    "idempotencyKey": "case-import-v1:prm_0df954e070c4321f997dbdecf58f1d93:222ced0b1b8fcf29dd3e853e",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -285,12 +314,12 @@
         "id": "2075036723734773872",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_11ccbe11598180db2428a9b1e8179fa7:747e45da8e934190d03c1060",
+    "idempotencyKey": "case-import-v1:prm_11ccbe11598180db2428a9b1e8179fa7:8e0f719582c057cd6b81f4d5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -314,12 +343,12 @@
         "id": "2110029841466806340",
         "creatorHandle": "VulKan42069",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_121a32619af361e6f9e817c45282107f:d33daf70d1699bb1481fedbc",
+    "idempotencyKey": "case-import-v1:prm_121a32619af361e6f9e817c45282107f:689a27a2d9246b435a5da486",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -343,12 +372,12 @@
         "id": "2042534925858164902",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_15dab3a30f0cd3169b98f35679128fb0:75d7b95762275bb5410e4cc3",
+    "idempotencyKey": "case-import-v1:prm_15dab3a30f0cd3169b98f35679128fb0:d276f64c39c8f16374cd9fc0",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -372,12 +401,12 @@
         "id": "1947926017013911624",
         "creatorHandle": "CodeByPoonam",
         "publishedDate": "2025-07-23",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_15f57a43bfe4530bf6e7f734680606a3:4d1b819979ec30ed3ca225ed",
+    "idempotencyKey": "case-import-v1:prm_15f57a43bfe4530bf6e7f734680606a3:ef6ede40d11c0ae62d45d707",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -401,12 +430,70 @@
         "id": "2075036715140661286",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_1cc97106423606aa14d0978bbbfd8c48:636b2a6279ff2ae3cc1e7d6d",
+    "idempotencyKey": "case-import-v1:prm_1bcc9bc2322c1402f5c915dd1bfa4d59:eda55c1a16928b8291bb99f0",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_1bcc9bc2322c1402f5c915dd1bfa4d59",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build a modern, responsive landing page for [PRODUCT NAME].\n\nStyle: dark theme, bold hero with a gradient headline, 3 feature cards, pricing section, testimonials, and footer with social links.\n\nUse Tailwind via CDN and create a single self-contained index.html.\n\nThen:\n1. Save it as index.html\n2. Push it to my GitHub repository:\nhttps://t.co/m3Tb0w02Fd<your-user>/my-landing-page\n3. Deploy it to Vercel using my VERCEL_TOKEN secret\n4. Return the live URL."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-1bcc9bc2322c1402f5c915dd",
+        "title": "单文件产品落地页与部署流程",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/Sonofpeace0001/status/2101912266606276744",
+        "id": "2101912266606276744",
+        "creatorHandle": "Sonofpeace0001",
+        "publishedDate": "2026-09-21",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_1c37e5ce7a5b1af949c8b47ec7c69746:cd84e6493faac540cee65916",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_1c37e5ce7a5b1af949c8b47ec7c69746",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "make me a full website on Ethan Monkhouse on https://t.co/djJCmPFZ3h his handle is @ethanmonkhouse. pull all his pictures and make a highlight website hyping him up."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-1c37e5ce7a5b1af949c8b47e",
+        "title": "人物高光展示网站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/VincentCrypt46/status/2006076367574819302",
+        "id": "2006076367574819302",
+        "creatorHandle": "VincentCrypt46",
+        "publishedDate": "2025-12-30",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_1cc97106423606aa14d0978bbbfd8c48:184774187a5e550c60ab4cbf",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -430,12 +517,12 @@
         "id": "2057102727000228176",
         "creatorHandle": "Oluwaphilemon1",
         "publishedDate": "2026-05-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_1de555e13cde1d7b92077dde4c527b0f:3e23efd90b532bbf85ea983c",
+    "idempotencyKey": "case-import-v1:prm_1de555e13cde1d7b92077dde4c527b0f:3a403e56ee755911738bfeba",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -459,12 +546,12 @@
         "id": "2067222169386463304",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-06-17",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_20506333c5687eff201784f5d424cb9f:3e4013533d60746f155ff25a",
+    "idempotencyKey": "case-import-v1:prm_20506333c5687eff201784f5d424cb9f:22726b0e09baa12c49ccac72",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -488,12 +575,12 @@
         "id": "2062504736235159915",
         "creatorHandle": "shushant_l",
         "publishedDate": "2026-06-04",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_2081d34be8e2cf1ad76832fce702ab8c:18b4c684d7dd8aa553dcc56b",
+    "idempotencyKey": "case-import-v1:prm_2081d34be8e2cf1ad76832fce702ab8c:f6f67750fb52b1a67a8fa241",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -517,12 +604,12 @@
         "id": "2104677452966772958",
         "creatorHandle": "ivanainai",
         "publishedDate": "2026-09-28",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_275aa5c833528e4cfca61ed7e292f22d:c116a4f73c657f115ef321c1",
+    "idempotencyKey": "case-import-v1:prm_275aa5c833528e4cfca61ed7e292f22d:ebc7a2c0ede4f21c66dc2b17",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -546,12 +633,41 @@
         "id": "2075036704394891583",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_2abe9346931b058d515af3d25b7c8897:4fe62e93a3b1c40d03c0af4a",
+    "idempotencyKey": "case-import-v1:prm_28b1999b773c09236c3a8fff5b4a732b:7a264cc3a7101c1db87a548f",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_28b1999b773c09236c3a8fff5b4a732b",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "vibe code Minecraft"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-28b1999b773c09236c3a8fff",
+        "title": "用一句指令生成 Minecraft 浏览器世界",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/onirenaud/status/2014369077670866953",
+        "id": "2014369077670866953",
+        "creatorHandle": "onirenaud",
+        "publishedDate": "2026-01-22",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_2abe9346931b058d515af3d25b7c8897:bd3efff5c218b2ffaaeaab98",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -575,12 +691,41 @@
         "id": "2050923338088767729",
         "creatorHandle": "leopardracer",
         "publishedDate": "2026-05-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_2ecd3e1c207641cded894b4e1800a31e:311a03ba8c94fbfd21c55d25",
+    "idempotencyKey": "case-import-v1:prm_2bdd2be0917b9e009dc9a83a28b5820c:cf759ece5139c39b5e190a87",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_2bdd2be0917b9e009dc9a83a28b5820c",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Okay Claude, make me a three.js fighting game with capsule bots."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-2bdd2be0917b9e009dc9a83a",
+        "title": "胶囊机器人 Three.js 格斗游戏",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/mustache_dev/status/2017985543087272191",
+        "id": "2017985543087272191",
+        "creatorHandle": "mustache_dev",
+        "publishedDate": "2026-02-01",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_2ecd3e1c207641cded894b4e1800a31e:28c0a425a592c25cbae7e135",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -604,12 +749,12 @@
         "id": "2110110885775618198",
         "creatorHandle": "Tegadesigns",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_2eee6d3826592ab105baf9be4322f1e8:08123bec5c21e180f60ab69e",
+    "idempotencyKey": "case-import-v1:prm_2eee6d3826592ab105baf9be4322f1e8:b883f28cbb9d4f255419eb95",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -633,12 +778,41 @@
         "id": "2018363609806696512",
         "creatorHandle": "Av1dlive",
         "publishedDate": "2026-02-02",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_32a3a7279f3727c8d057f95ecbad964c:74e7cd269c5c0dcb7d3a5c04",
+    "idempotencyKey": "case-import-v1:prm_309319a45c03e33438988064645c5b5a:b488825a54628a5191a56af3",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_309319a45c03e33438988064645c5b5a",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build a clean and elegant portfolio site for a freelance UI/UX designer. Showcase 3 recent projects, a skills section, client reviews, and a contact form."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-309319a45c03e33438988064",
+        "title": "自由职业 UI/UX 作品集",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872157782380887",
+        "id": "2109872157782380887",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_32a3a7279f3727c8d057f95ecbad964c:d7bf1f269cd077243d43d233",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -662,12 +836,12 @@
         "id": "2074834569673494743",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_34cf96e522e1300822b242f70452642d:38bdab932419f5f158fbc408",
+    "idempotencyKey": "case-import-v1:prm_34cf96e522e1300822b242f70452642d:7301c2af7b1bdec857d669d3",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -691,12 +865,12 @@
         "id": "2102450842070569099",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-09-22",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_36746ac3df56afb102fb9a7a77d7e12e:5de4aeba99ea535c1f4559e4",
+    "idempotencyKey": "case-import-v1:prm_36746ac3df56afb102fb9a7a77d7e12e:789c9c0126c8bd1af1736610",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -720,12 +894,12 @@
         "id": "2042534912969113912",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_37afc0000f49d0e195e1b736dc7dda87:edc77ab11bc1f8e38a04d5c0",
+    "idempotencyKey": "case-import-v1:prm_37afc0000f49d0e195e1b736dc7dda87:52bdfbdf009b464b29b616a5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -749,12 +923,99 @@
         "id": "2100779120187813954",
         "creatorHandle": "AlexCodeRx",
         "publishedDate": "2026-09-18",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_3cab81ced0cd0b54a5f5fcaf31098f3c:a5304a6c3fc83e8802b7d4b7",
+    "idempotencyKey": "case-import-v1:prm_39ac956f6c604aec2fbcfb221d647620:392f6b143210e1e54f562e4e",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_39ac956f6c604aec2fbcfb221d647620",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as an award-winning product designer. Create a luxury design system for my website that includes typography, spacing, color palette, grids, glassmorphism effects (when appropriate), component library, navigation, buttons, cards, forms, iconography, animation guidelines, responsive behavior, and accessibility standards.\nEnsure that every visual decision reinforces a premium brand identity. Restriction: create a scalable, consistent, and easy-to-maintain system."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-39ac956f6c604aec2fbcfb22",
+        "title": "网站高级设计系统",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518208214827257",
+        "id": "2108518208214827257",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_3a7a352887347c8f08972c2641e6ec3f:175fc4ecffc9fabaf11c10a6",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_3a7a352887347c8f08972c2641e6ec3f",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Make the hero headline bigger, change the gradient to blue and purple, and add an email signup form above the footer."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-3a7a352887347c8f08972c26",
+        "title": "落地页标题与邮件表单调整",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/Sonofpeace0001/status/2101912266606276744",
+        "id": "2101912266606276744",
+        "creatorHandle": "Sonofpeace0001",
+        "publishedDate": "2026-09-21",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_3c3e96d3b0cbdcdb29ea91f55568cc29:8fe8be17e0b893107d2b5f1a",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_3c3e96d3b0cbdcdb29ea91f55568cc29",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build a fully playable 3D Flappy Bird-style game in ONE complete, copy-pasteable HTML file using Three.js/WebGL.\n\nCreate an original, colorful bird and environment. The game should look beautiful in a screenshot and feel responsive when played.\n\nReturn the entire HTML inside ONE fenced html code block. The code must begin with <!DOCTYPE html> and end with </html>. Include all CSS and JavaScript. Do not provide explanations, fragments or additional files.\n\nVISUAL DIRECTION\n\nCreate a bright, richly colored tropical coastal world with a turquoise sea, warm sunlight, soft white clouds, distant islands and subtle atmospheric depth.\n\nKeep the foreground crisp and saturated. Use a carefully composed background with gentle parallax, leaving the bird and obstacles easy to see.\n\nThe hero is a charming golden-yellow 3D bird with an orange beak, expressive eyes, small animated wings and individually shaped tail feathers. Make it feel like a carefully designed game character.\n\nAnimate wingbeats, subtle body movement and a smooth change in body angle when rising or falling.\n\nThe obstacles are glossy emerald-green pipes with substantial rounded rims, visible thickness, convincing shadows and beautiful highlights. They must read clearly as solid objects with a navigable gap.\n\nUse tasteful lighting, smooth geometry, soft shadows and restrained reflections. Preserve strong contrast between the yellow bird, green pipes and blue environment.\n\nThe opening screen must immediately show the finished world, the bird and several pipes. Keep the interface small and clean.\n\nGAMEPLAY\n\nUse a side-view gameplay plane with real 3D geometry and depth. Keep a fixed camera so the openings and collisions remain easy to judge.\n\nClicking, tapping or pressing Space makes the bird flap upward. Gravity pulls it downward between flaps.\n\nPipes move toward the bird at constant speed. Each pair has a gap at a different height. Award exactly one point when the bird successfully passes a pair.\n\nColliding with a pipe, the ground or the upper gameplay boundary ends the run. Show a short, clear impact response and a Game Over panel with the final score and a working Restart button.\n\nRestart must reset the bird, pipes, score, obstacle sequence and simulation state without reloading the page.\n\nUse these identical gameplay parameters:\n\nBird position: x = -4.5.\nBird collision radius: 0.35 world units.\nVertical gameplay boundaries: y = -5.4 and +5.4.\nGravity: 18 world units per second squared, downward.\nEach flap sets upward velocity to 6.8 world units per second.\nPipe movement speed: 3 world units per second.\nPipe width: 1.2 world units.\nVertical gap size: 3.4 world units.\nHorizontal distance between pipe pairs: 5.5 world units.\nGap centers vary between y = -2 and +2.\n\nUse a fixed simulation timestep and collision checks corresponding to the visible bird body and pipe geometry.\n\nGenerate obstacle heights deterministically with a dedicated seeded random generator, starting at seed 42. Restart must reproduce the same obstacle sequence. Decorative randomness must not affect this sequence.\n\nAUTOMATIC DEMO\n\nProvide three small controls: Play, Auto Demo and Restart.\n\nAuto Demo must play the actual game automatically. Its controller may only issue the same flap action available to a human player.\n\nIt must use the same gravity, obstacles, collision detection and scoring as manual play. It must not reposition the bird directly, disable collisions or make it invincible.\n\nAim for a smooth, watchable demonstration lasting at least 20 seconds. If the controller crashes, show the real Game Over state.\n\nPressing D resets the game and starts Auto Demo from the beginning.\n\nProvide a Hide UI toggle that removes menus and buttons while preserving the score. This is for clean screen recordings.\n\nTECHNICAL REQUIREMENTS\n\nDeliver one HTML file that opens directly in a desktop browser without installation or a build step. A pinned CDN import for Three.js is allowed.\n\nGenerate all visible assets in code. Do not use imported models, image files, original Flappy Bird sprites or external fonts.\n\nCompose primarily for a square 1080 × 1080 viewport, while supporting responsive resizing. Keep the bird and approaching obstacles visible throughout play.\n\nAim for crisp rendering and smooth 60 fps motion. Pause the simulation when the browser tab is hidden so returning does not cause a sudden jump.\n\nIf browser tools are available, inspect the rendered result and test manual flapping, scoring, pipe collisions, boundary collisions, Restart and Auto Demo.\n\nPrioritize beautiful visuals, responsive controls, correct collisions and a genuinely playable game.\n\nReturn only the complete HTML in one fenced html code block."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-3c3e96d3b0cbdcdb29ea91f5",
+        "title": "完整单文件 3D 小鸟闯关游戏",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/ivanainai/status/2110073220946592038",
+        "id": "2110073220946592038",
+        "creatorHandle": "ivanainai",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_3cab81ced0cd0b54a5f5fcaf31098f3c:97680ec6d7e7898ed7eedb0e",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -778,12 +1039,12 @@
         "id": "1770409660115308555",
         "creatorHandle": "Mr_AllenT",
         "publishedDate": "2024-03-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_3cb1d4b5f38636cef5f6c9b6edcc7831:f65370254ec6320ea90289a6",
+    "idempotencyKey": "case-import-v1:prm_3cb1d4b5f38636cef5f6c9b6edcc7831:c8b0989eccc4f026ae28222e",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -807,12 +1068,12 @@
         "id": "2081828991585886667",
         "creatorHandle": "Saadeghi",
         "publishedDate": "2026-07-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_3d47db3e9bf09731cf8480710d299ee0:627401927510e900149bb1a6",
+    "idempotencyKey": "case-import-v1:prm_3d47db3e9bf09731cf8480710d299ee0:635d0df440aeb4a8ecea1233",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -836,12 +1097,12 @@
         "id": "2097751540329062864",
         "creatorHandle": "beastymcbeast",
         "publishedDate": "2026-09-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_3f808154f2bc5f53428592a65c84d42b:a69bea5f54f62fe3a1943309",
+    "idempotencyKey": "case-import-v1:prm_3f808154f2bc5f53428592a65c84d42b:ed96f88907029697caf75632",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -865,12 +1126,12 @@
         "id": "2107830326588256420",
         "creatorHandle": "SirAlexanderrr",
         "publishedDate": "2026-10-07",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_4072e3878508314c8b503c2420b3d58e:c9b489be6521dbb1f4f661bd",
+    "idempotencyKey": "case-import-v1:prm_4072e3878508314c8b503c2420b3d58e:9f6dcf2083ebedfee4c9af88",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -894,12 +1155,70 @@
         "id": "2042534939309281772",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_45027e5681fa99fd31e782bb3b3f0822:7172f71cc409c9ea5cd2c30a",
+    "idempotencyKey": "case-import-v1:prm_41fefb3165d469a64fa5758b5d9bbaef:265c0207c5e24c315c365296",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_41fefb3165d469a64fa5758b5d9bbaef",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Use Supabase to store user profiles, skill assessments, and saved career plans securely."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-41fefb3165d469a64fa5758b",
+        "title": "职业规划应用的资料与评估存储",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/CodeByPoonam/status/1947925887984537767",
+        "id": "1947925887984537767",
+        "creatorHandle": "CodeByPoonam",
+        "publishedDate": "2025-07-23",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_420006d8824c293e6f4b930c5b4b19d3:96545c4b22ff862a6ed46540",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_420006d8824c293e6f4b930c5b4b19d3",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build Version 1 of this website.  Follow my approved website plan and design system.  Preserve my approved wording.  Make the site responsive for desktop and mobile.  Make the primary CTA obvious.  Do not invent business information.  Do not add paid services, databases or dependencies unless they're actually necessary.  Show me a working preview before publishing anything."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-420006d8824c293e6f4b930c",
+        "title": "按批准方案搭建网站第一版",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_45027e5681fa99fd31e782bb3b3f0822:e3231be249f6771000275de5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -923,12 +1242,41 @@
         "id": "2071118501318910460",
         "creatorHandle": "harshexists",
         "publishedDate": "2026-06-28",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_4a7e127b0b103a8cc39fcf891f5c064e:fc5cf943b0a01afeb9a2afb8",
+    "idempotencyKey": "case-import-v1:prm_47378dc921485062c80c3d9b72ada0b0:8a45cb6608578122fbf8c770",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_47378dc921485062c80c3d9b72ada0b0",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Design a resource hub page listing top 10 recommended AI tools for content creators, sorted by categories with brief reviews and direct access links."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-47378dc921485062c80c3d9b",
+        "title": "创作者 AI 工具资源导航",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872173280293223",
+        "id": "2109872173280293223",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_4a7e127b0b103a8cc39fcf891f5c064e:cb313127523e34d4f3bdb59c",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -952,12 +1300,12 @@
         "id": "2042534877413908615",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_4b9109cc97ce6f2ed78915cb6cdbf534:f0dc87e789df59931e7eaa1d",
+    "idempotencyKey": "case-import-v1:prm_4b9109cc97ce6f2ed78915cb6cdbf534:5f785dc0f3ed6144c835dfea",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -981,12 +1329,12 @@
         "id": "2074834719691173993",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_4c90aa575ffdface16ab3b96af2df068:4bf81822afea3442e64cca60",
+    "idempotencyKey": "case-import-v1:prm_4c90aa575ffdface16ab3b96af2df068:d7521e21dea38c0e379c1f0a",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1010,12 +1358,12 @@
         "id": "1788604812491215116",
         "creatorHandle": "AbhinavGirdhar",
         "publishedDate": "2024-05-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_4d8db11e02a2996d7305facf52dc129b:2b70ee0ff6a49c4f428eb8fa",
+    "idempotencyKey": "case-import-v1:prm_4d8db11e02a2996d7305facf52dc129b:390823fb5491501f80eacc35",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1039,12 +1387,12 @@
         "id": "2110056193091838239",
         "creatorHandle": "RHerman",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_5024317a3af5db607a91844c92cc0c52:8a30a88247015f026ab8af88",
+    "idempotencyKey": "case-import-v1:prm_5024317a3af5db607a91844c92cc0c52:341f25f9b4be52979cac3976",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1068,12 +1416,12 @@
         "id": "2068962823007285628",
         "creatorHandle": "markksantos",
         "publishedDate": "2026-06-22",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_51752a0bc06d2f0e748721d41623a840:4813642bc5f8bb7f87780cb3",
+    "idempotencyKey": "case-import-v1:prm_51752a0bc06d2f0e748721d41623a840:5bc71950a6cc13d1b31ad8a4",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1097,12 +1445,12 @@
         "id": "2110071798629036542",
         "creatorHandle": "analogalok",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_51ae17cd38bad362c2e855f2ee6cb4db:b0e1b473c8f7d041e8bd1e6c",
+    "idempotencyKey": "case-import-v1:prm_51ae17cd38bad362c2e855f2ee6cb4db:ef01cb79c45c199385652253",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1126,12 +1474,12 @@
         "id": "2102217028052377910",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-09-22",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_5209044d15d18c388afaa9412ed9fa8a:b8c50df76334bfe06b9b8729",
+    "idempotencyKey": "case-import-v1:prm_5209044d15d18c388afaa9412ed9fa8a:3ead721c6cb0507a8c106852",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1155,12 +1503,12 @@
         "id": "2006361866558476700",
         "creatorHandle": "byteHumi",
         "publishedDate": "2025-12-31",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_545322199e8d72a269b77ce50651f1aa:9dcec92521849152e3358428",
+    "idempotencyKey": "case-import-v1:prm_545322199e8d72a269b77ce50651f1aa:fc1d0a78f99fa7f6df676c47",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1184,12 +1532,12 @@
         "id": "2108165288470495342",
         "creatorHandle": "exploraX_",
         "publishedDate": "2026-10-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_55a16ede07cff7a35f1a69ed61ca5ce5:51c99caabad768a1e4958edf",
+    "idempotencyKey": "case-import-v1:prm_55a16ede07cff7a35f1a69ed61ca5ce5:993d308b885e54756275be8c",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1213,12 +1561,12 @@
         "id": "1770409664972239357",
         "creatorHandle": "Mr_AllenT",
         "publishedDate": "2024-03-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_5641c4e6c19159a0d24b5b5f280362ef:b315726a9565998f9ef167d5",
+    "idempotencyKey": "case-import-v1:prm_5641c4e6c19159a0d24b5b5f280362ef:20e2ff9f8833e59ef4f0515b",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1242,12 +1590,41 @@
         "id": "2042534975078310137",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_5d0a69786969d9d19c6d44d2812c27be:6580b3de75be40fbc9bdb4e6",
+    "idempotencyKey": "case-import-v1:prm_5b4d57fca79076019ec8a937c3ca2b47:7605ae5081f9f1839019dd60",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_5b4d57fca79076019ec8a937c3ca2b47",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as a senior web engineer specialized in 3D experiences and motion design. Design a complete system of interactions that includes hero animations, cursor effects, object interactions, hover states, loading screens, scene transitions, camera movements, microinteractions, and scroll-triggered events. Explain when each animation should be triggered and how it enhances the user experience.\nRestriction: interactions must be fluid and offer high performance."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-5b4d57fca79076019ec8a937",
+        "title": "网站 3D 交互系统",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518230855708977",
+        "id": "2108518230855708977",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_5d0a69786969d9d19c6d44d2812c27be:ba2b48203f2c22fe23d1c93f",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1271,12 +1648,12 @@
         "id": "2109872162504851886",
         "creatorHandle": "SheBuildsAI_",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_5da948e9ba18582f5d9573357aff5c95:6cfc6b93669c81ef1cae2066",
+    "idempotencyKey": "case-import-v1:prm_5da948e9ba18582f5d9573357aff5c95:1d61fb53a80e029efea31e2d",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1300,12 +1677,12 @@
         "id": "2110286011531948176",
         "creatorHandle": "exploraX_",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_644602041483aa2ed9fd86c71a5edf94:9965c3d4df5dce0a5af7a857",
+    "idempotencyKey": "case-import-v1:prm_644602041483aa2ed9fd86c71a5edf94:50a55c99b4a23231915eac55",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1329,12 +1706,12 @@
         "id": "2062195913746202848",
         "creatorHandle": "chhddavid",
         "publishedDate": "2026-06-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_645e52361a2365c32cb2a47923cf5746:3358c47109b44180f0d87ed5",
+    "idempotencyKey": "case-import-v1:prm_645e52361a2365c32cb2a47923cf5746:239b547cd1565fbdc92a8218",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1358,12 +1735,12 @@
         "id": "2078848101352157261",
         "creatorHandle": "betraidx",
         "publishedDate": "2026-07-19",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_64a354878b0bde0c886001423572f288:fe6f48af2327af1c10832989",
+    "idempotencyKey": "case-import-v1:prm_64a354878b0bde0c886001423572f288:54429bfa0fdca520e37f1316",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1387,12 +1764,12 @@
         "id": "2074834716377637273",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_64d274ed4b0d064f34b4329912dceb52:5b2e13aa39fa5a103f84fc51",
+    "idempotencyKey": "case-import-v1:prm_64d274ed4b0d064f34b4329912dceb52:88d59141c534dd386fbf054b",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1416,12 +1793,12 @@
         "id": "2110078889859203253",
         "creatorHandle": "analogalok",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_684e741f04bab8b486e4f927ac2b455b:6f9d7c02fdb68cbc49980aa3",
+    "idempotencyKey": "case-import-v1:prm_684e741f04bab8b486e4f927ac2b455b:abbc323df3796693a4863ae3",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1445,12 +1822,12 @@
         "id": "2074834647947546734",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_697ad609e6baf8966a50910bf3b1bbd6:18c8ad481fbc3c74919b69c9",
+    "idempotencyKey": "case-import-v1:prm_697ad609e6baf8966a50910bf3b1bbd6:a4ff28db6dd1ff89c6a13897",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1474,12 +1851,12 @@
         "id": "2076363513803784208",
         "creatorHandle": "johannesasgeir",
         "publishedDate": "2026-07-12",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_699ef79f31606b83359bc88e2ec65351:63ac7583a4ce1e663161bc0f",
+    "idempotencyKey": "case-import-v1:prm_699ef79f31606b83359bc88e2ec65351:069c37144fcd1b83c9ad92eb",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1503,12 +1880,12 @@
         "id": "2074834639869370863",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_6a7d4e3a59c03c1f3b44ad198550e6b6:40fcd090afe52a483713d501",
+    "idempotencyKey": "case-import-v1:prm_6a7d4e3a59c03c1f3b44ad198550e6b6:6801be85e534ee8e37933e8d",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1532,12 +1909,12 @@
         "id": "2074834712615326093",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_6cccef7bbc070dcade3fda075437825e:d3cc934070d305b646af467f",
+    "idempotencyKey": "case-import-v1:prm_6cccef7bbc070dcade3fda075437825e:a55253a832f13b38bb0830ad",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1561,12 +1938,12 @@
         "id": "1991511890481000621",
         "creatorHandle": "_MehdiSharifi_",
         "publishedDate": "2025-11-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_6ce3395d08af3d8904f42519926a081f:d2a15993c648c28afb002b62",
+    "idempotencyKey": "case-import-v1:prm_6ce3395d08af3d8904f42519926a081f:3faa470878c9e5c90e1fd010",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1590,12 +1967,12 @@
         "id": "2033914250976993457",
         "creatorHandle": "nirzo",
         "publishedDate": "2026-03-17",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_6ddd025bf061e594dff3183966d720f5:8dd0e7ccf2a2e87a34b03437",
+    "idempotencyKey": "case-import-v1:prm_6ddd025bf061e594dff3183966d720f5:d4a5bfd8195dcff664e215c7",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1619,12 +1996,99 @@
         "id": "2070099690754867231",
         "creatorHandle": "thearslaniqbal",
         "publishedDate": "2026-06-25",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_6fd510cbde884638b7d6dbdb8e0653be:2fb2f92d80cd4b6656d6efc4",
+    "idempotencyKey": "case-import-v1:prm_6f59ad8780b19fd241bdc830ee4a7934:2a321daa5c6e651fece5480e",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_6f59ad8780b19fd241bdc830ee4a7934",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "I'm building a website for [BUSINESS].\nThe business sells: [PRODUCT/SERVICE]\nIdeal customer: [CUSTOMER]\nLocation/service area: [LOCATION]\nPrimary goal: [CALL / BOOK / BUY / EMAIL / VISIT]\nMain offer: [OFFER]\nPages needed: [HOME / ABOUT / SERVICES / CONTACT / ETC.]\n\nBefore building anything, act as my website strategist. Recommend the simplest site structure necessary to convert visitors into customers. Tell me what information you're missing and ask me questions one at a time.\n\nDo not invent testimonials, statistics, prices, certifications or facts about my business."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-6f59ad8780b19fd241bdc830",
+        "title": "建站需求与信息采集",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_6f97555db109605911a7e435aec2fa50:805922e9fe19b492c90e4073",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_6f97555db109605911a7e435aec2fa50",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as a world-class creative director, an award-winning UI/UX designer, a Three.js/WebGL expert, and a conversion strategist. Design and develop a cinematic 3D website for [brand/product] that conveys a premium digital experience.\nCreate the information architecture, visual identity, animation system, 3D interactions, transitions, responsive layouts, accessibility strategy, and implementation roadmap. Clearly explain the purpose of each animation and interaction."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-6f97555db109605911a7e435",
+        "title": "完整电影感 3D 网站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518214376296699",
+        "id": "2108518214376296699",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_6fd3571093c85acfdbc8402f81a51140:c772543fa56a553dd4f10c16",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_6fd3571093c85acfdbc8402f81a51140",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as an expert AI software engineer. Break down the website development into tasks suitable for working with AI assistance. For each section, provide implementation prompts, a reusable component structure, testing procedures, responsive requirements, accessibility checks, and performance optimization recommendations.\nRestriction: use a production-ready workflow optimized for efficient development without sacrificing code quality."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-6fd3571093c85acfdbc8402f",
+        "title": "AI 辅助建站开发冲刺",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518225449308279",
+        "id": "2108518225449308279",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_6fd510cbde884638b7d6dbdb8e0653be:041d8071ab59ce31972c5268",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1648,12 +2112,12 @@
         "id": "1992942508402225644",
         "creatorHandle": "_MehdiSharifi_",
         "publishedDate": "2025-11-24",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_70dcd4d5b3855433d529c4eec01dccf2:02e8f90b4af6430d4aae024e",
+    "idempotencyKey": "case-import-v1:prm_70dcd4d5b3855433d529c4eec01dccf2:c63fad4b7494309927d2ffd3",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1677,12 +2141,12 @@
         "id": "2087044686795948095",
         "creatorHandle": "zmrishh",
         "publishedDate": "2026-08-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_76a1c8e4e82d04ea3df9ba288df24ff2:0cae7ee3ec8461b2ff730347",
+    "idempotencyKey": "case-import-v1:prm_76a1c8e4e82d04ea3df9ba288df24ff2:01cb4f65267f2b895c3a0cd9",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1706,12 +2170,12 @@
         "id": "2024572655752339583",
         "creatorHandle": "LexnLin",
         "publishedDate": "2026-02-19",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7737670fb1d254cb52d79545aa20523c:73c84a44edbf60a30e33a94a",
+    "idempotencyKey": "case-import-v1:prm_7737670fb1d254cb52d79545aa20523c:95d9b0c151f2f502fc66e9aa",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1735,12 +2199,41 @@
         "id": "2109282784435122630",
         "creatorHandle": "k2sbhai",
         "publishedDate": "2026-10-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7923c258122d6f9559e31cf6c7c57098:e0d18d00ceac141732272342",
+    "idempotencyKey": "case-import-v1:prm_78349af8423264beb8d90a27135e17ff:c645481126716aeaed617d0f",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_78349af8423264beb8d90a27135e17ff",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Create a modern, responsive landing page for a SaaS tool that helps creators repurpose long-form videos. Include a hero section, feature list, testimonial section, and a CTA button."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-78349af8423264beb8d90a27",
+        "title": "视频再创作 SaaS 落地页",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872154762510529",
+        "id": "2109872154762510529",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_7923c258122d6f9559e31cf6c7c57098:60780c57e77b8711069941db",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1764,12 +2257,12 @@
         "id": "2110100339135287653",
         "creatorHandle": "GodsBoy7777",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7aad41942322d80eed9cdda797740768:79c35d5e531a8830692d2494",
+    "idempotencyKey": "case-import-v1:prm_7aad41942322d80eed9cdda797740768:c163330e5569bed82e837577",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1793,12 +2286,12 @@
         "id": "2074834575616868478",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7cb9477ad4a86166ad265bd2aaffa3b7:feda0bcd0deec263d2a39829",
+    "idempotencyKey": "case-import-v1:prm_7cb9477ad4a86166ad265bd2aaffa3b7:aaa9718762a75b12fd690d13",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1822,12 +2315,12 @@
         "id": "2067978971741147543",
         "creatorHandle": "Emmma___0",
         "publishedDate": "2026-06-19",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7d46d699adedf29269d0660aa4086291:ef1660cae75ae6773717ca2c",
+    "idempotencyKey": "case-import-v1:prm_7d46d699adedf29269d0660aa4086291:e4478c341270dcb54d3338b9",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1851,12 +2344,12 @@
         "id": "2074669101264294069",
         "creatorHandle": "emollick",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7dd3d40264159ae96b96e5610d2f6f6b:3d9c2d4aded1d5ba0f97570e",
+    "idempotencyKey": "case-import-v1:prm_7dd3d40264159ae96b96e5610d2f6f6b:00391b143dfc77f3dfa8923a",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1880,12 +2373,12 @@
         "id": "2104240995613266119",
         "creatorHandle": "aichrislee",
         "publishedDate": "2026-09-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7ed5959f3d77ffd47516647eb5eee7dd:a1a04e619e0c0c310efc0fa6",
+    "idempotencyKey": "case-import-v1:prm_7ed5959f3d77ffd47516647eb5eee7dd:9276e1d0a1e06bf39119a984",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1909,12 +2402,12 @@
         "id": "2110248501850620116",
         "creatorHandle": "VulKan42069",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_7f5c9e159ec342a17bc6b159e503c175:a83fadcf0517a257faf2a099",
+    "idempotencyKey": "case-import-v1:prm_7f5c9e159ec342a17bc6b159e503c175:41e7922fdf7062d0436b3767",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1938,12 +2431,12 @@
         "id": "1770409662405394767",
         "creatorHandle": "Mr_AllenT",
         "publishedDate": "2024-03-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_818a2277e9ffe8f1c1314a5f49b0acfa:1e4f34dfa6b0c7393e17509a",
+    "idempotencyKey": "case-import-v1:prm_818a2277e9ffe8f1c1314a5f49b0acfa:a9eaf4c5503de5203c946d19",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1967,12 +2460,12 @@
         "id": "2075036719234347135",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_82fe263fe279fdb9527dbbaa9f3359db:28936946e5aa44e3bfd8dd13",
+    "idempotencyKey": "case-import-v1:prm_82fe263fe279fdb9527dbbaa9f3359db:48e88805a7d85af74fe2b0d0",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -1996,12 +2489,12 @@
         "id": "2079219548851503425",
         "creatorHandle": "BuildwithWillo",
         "publishedDate": "2026-07-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_83a59cda3b724914615c7d27606941cd:83d34c7127ec4a1329accaba",
+    "idempotencyKey": "case-import-v1:prm_83a59cda3b724914615c7d27606941cd:cb9da92605b2e11f6a0bbb46",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2025,12 +2518,12 @@
         "id": "2106447216856440910",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-10-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_83b791252ca42f1c659a28ceda0e7b91:15cd499947a6570c455e245b",
+    "idempotencyKey": "case-import-v1:prm_83b791252ca42f1c659a28ceda0e7b91:e41779a38527e1f342197a42",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2054,12 +2547,41 @@
         "id": "2055889315801018438",
         "creatorHandle": "Oluwaphilemon1",
         "publishedDate": "2026-05-17",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_85c36f1ed0220573729dfed844880fab:be47f0e6cb05a701412b23f1",
+    "idempotencyKey": "case-import-v1:prm_85b933c8b2551e23f174de11ea5de00a:f98e76c875570203a927d61d",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_85b933c8b2551e23f174de11ea5de00a",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "create an animated website from a single image."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-85b933c8b2551e23f174de11",
+        "title": "从单张图片生成动画网站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/exploraX_/status/2107435761490444396",
+        "id": "2107435761490444396",
+        "creatorHandle": "exploraX_",
+        "publishedDate": "2026-10-06",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_85c36f1ed0220573729dfed844880fab:282ffd874fec8ea91d3d8bd5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2083,12 +2605,70 @@
         "id": "2110069699597971828",
         "creatorHandle": "ivanainai",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_8a634f837124b6374b51dbfacfb8d2c2:2368247a8238125615c744b0",
+    "idempotencyKey": "case-import-v1:prm_8772444ad0615639e063978c1416ecca:2f316008388833166bb60f29",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_8772444ad0615639e063978c1416ecca",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Using my approved information, create the complete plan for my website.  Give me: sitemap and navigation\npurpose of every page\nhomepage section order\nprimary call to action\ncopy for each section\nsuggested images/visuals\nmobile considerations\nbasic SEO title and description for every page\n\nWrite clearly for a real customer. Avoid generic AI buzzwords and exaggerated claims.  Show me the plan before building anything"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-8772444ad0615639e063978c",
+        "title": "先制定网站内容与结构方案",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_893985a3f6ec37bd268151343b5ed1e5:4167a81cc536ad32d5d36a83",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_893985a3f6ec37bd268151343b5ed1e5",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Now create a 3d model with three.js and webgl2 and landing page to show above in single html"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-893985a3f6ec37bd26815134",
+        "title": "在原聊天中追加 3D 展示落地页",
+        "summary": "依赖前文上下文的追加指令；作者报告生成页含虚构规格，本条仅保存原始指令，不背书生成内容。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/GodsBoy7777/status/2110107941043044611",
+        "id": "2110107941043044611",
+        "creatorHandle": "GodsBoy7777",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_8a634f837124b6374b51dbfacfb8d2c2:073a70496831a9401588d7b6",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2112,12 +2692,41 @@
         "id": "2066165296239686122",
         "creatorHandle": "MengTo",
         "publishedDate": "2026-06-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_8db3e84c14dd90e9c81c0300d8bc341f:868283a727d7e62734afdc91",
+    "idempotencyKey": "case-import-v1:prm_8b9e655cc6cafb28284e8afdc7aadfb5:6ea9ad216836ff1ad0831d5c",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_8b9e655cc6cafb28284e8afdc7aadfb5",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Explain how I can export or save this website's source code.  I am a beginner.   Walk me through saving it to GitHub and publishing it using an appropriate hosting service such as Netlify, Vercel or Cloudflare.  \nExplain one step at a time.   \nDo not change my DNS, deploy to production or delete anything without asking for my approval first."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-8b9e655cc6cafb28284e8afd",
+        "title": "网站源码导出与托管指导",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_8db3e84c14dd90e9c81c0300d8bc341f:3098e44f2581848a80c9a2b0",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2141,12 +2750,12 @@
         "id": "1993450028053282966",
         "creatorHandle": "nickco",
         "publishedDate": "2025-11-25",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_8e7a627c692a9c77b2250c7ae97e66c8:aae67309cb9bf1e3fbac883b",
+    "idempotencyKey": "case-import-v1:prm_8e7a627c692a9c77b2250c7ae97e66c8:784beedd7b3e4bf4f1d1d38e",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2170,12 +2779,12 @@
         "id": "2079590401187701093",
         "creatorHandle": "devloper_hs",
         "publishedDate": "2026-07-21",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_905d0c8ba447fa1b581e367bf76dfd3c:303c75e59bbb6488427a805e",
+    "idempotencyKey": "case-import-v1:prm_905d0c8ba447fa1b581e367bf76dfd3c:1cbd846e79f6df617d47b3d3",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2199,12 +2808,12 @@
         "id": "2099118928119112122",
         "creatorHandle": "molzmann1",
         "publishedDate": "2026-09-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_92a0bc485b0e9c712760ce0deeda2592:5ef214eff6a272f5dba49cd1",
+    "idempotencyKey": "case-import-v1:prm_92a0bc485b0e9c712760ce0deeda2592:9e45d0809a5c3ad7d0be05d5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2228,12 +2837,12 @@
         "id": "1991520441559662635",
         "creatorHandle": "_MehdiSharifi_",
         "publishedDate": "2025-11-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9463e1340ffcecd0894e161c42b1c035:aa0fedc0843f84f58dd0e091",
+    "idempotencyKey": "case-import-v1:prm_9463e1340ffcecd0894e161c42b1c035:a7fc5e67a6e54aa7d3a514f2",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2257,12 +2866,41 @@
         "id": "2103603872757354825",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-09-25",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_96daedbd789aed4d6cf3674e3c197217:044d591047f4e01330a4a5e3",
+    "idempotencyKey": "case-import-v1:prm_9488de34c3c8f101763e343bbe175434:3cb5e71aa92ff5651d12ff04",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_9488de34c3c8f101763e343bbe175434",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "make a award winning 3d landing page without any external sources go as detailed as you can and as creative as you can"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-9488de34c3c8f101763e343b",
+        "title": "无外部素材的 3D 落地页",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/chetaslua/status/2006400729830088944",
+        "id": "2006400729830088944",
+        "creatorHandle": "chetaslua",
+        "publishedDate": "2025-12-31",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_96daedbd789aed4d6cf3674e3c197217:62c2c1b04c09a05400de6d09",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2286,12 +2924,12 @@
         "id": "2110061365088190665",
         "creatorHandle": "notjazii",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9781ffc05fb675ee9a1417fc99e7a02d:ef4e464e1385a3e013d4b0c6",
+    "idempotencyKey": "case-import-v1:prm_9781ffc05fb675ee9a1417fc99e7a02d:8a9059f4ad1b403bc76464a4",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2315,12 +2953,41 @@
         "id": "2006038026829361275",
         "creatorHandle": "VincentCrypt46",
         "publishedDate": "2025-12-30",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_97f958b6be0d431e6d33143849f74460:43172877676e86170b41dc55",
+    "idempotencyKey": "case-import-v1:prm_97cef9a1532c1e2a095be0a0eca295cc:c31b3183e68142dd972b80d7",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_97cef9a1532c1e2a095be0a0eca295cc",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build a marketing mini-site for launching an e-book titled 'The AI Productivity Playbook'. Include chapter previews, author bio, and a checkout button mockup."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-97cef9a1532c1e2a095be0a0",
+        "title": "AI 效率电子书营销微站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872170197500185",
+        "id": "2109872170197500185",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_97f958b6be0d431e6d33143849f74460:2ff8b231c9a4a6af4d05fb48",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2344,12 +3011,12 @@
         "id": "2108910714169778277",
         "creatorHandle": "livebyai",
         "publishedDate": "2026-10-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9b6296375251551e0d15d84b8443b470:0af325b0ea0ecedd9a4c7db3",
+    "idempotencyKey": "case-import-v1:prm_9b6296375251551e0d15d84b8443b470:46bca9ef59c6a0c5ea159a05",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2373,12 +3040,12 @@
         "id": "1996274239624912939",
         "creatorHandle": "shedntcare_",
         "publishedDate": "2025-12-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9bab5d5c9756b2b67c8fd457855e3bdc:a914a87db81a51c64bbe14a9",
+    "idempotencyKey": "case-import-v1:prm_9bab5d5c9756b2b67c8fd457855e3bdc:a0de5f0f04d6422acefd5ddb",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2402,12 +3069,12 @@
         "id": "2042534901191426366",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9d2c624799320b8fd829036fbad4797b:aeab36f9a3c754bffc1c3081",
+    "idempotencyKey": "case-import-v1:prm_9d2c624799320b8fd829036fbad4797b:5020b68401357c2e470fd549",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2431,12 +3098,12 @@
         "id": "2110016633850691697",
         "creatorHandle": "ziwenxu_",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_9e6bfbb979ac354fcbf219344db06f1f:ed7d0f6f1c20f5e69bc1679a",
+    "idempotencyKey": "case-import-v1:prm_9e6bfbb979ac354fcbf219344db06f1f:8e187d6182de74e3234ecd22",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2460,12 +3127,41 @@
         "id": "1882299724708880573",
         "creatorHandle": "thepranav",
         "publishedDate": "2025-01-23",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a001050de0cd6426d70fe2ef91db7b8c:f09d2e3b16e9a9b80d6839aa",
+    "idempotencyKey": "case-import-v1:prm_9e7aae7b02298ef959258eedb3de8b00:ca5a1e692b49f4424dbc2c9f",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_9e7aae7b02298ef959258eedb3de8b00",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Study these examples and identify what I appear to prefer in: \ntypography\ncolors\nspacing\nnavigation\nbuttons\nphotography\npage layout\ncorners, borders and shadows\n\nDon't copy these websites. Create a simple original design system inspired by the characteristics I like. Show me the proposed design system before building the website."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-9e7aae7b02298ef959258eed",
+        "title": "从参考站提炼原创设计系统",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_a001050de0cd6426d70fe2ef91db7b8c:51d61851f8b4b3b35c82de29",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2489,12 +3185,12 @@
         "id": "2110222918655352993",
         "creatorHandle": "hqmank",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a15686f4243cf4d1b762a83f1cb2e6a0:a817efe8908fa48d0609419d",
+    "idempotencyKey": "case-import-v1:prm_a15686f4243cf4d1b762a83f1cb2e6a0:0d71eb58851a9d3cce159563",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2518,12 +3214,12 @@
         "id": "2109735860723937719",
         "creatorHandle": "JulianGoldieSEO",
         "publishedDate": "2026-10-12",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a4155d4bff341d4a9a66981615a303c0:d0302338235d1a777b7fb798",
+    "idempotencyKey": "case-import-v1:prm_a4155d4bff341d4a9a66981615a303c0:f0af91109fc4ce154107b692",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2547,12 +3243,12 @@
         "id": "2083237055316852899",
         "creatorHandle": "ericsmith1302",
         "publishedDate": "2026-07-31",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a46578ae5e78967cf1e9797e3edc8f02:2288b808d7c79541c174b579",
+    "idempotencyKey": "case-import-v1:prm_a46578ae5e78967cf1e9797e3edc8f02:a793d53ee247a36dec42a8ec",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2576,12 +3272,12 @@
         "id": "2109400030800974168",
         "creatorHandle": "yurshevv",
         "publishedDate": "2026-10-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a4a2c8f2e033ea55325e9e031ff0776d:c86670613dc5cd3f664f638e",
+    "idempotencyKey": "case-import-v1:prm_a4a2c8f2e033ea55325e9e031ff0776d:8c111436be58b5eebfd195be",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2605,12 +3301,12 @@
         "id": "2064679099571089727",
         "creatorHandle": "shushant_l",
         "publishedDate": "2026-06-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a5009924b669123dba548c9daf06e7f0:301e5c80aec067dfea2b42da",
+    "idempotencyKey": "case-import-v1:prm_a5009924b669123dba548c9daf06e7f0:b8d5ff7e60fe855accb58f3b",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2634,12 +3330,12 @@
         "id": "1755822155387011159",
         "creatorHandle": "KanikaBK",
         "publishedDate": "2024-02-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a5583a091ade1efb9df4aad1073bc787:4b049c57eb9c243c68867542",
+    "idempotencyKey": "case-import-v1:prm_a5583a091ade1efb9df4aad1073bc787:a842e0e18a47004cd2bed998",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2663,12 +3359,12 @@
         "id": "2101430146238484731",
         "creatorHandle": "LexnLin",
         "publishedDate": "2026-09-19",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a66ab9add52f562c9370d0cfeb3ac350:d8cc35a104e6e3bc20ef4b27",
+    "idempotencyKey": "case-import-v1:prm_a66ab9add52f562c9370d0cfeb3ac350:ca30c9992986613ae9ee9348",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2692,12 +3388,12 @@
         "id": "2074834635222040955",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_a96fc465582ef65cc59ff744fb2179da:357d352c54b25ef38da592e3",
+    "idempotencyKey": "case-import-v1:prm_a96fc465582ef65cc59ff744fb2179da:8682a013666edcc3f2085ecf",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2721,12 +3417,12 @@
         "id": "2109250016200278329",
         "creatorHandle": "JulianGoldieSEO",
         "publishedDate": "2026-10-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_acb549421b022147fbb89474686ed2a6:4f5c85ecfe411ab1235454c4",
+    "idempotencyKey": "case-import-v1:prm_acb549421b022147fbb89474686ed2a6:e01896f9a26deddcdaf0d356",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2750,12 +3446,12 @@
         "id": "2110072841081397753",
         "creatorHandle": "AI_Screening",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_ae7d83c56abbb358da6b03df711b007a:9766ecd4ae8496fbc6177392",
+    "idempotencyKey": "case-import-v1:prm_ae7d83c56abbb358da6b03df711b007a:1a0c5f4fad6b145eadbd71ec",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2779,12 +3475,41 @@
         "id": "2075036708467548338",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_b38286103cc01374b0a9dcc340139e2e:6491f613e605b8be8ccb3d9e",
+    "idempotencyKey": "case-import-v1:prm_b0edad08ed69cd2cd9cbeb9e778b1a61:a9306211a5dc125af295c89f",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_b0edad08ed69cd2cd9cbeb9e778b1a61",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as a top-tier digital experience designer. Transform my website into an immersive cinematic journey using 3D environments, scroll-based storytelling, interactive scenes, camera movements, lighting effects, parallax, particle systems, and high-quality transitions.\nExplain how each scene guides the user to the next section while maintaining clarity and ease of use. Restriction: use only purposeful storytelling, optimized to boost engagement without overwhelming the user."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-b0edad08ed69cd2cd9cbeb9e",
+        "title": "3D 网站电影叙事",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518219996700701",
+        "id": "2108518219996700701",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_b38286103cc01374b0a9dcc340139e2e:d6dfa2af99b68abe1bcc42b5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2808,12 +3533,41 @@
         "id": "1996154405855646112",
         "creatorHandle": "aigclink",
         "publishedDate": "2025-12-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_b418b9244c2bcd742ccf9c33c716980b:dc9fcb25f360899543a6363d",
+    "idempotencyKey": "case-import-v1:prm_b3b186d66645ea7d940f18b07d999262:db9543613a3ffbbda853d285",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_b3b186d66645ea7d940f18b07d999262",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Build a freelance rate calculator with hours, expenses and profit margin inputs."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-b3b186d66645ea7d940f18b0",
+        "title": "自由职业报价计算器",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/livebyai/status/2108910694385205271",
+        "id": "2108910694385205271",
+        "creatorHandle": "livebyai",
+        "publishedDate": "2026-10-10",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_b418b9244c2bcd742ccf9c33c716980b:7809c18395eb558095840987",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2837,12 +3591,70 @@
         "id": "2042534963153899769",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_bf669149cab6e954dcfc0bf2500c5db5:908768a9ed8b067577548fed",
+    "idempotencyKey": "case-import-v1:prm_b79713917105ca067d542603463a62e5:abf7851a56c2a2289921fd93",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_b79713917105ca067d542603463a62e5",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Create a simple interactive ROI calculator page for marketing campaigns where users can input budget and expected conversion rate to see estimated revenue."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-b79713917105ca067d542603",
+        "title": "营销活动 ROI 计算器",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872175989878874",
+        "id": "2109872175989878874",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_b98dd74fb3f6235014b72babf64c7a45:3e9619acf6600ba438ac1022",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_b98dd74fb3f6235014b72babf64c7a45",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "I want you to create a very detailed 3D game of a pelican riding a bicycle around a city. It should be almost hyper-realistic, self-contained and have music and effects"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-b98dd74fb3f6235014b72bab",
+        "title": "鹈鹕骑车城市 3D 游戏",
+        "summary": "作者在回复中以约数标记公开的初始指令；后续镜头调整指令未公开。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/addyosmani/status/2102470115283583233",
+        "id": "2102470115283583233",
+        "creatorHandle": "addyosmani",
+        "publishedDate": "2026-09-22",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_bf669149cab6e954dcfc0bf2500c5db5:121f48395a517377ee929d64",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2866,12 +3678,12 @@
         "id": "2110136901285957923",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_bf9299700bbb596594f3d7b9ac8a22e3:e73370f289486d29f1af36b0",
+    "idempotencyKey": "case-import-v1:prm_bf9299700bbb596594f3d7b9ac8a22e3:dda6c4dbf34d749effb0f8c5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2895,12 +3707,12 @@
         "id": "2109909507514265800",
         "creatorHandle": "iamseanlooi",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_bfc7e192f57d31afc52066351a3c2155:c133d51e01bdf78c02988da5",
+    "idempotencyKey": "case-import-v1:prm_bfc7e192f57d31afc52066351a3c2155:2c96937a82149911dfd1b9b7",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2924,12 +3736,99 @@
         "id": "2110267228494963178",
         "creatorHandle": "YxzRainy",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_c2c9d99ca1da4ea76db532de41892a46:1bc14d0468ee642b66a3e6b4",
+    "idempotencyKey": "case-import-v1:prm_bfcccfb27ca09d611eca08017cc430d4:0d26618ffedf803097354c61",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_bfcccfb27ca09d611eca08017cc430d4",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Use threejs-game-director to build a playable futuristic hover arena game.\n\nRequirements:\n\n🔸playable loop first\n🔸player movement\n🔸enemies\n🔸collectible energy cores\n🔸score UI\n🔸procedural arena\n🔸desktop and mobile controls\n🔸performance checks\n🔸browser QA before final answer"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-bfcccfb27ca09d611eca0801",
+        "title": "Three.js 未来悬浮竞技场",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/Jomolos/status/2073309631003103652",
+        "id": "2073309631003103652",
+        "creatorHandle": "Jomolos",
+        "publishedDate": "2026-07-04",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_c07fd32d1d61364180c44ebd67898e1e:2eae4472765fe308e5f65cc3",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_c07fd32d1d61364180c44ebd67898e1e",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "I am a graphic designer, help me build a beautiful portfolio website, with a contact form."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-c07fd32d1d61364180c44ebd",
+        "title": "平面设计师作品集与联系表单",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/caffeineai/status/1977290672093770184",
+        "id": "1977290672093770184",
+        "creatorHandle": "caffeineai",
+        "publishedDate": "2025-10-12",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_c0a69da29db57e5e6ee196221e5aa2c2:39b41e14f9018d80061052c3",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_c0a69da29db57e5e6ee196221e5aa2c2",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Ok Claude: build an Awwwards SOTD site. Use the Three.js Blocks template. Copy the trend. Make no mistake."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-c0a69da29db57e5e6ee19622",
+        "title": "Three.js Blocks 获奖风格网站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/onirenaud/status/2014369068770574475",
+        "id": "2014369068770574475",
+        "creatorHandle": "onirenaud",
+        "publishedDate": "2026-01-22",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_c2c9d99ca1da4ea76db532de41892a46:03442ba70207e851acb62f55",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2953,12 +3852,12 @@
         "id": "2075036727207698475",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_c411819301036d393d3bd35959175a22:38d2a9eed215fd0dd9d1a947",
+    "idempotencyKey": "case-import-v1:prm_c411819301036d393d3bd35959175a22:f395fdb1ec9683026c504af8",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -2982,12 +3881,12 @@
         "id": "2110243620737745008",
         "creatorHandle": "alwayspriyesh",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_c60d807cb24f0aca9b9200eddbae427c:36733bcba999af9990c13575",
+    "idempotencyKey": "case-import-v1:prm_c60d807cb24f0aca9b9200eddbae427c:4753a235429cafa0770b1fb5",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3011,12 +3910,12 @@
         "id": "2108511286795640926",
         "creatorHandle": "Thusatharan",
         "publishedDate": "2026-10-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_c9dcf5adad75dffc88442946c56116ec:625ad2b6e68425ac2cc15287",
+    "idempotencyKey": "case-import-v1:prm_c9dcf5adad75dffc88442946c56116ec:244fdb45a969226089bf870a",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3040,12 +3939,12 @@
         "id": "2101507171968323887",
         "creatorHandle": "tripoai",
         "publishedDate": "2026-09-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_cae8f9a4a58e7ae256ace71dc6f23e42:6e1da467e64206f6890ad15f",
+    "idempotencyKey": "case-import-v1:prm_cae8f9a4a58e7ae256ace71dc6f23e42:0704a659ddd625e2ac3df452",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3069,12 +3968,41 @@
         "id": "2059610234818109916",
         "creatorHandle": "NeuralAIInsight",
         "publishedDate": "2026-05-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_ccf38346a65079ee025e0ee8d05fcb86:44e575cafbf9bcef1c90cd4b",
+    "idempotencyKey": "case-import-v1:prm_cb558655ec39cf2578c5af09e0d4d5f1:81ef5bd5f1576ce4b10ffa96",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_cb558655ec39cf2578c5af09e0d4d5f1",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Before saying done, verify:\n🔸no browser console errors\n🔸canvas is not blank\n🔸player can move\n🔸collectibles work\n🔸mobile viewport is usable\n🔸build passes"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-cb558655ec39cf2578c5af09",
+        "title": "浏览器游戏交付前验证",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/Jomolos/status/2073309631003103652",
+        "id": "2073309631003103652",
+        "creatorHandle": "Jomolos",
+        "publishedDate": "2026-07-04",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_ccf38346a65079ee025e0ee8d05fcb86:07a52df15e1cb52084bf5dbf",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3098,12 +4026,12 @@
         "id": "2065041466951712940",
         "creatorHandle": "shushant_l",
         "publishedDate": "2026-06-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_cd31c191b3fd333019bed38a7f54dbeb:8b1de5ecb6fe72aca2f6e27e",
+    "idempotencyKey": "case-import-v1:prm_cd31c191b3fd333019bed38a7f54dbeb:de032af41ad959e0692d6e36",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3127,12 +4055,12 @@
         "id": "1770409658051674459",
         "creatorHandle": "Mr_AllenT",
         "publishedDate": "2024-03-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_cd8742c810ec8d65770e473243f846a8:0bff405efc438f5c9ce38b51",
+    "idempotencyKey": "case-import-v1:prm_cd8742c810ec8d65770e473243f846a8:e1c728d5a2398835b60aa378",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3156,12 +4084,12 @@
         "id": "2110233376292745630",
         "creatorHandle": "SidraMiconi",
         "publishedDate": "2026-10-14",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_cfe3639ee9d9dbcc1d37e79295214a7d:3ce11b53db3368541f22d016",
+    "idempotencyKey": "case-import-v1:prm_cfe3639ee9d9dbcc1d37e79295214a7d:66aa9536f17f7c49bdaab7be",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3185,12 +4113,12 @@
         "id": "2095574743974101142",
         "creatorHandle": "hausfath",
         "publishedDate": "2026-09-03",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_d1e832ea439e98f76d7c95bb167e2c90:d0a4c3eb1f2c4da81f95d81c",
+    "idempotencyKey": "case-import-v1:prm_d1e832ea439e98f76d7c95bb167e2c90:2f1ef7dad47f79145e9f856f",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3214,12 +4142,12 @@
         "id": "2090383367845876061",
         "creatorHandle": "neuralshiftai",
         "publishedDate": "2026-08-20",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_d29e2da62ee84fe089a7dfa0345199de:ec1d0855e35ac42b2d78f473",
+    "idempotencyKey": "case-import-v1:prm_d29e2da62ee84fe089a7dfa0345199de:7f52d9c3379d56432c605e88",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3243,12 +4171,12 @@
         "id": "2100838828433179037",
         "creatorHandle": "YouWareAI",
         "publishedDate": "2026-09-18",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_d3c01fe29b87a5bf51800d78718a1954:361931b02c7b282be801887b",
+    "idempotencyKey": "case-import-v1:prm_d3c01fe29b87a5bf51800d78718a1954:918bd93a6cebce2e710825e6",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3272,12 +4200,12 @@
         "id": "1947925952849473760",
         "creatorHandle": "CodeByPoonam",
         "publishedDate": "2025-07-23",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_d4ee13630a71cddfad6fad6b3b9fc505:0083ded0eee436ae35fd4964",
+    "idempotencyKey": "case-import-v1:prm_d4ee13630a71cddfad6fad6b3b9fc505:1f77f32210825fbf58d6d309",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3301,12 +4229,41 @@
         "id": "2109323105617281235",
         "creatorHandle": "shmopixbzn",
         "publishedDate": "2026-10-11",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_d7548e5fbfb04d0e999529d444ed1896:5cf070e311738d5ae9de5c37",
+    "idempotencyKey": "case-import-v1:prm_d6e55d5ee004601c68708f715a13090b:7e50fc76b20628747312151a",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_d6e55d5ee004601c68708f715a13090b",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Act as a creative director and copywriter specialized in conversion. Create a premium landing page that combines cinematic images with persuasive messages. Include a main interactive section (hero), product narrative, feature demonstrations, social proof, pricing, frequently asked questions, and powerful calls to action.\nRecommend in which parts animations should enhance user understanding without distracting from the message. Restriction: use only honest marketing strategies."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-d6e55d5ee004601c68708f71",
+        "title": "高转化电影感落地页",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/AIFrontliner/status/2108518242297790693",
+        "id": "2108518242297790693",
+        "creatorHandle": "AIFrontliner",
+        "publishedDate": "2026-10-09",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_d7548e5fbfb04d0e999529d444ed1896:1e5aa87b98601968f1d644b7",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3330,12 +4287,41 @@
         "id": "1992244185190277529",
         "creatorHandle": "Motion_Viz",
         "publishedDate": "2025-11-22",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_db1952c7b46693da69677d1d5c144287:9ea0a5faaa4a66158170e901",
+    "idempotencyKey": "case-import-v1:prm_d8d3e0e6ef0077b41f548b74a4e36ae8:3e38e9613b8fa37d83669217",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_d8d3e0e6ef0077b41f548b74a4e36ae8",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "make a 3d website for a hot air baloon company, use whatever 3d asset you can make. Use 3js or similiar for the best result. the website should like an expert professional created this."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-d8d3e0e6ef0077b41f548b74",
+        "title": "热气球公司的 3D 网站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/Souradip3000/status/2105275467984961686",
+        "id": "2105275467984961686",
+        "creatorHandle": "Souradip3000",
+        "publishedDate": "2026-09-30",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_db1952c7b46693da69677d1d5c144287:dc02d24d8c26e3e74e2b3c81",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3359,12 +4345,12 @@
         "id": "2095849687672644038",
         "creatorHandle": "MiaAI_lab",
         "publishedDate": "2026-09-04",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_ddb4ef984068d769d6414a396c28f1d2:08953625f87c33b6d2d4a896",
+    "idempotencyKey": "case-import-v1:prm_ddb4ef984068d769d6414a396c28f1d2:db20fc9e651e09778728d3f2",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3388,12 +4374,41 @@
         "id": "1991238283456835761",
         "creatorHandle": "miilesus",
         "publishedDate": "2025-11-19",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e1431dc8b85179970f8c47bc15ff7359:2bad223f011c430e4182762b",
+    "idempotencyKey": "case-import-v1:prm_e00c6412874d948f7fcba903731b0113:1b08b33bec0a027133ffb3df",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_e00c6412874d948f7fcba903731b0113",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "MINIMUM-DIFF MODE. This is an approved working website. Make ONLY the change I specifically request. Preserve all approved copy, design, images, pages, URLs, responsive behavior and functionality that I did not ask you to change. Do not redesign, refactor, reorganize, rename, replace assets, update dependencies or “clean up” unrelated code.  Before changing anything, tell me exactly what you intend to change.  Afterward, test the change and report exactly what files were modified.  Then STOP."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-e00c6412874d948f7fcba903",
+        "title": "网站最小改动维护模式",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_e1431dc8b85179970f8c47bc15ff7359:0bbc149d5f4da6061bfb386c",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3417,12 +4432,12 @@
         "id": "2075036711571341462",
         "creatorHandle": "maxpostingx",
         "publishedDate": "2026-07-09",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e2044722a0c226fd0c976e6c748afe85:d03260f3b22b7d612279ccf5",
+    "idempotencyKey": "case-import-v1:prm_e2044722a0c226fd0c976e6c748afe85:7c5753bac51fa0cec9812798",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3446,12 +4461,12 @@
         "id": "2081643249631101275",
         "creatorHandle": "BuildFastWithAI",
         "publishedDate": "2026-07-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e4a79c152aaf70ff261e80818506bc6d:50e27f5b4ae14a365bb8dda0",
+    "idempotencyKey": "case-import-v1:prm_e4a79c152aaf70ff261e80818506bc6d:aa5622bc6bfbb6f88df9fe81",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3475,12 +4490,12 @@
         "id": "2098856652061696223",
         "creatorHandle": "k2sbhai",
         "publishedDate": "2026-09-12",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e558aea71e531b599a6df63966c0e176:aea54740d85312de84839e3e",
+    "idempotencyKey": "case-import-v1:prm_e558aea71e531b599a6df63966c0e176:0ffdea45dd08e99b5e01efe3",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3504,12 +4519,12 @@
         "id": "2110028285237485776",
         "creatorHandle": "WescheNex1q",
         "publishedDate": "2026-10-13",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e646c2e55d24e7b13d2bc41cd6ecca4c:2978fbd84eb78c3acbb90a91",
+    "idempotencyKey": "case-import-v1:prm_e646c2e55d24e7b13d2bc41cd6ecca4c:d23fadbaba3bbf6bf23be7c0",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3533,12 +4548,41 @@
         "id": "1947925823295787469",
         "creatorHandle": "CodeByPoonam",
         "publishedDate": "2025-07-23",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e7bd5f4f75f0088af999d49ba83fe249:c0508d3090b6653adfcd69ca",
+    "idempotencyKey": "case-import-v1:prm_e72311dd5c54ba88f53a0d341a5bf29f:f844f1265fcd94e5d4d9cda7",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_e72311dd5c54ba88f53a0d341a5bf29f",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "Create an event registration microsite for a 2-day AI Summit. Include speaker bios, event schedule, ticket pricing tiers, and an RSVP countdown timer."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-e72311dd5c54ba88f53a0d34",
+        "title": "两日 AI 峰会报名微站",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/SheBuildsAI_/status/2109872166695289096",
+        "id": "2109872166695289096",
+        "creatorHandle": "SheBuildsAI_",
+        "publishedDate": "2026-10-13",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_e7bd5f4f75f0088af999d49ba83fe249:62c271a52322ade377184018",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3562,12 +4606,12 @@
         "id": "2081517469509005798",
         "creatorHandle": "chddaniel",
         "publishedDate": "2026-07-26",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_e988f29b5e8973cc098876a1cf44adc3:ff06a2ac48a1497d9c7f7dd9",
+    "idempotencyKey": "case-import-v1:prm_e988f29b5e8973cc098876a1cf44adc3:9ea74903917e218da00668a0",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3591,12 +4635,12 @@
         "id": "2104837836507955401",
         "creatorHandle": "Gdgtify",
         "publishedDate": "2026-09-29",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_eb34b87ddf5d0e8e22c2bf79535a7d8e:7e714c6dcfbbbfa6b09447f3",
+    "idempotencyKey": "case-import-v1:prm_eb34b87ddf5d0e8e22c2bf79535a7d8e:840429dd72038c9596c853a7",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3620,12 +4664,12 @@
         "id": "2042534951044944258",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_eb602ed8549ddf3419ff77a559d01684:730cd74b61ad3b67fb40d59d",
+    "idempotencyKey": "case-import-v1:prm_eb602ed8549ddf3419ff77a559d01684:33f61d59dc86afd6a934e28a",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3649,12 +4693,12 @@
         "id": "2101912274038624295",
         "creatorHandle": "Sonofpeace0001",
         "publishedDate": "2026-09-21",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_ed9d97eb5c17ef896c1dc972f32196af:e49b5106f487c3c7ffb36384",
+    "idempotencyKey": "case-import-v1:prm_ed9d97eb5c17ef896c1dc972f32196af:1386093cad11f5a0cee8da44",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3678,12 +4722,12 @@
         "id": "2096599765471387673",
         "creatorHandle": "TomBilyeu",
         "publishedDate": "2026-09-06",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_ef43036962486e6212d0556d52ea1a7f:81147cb3781ff231fff177b6",
+    "idempotencyKey": "case-import-v1:prm_ef43036962486e6212d0556d52ea1a7f:f8a0b20e27eb84ae9d52fa5a",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3707,12 +4751,12 @@
         "id": "1977348975133941950",
         "creatorHandle": "daveDash2000",
         "publishedDate": "2025-10-12",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_efaa179091e286303f3e72b5b34c99c8:f89e73f620372758f0103779",
+    "idempotencyKey": "case-import-v1:prm_efaa179091e286303f3e72b5b34c99c8:6ca93ee89fcab31c0e256d23",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3736,12 +4780,12 @@
         "id": "2103516848834617527",
         "creatorHandle": "vib3coded",
         "publishedDate": "2026-09-25",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_f3d2c6d90d4fa018bb8dab8a254af406:ebf3acab61b143729809cef4",
+    "idempotencyKey": "case-import-v1:prm_f3d2c6d90d4fa018bb8dab8a254af406:269e0c013ed31fe556210736",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3765,12 +4809,12 @@
         "id": "2027370966104658118",
         "creatorHandle": "heyrobinai",
         "publishedDate": "2026-02-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_f3d3775541c505b794568cf55bffb591:99dd9fb2eb1e812eaf1b06dd",
+    "idempotencyKey": "case-import-v1:prm_f3d3775541c505b794568cf55bffb591:bca4938daa38b2746f8e1b68",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3794,12 +4838,41 @@
         "id": "2074834571997204785",
         "creatorHandle": "IamKhanPhD",
         "publishedDate": "2026-07-08",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_f54b861b4244be105410bf077ebed2e0:2c89f38f9ecf80e5065d71d5",
+    "idempotencyKey": "case-import-v1:prm_f4368b32e00ae93ef0e5dd9f92e8b32b:e35bdf5fadcdf35ed8c08b44",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_f4368b32e00ae93ef0e5dd9f92e8b32b",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "做一个千与千寻的海上小火车场景 [参考图]，3 只海鸥（1 停 2 飞是必备要素），车内暖光。\n交互事件不一定是水面，按最佳戏剧效果帮我设计。"
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-f4368b32e00ae93ef0e5dd9f",
+        "title": "千与千寻海上小火车场景",
+        "summary": "作者公开的追加提示词；原流程另用未公开的通用 meta prompt 和参考图，因此此条仅代表追加指令。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/eviljer/status/2109231561711427883",
+        "id": "2109231561711427883",
+        "creatorHandle": "eviljer",
+        "publishedDate": "2026-10-11",
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_f54b861b4244be105410bf077ebed2e0:6246e5e827a5ece66da3756b",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3823,12 +4896,12 @@
         "id": "2059610234818109916",
         "creatorHandle": "NeuralAIInsight",
         "publishedDate": "2026-05-27",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_f972b73ebe8610d124f9d32cf3464f79:bb9bdfdee568f03a992bb507",
+    "idempotencyKey": "case-import-v1:prm_f972b73ebe8610d124f9d32cf3464f79:26b817e3eabbc2893c5b8728",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3852,12 +4925,12 @@
         "id": "2042534865791520950",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   },
   {
-    "idempotencyKey": "case-import-v1:prm_fcd98b36f5b881c2e92a0964fa1b973c:0d7b06d055076857ec88bff0",
+    "idempotencyKey": "case-import-v1:prm_fcd98b36f5b881c2e92a0964fa1b973c:6e0d6f29ecf1ec227f834e04",
     "body": {
       "schemaVersion": 1,
       "operation": "create_prompt",
@@ -3881,7 +4954,36 @@
         "id": "2042534889212510467",
         "creatorHandle": "jason_coder0",
         "publishedDate": "2026-04-10",
-        "observedAt": "2026-10-14T08:51:46.558Z"
+        "observedAt": "2026-10-14T09:54:59.384Z"
+      }
+    }
+  },
+  {
+    "idempotencyKey": "case-import-v1:prm_fcedf2e60bdb07bb2e92a357fb5ab01d:79852e79a449aaf1a3917008",
+    "body": {
+      "schemaVersion": 1,
+      "operation": "create_prompt",
+      "expectedState": "absent",
+      "prompt": {
+        "artifactKey": "prm_fcedf2e60bdb07bb2e92a357fb5ab01d",
+        "contentType": "other",
+        "sourceLocale": "zh-CN",
+        "text": "This is now my approved website plan. Do not change the approved copy, structure or claims without asking me first."
+      },
+      "locale": {
+        "locale": "zh-CN",
+        "slug": "website-fcedf2e60bdb07bb2e92a357",
+        "title": "确认并锁定网站方案",
+        "summary": "来源原帖或作者回复中的公开建站与浏览器交互指令；保留原文，作者所述效果未独立复现。",
+        "bodyMarkdown": null
+      },
+      "source": {
+        "platform": "x",
+        "url": "https://x.com/FreeSites_com/status/2101795313237274666",
+        "id": "2101795313237274666",
+        "creatorHandle": "FreeSites_com",
+        "publishedDate": "2026-09-20",
+        "observedAt": "2026-10-14T09:54:59.384Z"
       }
     }
   }

@@ -2,16 +2,22 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
 import { describe, expect, it } from 'vitest';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
-import { WebsiteCaseDetail, WebsiteGallery } from '@/components/WebsiteCases';
+import { WebsiteCaseDetail, WebsiteGallery, WebsiteViewGallery } from '@/components/WebsiteCases';
+import { websiteViews } from '@/lib/catalog/website-views';
 import { filterWebsiteCases } from '@/lib/catalog/website-filter';
 
 const catalog = createGitBetaCatalog('zh-CN');
 describe('real website cases', () => {
-  it('server-renders all website entries with real previews and honest missing-preview states', () => {
+  it('offers independent graph views at the Website entry instead of dumping cases', () => {
     const html = parse(renderToStaticMarkup(<WebsiteGallery catalog={catalog} />));
-    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(193);
+    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(0);
+    expect(html.querySelectorAll('a[data-website-view]').length).toBeGreaterThan(3);
+  });
+  it('server-renders all entries with real previews and honest missing-preview states', () => {
+    const html = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={websiteViews(catalog)[0]!} />));
+    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(225);
     expect(html.querySelectorAll('[data-website-case] img')).toHaveLength(60);
-    expect(html.querySelector('h1')?.text).toBe('Website cases');
+    expect(html.querySelector('h1')?.text).toBe('All website cases');
   });
   it('keeps a missing prompt out of the detail actions and preserves its original source', () => {
     const entry = catalog.websites?.find(item => !item.promptHref);

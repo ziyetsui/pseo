@@ -33,3 +33,26 @@ it('excludes a contract-blocked source from every published website surface', ()
     expect(websiteEntries(c).filter(e => e.promptHref === entry.promptHref)).toHaveLength(1);
   }
 });
+
+it('renders recovered prompt text on the existing case page as well as its L4 recipe', async () => {
+  const { WebsiteCaseDetail } = await import('@/components/WebsiteCases');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const c = createGitBetaCatalog('zh-CN');
+  const entry = c.websites?.find(e => e.source.url.endsWith('/status/2057102727000228176'));
+  expect(entry).toBeDefined();
+  if (!entry) throw new Error('Recovered source input missing');
+  const html = renderToStaticMarkup(WebsiteCaseDetail({catalog:c,entry}));
+  expect(html).toContain('Build a storytelling website');
+  expect(html).not.toContain('No prompt was included');
+});
+
+
+it('publishes the literal onirenaud prompt and the distinct author reply', () => {
+ const c=createGitBetaCatalog('zh-CN');
+ const main=c.prompts.find(p=>p.source.url.endsWith('/status/2014369068770574475'));
+ const reply=c.prompts.find(p=>p.source.url.endsWith('/status/2014369077670866953'));
+ expect(main?.prompt).toBe('Ok Claude: build an Awwwards SOTD site. Use the Three.js Blocks template. Copy the trend. Make no mistake.');
+ expect(reply?.prompt).toBe('vibe code Minecraft');
+ expect(websiteEntries(c).some(e=>e.promptHref===main?.href)).toBe(true);
+ expect(websiteEntries(c).some(e=>e.promptHref===reply?.href)).toBe(true);
+});

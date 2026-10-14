@@ -1,4 +1,5 @@
 import { websiteEntries, websitePrompts } from '@/lib/catalog/website';
+import { websiteViewForPath, websiteViews } from '@/lib/catalog/website-views';
 import type { Metadata } from 'next';
 import type { Catalog, Prompt, Ref } from '@/lib/catalog/types';
 import { siteOrigin } from '@/lib/catalog/config';
@@ -7,8 +8,11 @@ import type { SurfaceSeo } from './surface-seo';
 
 function navigationCopy(catalog: Catalog, path: string, title: string, entity?: Ref) {
   const hub = `/${catalog.locale}/prompts`;
+  if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return {title:'Library index',description:'Explore every published prompt, Website case and graph view in the library by medium, purpose, model and technology.'};
   const website = catalog.websites?.find(item => item.href === path);
   if (website) return { title: website.title, description: website.summary || 'Explore this website case, its preview and original source.' };
+  const view = websiteViewForPath(catalog, path);
+  if (view) return { title: `${view.label} · Website cases`, description: `Explore ${view.count} website cases in this ${view.axis === 'all' ? 'complete collection' : view.axis === 'use-case' ? 'purpose' : view.axis === 'tool' ? 'technology' : 'model'} view, with source credits, previews and available project links.` };
   const family = modelFamilyForPath(catalog, path);
   if (family) {
     const members = catalog.models.filter(model => family.memberIds.includes(model.id)).map(model => model.label);
@@ -22,7 +26,7 @@ function navigationCopy(catalog: Catalog, path: string, title: string, entity?: 
     const kind = path.endsWith('/video') ? 'video' : 'image';
     return { title, description: `Browse ${catalog.prompts.filter(prompt => prompt.kind === kind).length} ${kind} prompts by model, task and style. Read the full instructions and inspect available results with source credits.` };
   }
-  if (path === `${hub}/website` && catalog.mode === 'git-beta') return { title: 'Website cases', description: `Explore ${websiteEntries(catalog).length} website cases with source credits, previews and available demos.` };
+  if (path === `${hub}/website` && catalog.mode === 'git-beta') return { title: 'Website views', description: `Explore ${websiteEntries(catalog).length} website cases across ${websiteViews(catalog).length} views by purpose, model and technology.` };
   if (path === `${hub}/website`) return { title: 'Website prompts', description: `Explore ${websitePrompts(catalog).length} website prompts with source credits, models and full instructions.` };
   if (path === `${hub}/models`) return { title: 'AI model families and prompts', description: 'Browse model families and their versions, then explore the prompts associated with each model.' };
   if (path === `${hub}/creators`) return { title: 'Prompt creators', description: 'Discover the creators represented in this prompt library and follow their available profile links.' };

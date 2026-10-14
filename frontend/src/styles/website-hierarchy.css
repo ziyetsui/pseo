@@ -1,0 +1,31 @@
+/* Website projections reuse the selected Deck, Findings, Signature and Recipe compositions. */
+.website-aligned .website-view-tabs{display:flex;gap:8px;flex-wrap:wrap;min-width:0;max-width:100%}
+.website-aligned .website-view-tabs a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--border);border-radius:999px;color:var(--muted-fg,var(--muted));font-size:12px;overflow-wrap:anywhere}
+.website-aligned .website-view-tabs [aria-current=page]{color:var(--fg,var(--foreground));border-color:var(--border-strong)}
+.website-aligned .website-filters{margin:16px 0;flex:1 1 100%;min-width:0}
+.website-aligned .website-filters label{color:var(--muted-fg,var(--muted));font-family:var(--sans,var(--font-sans));text-align:left}
+.website-aligned .website-filters input,.website-aligned .website-filters select{background:var(--surface);color:var(--fg,var(--foreground));border-color:var(--border)}
+.website-aligned .website-filters :disabled{opacity:.55}
+.website-aligned .msh-composer .website-filters{margin:8px}
+.website-aligned .msh-composer label{flex-basis:150px}
+.website-aligned .msh-front>.website-view-tabs{justify-content:center;margin-top:18px}
+.website-aligned .msh-note{width:min(100%,300px)}
+.website-aligned .ctrl .website-view-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+.website-aligned .ctrl .website-view-tabs a{flex:none}
+.website-aligned .ctrl .website-filters label{flex-basis:150px}
+.website-aligned .ctrl .row{min-width:0;flex-wrap:wrap}
+.website-aligned .website-title-index{margin-block:48px;max-width:960px}
+.website-aligned .website-title-index ol{columns:2;column-gap:36px;padding-left:22px}
+.website-aligned .website-title-index li{break-inside:avoid;padding-block:8px;overflow-wrap:anywhere}
+.website-aligned .website-recipe-title{padding:26px 0 8px}
+.website-aligned .website-result img{display:block;width:100%;height:auto;border-radius:8px}
+.website-aligned .website-prompt{white-space:pre-wrap;overflow-wrap:anywhere;max-height:640px;overflow:auto;font:13px/1.7 var(--font-mono);background:var(--surface);padding:20px;border-radius:8px;margin-block:20px}
+.website-aligned .kv>span{min-width:0;overflow-wrap:anywhere}
+.website-aligned .website-empty{padding:32px;max-width:900px;margin-inline:auto}
+.website-aligned .library-index-group{border-bottom:1px solid var(--border);padding-block:12px}
+.website-aligned .library-index-group summary{cursor:pointer;min-height:44px;padding-block:12px;font-size:17px}
+.website-aligned .library-index-group ol{columns:2;column-gap:36px;padding:16px 0 16px 24px}
+.website-aligned .library-index-group li{break-inside:avoid;margin-block:8px;overflow-wrap:anywhere}
+.website-aligned .linkcols ul{padding-left:20px}
+.website-aligned .linkcols li a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
+@media(max-width:620px){.website-aligned .website-title-index ol,.website-aligned .library-index-group ol{columns:1}.website-aligned .ctrl{position:static}.website-aligned .msh-front{padding-inline:18px}}
