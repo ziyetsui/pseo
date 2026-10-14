@@ -14,3 +14,5 @@ Review focus: identity deduplication, baseline prompt, exact scope, invalid path
 4. Full frontend and root checks; beta/static and legacy exports; browser navigation/history/axe/no-JS/widths; independent branch review. PR/CI/merge, deploy exact source, live all-view smoke and receipt.
 
 Ledger: isolated base7e08aae; baseline153 tests passed. Existing graph supplies semantic relationships; expose views without manufacturing content nodes.
+
+Live ledger: PR5 merged8ddcbeb; all30 live scopes and615 detail routes passed. Mobile/browser follow-through exposed pre-hydration native form submission (q URL with empty model/purpose, all19 SSR cards). Added deterministic gated-script RED test on desktop/mobile; fix enables controls only after initial URL-state read. Follow-up engineering PR and exact-source deployment required.

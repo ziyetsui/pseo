@@ -1,6 +1,22 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('Website filters wait for hydration before accepting input', async ({ page }) => {
+  let releaseScripts = () => {};
+  const gate = new Promise<void>(resolve => { releaseScripts = resolve; });
+  await page.route('**/_next/static/**/*.js', async route => { await gate; await route.continue(); });
+  try {
+    await page.goto('/zh-CN/prompts/website/views/use-case/website-fun', {waitUntil:'commit'});
+    await expect(page.getByLabel('Search cases')).toBeDisabled();
+    await expect(page.getByRole('button', {name:'Filter',exact:true})).toBeDisabled();
+    releaseScripts();
+    await expect(page.getByLabel('Search cases')).toBeEnabled();
+    await page.getByLabel('Search cases').fill('Halloween pool');
+    await page.getByRole('button', {name:'Filter',exact:true}).click();
+    await expect(page.locator('[role="status"]')).toHaveText('1 of 19 website cases');
+  } finally { releaseScripts(); }
+});
+
 test('published Git beta exposes real image and Website counts, sources and project pages', async ({ page, request }) => {
   const response = await request.get('/frontend-build.json');
   const receipt = await response.json();

@@ -9,3 +9,5 @@
 - Width375/768/1440: zero horizontal overflow. Axe WCAG2A/AA/2.1AA violations0. Directory and scoped content readable without JS.
 - Full frontend tests/typecheck/lint/build/static, legacy exports and required root compiler checks pass; record actual counts.
 - Live receipt binds merged source/revision/deployments. All views200/noindex, root no case dump, all-cases60, invalid view404.
+
+- Slow-script regression: all four filter controls remain disabled until URL state is read and handlers are mounted; withheld JavaScript must not permit a native GET that loses the selected filter. Once enabled, typing/submission yields1 of19 and preserves view scope.

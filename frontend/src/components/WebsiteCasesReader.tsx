@@ -7,13 +7,14 @@ function terms(rows: WebsiteCase[], axis: 'models' | 'useCases'): Ref[] {
   return [...new Map(rows.flatMap(item => item[axis]).filter(ref => ref.slug !== 'website').map(ref => [ref.slug, ref])).values()].sort((a,b) => a.label.localeCompare(b.label));
 }
 export function WebsiteCasesReader({ entries, href }: { entries: WebsiteCase[]; href: string }) {
+  const [ready, setReady] = useState(false);
   const [filters, setFilters] = useState<WebsiteFilters>({});
   const [draft, setDraft] = useState<WebsiteFilters>({});
   useEffect(() => {
     const read = () => {
       const params = new URLSearchParams(location.search);
       const next = { q: params.get('q') ?? '', model: params.get('model') ?? '', purpose: params.get('purpose') ?? '' };
-      setFilters(next); setDraft(next);
+      setFilters(next); setDraft(next); setReady(true);
     };
     read(); window.addEventListener('popstate', read);
     return () => window.removeEventListener('popstate', read);
@@ -26,10 +27,10 @@ export function WebsiteCasesReader({ entries, href }: { entries: WebsiteCase[]; 
       const next = { q: params.get('q') ?? '', model: params.get('model') ?? '', purpose: params.get('purpose') ?? '' };
       history.pushState(null, '', `${href}${params.size ? `?${params}` : ''}`); setFilters(next); setDraft(next);
     }}>
-      <label>Search cases<input name="q" type="search" value={draft.q ?? ''} onChange={event => setDraft({...draft, q:event.target.value})} placeholder="Search websites, tools or creators" /></label>
-      <label>Model<select name="model" value={draft.model ?? ''} onChange={event => setDraft({...draft, model:event.target.value})}><option value="">All models</option>{terms(entries,'models').map(ref => <option value={ref.slug} key={ref.id}>{ref.label}</option>)}</select></label>
-      <label>Purpose<select name="purpose" value={draft.purpose ?? ''} onChange={event => setDraft({...draft, purpose:event.target.value})}><option value="">All purposes</option>{terms(entries,'useCases').map(ref => <option value={ref.slug} key={ref.id}>{ref.label}</option>)}</select></label>
-      <button className="btn pri" type="submit">Filter</button>
+      <label>Search cases<input name="q" type="search" disabled={!ready} value={draft.q ?? ''} onChange={event => setDraft({...draft, q:event.target.value})} placeholder="Search websites, tools or creators" /></label>
+      <label>Model<select name="model" disabled={!ready} value={draft.model ?? ''} onChange={event => setDraft({...draft, model:event.target.value})}><option value="">All models</option>{terms(entries,'models').map(ref => <option value={ref.slug} key={ref.id}>{ref.label}</option>)}</select></label>
+      <label>Purpose<select name="purpose" disabled={!ready} value={draft.purpose ?? ''} onChange={event => setDraft({...draft, purpose:event.target.value})}><option value="">All purposes</option>{terms(entries,'useCases').map(ref => <option value={ref.slug} key={ref.id}>{ref.label}</option>)}</select></label>
+      <button className="btn pri" disabled={!ready} type="submit">Filter</button>
       {Object.values(filters).some(Boolean) && <a className="btn" href={href}>Clear filters</a>}
     </form>
     <p className="dek" role="status">{rows.length} of {entries.length} website cases</p>

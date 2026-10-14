@@ -54,6 +54,7 @@ describe('Website graph projections', () => {
     for (const axis of ['model','use-case','tool']) expect(directory.querySelectorAll(`[data-view-axis="${axis}"]`).length).toBeGreaterThan(0);
     const view = views.find(view => view.slug === 'website-fun')!;
     const scoped = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={view} />));
+    expect(scoped.querySelectorAll('form input[disabled], form select[disabled], form button[disabled]')).toHaveLength(4);
     expect(new Set(scoped.querySelectorAll('[data-website-case]').map(element => element.getAttribute('data-website-case')))).toEqual(new Set(view.caseIds));
     const entry = websiteViewEntries(catalog,view)[0]!;
     const detail = parse(renderToStaticMarkup(<WebsiteCaseDetail catalog={catalog} entry={entry} />));
