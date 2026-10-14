@@ -1,3 +1,3 @@
-/* Shared compact footer; the complete taxonomy remains in Library index. */
-.foot .footnav{display:grid;grid-template-columns:repeat(2,minmax(0,180px));gap:28px 64px;max-width:500px}
-@media(max-width:480px){.foot .footnav{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+/* Selected destinations in the footer; the complete taxonomy stays in Library index. */
+.foot .footnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 48px;max-width:none}
+@media(max-width:760px){.foot .footnav{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}}

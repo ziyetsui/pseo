@@ -173,3 +173,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 
 2026-10-14 用户追加裁定：全站 Footer 收敛为 Browse/Explore 两组主要入口，最多7条导航；完整模型、任务、风格、主题及 Website 语义分类保留在 Library index，不随页脚删减。所有展示真实提示词的 Website Deck/Findings/Anthology/详情复用既有变量高亮规则；纯正文和 JSON 数组不当作变量，不改写提示词原文。
+
+
+2026-10-14 用户反馈二次调整：Footer 采用浏览、模型、任务、风格四列精选入口，每列最多6项、合计最多21项；桌面四列铺开，手机两列。取代上一版两组7项裁定，完整目录仍保留在 Library index。
