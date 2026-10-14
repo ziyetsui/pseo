@@ -1,6 +1,7 @@
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
+import {localizedGitCatalog} from './localized';
 import { gitBetaRevision } from './git-beta-revision';
 import { websiteEntries } from './website';
 import { placeholderTokens } from './placeholders';
@@ -26,8 +27,9 @@ function safeUrl(value: unknown): string {
 
 /** Owner-authorized Git beta only. This does not mutate CMS state or the generated mirror. */
 export function createGitBetaCatalog(locale: Locale): Catalog {
-  if (locale !== 'zh-CN') throw new Error('Git beta has no reviewed en page variants');
-  const base = createFixtureCatalog(locale), graph = object(graphInput), previews = object(previewInput);
+  if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
+  const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
+  const sourceLocale = 'zh-CN';
   const revision = gitBetaRevision(base.revision, graphInput, previewInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -54,21 +56,21 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   const reference = (node: RecordValue, axis: Axis): Ref => {
     const slug = text(node.slug), existing = registries[axis].get(slug);
     if (existing) return existing;
-    const ref = { id: text(node.id), slug, label: text(node.label), href: axis === 'model' ? modelHref(locale, slug) : filterHref(locale, axis, slug), count: 0 };
+    const ref = { id: text(node.id), slug, label: text(node.label), href: axis === 'model' ? modelHref(sourceLocale, slug) : filterHref(sourceLocale, axis, slug), count: 0 };
     registries[axis].set(slug, ref); return ref;
   };
   const refs = (id: string, type: string, axis: Axis) => linked(id, type).map(node => reference(node, axis));
   const creators = new Map<string, Creator>(base.creators.map(creator => [creator.id, { ...creator }]));
   for (const node of nodes.values()) if (node.type === 'creator') {
     const id = text(node.id), handle = text(node.handle);
-    creators.set(id, { id, slug: id, label: `@${handle}`, handle: `@${handle}`, href: filterHref(locale, 'creator', id), url: safeUrl(node.url), avatarUrl: null, count: 0 });
+    creators.set(id, { id, slug: id, label: `@${handle}`, handle: `@${handle}`, href: filterHref(sourceLocale, 'creator', id), url: safeUrl(node.url), avatarUrl: null, count: 0 });
   }
   const prompts: Prompt[] = [...base.prompts];
   for (const node of nodes.values()) if (node.type === 'prompt') {
     const id = text(node.id), source = linked(id, 'sourced_from')[0];
     if (!source) throw new Error('Prompt source required');
     const title = text(node.title), body = text(node.prompt), creator = linked(id, 'created_by')[0];
-    const slug = `case-${id.slice(4)}`, href = `/${locale}/prompts/${slug}`;
+    const slug = `case-${id.slice(4)}`, href = `/${sourceLocale}/prompts/${slug}`;
     const image = linked(id, 'has_example').map((item): Media => ({ id: text(item.id), kind: item.kind === 'video' ? 'video' : 'image', src: safeUrl(item.url), alt: optionalText(item.alt) ?? title, width: null, height: null, poster: null, label: null }));
     const attribution = creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? '';
     const docs = linked(id, 'documented_at').map(item => ({ type: 'Collection documentation', url: safeUrl(item.url), confidence: null }));
@@ -97,7 +99,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     if (!/^\/website-previews\/[0-9]+\.(?:jpg|jpeg|png|webp)$/u.test(cover)) throw new Error('Invalid Website preview asset');
     const slug = id, creator = linked(id, 'created_by')[0];
     const target = (type: string) => { const ref = linked(id,type)[0]; return ref ? safeUrl(ref.url) : null; };
-    websites.push({ id, slug, href: `/${locale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover,
+    websites.push({ id, slug, href: `/${sourceLocale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover,
       attribution: creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? 'Source', source: { url: safeUrl(source.url), platform: text(source.platform) },
       models: refs(id,'designed_for','model'), useCases: refs(id,'used_for','useCase'), tools: linked(id,'built_with').map(item => text(item.label)),
       demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: (prompts.find(prompt => prompt.id === id) ?? prompts.find(prompt => linked(prompt.id,'sourced_from').some(ref => ref.id === source.id)))?.href ?? null,
@@ -126,6 +128,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return { ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] };
+  return localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale);
 }

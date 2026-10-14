@@ -1,3 +1,4 @@
+import { interfaceLocale, text, promptCount, caseCount } from '@/lib/i18n/text';
 import { websiteEntries, websitePrompts } from '@/lib/catalog/website';
 import { websiteViewForPath, websiteViews } from '@/lib/catalog/website-views';
 import type { Metadata } from 'next';
@@ -42,8 +43,24 @@ export function siteMetadata(catalog: Catalog, path: string, title: string, prom
   const canonicalPath = path === `/${catalog.locale}` ? `/${catalog.locale}/prompts` : path;
   const canonical = surface?.canonicalUrl ?? seo?.canonicalUrl ?? (origin ? new URL(canonicalPath, origin).href : undefined);
   if (!visual && canonical && new URL(canonical).origin !== origin) throw new Error('Canonical origin differs from FRONTEND_SITE_URL');
-  const copy = prompt ? { title, description: prompt.summary || title } : navigationCopy(catalog, path, title, entity);
-  const resolvedTitle = !visual && seo?.title ? seo.title : `${copy.title} · Prompt Library`;
+  let copy = prompt ? { title, description: prompt.summary || title } : navigationCopy(catalog, path, title, entity);
+  if (interfaceLocale(catalog) === 'zh-CN' && !prompt) {
+    const hub = `/${catalog.locale}/prompts`, view = websiteViewForPath(catalog, path);
+    const website = catalog.websites?.find(item => item.href === path);
+    const family = modelFamilyForPath(catalog, path);
+    if (website) copy = { title: website.title, description: website.summary || '查看此网站案例的预览和原始来源。' };
+    else if (view) copy = { title: `${view.label} · 网站案例`, description: `探索此分类中的 ${caseCount('zh-CN', view.count)}，查看来源署名、预览与可用的项目链接。` };
+    else if (family) copy = { title: `${family.label} 系列提示词`, description: `探索 ${family.label} 系列的 ${promptCount('zh-CN', family.count)}，阅读完整正文、查看结果并访问原始来源。` };
+    else if (entity) copy = { title: `${entity.label}提示词`, description: `探索 ${entity.label} 的 ${promptCount('zh-CN', entity.count)}，阅读完整正文、查看结果并访问来源。` };
+    else if (path === `${hub}/library-index`) copy = { title: '提示词库目录', description: '按媒介、用途、模型和技术浏览全部提示词、网站案例和分类。' };
+    else if (path === `${hub}/website`) copy = { title: '网站分类', description: `按用途、模型和技术探索 ${websiteEntries(catalog).length} 个网站案例与 ${websiteViews(catalog).length} 个分类。` };
+    else if (path === `${hub}/image` || path === `${hub}/video`) { const kind = path.endsWith('/video') ? 'video' : 'image'; copy = { title: `${kind === 'image' ? '图片' : '视频'}提示词`, description: `按模型、任务和风格浏览 ${promptCount('zh-CN', catalog.prompts.filter(item => item.kind === kind).length)}，阅读完整正文与来源署名。` }; }
+    else if (path === `${hub}/models`) copy = { title: 'AI 模型系列与提示词', description: '浏览模型系列及其版本，探索每个模型的提示词。' };
+    else if (path === `${hub}/creators`) copy = { title: '提示词创作者', description: '发现提示词库中的创作者，访问其公开主页。' };
+    else if (path === `/${catalog.locale}/blog`) copy = { title: '笔记', description: '提示词库发布的文章与笔记，保留原始来源署名。' };
+    else copy = { title: '图片与视频提示词', description: `按模型、任务和风格探索 ${promptCount('zh-CN', catalog.prompts.length)}，阅读原始指令、查看结果并访问来源。` };
+  }
+  const resolvedTitle = !visual && seo?.title ? seo.title : `${copy.title} · ${text(interfaceLocale(catalog), 'Prompt Library', '提示词库')}`;
   const description = seo?.description || copy.description;
   const robots = path === `/${catalog.locale}/prompts/website` ? 'noindex,nofollow' : surface?.robots ?? seo?.robots;
   return {

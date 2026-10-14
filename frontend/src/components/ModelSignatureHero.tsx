@@ -1,4 +1,6 @@
 "use client";
+import { interfaceLocale, uiText, text } from '@/lib/i18n/text';
+import type { Locale } from '@/lib/catalog/types';
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { Catalog, Ref } from "@/lib/catalog/types";
@@ -8,13 +10,14 @@ import "@/styles/model-signature.css";
 export function ModelSignatureHero({ catalog, model, members, children }: {
   catalog: Catalog; model: Ref; members?: Ref[]; children: ReactNode;
 }) {
-  return <CollectionSignatureHero items={catalog.prompts.map(prompt => ({id:prompt.id,title:prompt.title,src:prompt.img}))} locale={catalog.locale} title={model.label} label={`${model.label} prompts`} line1={`${catalog.prompts.length} ${catalog.prompts.length === 1 ? 'prompt' : 'prompts'}${catalog.prompts.length ? ' to build on' : ''}`} line2={catalog.prompts.length ? 'Pick one. Make it yours.' : 'Explore another model.'} members={members}>{children}</CollectionSignatureHero>;
+  const uiLocale = interfaceLocale(catalog);
+  return <CollectionSignatureHero uiLocale={uiLocale} items={catalog.prompts.map(prompt => ({id:prompt.id,title:prompt.title,src:prompt.img}))} locale={catalog.locale} title={model.label} label={text(uiLocale, `${model.label} prompts`, `${model.label}提示词`)} line1={text(uiLocale, `${catalog.prompts.length} ${catalog.prompts.length === 1 ? 'prompt' : 'prompts'}${catalog.prompts.length ? ' to build on' : ''}`, `${catalog.prompts.length} 条提示词${catalog.prompts.length ? '，为创作打底' : ''}`)} line2={catalog.prompts.length ? text(uiLocale, 'Pick one. Make it yours.', '选一条，创作你的版本。') : text(uiLocale, 'Explore another model.', '探索其他模型。')} members={members}>{children}</CollectionSignatureHero>;
 }
 
 export interface SignatureItem { id: string; title: string; src: string | null }
-export function CollectionSignatureHero({ items, locale, title, label, line1, line2, members, children }: {
+export function CollectionSignatureHero({ items, locale, title, label, line1, line2, members, children , uiLocale = 'en'}: {
   items: SignatureItem[]; locale: string; title: string; label: string; line1: string; line2: string; members?: Ref[]; children: ReactNode;
-}) {
+ uiLocale?: Locale }) {
   const wall = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
   const lanes = useMemo(() => {
@@ -54,8 +57,8 @@ export function CollectionSignatureHero({ items, locale, title, label, line1, li
         </div>
       </div>
       {children}
-      {!!members?.length && <nav className="msh-versions model-versions" aria-label="Model versions">{members.map(member => <a href={member.href} key={member.id}>{member.label}</a>)}</nav>}
+      {!!members?.length && <nav className="msh-versions model-versions" aria-label={uiText(uiLocale, "Model versions")}>{members.map(member => <a href={member.href} key={member.id}>{member.label}</a>)}</nav>}
     </div>
-    {!!items.length && <button className="msh-motion" type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? "Resume background motion" : "Pause background motion"}</button>}
+    {!!items.length && <button className="msh-motion" type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? uiText(uiLocale, "Resume background motion") : uiText(uiLocale, "Pause background motion")}</button>}
   </section>;
 }

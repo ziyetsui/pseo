@@ -57,12 +57,20 @@ if (mode === 'git-beta') {
   await verifyGitBetaAssets(out, previews);
   revision = gitBetaRevision(revision, combined, previews);
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
-  gitBeta.publishedWebsiteViews = readWebsiteViews(parse(await readFile(path.join(out, 'zh-CN/prompts/website.html'),'utf8')));
-  const index=readLibraryIndex(parse(await readFile(path.join(out,'zh-CN/prompts/library-index.html'),'utf8')),revision);
-  const bytes=JSON.stringify(index,null,2)+'\n';
-  await writeFile(path.join(out,'library-index.json'),bytes);
-  gitBeta.publishedNavigation=[{id:'navigation:library-index',href:'/zh-CN/prompts/library-index'}];
-  gitBeta.navigationIndex={path:'/library-index.json',sha256:indexHash(bytes),routes:index.routes.length};
+  const localeReceipts=[];
+  for(const locale of ['zh-CN','en']){
+    const localHref=href=>href.replace(/^\/zh-CN(?=\/)/,`/${locale}`);
+    const local={locale,publishedPrompts:gitBeta.publishedPrompts.map(item=>({...item,href:localHref(item.href)})),publishedWebsites:gitBeta.publishedWebsites.map(item=>({...item,href:localHref(item.href)}))};
+    local.publishedWebsiteViews=readWebsiteViews(parse(await readFile(path.join(out,`${locale}/prompts/website.html`),'utf8')));
+    const index=readLibraryIndex(parse(await readFile(path.join(out,`${locale}/prompts/library-index.html`),'utf8')),revision,locale);
+    const bytes=JSON.stringify(index,null,2)+'\n',indexPath=locale==='zh-CN'?'/library-index.json':'/en/library-index.json';
+    await writeFile(path.join(out,indexPath),bytes);
+    local.publishedNavigation=[{id:'navigation:library-index',href:`/${locale}/prompts/library-index`}];
+    local.navigationIndex={path:indexPath,sha256:indexHash(bytes),routes:index.routes.length};
+    localeReceipts.push(local);
+  }
+  Object.assign(gitBeta,localeReceipts[0]);
+  gitBeta.locales=localeReceipts;
 }
 if (mode !== 'public-api') {
   await writeFile(path.join(out, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n');

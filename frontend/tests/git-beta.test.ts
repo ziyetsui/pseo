@@ -35,7 +35,7 @@ describe('authorized Git beta publication', () => {
   it('uses a deterministic Git revision and never enables an unprovided locale or implicit fallback', () => {
     expect(catalog().revision).toBe(catalog().revision);
     expect(catalog().revision).toMatch(/^sha256:[a-f0-9]{64}$/);
-    expect(() => createGitBetaCatalog('en')).toThrow();
+    expect(createGitBetaCatalog('en').prompts.map(prompt=>prompt.id)).toEqual(catalog().prompts.map(prompt=>prompt.id));
     expect(dataMode({ FRONTEND_DATA_MODE: 'git-beta' })).toBe('git-beta');
     expect(() => dataMode({})).toThrow();
   });

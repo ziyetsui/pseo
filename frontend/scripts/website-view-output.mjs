@@ -1,4 +1,3 @@
-const root = '/zh-CN/prompts/website';
 /** Independent export-side projection of the already-published baseline relationships. */
 export function websiteValidationGraph(graph, baseline, taxonomies) {
   const nodes = [...graph.nodes], edges = [...graph.edges];
@@ -34,7 +33,8 @@ export function readWebsiteViews(document) {
     count: Number(link.getAttribute('data-view-count')),
   }));
 }
-export function verifyWebsiteViewOutput(documents, receipt, graph) {
+export function verifyWebsiteViewOutput(documents, receipt, graph, locale='zh-CN') {
+  const root = `/${locale}/prompts/website`;
   const directory = documents.get(root), views = receipt.publishedWebsiteViews;
   if (!directory || directory.querySelectorAll('[data-website-case]').length) throw new Error('Website entry must be a view directory');
   const renderedViews = readWebsiteViews(directory);

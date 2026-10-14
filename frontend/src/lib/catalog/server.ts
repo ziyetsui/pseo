@@ -21,6 +21,7 @@ export const loadCatalog = cache(async (locale: Locale = "zh-CN"): Promise<Catal
 });
 
 export const availableLocales = cache(async (): Promise<Locale[]> => {
+  if (dataMode() === "git-beta") return ["zh-CN","en"];
   if (dataMode() !== "public-api") return ["zh-CN"];
   const { url, expectedRevision } = publicDataConfig();
   const response = await new PublicApiClient(url, { expectedRevision, cache: "force-cache" }).get("/api/v1/locales", {}, {});

@@ -1,3 +1,4 @@
+import { interfaceLocale, uiText, promptCount } from '@/lib/i18n/text';
 import { PromptMedia } from "@/components/PromptMedia";
 import { styleHref, taskHref } from "@/lib/catalog/query";
 import type { Catalog, Prompt, Ref } from "@/lib/catalog/types";
@@ -9,6 +10,7 @@ const axes = [
 ] as const;
 
 export function ModelRelatedTopics({ catalog, prompts }: { catalog: Catalog; prompts: Prompt[] }) {
+  const uiLocale = interfaceLocale(catalog);
   const rows = [...new Map(prompts.map(prompt => [prompt.id, prompt])).values()];
   const allRows = [...new Map(catalog.prompts.map(prompt => [prompt.id, prompt])).values()];
   const topics = axes.flatMap(({ field, label }) => {
@@ -30,17 +32,17 @@ export function ModelRelatedTopics({ catalog, prompts }: { catalog: Catalog; pro
   if (!topics.length) return null;
   const usedPreviews = new Set<string>();
   return <section className="sec model-related-topics" id="related-topics" aria-labelledby="model-related-topics-title">
-    <div className="sec-head"><h2 id="model-related-topics-title">Related topics</h2></div>
+    <div className="sec-head"><h2 id="model-related-topics-title">{uiText(uiLocale, "Related topics")}</h2></div>
     <ul className="model-topic-row">{topics.map(topic => {
       const preview = topic.previews.find(prompt => !usedPreviews.has(prompt.img!)) ?? topic.previews[0]!;
       usedPreviews.add(preview.img!);
       // A navigation card uses the real cover, without nesting video controls inside its link.
       const thumbnail = { ...preview, media: preview.media.filter(media => media.kind === "image") };
       return <li key={topic.key}><a className="model-topic-card" href={topic.href}>
-        <span className="model-topic-cover"><PromptMedia prompt={thumbnail} width={320} height={200} /></span>
-        <span className="model-topic-body"><span className="model-topic-axis">{topic.label}</span>
+        <span className="model-topic-cover"><PromptMedia uiLocale={uiLocale} prompt={thumbnail} width={320} height={200} /></span>
+        <span className="model-topic-body"><span className="model-topic-axis">{uiText(uiLocale, topic.label)}</span>
           <h3 lang={catalog.locale}>{topic.ref.label}</h3>
-          <span className="model-topic-count">{topic.count} {topic.count === 1 ? "prompt" : "prompts"}</span>
+          <span className="model-topic-count">{promptCount(uiLocale, topic.count)}</span>
         </span>
       </a></li>;
     })}</ul>
