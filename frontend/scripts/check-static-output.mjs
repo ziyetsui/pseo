@@ -55,6 +55,12 @@ if (manifest.mode !== 'public-api') {
   if (!(await readFile(path.join(root, '_headers'), 'utf8')).includes('X-Robots-Tag: noindex')) throw new Error('Missing preview response noindex');
   if (!(await readFile(path.join(root, 'robots.txt'), 'utf8')).includes('Disallow: /')) throw new Error('Fixture crawl access is not blocked');
   if (manifest.mode === 'git-beta') {
+    // Presentation titles must follow the English route; raw prompt/source blocks are separate.
+    for (const [route, document] of documents) if (route.startsWith('/en/prompts')) {
+      for (const node of document.querySelectorAll('.run .u, .allof a, .toc .t, .lop .t, [data-case-title]')) {
+        if (/[\u3400-\u9fff]/u.test(node.text)) throw new Error(`Mixed-language case title at ${route}: ${node.text}`);
+      }
+    }
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
     const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
