@@ -1,0 +1,80 @@
+{
+  "sourceCommit": "0b78c664872775d7ac0232e3d5760cdce01e2d1b",
+  "pr": "https://github.com/ziyetsui/pseo/pull/2",
+  "deployments": [
+    {
+      "id": "6e8c752b-d67b-492c-b9bf-31e133dd4fbe",
+      "branch": "main"
+    },
+    {
+      "id": "f81c5386-290f-4359-a871-5c62292c6e2d",
+      "branch": "frontend-design",
+      "url": "https://f81c5386.pseo-internal-beta-preview.pages.dev"
+    }
+  ],
+  "smoke": {
+    "passed": true,
+    "rows": [
+      {
+        "path": "/zh-CN/prompts",
+        "status": 200,
+        "robots": "noindex, nofollow",
+        "websiteLink": true
+      },
+      {
+        "path": "/zh-CN/prompts/website",
+        "status": 200,
+        "robots": "noindex, nofollow",
+        "websiteHeading": true
+      },
+      {
+        "path": "/zh-CN/prompts/image",
+        "status": 200,
+        "robots": "noindex, nofollow"
+      },
+      {
+        "path": "/zh-CN/prompts/video",
+        "status": 200,
+        "robots": "noindex, nofollow"
+      },
+      {
+        "path": "/zh-CN/prompts/use-cases/beauty",
+        "status": 200,
+        "robots": "noindex, nofollow"
+      },
+      {
+        "path": "/zh-CN/prompts/not-a-real-website-case",
+        "status": 404,
+        "robots": "noindex, nofollow"
+      },
+      {
+        "path": "/frontend-build.json",
+        "status": 200,
+        "robots": "noindex, nofollow",
+        "receipt": {
+          "mode": "visual-fixture",
+          "revision": "sha256:73d488642d1168a16137b8ec48eb567e032d2393df24c343b26720d99d993948",
+          "feeds": [],
+          "publicPrompts": [],
+          "sourceMirrorSha": null,
+          "productionRelease": false
+        }
+      }
+    ]
+  },
+  "cms": {
+    "accepted": 0,
+    "public": 0,
+    "mirrorSynced": false,
+    "contentReleased": false
+  },
+  "tests": {
+    "frontend": 143,
+    "backend": 73,
+    "infra": 18,
+    "scripts": 21,
+    "localBrowserPassed": 11,
+    "localBrowserSkipped": 1,
+    "liveBrowserPassed": 4
+  }
+}
