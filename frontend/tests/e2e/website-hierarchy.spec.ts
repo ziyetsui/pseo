@@ -23,6 +23,8 @@ test('Findings, Anthology, Recipe and index preserve graph scope and navigation'
   await page.goto('/zh-CN/prompts/website/views/use-case/website-fun',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.prototype-task-findings .finding')).not.toHaveCount(0);
   await expect(page.locator('[data-website-case]')).toHaveCount(19);
+  const contrast=await page.locator('.website-view-tabs [aria-current=page]').evaluate(el=>{const css=getComputedStyle(el);return {text:css.color,background:css.backgroundColor};});
+  expect(contrast.text).not.toBe(contrast.background);
   await page.goto('/zh-CN/prompts/website/views/tool/three-js',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.model-signature')).toBeVisible();
   await expect(page.locator('.toc li')).toHaveCount(36);
