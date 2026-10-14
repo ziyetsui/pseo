@@ -370,3 +370,8 @@
 :where(.prototype-magnetic) [data-elevated] {
   box-shadow: 0 0 0 1px rgb(255 255 255 / .09);
 }
+
+/* Keep the title field compact until the reader asks for more. */
+:where(.prototype-magnetic) .title-window{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
+:where(.prototype-magnetic) .title-window .meta{margin:0}
+:where(.prototype-magnetic) .title-window .btn{min-height:44px;padding:0 20px}

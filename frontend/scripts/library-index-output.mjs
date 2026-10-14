@@ -18,10 +18,12 @@ export function indexHash(bytes){return `sha256:${createHash('sha256').update(by
 export function verifyLibraryIndex(documents,index,receipt,locale='zh-CN'){
   for(const href of index.routes)if(!documents.has(href))throw new Error('Library index route missing from export');
   for(const entry of [...receipt.publishedPrompts,...receipt.publishedWebsites,...receipt.publishedWebsiteViews])if(!index.routes.includes(entry.href))throw new Error('Published object missing from Library index');
+  for(const view of receipt.publishedWebsiteViews)if(!index.groups.some(group=>group.entries.some(entry=>entry.href===view.href)))throw new Error('Website view missing from Library index navigation');
   for(const [href,document] of documents){
     if(!href.startsWith(`/${locale}/prompts`))continue;
     const links=new Set(document.querySelectorAll('footer a[href]').map(link=>link.getAttribute('href')));
-    for(const view of receipt.publishedWebsiteViews)if(!links.has(view.href))throw new Error(`Website Footer view missing: ${href} ${view.href}`);
+    if(receipt.publishedWebsiteViews.length && !links.has(`/${locale}/prompts/website`))throw new Error(`Website Footer directory missing: ${href}`);
+    if(document.querySelectorAll('footer .footnav a').length>7)throw new Error('Footer navigation exceeds compact limit');
     if(!links.has(`/${locale}/prompts/library-index`))throw new Error('Library index Footer link missing');
   }
 }

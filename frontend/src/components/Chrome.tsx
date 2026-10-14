@@ -2,6 +2,7 @@ import { interfaceLocale, uiText, text } from '@/lib/i18n/text';
 import { LanguageSwitch } from './LanguageSwitch';
 import type { Catalog, Locale } from '@/lib/catalog/types';
 import { footerNavigation } from '@/site/navigation';
+import '@/styles/footer.css';
 
 type Level = 'hub' | 'deck' | 'model' | 'prompt';
 export function SiteHeader({ level, locale, contentType, sectionNavigation = 'local', currentHref, bilingual = false }: { level: Level; locale: Locale; contentType?: 'image' | 'video' | 'website'; sectionNavigation?: 'local' | 'library'; currentHref?: string; bilingual?: boolean }) {
