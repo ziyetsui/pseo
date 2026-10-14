@@ -18,7 +18,7 @@ const footer = (source: Catalog) => parse(renderToStaticMarkup(<SiteFooter catal
 const links = (source: Catalog) => footer(source).querySelectorAll('a').map(link => [link.text, link.getAttribute('href')]);
 
 describe('footer populated destinations', () => {
-  it('ignores stale counts, retains text-only relationships, and matches IDs or slugs without prefix guesses', () => {
+  it('keeps the footer compact even with populated text-only taxonomies', () => {
     const beauty = ref('beauty', 'Beauty', 0), emptyTask = ref('fashion', 'Fashion');
     const cinematic = ref('cinematic', 'Cinematic', 0), emptyStyle = ref('luxury', 'Luxury');
     const portrait = ref('portrait', 'Person / portrait', 0), emptySubject = ref('vehicle', 'Vehicle');
@@ -27,20 +27,16 @@ describe('footer populated destinations', () => {
       prompts: [prompt({ useCases: [{ ...beauty, slug: 'changed' }, ref('fashion-other')], styles: [{ ...cinematic, id: 'changed' }], subjects: [portrait] })],
     });
     expect(links(source)).toEqual([
-      ['Beauty prompts', '/zh-CN/prompts/use-cases/beauty'],
-      ['Cinematic prompts', '/zh-CN/prompts/styles/cinematic'],
-      ['Person / portrait prompts', '/zh-CN/prompts/subjects/portrait'],
       ['All prompts', '/zh-CN/prompts'],
     ]);
     expect(footer(source).querySelector('img')).toBeNull();
   });
 
-  it('groups model families once, includes populated zero-count versions, and drops empty models', () => {
+  it('includes the model directory when a populated family exists', () => {
     const base = ref('nano-banana', 'Nano Banana', 0), pro = ref('nano-banana-pro', 'Nano Banana Pro', 0);
     const one = prompt({ models: [base, pro] });
     const source = catalog({ models: [ref('sora', 'Sora'), pro, base], prompts: [one, one] });
     expect(links(source)).toEqual([
-      ['Nano Banana prompts', '/zh-CN/prompts/model-families/nano-banana'],
       ['All prompts', '/zh-CN/prompts'], ['All models', '/zh-CN/prompts/models'],
     ]);
   });
@@ -52,10 +48,10 @@ describe('footer populated destinations', () => {
 
   it('includes media destinations based on prompt kind even without a preview', () => {
     expect(links(catalog({ prompts: [prompt({ kind: 'video' })] }))).toEqual([
-      ['Video prompts', '/zh-CN/prompts/video'], ['All prompts', '/zh-CN/prompts'],
+      ['All prompts', '/zh-CN/prompts'], ['Video prompts', '/zh-CN/prompts/video'],
     ]);
     expect(links(catalog({ prompts: [prompt({ kind: 'image' }), prompt({ kind: 'video' })] }))).toEqual([
-      ['Image prompts', '/zh-CN/prompts/image'], ['Video prompts', '/zh-CN/prompts/video'], ['All prompts', '/zh-CN/prompts'],
+      ['All prompts', '/zh-CN/prompts'], ['Image prompts', '/zh-CN/prompts/image'], ['Video prompts', '/zh-CN/prompts/video'],
     ]);
   });
 
@@ -80,11 +76,9 @@ describe('footer populated destinations', () => {
     expect(footer(source).querySelector('.footlegal')).not.toBeNull();
   });
 
-  it('preserves the fixture label and ordering conventions while filtering empty links', () => {
+  it('keeps fixture footers compact without enumerating tasks', () => {
     const beauty = ref('beauty', 'Beauty'), fashion = ref('fashion', 'Fashion'), web = ref('web-motion', 'Web & motion design');
     const source = catalog({ mode: 'visual-fixture', useCases: [web, beauty, fashion, ref('automotive', 'Automotive')], prompts: [prompt({ useCases: [beauty, web, fashion] })] });
-    expect(links(source).slice(0, 3)).toEqual([
-      ['Fashion prompts', '/zh-CN/prompts/use-cases/fashion'], ['Beauty prompts', '/zh-CN/prompts/use-cases/beauty'], ['Web & motion prompts', '/zh-CN/prompts/use-cases/web-motion'],
-    ]);
+    expect(links(source)).toEqual([['All prompts', '/zh-CN/prompts']]);
   });
 });

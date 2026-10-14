@@ -1490,3 +1490,6 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 2026-10-14 用户追加授权：重新检索公开网站提示词并加入 beta 的 Website 分类；本轮 Git beta 补充范围、逐条来源复核、contract blocked 排除及验收见 `docs/superpowers/specs/2026-10-14-website-prompt-supplement.md`。保留最新 Website 分层与导航索引，不扩大 CMS/public-api 权限，不写 content/**。
 
 2026-10-14 双语提示词库：同一版本内容投影到zh-CN/en真实路径，集中界面字典和语言URL转换；不通过DOM覆盖翻译。正文保持原文，双语目录与回执分别校验，测试站继续noindex。详见配套双语设计与验收。
+
+
+2026-10-14 用户追加裁定：全站 Footer 收敛为 Browse/Explore（浏览/探索）两组主要入口，最多7条导航；完整语义分类保留在 Library index。Website Deck/Findings/Anthology/详情复用既有变量高亮规则，包括带空格的大写方括号变量；保留中英文切换、原文语言标记和提示词原文。

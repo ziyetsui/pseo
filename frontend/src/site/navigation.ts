@@ -18,7 +18,7 @@ function ordered(values:Ref[],order:string[]) {
   const ranks=new Map(order.map((label,index)=>[label.toLowerCase(),index]));
   return [...values].sort((a,b)=>(ranks.get((a.sourceLabel ?? a.label).toLowerCase())??100)-(ranks.get((b.sourceLabel ?? b.label).toLowerCase())??100));
 }
-export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'prompt'='hub'):NavigationGroup[] {
+export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'prompt'='hub'):NavigationGroup[] {
   const uiLocale=interfaceLocale(catalog);
   const hub=`/${catalog.locale}/prompts`,models=modelFamilies(catalog).filter(model=>model.count>0);
   const populated=(values:Ref[],axis:'useCases'|'styles'|'subjects')=>values.map(ref=>({...ref,count:new Set(catalog.prompts.filter(prompt=>prompt[axis].some(term=>term.id===ref.id||term.slug===ref.slug)).map(prompt=>prompt.id)).size})).filter(ref=>ref.count>0);
@@ -48,8 +48,15 @@ export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pro
   groups.push({id:'browse',title:text(interfaceLocale(catalog), 'Browse', '浏览'),entries:browse});
   return groups.filter(group=>group.entries.length);
 }
+export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'prompt'='hub'):NavigationGroup[] {
+  const locale=interfaceLocale(catalog),browse=libraryNavigation(catalog,level).find(group=>group.id==='browse')?.entries ?? [];
+  return [
+    {id:'browse',title:text(locale,'Browse','浏览'),entries:['all','images','videos','website'].flatMap(id=>browse.filter(entry=>entry.id===id))},
+    {id:'explore',title:text(locale,'Explore','探索'),entries:['all-models','all-creators','index'].flatMap(id=>browse.filter(entry=>entry.id===id))},
+  ].filter(group=>group.entries.length);
+}
 export function libraryIndex(catalog:Catalog) {
-  const groups=footerNavigation(catalog),promptEntry=(prompt:Catalog['prompts'][number]):NavigationEntry=>({id:prompt.id,label:prompt.title,href:prompt.href,kind:'prompt'});
+  const groups=libraryNavigation(catalog),promptEntry=(prompt:Catalog['prompts'][number]):NavigationEntry=>({id:prompt.id,label:prompt.title,href:prompt.href,kind:'prompt'});
   const collections:NavigationGroup[]=[
     {id:'image-details',title:text(interfaceLocale(catalog), 'Image prompts', '图片提示词'),entries:catalog.prompts.filter(prompt=>prompt.kind==='image').map(promptEntry)},
     {id:'video-details',title:text(interfaceLocale(catalog), 'Video prompts', '视频提示词'),entries:catalog.prompts.filter(prompt=>prompt.kind==='video').map(promptEntry)},

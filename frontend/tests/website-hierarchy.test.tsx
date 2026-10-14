@@ -29,9 +29,10 @@ describe('Website prototype levels and navigation', () => {
     expect(root.querySelectorAll('.step .num').map(el => el.text)).toEqual(['01','02','03','04']);
     expect(root.querySelector('[data-generation-cta]')).toBeNull();
   });
-  it('includes every populated Website view in Footer IA and exports a Library index route', () => {
+  it('keeps Website views in the directory and links to the complete Library index from the footer', () => {
     const root = html(<SiteFooter catalog={catalog} />), links = new Set(root.querySelectorAll('a').map(el=>el.getAttribute('href')));
-    for (const view of views) expect(links.has(view.href)).toBe(true);
+    expect(links.has('/zh-CN/prompts/website')).toBe(true);
+    expect(links.size).toBeLessThanOrEqual(8);
     expect(links.has('/zh-CN/prompts/library-index')).toBe(true);
     expect(catalogPaths(catalog)).toContain('/zh-CN/prompts/library-index');
   });
