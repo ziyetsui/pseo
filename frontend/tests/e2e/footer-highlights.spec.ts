@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import graph from '../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
+import graph from '../../../docs/intake/2026-10-14-website-supplement/combined-graph.json' with {type:'json'};
 const prompt=graph.nodes.find(n=>'prompt' in n&&typeof n.prompt==='string'&&n.prompt.startsWith('Build a modern, responsive landing page for [PRODUCT NAME].'))!;
 test('footer stays compact and variable highlights remain visible in both libraries',async({page},testInfo)=>{
  await page.goto('/zh-CN/prompts/image',{waitUntil:'domcontentloaded'});
