@@ -117,3 +117,6 @@ grep -rn "<name>" src | grep -v tests    # 为空即是死 API
 ### 7.5 并发写入同一棵树
 
 多个会话同时工作时：动别人正在改的文件前先 `git status`；发现同名文件出现自己没写过的中间态（孤儿 import、半截重构），先问，不要直接改；报告文件数量时说明统计范围（整仓 / 单个子目录），范围不同会让风险判断差一倍以上。
+
+
+2026-10-14 用户明确授权例外：已整理的600条来源允许经 Git 直接发布到 beta.ancher.site，合同见 `docs/superpowers/specs/2026-10-14-git-beta-publication-design.md` 与配套验收。新增显式 git-beta 模式；此范围可跳过 CMS，但不伪造 CMS/rights approval、不写 content/** mirror，保留 noindex。既有 public-api/CMS 合同继续有效。
