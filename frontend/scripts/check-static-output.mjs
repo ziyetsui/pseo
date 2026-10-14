@@ -47,7 +47,7 @@ if (manifest.mode !== 'public-api') {
   if (manifest.mode === 'git-beta') {
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
-    const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14/graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
+    const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
     verifyWebsiteViewOutput(documents, receipt, viewGraph);
     const index=readLibraryIndex(documents.get('/zh-CN/prompts/library-index'),manifest.revision),indexBytes=await readFile(path.join(root,'library-index.json'),'utf8');
     if(indexHash(indexBytes)!==receipt.navigationIndex?.sha256||JSON.stringify(JSON.parse(indexBytes))!==JSON.stringify(index))throw new Error('Library index receipt or HTML mismatch');

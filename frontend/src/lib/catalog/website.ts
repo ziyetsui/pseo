@@ -19,7 +19,8 @@ export function websiteRef(catalog: Catalog): Ref {
 export function websiteEntries(catalog: Catalog): WebsiteCase[] {
   const cases = catalog.websites ?? [];
   const ids = new Set(cases.map(item => item.id));
-  return [...cases, ...websitePrompts(catalog).filter(prompt => !ids.has(prompt.id)).map(prompt => ({
+  const linkedPrompts = new Set(cases.map(item => item.promptHref).filter(Boolean));
+  return [...cases, ...websitePrompts(catalog).filter(prompt => !ids.has(prompt.id) && !linkedPrompts.has(prompt.href)).map(prompt => ({
     id: prompt.id, slug: prompt.slug, href: prompt.href, title: prompt.title, summary: prompt.summary,
     cover: prompt.img ?? '', attribution: prompt.handle, source: prompt.source, models: prompt.models,
     useCases: prompt.useCases, tools: [], demoUrl: null, codeUrl: null, promptHref: prompt.href, relatedSources: [],

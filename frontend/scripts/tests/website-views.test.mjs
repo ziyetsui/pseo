@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { parse } from 'node-html-parser';
-import { readWebsiteViews, verifyWebsiteViewOutput } from '../website-view-output.mjs';
+import { readWebsiteViews, verifyWebsiteViewOutput, websiteValidationGraph } from '../website-view-output.mjs';
 
 function sample() {
   const root='/zh-CN/prompts/website';
@@ -36,4 +36,21 @@ test('rejects unrelated baseline membership even when HTML and receipt counts ag
 test('rejects a view whose target is absent from the graph',()=>{
   const x=sample();x.graph.nodes=x.graph.nodes.filter(node=>node.id!=='t');
   assert.throws(()=>verifyWebsiteViewOutput(x.documents,x.receipt,x.graph));
+});
+
+test('recovered prompt aliases share an existing case identity in independent Website membership', () => {
+  const graph = {nodes:[
+    {id:'case',type:'website-case'},{id:'prompt',type:'prompt',promptOnly:true},
+    {id:'source',type:'source'},{id:'website',type:'use-case',slug:'website'},
+  ],edges:[
+    {from:'case',to:'source',type:'sourced_from'},{from:'prompt',to:'source',type:'sourced_from'},
+    {from:'case',to:'website',type:'used_for'},{from:'prompt',to:'website',type:'used_for'},
+  ]};
+  assert.deepEqual(websiteValidationGraph(graph,[],[]).websiteIds,['case']);
+});
+
+
+test('retains distinct prompts from the same original case source', () => {
+ const graph={nodes:[{id:'case',type:'website-case'},{id:'first',type:'prompt',promptOnly:true},{id:'second',type:'prompt',promptOnly:true},{id:'source',type:'source'},{id:'website',type:'use-case',slug:'website'}],edges:['case','first','second'].flatMap(from=>[{from,to:'source',type:'sourced_from'},{from,to:'website',type:'used_for'}])};
+ assert.deepEqual(websiteValidationGraph(graph,[],[]).websiteIds,['case','second']);
 });

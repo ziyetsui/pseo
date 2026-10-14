@@ -4,6 +4,12 @@ export function websiteValidationGraph(graph, baseline, taxonomies) {
   const nodes = [...graph.nodes], edges = [...graph.edges];
   const websiteTasks = new Set(['website','web-design','web-development','web-motion-design']);
   const websiteIds = new Set(edges.filter(edge => edge.type === 'used_for' && nodes.some(node => node.id === edge.to && node.slug === 'website')).map(edge => edge.from));
+  const sourceFor = id => edges.find(edge => edge.from === id && edge.type === 'sourced_from')?.to;
+  const caseSources = new Set(nodes.filter(node => node.type === 'website-case' && websiteIds.has(node.id)).map(node => sourceFor(node.id)));
+  for (const source of caseSources) {
+    const alias = nodes.find(node => node.promptOnly && sourceFor(node.id) === source);
+    if (alias) websiteIds.delete(alias.id);
+  }
   const resolve = (axis,label) => {
     const term = taxonomies.find(term => term.axis === axis && [term.label,term.labelZh,...term.aliases].some(alias => alias?.toLowerCase() === label.toLowerCase()));
     const slug = term?.slug ?? label.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]+/gu,'-').replace(/^-|-$/gu,'');

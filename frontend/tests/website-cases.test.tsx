@@ -13,9 +13,9 @@ describe('real website cases', () => {
     expect(html.querySelectorAll('[data-website-case]')).toHaveLength(0);
     expect(html.querySelectorAll('a[data-website-view]').length).toBeGreaterThan(3);
   });
-  it('server-renders all 60 cases with credited source links and local previews', () => {
+  it('server-renders all entries with real previews and honest missing-preview states', () => {
     const html = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={websiteViews(catalog)[0]!} />));
-    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(60);
+    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(225);
     expect(html.querySelectorAll('[data-website-case] img')).toHaveLength(60);
     expect(html.querySelector('h1')?.text).toBe('All website cases');
   });

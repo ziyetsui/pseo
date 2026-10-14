@@ -7,15 +7,15 @@ test('Deck buttons and keyboard select one active project with bounded controls'
   await expect(next).toBeEnabled();await expect(previous).toBeDisabled();
   await expect(deck.locator('.dc:not([inert])')).toHaveCount(1);
   const first=await deck.locator('[data-top] h3').textContent();
-  await next.click();await expect(page.locator('.dkpos')).toHaveText('2 of 60');
+  await next.click();await expect(page.locator('.dkpos')).toHaveText('2 of 225');
   expect(await deck.locator('[data-top] h3').textContent()).not.toBe(first);
   await deck.focus();await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('.dkpos')).toHaveText('1 of 60');
+  await expect(page.locator('.dkpos')).toHaveText('1 of 225');
   await page.keyboard.press('ArrowLeft');await expect(previous).toBeDisabled();
-  await expect(page.locator('.website-title-index a')).toHaveCount(60);
+  await expect(page.locator('.website-title-index a')).toHaveCount(225);
   await deck.focus();
-  for(let index=0;index<60;index++)await page.keyboard.press('ArrowRight');
-  await expect(page.locator('.dkpos')).toHaveText('60 of 60');await expect(next).toBeDisabled();
+  for(let index=0;index<225;index++)await page.keyboard.press('ArrowRight');
+  await expect(page.locator('.dkpos')).toHaveText('225 of 225');await expect(next).toBeDisabled();
   await expect(deck.locator('.dc:not([inert])')).toHaveCount(1);
 });
 
@@ -38,7 +38,7 @@ test('Findings, Anthology, Recipe and index preserve graph scope and navigation'
   await expect(page.locator('h1')).toHaveText('Library index');
   await expect(page.locator('details')).toHaveCount(4);
   const index=await(await request.get('/library-index.json')).json();
-  expect(index.collections.reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(616);
+  expect(index.collections.reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(953);
   expect(index.groups.filter((group:{id:string})=>group.id.startsWith('website-')).reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(29);
 });
 

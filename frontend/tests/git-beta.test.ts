@@ -18,10 +18,10 @@ describe('authorized Git beta publication', () => {
   it('gives every website project a separate case page without inventing missing prompts', () => {
     const c = catalog();
     expect(c.websites).toHaveLength(59);
-    expect(c.websites?.filter(w => w.promptHref)).toHaveLength(1);
-    expect(c.websites?.filter(w => !w.promptHref)).toHaveLength(58);
+    expect(c.websites?.filter(w => w.promptHref)).toHaveLength(8);
+    expect(c.websites?.filter(w => !w.promptHref)).toHaveLength(51);
     expect(c.websites?.every(w => w.cover && w.source.url && catalogPaths(c).includes(w.href))).toBe(true);
-    expect(websiteRef(c).count).toBe(60);
+    expect(websiteRef(c).count).toBe(225);
     expect(new Set(c.websites?.map(w => w.id)).size).toBe(59);
   });
   it('preserves all 13 image categories and keeps attribution evidence distinct from X handles', () => {

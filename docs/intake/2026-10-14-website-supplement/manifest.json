@@ -1,0 +1,22 @@
+{
+  "websitesProcessed": 173,
+  "imagesProcessed": 0,
+  "duplicates": 0,
+  "conflicts": 9,
+  "categoryMappings": [],
+  "state": "proposal_ready",
+  "cmsAccepted": 0,
+  "public": 0,
+  "mirrorSynced": false,
+  "deployed": false,
+  "observedAt": "2026-10-14T09:54:59.384Z",
+  "nodes": 440,
+  "edges": 873,
+  "proposals": 172,
+  "rawRecords": 173,
+  "duplicateRecords": 0,
+  "combinedSha256": "403ab5e861710bcdcf99d540a6cf5bcd3ebb9bb660dc8012d56365d02920560b",
+  "originalGraphSha256": "f232c14c97b81b3a24b6c592495c9c398422bcf711634c89fb42a04b793ef5a3",
+  "blockedRecords": 1,
+  "sourceSha256": "32c78438573a0ebcfd96fc1c6211fbc35cf4c42bdc03ba7cad33332b5a0e39fd"
+}

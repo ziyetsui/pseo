@@ -1,4 +1,4 @@
-import graphInput from '../../../../docs/intake/2026-10-14/graph.json';
+import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
 import { gitBetaRevision } from './git-beta-revision';
@@ -89,6 +89,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   const websites: WebsiteCase[] = [];
   for (const node of nodes.values()) {
     const id = text(node.id);
+    if (node.promptOnly === true) continue;
     if (!['prompt', 'website-case'].includes(text(node.type)) || !linked(id, 'used_for').some(item => item.slug === 'website')) continue;
     const source = linked(id, 'sourced_from')[0]; if (!source) throw new Error('Website source required');
     const preview = object(previews[text(source.sourceId)]), cover = text(preview.src);
@@ -98,7 +99,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     websites.push({ id, slug, href: `/${locale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover,
       attribution: creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? 'Source', source: { url: safeUrl(source.url), platform: text(source.platform) },
       models: refs(id,'designed_for','model'), useCases: refs(id,'used_for','useCase'), tools: linked(id,'built_with').map(item => text(item.label)),
-      demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: prompts.find(prompt => prompt.id === id)?.href ?? null,
+      demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: (prompts.find(prompt => prompt.id === id) ?? prompts.find(prompt => linked(prompt.id,'sourced_from').some(ref => ref.id === source.id)))?.href ?? null,
       relatedSources: linked(id,'related_to').map(item => safeUrl(item.url)),
     });
   }
@@ -124,6 +125,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return { ...base, mode: 'git-beta', revision, observedAt: '2026-10-14T04:00:00.000Z', prompts, websites, websiteGraph,
+  return { ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
     models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] };
 }

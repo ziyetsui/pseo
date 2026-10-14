@@ -14,7 +14,7 @@ describe('shared Footer IA and complete Library index',()=>{
     for(const row of [...catalog.prompts,...websiteEntries(catalog),...websiteViews(catalog)])expect(index.routes).toContain(row.href);
     expect(new Set(index.routes).size).toBe(index.routes.length);
     expect(index.routes.every(href=>paths.has(href)&&!href.includes('?'))).toBe(true);
-    expect(index.collections.find(group=>group.id==='website-details')?.entries).toHaveLength(60);
+    expect(index.collections.find(group=>group.id==='website-details')?.entries).toHaveLength(225);
     expect(index.groups).toEqual(footerNavigation(catalog));
   });
   it('renders the exact machine-readable route index and escapes source titles safely',()=>{

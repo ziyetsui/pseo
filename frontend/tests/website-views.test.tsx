@@ -31,10 +31,10 @@ describe('Website graph projections', () => {
   });
   it('keeps every case reachable and counts the existing prompt with its genuine relationships', () => {
     const all = views.find(view => view.axis === 'all')!;
-    expect(websiteViewEntries(catalog,all)).toHaveLength(60);
+    expect(websiteViewEntries(catalog,all)).toHaveLength(225);
     const importedIds = new Set(catalog.websites?.map(entry => entry.id));
     const baseline = websiteEntries(catalog).filter(entry => !importedIds.has(entry.id));
-    expect(baseline).toHaveLength(1);
+    expect(baseline).toHaveLength(166);
     for (const entry of websiteEntries(catalog)) {
       const related = websiteViewsForCase(catalog,entry.id);
       expect(related.length).toBeGreaterThan(0);

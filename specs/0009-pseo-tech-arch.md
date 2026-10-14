@@ -1486,3 +1486,5 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 2026-10-14 Website views correction: root is a graph-view directory, with independent purpose/model/tool projections and explicit all-cases view. Contract: docs/superpowers/specs/2026-10-14-website-views-{design,acceptance}.md. Preserve semantic node/edge identity, stable case URLs, noindex and authorized Git-beta publication.
 
 2026-10-14 Website hierarchy/IA: align L2Deck, purposeL3Findings, model/toolL3Signature-Anthology and L4Recipe; Footer and Library index share graph-derived populated navigation. Contract: docs/superpowers/specs/2026-10-14-website-prototype-ia-{design,acceptance}.md. Preserve beta noindex and authorized Git publication.
+
+2026-10-14 用户追加授权：重新检索公开网站提示词并加入 beta 的 Website 分类；本轮 Git beta 补充范围、逐条来源复核、contract blocked 排除及验收见 `docs/superpowers/specs/2026-10-14-website-prompt-supplement.md`。保留最新 Website 分层与导航索引，不扩大 CMS/public-api 权限，不写 content/**。
