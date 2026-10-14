@@ -1,4 +1,5 @@
-import { WebsiteGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
+import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/components/WebsiteCases';
+import { websiteViewForPath } from '@/lib/catalog/website-views';
 import { websitePrompts, websiteRef } from '@/lib/catalog/website';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -59,6 +60,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
   if (path === `${hub}/website` && catalog.mode === "git-beta") return <WebsiteGallery catalog={catalog} />;
+  const websiteView = websiteViewForPath(catalog, path);
+  if (websiteView) return <WebsiteViewGallery catalog={catalog} view={websiteView} />;
   const websiteCase = catalog.websites?.find(item => item.href === path);
   if (websiteCase) return <WebsiteCaseDetail catalog={catalog} entry={websiteCase} />;
   if (path === `${hub}/website`) return <TaskFindings catalog={catalog} task={websiteRef(catalog)} prompts={websitePrompts(catalog)} aggregate />;

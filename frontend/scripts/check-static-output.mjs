@@ -1,4 +1,5 @@
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
+import { verifyWebsiteViewOutput } from './website-view-output.mjs';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse } from 'node-html-parser';
@@ -44,7 +45,8 @@ if (manifest.mode !== 'public-api') {
   if (manifest.mode === 'git-beta') {
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
-    const allowed = new Set([...receipt.publishedPrompts, ...receipt.publishedWebsites].map(item => item.href));
+    verifyWebsiteViewOutput(documents, receipt, JSON.parse(await readFile('../docs/intake/2026-10-14/graph.json','utf8')));
+    const allowed = new Set([...receipt.publishedPrompts, ...receipt.publishedWebsites, ...receipt.publishedWebsiteViews].map(item => item.href));
     for (const route of allowed) if (!allPaths.has(route)) throw new Error(`Git beta published route missing: ${route}`);
     for (const route of allPaths) {
       if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|website|models|creators)$/.test(route) && !allowed.has(route)) throw new Error(`Unlisted Git beta detail: ${route}`);

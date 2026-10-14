@@ -1,5 +1,6 @@
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
 import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
+import { readWebsiteViews } from './website-view-output.mjs';
 import { checkIntake } from '../../scripts/lib/case-import.mjs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -49,6 +50,7 @@ if (mode === 'git-beta') {
   await verifyGitBetaAssets(out, previews);
   revision = gitBetaRevision(revision, intake.graph, previews);
   gitBeta = gitBetaReceipt(intake.graph, intake.reviews, JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
+  gitBeta.publishedWebsiteViews = readWebsiteViews(parse(await readFile(path.join(out, 'zh-CN/prompts/website.html'),'utf8')));
 }
 if (mode !== 'public-api') {
   await writeFile(path.join(out, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n');
