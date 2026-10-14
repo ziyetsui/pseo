@@ -6,6 +6,7 @@ import { RecipeMedia } from "@/components/RecipeMedia";
 import { RecipeText } from "@/components/RecipeText";
 import { generationLabel } from "@/components/generation-label";
 import { isPromptCreator } from "@/lib/catalog/creator-match";
+import { websiteViewsForCase } from "@/lib/catalog/website-views";
 
 const number = (value: number | null) => value === null ? "—" : value.toLocaleString("en-US");
 
@@ -13,6 +14,7 @@ const number = (value: number | null) => value === null ? "—" : value.toLocale
 export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }) {
   const creator = catalog.creators.find((item) => isPromptCreator(prompt, item));
   const hasMedia = Boolean(prompt.img || prompt.media.length);
+  const websiteViews = websiteViewsForCase(catalog, prompt.id);
   const related = catalog.prompts.filter((item) => item.id !== prompt.id && item.models.some((ref) => prompt.models.some((own) => own.id === ref.id))).slice(0, 3);
 
   return <div className="prototype-recipe"><div className="v3">
@@ -57,6 +59,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
             {prompt.evidence.map((item, index) => <div className="kv" key={`${item.type}:${item.url}:${index}`}><span>Evidence · {item.type}</span>{item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">View evidence ↗</a> : <span>No public evidence link</span>}</div>)}
             {prompt.source.observedAt && <div className="kv"><span>Observed</span><time dateTime={prompt.source.observedAt}>{new Date(prompt.source.observedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" })}</time></div>}
             {prompt.useCases.length > 0 && <div className="kv"><span>Use case</span><span>{prompt.useCases.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>)}</span></div>}
+            {websiteViews.length > 0 && <div className="kv"><span>Related Website views</span><span>{websiteViews.map((view, index) => <span key={view.id}>{index > 0 && " · "}<Link href={view.href}>{view.label}</Link></span>)}</span></div>}
             {related.length > 0 && <div className="kv"><span>More with this model</span><span>{related.map((item, index) => <span key={item.id}>{index > 0 && " · "}<Link href={item.href}>{item.title}</Link></span>)}</span></div>}
           </div>
         </div>

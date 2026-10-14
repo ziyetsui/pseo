@@ -6,6 +6,7 @@ import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
 import { websiteEntries } from '@/lib/catalog/website';
 import { websiteViews, websiteViewForPath, websiteViewEntries, websiteViewsForCase } from '@/lib/catalog/website-views';
 import { WebsiteGallery, WebsiteViewGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
+import { Recipe } from '@/components/Recipe';
 import { catalogPaths } from '@/site/routes';
 import { siteMetadata } from '@/site/metadata';
 
@@ -40,6 +41,11 @@ describe('Website graph projections', () => {
       for (const view of related) expect(websiteViewEntries(catalog,view).map(item => item.id)).toContain(entry.id);
     }
     for (const entry of baseline) expect(websiteViewsForCase(catalog,entry.id).filter(view => view.axis === 'use-case').map(view => view.slug).sort()).toEqual(entry.useCases.filter(ref => ref.slug !== 'website').map(ref => ref.slug).sort());
+    for (const entry of baseline) {
+      const prompt = catalog.prompts.find(prompt => prompt.id === entry.id)!;
+      const detail = parse(renderToStaticMarkup(<Recipe catalog={catalog} prompt={prompt} />));
+      for (const view of websiteViewsForCase(catalog, entry.id)) expect(detail.querySelectorAll('a').some(link => link.getAttribute('href') === view.href)).toBe(true);
+    }
   });
   it('renders a directory, scoped case HTML and real related-view links', () => {
     const directory = parse(renderToStaticMarkup(<WebsiteGallery catalog={catalog} />));
