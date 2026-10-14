@@ -1,4 +1,6 @@
 "use client";
+import { uiText, text } from '@/lib/i18n/text';
+import type { Locale } from '@/lib/catalog/types';
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -28,7 +30,7 @@ function busy() {
     || !!document.querySelector('[data-peek],dialog[open]');
 }
 
-export function SignInGate() {
+export function SignInGate({ uiLocale = 'en' }: { uiLocale?: Locale } = {}) {
   const [message, setMessage] = useState<Message | null>(null);
   const showing = useRef(false);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -137,12 +139,12 @@ export function SignInGate() {
 
   if (!message) return null;
   if (message.mode === "nudge") return createPortal(
-    <aside className="weight-nudge" aria-label="Try these prompts">
+    <aside className="weight-nudge" aria-label={uiText(uiLocale, "Try these prompts")}>
       <button className="weight-nudge-open" type="button" onClick={() => {
         markIntentShown();
         setMessage({ ...message, mode: "dialog" });
-      }}><span className="weight-nudge-number">{num(message.chars)}</span><span>characters to make your own<span className="weight-nudge-action">Try a prompt ↗</span></span></button>
-      <button className="weight-nudge-close" type="button" aria-label="Dismiss prompt reminder" onClick={() => close()}>×</button>
+      }}><span className="weight-nudge-number">{num(message.chars)}</span><span>{uiText(uiLocale, "characters to make your own")}<span className="weight-nudge-action">{uiText(uiLocale, "Try a prompt ↗")}</span></span></button>
+      <button className="weight-nudge-close" type="button" aria-label={uiText(uiLocale, "Dismiss prompt reminder")} onClick={() => close()}>×</button>
     </aside>, document.body);
 
   return createPortal(
@@ -160,14 +162,14 @@ export function SignInGate() {
       <div className="sign-in-gate-scrim" aria-hidden="true" onClick={() => close()} />
       <div className="sign-in-gate-panel" tabIndex={-1} ref={panel}>
         <div className="sign-in-gate-figure" aria-hidden="true" style={{ ["--digits" as string]: String(num(message.chars).length) }}>{num(message.chars)}</div>
-        <p className="sign-in-gate-unit">{message.intent ? "Your prompt" : "Ready to explore"}</p>
-        <h2 className="sign-in-gate-sub" id="sign-in-gate-heading">{num(message.chars)} characters{message.words > 0 && <> · <b>{num(message.words)} words</b></>}.<br />Take the next step in bo.</h2>
+        <p className="sign-in-gate-unit">{message.intent ? uiText(uiLocale, "Your prompt") : uiText(uiLocale, "Ready to explore")}</p>
+        <h2 className="sign-in-gate-sub" id="sign-in-gate-heading">{num(message.chars)}{text(uiLocale, " characters", " 个字符")}{message.words > 0 && <> · <b>{num(message.words)}{text(uiLocale, " words", " 个词")}</b></>}.<br />{uiText(uiLocale, "Take the next step in bo.")}</h2>
         <div className="sign-in-gate-acts">
-          <a className="sign-in-gate-btn" href={BO_URL} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>Continue to bo ↗</a>
-          <button className="sign-in-gate-alt" type="button" onClick={() => close()}>Keep exploring</button>
+          <a className="sign-in-gate-btn" href={BO_URL} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>{uiText(uiLocale, "Continue to bo ↗")}</a>
+          <button className="sign-in-gate-alt" type="button" onClick={() => close()}>{uiText(uiLocale, "Keep exploring")}</button>
         </div>
-        <p className="sign-in-gate-fact">Your prompt stays here. bo opens in a new tab.</p>
+        <p className="sign-in-gate-fact">{uiText(uiLocale, "Your prompt stays here. bo opens in a new tab.")}</p>
       </div>
-      <button className="sign-in-gate-x" type="button" aria-label="Close and keep exploring" onClick={() => close()}>×</button>
+      <button className="sign-in-gate-x" type="button" aria-label={uiText(uiLocale, "Close and keep exploring")} onClick={() => close()}>×</button>
     </dialog>, document.body);
 }

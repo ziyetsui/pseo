@@ -4,6 +4,10 @@ export type Locale = "zh-CN" | "en";
 export type Axis = "model" | "useCase" | "technique" | "style" | "subject";
 
 export interface Ref {
+  /** Original taxonomy label, retained for search and stable presentation ordering. */
+  sourceLabel?: string;
+  /** Language-neutral aliases keep a saved search stable across interface locales. */
+  searchLabels?: string[];
   id: string;
   slug: string;
   label: string;
