@@ -1,12 +1,12 @@
-import type { Catalog, Ref } from '@/lib/catalog/types';
+import type { Catalog, Prompt, Ref } from '@/lib/catalog/types';
 import { isPromptCreator } from '@/lib/catalog/creator-match';
 import { taskTerms } from '@/lib/catalog/task-findings';
 import { SiteHeader, SiteFooter } from './Chrome';
 import { TaskFindingsReader } from './TaskFindingsReader';
 
-export function TaskFindings({ catalog, task }: { catalog: Catalog; task: Ref }) {
-  const rows = catalog.prompts.filter(p => p.useCases.some(r => r.id === task.id || r.slug === task.slug));
-  const tasks = taskTerms(catalog.prompts, 'useCase');
+export function TaskFindings({ catalog, task, prompts, aggregate = false }: { catalog: Catalog; task: Ref; prompts?: Prompt[]; aggregate?: boolean }) {
+  const rows = prompts ?? catalog.prompts.filter(p => p.useCases.some(r => r.id === task.id || r.slug === task.slug));
+  const tasks = [ ...(aggregate ? [task] : []), ...taskTerms(catalog.prompts, 'useCase').filter(ref => !aggregate || ref.slug !== task.slug) ];
   const creators = catalog.creators.map(c => ({ ...c, count: rows.filter(p => isPromptCreator(p, c)).length })).filter(c => c.count).sort((a,b) => b.count - a.count).slice(0,8);
   return <div className="prototype-magnetic prototype-task-findings"><div className="taste vfd"><SiteHeader level="hub" locale={catalog.locale} sectionNavigation="library" /><main id="main">
     <TaskFindingsReader catalog={{ ...catalog, prompts: rows }} task={task} tasks={tasks} />

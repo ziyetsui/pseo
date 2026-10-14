@@ -1,3 +1,4 @@
+import { websitePrompts, websiteRef } from '@/lib/catalog/website';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { loadCatalogs } from '@/lib/catalog/server';
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     if (seo) return { title: seo.title, description: seo.description, robots: seo.robots, alternates: { canonical: seo.canonicalUrl, languages: seo.hreflang } };
   }
   const surface = await loadSurfaceSeo(catalog, path);
-  return siteMetadata(catalog, path, prompt?.title ?? (model ? `${model.label} prompts` : task ? `${task.label} prompts` : style ? `${style.label} prompts` : category ? `${category.ref.label} prompts` : path.endsWith('/models') ? 'Models' : path.endsWith('/creators') ? 'Creators' : path.endsWith('/video') ? 'Video prompts' : path.endsWith('/image') ? 'Image prompts' : 'The library'), prompt, model ?? task ?? style ?? category?.ref ?? undefined, surface);
+  return siteMetadata(catalog, path, prompt?.title ?? (model ? `${model.label} prompts` : task ? `${task.label} prompts` : style ? `${style.label} prompts` : category ? `${category.ref.label} prompts` : path.endsWith('/models') ? 'Models' : path.endsWith('/creators') ? 'Creators' : path.endsWith('/video') ? 'Video prompts' : path.endsWith('/image') ? 'Image prompts' : path.endsWith('/website') ? 'Website prompts' : 'The library'), prompt, model ?? task ?? style ?? category?.ref ?? undefined, surface);
 }
 
 export default async function Page({ params }: { params: Promise<Params> }) {
@@ -54,6 +55,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const hub = `/${catalog.locale}/prompts`;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
+  if (path === `${hub}/website`) return <TaskFindings catalog={catalog} task={websiteRef(catalog)} prompts={websitePrompts(catalog)} aggregate />;
   if (path === `${hub}/models`) return <Directory catalog={catalog} title="Models" items={modelFamilies(catalog)} />;
   if (path === `${hub}/creators`) return <Directory catalog={catalog} title="Creators" items={catalog.creators.map(creator => ({ ...creator, href: creator.url || creator.href }))} />;
   if (path === `/${catalog.locale}/blog`) return <Blog catalog={catalog} />;

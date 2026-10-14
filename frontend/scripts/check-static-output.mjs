@@ -47,7 +47,7 @@ if (manifest.mode === 'visual-fixture') {
   const allowedRoutes = new Set(manifest.publicPrompts.map(prompt => prompt.href));
   for (const route of allowedRoutes) if (!allPaths.has(route)) throw new Error(`Approved Prompt route is missing: ${route}`);
   for (const route of allPaths) {
-    if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|models|creators)$/.test(route) && !allowedRoutes.has(route)) throw new Error(`Prompt route is not in the approved API receipt: ${route}`);
+    if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|website|models|creators)$/.test(route) && !allowedRoutes.has(route)) throw new Error(`Prompt route is not in the approved API receipt: ${route}`);
   }
   const bundles = (await files(root)).filter(file => /\.(html|js|json)$/.test(file));
   const output = (await Promise.all(bundles.map(file => readFile(file, 'utf8')))).join('\n');
