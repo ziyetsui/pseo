@@ -1,0 +1,20 @@
+import {test,expect} from '@playwright/test';
+import graph from '../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
+const prompt=graph.nodes.find(n=>'prompt' in n&&typeof n.prompt==='string'&&n.prompt.startsWith('Build a modern, responsive landing page for [PRODUCT NAME].'))!;
+test('footer stays compact and variable highlights remain visible in both libraries',async({page},testInfo)=>{
+ await page.goto('/zh-CN/prompts/image',{waitUntil:'domcontentloaded'});
+ const footer=page.locator('footer.foot');
+ await expect(footer.locator('.footnav > div')).toHaveCount(2);
+ await expect(footer.locator('.footnav a')).toHaveCount(7);
+ await expect(footer.locator('a[href$="/library-index"]')).toHaveCount(1);
+ expect(await footer.evaluate(el=>el.getBoundingClientRect().height)).toBeLessThan(400);
+ expect(await page.locator('[data-top] .prompt .prompt-placeholder').count()).toBeGreaterThan(0);
+ await footer.screenshot({path:testInfo.outputPath('compact-footer.png')});
+ await page.goto('/zh-CN/prompts/website/views/all',{waitUntil:'domcontentloaded'});
+ const body=page.locator(`[data-website-case="${prompt.id}"] .prompt`);
+ await expect(body.locator('.prompt-placeholder').filter({hasText:'[PRODUCT NAME]'})).toHaveCount(1);
+ await expect(body).toHaveText('prompt' in prompt&&typeof prompt.prompt==='string'?prompt.prompt:'');
+ await page.goto(`/zh-CN/prompts/case-${prompt.id.slice(4)}`,{waitUntil:'domcontentloaded'});
+ await expect(page.locator('[data-prompt] .prompt-placeholder').filter({hasText:'[PRODUCT NAME]'})).toHaveCount(1);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});

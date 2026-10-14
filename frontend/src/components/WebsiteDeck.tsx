@@ -1,4 +1,5 @@
 'use client';
+import { PromptWords } from './Filters';
 import { useState, useSyncExternalStore, type CSSProperties } from 'react';
 const subscribe = () => () => {};
 const clientReady = () => true;
@@ -21,7 +22,7 @@ export function WebsiteDeck({ items, kind }: { items: WebsiteSlide[]; kind: 'vie
       const offset=index-position,depth=offset<0?-3:Math.min(offset,4);
       return <article className="dc" key={item.id} inert={offset!==0} data-vis={offset>=0&&offset<=3?'':undefined} data-top={offset===0?'':undefined} data-website-case={kind==='case'?item.id:undefined} data-website-deck-view={kind==='view'?item.id:undefined} style={{'--o':depth,'--dz':offset>=0?30-Math.min(offset,4):0} as CSSProperties}>
         <div className="media">{item.cover && <img src={item.cover} alt={item.title} width={480} height={520} loading={index===0?'eager':'lazy'} />}<span className="mb">{item.caption}</span></div>
-        <div className="side"><h3><a data-case-title="" href={item.href}>{item.title}</a></h3><p className="meta">{item.attribution}{item.sourceUrl && <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">View original source ↗</a>}</p><p>{item.summary}</p><pre className="prompt" tabIndex={0} aria-label={item.prompt?'Supplied prompt':'About this collection'}>{item.prompt || item.caption}</pre><div className="dcacts"><a className="btn primary" href={item.href}>{kind==='view'?'Explore this view':'Explore this project'}</a></div></div>
+        <div className="side"><h3><a data-case-title="" href={item.href}>{item.title}</a></h3><p className="meta">{item.attribution}{item.sourceUrl && <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">View original source ↗</a>}</p><p>{item.summary}</p><pre className="prompt" tabIndex={0} aria-label={item.prompt?'Supplied prompt':'About this collection'}>{item.prompt ? <PromptWords text={item.prompt} markClassName="ph" /> : item.caption}</pre><div className="dcacts"><a className="btn primary" href={item.href}>{kind==='view'?'Explore this view':'Explore this project'}</a></div></div>
       </article>;
     })}
   </div><div className="dknav"><button className="btn" type="button" disabled={!ready||position===0} onClick={()=>step(-1)}>← Previous</button><button className="btn" type="button" disabled={!ready||position>=items.length-1} onClick={()=>step(1)}>Next →</button><p className="dkpos" aria-live="polite">{position+1} of {items.length}</p><p className="dkhint">The stack behind the card is the rest of the set.</p></div></div>;

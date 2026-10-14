@@ -3,6 +3,7 @@ import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
 import { gitBetaRevision } from './git-beta-revision';
 import { websiteEntries } from './website';
+import { placeholderTokens } from './placeholders';
 import { filterHref, modelHref } from './query';
 import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase, WebsiteGraph } from './types';
 
@@ -79,7 +80,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       handle: attribution, creatorRef: creator ? { id: text(creator.id), slug: text(creator.id), label: attribution } : null,
       img: image.find(item => item.kind === 'image')?.src ?? null, media: image,
       likes: null, saves: null, views: null, highValue: false, score: null, publishedAt: optionalText(source.publishedAt),
-      variables: [...new Set(body.match(/\[[A-Z][A-Z0-9_]{1,48}\]/gu) ?? [])].map(token => ({ token, label: token.slice(1,-1).replaceAll('_', ' '), defaultValue: '', options: [], note: null, required: false })),
+      variables: placeholderTokens(body).map(token => ({ token, label: token.slice(1,-1).replaceAll('_', ' '), defaultValue: '', options: [], note: null, required: false })),
       steps: [], requiredInputs: [], optionalInputs: [], parameters: [],
       source: { url: safeUrl(source.url), platform: text(source.platform), observedAt: optionalText(source.observedAt) }, evidence: docs,
       actions: { canCopy: true, tryUrl: null }, localeVariants: [{ locale, slug, href }],

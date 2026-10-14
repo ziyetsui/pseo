@@ -12,9 +12,9 @@ test('reads revision-bound exact routes and hashes exact artifact bytes',()=>{
 test('rejects stale revision, unsafe routes, omitted or duplicate route sets',()=>{
  for(const value of [{...index,revision:'stale'},{...index,routes:[]},{...index,routes:[href,href]},{...index,groups:[{id:'g',title:'bad',entries:[{id:'v',label:'bad',href:'https://example.com'}]}]}])assert.throws(()=>readLibraryIndex(document(value),'rev'));
 });
-test('requires every published object, exported route and Footer link',()=>{
+test('requires every published object, full index view and compact Footer directory link',()=>{
  const receipt={publishedPrompts:[],publishedWebsites:[],publishedWebsiteViews:[{href}]};
- const documents=new Map([[href,parse(`<footer><a href="${href}"></a><a href="${station}"></a></footer>`)]]);
+ const documents=new Map([[href,parse(`<footer><nav class="footnav"><a href="/zh-CN/prompts/website"></a><a href="${station}"></a></nav></footer>`)]]);
  assert.doesNotThrow(()=>verifyLibraryIndex(documents,index,receipt));
  assert.throws(()=>verifyLibraryIndex(new Map(),index,receipt));
  assert.throws(()=>verifyLibraryIndex(documents,index,{...receipt,publishedPrompts:[{href:'/zh-CN/prompts/missing'}]}));
