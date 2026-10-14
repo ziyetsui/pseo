@@ -63,7 +63,7 @@ export function SiteFooter({ catalog, level = 'hub' }: { catalog: Catalog; level
     </div>)}
       {browse.length > 0 && <div><h3>Browse</h3><ul>{browse.map(({ label, href }) => <li key={label}><a href={href}>{label}</a></li>)}</ul></div>}
     </div>
-    {catalog.mode === "git-beta" && <p><a href="/licenses/awesome-gpt-image-2">Image collection credits and license</a></p>}
+    {catalog.mode === "git-beta" && <p><a href="/licenses/awesome-gpt-image-2" target="_blank" rel="noopener noreferrer">Image collection credits and license</a></p>}
     <div className="footlegal"><span>Prompt Library</span><span>{level === 'prompt' ? 'Prompts belong to their authors; this page credits the source.' : 'Prompts remain the property of their authors. Every page credits the source.'}</span></div>
   </>;
   return <footer className="foot">{level === 'model' ? content : <div className={level === 'prompt' ? 'wrap wide' : 'wrap'}>{content}</div>}</footer>;
