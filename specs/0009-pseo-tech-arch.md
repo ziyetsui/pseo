@@ -1478,3 +1478,6 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 
 
 2026-10-14 Website / GPT Image intake: implement the design and acceptance contracts in `docs/superpowers/specs/2026-10-14-website-image-import-{design,acceptance}.md`. Website is an explicit use-case union (`website`, `web-design`, `web-development`, `web-motion-design`), independent of media kind. Intake graph/proposals remain non-public until existing CMS review/snapshot gates pass.
+
+
+2026-10-14 用户明确授权例外：已整理的600条来源允许经 Git 直接发布到 beta.ancher.site，合同见 `docs/superpowers/specs/2026-10-14-git-beta-publication-design.md` 与配套验收。新增显式 git-beta 模式；此范围可跳过 CMS，但不伪造 CMS/rights approval、不写 content/** mirror，保留 noindex。既有 public-api/CMS 合同继续有效。

@@ -1,5 +1,7 @@
 # Website / image intake release receipt — 2026-10-14
 
+Historical checkpoint before the owner subsequently authorized direct Git beta publication. The CMS dependencies below no longer block the explicitly authorized Git beta mode; see `docs/superpowers/specs/2026-10-14-git-beta-publication-design.md`.
+
 ## Engineering release
 
 - Engineering PR: https://github.com/ziyetsui/pseo/pull/2 — merged 2026-10-14T05:00:01Z.

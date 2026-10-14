@@ -1,4 +1,4 @@
-import { websitePrompts } from '@/lib/catalog/website';
+import { websiteEntries, websitePrompts } from '@/lib/catalog/website';
 import type { Metadata } from 'next';
 import type { Catalog, Prompt, Ref } from '@/lib/catalog/types';
 import { siteOrigin } from '@/lib/catalog/config';
@@ -7,6 +7,8 @@ import type { SurfaceSeo } from './surface-seo';
 
 function navigationCopy(catalog: Catalog, path: string, title: string, entity?: Ref) {
   const hub = `/${catalog.locale}/prompts`;
+  const website = catalog.websites?.find(item => item.href === path);
+  if (website) return { title: website.title, description: website.summary || 'Explore this website case, its preview and original source.' };
   const family = modelFamilyForPath(catalog, path);
   if (family) {
     const members = catalog.models.filter(model => family.memberIds.includes(model.id)).map(model => model.label);
@@ -20,6 +22,7 @@ function navigationCopy(catalog: Catalog, path: string, title: string, entity?: 
     const kind = path.endsWith('/video') ? 'video' : 'image';
     return { title, description: `Browse ${catalog.prompts.filter(prompt => prompt.kind === kind).length} ${kind} prompts by model, task and style. Read the full instructions and inspect available results with source credits.` };
   }
+  if (path === `${hub}/website` && catalog.mode === 'git-beta') return { title: 'Website cases', description: `Explore ${websiteEntries(catalog).length} website cases with source credits, previews and available demos.` };
   if (path === `${hub}/website`) return { title: 'Website prompts', description: `Explore ${websitePrompts(catalog).length} website prompts with source credits, models and full instructions.` };
   if (path === `${hub}/models`) return { title: 'AI model families and prompts', description: 'Browse model families and their versions, then explore the prompts associated with each model.' };
   if (path === `${hub}/creators`) return { title: 'Prompt creators', description: 'Discover the creators represented in this prompt library and follow their available profile links.' };
@@ -28,7 +31,7 @@ function navigationCopy(catalog: Catalog, path: string, title: string, entity?: 
 }
 
 export function siteMetadata(catalog: Catalog, path: string, title: string, prompt?: Prompt, entity?: Ref, surface?: SurfaceSeo | null): Metadata {
-  const visual = catalog.mode === 'visual-fixture';
+  const visual = catalog.mode !== 'public-api';
   const origin = visual ? undefined : siteOrigin();
   const seo = prompt?.seo ?? entity?.seo;
   // The locale entry is a navigation alias, not another independently qualified hub.

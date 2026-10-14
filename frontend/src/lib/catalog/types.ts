@@ -1,5 +1,5 @@
 /** Shared, serializable UI model. API DTOs remain generated separately. */
-export type DataMode = "visual-fixture" | "public-api";
+export type DataMode = "visual-fixture" | "public-api" | "git-beta";
 export type Locale = "zh-CN" | "en";
 export type Axis = "model" | "useCase" | "technique" | "style" | "subject";
 
@@ -98,7 +98,26 @@ export interface Creator extends Ref {
   avatarUrl: string | null;
 }
 
+export interface WebsiteCase {
+  id: string;
+  slug: string;
+  href: string;
+  title: string;
+  summary: string;
+  cover: string;
+  attribution: string;
+  source: { url: string; platform: string };
+  models: Ref[];
+  useCases: Ref[];
+  tools: string[];
+  demoUrl: string | null;
+  codeUrl: string | null;
+  promptHref: string | null;
+  relatedSources: string[];
+}
+
 export interface Catalog {
+  websites?: WebsiteCase[];
   locale: Locale;
   mode: DataMode;
   revision: string;

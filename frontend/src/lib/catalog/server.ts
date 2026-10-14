@@ -8,6 +8,10 @@ export { dataMode } from "./config";
 
 export const loadCatalog = cache(async (locale: Locale = "zh-CN"): Promise<Catalog> => {
   const mode = dataMode();
+  if (mode === "git-beta") {
+    const { createGitBetaCatalog } = await import("./git-beta");
+    return createGitBetaCatalog(locale);
+  }
   if (mode === "visual-fixture") {
     const { createFixtureCatalog } = await import("./fixture");
     return createFixtureCatalog(locale);
@@ -17,7 +21,7 @@ export const loadCatalog = cache(async (locale: Locale = "zh-CN"): Promise<Catal
 });
 
 export const availableLocales = cache(async (): Promise<Locale[]> => {
-  if (dataMode() === "visual-fixture") return ["zh-CN"];
+  if (dataMode() !== "public-api") return ["zh-CN"];
   const { url, expectedRevision } = publicDataConfig();
   const response = await new PublicApiClient(url, { expectedRevision, cache: "force-cache" }).get("/api/v1/locales", {}, {});
   return response.data.filter((locale) => locale.enabled).map((locale) => {

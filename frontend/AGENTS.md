@@ -167,3 +167,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 
 2026-09-04 首页前两屏最终还原：用户指定 docs/wireframes/final/L1-hub-magnetic.html?v=2 的 Magnetic（vMagnet）为首页第一屏 argument 与第二屏 lede/results 的参考。第一屏恢复该原型的标题和三段正文，保留 not editing 的 serif 斜体；第二屏对齐其连续标题、搜索、筛选及磁吸动效；用户追加要求保留现有提示词悬浮卡片的样式、变量高亮和Generate按钮，不随原型回退。范围仅此前两屏；Browse、Creators、Footer、其他页面与当前真实数据不变。此前删除的署名区、signature统计句与Copy按钮不恢复；保留既定Generate到L4、可编辑模板、变量高亮、URL筛选、无障碍及bo.video弹窗行为。
+
+
+2026-10-14 用户明确授权例外：已整理的600条来源允许经 Git 直接发布到 beta.ancher.site，合同见 `docs/superpowers/specs/2026-10-14-git-beta-publication-design.md` 与配套验收。新增显式 git-beta 模式；此范围可跳过 CMS，但不伪造 CMS/rights approval、不写 content/** mirror，保留 noindex。既有 public-api/CMS 合同继续有效。

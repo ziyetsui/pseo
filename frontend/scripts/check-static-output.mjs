@@ -1,3 +1,4 @@
+import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse } from 'node-html-parser';
@@ -18,7 +19,7 @@ for (const file of htmlFiles) {
   const document = documents.get(route);
   if (!document.querySelector('main h1')) throw new Error(`Missing server-rendered main heading: ${file}`);
   if (document.querySelector('iframe[srcdoc]')) throw new Error('Prototype iframe leaked into static output');
-  if (manifest.mode === 'visual-fixture' && !document.querySelector('meta[name="robots"]')?.getAttribute('content')?.includes('noindex')) throw new Error(`Visual fixture lacks server noindex: ${file}`);
+  if (manifest.mode !== 'public-api' && !document.querySelector('meta[name="robots"]')?.getAttribute('content')?.includes('noindex')) throw new Error(`Visual fixture lacks server noindex: ${file}`);
   for (const link of document.querySelectorAll('a[href]')) {
     const href = link.getAttribute('href');
     if (href === '#') throw new Error(`Placeholder navigation: ${file}`);
@@ -37,9 +38,22 @@ for (const file of htmlFiles) {
     links++;
   }
 }
-if (manifest.mode === 'visual-fixture') {
+if (manifest.mode !== 'public-api') {
   if (!(await readFile(path.join(root, '_headers'), 'utf8')).includes('X-Robots-Tag: noindex')) throw new Error('Missing preview response noindex');
   if (!(await readFile(path.join(root, 'robots.txt'), 'utf8')).includes('Disallow: /')) throw new Error('Fixture crawl access is not blocked');
+  if (manifest.mode === 'git-beta') {
+    const receipt = manifest.gitBeta;
+    if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
+    const allowed = new Set([...receipt.publishedPrompts, ...receipt.publishedWebsites].map(item => item.href));
+    for (const route of allowed) if (!allPaths.has(route)) throw new Error(`Git beta published route missing: ${route}`);
+    for (const route of allPaths) {
+      if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|website|models|creators)$/.test(route) && !allowed.has(route)) throw new Error(`Unlisted Git beta detail: ${route}`);
+      if (route.startsWith('/zh-CN/prompts/website/') && !allowed.has(route)) throw new Error(`Unlisted Website case: ${route}`);
+    }
+    const imageDocuments = receipt.publishedPrompts.map(item => documents.get(item.href).toString()).join('');
+    for (const url of receipt.imageUrls) if (!imageDocuments.includes(url)) throw new Error(`Git beta image example not rendered: ${url}`);
+    await verifyGitBetaAssets(root, JSON.parse(await readFile('src/data/website-previews.json','utf8')));
+  }
 } else {
   const fixture = JSON.parse(await readFile('src/data/prototype.json', 'utf8'));
   if (!Array.isArray(manifest.publicPrompts)) throw new Error('Missing approved API route receipt');

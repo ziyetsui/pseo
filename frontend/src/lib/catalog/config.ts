@@ -2,7 +2,7 @@ import type { DataMode } from "./types";
 
 export function dataMode(environment: Record<string, string | undefined> = process.env): DataMode {
   const mode = environment.FRONTEND_DATA_MODE;
-  if (mode !== "visual-fixture" && mode !== "public-api") throw new Error("Set FRONTEND_DATA_MODE explicitly to visual-fixture or public-api. Production data never falls back to the visual prototype.");
+  if (mode !== "visual-fixture" && mode !== "public-api" && mode !== "git-beta") throw new Error("Set FRONTEND_DATA_MODE explicitly to visual-fixture, public-api or git-beta. Production data never falls back to the visual prototype.");
   return mode;
 }
 

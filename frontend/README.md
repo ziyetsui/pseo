@@ -59,3 +59,10 @@ pnpm test:e2e
 设计 CSS 由 `node scripts/extract-design.mjs` 从母版提取并限定作用域，交互/可访问性补丁在 `src/styles/interaction.css` 与 `globals.css`。`evidence/` 记录实际视觉截图、文案映射、接口验证和剩余外部限制。Blog 为同一体系的派生设计，原型没有对应定稿。
 
 后端尚无合集、创作者详情、Article HTTP API 或生成接口。相关浏览使用已有筛选/静态文章投影；L4 的 Generate 按钮统一打开 `https://bo.video/home`，正文仍完整可读、可选择。Anthology scratchpad 的生成链接仍依赖有效的 `actions.tryUrl`。
+
+
+## Owner-authorized Git beta publication
+
+The owner explicitly authorized this batch to bypass CMS on 2026-10-14. Run `pnpm build:beta` and `pnpm check:static` to export `git-beta` mode from the verified Git graph. It publishes 521 new distinct image prompts with all541 source images, and 59 real WebsiteCase records (58 without prompt, 1 with an actual recovered prompt). Existing beta content is retained: Images543, Website60. Website cases have independent source-backed detail routes and URL filters. All59 supplied preview assets are checked against their source SHA-256.
+
+This mode remains noindex and records a deterministic Git revision, exact route/media counts and `cmsPublication=false` in `out/frontend-build.json`. It does not require CMS credentials, change CMS approval/rights state, or write the generated `content/**` mirror. Legacy `visual-fixture` and `public-api` contracts remain separate. The scoped authorization, architecture and quantified acceptance are in `../docs/superpowers/specs/2026-10-14-git-beta-publication-{design,acceptance}.md`.

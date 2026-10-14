@@ -1,3 +1,6 @@
+import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
+import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
+import { checkIntake } from '../../scripts/lib/case-import.mjs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
@@ -34,11 +37,20 @@ export async function verifySitemapHtml(xml, outputRoot, expectedOrigin) {
 
 async function finalizeExport() {
 const mode = process.env.FRONTEND_DATA_MODE;
-if (!['visual-fixture', 'public-api'].includes(mode)) throw new Error('Build data mode must be explicit');
-const revision = mode === 'public-api' ? process.env.FRONTEND_EXPECTED_REVISION : `sha256:${createHash('sha256').update(JSON.stringify({ prototype: JSON.parse(await readFile('src/data/prototype.json', 'utf8')), promptTemplateEdits: JSON.parse(await readFile('src/data/wireframe/prompt-templates.json', 'utf8')) })).digest('hex')}`;
+if (!['visual-fixture', 'public-api', 'git-beta'].includes(mode)) throw new Error('Build data mode must be explicit');
+let revision = mode === 'public-api' ? process.env.FRONTEND_EXPECTED_REVISION : `sha256:${createHash('sha256').update(JSON.stringify({ prototype: JSON.parse(await readFile('src/data/prototype.json', 'utf8')), promptTemplateEdits: JSON.parse(await readFile('src/data/wireframe/prompt-templates.json', 'utf8')) })).digest('hex')}`;
 if (!revision) throw new Error('Public builds must pin FRONTEND_EXPECTED_REVISION');
 const out = path.resolve('out');
-if (mode === 'visual-fixture') {
+let gitBeta = null;
+if (mode === 'git-beta') {
+  const intake = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-14/${name}.json`,'utf8'))])));
+  checkIntake(intake);
+  const previews = JSON.parse(await readFile('src/data/website-previews.json','utf8'));
+  await verifyGitBetaAssets(out, previews);
+  revision = gitBetaRevision(revision, intake.graph, previews);
+  gitBeta = gitBetaReceipt(intake.graph, intake.reviews, JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
+}
+if (mode !== 'public-api') {
   await writeFile(path.join(out, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n');
   await writeFile(path.join(out, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 }
@@ -91,7 +103,7 @@ if (mode === 'public-api' && staticDirectory) {
   }
 }
 if (mode === 'public-api') await verifySitemapHtml(await readFile(path.join(out, 'sitemap.xml'), 'utf8'), out, new URL(process.env.FRONTEND_SITE_URL).origin);
-await writeFile(path.join(out, 'frontend-build.json'), JSON.stringify({ mode, revision, feeds: copied, publicPrompts, sourceMirrorSha: process.env.FRONTEND_MIRROR_SHA ?? null, productionRelease: false }, null, 2) + '\n');
+await writeFile(path.join(out, 'frontend-build.json'), JSON.stringify({ mode, revision, ...(gitBeta ? { gitBeta } : {}), feeds: copied, publicPrompts, sourceMirrorSha: process.env.FRONTEND_MIRROR_SHA ?? null, productionRelease: false }, null, 2) + '\n');
 console.log(`Export finalized: ${mode}, ${revision}, ${copied.length} verified feeds`);
 }
 
