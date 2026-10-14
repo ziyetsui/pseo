@@ -1,6 +1,6 @@
 # Website + GPT Image intake — 2026-10-14
 
-This directory is an **offline review artifact**, not the canonical CMS, public snapshot, or generated content mirror. It is not imported by the frontend.
+This directory is the source-backed intake dataset. Following the owner’s explicit authorization to bypass CMS, its verified graph is consumed by the `git-beta` frontend adapter. It is not a CMS public snapshot or generated mirror. The original manifest fields describe CMS intake state; actual Git beta publication is recorded separately in `frontend-build.json` and the release receipt.
 
 - 59 reviewed website projects (not 5,225 noisy search-result cards).
 - 541 upstream gallery records; 13 original categories mapped to use-case nodes.
