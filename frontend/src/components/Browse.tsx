@@ -15,7 +15,7 @@ function entries(prompts: Prompt[], axis: Axis): Ref[] {
 }
 export function Creators({ catalog, prompts = catalog.prompts, model = false }: { catalog: Catalog; prompts?: Prompt[]; model?: boolean }) {
   const uiLocale = interfaceLocale(catalog);
-  const creators = catalog.creators.map(creator => ({ ...creator, count: prompts.filter(prompt => isPromptCreator(prompt, creator)).length })).filter(creator => creator.count > 0).sort((a, b) => b.count - a.count).slice(0, model ? undefined : 8);
+  const creators = catalog.creators.map(creator => ({ ...creator, count: prompts.filter(prompt => isPromptCreator(prompt, creator)).length })).filter(creator => creator.count > 0).sort((a, b) => b.count - a.count);
   if (!creators.length) return <section className="sec" id="creators"><div className={model ? undefined : "wrap"}><div className={model ? "sec-head" : "sec-h"}><h2>{uiText(uiLocale, "Creators")}</h2></div><p className="dek">{text(uiLocale, "No published creators to browse yet.", "暂无已发布的创作者。")}</p></div></section>;
   const content = <><div className={model ? "sec-head" : "sec-h"}><h2>{uiText(uiLocale, "Creators")}</h2>{model && <span className="end">{text(uiLocale, `${creators.length} ${creators.length === 1 ? "creator" : "creators"}`, `${creators.length} 位创作者`)} · {promptCount(uiLocale, prompts.length)}</span>}</div><div className={model ? "creators" : "people"}>{creators.map(creator => <a className={model ? "creator" : "person"} key={creator.id} href={creator.url || creator.href} target={creator.url ? "_blank" : undefined} rel={creator.url ? "nofollow noopener noreferrer" : undefined}>
     <span className="av">{creator.avatarUrl && <img src={creator.avatarUrl} alt="" width={34} height={34} loading="lazy" referrerPolicy="no-referrer" />}</span>
