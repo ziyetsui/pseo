@@ -3,7 +3,7 @@ import { normalizePromptProposal } from '../../cms/src/proposals/promptProposal.
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || hash(value).slice(0, 16);
-const missingPrompt = value => typeof value !== 'string' || !value.trim() || /^(未在|未找到|not (?:found|available)|unknown|n\/a)/iu.test(value.trim());
+const missingPrompt = value => typeof value !== 'string' || !value.trim() || /^(未在|未找到|原帖或同作者已读取回复包含提示词|no prompt found|not (?:found|available)|unknown|n\/a)/iu.test(value.trim());
 function https(value) {
   const url = new URL(value);
   if (url.protocol !== 'https:' || url.username || url.password) throw new Error('Source/media must be HTTPS without credentials');
@@ -52,9 +52,11 @@ export function buildIntake({ websites, gallery, observedAt, upstreamCommit, web
     const objectId = node(type, identity, { title, summary: namespace === 'websites' ? item.description ?? null : null, ...(hasPrompt ? { prompt: text } : {}), state: 'draft', rightsStatus: 'review_required', robots: 'noindex,nofollow' });
     if (identities.has(identity)) { duplicates++; reasons.push('duplicate'); }
     identities.add(identity);
-    const srcId = node('source', src.key, { url: src.url, platform: src.platform, sourceId: src.sourceId, observedAt, publishedAt: item.published_at ?? null });
+    const srcId = node('source', src.key, { url: src.url, platform: src.platform, sourceId: src.sourceId, observedAt, publishedAt: item.published_at ?? null, attributionLabel: item.sourceLabel ?? item.author ?? null, promptEvidenceRef: item.prompt_evidence_ref ?? null });
     edge(objectId, 'sourced_from', srcId);
-    const handle = src.handle ?? item.author ?? item.sourceLabel?.replace(/^@/u, '') ?? null;
+    const label = item.author ?? item.sourceLabel ?? null;
+    const handle = src.handle ?? (typeof label === 'string' && /^@[A-Za-z0-9_]{1,15}$/u.test(label) ? label.slice(1) : null);
+    if (!handle) reasons.push('creator_not_identified');
     if (handle) {
       const creator = node('creator', handle.toLowerCase(), { handle, url: `https://x.com/${encodeURIComponent(handle)}` });
       edge(objectId, 'created_by', creator);

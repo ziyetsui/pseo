@@ -84,12 +84,20 @@
       "dataset": "awesome-gpt-image-2",
       "commit": "5cb9109ca2d29476f8e34dbc0cdb43607bdd3f77",
       "sha256": "a9ef652dffdac0802c656e4770f9793315292fa78e955d3e8c6e0e6346eb7da8"
+    },
+    {
+      "dataset": "website-media",
+      "sha256": "9e64f249af8a451b3f3d79ea57355b4650081033d82c8ef84121253e50ae1ae0"
+    },
+    {
+      "dataset": "website-prompt-evidence",
+      "sha256": "fbd91235f04da4c10e437c0471fdcc83e983bd2179a9b1909e3440347516be6c"
     }
   ],
   "observedAt": "2026-10-14T04:00:00.000Z",
-  "nodes": 2804,
-  "edges": 6638,
-  "proposals": 544,
-  "missingPrompts": 36,
+  "nodes": 2785,
+  "edges": 6578,
+  "proposals": 522,
+  "missingPrompts": 58,
   "contractBlocked": 0
 }

@@ -93,3 +93,43 @@ test('the real checked-in intake verifies when the checkout path contains spaces
   assert.match(output, /websites=59 images=541/);
   assert.match(output, /public=0/);
 });
+
+for (const marker of ['原帖或同作者已读取回复包含提示词/提示词说明；见原帖', 'No prompt found in the retrieved post.']) {
+  test(`website status marker is not executable prompt: ${marker}`, () => {
+    const result = build([{ ...website, prompt: marker }], []);
+    assert.equal(result.proposals.length, 0);
+    assert.equal(result.nodes.filter(n => n.type === 'website-case').length, 1);
+    assert.ok(result.reviews[0].reasons.includes('missing_prompt'));
+  });
+}
+test('non-X attribution labels never become fabricated X handles or profiles', () => {
+  const result = build([], [{ ...image, sourceLabel: '小红书号1005414639', sourceUrl: 'https://example.com/case' }]);
+  assert.equal(result.proposals[0].body.source.creatorHandle, null);
+  assert.ok(result.nodes.some(n => n.type === 'source' && n.attributionLabel === '小红书号1005414639'));
+  assert.equal(result.nodes.filter(n => n.type === 'creator').some(n => n.url?.startsWith('https://x.com/')), false);
+});
+
+test('CLI supplements only exact-source prompt evidence and hashes every input including media', async () => {
+  const { mkdtempSync, writeFileSync, readFileSync, rmSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const { execFileSync } = await import('node:child_process');
+  const { fileURLToPath } = await import('node:url');
+  const dir = mkdtempSync(join(tmpdir(), 'ancher-case-cli-'));
+  const web = join(dir, 'web.json'), gallery = join(dir, 'images.json'), media = join(dir, 'media.json'), evidence = join(dir, 'evidence.json'), output = join(dir, 'output');
+  try {
+    writeFileSync(web, JSON.stringify([website]));
+    writeFileSync(gallery, JSON.stringify({ cases: [] }));
+    writeFileSync(media, '[]');
+    writeFileSync(evidence, JSON.stringify([{ post_id: website.id, post_url: website.post_url, author: website.author, prompt_text: 'Build a scroll-driven Three.js website.', evidenceRef: 'explicit-prompts.csv#test' }]));
+    const args = [fileURLToPath(new URL('../import-cases.mjs', import.meta.url)), web, gallery, output, options.upstreamCommit, options.observedAt, media, evidence];
+    execFileSync(process.execPath, args);
+    const manifest = JSON.parse(readFileSync(join(output, 'manifest.json'), 'utf8'));
+    assert.equal(manifest.proposals, 1);
+    assert.equal(manifest.sources.length, 4);
+    const body = JSON.parse(readFileSync(join(output, 'proposals.json'), 'utf8'))[0].body;
+    assert.equal(body.prompt.text, 'Build a scroll-driven Three.js website.');
+    writeFileSync(evidence, JSON.stringify([{ post_id: website.id, post_url: website.post_url, author: 'wrong', prompt_text: 'Anything' }]));
+    assert.throws(() => execFileSync(process.execPath, args, { stdio: 'pipe' }), /Command failed/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
