@@ -116,7 +116,19 @@ export interface WebsiteCase {
   relatedSources: string[];
 }
 
+export interface WebsiteGraphNode { id: string; type: string; slug: string; label: string }
+export interface WebsiteGraphEdge { from: string; to: string; type: string }
+export interface WebsiteGraph { nodes: WebsiteGraphNode[]; edges: WebsiteGraphEdge[] }
+export type WebsiteViewAxis = 'all' | 'use-case' | 'model' | 'tool';
+export interface WebsiteView extends Ref {
+  axis: WebsiteViewAxis;
+  targetId: string | null;
+  relation: string | null;
+  caseIds: string[];
+}
+
 export interface Catalog {
+  websiteGraph?: WebsiteGraph;
   websites?: WebsiteCase[];
   locale: Locale;
   mode: DataMode;
