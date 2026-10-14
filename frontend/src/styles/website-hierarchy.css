@@ -1,7 +1,8 @@
 /* Website projections reuse the selected Deck, Findings, Signature and Recipe compositions. */
 .website-aligned .website-view-tabs{display:flex;gap:8px;flex-wrap:wrap;min-width:0;max-width:100%}
 .website-aligned .website-view-tabs a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--border);border-radius:999px;color:var(--muted-fg,var(--muted));font-size:12px;overflow-wrap:anywhere}
-.website-aligned .website-view-tabs [aria-current=page]{color:var(--fg,var(--foreground));border-color:var(--border-strong)}
+.website-aligned .website-view-tabs [aria-current=page]{border-color:var(--border-strong)}
+.prototype-anthology.website-aligned .website-view-tabs [aria-current=page]{color:var(--fg,var(--foreground))}
 .website-aligned .website-filters{margin:16px 0;flex:1 1 100%;min-width:0}
 .website-aligned .website-filters label{color:var(--muted-fg,var(--muted));font-family:var(--sans,var(--font-sans));text-align:left}
 .website-aligned .website-filters input,.website-aligned .website-filters select{background:var(--surface);color:var(--fg,var(--foreground));border-color:var(--border)}
