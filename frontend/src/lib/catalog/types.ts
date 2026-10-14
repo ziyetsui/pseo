@@ -46,6 +46,8 @@ export interface Variable {
 }
 
 export interface Prompt {
+  /** Display translations and source text share a language-neutral search surface. */
+  searchLabels?: string[];
   id: string;
   slug: string;
   href: string;
@@ -103,6 +105,7 @@ export interface Creator extends Ref {
 }
 
 export interface WebsiteCase {
+  searchLabels?: string[];
   id: string;
   slug: string;
   href: string;

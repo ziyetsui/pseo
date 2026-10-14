@@ -9,11 +9,18 @@ test('both languages render complete interfaces and share exact original prompt 
   await expect(page.locator('html')).toHaveAttribute('lang',locale);await expect(page.locator('body')).toHaveAttribute('lang',locale);
   await expect(page.locator('.brand')).toHaveText(chinese?'提示词库':'Prompt Library');
   await expect(page.locator('h1')).toHaveText(chinese?'这条提示词，早已有人写好':'Somebody already wrote this');
+  const titles=page.locator('[data-entry] .u');
+  await expect(titles).toHaveCount(18);
+  await page.getByRole('button',{name:chinese?'查看更多提示词':'Show more prompts',exact:true}).click();
+  await expect(titles).toHaveCount(36);
+  expect(await titles.allTextContents()).toEqual(expect.arrayContaining([chinese?'洛杉矶星光大道俯拍人像':'Overhead portrait on the LA Walk of Fame']));
+  if(!chinese)expect((await titles.allTextContents()).filter(title=>/[\u3400-\u9fff]/u.test(title))).toEqual([]);
   for(const [path,title] of [['website',chinese?'网站分类':'Website views'],['library-index',chinese?'提示词库目录':'Library index']] as const){
    await page.goto(`/${locale}/prompts/${path}`,{waitUntil:'domcontentloaded'});await expect(page.locator('h1')).toHaveText(title);
    await expect(page.locator('[data-language-switch]')).toHaveAttribute('href',`/${chinese?'en':'zh-CN'}/prompts/${path}`);
   }
   await page.goto(`/${locale}/prompts/${recipe}`,{waitUntil:'domcontentloaded'});
+  await expect(page.locator('h1')).toHaveText(chinese?'洛杉矶星光大道俯拍人像':'Overhead portrait on the LA Walk of Fame');
   await expect(page.getByRole('heading',{name:chinese?'设置占位符':'Set the placeholders',exact:true})).toBeVisible();
   body[locale]=await page.locator('[data-prompt]').textContent()??'';
   await expect(page.locator('[data-prompt]')).toHaveAttribute('lang','en');

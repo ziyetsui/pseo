@@ -30,7 +30,7 @@ describe('real website cases', () => {
   });
   it('searches real titles and scopes model/purpose filters with an empty result for impossible queries', () => {
     const rows = catalog.websites ?? [];
-    expect(filterWebsiteCases(rows, { q: 'Halloween pool' }).map(item => item.title)).toEqual(['Halloween pool party']);
+    expect(filterWebsiteCases(rows, { q: 'Halloween pool' }).map(item => item.title)).toEqual(['万圣节泳池派对']);
     expect(filterWebsiteCases(rows, { model: 'claude' }).every(item => item.models.some(ref => ref.slug === 'claude'))).toBe(true);
     expect(filterWebsiteCases(rows, { purpose: 'website-fun' }).every(item => item.useCases.some(ref => ref.slug === 'website-fun'))).toBe(true);
     expect(filterWebsiteCases(rows, { q: 'no-website-will-match-this' })).toEqual([]);
