@@ -45,10 +45,16 @@ let gitBeta = null;
 if (mode === 'git-beta') {
   const intake = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-14/${name}.json`,'utf8'))])));
   checkIntake(intake);
+  const supplement = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-14-website-supplement/${name}.json`,'utf8'))])));
+  checkIntake(supplement);
+  const combined = JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8'));
+  if (createHash('sha256').update(JSON.stringify(combined)).digest('hex') !== supplement.manifest.combinedSha256 || createHash('sha256').update(JSON.stringify(intake.graph)).digest('hex') !== supplement.manifest.originalGraphSha256) throw new Error('Website supplement graph checksum mismatch');
+  const sourceBytes = await readFile('../docs/intake/2026-10-14-website-supplement/source-records.json');
+  if (createHash('sha256').update(sourceBytes).digest('hex') !== supplement.manifest.sourceSha256) throw new Error('Website supplement source checksum mismatch');
   const previews = JSON.parse(await readFile('src/data/website-previews.json','utf8'));
   await verifyGitBetaAssets(out, previews);
-  revision = gitBetaRevision(revision, intake.graph, previews);
-  gitBeta = gitBetaReceipt(intake.graph, intake.reviews, JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
+  revision = gitBetaRevision(revision, combined, previews);
+  gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
 }
 if (mode !== 'public-api') {
   await writeFile(path.join(out, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n');

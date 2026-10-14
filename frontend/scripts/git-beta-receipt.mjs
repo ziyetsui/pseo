@@ -15,7 +15,7 @@ export function gitBetaReceipt(graph, reviews, baseline) {
   const websiteIds = new Set(graph.edges.filter(edge => edge.type === 'used_for' && sources.get(edge.to)?.slug === 'website').map(edge => edge.from));
   const prompts = graph.nodes.filter(node => node.type === 'prompt');
   const images = prompts.filter(node => !websiteIds.has(node.id));
-  const websites = graph.nodes.filter(node => websiteIds.has(node.id) && ['prompt','website-case'].includes(node.type));
+  const websites = graph.nodes.filter(node => websiteIds.has(node.id) && !node.promptOnly && ['prompt','website-case'].includes(node.type));
   const imageIds = new Set(images.map(node => node.id));
   const imageUrls = [...new Set(graph.edges.filter(edge => edge.type === 'has_example' && imageIds.has(edge.from)).map(edge => sources.get(edge.to)?.url))];
   if (imageUrls.some(url => typeof url !== 'string')) throw new Error('Git beta image endpoint missing');
@@ -25,6 +25,7 @@ export function gitBetaReceipt(graph, reviews, baseline) {
     importedImagePrompts: images.length, importedImageExamples: imageUrls.length, importedWebsites: websites.length,
     imagePrompts: baseline.filter(row => row.kind === 'image').length + images.length,
     promptCount: baseline.length + prompts.length,
+    supplementalWebsitePrompts: prompts.filter(node => node.promptOnly).length,
     publishedPrompts: [...baseline.map(row => ({id:row.id,href:`/zh-CN/prompts/${row.slug}`})), ...prompts.map(node => ({id:node.id,href:`/zh-CN/prompts/case-${node.id.slice(4)}`}))],
     publishedWebsites: websites.map(node => ({id:node.id,href:`/zh-CN/prompts/website/${node.id}`})),
     imageUrls,

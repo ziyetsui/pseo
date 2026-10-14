@@ -120,3 +120,5 @@ grep -rn "<name>" src | grep -v tests    # 为空即是死 API
 
 
 2026-10-14 用户明确授权例外：已整理的600条来源允许经 Git 直接发布到 beta.ancher.site，合同见 `docs/superpowers/specs/2026-10-14-git-beta-publication-design.md` 与配套验收。新增显式 git-beta 模式；此范围可跳过 CMS，但不伪造 CMS/rights approval、不写 content/** mirror，保留 noindex。既有 public-api/CMS 合同继续有效。
+
+2026-10-14 用户追加授权：重新检索公开网站提示词并加入 beta 的 Website 分类；本轮 Git beta 补充范围、逐条来源复核、contract blocked 排除及验收见 `docs/superpowers/specs/2026-10-14-website-prompt-supplement.md`。不扩大 CMS/public-api 权限，不写 content/**。

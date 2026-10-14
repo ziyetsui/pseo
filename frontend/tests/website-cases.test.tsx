@@ -7,9 +7,9 @@ import { filterWebsiteCases } from '@/lib/catalog/website-filter';
 
 const catalog = createGitBetaCatalog('zh-CN');
 describe('real website cases', () => {
-  it('server-renders all 60 cases with credited source links and local previews', () => {
+  it('server-renders all website entries with real previews and honest missing-preview states', () => {
     const html = parse(renderToStaticMarkup(<WebsiteGallery catalog={catalog} />));
-    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(60);
+    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(193);
     expect(html.querySelectorAll('[data-website-case] img')).toHaveLength(60);
     expect(html.querySelector('h1')?.text).toBe('Website cases');
   });
