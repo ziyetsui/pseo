@@ -49,10 +49,16 @@ export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pr
   return groups.filter(group=>group.entries.length);
 }
 export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'prompt'='hub'):NavigationGroup[] {
-  const locale=interfaceLocale(catalog),browse=libraryNavigation(catalog,level).find(group=>group.id==='browse')?.entries ?? [];
+  const locale=interfaceLocale(catalog),groups=libraryNavigation(catalog,level);
+  const entries=(id:string)=>groups.find(group=>group.id===id)?.entries ?? [];
+  const browse=entries('browse');
+  const pick=(ids:string[])=>ids.flatMap(id=>browse.filter(entry=>entry.id===id));
+  const featured=(id:string,limit:number)=>entries(id).slice(0,limit).map(entry=>({...entry,label:entry.label.replace(/ prompts$|提示词$/u,'')}));
   return [
-    {id:'browse',title:text(locale,'Browse','浏览'),entries:['all','images','videos','website'].flatMap(id=>browse.filter(entry=>entry.id===id))},
-    {id:'explore',title:text(locale,'Explore','探索'),entries:['all-models','all-creators','index'].flatMap(id=>browse.filter(entry=>entry.id===id))},
+    {id:'browse',title:text(locale,'Browse','浏览'),entries:pick(['all','images','videos','website','all-creators','index'])},
+    {id:'models',title:text(locale,'By model','按模型'),entries:[...featured('models',4),...pick(['all-models'])]},
+    {id:'tasks',title:text(locale,'By task','按任务'),entries:featured('tasks',5)},
+    {id:'styles',title:text(locale,'By style','按风格'),entries:featured('styles',5)},
   ].filter(group=>group.entries.length);
 }
 export function libraryIndex(catalog:Catalog) {

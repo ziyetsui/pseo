@@ -27,7 +27,7 @@ describe('footer populated destinations', () => {
       prompts: [prompt({ useCases: [{ ...beauty, slug: 'changed' }, ref('fashion-other')], styles: [{ ...cinematic, id: 'changed' }], subjects: [portrait] })],
     });
     expect(links(source)).toEqual([
-      ['All prompts', '/zh-CN/prompts'],
+      ['All prompts', '/zh-CN/prompts'], ['Beauty', '/zh-CN/prompts/use-cases/beauty'], ['Cinematic', '/zh-CN/prompts/styles/cinematic'],
     ]);
     expect(footer(source).querySelector('img')).toBeNull();
   });
@@ -37,7 +37,7 @@ describe('footer populated destinations', () => {
     const one = prompt({ models: [base, pro] });
     const source = catalog({ models: [ref('sora', 'Sora'), pro, base], prompts: [one, one] });
     expect(links(source)).toEqual([
-      ['All prompts', '/zh-CN/prompts'], ['All models', '/zh-CN/prompts/models'],
+      ['All prompts', '/zh-CN/prompts'], ['Nano Banana', '/zh-CN/prompts/model-families/nano-banana'], ['All models', '/zh-CN/prompts/models'],
     ]);
   });
 
@@ -76,9 +76,9 @@ describe('footer populated destinations', () => {
     expect(footer(source).querySelector('.footlegal')).not.toBeNull();
   });
 
-  it('keeps fixture footers compact without enumerating tasks', () => {
+  it('keeps curated fixture tasks in their established order', () => {
     const beauty = ref('beauty', 'Beauty'), fashion = ref('fashion', 'Fashion'), web = ref('web-motion', 'Web & motion design');
     const source = catalog({ mode: 'visual-fixture', useCases: [web, beauty, fashion, ref('automotive', 'Automotive')], prompts: [prompt({ useCases: [beauty, web, fashion] })] });
-    expect(links(source)).toEqual([['All prompts', '/zh-CN/prompts']]);
+    expect(links(source)).toEqual([['All prompts', '/zh-CN/prompts'], ['Fashion', '/zh-CN/prompts/use-cases/fashion'], ['Beauty', '/zh-CN/prompts/use-cases/beauty'], ['Web & motion', '/zh-CN/prompts/use-cases/web-motion']]);
   });
 });
