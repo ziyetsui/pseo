@@ -1,0 +1,95 @@
+{
+  "websitesProcessed": 59,
+  "imagesProcessed": 541,
+  "duplicates": 20,
+  "conflicts": 35,
+  "categoryMappings": [
+    {
+      "source": "Architecture & Spaces",
+      "axis": "use-case",
+      "slug": "architecture-spaces"
+    },
+    {
+      "source": "Brand & Logos",
+      "axis": "use-case",
+      "slug": "brand-logos"
+    },
+    {
+      "source": "Characters & People",
+      "axis": "use-case",
+      "slug": "characters-people"
+    },
+    {
+      "source": "Charts & Infographics",
+      "axis": "use-case",
+      "slug": "charts-infographics"
+    },
+    {
+      "source": "Documents & Publishing",
+      "axis": "use-case",
+      "slug": "documents-publishing"
+    },
+    {
+      "source": "History & Classical Themes",
+      "axis": "use-case",
+      "slug": "history-classical-themes"
+    },
+    {
+      "source": "Illustration & Art",
+      "axis": "use-case",
+      "slug": "illustration-art"
+    },
+    {
+      "source": "Other Use Cases",
+      "axis": "use-case",
+      "slug": "other-use-cases"
+    },
+    {
+      "source": "Photography & Realism",
+      "axis": "use-case",
+      "slug": "photography-realism"
+    },
+    {
+      "source": "Posters & Typography",
+      "axis": "use-case",
+      "slug": "posters-typography"
+    },
+    {
+      "source": "Products & E-commerce",
+      "axis": "use-case",
+      "slug": "products-e-commerce"
+    },
+    {
+      "source": "Scenes & Storytelling",
+      "axis": "use-case",
+      "slug": "scenes-storytelling"
+    },
+    {
+      "source": "UI & Interfaces",
+      "axis": "use-case",
+      "slug": "ui-interfaces"
+    }
+  ],
+  "state": "proposal_ready",
+  "cmsAccepted": 0,
+  "public": 0,
+  "mirrorSynced": false,
+  "deployed": false,
+  "sources": [
+    {
+      "dataset": "reviewed-websites",
+      "sha256": "2b0fae08aec361b8b0d1a3f52af9fd521c0fc81208a32f4ab798b87367791ba8"
+    },
+    {
+      "dataset": "awesome-gpt-image-2",
+      "commit": "5cb9109ca2d29476f8e34dbc0cdb43607bdd3f77",
+      "sha256": "a9ef652dffdac0802c656e4770f9793315292fa78e955d3e8c6e0e6346eb7da8"
+    }
+  ],
+  "observedAt": "2026-10-14T04:00:00.000Z",
+  "nodes": 2804,
+  "edges": 6638,
+  "proposals": 544,
+  "missingPrompts": 36,
+  "contractBlocked": 0
+}
