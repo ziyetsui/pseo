@@ -4,8 +4,11 @@ on:
   pull_request:
     branches:
       - main
+      - codex/cms-preview-integration
     paths:
       - "content/**"
+      - "scripts/**"
+      - "docs/intake/**"
       - "schemas/**"
       - "infra/**"
       - "frontend/**"
@@ -30,6 +33,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Case intake and CMS proposal contract tests
+        run: node --test scripts/tests/*.test.mjs
+      - name: Verify complete checked-in intake graph
+        run: node scripts/check-case-intake.mjs
       - name: Strict schema, locale, slug, and link validation
         run: node infra/bin/content.mjs validate
       - name: Golden, conflict, stale-locale, and Preview tests

@@ -138,3 +138,33 @@ export function validateGraph({ nodes, edges }) {
     relations.add(key);
   }
 }
+
+/** Verify the actual stored batch, including its CMS contract and non-public state. */
+export function checkIntake({ graph, proposals, reviews, manifest }) {
+  validateGraph(graph);
+  const same = (a, b) => { if (a !== b) throw new Error('intake count mismatch'); };
+  same(manifest.nodes, graph.nodes.length);
+  same(manifest.edges, graph.edges.length);
+  same(manifest.proposals, proposals.length);
+  same(manifest.websitesProcessed, reviews.filter(r => r.namespace === 'websites').length);
+  same(manifest.imagesProcessed, reviews.filter(r => r.namespace === 'gpt-image-2').length);
+  const byId = new Map(graph.nodes.map(n => [n.id, n]));
+  const ids = new Set();
+  for (const proposal of proposals) {
+    normalizePromptProposal(proposal.body);
+    const key = proposal.body.prompt.artifactKey;
+    if (ids.has(key)) throw new Error('duplicate proposal');
+    ids.add(key);
+    const node = byId.get(key);
+    if (!node || node.type !== 'prompt' || node.prompt !== proposal.body.prompt.text) throw new Error('graph/proposal prompt text mismatch');
+  }
+  for (const review of reviews) {
+    if (!byId.has(review.objectId)) throw new Error('review graph endpoint missing');
+    if (!review.reasons.includes('rights_review') || !review.reasons.includes('editorial_review')) throw new Error('missing review requirement');
+  }
+  if (manifest.public !== 0 || manifest.cmsAccepted !== 0 || manifest.mirrorSynced !== false || manifest.deployed !== false) throw new Error('unverified intake publication claim');
+  for (const node of graph.nodes.filter(n => n.type === 'prompt' || n.type === 'website-case')) {
+    if (node.state !== 'draft' || node.rightsStatus !== 'review_required' || node.robots !== 'noindex,nofollow') throw new Error('unverified node publication claim');
+    if (!graph.edges.some(e => e.from === node.id && e.type === 'sourced_from')) throw new Error('object has no source edge');
+  }
+}

@@ -1,3 +1,4 @@
+import { websitePrompts } from '@/lib/catalog/website';
 import type { Metadata } from 'next';
 import type { Catalog, Prompt, Ref } from '@/lib/catalog/types';
 import { siteOrigin } from '@/lib/catalog/config';
@@ -19,6 +20,7 @@ function navigationCopy(catalog: Catalog, path: string, title: string, entity?: 
     const kind = path.endsWith('/video') ? 'video' : 'image';
     return { title, description: `Browse ${catalog.prompts.filter(prompt => prompt.kind === kind).length} ${kind} prompts by model, task and style. Read the full instructions and inspect available results with source credits.` };
   }
+  if (path === `${hub}/website`) return { title: 'Website prompts', description: `Explore ${websitePrompts(catalog).length} website prompts with source credits, models and full instructions.` };
   if (path === `${hub}/models`) return { title: 'AI model families and prompts', description: 'Browse model families and their versions, then explore the prompts associated with each model.' };
   if (path === `${hub}/creators`) return { title: 'Prompt creators', description: 'Discover the creators represented in this prompt library and follow their available profile links.' };
   if (path === `/${catalog.locale}/blog`) return { title: 'The notebook', description: 'Published articles and notes from Prompt Library. Browse the available writing and its credited sources.' };
@@ -36,7 +38,7 @@ export function siteMetadata(catalog: Catalog, path: string, title: string, prom
   const copy = prompt ? { title, description: prompt.summary || title } : navigationCopy(catalog, path, title, entity);
   const resolvedTitle = !visual && seo?.title ? seo.title : `${copy.title} · Prompt Library`;
   const description = seo?.description || copy.description;
-  const robots = surface?.robots ?? seo?.robots;
+  const robots = path === `/${catalog.locale}/prompts/website` ? 'noindex,nofollow' : surface?.robots ?? seo?.robots;
   return {
     title: resolvedTitle, description,
     robots: visual ? { index: false, follow: false } : { index: robots?.split(',').some(value => value.trim() === 'index') ?? false, follow: !robots?.split(',').some(value => value.trim() === 'nofollow') },

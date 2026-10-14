@@ -73,3 +73,23 @@ test('website preview keeps its actual media kind and source URL instead of trea
   assert.equal(result.nodes.find(n => n.type === 'media')?.url, 'https://video.twimg.com/demo.mp4');
   assert.ok(result.edges.some(e => e.type === 'has_example'));
 });
+
+test('release verifier rejects mismatched counts, altered prompt bodies and publication claims', async () => {
+  const { checkIntake } = await import('../lib/case-import.mjs');
+  const result = build([website]);
+  const bundle = { ...result, graph: { nodes: result.nodes, edges: result.edges }, manifest: { ...result.manifest, nodes: result.nodes.length, edges: result.edges.length, proposals: result.proposals.length } };
+  assert.doesNotThrow(() => checkIntake(bundle));
+  assert.throws(() => checkIntake({ ...bundle, manifest: { ...bundle.manifest, nodes: 999 } }), /count/);
+  const changed = structuredClone(bundle);
+  changed.proposals[0].body.prompt.text = 'Altered content';
+  assert.throws(() => checkIntake(changed), /prompt text/);
+  assert.throws(() => checkIntake({ ...bundle, manifest: { ...bundle.manifest, public: 1 } }), /publication/);
+});
+
+test('the real checked-in intake verifies when the checkout path contains spaces', async () => {
+  const { execFileSync } = await import('node:child_process');
+  const { fileURLToPath } = await import('node:url');
+  const output = execFileSync(process.execPath, [fileURLToPath(new URL('../check-case-intake.mjs', import.meta.url))], { encoding: 'utf8' });
+  assert.match(output, /websites=59 images=541/);
+  assert.match(output, /public=0/);
+});
