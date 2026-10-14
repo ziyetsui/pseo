@@ -1,3 +1,4 @@
+import { WebsiteGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
 import { websitePrompts, websiteRef } from '@/lib/catalog/website';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -34,6 +35,8 @@ async function resolve(params: Params) {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { catalog, path } = await resolve(await params);
+  const websiteCase = catalog.websites?.find(item => item.href === path);
+  if (websiteCase) return siteMetadata(catalog, path, websiteCase.title);
   const prompt = catalog.prompts.find(prompt => prompt.href === path);
   const model = catalog.models.find(model => model.href === path) ?? modelFamilyForPath(catalog, path);
   const task = taskForPath(catalog, path);
@@ -55,6 +58,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const hub = `/${catalog.locale}/prompts`;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
+  if (path === `${hub}/website` && catalog.mode === "git-beta") return <WebsiteGallery catalog={catalog} />;
+  const websiteCase = catalog.websites?.find(item => item.href === path);
+  if (websiteCase) return <WebsiteCaseDetail catalog={catalog} entry={websiteCase} />;
   if (path === `${hub}/website`) return <TaskFindings catalog={catalog} task={websiteRef(catalog)} prompts={websitePrompts(catalog)} aggregate />;
   if (path === `${hub}/models`) return <Directory catalog={catalog} title="Models" items={modelFamilies(catalog)} />;
   if (path === `${hub}/creators`) return <Directory catalog={catalog} title="Creators" items={catalog.creators.map(creator => ({ ...creator, href: creator.url || creator.href }))} />;

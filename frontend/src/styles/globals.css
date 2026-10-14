@@ -63,3 +63,21 @@ button:disabled, a[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
     scroll-behavior: auto !important;
   }
 }
+
+/* Website cases share the library's tiles and typography; cases without prompts remain cases. */
+.website-library h1 { font-size: clamp(32px, 5vw, 64px); line-height: 1.08; letter-spacing: -.035em; margin-bottom: 24px; overflow-wrap: anywhere; }
+.website-filters { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin: 28px 0 18px; }
+.website-filters label { display: flex; flex: 1 1 180px; flex-direction: column; gap: 8px; color: var(--muted); font-size: 13px; min-width: 0; }
+.website-filters input, .website-filters select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--r); color: var(--foreground); background: var(--card); font: inherit; }
+.website-library .website-cases { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+.website-cases .tile { min-width: 0; }
+.website-cases h2 { font-size: 18px; line-height: 1.35; overflow-wrap: anywhere; }
+.website-cases .website-summary { font: 14px/1.6 var(--font-sans, system-ui); color: var(--muted); }
+.website-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.website-detail { max-width: 960px; }
+.website-detail figure { margin: 28px 0; }
+.website-detail img { display: block; width: 100%; height: auto; border-radius: var(--r); }
+.website-detail section { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 28px; }
+.website-detail h2 { font-size: 24px; margin-bottom: 18px; }
+@media(max-width: 900px) { .website-library .website-cases { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width: 560px) { .website-library .website-cases { grid-template-columns: minmax(0,1fr); } }

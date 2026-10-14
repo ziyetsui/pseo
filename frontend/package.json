@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:static": "node scripts/check-static-output.mjs",
-    "generate:api": "node scripts/generate-api.mjs"
+    "generate:api": "node scripts/generate-api.mjs",
+    "build:beta": "FRONTEND_DATA_MODE=git-beta pnpm build"
   },
   "dependencies": {
     "next": "16.3.4",

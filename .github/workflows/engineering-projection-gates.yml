@@ -77,6 +77,10 @@ jobs:
         run: pnpm --dir frontend build:visual
       - name: Validate exported routes and links
         run: pnpm --dir frontend check:static
+      - name: Build owner-authorized Git beta case catalog
+        run: pnpm --dir frontend build:beta
+      - name: Validate Git beta routes, examples and preview checksums
+        run: pnpm --dir frontend check:static
 
   backend-contract:
     name: backend contract / tests

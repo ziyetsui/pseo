@@ -1,4 +1,4 @@
-import type { Catalog, Prompt, Ref } from './types';
+import type { Catalog, Prompt, Ref, WebsiteCase } from './types';
 
 const websiteTasks = new Set(['website', 'web-design', 'web-development', 'web-motion-design']);
 
@@ -12,5 +12,16 @@ export function websitePrompts(catalog: Catalog): Prompt[] {
 }
 
 export function websiteRef(catalog: Catalog): Ref {
-  return { id: 'navigation:website', slug: 'website', label: 'Website', href: `/${catalog.locale}/prompts/website`, count: websitePrompts(catalog).length };
+  return { id: 'navigation:website', slug: 'website', label: 'Website', href: `/${catalog.locale}/prompts/website`, count: websiteEntries(catalog).length };
+}
+
+/** Cases with and without supplied prompts share navigation, never a fabricated prompt body. */
+export function websiteEntries(catalog: Catalog): WebsiteCase[] {
+  const cases = catalog.websites ?? [];
+  const ids = new Set(cases.map(item => item.id));
+  return [...cases, ...websitePrompts(catalog).filter(prompt => !ids.has(prompt.id)).map(prompt => ({
+    id: prompt.id, slug: prompt.slug, href: prompt.href, title: prompt.title, summary: prompt.summary,
+    cover: prompt.img ?? '', attribution: prompt.handle, source: prompt.source, models: prompt.models,
+    useCases: prompt.useCases, tools: [], demoUrl: null, codeUrl: null, promptHref: prompt.href, relatedSources: [],
+  }))];
 }

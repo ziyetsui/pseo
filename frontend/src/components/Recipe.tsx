@@ -31,7 +31,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
       <section className="step" aria-labelledby="recipe-result">
         <div className="num" aria-hidden="true">01</div><div>
           <h2 id="recipe-result">See what it makes</h2>
-          <p className="lede">{hasMedia ? "This is the author's own result, straight from the post it was published in." : "The author published no image with this one, so there is nothing honest to show here."}</p>
+          <p className="lede">{hasMedia ? catalog.mode === "git-beta" ? "Examples collected with this prompt. Follow the original source for attribution and context." : "This is the author's own result, straight from the post it was published in." : "The author published no image with this one, so there is nothing honest to show here."}</p>
           <RecipeMedia prompt={prompt} />
         </div>
       </section>
@@ -53,7 +53,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
             <span className="metrics"><span>{prompt.handle || "unattributed"}</span><span><b>{number(prompt.likes)}</b> likes</span><span><b>{number(prompt.saves)}</b> saves</span>{prompt.highValue && <span className="ok">Popular</span>}</span>
           </div>
           <div style={{ marginTop: 20 }}>
-            {prompt.source.url && <div className="kv"><span>Source</span><a href={prompt.source.url} target="_blank" rel="noopener noreferrer nofollow">View the original post ↗</a></div>}
+            {prompt.source.url && <div className="kv"><span>Source</span><a href={prompt.source.url} target="_blank" rel="noopener noreferrer nofollow">View the original source ↗</a></div>}
             {prompt.evidence.map((item, index) => <div className="kv" key={`${item.type}:${item.url}:${index}`}><span>Evidence · {item.type}</span>{item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">View evidence ↗</a> : <span>No public evidence link</span>}</div>)}
             {prompt.source.observedAt && <div className="kv"><span>Observed</span><time dateTime={prompt.source.observedAt}>{new Date(prompt.source.observedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" })}</time></div>}
             {prompt.useCases.length > 0 && <div className="kv"><span>Use case</span><span>{prompt.useCases.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>)}</span></div>}

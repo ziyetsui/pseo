@@ -39,6 +39,7 @@ export function SiteFooter({ catalog, level = 'hub' }: { catalog: Catalog; level
   const browse = [
     { label: 'Image prompts', href: `${hub}/image`, available: catalog.prompts.some(prompt => prompt.kind === 'image') },
     { label: 'Video prompts', href: `${hub}/video`, available: catalog.prompts.some(prompt => prompt.kind === 'video') },
+    { label: 'Website cases', href: `${hub}/website`, available: (catalog.websites?.length ?? 0) > 0 },
     { label: 'All prompts', href: hub, available: catalog.prompts.length > 0 },
     { label: 'All models', href: `${hub}/models`, available: models.length > 0 },
     { label: 'All creators', href: `${hub}/creators`, available: hasCreators },
