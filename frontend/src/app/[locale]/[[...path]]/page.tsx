@@ -1,4 +1,5 @@
 import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/components/WebsiteCases';
+import { LibraryIndex } from '@/components/LibraryIndex';
 import { websiteViewForPath } from '@/lib/catalog/website-views';
 import { websitePrompts, websiteRef } from '@/lib/catalog/website';
 import { notFound } from 'next/navigation';
@@ -57,6 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { catalog, path } = await resolve(await params);
   const hub = `/${catalog.locale}/prompts`;
+  if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return <LibraryIndex catalog={catalog} />;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
   if (path === `${hub}/website` && catalog.mode === "git-beta") return <WebsiteGallery catalog={catalog} />;

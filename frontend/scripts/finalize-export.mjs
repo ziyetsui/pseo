@@ -1,6 +1,7 @@
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
 import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { readWebsiteViews } from './website-view-output.mjs';
+import { readLibraryIndex, indexHash } from './library-index-output.mjs';
 import { checkIntake } from '../../scripts/lib/case-import.mjs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -51,6 +52,11 @@ if (mode === 'git-beta') {
   revision = gitBetaRevision(revision, intake.graph, previews);
   gitBeta = gitBetaReceipt(intake.graph, intake.reviews, JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
   gitBeta.publishedWebsiteViews = readWebsiteViews(parse(await readFile(path.join(out, 'zh-CN/prompts/website.html'),'utf8')));
+  const index=readLibraryIndex(parse(await readFile(path.join(out,'zh-CN/prompts/library-index.html'),'utf8')),revision);
+  const bytes=JSON.stringify(index,null,2)+'\n';
+  await writeFile(path.join(out,'library-index.json'),bytes);
+  gitBeta.publishedNavigation=[{id:'navigation:library-index',href:'/zh-CN/prompts/library-index'}];
+  gitBeta.navigationIndex={path:'/library-index.json',sha256:indexHash(bytes),routes:index.routes.length};
 }
 if (mode !== 'public-api') {
   await writeFile(path.join(out, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n');
