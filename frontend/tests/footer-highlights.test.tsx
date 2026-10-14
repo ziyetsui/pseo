@@ -7,10 +7,10 @@ import {WebsiteCaseDetail} from '@/components/WebsiteCases';
 import {createGitBetaCatalog} from '@/lib/catalog/git-beta';
 import {libraryIndex} from '@/site/navigation';
 const catalog=createGitBetaCatalog('zh-CN');
-it('keeps the footer short while the index retains every Website technology',()=>{
+it('keeps the footer curated while the index retains every Website technology',()=>{
  const footer=parse(renderToStaticMarkup(<SiteFooter catalog={catalog}/>));
- expect(footer.querySelectorAll('.footnav > div')).toHaveLength(2);
- expect(footer.querySelectorAll('.footnav a')).toHaveLength(7);
+ expect(footer.querySelectorAll('.footnav > div')).toHaveLength(4);
+ expect(footer.querySelectorAll('.footnav a')).toHaveLength(21);
  expect(footer.querySelector('a[href$="/library-index"]')).not.toBeNull();
  expect(libraryIndex(catalog).groups.find(g=>g.id==='website-tool')?.entries).toHaveLength(21);
 });
