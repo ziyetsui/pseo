@@ -23,6 +23,16 @@ for (const file of htmlFiles) {
   if (!document.querySelector('main h1')) throw new Error(`Missing server-rendered main heading: ${file}`);
   if (document.querySelector('iframe[srcdoc]')) throw new Error('Prototype iframe leaked into static output');
   if (manifest.mode !== 'public-api' && !document.querySelector('meta[name="robots"]')?.getAttribute('content')?.includes('noindex')) throw new Error(`Visual fixture lacks server noindex: ${file}`);
+  if(manifest.mode==='git-beta'){
+    const locale=route.match(/^\/(zh-CN|en)(?:\/|$)/)?.[1];
+    if(locale){
+      if(document.querySelector('html')?.getAttribute('lang')!==locale||document.querySelector('body')?.getAttribute('lang')!==locale)throw new Error(`Interface language mismatch: ${route}`);
+      const counterpart=document.querySelector('[data-language-switch]');
+      const canonicalPath=route===`/${locale}`?`/${locale}/prompts`:route;
+      const target=locale==='en'?'zh-CN':'en';
+      if(counterpart?.getAttribute('href')!==canonicalPath.replace(`/${locale}`,`/${target}`)||counterpart.getAttribute('hreflang')!==target)throw new Error(`Language switch lost page identity: ${route}`);
+    }
+  }
   for (const link of document.querySelectorAll('a[href]')) {
     const href = link.getAttribute('href');
     if (href === '#') throw new Error(`Placeholder navigation: ${file}`);
@@ -48,15 +58,21 @@ if (manifest.mode !== 'public-api') {
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
     const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
-    verifyWebsiteViewOutput(documents, receipt, viewGraph);
-    const index=readLibraryIndex(documents.get('/zh-CN/prompts/library-index'),manifest.revision),indexBytes=await readFile(path.join(root,'library-index.json'),'utf8');
-    if(indexHash(indexBytes)!==receipt.navigationIndex?.sha256||JSON.stringify(JSON.parse(indexBytes))!==JSON.stringify(index))throw new Error('Library index receipt or HTML mismatch');
-    verifyLibraryIndex(documents,index,receipt);
-    const allowed = new Set([...receipt.publishedPrompts, ...receipt.publishedWebsites, ...receipt.publishedWebsiteViews,...receipt.publishedNavigation].map(item => item.href));
+    if(!Array.isArray(receipt.locales)||JSON.stringify(receipt.locales.map(item=>item.locale).sort())!==JSON.stringify(['en','zh-CN']))throw new Error('Bilingual locale receipt missing');
+    const published=[];
+    for(const local of receipt.locales){
+      const locale=local.locale;
+      verifyWebsiteViewOutput(documents,local,viewGraph,locale);
+      const index=readLibraryIndex(documents.get(`/${locale}/prompts/library-index`),manifest.revision,locale),indexBytes=await readFile(path.join(root,local.navigationIndex.path),'utf8');
+      if(indexHash(indexBytes)!==local.navigationIndex.sha256||JSON.stringify(JSON.parse(indexBytes))!==JSON.stringify(index))throw new Error('Library index receipt or HTML mismatch');
+      verifyLibraryIndex(documents,index,local,locale);
+      published.push(...local.publishedPrompts,...local.publishedWebsites,...local.publishedWebsiteViews,...local.publishedNavigation);
+    }
+    const allowed = new Set(published.map(item=>item.href));
     for (const route of allowed) if (!allPaths.has(route)) throw new Error(`Git beta published route missing: ${route}`);
     for (const route of allPaths) {
       if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|website|models|creators)$/.test(route) && !allowed.has(route)) throw new Error(`Unlisted Git beta detail: ${route}`);
-      if (route.startsWith('/zh-CN/prompts/website/') && !allowed.has(route)) throw new Error(`Unlisted Website case: ${route}`);
+      if (/^\/(?:en|zh-CN)\/prompts\/website\//.test(route) && !allowed.has(route)) throw new Error(`Unlisted Website case: ${route}`);
     }
     const imageDocuments = receipt.publishedPrompts.map(item => documents.get(item.href).toString()).join('');
     for (const url of receipt.imageUrls) if (!imageDocuments.includes(url)) throw new Error(`Git beta image example not rendered: ${url}`);

@@ -7,7 +7,7 @@ const relations: Record<string, Exclude<WebsiteViewAxis, 'all'>> = { used_for: '
 export function websiteViews(catalog: Catalog): WebsiteView[] {
   if (catalog.mode !== 'git-beta') return [];
   const entries = websiteEntries(catalog), ids = new Set(entries.map(entry => entry.id)), root = `${websiteRef(catalog).href}/views`;
-  const all: WebsiteView = { id: 'website-view:all', slug: 'all', label: 'All website cases', href: `${root}/all`, count: ids.size, axis: 'all', targetId: null, relation: null, caseIds: [...ids] };
+  const all: WebsiteView = { id: 'website-view:all', slug: 'all', label: catalog.locale==='zh-CN'?'全部网站案例':'All website cases', href: `${root}/all`, count: ids.size, axis: 'all', targetId: null, relation: null, caseIds: [...ids] };
   const graph = catalog.websiteGraph;
   if (!graph) throw new Error('Website views require a graph');
   const nodes = new Map(graph.nodes.map(node => [node.id, node]));

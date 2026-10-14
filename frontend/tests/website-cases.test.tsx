@@ -17,7 +17,7 @@ describe('real website cases', () => {
     const html = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={websiteViews(catalog)[0]!} />));
     expect(html.querySelectorAll('[data-website-case]')).toHaveLength(225);
     expect(html.querySelectorAll('[data-website-case] img')).toHaveLength(60);
-    expect(html.querySelector('h1')?.text).toBe('All website cases');
+    expect(html.querySelector('h1')?.text).toBe('全部网站案例');
   });
   it('keeps a missing prompt out of the detail actions and preserves its original source', () => {
     const entry = catalog.websites?.find(item => !item.promptHref);
@@ -26,7 +26,7 @@ describe('real website cases', () => {
     expect(html.querySelector('h1')?.text).toBe(entry.title);
     expect(html.querySelectorAll('a').some(link => link.getAttribute('href') === entry.source.url)).toBe(true);
     expect(html.querySelector('[data-generation-cta]')).toBeNull();
-    expect(html.text).toContain('No prompt was included');
+    expect(html.text).toContain('来源中未包含提示词');
   });
   it('searches real titles and scopes model/purpose filters with an empty result for impossible queries', () => {
     const rows = catalog.websites ?? [];
@@ -41,5 +41,5 @@ it('uses the actual case title in browser metadata rather than the generic libra
   const { siteMetadata } = await import('@/site/metadata');
   const entry = catalog.websites?.[0];
   if (!entry) throw new Error('Missing case input');
-  expect(siteMetadata(catalog, entry.href, entry.title).title).toBe(`${entry.title} · Prompt Library`);
+  expect(siteMetadata(catalog, entry.href, entry.title).title).toBe(`${entry.title} · 提示词库`);
 });

@@ -2,7 +2,7 @@ import { test,expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test('Deck buttons and keyboard select one active project with bounded controls',async({page})=>{
-  await page.goto('/zh-CN/prompts/website/views/all',{waitUntil:'domcontentloaded'});
+  await page.goto('/en/prompts/website/views/all',{waitUntil:'domcontentloaded'});
   const deck=page.locator('.deck'),previous=page.getByRole('button',{name:'← Previous',exact:true}),next=page.getByRole('button',{name:'Next →',exact:true});
   await expect(next).toBeEnabled();await expect(previous).toBeDisabled();
   await expect(deck.locator('.dc:not([inert])')).toHaveCount(1);
@@ -20,12 +20,12 @@ test('Deck buttons and keyboard select one active project with bounded controls'
 });
 
 test('Findings, Anthology, Recipe and index preserve graph scope and navigation',async({page,request})=>{
-  await page.goto('/zh-CN/prompts/website/views/use-case/website-fun',{waitUntil:'domcontentloaded'});
+  await page.goto('/en/prompts/website/views/use-case/website-fun',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.prototype-task-findings .finding')).not.toHaveCount(0);
   await expect(page.locator('[data-website-case]')).toHaveCount(19);
   const contrast=await page.locator('.website-view-tabs [aria-current=page]').evaluate(el=>{const css=getComputedStyle(el);return {text:css.color,background:css.backgroundColor};});
   expect(contrast.text).not.toBe(contrast.background);
-  await page.goto('/zh-CN/prompts/website/views/tool/three-js',{waitUntil:'domcontentloaded'});
+  await page.goto('/en/prompts/website/views/tool/three-js',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.model-signature')).toBeVisible();
   await expect(page.locator('.toc li')).toHaveCount(36);
   await expect(page.locator('.anth [data-website-case]')).toHaveCount(36);
@@ -37,17 +37,17 @@ test('Findings, Anthology, Recipe and index preserve graph scope and navigation'
   await page.locator('footer a[href$="/library-index"]').click();
   await expect(page.locator('h1')).toHaveText('Library index');
   await expect(page.locator('details')).toHaveCount(4);
-  const index=await(await request.get('/library-index.json')).json();
+  const index=await(await request.get('/en/library-index.json')).json();
   expect(index.collections.reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(953);
   expect(index.groups.filter((group:{id:string})=>group.id.startsWith('website-')).reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(29);
 });
 
 test('all hierarchy compositions fit and have no WCAG violations',async({page,request},testInfo)=>{
   await page.emulateMedia({reducedMotion:'reduce'});
-  const index=await(await request.get('/library-index.json')).json();
+  const index=await(await request.get('/en/library-index.json')).json();
   const detail=index.collections.find((group:{id:string})=>group.id==='website-details').entries.find((entry:{href:string})=>entry.href.includes('/website/')).href;
-  for(const path of ['website/views/all','website/views/use-case/website-fun','website/views/tool/three-js','library-index',detail.replace('/zh-CN/prompts/','')]){
-    await page.goto(`/zh-CN/prompts/${path}`,{waitUntil:'domcontentloaded'});
+  for(const path of ['website/views/all','website/views/use-case/website-fun','website/views/tool/three-js','library-index',detail.replace('/en/prompts/','')]){
+    await page.goto(`/en/prompts/${path}`,{waitUntil:'domcontentloaded'});
     for(const width of [375,768,1440]){
       await page.setViewportSize({width,height:900});
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);

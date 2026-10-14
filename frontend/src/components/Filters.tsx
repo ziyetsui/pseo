@@ -1,4 +1,6 @@
 "use client";
+import { uiText } from '@/lib/i18n/text';
+import type { Locale } from '@/lib/catalog/types';
 
 import { useSyncExternalStore } from "react";
 import type { Axis, Catalog, Prompt, Ref } from "@/lib/catalog/types";
@@ -62,28 +64,28 @@ export function facetOptions(prompts: Prompt[], axis: FilterAxis, preserveTies =
   return [...counts.values()].sort((a, b) => b.count - a.count || (preserveTies ? 0 : a.label.localeCompare(b.label)));
 }
 
-export function Filters({ prompts, explorer, axes, variant = "deck", limit }: {
+export function Filters({ prompts, explorer, axes, variant = "deck", limit , uiLocale = 'en'}: {
   prompts: Prompt[]; explorer: Explorer; axes: readonly (readonly [FilterAxis, string])[]; variant?: "hub" | "deck" | "model"; limit?: number;
-}) {
+ uiLocale?: Locale }) {
   const chips = (axis: FilterAxis) => facetOptions(prompts, axis, variant === "hub").slice(0, limit).map(ref => <button
     className="chip" type="button" key={`${axis}-${ref.slug}`} aria-pressed={explorer.selected(axis, ref.slug)}
-    onClick={() => explorer.toggle(axis, ref.slug)}>{ref.label} <small>{ref.count}</small></button>);
+    onClick={() => explorer.toggle(axis, ref.slug)}>{uiText(uiLocale, ref.label)} <small>{ref.count}</small></button>);
   if (variant === "hub") return <div className="hub-chips">{axes.map(([axis]) => <span className="filter-axis-inline" key={axis}>{chips(axis)}</span>)}</div>;
-  if (variant === "model") return <div className="axes">{axes.map(([axis, label]) => <div className="ax" key={axis}><div className="axh"><h3 id={`ax-${axis}`}>{label}</h3><span className="n">{facetOptions(prompts, axis).length}</span></div><div className="chips" role="group" aria-labelledby={`ax-${axis}`}>{chips(axis)}</div></div>)}</div>;
-  return <div className="facets">{axes.map(([axis, label]) => <div key={axis}><h3 id={`ax-${axis}`}>{label}</h3><div className="chips" role="group" aria-labelledby={`ax-${axis}`}>{chips(axis)}</div></div>)}</div>;
+  if (variant === "model") return <div className="axes">{axes.map(([axis, label]) => <div className="ax" key={axis}><div className="axh"><h3 id={`ax-${axis}`}>{uiText(uiLocale, label)}</h3><span className="n">{facetOptions(prompts, axis).length}</span></div><div className="chips" role="group" aria-labelledby={`ax-${axis}`}>{chips(axis)}</div></div>)}</div>;
+  return <div className="facets">{axes.map(([axis, label]) => <div key={axis}><h3 id={`ax-${axis}`}>{uiText(uiLocale, label)}</h3><div className="chips" role="group" aria-labelledby={`ax-${axis}`}>{chips(axis)}</div></div>)}</div>;
 }
 
-export function SearchForm({ explorer, variant = "deck", contentType = "image" }: { explorer: Explorer; variant?: "hub" | "deck"; contentType?: "image" | "video" }) {
-  const label = variant === "hub" ? "Search prompts" : `Search ${contentType} prompts`;
+export function SearchForm({ explorer, variant = "deck", contentType = "image" , uiLocale = 'en'}: { explorer: Explorer; variant?: "hub" | "deck"; contentType?: "image" | "video" ; uiLocale?: Locale }) {
+  const label = variant === "hub" ? uiText(uiLocale, "Search prompts") : uiText(uiLocale, `Search ${contentType} prompts`);
   return <form className={variant === "hub" ? "search hub-search" : "searchbar"} role="search" onSubmit={event => event.preventDefault()}>
     <label className="vh" htmlFor="q">{label}</label><input id="q" name="q" type="search" maxLength={200} value={explorer.q}
-      placeholder={variant === "hub" ? "Search prompts, models, styles, creators…" : `${label}…`} onChange={event => explorer.setQuery(event.target.value)} />
-    {variant === "deck" && <button className="btn primary" type="submit">Search</button>}
+      placeholder={variant === "hub" ? uiText(uiLocale, "Search prompts, models, styles, creators…") : `${label}…`} onChange={event => explorer.setQuery(event.target.value)} />
+    {variant === "deck" && <button className="btn primary" type="submit">{uiText(uiLocale, "Search")}</button>}
   </form>;
 }
 
-export function EmptyResults({ explorer, title = "No prompts match those filters." }: { explorer: Explorer; title?: string }) {
-  return <div className="empty" role="status"><b>{title}</b><p>Widen one axis, or clear them all.</p><button className="btn primary" type="button" onClick={explorer.clear}>Clear filters</button></div>;
+export function EmptyResults({ explorer, title = "No prompts match those filters." , uiLocale = 'en'}: { explorer: Explorer; title?: string ; uiLocale?: Locale }) {
+  return <div className="empty" role="status"><b>{uiText(uiLocale, title)}</b><p>{uiText(uiLocale, "Widen one axis, or clear them all.")}</p><button className="btn primary" type="button" onClick={explorer.clear}>{uiText(uiLocale, "Clear filters")}</button></div>;
 }
 
 export function PromptWords({ text, markClassName }: { text: string; markClassName?: string }) {

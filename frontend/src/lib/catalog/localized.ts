@@ -1,0 +1,10 @@
+import type {Catalog,Locale,Ref} from './types';
+import {localizedHref} from '@/lib/i18n/routes';
+import {taxonomyLabel} from '@/lib/i18n/taxonomy';
+/** Interface projections share source objects and exact prompt text. This is not a CMS translation. */
+export function localizedGitCatalog(source:Catalog,locale:Locale):Catalog{
+ const href=(value:string)=>localizedHref(value,locale);
+ const ref=<T extends Ref>(value:T):T=>({...value,label:taxonomyLabel(locale,value.sourceLabel??value.label),sourceLabel:value.sourceLabel??value.label,searchLabels:[...new Set([value.sourceLabel??value.label,taxonomyLabel('zh-CN',value.sourceLabel??value.label),taxonomyLabel('en',value.sourceLabel??value.label)])],href:href(value.href)});
+ const relations=(value:Catalog['prompts'][number])=>({...value,locale,href:href(value.href),models:value.models.map(ref),useCases:value.useCases.map(ref),styles:value.styles.map(ref),subjects:value.subjects.map(ref),techniques:value.techniques.map(ref),localeVariants:(['zh-CN','en'] as const).map(target=>({locale:target,slug:value.slug,href:localizedHref(value.href,target)}))});
+ return {...source,locale,prompts:source.prompts.map(relations),models:source.models.map(ref),useCases:source.useCases.map(ref),styles:source.styles.map(ref),subjects:source.subjects.map(ref),techniques:source.techniques.map(ref),collections:source.collections.map(ref),creators:source.creators.map(value=>({...value,href:href(value.href)})),websites:source.websites?.map(value=>({...value,href:href(value.href),promptHref:value.promptHref?href(value.promptHref):null,models:value.models.map(ref),useCases:value.useCases.map(ref)})),websiteGraph:source.websiteGraph?{...source.websiteGraph,nodes:source.websiteGraph.nodes.map(node=>({...node,label:['use-case','tool'].includes(node.type)?taxonomyLabel(locale,node.label):node.label}))}:undefined,locales:[{locale:'zh-CN',displayName:'简体中文',enabled:true,href:'/zh-CN/prompts'},{locale:'en',displayName:'English',enabled:true,href:'/en/prompts'}]};
+}

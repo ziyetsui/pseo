@@ -28,7 +28,7 @@ describe('shared Footer IA and complete Library index',()=>{
   it('uses exact graph case counts and never labels case-only projects as prompts',()=>{
     const groups=footerNavigation(catalog);
     const claude=groups.find(group=>group.id==='website-model')?.entries.find(entry=>entry.href.endsWith('/claude'));
-    expect(claude?.count).toBe(28);expect(claude?.label).toBe('Claude · 28 cases');
+    expect(claude?.count).toBe(28);expect(claude?.label).toBe('Claude · 28 个案例');
     expect(groups.find(group=>group.id==='website-tool')?.entries).toHaveLength(21);
     expect(groups.find(group=>group.id==='website-use-case')?.entries).toHaveLength(6);
   });

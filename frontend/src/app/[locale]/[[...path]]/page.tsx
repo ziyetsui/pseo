@@ -1,3 +1,4 @@
+import {interfaceLocale,text} from '@/lib/i18n/text';
 import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/components/WebsiteCases';
 import { LibraryIndex } from '@/components/LibraryIndex';
 import { websiteViewForPath } from '@/lib/catalog/website-views';
@@ -67,8 +68,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const websiteCase = catalog.websites?.find(item => item.href === path);
   if (websiteCase) return <WebsiteCaseDetail catalog={catalog} entry={websiteCase} />;
   if (path === `${hub}/website`) return <TaskFindings catalog={catalog} task={websiteRef(catalog)} prompts={websitePrompts(catalog)} aggregate />;
-  if (path === `${hub}/models`) return <Directory catalog={catalog} title="Models" items={modelFamilies(catalog)} />;
-  if (path === `${hub}/creators`) return <Directory catalog={catalog} title="Creators" items={catalog.creators.map(creator => ({ ...creator, href: creator.url || creator.href }))} />;
+  if (path === `${hub}/models`) return <Directory catalog={catalog} currentHref={path} title="Models" items={modelFamilies(catalog)} />;
+  if (path === `${hub}/creators`) return <Directory catalog={catalog} currentHref={path} title="Creators" items={catalog.creators.map(creator => ({ ...creator, href: creator.url || creator.href }))} />;
   if (path === `/${catalog.locale}/blog`) return <Blog catalog={catalog} />;
   if (path.startsWith(`/${catalog.locale}/blog/`)) {
     const site = await loadArticleSite(catalog);
@@ -89,6 +90,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const style = styleForPath(catalog, path);
   if (style) return <StylePlate catalog={catalog} style={style} />;
   const category = categoryForPath(catalog, path);
-  if (category) return <Directory catalog={catalog} title={`${category.ref.label} prompts`} items={category.subset.prompts.map(prompt => ({ id: prompt.id, slug: prompt.slug, label: prompt.title, href: prompt.href, count: 1 }))} />;
+  if (category) return <Directory catalog={catalog} currentHref={path} title={text(interfaceLocale(catalog),`${category.ref.label} prompts`,`${category.ref.label}提示词`)} items={category.subset.prompts.map(prompt => ({ id: prompt.id, slug: prompt.slug, label: prompt.title, href: prompt.href, count: 1 }))} />;
   notFound();
 }

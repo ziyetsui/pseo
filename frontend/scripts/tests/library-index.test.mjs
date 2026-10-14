@@ -20,3 +20,9 @@ test('requires every published object, exported route and Footer link',()=>{
  assert.throws(()=>verifyLibraryIndex(documents,index,{...receipt,publishedPrompts:[{href:'/zh-CN/prompts/missing'}]}));
  assert.throws(()=>verifyLibraryIndex(new Map([[href,parse(`<footer><a href="${station}"></a></footer>`)]]),index,receipt));
 });
+test('validates English indexes against English routes and rejects cross-locale leakage',()=>{
+ const english={...index,locale:'en',groups:index.groups.map(group=>({...group,entries:group.entries.map(entry=>({...entry,href:entry.href.replace('/zh-CN/','/en/')}))})),routes:index.routes.map(href=>href.replace('/zh-CN/','/en/'))};
+ assert.deepEqual(readLibraryIndex(document(english),'rev','en'),english);
+ assert.throws(()=>readLibraryIndex(document(index),'rev','en'));
+ assert.throws(()=>readLibraryIndex(document({...english,routes:index.routes}),'rev','en'));
+});
