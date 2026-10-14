@@ -1,5 +1,6 @@
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
-import { verifyWebsiteViewOutput } from './website-view-output.mjs';
+import { verifyWebsiteViewOutput, websiteValidationGraph } from './website-view-output.mjs';
+import { WIREFRAME_TAXONOMIES } from '../src/data/wireframe/taxonomies.ts';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse } from 'node-html-parser';
@@ -45,7 +46,8 @@ if (manifest.mode !== 'public-api') {
   if (manifest.mode === 'git-beta') {
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
-    verifyWebsiteViewOutput(documents, receipt, JSON.parse(await readFile('../docs/intake/2026-10-14/graph.json','utf8')));
+    const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14/graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
+    verifyWebsiteViewOutput(documents, receipt, viewGraph);
     const allowed = new Set([...receipt.publishedPrompts, ...receipt.publishedWebsites, ...receipt.publishedWebsiteViews].map(item => item.href));
     for (const route of allowed) if (!allPaths.has(route)) throw new Error(`Git beta published route missing: ${route}`);
     for (const route of allPaths) {
