@@ -4,10 +4,11 @@ import type { Locale } from '@/lib/catalog/types';
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BO_URL, GATE, canShowIntent, markIntentShown, markQuiet, markShown, promptWords, quietUntil, shownThisSession, verdict } from "@/lib/cta/sign-in-gate";
+import { GENERATION_ORIGIN, generationHref } from '@/lib/cta/generation-url';
+import { GATE, canShowIntent, markIntentShown, markQuiet, markShown, promptWords, quietUntil, shownThisSession, verdict } from "@/lib/cta/sign-in-gate";
 
 type Reading = { passed: number; total: number; chars: number; words: number };
-type Message = Reading & { mode: "nudge" | "dialog"; intent: boolean };
+type Message = Reading & { mode: "nudge" | "dialog"; intent: boolean; href?: string };
 const num = (n: number) => n.toLocaleString("en-US");
 
 function readRows(): Reading | null {
@@ -105,7 +106,7 @@ export function SignInGate({ uiLocale = 'en' }: { uiLocale?: Locale } = {}) {
       const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[data-generation-cta]') : null;
       if (!link || !canShowIntent()) return;
       // These are explicitly marked external generation links; internal browse/fill actions retain their behavior.
-      if (![BO_URL, "https://bo.ancher.ai/home"].includes(link.href)) return;
+      if (new URL(link.href).origin !== GENERATION_ORIGIN) return;
       event.preventDefault();
       returnTo.current = link;
       const text = document.querySelector<HTMLTextAreaElement>('.msh-input')?.value
@@ -113,7 +114,7 @@ export function SignInGate({ uiLocale = 'en' }: { uiLocale?: Locale } = {}) {
       const reading = readRows() ?? { passed: 0, total: 0, chars: 0, words: 0 };
       showing.current = true; markIntentShown();
       setMessage({ ...reading, ...(text ? { chars: text.length, words: promptWords(text) } : {}),
-        mode: "dialog", intent: !!text });
+        mode: "dialog", intent: !!text, href: link.href });
     };
     const timer = setInterval(tick, 500);
     window.addEventListener("scroll", progress, { passive: true });
@@ -163,12 +164,12 @@ export function SignInGate({ uiLocale = 'en' }: { uiLocale?: Locale } = {}) {
       <div className="sign-in-gate-panel" tabIndex={-1} ref={panel}>
         <div className="sign-in-gate-figure" aria-hidden="true" style={{ ["--digits" as string]: String(num(message.chars).length) }}>{num(message.chars)}</div>
         <p className="sign-in-gate-unit">{message.intent ? uiText(uiLocale, "Your prompt") : uiText(uiLocale, "Ready to explore")}</p>
-        <h2 className="sign-in-gate-sub" id="sign-in-gate-heading">{num(message.chars)}{text(uiLocale, " characters", " 个字符")}{message.words > 0 && <> · <b>{num(message.words)}{text(uiLocale, " words", " 个词")}</b></>}.<br />{uiText(uiLocale, "Take the next step in bo.")}</h2>
+        <h2 className="sign-in-gate-sub" id="sign-in-gate-heading">{num(message.chars)}{text(uiLocale, " characters", " 个字符")}{message.words > 0 && <> · <b>{num(message.words)}{text(uiLocale, " words", " 个词")}</b></>}.<br />{text(uiLocale, "Take the next step in Ancher.", "前往 Ancher，开始创作。")}</h2>
         <div className="sign-in-gate-acts">
-          <a className="sign-in-gate-btn" href={BO_URL} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>{uiText(uiLocale, "Continue to bo ↗")}</a>
+          <a className="sign-in-gate-btn" href={message.href ?? generationHref(document.querySelector<HTMLTextAreaElement>("#gen4")?.value ?? document.querySelector("[data-prompt]")?.textContent ?? "")} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>{text(uiLocale, "Continue to Ancher ↗", "前往 Ancher ↗")}</a>
           <button className="sign-in-gate-alt" type="button" onClick={() => close()}>{uiText(uiLocale, "Keep exploring")}</button>
         </div>
-        <p className="sign-in-gate-fact">{uiText(uiLocale, "Your prompt stays here. bo opens in a new tab.")}</p>
+        <p className="sign-in-gate-fact">{text(uiLocale, "Your prompt opens in Ancher in a new tab.", "将在新标签页打开 Ancher，并带入你的提示词。")}</p>
       </div>
       <button className="sign-in-gate-x" type="button" aria-label={uiText(uiLocale, "Close and keep exploring")} onClick={() => close()}>×</button>
     </dialog>, document.body);
