@@ -1,0 +1,9 @@
+#creators .creator-more{margin-top:20px}
+#creators .creator-more>summary{display:list-item;width:fit-content;max-width:100%;min-height:44px;padding:11px 18px;border:1px solid var(--border);border-radius:12px;color:var(--foreground);font:inherit;cursor:pointer;box-sizing:border-box}
+#creators .creator-more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+#creators .creator-more>summary:hover{border-color:var(--border-strong)}
+#creators .creator-more>.people,#creators .creator-more>.creators{margin-top:20px}
+#creators .creator-more-close{display:none}
+#creators .creator-more[open] .creator-more-open{display:none}
+#creators .creator-more[open] .creator-more-close{display:inline}
+#creators .creator-more:not([open])>.people,#creators .creator-more:not([open])>.creators{display:none}
