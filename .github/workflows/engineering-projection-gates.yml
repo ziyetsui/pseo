@@ -54,7 +54,8 @@ jobs:
   frontend-build-a11y-smoke:
     name: frontend build / a11y smoke
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # The full bilingual catalog exports 4,485 HTML pages before link validation.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
