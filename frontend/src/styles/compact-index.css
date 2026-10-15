@@ -1,0 +1,9 @@
+.compact-index .index-more{margin-block:16px}
+.compact-index .index-more>summary{display:list-item;width:fit-content;max-width:100%;min-height:44px;padding:11px 18px;border:1px solid var(--border);border-radius:12px;font:inherit;color:var(--foreground,var(--fg));cursor:pointer;box-sizing:border-box}
+.compact-index .index-more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.compact-index .index-more>.index-rest{margin-top:16px}
+.compact-index .index-close{display:none}
+.compact-index .index-more[open] .index-open{display:none}
+.compact-index .index-more[open] .index-close{display:inline}
+.compact-index .index-more:not([open])>.index-rest{display:none}
+.compact-index .index-rest>:first-child>.sep{display:none}
