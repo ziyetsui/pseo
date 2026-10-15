@@ -1546,3 +1546,5 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 2026-10-15 首页网站推荐卡文字对齐：中文任务区推荐卡保留标题与案例数的两行布局，对数字1的左侧字形留白做0.5px光学校正，使可见文字左边缘对齐。英文、封面、计数及详情链接保持原合同。
 
 2026-10-15 Website editable templates：仅 git-beta 在原有 source/translation 校验和 locale 投影之后，应用 `frontend/src/data/website-prompt-templates.json` 的逐 id 双语替换清单。清单固定来源和译文的 SHA-256；缺失、漂移、重叠或无效变量直接构建失败。按原文本偏移一次替换，重复变量同步；为同名 `[INSERT]` 以 occurrence 区分语义。模板清单纳入 catalog revision 和 export receipt；源码、翻译文件、CMS/public-api 和 content mirror 不变。共享 Catalog 的 prompt/variables/ editableTemplate 同时驱动各 Website 展示与 app.ancher.ai 完整正文链接。测试验证中英文覆盖、逐字还原、未改技术约束、填值/重置、生成链接与无 JS 正文。
+
+2026-10-15 Git-beta 双语同步约束：两种 locale 共享目录来源、路由生成与内容身份；依赖正文形态的分类使用原文，避免译文改变分组。静态产物校验成对路由、主体控件结构和归一化站内链接，任一语言单独增删功能或目的地时构建失败。

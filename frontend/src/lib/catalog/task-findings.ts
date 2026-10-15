@@ -10,7 +10,7 @@ const words = ['zero','one','two','three','four','five','six','seven','eight','n
 export const spellCount = (count: number) => words[count] ?? String(count);
 const capitalCount = (count: number) => { const word = spellCount(count); return word.charAt(0).toUpperCase() + word.slice(1); };
 /** Describes a textual shape, not a claim that the source is valid JSON. */
-export const isStructuredPrompt = (prompt: Prompt) => /^\s*(?:\{|\[\s*[\[{"\d])/.test(prompt.prompt) || /"[\w-]+"\s*:/.test(prompt.prompt);
+export const isStructuredPrompt = (prompt: Prompt) => /^\s*(?:\{|\[\s*[\[{"\d])/.test(prompt.originalPrompt ?? prompt.prompt) || /"[\w-]+"\s*:/.test(prompt.originalPrompt ?? prompt.prompt);
 export function taskFindings(rows: Prompt[]) {
   const total = rows.length, used = new Set<string>();
   const all = (count: number) => count === 2 ? 'Both' : `All ${spellCount(count)}`;

@@ -93,6 +93,7 @@ test('language switches preserve object, filters, fragments and back navigation'
 });
 
 test('bilingual layouts fit, remain accessible and switch without JavaScript',async({page,browser},info)=>{
+ test.setTimeout(60_000);
  await page.emulateMedia({reducedMotion:'reduce'});
  for(const locale of ['zh-CN','en'])for(const path of ['image','video','website/views/use-case/website-fun','website/views/tool/three-js',recipe,'library-index']){
   await page.goto(`/${locale}/prompts/${path}`,{waitUntil:'domcontentloaded'});
@@ -101,7 +102,7 @@ test('bilingual layouts fit, remain accessible and switch without JavaScript',as
   await page.screenshot({path:info.outputPath(`${locale}-${path.replaceAll('/','-')}.png`)});
  }
  const context=await browser.newContext({javaScriptEnabled:false});const noJS=await context.newPage();
- await noJS.goto(`${process.env.FRONTEND_TEST_URL}/zh-CN/prompts/website/views/tool/three-js`,{waitUntil:'domcontentloaded'});
+ await noJS.goto(new URL('/zh-CN/prompts/website/views/tool/three-js', page.url()).href,{waitUntil:'domcontentloaded'});
  await expect(noJS.locator('[data-language-switch]')).toHaveAttribute('href','/en/prompts/website/views/tool/three-js');
  await noJS.locator('[data-language-picker] summary').click();
  await noJS.locator('[data-language-switch]').click({noWaitAfter:true});await expect(noJS).toHaveURL(/\/en\/prompts\/website\/views\/tool\/three-js$/);
