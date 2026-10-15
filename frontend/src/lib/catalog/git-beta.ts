@@ -3,6 +3,8 @@ import displayCopy from '../../data/localized-case-copy.json';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
 import avatarInput from '../../data/creator-avatars.json';
+import templateInput from '../../data/website-prompt-templates.json';
+import { editableWebsiteCatalog } from './website-templates';
 import { createFixtureCatalog } from './fixture';
 import {localizedGitCatalog} from './localized';
 import { gitBetaRevision } from './git-beta-revision';
@@ -34,7 +36,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, templateInput);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -136,6 +138,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations);
+  return editableWebsiteCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations));
 }

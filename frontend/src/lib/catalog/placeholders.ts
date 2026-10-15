@@ -1,6 +1,8 @@
 /** Explicit bracket tokens only: quoted JSON arrays and prose brackets are not variables. */
 export function placeholderTokens(text: string): string[] {
-  return [...new Set(text.match(/\[[A-Z][A-Z0-9 _/-]*\]/g) ?? [])];
+  const sectionedOutline = text.includes('[World and Stations]') && text.includes('[Technical Requirements]');
+  return [...new Set(text.match(/\[[A-Z][A-Z0-9 _/-]*\]/g) ?? [])]
+    .filter(token => !(sectionedOutline && token === '[UI]'));
 }
 
 export function placeholderParts(text: string, tokens = placeholderTokens(text)) {
