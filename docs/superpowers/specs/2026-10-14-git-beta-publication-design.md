@@ -15,6 +15,9 @@ Server-only Git catalog adapter校验graph节点/边，映射现有Prompt类型�
 
 网站预览只复制提供的图库中59个整理项目的真实封面，记录源文件与SHA-256；不复制5225条搜索噪声。图片示例使用固定上游commit的真实URL。Catalog revision绑定graph、旧catalog revision与资产manifest；构建回执记录git-beta与实际counts。静态校验必须检查每个Git发布详情route、所有示例媒体及案例输出资格。
 
+## 创作者头像（2026-10-15 用户追加）
+全部有关联创作者按大小写归一的真实 X handle 匹配头像；仅采信同 handle 的公开账号资料、已有原始作者归档，或精确原帖ID对应的作者（允许更名，记录旧署名与现账号）。从官方 X CDN 下载原始图片至 public/creator-avatars，记录账号ID、公开资料URL、CDN URL、证据类型、观察/下载时间、尺寸及SHA-256。映射与资产进入工程PR，revision绑定清单、静态导出验证哈希。中英文及共享作者组件统一读取映射；保留347条活跃作者记录、全部署名、链接与关联数量。无法核实的图片保持显式缺失并显示首字母，不配库存/生成/无关人像。只改变git-beta展示投影，不写CMS、content mirror或rights状态。
+
 ## 威胁模型与回退
 输入只作数据：禁止执行源文本、HTML注入、不安全URL、悬空边与不存在媒体；使用React文本转义。Git-beta没有CMS或数据库凭据，无运行时写接口。每次构建固定Git输入，公开数据加载失败即失败，不静默fallback。Beta noindex不当作rights批准。回滚为上一份已验证Pages artifact；不写CMS，不反向覆盖generated mirror。
 

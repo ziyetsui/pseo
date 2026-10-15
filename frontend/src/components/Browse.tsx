@@ -20,7 +20,7 @@ export function Creators({ catalog, prompts = catalog.prompts, model = false, he
   if (!creators.length && hideEmpty) return null;
   if (!creators.length) return <section className="sec" id="creators"><div className={model ? undefined : "wrap"}><div className={model ? "sec-head" : "sec-h"}><h2>{heading ?? uiText(uiLocale, "Creators")}</h2></div><p className="dek">{text(uiLocale, "No published creators to browse yet.", "暂无已发布的创作者。")}</p></div></section>;
   const card = (creator: typeof creators[number]) => <a className={model ? "creator" : "person"} key={creator.id} href={creator.url || creator.href} target={creator.url ? "_blank" : undefined} rel={creator.url ? "nofollow noopener noreferrer" : undefined}>
-    <span className="av">{creator.avatarUrl && <img src={creator.avatarUrl} alt="" width={34} height={34} loading="lazy" referrerPolicy="no-referrer" />}</span>
+    <span className="av" aria-hidden="true">{creator.avatarUrl ? <img src={creator.avatarUrl} alt="" width={34} height={34} loading="lazy" referrerPolicy="no-referrer" /> : <span className="avatar-initial">{creator.handle.replace(/^@/u, '').slice(0, 1).toUpperCase()}</span>}</span>
     <b>{creator.handle || creator.label}</b><span>{promptCount(uiLocale, creator.count)}{model ? text(uiLocale, " for this model", " · 此模型") : ""}</span>
   </a>;
   const grid = model ? "creators" : "people";
