@@ -25,7 +25,7 @@ describe('explicit bilingual library',()=>{
   expect(switchLocaleHref('/zh-CN/prompts/website/views/tool/three-js?q=pool&model=claude#toc','en')).toBe('/en/prompts/website/views/tool/three-js?q=pool&model=claude#toc');
   expect(()=>switchLocaleHref('https://x.com/test','en')).toThrow();
   const picker=parse(renderToStaticMarkup(<LanguageSwitch locale="zh-CN" href="/zh-CN/prompts/image" />));
-  expect(picker.querySelector('summary')?.text).toContain('Language');
+  expect(picker.querySelector('summary .language-switch-label')?.text).toBe('中文');
   expect(picker.querySelector('a[aria-current="page"]')?.text).toContain('中文');
   expect(picker.querySelectorAll('a')).toHaveLength(2);
   const link=picker.querySelector('a[hreflang="en"]')!;
