@@ -27,7 +27,7 @@ export function ModelRelatedTopics({ catalog, prompts }: { catalog: Catalog; pro
         count: allRows.filter(prompt => prompt[field].some(item => item.id === ref.id)).length,
       }];
     });
-  }).sort((a, b) => b.relatedCount - a.relatedCount || a.ref.label.localeCompare(b.ref.label, "en") || a.key.localeCompare(b.key, "en")).slice(0, 6);
+  }).sort((a, b) => b.relatedCount - a.relatedCount || (a.ref.sourceLabel ?? a.ref.label).localeCompare(b.ref.sourceLabel ?? b.ref.label, "en") || a.key.localeCompare(b.key, "en")).slice(0, 6);
 
   if (!topics.length) return null;
   const usedPreviews = new Set<string>();
