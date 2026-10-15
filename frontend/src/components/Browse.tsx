@@ -1,4 +1,5 @@
 import '@/styles/browse-bands.css';
+import '@/styles/creator-disclosure.css';
 import { interfaceLocale, uiText, text, promptCount, caseCount } from '@/lib/i18n/text';
 import { websiteEntries, websitePrompts, websiteRef } from '@/lib/catalog/website';
 import type { Axis, Catalog, Prompt, Ref } from "@/lib/catalog/types";
@@ -14,14 +15,23 @@ function entries(prompts: Prompt[], axis: Axis): Ref[] {
   for (const prompt of prompts) for (const ref of axisRefs(prompt, axis)) values.set(ref.slug, { ...ref, count: (values.get(ref.slug)?.count ?? 0) + 1 });
   return [...values.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 }
-export function Creators({ catalog, prompts = catalog.prompts, model = false }: { catalog: Catalog; prompts?: Prompt[]; model?: boolean }) {
+export function Creators({ catalog, prompts = catalog.prompts, model = false, heading, hideEmpty = false }: { catalog: Catalog; prompts?: Prompt[]; model?: boolean; heading?: string; hideEmpty?: boolean }) {
   const uiLocale = interfaceLocale(catalog);
   const creators = catalog.creators.map(creator => ({ ...creator, count: prompts.filter(prompt => isPromptCreator(prompt, creator)).length })).filter(creator => creator.count > 0).sort((a, b) => b.count - a.count);
-  if (!creators.length) return <section className="sec" id="creators"><div className={model ? undefined : "wrap"}><div className={model ? "sec-head" : "sec-h"}><h2>{uiText(uiLocale, "Creators")}</h2></div><p className="dek">{text(uiLocale, "No published creators to browse yet.", "暂无已发布的创作者。")}</p></div></section>;
-  const content = <><div className={model ? "sec-head" : "sec-h"}><h2>{uiText(uiLocale, "Creators")}</h2>{model && <span className="end">{text(uiLocale, `${creators.length} ${creators.length === 1 ? "creator" : "creators"}`, `${creators.length} 位创作者`)} · {promptCount(uiLocale, prompts.length)}</span>}</div><div className={model ? "creators" : "people"}>{creators.map(creator => <a className={model ? "creator" : "person"} key={creator.id} href={creator.url || creator.href} target={creator.url ? "_blank" : undefined} rel={creator.url ? "nofollow noopener noreferrer" : undefined}>
+  if (!creators.length && hideEmpty) return null;
+  if (!creators.length) return <section className="sec" id="creators"><div className={model ? undefined : "wrap"}><div className={model ? "sec-head" : "sec-h"}><h2>{heading ?? uiText(uiLocale, "Creators")}</h2></div><p className="dek">{text(uiLocale, "No published creators to browse yet.", "暂无已发布的创作者。")}</p></div></section>;
+  const card = (creator: typeof creators[number]) => <a className={model ? "creator" : "person"} key={creator.id} href={creator.url || creator.href} target={creator.url ? "_blank" : undefined} rel={creator.url ? "nofollow noopener noreferrer" : undefined}>
     <span className="av">{creator.avatarUrl && <img src={creator.avatarUrl} alt="" width={34} height={34} loading="lazy" referrerPolicy="no-referrer" />}</span>
     <b>{creator.handle || creator.label}</b><span>{promptCount(uiLocale, creator.count)}{model ? text(uiLocale, " for this model", " · 此模型") : ""}</span>
-  </a>)}</div></>;
+  </a>;
+  const grid = model ? "creators" : "people";
+  const content = <><div className={model ? "sec-head" : "sec-h"}><h2>{heading ?? uiText(uiLocale, "Creators")}</h2>{model && <span className="end">{text(uiLocale, `${creators.length} ${creators.length === 1 ? "creator" : "creators"}`, `${creators.length} 位创作者`)} · {promptCount(uiLocale, prompts.length)}</span>}</div>
+    <div className={`${grid} creator-preview`}>{creators.slice(0, 8).map(card)}</div>
+    {creators.length > 8 && <details className="creator-more">
+      <summary><span className="creator-more-open">{text(uiLocale, `View all ${creators.length} creators`, `查看全部 ${creators.length} 位创作者`)}</span><span className="creator-more-close">{text(uiLocale, "Show fewer creators", "收起更多创作者")}</span></summary>
+      <div className={grid}>{creators.slice(8).map(card)}</div>
+    </details>}
+  </>;
   return <section className="sec" id="creators">{model ? content : <div className="wrap">{content}</div>}</section>;
 }
 function HubBand({ catalog, axis, id, heading, horizontal = false }: { catalog: Catalog; axis: Axis; id: string; heading: string; horizontal?: boolean }) {
