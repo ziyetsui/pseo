@@ -55,6 +55,9 @@ export interface Prompt {
   title: string;
   summary: string;
   prompt: string;
+  /** Exact source body and language retained for translated presentation only. */
+  originalPrompt?: string;
+  originalLanguage?: string;
   /** The supplied text is an editable adaptation, not a word-for-word source quotation. */
   editableTemplate?: boolean;
   language: string;

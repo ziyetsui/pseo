@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { createGitBetaCatalog } from '../../src/lib/catalog/git-beta';
 const recipe='prompt-portrait-photography-from-above-ana-d-2015726421990056336';
 test('Chinese homepage renders its approved local fonts, including real CJK glyphs', async ({ page, context }) => {
  await page.goto('/zh-CN/prompts', { waitUntil: 'domcontentloaded' });
@@ -17,7 +18,7 @@ test('Chinese homepage renders its approved local fonts, including real CJK glyp
  }
  await session.detach();
 });
-test('both languages render complete interfaces and share exact original prompt text',async({page,request})=>{
+test('both languages render complete interfaces with Chinese translated bodies and exact English source',async({page,request})=>{
  const body:Record<string,string>={};
  for(const locale of ['zh-CN','en']){
   const chinese=locale==='zh-CN';
@@ -41,12 +42,19 @@ test('both languages render complete interfaces and share exact original prompt 
   await expect(page.locator('h1')).toHaveText(chinese?'洛杉矶星光大道俯拍人像':'Overhead portrait on the LA Walk of Fame');
   await expect(page.getByRole('heading',{name:chinese?'设置占位符':'Set the placeholders',exact:true})).toBeVisible();
   body[locale]=await page.locator('[data-prompt]').textContent()??'';
-  await expect(page.locator('[data-prompt]')).toHaveAttribute('lang','en');
+  await expect(page.locator('[data-prompt]')).toHaveAttribute('lang',chinese?'zh-CN':'en');
+  const expected=createGitBetaCatalog(locale as 'zh-CN'|'en').prompts.find(prompt=>prompt.slug===recipe)!;
+  expect(body[locale]).toBe(expected.prompt);
+  if(chinese){
+   expect(expected.originalPrompt).toBe(createGitBetaCatalog('en').prompts.find(prompt=>prompt.slug===recipe)!.prompt);
+   await expect(page.locator('[aria-labelledby="recipe-text"] .eyebrow')).toHaveText('中文译文');
+  }
   const groups=page.getByRole('radiogroup');await expect(groups.first().getByRole('radio').first()).toBeEnabled();
   await groups.first().getByRole('radio').first().check();
   await expect(page.locator('[data-prompt]')).toContainText(await groups.first().getByRole('radio').first().inputValue());
  }
- expect(body.en).toBe(body['zh-CN']);
+ expect(body.en).not.toBe(body['zh-CN']);
+ expect(body['zh-CN']).toMatch(/\p{Script=Han}/u);
  expect((await request.get('/fr/prompts')).status()).toBe(404);
 });
 

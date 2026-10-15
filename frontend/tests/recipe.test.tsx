@@ -28,6 +28,16 @@ describe("Recipe placeholder journey", () => {
     expect(container.querySelector("[data-prompt]")?.textContent).toBe(sample.prompt);
   });
 
+  it("labels translated Chinese JSON honestly and escapes custom placeholder values", () => {
+    const prompt = { ...sample, language: 'zh-CN', originalPrompt: '{"place":"[COUNTRY]"}', originalLanguage: 'en', prompt: '{"place":"中国的[COUNTRY]"}' };
+    const { container } = render(<RecipeText prompt={prompt} uiLocale="zh-CN" showOriginalLanguage />);
+    expect(container.querySelector('[aria-labelledby="recipe-text"] .eyebrow')?.textContent).toBe('中文译文');
+    expect(container.querySelector('.how')?.textContent).toBe('中文译文');
+    fireEvent.click(screen.getByRole('radio', { name: '自定义' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '[COUNTRY]' }), { target: { value: '带"引号"的地点' } });
+    expect(JSON.parse(container.querySelector('[data-prompt]')!.textContent!)).toEqual({ place: '中国的带"引号"的地点' });
+  });
+
   it("allows free input when no options were provided, without interpreting replacement text as another token", () => {
     const prompt = { ...sample, prompt: "[COUNTRY] + [CITY]", variables: [
       { token: "[COUNTRY]", label: "Country", defaultValue: "", options: [], note: null, required: true },

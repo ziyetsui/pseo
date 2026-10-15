@@ -28,10 +28,11 @@ describe('localized case presentation',()=>{
   expect(doc.querySelector('pre')?.previousElementSibling?.text).toBe('原文语言：英语');
   expect(doc.querySelector('pre')?.text).toBe('Original English prompt');
  });
- it('localizes Chinese titles while preserving prompt text and graph identities',()=>{
+ it('localizes Chinese titles and prompt bodies while preserving source and graph identities',()=>{
   const zh=createGitBetaCatalog('zh-CN'),en=createGitBetaCatalog('en');
   expect(zh.prompts.find(row=>row.slug==='prompt-portrait-photography-from-above-ana-d-2015726421990056336')?.title).toBe('洛杉矶星光大道俯拍人像');
-  expect(zh.prompts.map(row=>[row.id,row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])])).toEqual(en.prompts.map(row=>[row.id,row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])]));
+  expect(zh.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])])).toEqual(en.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])]));
+  expect(zh.prompts.some(row=>row.prompt !== row.originalPrompt && row.originalPrompt !== undefined)).toBe(true);
   expect(zh.websiteGraph?.edges).toEqual(en.websiteGraph?.edges);
   expect(zh.prompts.flatMap(row=>row.evidence).every(item=>item.type==='合集说明文档')).toBe(true);
  });
