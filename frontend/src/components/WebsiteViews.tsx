@@ -6,8 +6,8 @@ import { SiteHeader, SiteFooter } from './Chrome';
 import { WebsiteDeck } from './WebsiteDeck';
 
 const sections: { axis: WebsiteViewAxis; label: string; description: string }[] = [
-  { axis: 'use-case', label: "Browse by purpose", description: "Find projects for the work you want to do." },
   { axis: 'model', label: "Browse by model", description: "Explore projects associated with each coding model." },
+  { axis: 'use-case', label: "Browse by purpose", description: "Find projects for the work you want to do." },
   { axis: 'tool', label: "Browse by technology", description: "Explore the tools and technologies used in these projects." },
   { axis: 'all', label: "The complete collection", description: "Browse every website case in one view." },
 ];
