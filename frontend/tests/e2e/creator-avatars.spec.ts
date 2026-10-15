@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import avatarInput from '../../src/data/creator-avatars.json';
+import avatarInput from '../../src/data/creator-avatars.json' with { type: 'json' };
 
 const avatars = new Map(Object.entries(avatarInput.profiles).map(([handle, profile]) => [handle, profile.src]));
 const unavailable = new Set(Object.keys(avatarInput.unavailable));
