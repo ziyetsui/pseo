@@ -14,9 +14,17 @@ const sections: { axis: WebsiteViewAxis; label: string; description: string }[] 
 export function WebsiteViews({ catalog }: { catalog: Catalog }) {
   const uiLocale = interfaceLocale(catalog);
   const views = websiteViews(catalog);
+  const slides = views.map(view => {
+    const examples = websiteViewEntries(catalog, view).map(entry => ({ entry, prompt: catalog.prompts.find(prompt => prompt.id === entry.id || prompt.href === entry.promptHref) }));
+    const example = examples.find(item => item.entry.cover && item.prompt) ?? examples.find(item => item.prompt) ?? examples.find(item => item.entry.cover) ?? examples[0];
+    return { id: view.id, title: view.label, href: view.href, cover: example?.entry.cover ?? '',
+      summary: text(uiLocale, `Explore ${view.count} website ${view.count===1?'case':'cases'} in this ${view.axis==='all'?'complete collection':view.axis==='use-case'?'purpose':view.axis==='tool'?'technology':'model'} view.`, `在此分类中探索 ${view.count} 个网站案例。`),
+      caption: caseCount(uiLocale, view.count), sourceUrl: example?.entry.source.url, attribution: example?.entry.attribution,
+      prompt: example?.prompt?.prompt, language: example?.prompt?.language, translated: example?.prompt?.originalPrompt !== undefined };
+  });
   return <div className="prototype-deck website-aligned"><div className="v4 taste"><SiteHeader bilingual={catalog.mode === 'git-beta'} currentHref={`/${catalog.locale}/prompts/website`} level="deck" locale={catalog.locale} contentType="website" /><main id="main"><div className="wrap">
     <header className="hero"><p className="eyebrow">{uiText(uiLocale, "Website gallery")}</p><h1 className="tier-index">{uiText(uiLocale, "Website views")}</h1><p className="lede">{text(uiLocale, `Explore ${websiteRef(catalog).count} website cases by purpose, model or technology. Pick a view to discover related projects.`, `按用途、模型或技术探索 ${websiteRef(catalog).count} 个网站案例，选择一个分类发现相关项目。`)}</p></header>
-    <section className="sec"><div className="sec-head"><h2>{uiText(uiLocale, "Explore a view")}</h2><span className="count">{text(uiLocale, `${views.length} views`, `${views.length} 个分类`)}</span></div><WebsiteDeck uiLocale={uiLocale} kind="view" items={views.map(view=>({id:view.id,title:view.label,href:view.href,cover:websiteViewEntries(catalog,view).find(entry=>entry.cover)?.cover??'',summary:text(uiLocale, `Explore ${view.count} website ${view.count===1?'case':'cases'} in this ${view.axis==='all'?'complete collection':view.axis==='use-case'?'purpose':view.axis==='tool'?'technology':'model'} view.`, `在此分类中探索 ${view.count} 个网站案例。`),caption:caseCount(uiLocale, view.count)}))} /></section>
+    <section className="sec"><div className="sec-head"><h2>{uiText(uiLocale, "Explore a view")}</h2><span className="count">{text(uiLocale, `${views.length} views`, `${views.length} 个分类`)}</span></div><WebsiteDeck uiLocale={uiLocale} kind="view" items={slides} /></section>
     {sections.map(section => {
       const rows = views.filter(view => view.axis === section.axis);
       if (!rows.length) return null;
