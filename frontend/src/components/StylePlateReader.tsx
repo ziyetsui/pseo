@@ -36,7 +36,7 @@ export function StylePlateReader({ catalog, style }: { catalog: Catalog; style: 
             <dt>{uiText(uiLocale, "Credit")}</dt><dd><a href={p.source.url} target="_blank" rel="nofollow noopener noreferrer">{p.handle || uiText(uiLocale, "Source post")} ↗</a></dd>
             <dt>{uiText(uiLocale, "Extent")}</dt><dd>{count ? text(uiLocale, `${count} media ${count===1?'item':'items'}`, `${count} 个媒体`) : uiText(uiLocale, "Text only")}{p.likes!==null?text(uiLocale, ` · ${p.likes.toLocaleString('en-US')} likes`, ` · ${p.likes.toLocaleString('zh-CN')} 次点赞`):''}</dd>
             <dt>{uiText(uiLocale, "Subject")}</dt><dd>{p.subjects[0]?.label || p.useCases[0]?.label || uiText(uiLocale, "unclassified")}</dd>
-          </dl>{catalog.mode === 'git-beta' && <p className="eyebrow">{originalLanguage(uiLocale, p.language)}</p>}<p className="wall" lang={p.language}><PromptWords text={p.prompt} /></p><div className="rr"><a className="btn pri" href={p.href}>{generationLabel(p.kind, uiLocale)}</a><a className="btn" href={p.href}>{uiText(uiLocale, "Full record →")}</a></div><a className="plate-index-link" href="#style-index">{uiText(uiLocale, "Back to the index ↑")}</a></figcaption>
+          </dl>{catalog.mode === 'git-beta' && <p className="eyebrow">{originalLanguage(uiLocale, p.language, p.originalPrompt !== undefined)}</p>}<p className="wall" lang={p.language}><PromptWords text={p.prompt} /></p><div className="rr"><a className="btn pri" href={p.href}>{generationLabel(p.kind, uiLocale)}</a><a className="btn" href={p.href}>{uiText(uiLocale, "Full record →")}</a></div><a className="plate-index-link" href="#style-index">{uiText(uiLocale, "Back to the index ↑")}</a></figcaption>
         </figure>;
       })}</section>
     </>}

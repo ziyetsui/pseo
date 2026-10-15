@@ -1,3 +1,4 @@
+import promptBodyTranslations from '../../data/zh-prompt-bodies.json';
 import displayCopy from '../../data/localized-case-copy.json';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
@@ -33,7 +34,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -136,5 +137,5 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     }
   }
   return localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale);
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations);
 }

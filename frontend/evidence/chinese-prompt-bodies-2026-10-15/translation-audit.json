@@ -1,0 +1,28 @@
+{
+  "scope": "Owner-authorized noindex Git beta display projection; source graph and fixture unchanged",
+  "count": 728,
+  "sourceCharacters": 973031,
+  "changedBodies": 686,
+  "alreadyChineseUnchanged": 42,
+  "resourceSha256": "887fb130848d0f465b5711ffd1bab5fd447295b2f6f3eef07ddf34385b849cec",
+  "translationWorkflow": {
+    "previouslyCompletedReviewedCache": 149,
+    "nativeAgentBatchesAfterUserChoice": 579,
+    "furtherExternalTranslationCalls": 0
+  },
+  "checks": [
+    "exact 728-ID coverage",
+    "UTF-8 source SHA-256",
+    "Han text in every body",
+    "numeric-token multiset",
+    "uppercase bracket token occurrences",
+    "literal argument-template tags",
+    "HTTP/HTTPS URL occurrences"
+  ],
+  "intentionalOriginalLiterals": [
+    "JSON keys, typed scalars and execution syntax",
+    "code, CLI flags, model/provider IDs, URLs, reference IDs and variables",
+    "brand names and explicitly specified rendered text"
+  ],
+  "independentCodeReview": "No actionable integration defect; 9 synthetic tests passed. Full resource/build validation recorded in verification.md."
+}
