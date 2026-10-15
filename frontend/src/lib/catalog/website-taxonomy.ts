@@ -1,8 +1,6 @@
 import membershipInput from '@/data/website-category-membership.json';
 import type {Locale,Ref} from './types';
-import {legacyWebsiteSlugs} from './website-taxonomy-routes';
-export {websiteLegacyPaths} from './website-taxonomy-routes';
-export const isWebsiteTask = (slug:string) => (legacyWebsiteSlugs as readonly string[]).includes(slug);
+export {isWebsiteTask,websiteLegacyPaths} from './website-taxonomy-routes';
 export const websiteTaskReference = (locale:Locale,count=0):Ref => ({id:'navigation:website',slug:'website',label:locale==='zh-CN'?'网站与开发':'Web design & development',sourceLabel:'Web design & development',href:`/${locale}/prompts/website`,count});
 export const websitePurposeDefinitions = [
  {slug:'web-design',en:'Website design',zh:'网站设计'},

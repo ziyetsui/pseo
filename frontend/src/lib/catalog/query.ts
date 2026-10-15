@@ -1,4 +1,4 @@
-import {isWebsiteTask} from './website-taxonomy';
+import {isWebsiteTask} from './website-taxonomy-routes';
 import type { Axis, Catalog, Filters, Prompt } from "./types";
 
 export const axes = ["model", "useCase", "technique", "style", "subject"] as const;
