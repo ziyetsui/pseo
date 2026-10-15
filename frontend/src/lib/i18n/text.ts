@@ -211,7 +211,7 @@ export function uiText(locale: Locale, value: string): string { return text(loca
 
 /** A script hint for untranslated source titles/summaries, independent of route locale. */
 export function sourceLanguage(value: string): Locale { return /[\u3400-\u9fff]/u.test(value) ? 'zh-CN' : 'en'; }
-export function originalLanguage(locale: Locale, language: string): string { return text(locale, `Original language: ${language}`, `原文语言：${language === 'en' ? '英语' : language === 'zh-CN' || language === 'zh' ? '中文' : language}`); }
+export function originalLanguage(locale: Locale, language: string, translated = false): string { if (translated) return text(locale, "Chinese translation", "中文译文"); return text(locale, `Original language: ${language}`, `原文语言：${language === 'en' ? '英语' : language === 'zh-CN' || language === 'zh' ? '中文' : language}`); }
 
 /** Display labels for frontend editing suggestions; never use these labels as prompt values. */
 const chinesePlaceholderSuggestions: Readonly<Record<string, string>> = {

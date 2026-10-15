@@ -12,9 +12,9 @@ import {Hub} from '@/components/Hub';
 import {LibraryIndex} from '@/components/LibraryIndex';
 const zh=createGitBetaCatalog('zh-CN'),en=createGitBetaCatalog('en');
 describe('explicit bilingual library',()=>{
- it('projects identical source identities, graph memberships and exact prompt bodies to both locale paths',()=>{
+ it('projects identical source identities and graph memberships with audited Chinese bodies',()=>{
   expect(zh.revision).toBe(en.revision);
-  expect(en.prompts.map(p=>[p.id,p.prompt,p.source,p.language])).toEqual(zh.prompts.map(p=>[p.id,p.prompt,p.source,p.language]));
+  expect(en.prompts.map(p=>[p.id,p.prompt,p.source,p.language])).toEqual(zh.prompts.map(p=>[p.id,p.originalPrompt ?? p.prompt,p.source,p.originalLanguage ?? p.language]));
   expect(websiteEntries(en).map(p=>p.id)).toEqual(websiteEntries(zh).map(p=>p.id));
   const membership=(c:typeof zh)=>websiteViews(c).map(view=>[view.id,[...view.caseIds].sort()]).sort();expect(membership(en)).toEqual(membership(zh));
   expect(new Set(catalogPaths(en))).toEqual(new Set(catalogPaths(zh).map(path=>switchLocaleHref(path,'en'))));

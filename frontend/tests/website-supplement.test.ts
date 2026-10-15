@@ -6,8 +6,9 @@ it('serves the recovered coffee-cup prompt with its actual source without invent
   const c = createGitBetaCatalog('zh-CN');
   const p = c.prompts.find(p => p.source.url === 'https://x.com/aichrislee/status/2104240995613266119');
   expect(p).toBeDefined();
-  expect(p?.prompt).toContain('Its eyes and head follow my mouse everywhere on the page.');
-  expect(p?.prompt).toContain('One HTML file.');
+  expect(p?.originalPrompt).toContain('Its eyes and head follow my mouse everywhere on the page.');
+  expect(p?.originalPrompt).toContain('One HTML file.');
+  expect(p?.prompt).toContain('跟随我的鼠标');
   expect(p?.handle).toBe('@aichrislee');
   expect(p?.useCases.some(u => u.slug === 'website')).toBe(true);
   expect(p?.seo.robots).toBe('noindex,nofollow');
@@ -19,9 +20,10 @@ it('serves the recovered coffee-cup prompt with its actual source without invent
 it('retains an author continuation in the complete chart-platform prompt', () => {
   const c = createGitBetaCatalog('zh-CN');
   const p = c.prompts.find(p => p.source.url === 'https://x.com/bryanlytics/status/2105413835637350486');
-  expect(p?.prompt).toContain('5. Indicator plugin documentation.');
-  expect(p?.prompt).toContain('6. Drawing-tool architecture documentation.');
-  expect(p?.prompt).toContain('Implement the software.');
+  expect(p?.originalPrompt).toContain('5. Indicator plugin documentation.');
+  expect(p?.originalPrompt).toContain('6. Drawing-tool architecture documentation.');
+  expect(p?.originalPrompt).toContain('Implement the software.');
+  expect(p?.prompt).toMatch(/\p{Script=Han}/u);
 });
 
 it('excludes a contract-blocked source from every published website surface', () => {
@@ -42,7 +44,8 @@ it('renders recovered prompt text on the existing case page as well as its L4 re
   expect(entry).toBeDefined();
   if (!entry) throw new Error('Recovered source input missing');
   const html = renderToStaticMarkup(WebsiteCaseDetail({catalog:c,entry}));
-  expect(html).toContain('Build a storytelling website');
+  expect(html).toContain('构建一个讲故事的网站');
+  expect(html).toContain('中文译文');
   expect(html).not.toContain('No prompt was included');
 });
 
@@ -51,8 +54,10 @@ it('publishes the literal onirenaud prompt and the distinct author reply', () =>
  const c=createGitBetaCatalog('zh-CN');
  const main=c.prompts.find(p=>p.source.url.endsWith('/status/2014369068770574475'));
  const reply=c.prompts.find(p=>p.source.url.endsWith('/status/2014369077670866953'));
- expect(main?.prompt).toBe('Ok Claude: build an Awwwards SOTD site. Use the Three.js Blocks template. Copy the trend. Make no mistake.');
- expect(reply?.prompt).toBe('vibe code Minecraft');
+ expect(main?.originalPrompt).toBe('Ok Claude: build an Awwwards SOTD site. Use the Three.js Blocks template. Copy the trend. Make no mistake.');
+ expect(reply?.originalPrompt).toBe('vibe code Minecraft');
+ expect(main?.prompt).toMatch(/\p{Script=Han}/u);
+ expect(reply?.prompt).toMatch(/\p{Script=Han}/u);
  expect(websiteEntries(c).some(e=>e.promptHref===main?.href)).toBe(true);
  expect(websiteEntries(c).some(e=>e.promptHref===reply?.href)).toBe(true);
 });
