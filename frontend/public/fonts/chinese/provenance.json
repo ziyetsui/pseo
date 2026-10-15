@@ -1,0 +1,12 @@
+{
+  "design": "静·文楷, approved 2026-10-14",
+  "existingAssets": "Unmodified approved Chinese typography prototype font subsets and OFL licenses",
+  "supplement": {
+    "source": "https://github.com/google/fonts/blob/main/ofl/lxgwwenkaitc/LXGWWenKaiTC-Regular.ttf",
+    "sourceSha256": "4fcc5aec11cbbf737b0cfab7b63796f7f280087a7a656b2f13342cd5e5318d95",
+    "asset": "wenkai-current-titles.woff2",
+    "glyphs": 261,
+    "sha256": "c57464e7407b237f051465e142f4444728a14ecf49f744cce0b8d2162f9c41b5",
+    "purpose": "Characters used by current localized titles but absent from the original sample subsets"
+  }
+}

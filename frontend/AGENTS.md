@@ -176,3 +176,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 
 2026-10-14 用户反馈二次调整：Footer 采用浏览、模型、任务、风格四列精选入口，每列最多6项、合计最多21项；桌面四列铺开，手机两列。取代上一版两组7项裁定，完整目录仍保留在 Library index。
+
+
+2026-10-15 中文首页字体修复：将用户已确认的「静·文楷」从开发原型接入真实 Hub。中文首页主标题采用 Yuji Syuku，恢复「早有人写好了。」及定稿三段正文；正文与中文提示词标题使用霞鹜文楷 TC，导航保留 Noto Sans SC，强调/衬线回退保留 Noto Serif SC。字体与 OFL 许可随站点自托管于 public/fonts/chinese，通过仅中文 Hub 使用的 chinese-type 作用域加载设计规则。保留既有真实目录、来源、提示词原文、筛选/磁吸交互及英文版式；不得发布开发原型整页或改写内容记录。验收必须检查实际 CJK 渲染字体、资源加载、1440/375px 和英文隔离，而非仅检查 font-family 字符串。
