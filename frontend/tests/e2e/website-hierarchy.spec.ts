@@ -1,6 +1,27 @@
 import { test,expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('website category deck shows source prompts and highlighted variables like image and video decks', async ({page}, info) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  for (const locale of ['zh-CN','en']) {
+    await page.goto(`/${locale}/prompts/website`, {waitUntil:'domcontentloaded'});
+    const top=page.locator('[data-website-deck-view][data-top]');
+    const prompt=top.locator('pre.prompt');
+    await expect(prompt).toBeVisible();
+    expect((await prompt.textContent())!.length).toBeGreaterThan(50);
+    expect(await prompt.textContent()).not.toBe(await top.locator('.mb').textContent());
+    await expect(top.locator('.meta a')).toHaveAttribute('href', /^https:\/\/x.com\//);
+    expect(await page.locator('[data-website-deck-view] pre.prompt .ph').count()).toBeGreaterThan(0);
+    for (const width of [375,1440]) {
+      await page.setViewportSize({width,height:900});
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+      await page.locator('.deckwrap').screenshot({path:info.outputPath(`${locale}-website-category-${width}.png`),animations:'disabled'});
+    }
+    await page.getByRole('button',{name:locale==='zh-CN'?'下一个 →':'Next →',exact:true}).click();
+    await expect(page.locator('.dkpos')).toHaveText(locale==='zh-CN'?'2 / 30':'2 of 30');
+  }
+});
+
 test('Deck buttons and keyboard select one active project with bounded controls',async({page})=>{
   await page.goto('/en/prompts/website/views/all',{waitUntil:'domcontentloaded'});
   const deck=page.locator('.deck'),previous=page.getByRole('button',{name:'← Previous',exact:true}),next=page.getByRole('button',{name:'Next →',exact:true});

@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
@@ -7,12 +8,39 @@ import { websiteEntries } from '@/lib/catalog/website';
 import { websiteViews, websiteViewForPath, websiteViewEntries, websiteViewsForCase } from '@/lib/catalog/website-views';
 import { WebsiteGallery, WebsiteViewGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
 import { Recipe } from '@/components/Recipe';
+import { WebsiteViews } from '@/components/WebsiteViews';
+import { WebsiteDeck } from '@/components/WebsiteDeck';
 import { catalogPaths } from '@/site/routes';
 import { siteMetadata } from '@/site/metadata';
 
 const catalog = createGitBetaCatalog('zh-CN');
 const views = websiteViews(catalog);
 describe('Website graph projections', () => {
+  it('shows real matching example prompts in category decks instead of counts as placeholder bodies', () => {
+    for (const locale of ['zh-CN', 'en'] as const) {
+      const c = createGitBetaCatalog(locale);
+      const root = document.createElement('div');
+      root.innerHTML = renderToStaticMarkup(<WebsiteViews catalog={c} />);
+      for (const card of root.querySelectorAll('[data-website-deck-view]')) {
+        const view = websiteViews(c).find(item => item.id === card.getAttribute('data-website-deck-view'))!;
+        const body = card.querySelector('pre.prompt');
+        if (!body) continue;
+        const source = websiteViewEntries(c, view).find(entry => entry.source.url === card.querySelector('.meta a')?.getAttribute('href'))!;
+        const prompt = c.prompts.find(item => item.id === source.id || item.href === source.promptHref)!;
+        expect(body.textContent).toBe(prompt.prompt);
+        expect(body.getAttribute('lang')).toBe(prompt.language);
+        expect(card.querySelector('.media img')?.getAttribute('src')).toBe(source.cover);
+        expect(body.textContent).not.toBe(card.querySelector('.mb')?.textContent);
+      }
+      expect(root.querySelector('[data-top] pre.prompt')).not.toBeNull();
+      expect(root.querySelectorAll('pre.prompt .ph').length).toBeGreaterThan(0);
+    }
+  });
+  it('does not fabricate a prompt block for a collection without source text', () => {
+    const root = parse(renderToStaticMarkup(<WebsiteDeck kind="view" uiLocale="zh-CN" items={[{id:'empty',title:'分类',href:'/zh-CN/prompts/website',cover:'',summary:'说明',caption:'1 个案例'}]} />));
+    expect(root.querySelector('pre.prompt')).toBeNull();
+    expect(root.textContent).toContain('未包含提示词');
+  });
   it('projects actual used_for, designed_for and built_with edges to independent views', () => {
     const importedIds = new Set(catalog.websites?.map(entry => entry.id));
     for (const view of views.filter(view => view.axis !== 'all')) {
