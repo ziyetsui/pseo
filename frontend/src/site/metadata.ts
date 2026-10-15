@@ -70,7 +70,7 @@ export function siteMetadata(catalog: Catalog, path: string, title: string, prom
       canonical: visual ? undefined : canonical,
       languages: visual ? undefined : surface?.hreflang ?? seo?.hreflang,
     },
-    openGraph: { title: resolvedTitle, description, ...(visual ? {} : { url: canonical }), type: 'website', ...(prompt?.img ? { images: [{ url: prompt.img }] } : {}) },
+    openGraph: { title: resolvedTitle, description, ...(visual ? {} : { url: canonical }), type: 'website', ...(prompt?.img ? { images: [{ url: catalog.mode === 'git-beta' && prompt.img.startsWith('/') ? new URL(prompt.img, 'https://beta.ancher.site').href : prompt.img }] } : {}) },
     twitter: { card: prompt?.img ? 'summary_large_image' : 'summary', title: resolvedTitle, description },
   };
 }

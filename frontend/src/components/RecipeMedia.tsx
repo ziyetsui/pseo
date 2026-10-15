@@ -9,8 +9,8 @@ import type { Media, Prompt } from "@/lib/catalog/types";
 function SourceMedia({ media, primary , uiLocale = 'en'}: { media: Media; primary: boolean ; uiLocale?: Locale }) {
   const [failed, setFailed] = useState(false);
   if (failed) return <div className={`ph ${primary ? "p45" : ""}`}><span className="media-fallback">{uiText(uiLocale, "This source media is unavailable.")}</span></div>;
-  return <div className={`ph ${primary ? "p45" : ""}`}>
-    {media.kind === "video" ? <video controls playsInline preload="none" poster={media.poster ?? undefined} src={media.src} width={media.width ?? 720} height={media.height ?? 900} aria-label={media.alt || uiText(uiLocale, "Video from the original post")} onError={() => setFailed(true)} /> : <img src={media.src} alt={media.alt} loading={primary ? "eager" : "lazy"} fetchPriority={primary ? "high" : "auto"} width={media.width ?? 720} height={media.height ?? 900} referrerPolicy="no-referrer" onError={() => setFailed(true)} />}
+  return <div className={`ph ${primary ? "p45" : ""}`} style={media.kind === "video" && media.width && media.height ? { aspectRatio: `${media.width} / ${media.height}` } : undefined}>
+    {media.kind === "video" ? <video style={{ objectFit: "contain" }} controls playsInline preload="none" poster={media.poster ?? undefined} src={media.src} width={media.width ?? 720} height={media.height ?? 900} aria-label={media.alt || uiText(uiLocale, "Video from the original post")} onError={() => setFailed(true)} /> : <img src={media.src} alt={media.alt} loading={primary ? "eager" : "lazy"} fetchPriority={primary ? "high" : "auto"} width={media.width ?? 720} height={media.height ?? 900} referrerPolicy="no-referrer" onError={() => setFailed(true)} />}
   </div>;
 }
 
