@@ -11,6 +11,10 @@ Visual contract: [frontend/AGENTS.md §7](../frontend/AGENTS.md#7-唯一视觉�
 
 > **Architecture supersession（2026-09-03）：** 0011 取代本文中所有 Git-first 内容发布条款，包括 Git `main` 作为内容事实源、Payload 只是草稿投影、每内容 branch/PR/merge、Agent 直接编辑 canonical `content/**`，以及 CMS/Backend 绝不直推镜像 `main`。未逐段删除的相关文字只保留为历史实现记录。当前规范是 Payload CMS canonical → revision-bound human approval → immutable export snapshot → deterministic mirror → 专用 bot direct fast-forward push `main` → exact-commit deploy/smoke。代码、schema、workflow、license 和 exporter 本身仍走 PR。
 
+## 用户追加：Git-beta 头像资源合同（2026-10-15）
+
+frontend/src/data/creator-avatars.json 按归一handle存储公开账号ID、资料/CDN URL、证据类型、时间、尺寸、原图SHA-256与本地资源路径；更名账号必须绑定原署名原帖ID的作者证据。Git-beta catalog/revision与导出校验共同读取同一清单，资源哈希不一致则构建失败。不可用账号显式记录，头像仅影响已授权beta展示，不写CMS、content镜像或rights状态。
+
 ## 0. 结论先行
 
 2026-10-14 Creator 展示合同：移除前8位截断，展示全部关联创作者；首页及风格页沿用全库，任务、模型页沿用各自提示词集合。沿用共享身份匹配、真实数量降序、作者主页链接及现有卡片布局。

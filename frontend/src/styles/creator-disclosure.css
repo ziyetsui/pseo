@@ -7,3 +7,4 @@
 #creators .creator-more[open] .creator-more-open{display:none}
 #creators .creator-more[open] .creator-more-close{display:inline}
 #creators .creator-more:not([open])>.people,#creators .creator-more:not([open])>.creators{display:none}
+.av .avatar-initial { display:grid;place-items:center;width:100%;height:100%;font:500 13px/1 var(--font-sans);color:var(--muted); }

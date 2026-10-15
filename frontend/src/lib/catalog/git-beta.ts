@@ -1,11 +1,13 @@
 import displayCopy from '../../data/localized-case-copy.json';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
+import avatarInput from '../../data/creator-avatars.json';
 import { createFixtureCatalog } from './fixture';
 import {localizedGitCatalog} from './localized';
 import { gitBetaRevision } from './git-beta-revision';
 import { websiteEntries } from './website';
 import { placeholderTokens } from './placeholders';
+import { creatorAvatarIndex, creatorHandle } from './creator-avatars';
 import { filterHref, modelHref } from './query';
 import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase, WebsiteGraph } from './types';
 
@@ -31,7 +33,8 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput);
+  const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
     const node = object(value), id = text(node.id);
@@ -108,7 +111,10 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     });
   }
   for (const axis of Object.keys(axes) as Axis[]) for (const ref of registries[axis].values()) ref.count = prompts.filter(prompt => prompt[axes[axis]].some(term => term.id === ref.id)).length;
-  for (const creator of creators.values()) creator.count = prompts.filter(prompt => prompt.creatorRef?.id === creator.id).length;
+  for (const creator of creators.values()) {
+    creator.count = prompts.filter(prompt => prompt.creatorRef?.id === creator.id).length;
+    creator.avatarUrl = avatars.get(creatorHandle(creator.handle)) ?? null;
+  }
   const caseEntries = websiteEntries({ ...base, prompts, websites }), caseIds = new Set(caseEntries.map(entry => entry.id));
   const websiteGraph: WebsiteGraph = { nodes: [], edges: [] };
   const websiteNodeIds = new Set(caseIds);
