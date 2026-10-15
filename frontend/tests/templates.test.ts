@@ -39,4 +39,9 @@ describe("reviewed editable templates", () => {
     expect(filledPlaceholderParts(text, placeholderTokens(text), { "[SUBJECT]": "[COLOR]", "[COLOR]": "$& blue" }).map(p => p.text).join(""))
       .toBe("[COLOR]\n[COLOR] wears $& blue.");
   });
+  it("keeps the UI heading in a bracketed technical outline literal", () => {
+    const text = '[World and Stations] Scene details. [UI] Clean modern game UI. [Technical Requirements] Three.js. [PROJECT_NAME]';
+    expect(placeholderTokens(text)).toEqual(['[PROJECT_NAME]']);
+    expect(placeholderTokens('Design [UI] for [PROJECT_NAME]')).toEqual(['[UI]', '[PROJECT_NAME]']);
+  });
 });
