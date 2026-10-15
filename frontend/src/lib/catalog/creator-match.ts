@@ -2,9 +2,10 @@ import type { Creator, Prompt } from "./types";
 
 /** Canonical references take precedence; handles identify legacy records only. */
 export function isPromptCreator(
-  prompt: Pick<Prompt, "creatorRef" | "handle">,
+  prompt: Pick<Prompt, "creatorRef" | "handle" | "reconstruction">,
   creator: Pick<Creator, "id" | "slug" | "handle">,
 ): boolean {
+  if (prompt.reconstruction) return false;
   if (prompt.creatorRef) {
     const { id, slug } = prompt.creatorRef;
     return Boolean((id.trim() && id === creator.id) || (slug.trim() && slug === creator.slug));

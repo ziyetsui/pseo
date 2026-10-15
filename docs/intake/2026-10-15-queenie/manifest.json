@@ -1,0 +1,81 @@
+{
+  "sourceRepository": "ziyetsui/queenie",
+  "sourceBranch": "launch/supplement-a",
+  "sourceCommit": "05557a4e01c0b1f6bd947d6e210d05de243fadc7",
+  "observedAt": "2026-10-15T09:18:13.774176+00:00",
+  "publicRecords": 1323,
+  "importedRecords": 1306,
+  "images": 3321,
+  "datasetSha256": "07bb951b942972e9bf69c2b203ee6ecd0d413f0144f4f592e92eb3cd72a2bc0b",
+  "analysisSha256": "6fda1a7329c7bd2d08337519d089b6b6da54ecb1ea40db4703c2b55cfdaff263",
+  "exclusions": [
+    {
+      "slug": "2026-pass-every-exam-d7jvgz",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "50-days-until-gaokao-ride-the-waves-top-the-list-3pifqz",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "believe-in-yourself-without-reservation-you-must-believe-in-i2tvwe",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "day-one-of-the-2026-gaokao-ccpozy",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "dy-kxjkes",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "dy-xg76ve",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "dy-xqna2v",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "exam-gods-protection-chronicles-make-your-own-bfsujc",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "how-does-it-feel-to-check-your-gaokao-score-starting-today-m-mjekn5",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "kui-xing-points-to-the-dipper-tops-the-imperial-list-alone-k-b5g2kg",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "manjushri-s-blessing-may-students-in-the-family-succeed-in-t-zxtohj",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "may-every-exam-candidate-lift-their-pen-with-calm-confidence-ebzxsq",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "may-my-child-excel-beyond-expectations-in-the-college-entran-6zc7xe",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "take-this-good-luck-success-in-the-gaokao-a-bright-future-ah-uk6x6t",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "the-college-entrance-exam-is-tomorrow-wishing-all-examinees-h5h6q7",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "wishing-all-exam-takers-wherever-your-pen-goes-dreams-bloom-hkcayp",
+      "reason": "Source is a video; excluded from image-only integration."
+    },
+    {
+      "slug": "wishing-all-students-pass-every-exam-top-the-honor-roll-3uslfg",
+      "reason": "Source is a video; excluded from image-only integration."
+    }
+  ]
+}

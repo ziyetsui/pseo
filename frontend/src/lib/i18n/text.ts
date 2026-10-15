@@ -1,4 +1,4 @@
-import type {Catalog, Locale} from '@/lib/catalog/types';
+import type {Catalog, Locale, Prompt} from '@/lib/catalog/types';
 /** Product copy only. Never pass source prompt bodies to this function. */
 export function text(locale:Locale,english:string,chinese:string):string{return locale==='zh-CN'?chinese:english;}
 export function promptCount(locale:Locale,count:number):string{return text(locale,`${count} ${count===1?'prompt':'prompts'}`,`${count} 条提示词`);}
@@ -442,3 +442,6 @@ const chinesePlaceholderSuggestions: Readonly<Record<string, string>> = {
   "COAST": "COAST"
 };
 export function placeholderSuggestionLabel(locale: Locale, value: string): string { return text(locale, value, chinesePlaceholderSuggestions[value] ?? value); }
+
+/** Image reconstructions must never be labelled as author-original prompt text. */
+export function promptLanguage(locale: Locale, prompt: Pick<Prompt, "language" | "originalPrompt" | "reconstruction">): string { return prompt.reconstruction ? text(locale, "Image-based reconstruction · editable template", "参考图逆向整理 · 可编辑模板") : originalLanguage(locale, prompt.language, prompt.originalPrompt !== undefined); }

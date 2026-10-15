@@ -9,7 +9,7 @@ describe('authorized Git beta publication', () => {
   it('loads 521 distinct new image prompts and retains all 541 source images', () => {
     const c = catalog();
     expect(c.mode).toBe('git-beta');
-    expect(c.prompts.filter(p => p.kind === 'image')).toHaveLength(543);
+    expect(c.prompts.filter(p => p.kind === 'image' && !p.reconstruction)).toHaveLength(543);
     const imported = c.prompts.filter(p => p.kind === 'image' && p.id.startsWith('prm_'));
     expect(imported).toHaveLength(521);
     expect(new Set(imported.flatMap(p => p.media.map(m => m.src))).size).toBe(541);

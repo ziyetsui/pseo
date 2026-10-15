@@ -25,7 +25,7 @@ test('published Git beta exposes real image and Website counts, sources and proj
   expect(receipt.gitBeta.importedImageExamples).toBe(541);
   expect(receipt.gitBeta.importedWebsites).toBe(59);
   await page.goto('/en/prompts#category');
-  await expect(page.locator('#category a.tile').filter({hasText:'Images'}).locator('p')).toHaveText('543 prompts');
+  await expect(page.locator('#category a.tile').filter({hasText:'Images'}).locator('p')).toHaveText(`${receipt.gitBeta.imagePrompts} prompts`);
   await expect(page.locator('#category a.tile').filter({hasText:'Web design & development'}).locator('p')).toHaveText('225 cases');
   await page.locator('#category a.tile').filter({hasText:'Web design & development'}).click();
   await expect(page.locator('h1')).toHaveText('Web design & development');

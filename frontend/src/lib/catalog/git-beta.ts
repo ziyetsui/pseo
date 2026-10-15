@@ -1,3 +1,5 @@
+import queenieInput from '../../data/queenie-images.json';
+import { appendQueenieCatalog, readQueenieDataset } from './queenie';
 import promptBodyTranslations from '../../data/zh-prompt-bodies.json';
 import websiteCategories from '../../data/website-category-membership.json';
 import websiteTemplates from '../../data/website-placeholder-templates.json';
@@ -13,6 +15,8 @@ import { placeholderTokens } from './placeholders';
 import { creatorAvatarIndex, creatorHandle } from './creator-avatars';
 import { filterHref, modelHref } from './query';
 import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase, WebsiteGraph } from './types';
+
+const queenieDataset = readQueenieDataset(queenieInput);
 
 type RecordValue = Record<string, unknown>;
 function object(value: unknown): RecordValue {
@@ -42,7 +46,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -144,6 +148,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations);
+  return appendQueenieCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations), queenieDataset);
 }

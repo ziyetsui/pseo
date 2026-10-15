@@ -1556,3 +1556,7 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 
 
 2026-10-15 用户确认归并重复网站任务入口：Git beta 将创作与开发、网站、网站与开发统一为「网站与开发 / Web design & development」，首页任务区仅一张卡，指向完整225案例集合；内部按网站设计、应用开发、创意编程的明确逐条主分类划分，中英文共用id映射，每案例恰好一个主分类。保留模型和技术关系，来源正文与graph不改写；旧任务/用途页保留同语言跳转，原查询别名兼容。分类映射计入revision并通过独立导出检查，不凭框架关键词自动分类。
+
+2026-10-15 用户授权 Queenie 真实图片接入 Git-beta 图片库：按 docs/superpowers/specs/2026-10-15-queenie-image-library.md 固定公开双语数据、真实多图和来源，生成明确标注的参考图重建提示词与语义 placeholder，复用 L1–L4 设计和既有编辑/生成流程。排除开发占位、原视频及不完整记录，不推测模型或伪造作者提示词，保留 noindex；Queenie/CMS/账户/支付数据不修改。
+
+Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical top-level prompt-route .txt and __next._full.txt payloads. Verify every pair before mutation, retain all full/tree/page segments, remove only identical monolithic copies and preserve their URLs with two locale-scoped relative Pages 200 proxies. Validate real Cloudflare-compatible proxy responses and client navigation; never delete accepted pages or media to fit the limit.

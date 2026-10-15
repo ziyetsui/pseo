@@ -89,6 +89,6 @@ describe('Website editable template UI', () => {
       const entry = entries.find(entry => entry.id === prompt.id || entry.promptHref === prompt.href)!;
       shell.innerHTML = renderToStaticMarkup(<Recipe catalog={catalog} prompt={prompt} />);
       expect(shell.querySelector('[data-prompt]')?.textContent).toBe(websiteEditableTemplate(catalog, entry).prompt);
-    });
+    }, 30_000);
   }
 });

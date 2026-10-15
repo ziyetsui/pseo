@@ -8,7 +8,7 @@ import { placeholderTokens } from '@/lib/catalog/placeholders';
 import { HubReader } from '@/components/HubReader';
 import { RecipeText } from '@/components/RecipeText';
 
-const en = createGitBetaCatalog('en'), zh = createGitBetaCatalog('zh-CN');
+const allEn = createGitBetaCatalog('en'), en = {...allEn,prompts:allEn.prompts.filter(p=>!p.reconstruction)}, zh = createGitBetaCatalog('zh-CN');
 const chinese = /\p{Script=Han}/u;
 const occurrences = (value: string, pattern: RegExp) => (value.match(pattern) ?? []).sort();
 describe('complete Chinese prompt body resource', () => {

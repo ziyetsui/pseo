@@ -60,6 +60,8 @@ export interface Prompt {
   originalLanguage?: string;
   /** The supplied text is an editable adaptation, not a word-for-word source quotation. */
   editableTemplate?: boolean;
+  /** Site-authored reconstruction of a reference image, not the image creator’s original prompt. */
+  reconstruction?: boolean;
   language: string;
   kind: "image" | "video" | "text" | "other";
   models: Ref[];
