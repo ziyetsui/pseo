@@ -1,5 +1,7 @@
 # 0009｜PSEO CMS-first + Git Public Mirror 技术架构
 
+2026-10-15 首页浏览布局裁定：首页 Browse by task 与 Browse by style 的分类卡片保持单行横向浏览，完整分类继续可达；各自保留一张独立的宽幅真实预览大图。任务区保留 Web & motion design 的原有大图。紧凑导航、模型区及创作者区保持现有行为，支持中英文与手机。
+
 Status: Implementation-ready v1.2 (YouMind-style CMS publication)
 Owner: BO
 Last updated: 2026-09-04

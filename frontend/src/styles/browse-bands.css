@@ -1,0 +1,4 @@
+.prototype-magnetic .browse-band .tiles{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;padding:2px 2px 12px}
+.prototype-magnetic .browse-band .tiles .tile{flex:0 0 clamp(220px,22vw,340px);min-width:0;scroll-snap-align:start}
+.prototype-magnetic .browse-band .browse-spotlight{margin-top:24px;width:100%}
+@media(max-width:760px){.prototype-magnetic .browse-band .tiles .tile{flex-basis:78%}.prototype-magnetic .browse-band .browse-spotlight{margin-top:18px}}
