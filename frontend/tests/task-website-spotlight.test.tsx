@@ -6,7 +6,7 @@ import {createGitBetaCatalog} from '@/lib/catalog/git-beta';
 import {websiteEntries} from '@/lib/catalog/website';
 it.each(['zh-CN','en'] as const)('features a real website case instead of the filmed-monitor task preview in %s',locale=>{
  const catalog=createGitBetaCatalog(locale);
- const example=websiteEntries(catalog).find(entry=>entry.source.url==='https://x.com/viktoroddy/status/2108181607396126979')!;
+ const example=websiteEntries(catalog).find(entry=>entry.source.url==='https://x.com/SuzzaneKisia/status/2100085815330435375')!;
  expect(example).toBeDefined();
  const tile=parse(renderToStaticMarkup(<HubBrowse catalog={catalog}/>)).querySelector('#tasks .browse-spotlight')!;
  expect(tile.getAttribute('href')).toBe(example.href);
