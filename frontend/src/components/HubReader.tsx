@@ -10,9 +10,11 @@ import { PromptMedia } from "@/components/PromptMedia";
 import { mountMagnetic } from "@/components/magnetic-motion";
 import { EmptyResults, Filters, PromptWords, SearchForm, usePromptExplorer } from "@/components/Filters";
 
+const INITIAL_VISIBLE_PROMPTS = 36;
+
 function MagneticField({ rows , uiLocale = 'en', bilingual = false}: { rows: Prompt[] ; uiLocale?: Locale; bilingual?:boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visibleCount, setVisibleCount] = useState(18);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_PROMPTS);
   const visibleRows = rows.slice(0, visibleCount);
   useEffect(() => ref.current ? mountMagnetic(ref.current) : undefined, [visibleCount]);
   return <div className="runbox" ref={ref}><p className="run">{visibleRows.map(prompt => {
@@ -21,7 +23,7 @@ function MagneticField({ rows , uiLocale = 'en', bilingual = false}: { rows: Pro
     return <Fragment key={prompt.id}><span className="item" data-entry="" data-kind={prompt.kind} data-lg-row="" data-lg-chars={prompt.prompt.length} data-lg-words={promptWords(prompt.prompt)}><button className="t" type="button" data-expand="" aria-expanded="false" aria-controls={`peek-${prompt.id}`}><span className="u" lang={sourceLanguage(prompt.title)}>{prompt.title}</span></button><span className="exp" id={`peek-${prompt.id}`} aria-label={prompt.title} inert>
       <span className="fig"><PromptMedia uiLocale={uiLocale} prompt={prompt} width={440} height={440} /></span><span><span className="txt" lang={prompt.language}><PromptWords text={excerpt} /></span><span className="meta">{bilingual && <span>{originalLanguage(uiLocale, prompt.language)}</span>}<a href={prompt.source.url} target="_blank" rel="nofollow noopener noreferrer">{prompt.handle || uiText(uiLocale, "unattributed")}</a><span>{prompt.models[0]?.label ?? uiText(uiLocale, "no model named")}</span>{prompt.kind === "video" && prompt.media[0]?.label ? <span>{prompt.media[0].label}{text(uiLocale, " video", " 视频")}</span> : prompt.media.length > 1 ? <span>{text(uiLocale, `${prompt.media.length} frames`, `${prompt.media.length} 帧`)}</span> : null}{prompt.likes !== null && <span><b>{prompt.likes.toLocaleString("en-US")}</b>{text(uiLocale, " likes", " 次点赞")}</span>}<span>{text(uiLocale, `${prompt.prompt.length.toLocaleString("en-US")} chars`, `${prompt.prompt.length.toLocaleString("zh-CN")} 个字符`)}</span></span><span className="acts"><a className="btn pri" href={prompt.href}>{generationLabel(prompt.kind, uiLocale)}</a></span></span>
     </span></span>{" "}</Fragment>;
-  })}</p><div className="title-window"><p className="meta" aria-live="polite">{text(uiLocale, `Showing ${visibleRows.length} of ${rows.length} matches`, `已展示 ${visibleRows.length} / ${rows.length} 条`)}</p>{visibleCount < rows.length && <button className="btn" type="button" onClick={() => setVisibleCount(count => count + 18)}>{text(uiLocale, "Show more prompts", "查看更多提示词")}</button>}{visibleCount > 18 && <button className="btn" type="button" onClick={() => setVisibleCount(18)}>{text(uiLocale, "Show fewer", "收起")}</button>}</div><noscript><ul>{rows.map(prompt => <li key={prompt.id}><a href={prompt.href}>{prompt.title} — {generationLabel(prompt.kind, uiLocale)}</a></li>)}</ul></noscript></div>;
+  })}</p><div className="title-window"><p className="meta" aria-live="polite">{text(uiLocale, `Showing ${visibleRows.length} of ${rows.length} matches`, `已展示 ${visibleRows.length} / ${rows.length} 条`)}</p>{visibleCount < rows.length && <button className="btn" type="button" onClick={() => setVisibleCount(count => count + 18)}>{text(uiLocale, "Show more prompts", "查看更多提示词")}</button>}{visibleCount > INITIAL_VISIBLE_PROMPTS && <button className="btn" type="button" onClick={() => setVisibleCount(INITIAL_VISIBLE_PROMPTS)}>{text(uiLocale, "Show fewer", "收起")}</button>}</div><noscript><ul>{rows.map(prompt => <li key={prompt.id}><a href={prompt.href}>{prompt.title} — {generationLabel(prompt.kind, uiLocale)}</a></li>)}</ul></noscript></div>;
 }
 export function HubReader({ catalog }: { catalog: Catalog }) {
   const uiLocale = interfaceLocale(catalog);
