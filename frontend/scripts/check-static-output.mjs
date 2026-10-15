@@ -1,3 +1,4 @@
+import {PROMPT_RSC_REWRITES} from './compact-rsc-export.mjs';
 import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { verifyWebsiteViewOutput, websiteValidationGraph } from './website-view-output.mjs';
@@ -80,7 +81,7 @@ if (manifest.mode !== 'public-api') {
     const allowed = new Set(published.map(item=>item.href));
     const redirects=['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>({alias,target:`/${locale}/prompts/website`})));
     const redirectBytes=await readFile(path.join(root,'_redirects'),'utf8');
-    if(redirectBytes!==redirects.map(({alias,target})=>`${alias} ${target} 301`).join('\n')+'\n')throw new Error('Website alias redirect contract mismatch');
+    if(redirectBytes!==[...redirects.map(({alias,target})=>`${alias} ${target} 301`),...PROMPT_RSC_REWRITES].join('\n')+'\n')throw new Error('Website alias redirect contract mismatch');
     for(const {alias,target} of redirects){
       if(!allPaths.has(alias)||!allPaths.has(target)||documents.get(alias).querySelector('meta[http-equiv="refresh"]')?.getAttribute('content')!==`0;url=${target}`)throw new Error(`Website alias fallback missing: ${alias}`);
       allowed.add(alias);
