@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Catalog, Prompt } from "@/lib/catalog/types";
 import { SiteFooter, SiteHeader } from "@/components/Chrome";
 import { RecipeMedia } from "@/components/RecipeMedia";
+import { RecipeGenerateLink } from './RecipeGenerateLink';
 import { RecipeText } from "@/components/RecipeText";
 import { generationLabel } from "@/components/generation-label";
 import { isPromptCreator } from "@/lib/catalog/creator-match";
@@ -45,7 +46,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
       <section className="step" aria-labelledby="recipe-run">
         <div className="num" aria-hidden="true">04</div><div>
           <h2 id="recipe-run">{uiText(uiLocale, "Run it")}</h2>
-          <p className="lede">{uiText(uiLocale, "Generation happens in bo. This page hands you the words.")}</p>
+          <p className="lede">{text(uiLocale, "Continue in Ancher with your completed prompt.", "将填好的提示词带入 Ancher，继续创作。")}</p>
           <div className="runrow">
             <div><b>{uiText(uiLocale, "Model")}</b><p>{prompt.models.length ? prompt.models.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>) : text(uiLocale, "None named — try the one you have", "未注明模型，可尝试你已有的模型")}</p></div>
             <div><b>{uiText(uiLocale, "What to expect")}</b><p>{uiText(uiLocale, "Run four at once; how far the result drifts varies a lot.")}</p></div>
@@ -53,7 +54,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           {prompt.requiredInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Required inputs")}</span><span>{prompt.requiredInputs.join(", ")}</span></div>}
           {prompt.optionalInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Optional inputs")}</span><span>{prompt.optionalInputs.join(", ")}</span></div>}
           <div className="acts">
-            <a className="btn pri" data-generation-cta="" href="https://bo.video/home" target="_blank" rel="noopener noreferrer">{generationLabel(prompt.kind, uiLocale)}</a>
+            <RecipeGenerateLink prompt={prompt.prompt}>{generationLabel(prompt.kind, uiLocale)}</RecipeGenerateLink>
             <span className="metrics"><span>{prompt.handle || uiText(uiLocale, "unattributed")}</span><span><b>{number(prompt.likes)}</b>{text(uiLocale, " likes", " 次点赞")}</span><span><b>{number(prompt.saves)}</b>{text(uiLocale, " saves", " 次收藏")}</span>{prompt.highValue && <span className="ok">{uiText(uiLocale, "Popular")}</span>}</span>
           </div>
           <div style={{ marginTop: 20 }}>

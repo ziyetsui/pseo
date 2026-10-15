@@ -1,10 +1,10 @@
 'use client';
 import { uiText, text } from '@/lib/i18n/text';
 import type { Locale } from '@/lib/catalog/types';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import type { Ref, WebsiteCase } from '@/lib/catalog/types';
 import { filterWebsiteCases, type WebsiteFilters } from '@/lib/catalog/website-filter';
-import { WebsitePromptComposer, type WebsiteComposerHandle } from './WebsitePromptComposer';
+import { WebsitePromptComposer } from './WebsitePromptComposer';
 import { CollectionSignatureHero } from './ModelSignatureHero';
 import { WebsiteCaseResults, type WebsitePresentation } from './WebsiteCaseResults';
 
@@ -12,7 +12,6 @@ function terms(rows: WebsiteCase[], axis: 'models' | 'useCases'): Ref[] {
   return [...new Map(rows.flatMap(item => item[axis]).filter(ref => ref.slug !== 'website').map(ref => [ref.slug, ref])).values()].sort((a,b) => a.label.localeCompare(b.label));
 }
 export function WebsiteCasesReader({ entries, href, presentation='deck', title='Website cases', locale='zh-CN', navigation=[], topics={}, promptTexts={}, promptLanguages={}, promptTranslations={}, uiLocale='en' }: { uiLocale?:Locale; entries: WebsiteCase[]; href: string; presentation?:WebsitePresentation; title?:string; locale?:string; navigation?:Ref[]; topics?:Record<string,Ref[]>; promptTexts?:Record<string,string>; promptTranslations?:Record<string,boolean>; promptLanguages?:Record<string,string> }) {
-  const composer = useRef<WebsiteComposerHandle>(null);
   const [ready, setReady] = useState(false);
   const [filters, setFilters] = useState<WebsiteFilters>({});
   const [draft, setDraft] = useState<WebsiteFilters>({});
@@ -43,8 +42,8 @@ export function WebsiteCasesReader({ entries, href, presentation='deck', title='
   </>;
   const tabs = <nav className="website-view-tabs" aria-label={presentation==='findings'? uiText(uiLocale, "Website purposes"): uiText(uiLocale, "Related Website views")}>{navigation.map(ref=><a className="chip" key={ref.id} href={ref.href} aria-current={href===ref.href?'page':undefined}>{ref.label} <small>{ref.count}</small></a>)}</nav>;
   return <>
-    {presentation==='anthology' ? <CollectionSignatureHero uiLocale={uiLocale} items={entries.map(row=>({id:row.id,title:row.title,src:row.cover}))} locale={locale} title={title} label={text(uiLocale, `${title} website cases`, `${title}网站案例`)} line1={text(uiLocale, `${entries.length} website ${entries.length===1?'case':'cases'} to explore`, `${entries.length} 个网站案例，等你探索`)} line2={uiText(uiLocale, "Pick a project. Follow the source.")}><WebsitePromptComposer key={href} href={href} count={entries.length} uiLocale={uiLocale} composerRef={composer} />{tabs}</CollectionSignatureHero> : presentation==='findings' ? <div className="ctrl"><div className="wrap"><div className="bar"><div className="row"><span className="lbl">{uiText(uiLocale, "Task")}</span>{tabs}</div><div className="row"><span className="lbl">{uiText(uiLocale, "Within")}</span>{controls}</div></div></div></div> : <section className="sec"><h2>{uiText(uiLocale, "Narrow the deck")}</h2>{controls}</section>}
+    {presentation==='anthology' ? <CollectionSignatureHero uiLocale={uiLocale} items={entries.map(row=>({id:row.id,title:row.title,src:row.cover}))} locale={locale} title={title} label={text(uiLocale, `${title} website cases`, `${title}网站案例`)} line1={text(uiLocale, `${entries.length} website ${entries.length===1?'case':'cases'} to explore`, `${entries.length} 个网站案例，等你探索`)} line2={uiText(uiLocale, "Pick a project. Follow the source.")}><WebsitePromptComposer key={href} href={href} count={entries.length} uiLocale={uiLocale} />{tabs}</CollectionSignatureHero> : presentation==='findings' ? <div className="ctrl"><div className="wrap"><div className="bar"><div className="row"><span className="lbl">{uiText(uiLocale, "Task")}</span>{tabs}</div><div className="row"><span className="lbl">{uiText(uiLocale, "Within")}</span>{controls}</div></div></div></div> : <section className="sec"><h2>{uiText(uiLocale, "Narrow the deck")}</h2>{controls}</section>}
     {presentation==='anthology' && <section className="sec"><h2>{uiText(uiLocale, "Narrow the deck")}</h2>{controls}</section>}
-    {rows.length ? <WebsiteCaseResults onLoadPrompt={presentation==='anthology' ? (prompt => composer.current?.loadPrompt(prompt)) : undefined} promptTranslations={promptTranslations} promptLanguages={promptLanguages} uiLocale={uiLocale} rows={rows} presentation={presentation} promptTexts={promptTexts} topics={topics} /> : <section className="sec website-empty"><div className="empty"><h2>{uiText(uiLocale, "No website case matches those filters.")}</h2><a className="btn" href={href}>{uiText(uiLocale, "Browse all cases")}</a></div></section>}
+    {rows.length ? <WebsiteCaseResults promptTranslations={promptTranslations} promptLanguages={promptLanguages} uiLocale={uiLocale} rows={rows} presentation={presentation} promptTexts={promptTexts} topics={topics} /> : <section className="sec website-empty"><div className="empty"><h2>{uiText(uiLocale, "No website case matches those filters.")}</h2><a className="btn" href={href}>{uiText(uiLocale, "Browse all cases")}</a></div></section>}
   </>;
 }
