@@ -14,7 +14,8 @@ for(const row of rows){
  seen.add(signature);valid.push(row);
 }
 const metadata=JSON.parse(await readFile(`${root}/source-metadata.json`,'utf8'));
-const result=buildIntake({websites:valid,gallery:{cases:[]},observedAt:metadata.observedAt,upstreamCommit:'5cb9109ca2d29476f8e34dbc0cdb43607bdd3f77'});
+const websiteMedia=JSON.parse(await readFile(`${root}/media-evidence.json`,'utf8'));
+const result=buildIntake({websites:valid,websiteMedia,gallery:{cases:[]},observedAt:metadata.observedAt,upstreamCommit:'5cb9109ca2d29476f8e34dbc0cdb43607bdd3f77'});
 const accepted=new Set(result.proposals.map(p=>p.body.prompt.artifactKey));
 const graph={schemaVersion:1,nodes:result.nodes.map(n=>n.type==='prompt'?{...n,promptOnly:true,betaEligible:accepted.has(n.id)}:n),edges:result.edges};
 const nodes=new Map(original.nodes.map(n=>[n.id,n]));

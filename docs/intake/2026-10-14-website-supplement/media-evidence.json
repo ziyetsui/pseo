@@ -1,0 +1,37 @@
+[
+  {
+    "post_id": "2074669101264294069",
+    "visual_source": "https://x.com/emollick/status/2074667244932444479",
+    "observedAt": "2026-10-15",
+    "images": [
+      {
+        "kind": "video",
+        "source_url": "https://video.twimg.com/amplify_video/2074666913116893184/vid/avc1/1662x1018/cx9QSNk2uRjasC7z.mp4?tag=28",
+        "poster": "https://pbs.twimg.com/amplify_video_thumb/2074666913116893184/img/dAYy3fZsmpOnzvzr.jpg?format=jpg&name=orig",
+        "width": 1280,
+        "height": 784,
+        "localSrc": "/website-videos/2074667244932444479.mp4",
+        "localPoster": "/website-previews/2074667244932444479.jpg"
+      }
+    ],
+    "assets": [
+      {
+        "src": "/website-videos/2074667244932444479.mp4",
+        "sha256": "05a226bd90094d04cbe2bc2876eaec716fc150e5931064981b04a9c2abf790c6"
+      },
+      {
+        "src": "/website-previews/2074667244932444479.jpg",
+        "sha256": "62542371f684afc01b0194927c99705444bedf3b7610652553c3db53ae1e02a2"
+      }
+    ],
+    "rendition": {
+      "sourceWidth": 1662,
+      "sourceHeight": 1018,
+      "originalDurationSeconds": 112.490667,
+      "durationSeconds": 112.49,
+      "sourceSha256": "07b73a718d07d614f030f3d0e137db27e5052adc2dc32a258ec24dda32a8a1a4",
+      "processing": "H.264 1280x784 CRF 27; AAC 96k; faststart; full duration retained",
+      "reason": "X CDN returned 403 to embedded browser requests; same-source beta rendition"
+    }
+  }
+]
