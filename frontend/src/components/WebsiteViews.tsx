@@ -24,7 +24,7 @@ export function WebsiteViews({ catalog }: { catalog: Catalog }) {
       prompt: example?.prompt?.prompt, language: example?.prompt?.language, templateOrigin: example?.prompt?.origin };
   });
   return <div className="prototype-deck website-aligned"><div className="v4 taste"><SiteHeader bilingual={catalog.mode === 'git-beta'} currentHref={`/${catalog.locale}/prompts/website`} level="deck" locale={catalog.locale} contentType="website" /><main id="main"><div className="wrap">
-    <header className="hero"><p className="eyebrow">{uiText(uiLocale, "Website gallery")}</p><h1 className="tier-index">{uiText(uiLocale, "Website views")}</h1><p className="lede">{text(uiLocale, `Explore ${websiteRef(catalog).count} website cases by purpose, model or technology. Pick a view to discover related projects.`, `按用途、模型或技术探索 ${websiteRef(catalog).count} 个网站案例，选择一个分类发现相关项目。`)}</p></header>
+    <header className="hero"><p className="eyebrow">{uiText(uiLocale, "Website gallery")}</p><h1 className="tier-index">{websiteRef(catalog).label}</h1><p className="lede">{text(uiLocale, `Explore ${websiteRef(catalog).count} website cases by purpose, model or technology. Pick a view to discover related projects.`, `按用途、模型或技术探索 ${websiteRef(catalog).count} 个网站案例，选择一个分类发现相关项目。`)}</p></header>
     <section className="sec"><div className="sec-head"><h2>{uiText(uiLocale, "Explore a view")}</h2><span className="count">{text(uiLocale, `${views.length} views`, `${views.length} 个分类`)}</span></div><WebsiteDeck uiLocale={uiLocale} kind="view" items={slides} /></section>
     {sections.map(section => {
       const rows = views.filter(view => view.axis === section.axis);

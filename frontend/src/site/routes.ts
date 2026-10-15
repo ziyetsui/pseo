@@ -1,3 +1,4 @@
+import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
 import { modelFamilies } from '@/lib/catalog/model-families';
@@ -8,6 +9,7 @@ export function catalogPaths(catalog: Catalog): string[] {
   const hrefs = [hub, `/${catalog.locale}`, `${hub}/image`, `${hub}/video`, `${hub}/website`, `${hub}/models`, `${hub}/creators`, `/${catalog.locale}/blog`, ...(catalog.websites ?? []).map(item => item.href), ...catalog.prompts.map(prompt => prompt.href), ...catalog.models.map(model => model.href), ...catalog.useCases.map(task => taskHref(catalog.locale, task.slug)), ...catalog.styles.map(style => styleHref(catalog.locale, style.slug)), ...[...catalog.useCases, ...catalog.styles, ...catalog.subjects, ...catalog.techniques].map(ref => ref.href)];
   hrefs.push(...catalog.subjects.map(subject => subjectHref(catalog.locale, subject.slug)));
   hrefs.push(...modelFamilies(catalog).map(family => family.href));
+  if(catalog.mode==='git-beta')hrefs.push(...websiteLegacyPaths(catalog.locale));
   hrefs.push(...websiteViews(catalog).map(view => view.href));
   if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`);
   return [...new Set(hrefs.filter(href => (href === `/${catalog.locale}` || href.startsWith(`/${catalog.locale}/`)) && !href.includes('?') && !href.includes('#')))];

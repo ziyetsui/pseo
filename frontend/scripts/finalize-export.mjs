@@ -1,3 +1,4 @@
+import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
 import { verifyCreatorAvatarAssets } from './creator-avatar-assets.mjs';
 import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
@@ -59,7 +60,8 @@ if (mode === 'git-beta') {
   const avatars = JSON.parse(await readFile('src/data/creator-avatars.json','utf8'));
   await verifyCreatorAvatarAssets(out, avatars);
   const promptBodies = JSON.parse(await readFile('src/data/zh-prompt-bodies.json','utf8'));
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')));
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')));
+  await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
   const localeReceipts=[];
   for(const locale of ['zh-CN','en']){

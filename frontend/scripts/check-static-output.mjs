@@ -1,3 +1,4 @@
+import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { verifyWebsiteViewOutput, websiteValidationGraph } from './website-view-output.mjs';
 import { WIREFRAME_TAXONOMIES } from '../src/data/wireframe/taxonomies.ts';
@@ -65,7 +66,7 @@ if (manifest.mode !== 'public-api') {
     }
     const receipt = manifest.gitBeta;
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
-    const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES);
+    const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES, JSON.parse(await readFile('src/data/website-category-membership.json','utf8')));
     if(!Array.isArray(receipt.locales)||JSON.stringify(receipt.locales.map(item=>item.locale).sort())!==JSON.stringify(['en','zh-CN']))throw new Error('Bilingual locale receipt missing');
     const published=[];
     for(const local of receipt.locales){
@@ -77,6 +78,13 @@ if (manifest.mode !== 'public-api') {
       published.push(...local.publishedPrompts,...local.publishedWebsites,...local.publishedWebsiteViews,...local.publishedNavigation);
     }
     const allowed = new Set(published.map(item=>item.href));
+    const redirects=['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>({alias,target:`/${locale}/prompts/website`})));
+    const redirectBytes=await readFile(path.join(root,'_redirects'),'utf8');
+    if(redirectBytes!==redirects.map(({alias,target})=>`${alias} ${target} 301`).join('\n')+'\n')throw new Error('Website alias redirect contract mismatch');
+    for(const {alias,target} of redirects){
+      if(!allPaths.has(alias)||!allPaths.has(target)||documents.get(alias).querySelector('meta[http-equiv="refresh"]')?.getAttribute('content')!==`0;url=${target}`)throw new Error(`Website alias fallback missing: ${alias}`);
+      allowed.add(alias);
+    }
     for (const route of allowed) if (!allPaths.has(route)) throw new Error(`Git beta published route missing: ${route}`);
     for (const route of allPaths) {
       if (/^\/(en|zh-CN)\/prompts\/[^/]+$/.test(route) && !/\/(image|video|website|models|creators)$/.test(route) && !allowed.has(route)) throw new Error(`Unlisted Git beta detail: ${route}`);

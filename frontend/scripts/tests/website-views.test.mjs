@@ -54,3 +54,13 @@ test('retains distinct prompts from the same original case source', () => {
  const graph={nodes:[{id:'case',type:'website-case'},{id:'first',type:'prompt',promptOnly:true},{id:'second',type:'prompt',promptOnly:true},{id:'source',type:'source'},{id:'website',type:'use-case',slug:'website'}],edges:['case','first','second'].flatMap(from=>[{from,to:'source',type:'sourced_from'},{from,to:'website',type:'used_for'}])};
  assert.deepEqual(websiteValidationGraph(graph,[],[]).websiteIds,['case','second']);
 });
+
+test('requires complete reviewed Website categories while retaining model edges and immutable source graph',()=>{
+ const graph={nodes:[{id:'case',type:'website-case'},{id:'website',type:'use-case',slug:'website'},{id:'model',type:'model',slug:'claude'}],edges:[{from:'case',to:'website',type:'used_for'},{from:'case',to:'model',type:'designed_for'}]};
+ const before=JSON.stringify(graph);
+ const projected=websiteValidationGraph(graph,[],[],{case:'creative-coding'});
+ assert.equal(JSON.stringify(graph),before);
+ assert.ok(projected.edges.some(edge=>edge.from==='case'&&edge.to==='model'&&edge.type==='designed_for'));
+ assert.ok(projected.edges.some(edge=>edge.from==='case'&&edge.to==='navigation:website-purpose:creative-coding'&&edge.type==='used_for'));
+ for(const invalid of [{},{case:'not-a-category'},{case:'web-design',extra:'web-design'}])assert.throws(()=>websiteValidationGraph(graph,[],[],invalid),/category membership/);
+});

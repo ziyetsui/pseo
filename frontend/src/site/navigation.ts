@@ -3,7 +3,7 @@ import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
 import { modelFamilies } from '@/lib/catalog/model-families';
 import { isPromptCreator } from '@/lib/catalog/creator-match';
-import { websiteEntries } from '@/lib/catalog/website';
+import { websiteEntries,websiteRef } from '@/lib/catalog/website';
 import { websiteViews } from '@/lib/catalog/website-views';
 
 export interface NavigationEntry { id:string; label:string; href:string; count?:number; kind:'prompt'|'case'|'navigation' }
@@ -29,17 +29,18 @@ export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pr
   const promptEntries=(refs:Ref[]):NavigationEntry[]=>refs.map(ref=>({id:ref.id,label:text(uiLocale, `${ref.label} prompts`, `${ref.label}提示词`),href:ref.href,count:ref.count,kind:'prompt'}));
   const groups:NavigationGroup[]=[
     {id:'models',title:text(interfaceLocale(catalog), 'By model', '按模型'),entries:promptEntries(ordered(models,referenceOrder.models))},
-    {id:'tasks',title:level==='hub'||level==='prompt'?text(uiLocale, 'By task', '按任务'):text(uiLocale, 'By use case', '按用途'),entries:promptEntries(entries(populated(catalog.useCases,'useCases'),referenceOrder.useCases).map(ref=>({...ref,href:taskHref(catalog.locale,ref.slug)})))},
+    {id:'tasks',title:level==='hub'||level==='prompt'?text(uiLocale, 'By task', '按任务'):text(uiLocale, 'By use case', '按用途'),entries:promptEntries(entries(populated(catalog.useCases,'useCases'),referenceOrder.useCases).map(ref=>({...ref,href:catalog.mode==='git-beta'&&ref.slug==='website'?websiteRef(catalog).href:taskHref(catalog.locale,ref.slug)})))},
     {id:'styles',title:text(interfaceLocale(catalog), 'By style', '按风格'),entries:promptEntries(entries(populated(catalog.styles,'styles'),referenceOrder.styles).map(ref=>({...ref,href:styleHref(catalog.locale,ref.slug)})))},
     {id:'subjects',title:text(interfaceLocale(catalog), 'By subject', '按主题'),entries:promptEntries(entries(populated(catalog.subjects,'subjects'),referenceOrder.subjects).map(ref=>({...ref,href:subjectHref(catalog.locale,ref.slug)})))},
   ];
+  if(catalog.mode==='git-beta'){const tasks=groups.find(group=>group.id==='tasks')!;tasks.entries=tasks.entries.map(entry=>entry.href===websiteRef(catalog).href?{...websiteRef(catalog),kind:'case'}:entry);}
   const views=websiteViews(catalog);
   for(const [axis,title] of [['use-case','Website purposes'],['model','Website models'],['tool','Website technologies']] as const) groups.push({id:`website-${axis}`,title:text(uiLocale,title, ({'Website purposes':'网站用途','Website models':'网站模型','Website technologies':'网站技术'} as Record<string,string>)[title] ?? title),entries:views.filter(view=>view.axis===axis).map(view=>({id:view.id,label:`${view.label} · ${caseCount(uiLocale, view.count)}`,href:view.href,count:view.count,kind:'case'}))});
   const browse:NavigationEntry[]=[];
   const add=(id:string,label:string,href:string,available:boolean,count?:number)=>{if(available)browse.push({id,label,href,count,kind:'navigation'});};
   add('images',text(uiLocale, 'Image prompts', '图片提示词'),`${hub}/image`,catalog.prompts.some(prompt=>prompt.kind==='image'));
   add('videos',text(uiLocale, 'Video prompts', '视频提示词'),`${hub}/video`,catalog.prompts.some(prompt=>prompt.kind==='video'));
-  add('website',text(uiLocale, 'Website views', '网站分类'),`${hub}/website`,(catalog.websites?.length??0)>0);
+  add('website',catalog.mode==='git-beta'?websiteRef(catalog).label:text(uiLocale, 'Website views', '网站分类'),`${hub}/website`,(catalog.websites?.length??0)>0);
   for(const view of views.filter(view=>view.axis==='all'))add(view.id,text(uiLocale,'All website cases','全部网站案例'),view.href,true,view.count);
   add('all',text(uiLocale, 'All prompts', '全部提示词'),hub,catalog.prompts.length>0);
   add('all-models',text(uiLocale, 'All models', '全部模型'),`${hub}/models`,models.length>0);

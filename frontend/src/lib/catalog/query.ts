@@ -1,3 +1,4 @@
+import {isWebsiteTask} from './website-taxonomy';
 import type { Axis, Catalog, Filters, Prompt } from "./types";
 
 export const axes = ["model", "useCase", "technique", "style", "subject"] as const;
@@ -57,7 +58,7 @@ export function filterPrompts(catalog: Catalog, filters: Filters = {}): Prompt[]
     if (filters.creator?.length && (!prompt.creatorRef || !filters.creator.some((creator) => creator === prompt.creatorRef?.id || creator === prompt.creatorRef?.slug))) return false;
     if (filters.collection && (!collection || !collection.promptIds.includes(prompt.id))) return false;
     for (const axis of axes) {
-      if (filters[axis]?.length && !prompt[fields[axis]].some((ref) => filters[axis]?.includes(ref.slug) || filters[axis]?.includes(ref.id))) return false;
+      if (filters[axis]?.length && !prompt[fields[axis]].some((ref) => filters[axis]?.includes(ref.slug) || filters[axis]?.includes(ref.id) || catalog.mode==='git-beta' && axis==='useCase' && ref.slug==='website' && filters[axis]?.some(value=>isWebsiteTask(value)||ref.searchLabels?.includes(value)))) return false;
     }
     if (filters.window && filters.window !== "all" && Number.isFinite(epoch)) {
       const observedAt = prompt.ranking?.metricsObservedAt ?? prompt.source.observedAt;

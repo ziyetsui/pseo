@@ -3,6 +3,8 @@ import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/compone
 import { LibraryIndex } from '@/components/LibraryIndex';
 import { websiteViewForPath } from '@/lib/catalog/website-views';
 import { websitePrompts, websiteRef } from '@/lib/catalog/website';
+import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
+import {SiteHeader,SiteFooter} from '@/components/Chrome';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { loadCatalogs } from '@/lib/catalog/server';
@@ -59,6 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { catalog, path } = await resolve(await params);
   const hub = `/${catalog.locale}/prompts`;
+  if(catalog.mode==='git-beta'&&websiteLegacyPaths(catalog.locale).includes(path))return <><meta httpEquiv="refresh" content={`0;url=${hub}/website`} /><div className="prototype-recipe"><div className="v3"><SiteHeader bilingual currentHref={path} level="prompt" locale={catalog.locale} /><main id="main" className="wrap"><h1>{websiteRef(catalog).label}</h1><p>{text(catalog.locale,'These categories now share one collection.','这些分类已归并为同一个案例集合。')}</p><a href={`${hub}/website`}>{text(catalog.locale,'Explore web design & development →','探索网站与开发 →')}</a></main><SiteFooter catalog={catalog} /></div></div></>;
   if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return <LibraryIndex catalog={catalog} />;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
