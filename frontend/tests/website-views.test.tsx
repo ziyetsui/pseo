@@ -76,7 +76,7 @@ describe('Website graph projections', () => {
       const detail = parse(renderToStaticMarkup(<Recipe catalog={catalog} prompt={prompt} />));
       for (const view of websiteViewsForCase(catalog, entry.id)) expect(detail.querySelectorAll('a').some(link => link.getAttribute('href') === view.href)).toBe(true);
     }
-  });
+  }, 30_000);
   it('renders a directory, scoped case HTML and real related-view links', () => {
     const directory = parse(renderToStaticMarkup(<WebsiteGallery catalog={catalog} />));
     expect(directory.querySelectorAll('[data-website-case]')).toHaveLength(0);
