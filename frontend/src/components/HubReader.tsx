@@ -2,13 +2,13 @@
 import { generationHref } from '@/lib/cta/generation-url';
 import { interfaceLocale, uiText, text, sourceLanguage, promptLanguage } from '@/lib/i18n/text';
 import type { Locale } from '@/lib/catalog/types';
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import type { Catalog, Prompt } from "@/lib/catalog/types";
 import { generationLabel } from "@/components/generation-label";
 import { promptWords } from "@/lib/cta/sign-in-gate";
 import { SignInGate } from "@/components/SignInGate";
 import { PromptMedia } from "@/components/PromptMedia";
-import { mountMagnetic } from "@/components/magnetic-motion";
+import { mountDepth } from "@/components/depth-motion";
 import { EmptyResults, Filters, PromptWords, SearchForm, usePromptExplorer } from "@/components/Filters";
 
 const INITIAL_VISIBLE_PROMPTS = 54;
@@ -17,7 +17,8 @@ function MagneticField({ rows , uiLocale = 'en', bilingual = false}: { rows: Pro
   const ref = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_PROMPTS);
   const visibleRows = rows.slice(0, visibleCount);
-  useEffect(() => ref.current ? mountMagnetic(ref.current) : undefined, [visibleCount]);
+  // Layout effect: remounting for "show more" must not paint a frame of the bare paragraph.
+  useLayoutEffect(() => ref.current ? mountDepth(ref.current) : undefined, [visibleCount]);
   return <div className="runbox" ref={ref}><p className="run">{visibleRows.map(prompt => {
     const compactText = prompt.prompt.replace(/\s+/g, " ").trim();
     const excerpt = compactText.length > 900 ? `${compactText.slice(0, 900).replace(/\s\S*$/, "")}…` : compactText;
@@ -29,5 +30,5 @@ function MagneticField({ rows , uiLocale = 'en', bilingual = false}: { rows: Pro
 export function HubReader({ catalog }: { catalog: Catalog }) {
   const uiLocale = interfaceLocale(catalog);
   const explorer = usePromptExplorer(catalog);
-  return <><section className="wrap lede"><p className="eyebrow" style={{ marginBottom: 14 }}>{uiText(uiLocale, "The library")}</p><h2 className="tier-ref">{text(uiLocale, "Everything, in the order it gets copied", "全部提示词，一览无余")}</h2><p className="formnote">{text(uiLocale, "No rows, no cards, no plates. The whole library as one paragraph of titles; the one you pick opens in place and splits the text around it.", "整座提示词库汇成一段标题。选择任意一条，即可原地展开，阅读完整内容。")}</p><SearchForm uiLocale={uiLocale} explorer={explorer} variant="hub" /><Filters uiLocale={uiLocale} prompts={catalog.prompts} explorer={explorer} variant="hub" limit={4} axes={[["model", "Model"], ["useCase", "Task"], ["style", "Style"], ["technique", "Technique"]]} /></section><section className="wrap" id="results"><h2 className="vh">{uiText(uiLocale, "All prompts")}</h2><p className="meta count" aria-live="polite"><b>{explorer.rows.length}</b>{text(uiLocale, ` of ${catalog.prompts.length} prompts matched`, ` / ${catalog.prompts.length} 条提示词`)}{explorer.active && <button className="btn" type="button" onClick={explorer.clear}>{uiText(uiLocale, "Clear filters")}</button>}</p>{explorer.rows.length ? <MagneticField bilingual={catalog.mode === 'git-beta'} uiLocale={uiLocale} key={explorer.search} rows={explorer.rows} /> : <EmptyResults uiLocale={uiLocale} explorer={explorer} />}</section><SignInGate uiLocale={uiLocale} /></>;
+  return <><section className="wrap lede"><p className="eyebrow" style={{ marginBottom: 14 }}>{uiText(uiLocale, "The library")}</p><h2 className="tier-ref">{text(uiLocale, "Everything, in the order it gets copied", "全部提示词，一览无余")}</h2><p className="formnote">{text(uiLocale, "No rows, no cards, no plates. The whole library drifts toward you as a field of titles; hover one to pull it into focus, pick it to read the prompt.", "整座提示词库从远处朝你飘来。悬停任意一条即可对焦，点开就能阅读完整内容。")}</p><SearchForm uiLocale={uiLocale} explorer={explorer} variant="hub" /><Filters uiLocale={uiLocale} prompts={catalog.prompts} explorer={explorer} variant="hub" limit={4} axes={[["model", "Model"], ["useCase", "Task"], ["style", "Style"], ["technique", "Technique"]]} /></section><section className="wrap" id="results"><h2 className="vh">{uiText(uiLocale, "All prompts")}</h2><p className="meta count" aria-live="polite"><b>{explorer.rows.length}</b>{text(uiLocale, ` of ${catalog.prompts.length} prompts matched`, ` / ${catalog.prompts.length} 条提示词`)}{explorer.active && <button className="btn" type="button" onClick={explorer.clear}>{uiText(uiLocale, "Clear filters")}</button>}</p>{explorer.rows.length ? <MagneticField bilingual={catalog.mode === 'git-beta'} uiLocale={uiLocale} key={explorer.search} rows={explorer.rows} /> : <EmptyResults uiLocale={uiLocale} explorer={explorer} />}</section><SignInGate uiLocale={uiLocale} /></>;
 }

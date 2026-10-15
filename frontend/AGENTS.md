@@ -209,3 +209,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 
 2026-10-15 用户确认归并重复网站任务入口：Git beta 将创作与开发、网站、网站与开发统一为「网站与开发 / Web design & development」，首页任务区仅一张卡，指向完整225案例集合；内部按网站设计、应用开发、创意编程的明确逐条主分类划分，中英文共用id映射，每案例恰好一个主分类。保留模型和技术关系，来源正文与graph不改写；旧任务/用途页保留同语言跳转，原查询别名兼容。分类映射计入revision并通过独立导出检查，不凭框架关键词自动分类。
+
+2026-10-15 用户裁定 L1 景深：/{locale}/prompts 结果区的磁吸标题段落替换为「景深」星野（用户在 Artifact 原型中选定，明确选择替换而非新增或切换）。标题从远处朝读者飞来，近大远小、按与焦平面的距离分级模糊，指针带轻微视差；悬停或键盘聚焦任意标题即拉焦到它并刹停整片，点击打开原有 fixed peek（锚定在标题下方，打开期间场静止，滚动关闭），六色阅读标记、Escape 回焦、查看更多/收起窗口与 noscript 列表不变。prefers-reduced-motion 与无 JS 保留原连续段落排版。此裁定取代 §7 中 Magnetic 指针吸附参数（220px 场、13px 吸附等）对 L1 结果区的约束；peek 内容、样式、Generate CTA 与中英文同步规则继续有效。实现见 `src/components/depth-motion.ts`。
