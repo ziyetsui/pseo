@@ -23,25 +23,35 @@ test('Magnetic peek preserves layout, keyboard access and reduced motion', async
   await expect(page.getByRole('button', { name: /copy/i })).toHaveCount(0);
 });
 
-test('Magnetic pointer attraction releases and peek freezes on hover', async ({ page, isMobile }) => {
+test('Depth field racks focus on hover and holds the peek still', async ({ page, isMobile }) => {
   test.skip(isMobile, 'Fine-pointer interaction; touch has anchored peek coverage.');
   await page.goto('/zh-CN/prompts');
-  const first = page.locator('.run [data-expand]').first();
-  await first.scrollIntoViewIfNeeded();
-  const rect = await first.boundingBox();
-  await page.mouse.move(rect!.x + rect!.width / 2 + 20, rect!.y + 20);
-  await expect.poll(() => first.evaluate(el => Math.abs(parseFloat((el as HTMLElement).style.getPropertyValue('--fx'))))).toBeGreaterThan(.5);
-  await page.mouse.move(0, 0);
-  await expect.poll(() => first.evaluate(el => Math.abs(parseFloat((el as HTMLElement).style.getPropertyValue('--fx'))))).toBeLessThan(.1);
-  await first.click();
+  const box = page.locator('.runbox');
+  await box.scrollIntoViewIfNeeded();
+  await expect(box).toHaveAttribute('data-depth', '');
+  // Pick a title that is near and fully visible, so it is large enough to hover.
+  const target = page.locator('.run [data-expand][data-tier="0"]').first();
+  await expect(target).toBeVisible();
+  const rect = await target.boundingBox();
+  await page.mouse.move(rect!.x + rect!.width / 2, rect!.y + rect!.height / 2);
+  await expect(page.locator('.run [data-expand][data-held]')).toHaveCount(1);
+  const held = page.locator('.run [data-expand][data-held]');
+  await expect(held).toHaveAttribute('data-tier', '0');
+  // The field brakes to a stop while a title is held.
+  await page.waitForTimeout(900);
+  const a = await held.evaluate(el => (el as HTMLElement).style.transform);
+  await page.waitForTimeout(400);
+  expect(await held.evaluate(el => (el as HTMLElement).style.transform)).toBe(a);
+  await held.click();
   const panel = page.locator('[data-peek] .exp');
   await expect(panel).toBeVisible();
-  await page.waitForTimeout(1000);
-  const a = await panel.boundingBox();
-  await page.mouse.move(a!.x + 10, a!.y + 10);
+  const p1 = await panel.boundingBox();
+  await page.mouse.move(p1!.x + 10, p1!.y + 10);
   await page.waitForTimeout(700);
-  const b = await panel.boundingBox();
-  expect(Math.abs(a!.x - b!.x)).toBeLessThan(2);
-  await panel.getByRole('link', { name: /^Generate/ }).click();
-  await expect(page.locator('.prototype-recipe')).toBeVisible();
+  const p2 = await panel.boundingBox();
+  expect(Math.abs(p1!.x - p2!.x)).toBeLessThan(2);
+  // Generate hands off to the creation app in a new tab; the field stays put behind it.
+  const generate = panel.getByRole('link', { name: /^Generate|^生成/ });
+  await expect(generate).toHaveAttribute('target', '_blank');
+  await expect(generate).toHaveAttribute('href', /^https:\/\//);
 });

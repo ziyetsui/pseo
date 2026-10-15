@@ -375,3 +375,34 @@
 :where(.prototype-magnetic) .title-window{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
 :where(.prototype-magnetic) .title-window .meta{margin:0}
 :where(.prototype-magnetic) .title-window .btn{min-height:44px;padding:0 20px}
+
+/* L1 depth field (2026-10-15). The controller sets [data-depth] only while motion is allowed, so
+   reduced motion and no-JS readers keep the plain justified paragraph above. Nothing here creates
+   a containing block on .run or .item: the peek is position:fixed and must stay viewport-relative. */
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run{
+  position:relative;overflow:hidden;
+  height:clamp(460px, calc(100svh - 220px), 860px);
+  margin-inline:-28px;
+  text-align:left;line-height:1.2}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run::before,
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run::after{
+  content:"";position:absolute;left:0;right:0;height:56px;z-index:55;pointer-events:none}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run::before{
+  top:0;background:linear-gradient(var(--background), transparent)}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run::after{
+  bottom:0;background:linear-gradient(transparent, var(--background))}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .item{position:static}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t{
+  position:absolute;left:0;top:0;white-space:nowrap;transform-origin:0 0;opacity:0;
+  transition-property:color,--press,filter;
+  transition-duration:420ms,160ms,450ms;
+  transition-timing-function:var(--e-out)}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t::after,
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .item[data-open] .t::after{content:none}
+/* Out-of-focus titles are blurred anyway, so they can keep a cheap scaled raster;
+   in-focus titles stay unpromoted and re-raster crisp as they grow. */
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t[data-tier="1"]{filter:blur(1px);will-change:transform}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t[data-tier="2"]{filter:blur(2.5px);will-change:transform}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t[data-tier="3"]{filter:blur(5px);will-change:transform}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t[data-held]:not([data-inked]){color:var(--foreground)}
+:where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .t[data-held] .u{border-bottom-color:currentColor}
