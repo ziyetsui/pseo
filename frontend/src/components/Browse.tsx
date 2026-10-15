@@ -49,10 +49,15 @@ function HubBand({ catalog, axis, id, heading, horizontal = false }: { catalog: 
   const rail = !horizontal && (axis === "useCase" || axis === "style");
   const illustrated = items.filter(item => item.prompt?.img);
   const featured = rail ? (axis === "useCase" ? illustrated.find(item => item.ref.slug === "web-motion-design") : undefined) ?? illustrated.at(-1) : undefined;
+  const websiteExample = rail && axis === "useCase" && catalog.mode === "git-beta"
+    ? websiteEntries(catalog).find(entry => entry.cover && entry.source.url === "https://x.com/viktoroddy/status/2108181607396126979") : undefined;
   if (!items.length) return <section className="sec" id={id}><div className="wrap"><div className="sec-h"><h2>{uiText(uiLocale, heading)}</h2></div><p className="dek">{text(uiLocale, `No published ${axis === "useCase" ? "tasks" : axis === "model" ? "models" : "styles"} to browse yet.`, "暂无已发布的分类。") }</p></div></section>;
   return <section className={`sec${horizontal ? " browse-row" : ""}${rail ? " browse-band" : ""}`} id={id}><div className="wrap"><div className="sec-h"><h2>{uiText(uiLocale, heading)}</h2></div><div className="tiles" tabIndex={rail ? 0 : undefined} role={rail ? "region" : undefined} aria-label={rail ? uiText(uiLocale, heading) : undefined}>{items.map(({ ref, prompt }) => <a className="tile" href={axis === "useCase" ? taskHref(catalog.locale, ref.slug) : axis === "style" ? styleHref(catalog.locale, ref.slug) : ref.href} key={ref.id}>
     {<span className="th">{prompt ? <PromptMedia uiLocale={uiLocale} prompt={prompt} width={320} height={200} /> : <span className="media-fallback">{uiText(uiLocale, "No preview available.")}</span>}</span>}<span className="tb"><h3 lang={catalog.locale}>{ref.label}</h3><p>{promptCount(uiLocale, ref.count)}</p></span>
-  </a>)}</div>{featured?.prompt && <a className="tile browse-spotlight" href={axis === "useCase" ? taskHref(catalog.locale, featured.ref.slug) : styleHref(catalog.locale, featured.ref.slug)}>
+  </a>)}</div>{websiteExample ? <a className="tile browse-spotlight" href={websiteExample.href}>
+    <span className="th"><img src={websiteExample.cover} alt={websiteExample.title} width={1440} height={900} loading="lazy" /></span>
+    <span className="tb"><h3 lang={catalog.locale}>{text(uiLocale, "Web design & development", "网站与开发")}</h3><p>{caseCount(uiLocale, 1)}</p></span>
+  </a> : featured?.prompt && <a className="tile browse-spotlight" href={axis === "useCase" ? taskHref(catalog.locale, featured.ref.slug) : styleHref(catalog.locale, featured.ref.slug)}>
     <span className="th"><PromptMedia uiLocale={uiLocale} prompt={featured.prompt} width={1440} height={900} /></span>
     <span className="tb"><h3 lang={catalog.locale}>{featured.ref.label}</h3><p>{promptCount(uiLocale, featured.ref.count)}</p></span>
   </a>}</div></section>;
