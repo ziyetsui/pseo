@@ -1,0 +1,28 @@
+import {test,expect} from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+for(const locale of ['en','zh-CN'] as const)test(`Queenie ${locale} image studies use the existing L1–L4 and placeholder flows`,async({page,request})=>{
+ test.setTimeout(120_000);
+ const slug='queenie-the-day-i-gave-up-my-corporate-promotion-xhud3l';
+ const response=await request.get('/frontend-build.json'), receipt=await response.json();
+ expect(receipt.gitBeta.queenieImagePrompts).toBe(1306);expect(receipt.gitBeta.queenieImages).toBe(3321);
+ const legacy=await request.get(`/${locale}/prompts/${slug}.txt`), segment=await request.get(`/${locale}/prompts/${slug}/__next._full.txt`);
+ expect(legacy.status()).toBe(200);expect(await legacy.body()).toEqual(await segment.body());
+ await page.goto(`/${locale}/prompts#category`,{waitUntil:'domcontentloaded'});
+ const entry=page.locator(`#category a[href="/${locale}/prompts/image"]`);
+ await expect(entry.locator('p')).toHaveText(locale==='en'?'1849 prompts':'1849 条提示词');
+ await entry.click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/image`,{waitUntil:'domcontentloaded'});
+ await page.locator('#q').fill('The Day I Gave Up My Corporate Promotion');
+ await expect(page.locator('.dc[data-top] h3')).toHaveText(locale==='en'?'The Day I Gave Up My Corporate Promotion':'我放弃职场晋升的那一天');
+ await page.locator('.dc[data-top] h3 a').click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/${slug}`,{waitUntil:'domcontentloaded'});
+ await expect(page.locator('main')).toContainText(locale==='en'?'Reference image by':'参考图作者');
+ await expect(page.locator('[data-prompt]')).not.toContainText('[HEADLINE]');
+ await page.locator('input[name=placeholder-0]').first().check();await expect(page.locator('[data-prompt]')).not.toContainText('[SUBJECT]');
+ const body=await page.locator('[data-prompt]').textContent();
+ await expect.poll(async()=>new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(body);
+ await page.getByRole('button',{name:locale==='en'?'Reset placeholders':'重置占位符',exact:true}).click();await expect(page.locator('[data-prompt]')).toContainText('[SUBJECT]');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ const axe=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations.map(v=>v.id)).toEqual([]);
+ await page.locator(`main a[href="/${locale}/prompts/use-cases/editorial-covers"]`).first().click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/use-cases/editorial-covers`,{waitUntil:'domcontentloaded'});
+ await expect(page.locator('[data-finding=reference]')).toBeVisible();await expect(page.locator(`a[href="/${locale}/prompts/${slug}"]`).first()).toBeAttached();
+});
