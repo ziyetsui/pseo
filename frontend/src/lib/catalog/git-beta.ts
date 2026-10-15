@@ -76,16 +76,16 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     if (!source) throw new Error('Prompt source required');
     const title = text(node.title), body = text(node.prompt), creator = linked(id, 'created_by')[0];
     const slug = `case-${id.slice(4)}`, href = `/${sourceLocale}/prompts/${slug}`;
-    const image = linked(id, 'has_example').map((item): Media => ({ id: text(item.id), kind: item.kind === 'video' ? 'video' : 'image', src: safeUrl(item.url), alt: optionalText(item.alt) ?? title, width: null, height: null, poster: null, label: null }));
+    const image = linked(id, 'has_example').map((item): Media => ({ id: text(item.id), kind: item.kind === 'video' ? 'video' : 'image', src: safeUrl(item.url), alt: optionalText(item.alt) ?? title, width: typeof item.width === 'number' ? item.width : null, height: typeof item.height === 'number' ? item.height : null, poster: item.poster ? safeUrl(item.poster) : null, label: null }));
     const attribution = creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? '';
-    const docs = linked(id, 'documented_at').map(item => ({ type: 'Collection documentation', url: safeUrl(item.url), confidence: null }));
+    const docs = [...linked(id, 'documented_at').map(item => ({ type: 'Collection documentation', url: safeUrl(item.url), confidence: null })), ...linked(id, 'related_to').map(item => ({ type: 'Related source', url: safeUrl(item.url), confidence: null }))];
     prompts.push({
       id, slug, href, locale, title, summary: optionalText(node.summary) ?? title, prompt: body,
       language: (body.match(/[\u3400-\u9fff]/gu)?.length ?? 0) > (body.match(/[a-z]/giu)?.length ?? 0) ? 'zh-CN' : 'en',
       kind: linked(id, 'used_for').some(item => item.slug === 'website') ? 'other' : 'image',
       models: refs(id, 'designed_for', 'model'), useCases: refs(id, 'used_for', 'useCase'), styles: refs(id, 'has_style', 'style'), subjects: refs(id, 'has_subject', 'subject'), techniques: [],
       handle: attribution, creatorRef: creator ? { id: text(creator.id), slug: text(creator.id), label: attribution } : null,
-      img: image.find(item => item.kind === 'image')?.src ?? null, media: image,
+      img: image.find(item => item.kind === 'image')?.src ?? image.find(item => item.kind === 'video')?.poster ?? null, media: image,
       likes: null, saves: null, views: null, highValue: false, score: null, publishedAt: optionalText(source.publishedAt),
       variables: placeholderTokens(body).map(token => ({ token, label: token.slice(1,-1).replaceAll('_', ' '), defaultValue: '', options: [], note: null, required: false })),
       steps: [], requiredInputs: [], optionalInputs: [], parameters: [],

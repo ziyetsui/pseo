@@ -88,7 +88,7 @@ export function buildIntake({ websites, gallery, observedAt, upstreamCommit, web
       term(objectId, 'use-case', 'Website', 'used_for', 'website');
       for (const preview of websiteMedia.filter(record => record.post_id === item.id).flatMap(record => record.images ?? [])) {
         const url = https(preview.source_url);
-        edge(objectId, 'has_example', node('media', url, { url, kind: preview.kind === 'video_frame_at_1s' ? 'video' : 'image', sourceKind: preview.kind, alt: title, rightsStatus: 'review_required' }));
+        edge(objectId, 'has_example', node('media', url, { url, kind: ['video', 'video_frame_at_1s'].includes(preview.kind) ? 'video' : 'image', ...(preview.poster ? { poster: https(preview.poster) } : {}), ...(Number.isInteger(preview.width) && preview.width > 0 ? { width: preview.width } : {}), ...(Number.isInteger(preview.height) && preview.height > 0 ? { height: preview.height } : {}), sourceKind: preview.kind, alt: title, rightsStatus: 'review_required' }));
       }
       term(objectId, 'use-case', item.use_case_label, 'used_for', item.use_case ? `website-${item.use_case}` : undefined);
       if (item.model_evidence === 'author_explicit' && item.model_group && !/unknown|unconfirmed|other/iu.test(item.model_group)) {

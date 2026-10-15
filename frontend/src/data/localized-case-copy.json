@@ -3730,5 +3730,9 @@
   "Collection documentation": {
     "en": "Collection documentation",
     "zh-CN": "合集说明文档"
+  },
+  "Related source": {
+    "en": "Related source",
+    "zh-CN": "相关来源"
   }
 }

@@ -34,6 +34,6 @@ describe('localized case presentation',()=>{
   expect(zh.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])])).toEqual(en.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])]));
   expect(zh.prompts.some(row=>row.prompt !== row.originalPrompt && row.originalPrompt !== undefined)).toBe(true);
   expect(zh.websiteGraph?.edges).toEqual(en.websiteGraph?.edges);
-  expect(zh.prompts.flatMap(row=>row.evidence).every(item=>item.type==='合集说明文档')).toBe(true);
+  expect(zh.prompts.flatMap(row=>row.evidence).every(item=>['合集说明文档','相关来源'].includes(item.type))).toBe(true);
  });
 });

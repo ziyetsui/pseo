@@ -25,6 +25,6 @@ export function RecipeMedia({ prompt , uiLocale = 'en'}: { prompt: Prompt ; uiLo
   return <div className="shots">
     <SourceMedia uiLocale={uiLocale} key={primary.id} media={primary} primary />
     {media.length > 1 && <div className="strip">{media.slice(1, 4).map((item) => <SourceMedia uiLocale={uiLocale} key={item.id} media={item} primary={false} />)}</div>}
-    <p className="eyebrow" style={{ marginTop: 2 }}>{prompt.kind === "video" ? text(uiLocale, "VIDEO", "视频") : text(uiLocale, "PHOTO", "图片")}{media.length > 1 && text(uiLocale, ` · ${media.length} from the post`, ` · 原帖中的 ${media.length} 个媒体`)}</p>
+    <p className="eyebrow" style={{ marginTop: 2 }}>{primary.kind === "video" ? text(uiLocale, "VIDEO", "视频") : text(uiLocale, "PHOTO", "图片")}{media.length > 1 && text(uiLocale, ` · ${media.length} from the post`, ` · 原帖中的 ${media.length} 个媒体`)}</p>
   </div>;
 }

@@ -1830,7 +1830,12 @@
     "published_at": "2026-07-08T01:37:13+00:00",
     "use_case": "creation",
     "use_case_label": "Creation & development",
-    "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow."
+    "relationship_basis": "The quoted prompt explicitly instructs website/browser creation or its design, copy, development or review workflow.",
+    "related_posts": [
+      {
+        "url": "https://x.com/emollick/status/2074667244932444479"
+      }
+    ]
   },
   {
     "id": "2066165296239686122",
