@@ -15,6 +15,8 @@ Visual contract: [frontend/AGENTS.md §7](../frontend/AGENTS.md#7-唯一视觉�
 
 frontend/src/data/creator-avatars.json 按归一handle存储公开账号ID、资料/CDN URL、证据类型、时间、尺寸、原图SHA-256与本地资源路径；更名账号必须绑定原署名原帖ID的作者证据。Git-beta catalog/revision与导出校验共同读取同一清单，资源哈希不一致则构建失败。不可用账号显式记录，头像仅影响已授权beta展示，不写CMS、content镜像或rights状态。
 
+2026-10-15 用户追加模型名称：Git-beta 共享展示将 GPT Image / GPT Image 2 统一标为 `GPT IMAGE 2`，Seedance 标为 `SEEDANCE 2.0`，中英文导航、页脚、模型卡片及模型关联同步。保留底层id、slug、来源标签、原文、URL及既有系列合并关系；这是用户指定展示名，不改写来源版本声明。
+
 ## 0. 结论先行
 
 2026-10-14 Creator 展示合同：移除前8位截断，展示全部关联创作者；首页及风格页沿用全库，任务、模型页沿用各自提示词集合。沿用共享身份匹配、真实数量降序、作者主页链接及现有卡片布局。

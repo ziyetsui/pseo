@@ -178,6 +178,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 2026-10-14 用户反馈二次调整：Footer 采用浏览、模型、任务、风格四列精选入口，每列最多6项、合计最多21项；桌面四列铺开，手机两列。取代上一版两组7项裁定，完整目录仍保留在 Library index。
 
 
+2026-10-15 用户要求模型名称大写：Git-beta 所有模型展示统一使用 GPT IMAGE 2、SEEDANCE 2.0；共用映射并保留sourceLabel供排序/检索，保留模型身份、URL、原文和现有系列关系。
+
 2026-10-15 用户要求创作者真实 X 头像：Git-beta 的所有创作者展示共用经账号/原帖作者核对的 X 头像映射，下载原始 CDN 图片随站点自托管；同账号的重复记录复用头像，署名、来源、数量和既有默认8位折叠不变。头像清单记录账号ID、公开来源、获取时间和 SHA-256，纳入 catalog revision 并在导出时校验资源字节。无法核实或无法获取图片的账号保留明确缺失记录与首字母占位，不借用其他账号、库存人像或生成头像。此工程展示映射仅作用于已授权 Git-beta，CMS/public-api 与 rights 状态不变。
 
 
