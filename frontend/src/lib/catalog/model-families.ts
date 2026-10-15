@@ -1,3 +1,4 @@
+import { taxonomyLabel } from '@/lib/i18n/taxonomy';
 import type { Catalog, Prompt, Ref } from './types';
 
 export interface ModelFamily extends Ref {
@@ -36,7 +37,8 @@ export function modelFamilies(catalog: Catalog, prompts: Prompt[] = catalog.prom
       ...(grouped ? {
         id,
         slug: definition.slug,
-        label: definition.label,
+        label: catalog.mode === 'git-beta' ? taxonomyLabel(catalog.locale, definition.label) : definition.label,
+        ...(catalog.mode === 'git-beta' ? { sourceLabel: definition.label } : {}),
         href: `/${encodeURIComponent(catalog.locale)}/prompts/model-families/${encodeURIComponent(definition.slug)}`,
         count: 0,
       } : model),

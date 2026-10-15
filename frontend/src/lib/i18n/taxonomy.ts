@@ -6,7 +6,9 @@ const supplemental:Record<string,string>={
  'Product marketing':'产品营销','UGC':'用户生成内容','Web & motion design':'网页与动效设计','Web & motion':'网页与动效','Anime / illustrated':'动漫与插画','Sci-fi / cyberpunk':'科幻与赛博朋克','Surreal / fantasy':'超现实与奇幻','Person / portrait':'人物与肖像','Architecture / interior':'建筑与室内','Food / drink':'美食与饮品','Vehicle':'交通工具','Character consistency':'角色一致性','Lip sync / dialogue':'口型同步与对白','Text-to-video':'文生视频','3D configurator':'三维配置器','Real-time 3D':'实时三维','Scroll animation':'滚动动画',
  'Commerce':'商业','Creative':'创意','Education':'教育','Fashion':'时尚','Food':'美食','Social':'社交','Story':'故事','Tech':'科技','Travel':'旅行',
 };
+const modelNames:Record<string,string>={'GPT Image':'GPT IMAGE 2','GPT Image 2':'GPT IMAGE 2','Seedance':'SEEDANCE 2.0'};
 export function taxonomyLabel(locale:Locale,label:string):string{
+ if(modelNames[label])return modelNames[label];
  if(locale==='en')return label==='微缩摄影'?'Miniature photography':label;
  return supplemental[label]??label;
 }
