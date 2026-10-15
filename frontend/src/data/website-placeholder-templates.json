@@ -1,0 +1,5915 @@
+{
+  "2073529429838696592": {
+    "sourceHash": {
+      "en": "sha256:2a19273f2d35c3fefbc65aa2c372ef045f26a4aa934acaadf2c124c860cafb1c",
+      "zh": "sha256:779396bf88b959d44ed0506c4c5779ec7be6abb96489410cdad3907a3b52afa0"
+    },
+    "replacements": []
+  },
+  "prm_00772f146164256dd15eb8f062c1fe4d": {
+    "sourceHash": {
+      "en": "sha256:a860777e82b0d0a30fb15cdfd90d6a8be3a0ca528bc215c713fabefdf336c5ea",
+      "zh": "sha256:2e95eec364a902b98bf67a5310f6bd4b657b7485da8f2d6400f4e313fbee373d"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_CONTEXT]",
+        "labelEn": "Brand context",
+        "labelZh": "品牌信息",
+        "en": [
+          "my brand"
+        ],
+        "zh": [
+          "我的品牌"
+        ]
+      },
+      {
+        "token": "[SITE_TYPE]",
+        "labelEn": "Site type",
+        "labelZh": "网站类型",
+        "en": [
+          "world-class website"
+        ],
+        "zh": [
+          "世界级网站"
+        ]
+      }
+    ]
+  },
+  "prm_052f6c4a655687a66d47a1ec7c47f596": {
+    "sourceHash": {
+      "en": "sha256:9cb615b8d17ab0bd4edc7581c496a8929a05dcc911ae5bbc6876cead00745416",
+      "zh": "sha256:cb765e9e41f34b3560c2048214cce80287e096006fd6630416d756be89af2b07"
+    },
+    "replacements": [
+      {
+        "token": "[PLATFORM_TYPE]",
+        "labelEn": "Platform Type",
+        "labelZh": "平台类型",
+        "en": [
+          "AI business platform"
+        ],
+        "zh": [
+          "AI商业平台"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "beginners"
+        ],
+        "zh": [
+          "初学者"
+        ]
+      }
+    ]
+  },
+  "prm_052f8b966b50591e744d11476eecafe6": {
+    "sourceHash": {
+      "en": "sha256:29d2b885955a1236d20b83cab7230143a54dba8705287c454a9013a32816e251",
+      "zh": "sha256:1c5c01d3fdf8ec5215c20fc9881ea4d4a17e09b99eb3e2cf05a0369b736735ab"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Minecraft"
+        ],
+        "zh": [
+          "Minecraft"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual style",
+        "labelZh": "视觉风格",
+        "en": [
+          "real and beautiful"
+        ],
+        "zh": [
+          "真实美丽"
+        ]
+      }
+    ]
+  },
+  "prm_0577f01a2ab30c8810d6683805480c9b": {
+    "sourceHash": {
+      "en": "sha256:caa53882af889ab4b22fde5102287d872cb3b727386f45975897fb847032e52d",
+      "zh": "sha256:3abb981ba6886f1bc51985818e91ac79537afa15de3872046935043baf119eea"
+    },
+    "replacements": [
+      {
+        "token": "[EXPERIMENT_TOPIC]",
+        "labelEn": "Experiment Topic",
+        "labelZh": "实验主题",
+        "en": [
+          "food"
+        ],
+        "zh": [
+          "食物"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "curious young minds"
+        ],
+        "zh": [
+          "好奇的年轻人"
+        ]
+      }
+    ]
+  },
+  "prm_063ee079d7b821e73e382a27e057ae64": {
+    "sourceHash": {
+      "en": "sha256:93df96618bd4e233da3621e17c9572417e831c6c7f8b26054ea844dbb49b3b70",
+      "zh": "sha256:032f5986da1760b50c52fdeb8452b529723e4ad1cc0e3083937eabc770e2f274"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my interactive website"
+        ],
+        "zh": [
+          "我的交互式网站"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE_STYLE]",
+        "labelEn": "Experience style",
+        "labelZh": "体验风格",
+        "en": [
+          "premium experience"
+        ],
+        "zh": [
+          "高端体验"
+        ]
+      }
+    ]
+  },
+  "prm_06c0bce68939c4b1a3ec8df637dd1814": {
+    "sourceHash": {
+      "en": "sha256:25f472062cb32128743e1220ec3bd7156c66b4a124d5a6f02f6cccfb5b051331",
+      "zh": "sha256:35f9df0558a4935834b1143e675d562af170c2d481effbab6bcc0452bec4d32e"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_TYPE]",
+        "labelEn": "Product Type",
+        "labelZh": "产品类型",
+        "en": [
+          "trading charting platform"
+        ],
+        "zh": [
+          "交易图表平台"
+        ]
+      },
+      {
+        "token": "[INTERFACE_PALETTE]",
+        "labelEn": "Interface palette",
+        "labelZh": "界面配色",
+        "en": [
+          "dark neutral appearance"
+        ],
+        "zh": [
+          "暗色中性色调"
+        ]
+      }
+    ]
+  },
+  "prm_0727bd50bcd595107796f4e9d7511a0e": {
+    "sourceHash": {
+      "en": "sha256:d5184b14fe2beeba592857c000b57f3762f07a87f4be8317010a2271745a00d7",
+      "zh": "sha256:2f4a47174d7146b852d2b0339982a0a682af9dd81baa28d4ba73240dbc7eff5f"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "Anlion"
+        ],
+        "zh": [
+          "Anlion"
+        ]
+      },
+      {
+        "token": "[HERO_HEADLINE]",
+        "labelEn": "Hero headline",
+        "labelZh": "首屏标题",
+        "en": [
+          "Built by humans, enhanced with powerful AI tools"
+        ],
+        "zh": [
+          "Built by humans, enhanced with powerful AI tools"
+        ]
+      },
+      {
+        "token": "[CTA_TEXT]",
+        "labelEn": "CTA text",
+        "labelZh": "行动按钮文字",
+        "en": [
+          "GET STARTED"
+        ],
+        "zh": [
+          "GET STARTED"
+        ]
+      }
+    ]
+  },
+  "prm_08a596de87e38951aa2a3500213c67f9": {
+    "sourceHash": {
+      "en": "sha256:8298dcd1300fb676277fa4632267a447ef104a09dc5fb2f3f52a6c49fd1dd5c2",
+      "zh": "sha256:776773be3d2bc2da5170e1a7e0987e8f49a0def164412a1b034a2e2778360a05"
+    },
+    "replacements": [
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "角色",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[Your Role]"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "[Luxury / Minimal / Startup / Creative / Dark]"
+        ],
+        "zh": [
+          "[Luxury / Minimal / Startup / Creative / Dark]"
+        ]
+      },
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "配色",
+        "en": [
+          "[Color 1, Color 2, Color 3]"
+        ],
+        "zh": [
+          "[Color 1, Color 2, Color 3]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "[Recruiters / Clients / Founders]"
+        ],
+        "zh": [
+          "[Recruiters / Clients / Founders]"
+        ]
+      }
+    ]
+  },
+  "prm_090109b66cca11b0c2f47dd19342ce54": {
+    "sourceHash": {
+      "en": "sha256:483b5a052a84111f0602a1196938959c4da4af37994d86c034892b224fedbfa9",
+      "zh": "sha256:7a4e275626942c1fb626e1c5d05fc73c1acbbd1da86182b3654e1011590476d2"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "coffee shop"
+        ],
+        "zh": [
+          "咖啡店"
+        ]
+      },
+      {
+        "token": "[SITE_SECTIONS]",
+        "labelEn": "Site sections",
+        "labelZh": "网站区块",
+        "en": [
+          "homepage, menu, story, opening hours, contact section"
+        ],
+        "zh": [
+          "首页、菜单、故事、营业时间、联系方式"
+        ]
+      }
+    ]
+  },
+  "prm_0b21c820ceec4c4090c6fccf796a9235": {
+    "sourceHash": {
+      "en": "sha256:46b137761545901b792eea94ac1670edfc314d4471e4d4bb67b30602dc4c0099",
+      "zh": "sha256:167ef4b8b11b17904e892658e4f762b71a7a20f0bec9808a322a454f2167447b"
+    },
+    "replacements": [
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "教学主题",
+        "en": [
+          "mathematics"
+        ],
+        "zh": [
+          "数学"
+        ]
+      },
+      {
+        "token": "[ART_REFERENCE]",
+        "labelEn": "Art Reference",
+        "labelZh": "艺术参考",
+        "en": [
+          "Vincent van Gogh"
+        ],
+        "zh": [
+          "梵高"
+        ]
+      }
+    ]
+  },
+  "prm_0df954e070c4321f997dbdecf58f1d93": {
+    "sourceHash": {
+      "en": "sha256:a468a85c9cd5e1c98c97259d56638794a081ded5b1196e8187045ee53ac1efb2",
+      "zh": "sha256:c411f98963139dc90d55ef2898cf56f38c84f6c0b2970ab7cfb8d693e5e4b2b2"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[OUTPUT_TYPE]",
+        "labelEn": "Output type",
+        "labelZh": "输出类型",
+        "en": [
+          "final launch checklist"
+        ],
+        "zh": [
+          "最终上线检查清单"
+        ]
+      }
+    ]
+  },
+  "prm_11ccbe11598180db2428a9b1e8179fa7": {
+    "sourceHash": {
+      "en": "sha256:799d96e1bc2fa3b0d541e8dfb1858faa847042167118375848e71866015cd0e7",
+      "zh": "sha256:6c8e370a817b6d825c43546f09886d199f81e9a0c1e5e0b6e3d37e7a4cb80694"
+    },
+    "replacements": [
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "主体",
+        "en": [
+          "pelican"
+        ],
+        "zh": [
+          "鹈鹕"
+        ]
+      },
+      {
+        "token": "[VEHICLE]",
+        "labelEn": "Vehicle",
+        "labelZh": "交通工具",
+        "en": [
+          "flying fighter jet"
+        ],
+        "zh": [
+          "飞行战斗机"
+        ]
+      }
+    ]
+  },
+  "prm_121a32619af361e6f9e817c45282107f": {
+    "sourceHash": {
+      "en": "sha256:49e03edad325ecdec7c15629e6d8c1db251cd48684cce93b378cfbe19f095e15",
+      "zh": "sha256:2f2498860c0c0fedf0cba1f4c479eb2a397ab3fe66135aed1742a5246e726849"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      },
+      {
+        "token": "[SERVICE_1]",
+        "labelEn": "Service 1",
+        "labelZh": "服务一",
+        "en": [
+          "[service 1]"
+        ],
+        "zh": [
+          "[service 1]"
+        ]
+      },
+      {
+        "token": "[SERVICE_2]",
+        "labelEn": "Service 2",
+        "labelZh": "服务二",
+        "en": [
+          "[service 2]"
+        ],
+        "zh": [
+          "[service 2]"
+        ]
+      },
+      {
+        "token": "[SERVICE_3]",
+        "labelEn": "Service 3",
+        "labelZh": "服务三",
+        "en": [
+          "[service 3]"
+        ],
+        "zh": [
+          "[service 3]"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语气",
+        "en": [
+          "[tone]"
+        ],
+        "zh": [
+          "[tone]"
+        ]
+      }
+    ]
+  },
+  "prm_15dab3a30f0cd3169b98f35679128fb0": {
+    "sourceHash": {
+      "en": "sha256:c30a1c096cf7dfb41934fe185bfdca3cb5c171d3b4d70f686ba88e33883964c3",
+      "zh": "sha256:0a5d3409979d0bbc96ced25d486b6ad5ad32eef03e7eaf49627f5f67fe0ae082"
+    },
+    "replacements": [
+      {
+        "token": "[CONTENT_TYPE]",
+        "labelEn": "Content Type",
+        "labelZh": "内容类型",
+        "en": [
+          "career suggestions and role descriptions"
+        ],
+        "zh": [
+          "职业建议和角色描述"
+        ]
+      },
+      {
+        "token": "[PERSONALIZATION_INPUTS]",
+        "labelEn": "Personalization Inputs",
+        "labelZh": "个性化依据",
+        "en": [
+          "background and interests"
+        ],
+        "zh": [
+          "背景和兴趣"
+        ]
+      }
+    ]
+  },
+  "prm_15f57a43bfe4530bf6e7f734680606a3": {
+    "sourceHash": {
+      "en": "sha256:9830a95eb3f8a2d9192750e528e4338b1f8761110ed81e1f6f0e327e55ac95ec",
+      "zh": "sha256:08871419ebd96cad17431186db12eb95c59f15811fab9a11eac1e6db39ee8cc0"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[INTERACTION_STYLE]",
+        "labelEn": "Interaction style",
+        "labelZh": "交互风格",
+        "en": [
+          "premium interaction system"
+        ],
+        "zh": [
+          "高级交互系统"
+        ]
+      }
+    ]
+  },
+  "prm_1bcc9bc2322c1402f5c915dd1bfa4d59": {
+    "sourceHash": {
+      "en": "sha256:72f7f88e5e23e0c2697ecc9efb5dc10a1be8093000f6107ee2787366297885cf",
+      "zh": "sha256:1132136e37bb703a0823e10b2821c63f95eab0fb6282ffce1c4fbfc6349d9c9b"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_NAME]",
+        "labelEn": "Product Name",
+        "labelZh": "产品名称",
+        "en": [
+          "[PRODUCT NAME]"
+        ],
+        "zh": [
+          "[PRODUCT NAME]"
+        ]
+      }
+    ]
+  },
+  "prm_1c37e5ce7a5b1af949c8b47ec7c69746": {
+    "sourceHash": {
+      "en": "sha256:2f37449a8940a5f7304cbe5fdaf042cf49a91e58c9d0f95ce4d89e2e19819fc1",
+      "zh": "sha256:0217c3f6bfce03fc712bb497d5e22b6338f7cb3161d6bcb4b8f5e2898e08850d"
+    },
+    "replacements": [
+      {
+        "token": "[PERSON_NAME]",
+        "labelEn": "Person name",
+        "labelZh": "人物姓名",
+        "en": [
+          "Ethan Monkhouse"
+        ],
+        "zh": [
+          "Ethan Monkhouse"
+        ]
+      },
+      {
+        "token": "[SOURCE_URL]",
+        "labelEn": "Source URL",
+        "labelZh": "来源网址",
+        "en": [
+          "https://t.co/djJCmPFZ3h"
+        ],
+        "zh": [
+          "https://t.co/djJCmPFZ3h"
+        ]
+      },
+      {
+        "token": "[SOCIAL_HANDLE]",
+        "labelEn": "Social handle",
+        "labelZh": "社交账号",
+        "en": [
+          "@ethanmonkhouse"
+        ],
+        "zh": [
+          "@ethanmonkhouse"
+        ]
+      }
+    ]
+  },
+  "prm_1de555e13cde1d7b92077dde4c527b0f": {
+    "sourceHash": {
+      "en": "sha256:1215ae3c50ac1395e2998cbf5a8a325de2e632d9e2a5150a82f0255f9b85eea5",
+      "zh": "sha256:9ee25fe62a66182aadad2196bfab40bade3cf8117fe4f55a82cf59fb2012bbad"
+    },
+    "replacements": [
+      {
+        "token": "[COURSE_NAME]",
+        "labelEn": "Course Name",
+        "labelZh": "课程名称",
+        "en": [
+          "[Course Name]"
+        ],
+        "zh": [
+          "[Course Name]"
+        ]
+      },
+      {
+        "token": "[TOPIC]",
+        "labelEn": "Topic",
+        "labelZh": "主题",
+        "en": [
+          "[topic]"
+        ],
+        "zh": [
+          "[topic]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "[target audience]"
+        ],
+        "zh": [
+          "[target audience]"
+        ]
+      },
+      {
+        "token": "[MAIN_RESULT]",
+        "labelEn": "Main Result",
+        "labelZh": "主要成果",
+        "en": [
+          "[main result]"
+        ],
+        "zh": [
+          "[main result]"
+        ]
+      },
+      {
+        "token": "[INSTRUCTOR_NAME]",
+        "labelEn": "Instructor Name",
+        "labelZh": "讲师姓名",
+        "en": [
+          "[Instructor Name]"
+        ],
+        "zh": [
+          "[Instructor Name]"
+        ]
+      },
+      {
+        "token": "[SKILL_LEVEL]",
+        "labelEn": "Skill Level",
+        "labelZh": "技能水平",
+        "en": [
+          "[Beginner / Intermediate / Advanced]"
+        ],
+        "zh": [
+          "[Beginner / Intermediate / Advanced]"
+        ]
+      },
+      {
+        "token": "[COURSE_FORMAT]",
+        "labelEn": "Course Format",
+        "labelZh": "课程形式",
+        "en": [
+          "[Video lessons, templates, live calls, community, etc.]"
+        ],
+        "zh": [
+          "[Video lessons, templates, live calls, community, etc.]"
+        ]
+      },
+      {
+        "token": "[PRICE]",
+        "labelEn": "Price",
+        "labelZh": "价格",
+        "en": [
+          "[Price]"
+        ],
+        "zh": [
+          "[Price]"
+        ]
+      },
+      {
+        "token": "[PRIMARY_CTA]",
+        "labelEn": "Primary Cta",
+        "labelZh": "主要行动号召",
+        "en": [
+          "[Enroll Now / Join the Waitlist / Get Instant Access]"
+        ],
+        "zh": [
+          "[Enroll Now / Join the Waitlist / Get Instant Access]"
+        ]
+      }
+    ]
+  },
+  "prm_20506333c5687eff201784f5d424cb9f": {
+    "sourceHash": {
+      "en": "sha256:f1f5db8b6793293c24d368f7ed0dc019b088e77ef9047f4a2233602fe4482573",
+      "zh": "sha256:968b863a64efeb89a252f979715506e4ec5710ddd318531b137705915ee9b643"
+    },
+    "replacements": [
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "modern, premium, futuristic"
+        ],
+        "zh": [
+          "现代、高端、未来感"
+        ]
+      },
+      {
+        "token": "[CAREER_STORY]",
+        "labelEn": "Career story",
+        "labelZh": "职业经历",
+        "en": [
+          "my career journey"
+        ],
+        "zh": [
+          "我的职业历程"
+        ]
+      }
+    ]
+  },
+  "prm_2081d34be8e2cf1ad76832fce702ab8c": {
+    "sourceHash": {
+      "en": "sha256:3017f8c134a40d291898fc7c7cb36f924046fc91e9bf3de023ed65f1eb6041bc",
+      "zh": "sha256:6d2d696f88ce914ac2f0513bb405b49a9e368aea75da14129fc8c3929967ed98"
+    },
+    "replacements": [
+      {
+        "token": "[ENVIRONMENT]",
+        "labelEn": "Environment",
+        "labelZh": "场景环境",
+        "en": [
+          "golden wheat field"
+        ],
+        "zh": [
+          "金黄色麦田"
+        ]
+      },
+      {
+        "token": "[STRUCTURE]",
+        "labelEn": "Structure",
+        "labelZh": "建筑物",
+        "en": [
+          "weathered barn"
+        ],
+        "zh": [
+          "风化的谷仓"
+        ]
+      }
+    ]
+  },
+  "prm_275aa5c833528e4cfca61ed7e292f22d": {
+    "sourceHash": {
+      "en": "sha256:724b735f98005368e2bcdd258c1c5e4a2b45da2d00326e252bdb6e762d771bf4",
+      "zh": "sha256:5bc4446730dbbb471a8829e76b0f63f8ba29ef2cfe04ad588cdf15df8d2dc86c"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE_IDEA]",
+        "labelEn": "Website idea",
+        "labelZh": "网站创意",
+        "en": [
+          "my website idea"
+        ],
+        "zh": [
+          "我的网站创意"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE_STYLE]",
+        "labelEn": "Experience style",
+        "labelZh": "体验风格",
+        "en": [
+          "unique, memorable, premium"
+        ],
+        "zh": [
+          "独特、令人难忘、高端"
+        ]
+      }
+    ]
+  },
+  "prm_28b1999b773c09236c3a8fff5b4a732b": {
+    "sourceHash": {
+      "en": "sha256:e0f22375a4703bc94e017082b818668cad888fe24b1003b129c8d8733c4ba19a",
+      "zh": "sha256:48ca3000e12d652f8e8976a63858b3fc4e8b1ff672c502896f429d72d1598a3d"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game Reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Minecraft"
+        ],
+        "zh": [
+          "Minecraft"
+        ]
+      }
+    ]
+  },
+  "prm_2abe9346931b058d515af3d25b7c8897": {
+    "sourceHash": {
+      "en": "sha256:c500a599362d948571d89549c6bcd7ce9a16870172a6420a2bc3ec1081d16cd0",
+      "zh": "sha256:83c0d5fe28132a2efa9a0f060a0e3cccfc107468600c4cab53ab6d227032a788"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "Spectra"
+        ],
+        "zh": [
+          "Spectra"
+        ]
+      },
+      {
+        "token": "[COMMUNITY_TYPE]",
+        "labelEn": "Community type",
+        "labelZh": "社区类型",
+        "en": [
+          "indie game showcase and developer community"
+        ],
+        "zh": [
+          "独立游戏展示和开发者社区"
+        ]
+      }
+    ]
+  },
+  "prm_2ecd3e1c207641cded894b4e1800a31e": {
+    "sourceHash": {
+      "en": "sha256:4a67e56cdd7c1920b7f94ddf49aa6e8f0e4171e63f3b6d732032dba86e2b0365",
+      "zh": "sha256:fe34010e96da44dae2e5158ffd82e012bb832eedd4afae3652892541de75cf84"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand Name",
+        "labelZh": "品牌名称",
+        "en": [
+          "MERRIDEW"
+        ],
+        "zh": [
+          "MERRIDEW"
+        ]
+      },
+      {
+        "token": "[AESTHETIC]",
+        "labelEn": "Aesthetic",
+        "labelZh": "美学风格",
+        "en": [
+          "Premium, minimal, editorial, botanical"
+        ],
+        "zh": [
+          "高端、极简、编辑风、植物风"
+        ]
+      }
+    ]
+  },
+  "prm_2eee6d3826592ab105baf9be4322f1e8": {
+    "sourceHash": {
+      "en": "sha256:8be334727311219f1dc0a10a63a0b530d8897a44601697240e92664f625a0a66",
+      "zh": "sha256:c098549bedff9376b8171d152e3f92cf2914a2e39921519ac845b5b1013d562e"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_NAME]",
+        "labelEn": "Product name",
+        "labelZh": "产品名称",
+        "en": [
+          "Gateflow CLI"
+        ],
+        "zh": [
+          "Gateflow CLI"
+        ]
+      },
+      {
+        "token": "[REPOSITORY]",
+        "labelEn": "Repository",
+        "labelZh": "代码仓库",
+        "en": [
+          "<github repo>"
+        ],
+        "zh": [
+          "<github repo>"
+        ]
+      }
+    ]
+  },
+  "prm_309319a45c03e33438988064645c5b5a": {
+    "sourceHash": {
+      "en": "sha256:7ef700f3dededbbe5025e64170fe6f136e6334ca390a098484408f58b7753184",
+      "zh": "sha256:8a5001f144bc0050ba75b7d10ee493a36298c599b536e9413ca31c54bbae65f2"
+    },
+    "replacements": [
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职业角色",
+        "en": [
+          "freelance UI/UX designer"
+        ],
+        "zh": [
+          "自由职业UI/UX设计师"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "clean and elegant"
+        ],
+        "zh": [
+          "简洁优雅"
+        ]
+      }
+    ]
+  },
+  "prm_32a3a7279f3727c8d057f95ecbad964c": {
+    "sourceHash": {
+      "en": "sha256:4c6030dcc2b15516af32c05c90fdf5ec11fa506114dd549e399991dc910ea32a",
+      "zh": "sha256:dd4af63100d898314a34b20dc5fc9a11c0e696e37d7633a96bd5d3f3a31a7141"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[Your Name]"
+        ],
+        "zh": [
+          "[您的姓名]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职位",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[您的职位]"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE_LEVEL]",
+        "labelEn": "Experience level",
+        "labelZh": "经验水平",
+        "en": [
+          "[Beginner / Intermediate / Expert]"
+        ],
+        "zh": [
+          "[初级 / 中级 / 高级]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ],
+        "zh": [
+          "[技能1，技能2，技能3]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Project 1, Project 2, Project 3]"
+        ],
+        "zh": [
+          "[项目1，项目2，项目3]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[Recruiters / Clients / Agencies / Startups]"
+        ],
+        "zh": [
+          "[招聘人员 / 客户 / 代理机构 / 初创公司]"
+        ]
+      },
+      {
+        "token": "[STYLE]",
+        "labelEn": "Style",
+        "labelZh": "风格",
+        "en": [
+          "[Minimal / Bold / Creative / Premium]"
+        ],
+        "zh": [
+          "[极简 / 大胆 / 创意 / 高端]"
+        ]
+      }
+    ]
+  },
+  "prm_34cf96e522e1300822b242f70452642d": {
+    "sourceHash": {
+      "en": "sha256:adf6ee2cb3eebe72b00cf7ecbcb91d2527b7663c1e8b8b9ed8d78f40b38031ac",
+      "zh": "sha256:226bf773f78485473b20219ab6426b5c003d5575df00c544f187ab32a374571e"
+    },
+    "replacements": [
+      {
+        "token": "[WORLD_THEME]",
+        "labelEn": "World Theme",
+        "labelZh": "世界主题",
+        "en": [
+          "prehistoric island"
+        ],
+        "zh": [
+          "史前岛"
+        ]
+      },
+      {
+        "token": "[VEGETATION]",
+        "labelEn": "Vegetation",
+        "labelZh": "植被",
+        "en": [
+          "lush vegetation"
+        ],
+        "zh": [
+          "茂密植物"
+        ]
+      }
+    ]
+  },
+  "prm_36746ac3df56afb102fb9a7a77d7e12e": {
+    "sourceHash": {
+      "en": "sha256:061ca9c3d3741c3cca771c5c371d9bcb6757e513e81672d2c09c667ae8be978e",
+      "zh": "sha256:c82770a3d693a238c577c12c2e1c85b98a2879776eed437a2f97757dd4f40b8d"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      }
+    ]
+  },
+  "prm_37afc0000f49d0e195e1b736dc7dda87": {
+    "sourceHash": {
+      "en": "sha256:fab848c09d61b58037eb9939b14c188d5397d25df3675024e8b0a925c71b61f8",
+      "zh": "sha256:b2550665612a01c3ba9128ea739f729ad86f77364070df15886ab2d2659357da"
+    },
+    "replacements": []
+  },
+  "prm_39ac956f6c604aec2fbcfb221d647620": {
+    "sourceHash": {
+      "en": "sha256:bdc0f56863b501cc1dca3a739cbbc7eee2cfe635996de896507aa6599ea379b6",
+      "zh": "sha256:8a13453ab7b7a57c33edec2a4e534f5c885f0a0adb6adf40c13696412d169757"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "luxury"
+        ],
+        "zh": [
+          "奢华"
+        ]
+      }
+    ]
+  },
+  "prm_3a7a352887347c8f08972c2641e6ec3f": {
+    "sourceHash": {
+      "en": "sha256:a2bdf728a9c617647fcacf59efa0752e474109d06f4d5a08e47038ea1f7a4b31",
+      "zh": "sha256:7348bb0aa0e3758ea041246c75d7583182bdfc07215301a5c591ec0647de7cfb"
+    },
+    "replacements": [
+      {
+        "token": "[GRADIENT_COLORS]",
+        "labelEn": "Gradient Colors",
+        "labelZh": "渐变颜色",
+        "en": [
+          "blue and purple"
+        ],
+        "zh": [
+          "蓝色和紫色"
+        ]
+      },
+      {
+        "token": "[FORM_TYPE]",
+        "labelEn": "Form Type",
+        "labelZh": "表单类型",
+        "en": [
+          "email signup form"
+        ],
+        "zh": [
+          "邮件订阅表单"
+        ]
+      }
+    ]
+  },
+  "prm_3c3e96d3b0cbdcdb29ea91f55568cc29": {
+    "sourceHash": {
+      "en": "sha256:de20fd4fd29f0e17546a56b99479f05b09e798a04afb9e6a4f2da01e93c8ad87",
+      "zh": "sha256:6b1b463cabddd7773b79acb22fee47ea964f6c5df5ed9dd8dece4b8dccedb4ca"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Flappy Bird"
+        ],
+        "zh": [
+          "Flappy Bird"
+        ]
+      },
+      {
+        "token": "[WORLD_THEME]",
+        "labelEn": "World theme",
+        "labelZh": "世界主题",
+        "en": [
+          "tropical coastal world"
+        ],
+        "zh": [
+          "热带海岸世界"
+        ]
+      }
+    ]
+  },
+  "prm_3cab81ced0cd0b54a5f5fcaf31098f3c": {
+    "sourceHash": {
+      "en": "sha256:e1c6807b4925b759a1523e91f8776324271d92d574f20b8c43965e3246a4f4e1",
+      "zh": "sha256:8fc1301db16e07f2d03e3cab42580b901c567c2f1cf3d9d509d0f148c5264fda"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_TOPIC]",
+        "labelEn": "Site Topic",
+        "labelZh": "网站主题",
+        "en": [
+          "comic blog"
+        ],
+        "zh": [
+          "漫画博客"
+        ]
+      },
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "颜色",
+        "en": [
+          "yellow and black"
+        ],
+        "zh": [
+          "黄色和黑色"
+        ]
+      }
+    ]
+  },
+  "prm_3cb1d4b5f38636cef5f6c9b6edcc7831": {
+    "sourceHash": {
+      "en": "sha256:9b31c8c606ae1335497554f17e53ad1e4bcd459686e29ee9aca874bbf453ca32",
+      "zh": "sha256:aea1f130be120fbe7260a2b51773af3c5510d8e97ab4d8819379bfb03b45c6fb"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_TYPE]",
+        "labelEn": "Product type",
+        "labelZh": "产品类型",
+        "en": [
+          "mobile app"
+        ],
+        "zh": [
+          "移动应用"
+        ]
+      }
+    ]
+  },
+  "prm_3d47db3e9bf09731cf8480710d299ee0": {
+    "sourceHash": {
+      "en": "sha256:cd58dfee0a201dff26114b2ff62459cfca98dccabf79a3737748705609295379",
+      "zh": "sha256:45e22caef3b4a2b71f9e1b3ed98fff42baeea723404faa0c5e54387149c0eac0"
+    },
+    "replacements": [
+      {
+        "token": "[BIOGRAPHY_SUBJECT]",
+        "labelEn": "Biography Subject",
+        "labelZh": "传记人物",
+        "en": [
+          "O.J. Simpson"
+        ],
+        "zh": [
+          "O.J.辛普森"
+        ]
+      },
+      {
+        "token": "[SOURCE_MATERIALS]",
+        "labelEn": "Source Materials",
+        "labelZh": "来源素材",
+        "en": [
+          "authentic pictures and stats"
+        ],
+        "zh": [
+          "真实照片和数据"
+        ]
+      }
+    ]
+  },
+  "prm_3f808154f2bc5f53428592a65c84d42b": {
+    "sourceHash": {
+      "en": "sha256:cf6a926dfa3ce2abcb447b61b5531a6715e120892665a60538c76c88622ee33d",
+      "zh": "sha256:49f12b82eb644a5fa4c9e595dee3c3ba5e3446216f5f21a80a10cbfd8b72cdb0"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "AI agency"
+        ],
+        "zh": [
+          "AI机构"
+        ]
+      },
+      {
+        "token": "[COLOR_PALETTE]",
+        "labelEn": "Color palette",
+        "labelZh": "配色方案",
+        "en": [
+          "blue and purple gradients"
+        ],
+        "zh": [
+          "蓝色和紫色渐变"
+        ]
+      }
+    ]
+  },
+  "prm_4072e3878508314c8b503c2420b3d58e": {
+    "sourceHash": {
+      "en": "sha256:cfc38a9a04d6f3f7e40478fa5f5594ac2c38a9514f80ad1d9bd03eb8b385be5a",
+      "zh": "sha256:e1e6c6c11a3aff0cc354a9d12c71ff4cc076325ce7daab09bd22290bce28393b"
+    },
+    "replacements": [
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "主体",
+        "en": [
+          "[business/person/brand]"
+        ],
+        "zh": [
+          "[business/person/brand]"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语气",
+        "en": [
+          "[friendly/professional/warm/confident]"
+        ],
+        "zh": [
+          "[friendly/professional/warm/confident]"
+        ]
+      }
+    ]
+  },
+  "prm_41fefb3165d469a64fa5758b5d9bbaef": {
+    "sourceHash": {
+      "en": "sha256:d026520b592418d0a1ba05ef80cff5f2a28ad27579382bcf2efeebcce406b21f",
+      "zh": "sha256:163e831dddebddd8c50829c055ba10f91997c8c82f64ce420d11bdd64abca50d"
+    },
+    "replacements": [
+      {
+        "token": "[DATABASE_PLATFORM]",
+        "labelEn": "Database platform",
+        "labelZh": "数据库平台",
+        "en": [
+          "Supabase"
+        ],
+        "zh": [
+          "Supabase"
+        ]
+      },
+      {
+        "token": "[STORED_DATA]",
+        "labelEn": "Stored data",
+        "labelZh": "存储数据",
+        "en": [
+          "user profiles, skill assessments, and saved career plans"
+        ],
+        "zh": [
+          "用户档案、技能评估和保存的职业规划"
+        ]
+      }
+    ]
+  },
+  "prm_420006d8824c293e6f4b930c5b4b19d3": {
+    "sourceHash": {
+      "en": "sha256:cba15a326a738bd42c8cd32b060d0c6bf643abf0148e59eac1693e75d0951363",
+      "zh": "sha256:ab69e3004e30c04444c04bff9ef822bd2a3c656d0b3f5439e70d1d005611c4f8"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_PLAN]",
+        "labelEn": "Site Plan",
+        "labelZh": "已批准网站方案",
+        "en": [
+          "website plan"
+        ],
+        "zh": [
+          "网站方案"
+        ]
+      },
+      {
+        "token": "[DESIGN_SYSTEM]",
+        "labelEn": "Design System",
+        "labelZh": "设计系统",
+        "en": [
+          "design system"
+        ],
+        "zh": [
+          "设计系统"
+        ]
+      }
+    ]
+  },
+  "prm_45027e5681fa99fd31e782bb3b3f0822": {
+    "sourceHash": {
+      "en": "sha256:8e730b8b5eb82be6769a46a7d352692dc043f86404abc245f0bc9ce32cb47acc",
+      "zh": "sha256:948e963a76ad5d5c1c663a02313980eb3184ba4450fc66c01017222507d48972"
+    },
+    "replacements": [
+      {
+        "token": "[REFERENCE_SITE]",
+        "labelEn": "Reference site",
+        "labelZh": "参考网站",
+        "en": [
+          "fillout[dot]com"
+        ],
+        "zh": [
+          "fillout[dot]com"
+        ]
+      },
+      {
+        "token": "[PRODUCT_TYPE]",
+        "labelEn": "Product type",
+        "labelZh": "产品类型",
+        "en": [
+          "form builder"
+        ],
+        "zh": [
+          "表单构建器"
+        ]
+      }
+    ]
+  },
+  "prm_47378dc921485062c80c3d9b72ada0b0": {
+    "sourceHash": {
+      "en": "sha256:1aefc3f7dd61f74295d93a2074615691c6b4a1314e84a37702c63eeae011c616",
+      "zh": "sha256:26568eb2afae7e030c437f1b32ef29f9a7dac137154e23ddad80fba992051c0d"
+    },
+    "replacements": [
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "content creators"
+        ],
+        "zh": [
+          "内容创作者"
+        ]
+      },
+      {
+        "token": "[RESOURCE_CATEGORY]",
+        "labelEn": "Resource Category",
+        "labelZh": "资源类别",
+        "en": [
+          "AI tools"
+        ],
+        "zh": [
+          "AI工具"
+        ]
+      }
+    ]
+  },
+  "prm_4a7e127b0b103a8cc39fcf891f5c064e": {
+    "sourceHash": {
+      "en": "sha256:bf10cd18e2becefc839924e0514dcf910f8bb56d7c095493812452698effa6fc",
+      "zh": "sha256:211816bde5a5e7e1e18daa450ad67bdde0f5d60484595429752116647513dc0e"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语气",
+        "en": [
+          "[friendly/professional/modern]"
+        ],
+        "zh": [
+          "[friendly/professional/modern]"
+        ]
+      }
+    ]
+  },
+  "prm_4b9109cc97ce6f2ed78915cb6cdbf534": {
+    "sourceHash": {
+      "en": "sha256:7d2121da0bff67c9589ae9790e81477326eeaac1868a180548bb62a962c6fa5b",
+      "zh": "sha256:983c8b27e998903ab35cddc0ff8e96ea8bb3f508291a43dbbaa4290f118b50bd"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[Your Name]"
+        ],
+        "zh": [
+          "[Your Name]"
+        ]
+      },
+      {
+        "token": "[WORK]",
+        "labelEn": "Work",
+        "labelZh": "工作内容",
+        "en": [
+          "[Your Work]"
+        ],
+        "zh": [
+          "[Your Work]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "[Audience]"
+        ],
+        "zh": [
+          "[Audience]"
+        ]
+      },
+      {
+        "token": "[PERSONALITY]",
+        "labelEn": "Personality",
+        "labelZh": "个性",
+        "en": [
+          "[Funny / Bold / Calm / Friendly / Premium]"
+        ],
+        "zh": [
+          "[Funny / Bold / Calm / Friendly / Premium]"
+        ]
+      },
+      {
+        "token": "[STORY]",
+        "labelEn": "Story",
+        "labelZh": "故事",
+        "en": [
+          "[Short Story]"
+        ],
+        "zh": [
+          "[Short Story]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ],
+        "zh": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Project List]"
+        ],
+        "zh": [
+          "[Project List]"
+        ]
+      }
+    ]
+  },
+  "prm_4c90aa575ffdface16ab3b96af2df068": {
+    "sourceHash": {
+      "en": "sha256:8d476dc1685c03bbab3ae938eb8b2fd11a6967a4ed570a0ae4cf7920816c7be3",
+      "zh": "sha256:53eaea8ed818e073acffb6ff9585ec6e036d613622222510a507eef4fd6e2768"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_TYPE]",
+        "labelEn": "Product type",
+        "labelZh": "产品类型",
+        "en": [
+          "customized stationery sets"
+        ],
+        "zh": [
+          "定制文具套装"
+        ]
+      },
+      {
+        "token": "[CUSTOMIZATION_OPTIONS]",
+        "labelEn": "Customization options",
+        "labelZh": "定制选项",
+        "en": [
+          "designs, fonts, and personalized messages"
+        ],
+        "zh": [
+          "设计、字体和个性化留言"
+        ]
+      }
+    ]
+  },
+  "prm_4d8db11e02a2996d7305facf52dc129b": {
+    "sourceHash": {
+      "en": "sha256:987068fe495ff9d2d932672ad73188f27995a498abbffa91c1253e870af60354",
+      "zh": "sha256:5164418b25718d6a2c99f4f80e8cbdc6b574b3185c3f34e27731efb39873b0cd"
+    },
+    "replacements": [
+      {
+        "token": "[MARKET_SYMBOL]",
+        "labelEn": "Market Symbol",
+        "labelZh": "交易代码",
+        "en": [
+          "CME_MINI:NQ1!"
+        ],
+        "zh": [
+          "CME_MINI:NQ1!"
+        ]
+      },
+      {
+        "token": "[TIME_ZONE]",
+        "labelEn": "Time Zone",
+        "labelZh": "时区",
+        "en": [
+          "New York time"
+        ],
+        "zh": [
+          "纽约时间"
+        ]
+      }
+    ]
+  },
+  "prm_5024317a3af5db607a91844c92cc0c52": {
+    "sourceHash": {
+      "en": "sha256:52882f36175add4950248ab350e8c8aa128102f2a92fd3e2ee10234a513a404f",
+      "zh": "sha256:4e18574214075aa088adf478f9ca7182767ee67e5a1ceb8b583a92e2cb9db9d8"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "crossy road"
+        ],
+        "zh": [
+          "Crossy Road"
+        ]
+      }
+    ]
+  },
+  "prm_51752a0bc06d2f0e748721d41623a840": {
+    "sourceHash": {
+      "en": "sha256:8b3472b495215c998a0f20e3785be3714cccd79dc20ada270b87e38cc2ef0111",
+      "zh": "sha256:02515044401b5888f45cedda646c535ce102700763d79e766cbb125b1cd04840"
+    },
+    "replacements": [
+      {
+        "token": "[ENVIRONMENT]",
+        "labelEn": "Environment",
+        "labelZh": "环境主题",
+        "en": [
+          "forest environment"
+        ],
+        "zh": [
+          "森林环境"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "ultra realistic"
+        ],
+        "zh": [
+          "超写实"
+        ]
+      }
+    ]
+  },
+  "prm_51ae17cd38bad362c2e855f2ee6cb4db": {
+    "sourceHash": {
+      "en": "sha256:1cd06a1789d42812d25dbb13ec87f8523a4a946be7041c30b239b18e09891d95",
+      "zh": "sha256:44d11b4dd64b1851f66544d93b4aa893eb675df9b3c97d86f0db6ff440c2d8c8"
+    },
+    "replacements": [
+      {
+        "token": "[VEHICLE_REFERENCE]",
+        "labelEn": "Vehicle reference",
+        "labelZh": "载具参考",
+        "en": [
+          "H145"
+        ],
+        "zh": [
+          "H145"
+        ]
+      },
+      {
+        "token": "[STUDIO_BACKGROUND]",
+        "labelEn": "Studio background",
+        "labelZh": "摄影棚背景",
+        "en": [
+          "light gray studio background"
+        ],
+        "zh": [
+          "浅灰摄影棚背景"
+        ]
+      }
+    ]
+  },
+  "prm_5209044d15d18c388afaa9412ed9fa8a": {
+    "sourceHash": {
+      "en": "sha256:9db945ebf7984dd3b581e832790979a07dc762737096f739782fc244d118cc70",
+      "zh": "sha256:6ca6db30a61e36bb98b04fd0038fce8b8b58efcecd0ce8a1178ebd3536d3a655"
+    },
+    "replacements": [
+      {
+        "token": "[MOOD]",
+        "labelEn": "Mood",
+        "labelZh": "情绪",
+        "en": [
+          "Epic, focused, high-stakes"
+        ],
+        "zh": [
+          "史诗、专注、高风险"
+        ]
+      },
+      {
+        "token": "[SPORT]",
+        "labelEn": "Sport",
+        "labelZh": "运动类型",
+        "en": [
+          "football"
+        ],
+        "zh": [
+          "足球"
+        ]
+      }
+    ]
+  },
+  "prm_545322199e8d72a269b77ce50651f1aa": {
+    "sourceHash": {
+      "en": "sha256:2b2f9feb3e276f9da19e72c4eb06efbabb95fcf5cfe7d8adea136980f7ab41a5",
+      "zh": "sha256:f79ffa98103ae7712769d30fc3db7517ae49b5f6a4d3025ae79ee87664122796"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "reFresh"
+        ],
+        "zh": [
+          "reFresh"
+        ]
+      },
+      {
+        "token": "[REFERENCE_URL]",
+        "labelEn": "Reference URL",
+        "labelZh": "参考网址",
+        "en": [
+          "https://t.co/IwQo3op6rF"
+        ],
+        "zh": [
+          "https://t.co/IwQo3op6rF"
+        ]
+      }
+    ]
+  },
+  "prm_55a16ede07cff7a35f1a69ed61ca5ce5": {
+    "sourceHash": {
+      "en": "sha256:b53526e6fca67da5ad723f3eccd3c6f0528e81e24580bc0b06860e0b92f5ea21",
+      "zh": "sha256:c7c7df2718684e6e248ebee722a82a686bab4744f3282023ce7ffdf94a82bcfe"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "cake bakery"
+        ],
+        "zh": [
+          "蛋糕烘焙店"
+        ]
+      },
+      {
+        "token": "[ART_REFERENCE]",
+        "labelEn": "Art Reference",
+        "labelZh": "艺术参考",
+        "en": [
+          "David Hockney"
+        ],
+        "zh": [
+          "David Hockney"
+        ]
+      }
+    ]
+  },
+  "prm_5641c4e6c19159a0d24b5b5f280362ef": {
+    "sourceHash": {
+      "en": "sha256:61ee1389b3fe4c4893084a6c277658e56b963551790eef3ee79ab304c55b2382",
+      "zh": "sha256:a8fd2c483d4f4d90affa2630b01c735f8a04fbe1b2d35b3d7de80d3035a567fc"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE_CODE]",
+        "labelEn": "Website code",
+        "labelZh": "网站代码",
+        "en": [
+          "this website code"
+        ],
+        "zh": [
+          "此网站代码"
+        ]
+      },
+      {
+        "token": "[EDITOR_LEVEL]",
+        "labelEn": "Editor level",
+        "labelZh": "编辑者水平",
+        "en": [
+          "beginner"
+        ],
+        "zh": [
+          "初学者"
+        ]
+      }
+    ]
+  },
+  "prm_5b4d57fca79076019ec8a937c3ca2b47": {
+    "sourceHash": {
+      "en": "sha256:d0c1ec296389f8ebac13430452e4fbdbf0c3d28eff098c4fd85c5fbd6adb7786",
+      "zh": "sha256:fb1bde0e33bcada0c2a0ba6b5f5cd2a361c2d2aedf5de4f25b8c3eb8ee4fcefe"
+    },
+    "replacements": [
+      {
+        "token": "[EXPERIENCE_TYPE]",
+        "labelEn": "Experience Type",
+        "labelZh": "体验类型",
+        "en": [
+          "3D experiences and motion design"
+        ],
+        "zh": [
+          "3D体验和动效设计"
+        ]
+      },
+      {
+        "token": "[INTERACTION_SCOPE]",
+        "labelEn": "Interaction Scope",
+        "labelZh": "交互范围",
+        "en": [
+          "hero animations, cursor effects, object interactions"
+        ],
+        "zh": [
+          "首屏动画、光标效果、物体交互"
+        ]
+      }
+    ]
+  },
+  "prm_5d0a69786969d9d19c6d44d2812c27be": {
+    "sourceHash": {
+      "en": "sha256:d4dc9f09cb0aa36d3191f6026c3daf3fd23fc2053c08eefdddba8fa4077a90be",
+      "zh": "sha256:001a6aa366d0d7b42f499c18a0a558d0868f83d2394228bbb87cfc23ff600007"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "artisan coffee shop"
+        ],
+        "zh": [
+          "手工咖啡馆"
+        ]
+      },
+      {
+        "token": "[BOOKING_SECTION]",
+        "labelEn": "Booking section",
+        "labelZh": "预订区块",
+        "en": [
+          "table reservation section"
+        ],
+        "zh": [
+          "餐桌预订区块"
+        ]
+      }
+    ]
+  },
+  "prm_5da948e9ba18582f5d9573357aff5c95": {
+    "sourceHash": {
+      "en": "sha256:53d33244837353e05b7677fb3ca1ebe56bd9dc920d7539bf63d7058f88e84f59",
+      "zh": "sha256:1ac163e13725abadd502af7a95cb314c58481ecd84eb629f547d1d58e3f4a34a"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand Name",
+        "labelZh": "品牌名称",
+        "en": [
+          "KAMMHORN"
+        ],
+        "zh": [
+          "KAMMHORN"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "地点",
+        "en": [
+          "Valais Canton"
+        ],
+        "zh": [
+          "瓦莱州"
+        ]
+      }
+    ]
+  },
+  "prm_644602041483aa2ed9fd86c71a5edf94": {
+    "sourceHash": {
+      "en": "sha256:b69db9082950d49b55e36c3fa66d5e65a6a5a55f5aaf6a5ddacb62f7fda963e9",
+      "zh": "sha256:60839c768b03004c6ada22f506901f0f6d3cdf680b79e29a3bf2a61d0a5c924f"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "BUZZ"
+        ],
+        "zh": [
+          "BUZZ"
+        ]
+      },
+      {
+        "token": "[PRODUCT_TYPE]",
+        "labelEn": "Product type",
+        "labelZh": "产品类型",
+        "en": [
+          "analytics saas"
+        ],
+        "zh": [
+          "数据分析 SaaS"
+        ]
+      }
+    ]
+  },
+  "prm_645e52361a2365c32cb2a47923cf5746": {
+    "sourceHash": {
+      "en": "sha256:b2888153662cce0770e31f021016b4f9a2c7f3750bd4ffaa9d24d375b322bc8e",
+      "zh": "sha256:5fccbcdbad8cd7bfabd9a607bccb06c6f23577e56ea18a83c17ddad081b23939"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_NAME]",
+        "labelEn": "Business Name",
+        "labelZh": "企业名称",
+        "en": [
+          "Purely Plumbing"
+        ],
+        "zh": [
+          "Purely Plumbing"
+        ]
+      }
+    ]
+  },
+  "prm_64a354878b0bde0c886001423572f288": {
+    "sourceHash": {
+      "en": "sha256:9eb849d42f1534a8ce5686ee6acb067b849dfba4c56b055e4448152d638a9383",
+      "zh": "sha256:e626a15758dc8ed1b56581c985f301c031e97ba848bafbe2c8266d41282d228a"
+    },
+    "replacements": [
+      {
+        "token": "[SERVICE]",
+        "labelEn": "Service",
+        "labelZh": "服务",
+        "en": [
+          "[Your Service]"
+        ],
+        "zh": [
+          "[Your Service]"
+        ]
+      },
+      {
+        "token": "[CLIENT_TYPE]",
+        "labelEn": "Client type",
+        "labelZh": "客户类型",
+        "en": [
+          "[Client Type]"
+        ],
+        "zh": [
+          "[Client Type]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ],
+        "zh": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ]
+      },
+      {
+        "token": "[OFFER]",
+        "labelEn": "Offer",
+        "labelZh": "服务方案",
+        "en": [
+          "[Your Offer]"
+        ],
+        "zh": [
+          "[Your Offer]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Samples / Projects]"
+        ],
+        "zh": [
+          "[Samples / Projects]"
+        ]
+      },
+      {
+        "token": "[CONTACT_METHOD]",
+        "labelEn": "Contact method",
+        "labelZh": "联系方式",
+        "en": [
+          "[Email / Form / Calendly / DM]"
+        ],
+        "zh": [
+          "[Email / Form / Calendly / DM]"
+        ]
+      }
+    ]
+  },
+  "prm_64d274ed4b0d064f34b4329912dceb52": {
+    "sourceHash": {
+      "en": "sha256:0cd7a9a460def484c0e74b65f0d1d9ae4c7d60f894baed0806f32f3b2b746188",
+      "zh": "sha256:15a19f7ced245625885110ce6496a9dcd7ce144cdc3e50228ed17471824b3601"
+    },
+    "replacements": [
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "场景主题",
+        "en": [
+          "solar system"
+        ],
+        "zh": [
+          "太阳系"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "ultra realistic high quality"
+        ],
+        "zh": [
+          "超写实、高品质"
+        ]
+      }
+    ]
+  },
+  "prm_684e741f04bab8b486e4f927ac2b455b": {
+    "sourceHash": {
+      "en": "sha256:c7300c96e1e1f56c2717b1f8e646965b2d2a83459c440fe42eb36ff0484aa7b0",
+      "zh": "sha256:c03335a9e7081964e29e6ff23d39437d493452f78eb1b035fffef4aec59b981d"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[Your Name]"
+        ],
+        "zh": [
+          "[Your Name]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职位",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[Your Role]"
+        ]
+      },
+      {
+        "token": "[EMAIL]",
+        "labelEn": "Email",
+        "labelZh": "邮箱",
+        "en": [
+          "[Email]"
+        ],
+        "zh": [
+          "[Email]"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "所在地",
+        "en": [
+          "[Location]"
+        ],
+        "zh": [
+          "[Location]"
+        ]
+      },
+      {
+        "token": "[SUMMARY]",
+        "labelEn": "Summary",
+        "labelZh": "概要",
+        "en": [
+          "[Short Summary]"
+        ],
+        "zh": [
+          "[Short Summary]"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE]",
+        "labelEn": "Experience",
+        "labelZh": "工作经历",
+        "en": [
+          "[Job Title, Company, Dates, Achievement]"
+        ],
+        "zh": [
+          "[Job Title, Company, Dates, Achievement]"
+        ]
+      },
+      {
+        "token": "[EDUCATION]",
+        "labelEn": "Education",
+        "labelZh": "教育经历",
+        "en": [
+          "[Education / Certification]"
+        ],
+        "zh": [
+          "[Education / Certification]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill List]"
+        ],
+        "zh": [
+          "[Skill List]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Project List]"
+        ],
+        "zh": [
+          "[Project List]"
+        ]
+      }
+    ]
+  },
+  "prm_697ad609e6baf8966a50910bf3b1bbd6": {
+    "sourceHash": {
+      "en": "sha256:e38947e041849dea42ef880f18c67e64e9815d4e17a56a18c119ecc21d10b1b4",
+      "zh": "sha256:6b607fb6b54a2e64c6f2c967049dbc3707c09ca8dc5266734cfb14808c6b13c1"
+    },
+    "replacements": [
+      {
+        "token": "[START_FRAME]",
+        "labelEn": "Start Frame",
+        "labelZh": "起始帧文件",
+        "en": [
+          "frame_005.jpg"
+        ],
+        "zh": [
+          "frame_005.jpg"
+        ]
+      },
+      {
+        "token": "[END_FRAME]",
+        "labelEn": "End Frame",
+        "labelZh": "结束帧文件",
+        "en": [
+          "frame_181.jpg"
+        ],
+        "zh": [
+          "frame_181.jpg"
+        ]
+      }
+    ]
+  },
+  "prm_699ef79f31606b83359bc88e2ec65351": {
+    "sourceHash": {
+      "en": "sha256:caa644caeee6dcc83418fe0ce75cefe47a07fdaa44522022c4776a9c208c54bf",
+      "zh": "sha256:a726a4591e6bba3a55a51e6aec615d3a88b8a1477277c3dd0045550a2f81debb"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_NAME]",
+        "labelEn": "Project name",
+        "labelZh": "项目名称",
+        "en": [
+          "[Project Name]"
+        ],
+        "zh": [
+          "[Project Name]"
+        ]
+      },
+      {
+        "token": "[PROJECT_TYPE]",
+        "labelEn": "Project type",
+        "labelZh": "项目类型",
+        "en": [
+          "[Website / App / Design / Campaign / Dashboard]"
+        ],
+        "zh": [
+          "[Website / App / Design / Campaign / Dashboard]"
+        ]
+      },
+      {
+        "token": "[PROBLEM]",
+        "labelEn": "Problem",
+        "labelZh": "解决问题",
+        "en": [
+          "[Problem Solved]"
+        ],
+        "zh": [
+          "[Problem Solved]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "个人角色",
+        "en": [
+          "[What You Did]"
+        ],
+        "zh": [
+          "[What You Did]"
+        ]
+      },
+      {
+        "token": "[TOOLS]",
+        "labelEn": "Tools",
+        "labelZh": "工具",
+        "en": [
+          "[Tools]"
+        ],
+        "zh": [
+          "[Tools]"
+        ]
+      },
+      {
+        "token": "[PROCESS]",
+        "labelEn": "Process",
+        "labelZh": "过程",
+        "en": [
+          "[Steps You Took]"
+        ],
+        "zh": [
+          "[Steps You Took]"
+        ]
+      },
+      {
+        "token": "[RESULT]",
+        "labelEn": "Result",
+        "labelZh": "成果",
+        "en": [
+          "[Outcome or Feedback]"
+        ],
+        "zh": [
+          "[Outcome or Feedback]"
+        ]
+      }
+    ]
+  },
+  "prm_6a7d4e3a59c03c1f3b44ad198550e6b6": {
+    "sourceHash": {
+      "en": "sha256:9b87038d9f1d691f7a040cb92b69fc5e24f6e56c8be1e39731f046bf0895f09c",
+      "zh": "sha256:6c3ba07d9e7a73e56a1429fa0fcb71956eba5e7cd14eff831b6a23ba4429de22"
+    },
+    "replacements": [
+      {
+        "token": "[HEADLINE]",
+        "labelEn": "Headline",
+        "labelZh": "标题",
+        "en": [
+          "[Paste Headline]"
+        ],
+        "zh": [
+          "[Paste Headline]"
+        ]
+      },
+      {
+        "token": "[ABOUT_COPY]",
+        "labelEn": "About Copy",
+        "labelZh": "关于文案",
+        "en": [
+          "[Paste About]"
+        ],
+        "zh": [
+          "[Paste About]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Paste Projects]"
+        ],
+        "zh": [
+          "[Paste Projects]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Paste Skills]"
+        ],
+        "zh": [
+          "[Paste Skills]"
+        ]
+      },
+      {
+        "token": "[TARGET_ROLE]",
+        "labelEn": "Target Role",
+        "labelZh": "目标职位",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[Your Role]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "[Recruiters / Clients]"
+        ],
+        "zh": [
+          "[Recruiters / Clients]"
+        ]
+      }
+    ]
+  },
+  "prm_6cccef7bbc070dcade3fda075437825e": {
+    "sourceHash": {
+      "en": "sha256:b5ace1fadd1d23b4e2af353f669b154fdd960bcc50b1aa6b32085beb2d799fbc",
+      "zh": "sha256:a6adcdaee994a83c93ad6d1319651f40b5f51a88bd79c693c1545bd8443c69e3"
+    },
+    "replacements": [
+      {
+        "token": "[PORTFOLIO_OWNER]",
+        "labelEn": "Portfolio owner",
+        "labelZh": "作品集主体",
+        "en": [
+          "designer"
+        ],
+        "zh": [
+          "设计师"
+        ]
+      },
+      {
+        "token": "[SHAPE_COLORS]",
+        "labelEn": "Shape colors",
+        "labelZh": "形状色彩",
+        "en": [
+          "vivid iridescent colors"
+        ],
+        "zh": [
+          "鲜艳虹彩色"
+        ]
+      }
+    ]
+  },
+  "prm_6ce3395d08af3d8904f42519926a081f": {
+    "sourceHash": {
+      "en": "sha256:28a1d37e93462593f2bf12e0764a14f73c476ef81538bbbe1a63e7c2b87315a2",
+      "zh": "sha256:ea373a2c58b58850524974bd4703c24e96a04c70e1f4fc215103126266951116"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_CATEGORY]",
+        "labelEn": "Product Category",
+        "labelZh": "产品类别",
+        "en": [
+          "coffee beans and simple coffee equipment"
+        ],
+        "zh": [
+          "咖啡豆和简单的咖啡器具"
+        ]
+      },
+      {
+        "token": "[HERO_HEADLINE]",
+        "labelEn": "Hero Headline",
+        "labelZh": "主视觉标题",
+        "en": [
+          "Fresh Coffee. Perfect Brew."
+        ],
+        "zh": [
+          "Fresh Coffee. Perfect Brew."
+        ]
+      }
+    ]
+  },
+  "prm_6ddd025bf061e594dff3183966d720f5": {
+    "sourceHash": {
+      "en": "sha256:12e2e2a2f5b6925502dcdc6cc127623e10dd60b0d3c93e65e17fff9179cd6479",
+      "zh": "sha256:33bc85a3a87960e1801a054b38b055c09cb11f06294f005410ca20093d3c33f6"
+    },
+    "replacements": [
+      {
+        "token": "[CREATOR_TYPE]",
+        "labelEn": "Creator type",
+        "labelZh": "创作者类型",
+        "en": [
+          "AI creator"
+        ],
+        "zh": [
+          "AI创作者"
+        ]
+      },
+      {
+        "token": "[TARGET_CLIENTS]",
+        "labelEn": "Target clients",
+        "labelZh": "目标客户",
+        "en": [
+          "high-paying clients"
+        ],
+        "zh": [
+          "高付费客户"
+        ]
+      }
+    ]
+  },
+  "prm_6f59ad8780b19fd241bdc830ee4a7934": {
+    "sourceHash": {
+      "en": "sha256:ca54534e4b4e80c40e3b6fab9639314056120bc930c860b65c712522a5cebe4d",
+      "zh": "sha256:32fbbf039843831879f00eee53d23dacfcdef683af53496ffaab1d871e51d934"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_SERVICE]",
+        "labelEn": "Product Service",
+        "labelZh": "产品服务",
+        "en": [
+          "[PRODUCT/SERVICE]"
+        ],
+        "zh": [
+          "[PRODUCT/SERVICE]"
+        ]
+      },
+      {
+        "token": "[PRIMARY_GOAL]",
+        "labelEn": "Primary Goal",
+        "labelZh": "主要目标",
+        "en": [
+          "[CALL / BOOK / BUY / EMAIL / VISIT]"
+        ],
+        "zh": [
+          "[CALL / BOOK / BUY / EMAIL / VISIT]"
+        ]
+      },
+      {
+        "token": "[PAGES]",
+        "labelEn": "Pages",
+        "labelZh": "页面",
+        "en": [
+          "[HOME / ABOUT / SERVICES / CONTACT / ETC.]"
+        ],
+        "zh": [
+          "[HOME / ABOUT / SERVICES / CONTACT / ETC.]"
+        ]
+      }
+    ]
+  },
+  "prm_6f97555db109605911a7e435aec2fa50": {
+    "sourceHash": {
+      "en": "sha256:df29490f003fb6d8c9268c2216313185a58be3a7fe4e315b79e47e1549ccd193",
+      "zh": "sha256:54a564af1e5d2be0265046d4eede49cd13f9e2b46c1af1f4b557993c1e846aad"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_PRODUCT]",
+        "labelEn": "Brand or product",
+        "labelZh": "品牌或产品",
+        "en": [
+          "[brand/product]"
+        ],
+        "zh": [
+          "[brand/product]"
+        ]
+      }
+    ]
+  },
+  "prm_6fd3571093c85acfdbc8402f81a51140": {
+    "sourceHash": {
+      "en": "sha256:03c7994d767188bfa5f77e22e347139ee0ec23d4c570b151253b5301608262bc",
+      "zh": "sha256:cbf456ba77c4e2cd7a39f0fb3ec95a9ef03eaa06719ad79d7a565e5ee0ab3c8d"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_SCOPE]",
+        "labelEn": "Project Scope",
+        "labelZh": "项目范围",
+        "en": [
+          "website development"
+        ],
+        "zh": [
+          "网站开发"
+        ]
+      },
+      {
+        "token": "[DELIVERY_FORMAT]",
+        "labelEn": "Delivery Format",
+        "labelZh": "交付形式",
+        "en": [
+          "a reusable component structure"
+        ],
+        "zh": [
+          "可复用组件结构"
+        ]
+      }
+    ]
+  },
+  "prm_6fd510cbde884638b7d6dbdb8e0653be": {
+    "sourceHash": {
+      "en": "sha256:c9ec780395564f92311bec0e5b43d07fa2683575f1e5224db80a68a0550d0ee8",
+      "zh": "sha256:95612b2f6370d4786ac4227541d0524ddf89d0594c872c600c09267a92f0ea5f"
+    },
+    "replacements": [
+      {
+        "token": "[PORTFOLIO_OWNER]",
+        "labelEn": "Portfolio owner",
+        "labelZh": "作品集主体",
+        "en": [
+          "designer"
+        ],
+        "zh": [
+          "设计师"
+        ]
+      },
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page type",
+        "labelZh": "页面类型",
+        "en": [
+          "portfolio landing page"
+        ],
+        "zh": [
+          "作品集首页"
+        ]
+      }
+    ]
+  },
+  "prm_70dcd4d5b3855433d529c4eec01dccf2": {
+    "sourceHash": {
+      "en": "sha256:a43d320e2e273fcca17aa72c2f05752fbb99d6bd868dee37798b917b5e8abb1e",
+      "zh": "sha256:77cd2b0542334d204805995c12e82ff1d2b2eb9056b0e59d43990e5b1c17359b"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_NAME]",
+        "labelEn": "Product Name",
+        "labelZh": "产品名称",
+        "en": [
+          "QUARTER ROOM"
+        ],
+        "zh": [
+          "QUARTER ROOM"
+        ]
+      },
+      {
+        "token": "[NATIVE_TITLE]",
+        "labelEn": "Native Title",
+        "labelZh": "本地语言标题",
+        "en": [
+          "குவாட்டர் ரூம்"
+        ],
+        "zh": [
+          "குவாட்டர் ரூம்"
+        ]
+      },
+      {
+        "token": "[TAGLINE]",
+        "labelEn": "Tagline",
+        "labelZh": "标语",
+        "en": [
+          "தமிழ் குடிகாரர்களின் அதிகாரப்பூர்வ ரேடியோ"
+        ],
+        "zh": [
+          "தமிழ் குடிகாரர்களின் அதிகாரப்பூர்வ ரேடியோ"
+        ]
+      }
+    ]
+  },
+  "prm_76a1c8e4e82d04ea3df9ba288df24ff2": {
+    "sourceHash": {
+      "en": "sha256:ecd44e679c1704a242e957efe53eecc39f9188a11f27639cf43d5317fbebe8f9",
+      "zh": "sha256:967f69c5f969f0b8a84c326de5087acec19ea424662f0f9b2fa904c69ed1782d"
+    },
+    "replacements": [
+      {
+        "token": "[HEADING_FONT]",
+        "labelEn": "Heading font",
+        "labelZh": "标题字体",
+        "en": [
+          "Inter"
+        ],
+        "zh": [
+          "Inter"
+        ]
+      },
+      {
+        "token": "[BACKGROUND_COLOR]",
+        "labelEn": "Background color",
+        "labelZh": "背景色",
+        "en": [
+          "#f5f7f9"
+        ],
+        "zh": [
+          "#f5f7f9"
+        ]
+      }
+    ]
+  },
+  "prm_7737670fb1d254cb52d79545aa20523c": {
+    "sourceHash": {
+      "en": "sha256:e89b32095d1cc3604b0962d33eb2b0b18b645f236a2459b732af9cc3ce2832ef",
+      "zh": "sha256:1a4416d85bffc7d010dd28cf2280dbbfa05f80c4b47ffa1558c8b28a3b234b59"
+    },
+    "replacements": [
+      {
+        "token": "[CAR_MODEL]",
+        "labelEn": "Car Model",
+        "labelZh": "汽车型号",
+        "en": [
+          "BMW M5"
+        ],
+        "zh": [
+          "BMW M5"
+        ]
+      }
+    ]
+  },
+  "prm_78349af8423264beb8d90a27135e17ff": {
+    "sourceHash": {
+      "en": "sha256:731b646165bc894871c443c5401be979c9cf0bb44de5c8b385ee65fa89826f41",
+      "zh": "sha256:daf3cbe4ec69553d90eb4284c0b62314d3976e405674d113dc0f081c3eb46546"
+    },
+    "replacements": [
+      {
+        "token": "[TARGET_USERS]",
+        "labelEn": "Target users",
+        "labelZh": "目标用户",
+        "en": [
+          "creators"
+        ],
+        "zh": [
+          "创作者"
+        ]
+      },
+      {
+        "token": "[PRODUCT_PURPOSE]",
+        "labelEn": "Product purpose",
+        "labelZh": "产品用途",
+        "en": [
+          "repurpose long-form videos"
+        ],
+        "zh": [
+          "重新利用长视频"
+        ]
+      }
+    ]
+  },
+  "prm_7923c258122d6f9559e31cf6c7c57098": {
+    "sourceHash": {
+      "en": "sha256:10fc728e481ada5a2ad49e39924618af34084362cb49a63b2cc8a5de6c9efde5",
+      "zh": "sha256:f3f382c736b8352ab25472c3ccd46faf6e0a5083b05adaf57d98e1ed649b857c"
+    },
+    "replacements": [
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "展示对象",
+        "en": [
+          "leading frontier model"
+        ],
+        "zh": [
+          "领先的前沿模型"
+        ]
+      }
+    ]
+  },
+  "prm_7aad41942322d80eed9cdda797740768": {
+    "sourceHash": {
+      "en": "sha256:4d7fcb3569905e8a9777ff50d89fd16bb8f4b9f4973e96571cac58934262bede",
+      "zh": "sha256:df0dcb9296eb92cf86e727322238b7a306ea545cc26fdc5d45a78d13db9c821a"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[Your Name]"
+        ],
+        "zh": [
+          "[Your Name]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职位",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[Your Role]"
+        ]
+      },
+      {
+        "token": "[BIO]",
+        "labelEn": "Bio",
+        "labelZh": "简介",
+        "en": [
+          "[Short Bio]"
+        ],
+        "zh": [
+          "[Short Bio]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill List]"
+        ],
+        "zh": [
+          "[Skill List]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Project 1, Project 2, Project 3]"
+        ],
+        "zh": [
+          "[Project 1, Project 2, Project 3]"
+        ]
+      },
+      {
+        "token": "[EMAIL]",
+        "labelEn": "Email",
+        "labelZh": "邮箱",
+        "en": [
+          "[Your Email]"
+        ],
+        "zh": [
+          "[Your Email]"
+        ]
+      },
+      {
+        "token": "[LINKS]",
+        "labelEn": "Links",
+        "labelZh": "链接",
+        "en": [
+          "[LinkedIn / GitHub / Behance]"
+        ],
+        "zh": [
+          "[LinkedIn / GitHub / Behance]"
+        ]
+      },
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "[Modern / Dark / Clean / Colorful]"
+        ],
+        "zh": [
+          "[Modern / Dark / Clean / Colorful]"
+        ]
+      }
+    ]
+  },
+  "prm_7cb9477ad4a86166ad265bd2aaffa3b7": {
+    "sourceHash": {
+      "en": "sha256:374329c7f95a7df6d84aa0848d82a36c0f10b9e7e638976eafa4b06624ac89d8",
+      "zh": "sha256:a6464d101bf49f6513d64885406537728367cff23ec47398a0d71b2c51725da1"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand Name",
+        "labelZh": "品牌名称",
+        "en": [
+          "SynapseX"
+        ],
+        "zh": [
+          "SynapseX"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "dark, cinematic"
+        ],
+        "zh": [
+          "深色电影感"
+        ]
+      }
+    ]
+  },
+  "prm_7d46d699adedf29269d0660aa4086291": {
+    "sourceHash": {
+      "en": "sha256:648f7d60cc8bad5c07bfed8794e45835637606e30f6c5a5c8219baca6493ef5b",
+      "zh": "sha256:e214711c98fca1bda0e10f30272a832a0747fd181db17df8edd345a57ac2f9e3"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_NAME]",
+        "labelEn": "Project name",
+        "labelZh": "项目名称",
+        "en": [
+          "ANNALS"
+        ],
+        "zh": [
+          "ANNALS"
+        ]
+      },
+      {
+        "token": "[KINGDOM_NAME]",
+        "labelEn": "Kingdom name",
+        "labelZh": "王国名称",
+        "en": [
+          "Vaelmere"
+        ],
+        "zh": [
+          "Vaelmere"
+        ]
+      }
+    ]
+  },
+  "prm_7dd3d40264159ae96b96e5610d2f6f6b": {
+    "sourceHash": {
+      "en": "sha256:ca6cf42918dfb5214249d59af2fa2a6db3c54a8cea246a69c4b7e964cf797c28",
+      "zh": "sha256:c59e0362d317f47e04c3edbbf57b6c0c26f1dfe943ebd7a95a79258a84916f95"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_NAME]",
+        "labelEn": "Business Name",
+        "labelZh": "企业名称",
+        "en": [
+          "Ember & Oak"
+        ],
+        "zh": [
+          "Ember & Oak"
+        ]
+      },
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "配色",
+        "en": [
+          "warm colors"
+        ],
+        "zh": [
+          "温暖色彩"
+        ]
+      }
+    ]
+  },
+  "prm_7ed5959f3d77ffd47516647eb5eee7dd": {
+    "sourceHash": {
+      "en": "sha256:6d7f8f1d76a2d296dc1dab14521db4703207e0b3131a5c15d2b57a1d55fb76a5",
+      "zh": "sha256:61dd64de9a2d8f5605f0a21fe09b2f77ea844ca1031b87c9d4daf173e5cbb07b"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Tekken 3"
+        ],
+        "zh": [
+          "Tekken 3"
+        ]
+      },
+      {
+        "token": "[FIGHTER_1]",
+        "labelEn": "First fighter",
+        "labelZh": "第一名格斗角色",
+        "en": [
+          "Nina Williams"
+        ],
+        "zh": [
+          "Nina Williams"
+        ]
+      },
+      {
+        "token": "[FIGHTER_2]",
+        "labelEn": "Second fighter",
+        "labelZh": "第二名格斗角色",
+        "en": [
+          "Yoshimitsu"
+        ],
+        "zh": [
+          "Yoshimitsu"
+        ]
+      }
+    ]
+  },
+  "prm_7f5c9e159ec342a17bc6b159e503c175": {
+    "sourceHash": {
+      "en": "sha256:6cc16a854dfbdf9d95bd4435306f33b22b6b11ef75e99e7c2270ee347fd13188",
+      "zh": "sha256:5befcec941c70c54173ce7d8a97d18ec748d04233f969b47a7c9883780aeb6db"
+    },
+    "replacements": [
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "配色",
+        "en": [
+          "dark cyan and light amber"
+        ],
+        "zh": [
+          "深青色与浅琥珀色"
+        ]
+      },
+      {
+        "token": "[SUBJECT]",
+        "labelEn": "Subject",
+        "labelZh": "摄影主题",
+        "en": [
+          "portraitures"
+        ],
+        "zh": [
+          "人像"
+        ]
+      }
+    ]
+  },
+  "prm_818a2277e9ffe8f1c1314a5f49b0acfa": {
+    "sourceHash": {
+      "en": "sha256:54ee0015d9147bae3f3e695d68b63153381d81e3994e73bff59e0b5b335483b7",
+      "zh": "sha256:df2051cf3b4409dc821017ab2964e22273cb9ebda713343707e63aea8dba783d"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[CODING_TOOLS]",
+        "labelEn": "Coding tools",
+        "labelZh": "编程工具",
+        "en": [
+          "modern AI coding tools"
+        ],
+        "zh": [
+          "现代AI编程工具"
+        ]
+      }
+    ]
+  },
+  "prm_82fe263fe279fdb9527dbbaa9f3359db": {
+    "sourceHash": {
+      "en": "sha256:7ea2149ab87b0e5b6761a47bea46c2b17f1c1d990ffdf3eaee386defb22b6588",
+      "zh": "sha256:c83c3cc11a13ccac30cfae057685966020766fc14aac677e2bbc2357114d539f"
+    },
+    "replacements": [
+      {
+        "token": "[SERVICE]",
+        "labelEn": "Service",
+        "labelZh": "服务类型",
+        "en": [
+          "pet grooming"
+        ],
+        "zh": [
+          "宠物美容"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "城市",
+        "en": [
+          "Austin"
+        ],
+        "zh": [
+          "奥斯汀"
+        ]
+      }
+    ]
+  },
+  "prm_83a59cda3b724914615c7d27606941cd": {
+    "sourceHash": {
+      "en": "sha256:e93567aa7843ac81ae8dbe09e28ca22fc1ccd290bdea79bab8ddfb71640badd7",
+      "zh": "sha256:19c73540d55daf9c32710ae0a7e2614758b18f37788e3f39b979efd44813df8e"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_TITLE]",
+        "labelEn": "Project title",
+        "labelZh": "项目标题",
+        "en": [
+          "Pomegranate Jelly"
+        ],
+        "zh": [
+          "石榴果冻"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "气质",
+        "en": [
+          "editorial, quiet, tactile"
+        ],
+        "zh": [
+          "杂志式、安静、触感鲜明"
+        ]
+      }
+    ]
+  },
+  "prm_83b791252ca42f1c659a28ceda0e7b91": {
+    "sourceHash": {
+      "en": "sha256:6e7ae3d6a5b453d66bdedc994ab396b7a1b6a103af5f1fdb23e9fcb566dd6e7a",
+      "zh": "sha256:6d096afdea240a46997bd61dcf13e5b0f25465ab4a8e46bd4bed734234078d01"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "agency"
+        ],
+        "zh": [
+          "机构"
+        ]
+      },
+      {
+        "token": "[PRESENTATION_METAPHOR]",
+        "labelEn": "Presentation Metaphor",
+        "labelZh": "呈现比喻",
+        "en": [
+          "supermarket product packaging"
+        ],
+        "zh": [
+          "超市产品包装"
+        ]
+      }
+    ]
+  },
+  "prm_85b933c8b2551e23f174de11ea5de00a": {
+    "sourceHash": {
+      "en": "sha256:087e635fb52c770e770d47a8b7930c7329aa4b62f869cc593e2b464760595eac",
+      "zh": "sha256:7af7774b3d91048ebe257d971675215695ef7e7ad5a35396d89ef0577d699438"
+    },
+    "replacements": [
+      {
+        "token": "[SOURCE_IMAGE]",
+        "labelEn": "Source image",
+        "labelZh": "源图片",
+        "en": [
+          "a single image"
+        ],
+        "zh": [
+          "一张图片"
+        ]
+      }
+    ]
+  },
+  "prm_85c36f1ed0220573729dfed844880fab": {
+    "sourceHash": {
+      "en": "sha256:31e3f302b9da95194e051901ff05c672fc8483072c3076da6b6a2272f6cc953f",
+      "zh": "sha256:28c5c6642d1e5782c8442d3169bbcc6399961a673f7e9be81711e79463c50fa2"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game Reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Flappy Bird"
+        ],
+        "zh": [
+          "Flappy Bird"
+        ]
+      }
+    ]
+  },
+  "prm_8772444ad0615639e063978c1416ecca": {
+    "sourceHash": {
+      "en": "sha256:db2d7eded25efc5ed41585530ae66b9afe2523888c90a749f7c6e0ed18447bee",
+      "zh": "sha256:cbbfb26605fe11f6fc780fa29f01a4ddfe674dd267f7c636dbf2c3cd3604f20a"
+    },
+    "replacements": [
+      {
+        "token": "[SOURCE_INFORMATION]",
+        "labelEn": "Source information",
+        "labelZh": "来源信息",
+        "en": [
+          "my approved information"
+        ],
+        "zh": [
+          "我批准的信息"
+        ]
+      },
+      {
+        "token": "[TARGET_READER]",
+        "labelEn": "Target reader",
+        "labelZh": "目标读者",
+        "en": [
+          "a real customer"
+        ],
+        "zh": [
+          "真实客户"
+        ]
+      }
+    ]
+  },
+  "prm_893985a3f6ec37bd268151343b5ed1e5": {
+    "sourceHash": {
+      "en": "sha256:c2d50f8b7307bfd66042b8340d59caa96462ecdfea11b883d4d4a21f340494d3",
+      "zh": "sha256:9016c29210f391160c3287a71b442f59ef9154c980a224926ae455113b9e33bb"
+    },
+    "replacements": [
+      {
+        "token": "[MODEL_SUBJECT]",
+        "labelEn": "Model Subject",
+        "labelZh": "模型主题",
+        "en": [
+          "3d model"
+        ],
+        "zh": [
+          "3d 模型"
+        ]
+      },
+      {
+        "token": "[SHOWCASE_CONTENT]",
+        "labelEn": "Showcase Content",
+        "labelZh": "展示内容",
+        "en": [
+          "above"
+        ],
+        "zh": [
+          "上述内容"
+        ]
+      }
+    ]
+  },
+  "prm_8a634f837124b6374b51dbfacfb8d2c2": {
+    "sourceHash": {
+      "en": "sha256:ca255c194445a8bc29901039a7e28c5b79c53c1bd5bf10b74b74d48c5855669c",
+      "zh": "sha256:859f3d0b9f81e8bf167cbb10ab0fd0288dfb03167827c55daab503763fec399f"
+    },
+    "replacements": [
+      {
+        "token": "[BACKGROUND_COLOR]",
+        "labelEn": "Background color",
+        "labelZh": "背景色",
+        "en": [
+          "#0a0608"
+        ],
+        "zh": [
+          "#0a0608"
+        ]
+      },
+      {
+        "token": "[GAME_GENRE]",
+        "labelEn": "Game genre",
+        "labelZh": "游戏类别",
+        "en": [
+          "Cyber Geisha Action RPG"
+        ],
+        "zh": [
+          "Cyber Geisha Action RPG"
+        ]
+      }
+    ]
+  },
+  "prm_8b9e655cc6cafb28284e8afdc7aadfb5": {
+    "sourceHash": {
+      "en": "sha256:669a496c0c9b1ac9068bb7da50584538ec87d19d81855d824067f13790b55da9",
+      "zh": "sha256:dd7c77e6f5faf96ca7be47540247533927b70958fcbfa117158718640f47e13f"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_SOURCE]",
+        "labelEn": "Site Source",
+        "labelZh": "网站源码",
+        "en": [
+          "this website's source code"
+        ],
+        "zh": [
+          "这个网站的源代码"
+        ]
+      },
+      {
+        "token": "[HOSTING_OPTIONS]",
+        "labelEn": "Hosting Options",
+        "labelZh": "托管选项",
+        "en": [
+          "Netlify, Vercel or Cloudflare"
+        ],
+        "zh": [
+          "Netlify、Vercel或Cloudflare"
+        ]
+      }
+    ]
+  },
+  "prm_8db3e84c14dd90e9c81c0300d8bc341f": {
+    "sourceHash": {
+      "en": "sha256:5e18a2bb326e0de00148161dc46fb6e409c650d1ff71fc0c83e821a10c5c84a3",
+      "zh": "sha256:0a581dbc67d107e28f9f387a8d334092074a106f867046b0efee71a8e3df5f4f"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "creative agency"
+        ],
+        "zh": [
+          "创意机构"
+        ]
+      },
+      {
+        "token": "[GALLERY_ELEMENT]",
+        "labelEn": "Gallery element",
+        "labelZh": "画廊元素",
+        "en": [
+          "image scroll bar"
+        ],
+        "zh": [
+          "图片滚动条"
+        ]
+      }
+    ]
+  },
+  "prm_8e7a627c692a9c77b2250c7ae97e66c8": {
+    "sourceHash": {
+      "en": "sha256:b9458fd9ab879d077c6e62c64761a4f17a51ea361cb336b3d987d739b25cab47",
+      "zh": "sha256:5abfaaac8ac01d502c729ae81d63f0a52987c593a04a6f9f3f0ddd41187f217e"
+    },
+    "replacements": [
+      {
+        "token": "[FLYING_OBJECT]",
+        "labelEn": "Flying Object",
+        "labelZh": "飞行物",
+        "en": [
+          "paper-plane"
+        ],
+        "zh": [
+          "纸飞机"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "stylized low-poly 3D"
+        ],
+        "zh": [
+          "风格化低多边形3D"
+        ]
+      }
+    ]
+  },
+  "prm_905d0c8ba447fa1b581e367bf76dfd3c": {
+    "sourceHash": {
+      "en": "sha256:420ac3706e05b6fa0bed2fad481a200530edad401243b9a133756df5297fa8c8",
+      "zh": "sha256:750e948d3151184811d2830085d07002830dee4b461e65fc57b3d817fd492eb4"
+    },
+    "replacements": [
+      {
+        "token": "[DATA_SOURCE]",
+        "labelEn": "Data source",
+        "labelZh": "数据来源",
+        "en": [
+          "~/Library/Application Support/Knowledge/knowledgeC.db"
+        ],
+        "zh": [
+          "~/Library/Application Support/Knowledge/knowledgeC.db"
+        ]
+      },
+      {
+        "token": "[REPORT_LANGUAGE]",
+        "labelEn": "Report language",
+        "labelZh": "报告语言",
+        "en": [
+          "German"
+        ],
+        "zh": [
+          "德语"
+        ]
+      }
+    ]
+  },
+  "prm_92a0bc485b0e9c712760ce0deeda2592": {
+    "sourceHash": {
+      "en": "sha256:e7272821fd2e7e514bb08fa8ec2074ecf0bf5ba65338606f3c4a38772563dc78",
+      "zh": "sha256:b965d7573a44d73b2f69ff11f744e78df5c7630ac8088eb4c944e0695c6ba5b8"
+    },
+    "replacements": [
+      {
+        "token": "[STYLE]",
+        "labelEn": "Style",
+        "labelZh": "风格",
+        "en": [
+          "Neo-Brutalism"
+        ],
+        "zh": [
+          "新粗野主义"
+        ]
+      },
+      {
+        "token": "[ACCENT_COLOR]",
+        "labelEn": "Accent Color",
+        "labelZh": "强调色",
+        "en": [
+          "neon lime green"
+        ],
+        "zh": [
+          "霓虹青柠绿"
+        ]
+      }
+    ]
+  },
+  "prm_92f371524da72b3bcde64de274448347": {
+    "sourceHash": {
+      "en": "sha256:5f52282f96e74e91bbb92b53a1c2b9f53c4cb204402713c4aeb1a79fe5c01f5d",
+      "zh": "sha256:7b450cd1064cc6b76808a613916b8a0e4549b33e166d209571ad215cd580bfff"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_CONCEPT]",
+        "labelEn": "Site Concept",
+        "labelZh": "网站概念",
+        "en": [
+          "[what the site is for, the brand name (yours, never the reference's), and the one-line story it tells as you scroll]"
+        ],
+        "zh": [
+          "[what the site is for, the brand name (yours, never the reference's), and the one-line story it tells as you scroll]"
+        ]
+      },
+      {
+        "token": "[REFERENCE]",
+        "labelEn": "Reference",
+        "labelZh": "参考作品",
+        "en": [
+          "[a url or a screen recording of a site whose motion you love, plus how far to go, like \"the first 3 sections\"]"
+        ],
+        "zh": [
+          "[a url or a screen recording of a site whose motion you love, plus how far to go, like \"the first 3 sections\"]"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "[describe it, or \"interview me\"]"
+        ],
+        "zh": [
+          "[describe it, or \"interview me\"]"
+        ]
+      },
+      {
+        "token": "[SECTIONS_AND_COPY]",
+        "labelEn": "Sections And Copy",
+        "labelZh": "区块与文案",
+        "en": [
+          "[your list and words, or \"write it\"]"
+        ],
+        "zh": [
+          "[your list and words, or \"write it\"]"
+        ]
+      },
+      {
+        "token": "[MODEL_ASSETS]",
+        "labelEn": "Model Assets",
+        "labelZh": "模型素材",
+        "en": [
+          "[models you own (glb), \"procedural\", or \"generate\"]"
+        ],
+        "zh": [
+          "[models you own (glb), \"procedural\", or \"generate\"]"
+        ]
+      },
+      {
+        "token": "[IMAGE_BUDGET]",
+        "labelEn": "Image Budget",
+        "labelZh": "图片预算",
+        "en": [
+          "[gpt image 2.5 on replicate, the most you'll spend in total]"
+        ],
+        "zh": [
+          "[gpt image 2.5 on replicate, the most you'll spend in total]"
+        ]
+      },
+      {
+        "token": "[TARGET_DEVICES]",
+        "labelEn": "Target Devices",
+        "labelZh": "目标设备",
+        "en": [
+          "[desktop first or mobile too, and the slowest machine it has to hold 60fps on]"
+        ],
+        "zh": [
+          "[desktop first or mobile too, and the slowest machine it has to hold 60fps on]"
+        ]
+      },
+      {
+        "token": "[EXCLUSIONS]",
+        "labelEn": "Exclusions",
+        "labelZh": "禁止事项",
+        "en": [
+          "[brands, marks, people or topics to avoid]"
+        ],
+        "zh": [
+          "[brands, marks, people or topics to avoid]"
+        ]
+      },
+      {
+        "token": "[EXTRA_DELIVERABLES]",
+        "labelEn": "Extra Deliverables",
+        "labelZh": "额外交付",
+        "en": [
+          "[a 60fps film of the full scroll, a side-by-side against the reference, or both]"
+        ],
+        "zh": [
+          "[a 60fps film of the full scroll, a side-by-side against the reference, or both]"
+        ]
+      }
+    ]
+  },
+  "prm_9463e1340ffcecd0894e161c42b1c035": {
+    "sourceHash": {
+      "en": "sha256:c738664585eed7d7bbd61d2b4339691e66a2b68cf9b84f4e2ab5632a58501740",
+      "zh": "sha256:1d0bd7e5707f5b81b97ed5f1551ac77729fbb4e511e3c14b089fc59121e58435"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_TITLE]",
+        "labelEn": "Game title",
+        "labelZh": "游戏标题",
+        "en": [
+          "Corsair Bay"
+        ],
+        "zh": [
+          "Corsair Bay"
+        ]
+      },
+      {
+        "token": "[WATER_COLOR]",
+        "labelEn": "Water color",
+        "labelZh": "海水颜色",
+        "en": [
+          "turquoise water"
+        ],
+        "zh": [
+          "松石色海水"
+        ]
+      }
+    ]
+  },
+  "prm_96daedbd789aed4d6cf3674e3c197217": {
+    "sourceHash": {
+      "en": "sha256:232be8c2e9f2e2f8445c30d0f74f9ed73ed62e13f64cda437e744c22e27c5774",
+      "zh": "sha256:63cdb87f29a84eb090f729b5f8ccb36512331eb77cd9e6c14915baf556934e6a"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_REFERENCE]",
+        "labelEn": "Game Reference",
+        "labelZh": "游戏参考",
+        "en": [
+          "Minecraft"
+        ],
+        "zh": [
+          "Minecraft"
+        ]
+      },
+      {
+        "token": "[LIGHTING_STYLE]",
+        "labelEn": "Lighting Style",
+        "labelZh": "布光风格",
+        "en": [
+          "ray tracing like lighting"
+        ],
+        "zh": [
+          "类似光线追踪的布光"
+        ]
+      }
+    ]
+  },
+  "prm_9781ffc05fb675ee9a1417fc99e7a02d": {
+    "sourceHash": {
+      "en": "sha256:5784a9d7709e34e8d372f9dfdff209911c17a5a7ae1a6f70b5e9ca8fc5926b93",
+      "zh": "sha256:181881772161948c90079595b0f4f0d6b74ca66f85de154941e9976ca5903e34"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE_TOPIC]",
+        "labelEn": "Website topic",
+        "labelZh": "网站主题",
+        "en": [
+          "{insert here}"
+        ],
+        "zh": [
+          "{insert here}"
+        ]
+      }
+    ]
+  },
+  "prm_97cef9a1532c1e2a095be0a0eca295cc": {
+    "sourceHash": {
+      "en": "sha256:06202c09dc442ffc3ac96b772cbde1af3ab19169040dfae8815ee842bd015ebe",
+      "zh": "sha256:eb1c173b894edce6b0227fd63fad9cf7ac80948bbae0566772cc29471b5ad626"
+    },
+    "replacements": [
+      {
+        "token": "[BOOK_TITLE]",
+        "labelEn": "Book Title",
+        "labelZh": "书名",
+        "en": [
+          "The AI Productivity Playbook"
+        ],
+        "zh": [
+          "The AI Productivity Playbook"
+        ]
+      },
+      {
+        "token": "[PREVIEW_CONTENT]",
+        "labelEn": "Preview Content",
+        "labelZh": "预览内容",
+        "en": [
+          "chapter previews"
+        ],
+        "zh": [
+          "章节预览"
+        ]
+      }
+    ]
+  },
+  "prm_97f958b6be0d431e6d33143849f74460": {
+    "sourceHash": {
+      "en": "sha256:b43eacfa786f1f4feaf59dd1c22aff6045ba49357669dc771a53cc52d08cf5f2",
+      "zh": "sha256:4eaf15524420402f5902f8443cf65db48b60466a221ff9fb16ab83b81cdf57e6"
+    },
+    "replacements": [
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[who]"
+        ],
+        "zh": [
+          "[who]"
+        ]
+      },
+      {
+        "token": "[GOAL]",
+        "labelEn": "Goal",
+        "labelZh": "目标",
+        "en": [
+          "[one action]"
+        ],
+        "zh": [
+          "[one action]"
+        ]
+      },
+      {
+        "token": "[PAGES]",
+        "labelEn": "Pages",
+        "labelZh": "页面列表",
+        "en": [
+          "[list]"
+        ],
+        "zh": [
+          "[list]"
+        ]
+      },
+      {
+        "token": "[STYLE]",
+        "labelEn": "Style",
+        "labelZh": "风格",
+        "en": [
+          "[description]"
+        ],
+        "zh": [
+          "[description]"
+        ]
+      },
+      {
+        "token": "[FEATURE]",
+        "labelEn": "Required feature",
+        "labelZh": "必备功能",
+        "en": [
+          "[one feature]"
+        ],
+        "zh": [
+          "[one feature]"
+        ]
+      }
+    ]
+  },
+  "prm_9b6296375251551e0d15d84b8443b470": {
+    "sourceHash": {
+      "en": "sha256:105ba77474f3b65948e3675137b30ba20c6cb305f76b4ba1d8fd224592b8cd9e",
+      "zh": "sha256:e56a7ed62da50e87f9152552fc1300acb8fc6af00d731a3e5f4d9d4cdda4b66c"
+    },
+    "replacements": [
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "城市",
+        "en": [
+          "Austin"
+        ],
+        "zh": [
+          "奥斯汀"
+        ]
+      },
+      {
+        "token": "[PROFESSION]",
+        "labelEn": "Profession",
+        "labelZh": "职业",
+        "en": [
+          "realtor"
+        ],
+        "zh": [
+          "房地产经纪人"
+        ]
+      }
+    ]
+  },
+  "prm_9bab5d5c9756b2b67c8fd457855e3bdc": {
+    "sourceHash": {
+      "en": "sha256:ec2af5d9a44994806548ce27c2b4b4c4998cfc717ab4df7b82ee14fcab7bb4b1",
+      "zh": "sha256:ef44f0f9d36459f42f63cb673c9118e7ea10a9fa7d87d23bee9e3f0d099a19c1"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      },
+      {
+        "token": "[BRAND_MOOD]",
+        "labelEn": "Brand mood",
+        "labelZh": "品牌气质",
+        "en": [
+          "[modern/luxury/minimal/playful/trustworthy]"
+        ],
+        "zh": [
+          "[modern/luxury/minimal/playful/trustworthy]"
+        ]
+      }
+    ]
+  },
+  "prm_9d2c624799320b8fd829036fbad4797b": {
+    "sourceHash": {
+      "en": "sha256:4adb9a9abda67627b8565df7efa43401b458670311b76685a96b3a92b4ff15a2",
+      "zh": "sha256:5f982f43d9fc91ab1fe800e3b7bab62d5f90cfd1df7a859de2e2a4b7479b506b"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand Name",
+        "labelZh": "品牌名称",
+        "en": [
+          "serein"
+        ],
+        "zh": [
+          "serein"
+        ]
+      },
+      {
+        "token": "[DESTINATION_URL]",
+        "labelEn": "Destination Url",
+        "labelZh": "目标链接",
+        "en": [
+          "https://t.co/X7SBufnpNs"
+        ],
+        "zh": [
+          "https://t.co/X7SBufnpNs"
+        ]
+      }
+    ]
+  },
+  "prm_9e6bfbb979ac354fcbf219344db06f1f": {
+    "sourceHash": {
+      "en": "sha256:e7f7f039a4a686224100b4dd28b38bfe24439fb75064988b6ffd96b5ef416deb",
+      "zh": "sha256:1f393f3d5388f5ee8d4af5bdaab97228ada9e49776ce2deada19cbe4c761f659"
+    },
+    "replacements": [
+      {
+        "token": "[CONTENT_PATH]",
+        "labelEn": "Content path",
+        "labelZh": "内容路径",
+        "en": [
+          "public/content/blogs/<file-name>.md"
+        ],
+        "zh": [
+          "public/content/blogs/<file-name>.md"
+        ]
+      },
+      {
+        "token": "[COMPONENT_LIBRARY]",
+        "labelEn": "Component library",
+        "labelZh": "组件库",
+        "en": [
+          "shadCN"
+        ],
+        "zh": [
+          "shadCN"
+        ]
+      }
+    ]
+  },
+  "prm_9e7aae7b02298ef959258eedb3de8b00": {
+    "sourceHash": {
+      "en": "sha256:902f2d344df9582aaf0a1b9d9a75c9a3470bc59c82c483674060e5bf30ae2770",
+      "zh": "sha256:74a311f4c06a5d3ab02c220a95fd4931d6d8515a42aa4cdc447ed2741447249e"
+    },
+    "replacements": [
+      {
+        "token": "[REFERENCE_EXAMPLES]",
+        "labelEn": "Reference Examples",
+        "labelZh": "参考示例",
+        "en": [
+          "these examples"
+        ],
+        "zh": [
+          "这些示例"
+        ]
+      },
+      {
+        "token": "[DESIGN_SCOPE]",
+        "labelEn": "Design Scope",
+        "labelZh": "设计范围",
+        "en": [
+          "corners, borders and shadows"
+        ],
+        "zh": [
+          "圆角、边框与阴影"
+        ]
+      }
+    ]
+  },
+  "prm_a001050de0cd6426d70fe2ef91db7b8c": {
+    "sourceHash": {
+      "en": "sha256:b0e284b734ab93032eaf10b8acd6b1eff2ce98fd680ba64c340c6bf9c617b926",
+      "zh": "sha256:fbad37ecc0cc09cc17d45d9e903157eef784eb5bf6e20c15729d7245e437cca9"
+    },
+    "replacements": [
+      {
+        "token": "[CAP_COLOR]",
+        "labelEn": "Cap color",
+        "labelZh": "帽子颜色",
+        "en": [
+          "red-and-white"
+        ],
+        "zh": [
+          "红白"
+        ]
+      },
+      {
+        "token": "[BICYCLE_STYLE]",
+        "labelEn": "Bicycle style",
+        "labelZh": "自行车风格",
+        "en": [
+          "mint-green vintage frame"
+        ],
+        "zh": [
+          "薄荷绿色复古车架"
+        ]
+      }
+    ]
+  },
+  "prm_a15686f4243cf4d1b762a83f1cb2e6a0": {
+    "sourceHash": {
+      "en": "sha256:59b94b2e167284960ecb5a066da81aa5b3275eca010550548b3d0e6bac99912a",
+      "zh": "sha256:5572bbc365863879006a213bcd66409552a711a8e63835fb42ea8a5a0dd11fb1"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "SEO agency"
+        ],
+        "zh": [
+          "SEO 代理机构"
+        ]
+      }
+    ]
+  },
+  "prm_a4155d4bff341d4a9a66981615a303c0": {
+    "sourceHash": {
+      "en": "sha256:c79da0c8bf898a24aedeb3b45f67d0109ca819d55a76a2ca077c202b5a0b8a6b",
+      "zh": "sha256:a8709b6403413d53c76115f25dba4e80f61ffe51f6ac28dc3a3086b053cc73fd"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_LOCATION]",
+        "labelEn": "Scene location",
+        "labelZh": "场景地点",
+        "en": [
+          "my backyard"
+        ],
+        "zh": [
+          "后院"
+        ]
+      },
+      {
+        "token": "[MODEL_STYLE]",
+        "labelEn": "Model style",
+        "labelZh": "模型风格",
+        "en": [
+          "photorealistic"
+        ],
+        "zh": [
+          "照片级真实"
+        ]
+      }
+    ]
+  },
+  "prm_a46578ae5e78967cf1e9797e3edc8f02": {
+    "sourceHash": {
+      "en": "sha256:50dccf6c5cd75a1e4cc53d9fe6eab6bf70c59e9228b165b346284ee069d61cb4",
+      "zh": "sha256:2db173fe7d64473a8f435977c517446c4e2e2f90224a86d79caf582f390d7f88"
+    },
+    "replacements": [
+      {
+        "token": "[TOOL]",
+        "labelEn": "Tool",
+        "labelZh": "工具",
+        "en": [
+          "[tool]"
+        ],
+        "zh": [
+          "[tool]"
+        ]
+      },
+      {
+        "token": "[KEYWORD]",
+        "labelEn": "Keyword",
+        "labelZh": "关键词",
+        "en": [
+          "[keyword]"
+        ],
+        "zh": [
+          "[keyword]"
+        ]
+      },
+      {
+        "token": "[PRODUCT]",
+        "labelEn": "Product",
+        "labelZh": "产品",
+        "en": [
+          "[your product]"
+        ],
+        "zh": [
+          "[your product]"
+        ]
+      }
+    ]
+  },
+  "prm_a4a2c8f2e033ea55325e9e031ff0776d": {
+    "sourceHash": {
+      "en": "sha256:b8b2875465200986c59ef85840ca6d89a889df3ad70ab65d8b72583d0a791074",
+      "zh": "sha256:6c1873d842322cd144d1475512a4dcb98d0dfca46424ffe92aa1a82b5aba7203"
+    },
+    "replacements": [
+      {
+        "token": "[PORTFOLIO_OWNER]",
+        "labelEn": "Portfolio owner",
+        "labelZh": "作品集主体",
+        "en": [
+          "fictional creative professional"
+        ],
+        "zh": [
+          "虚构创意专业人士"
+        ]
+      },
+      {
+        "token": "[COLOR_TREATMENT]",
+        "labelEn": "Color treatment",
+        "labelZh": "色彩处理",
+        "en": [
+          "solid colors only"
+        ],
+        "zh": [
+          "仅纯色"
+        ]
+      }
+    ]
+  },
+  "prm_a5009924b669123dba548c9daf06e7f0": {
+    "sourceHash": {
+      "en": "sha256:2d75499980b2419798fd405ed99bd5378a63f3bea2cb461be6621bfe40298478",
+      "zh": "sha256:9457d94f43de4c1062b548d5b1307f92326a7db6abbf2e2d0dcacd15e080f807"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_CATEGORY]",
+        "labelEn": "Brand Category",
+        "labelZh": "品牌类别",
+        "en": [
+          "furniture brand"
+        ],
+        "zh": [
+          "家具品牌"
+        ]
+      },
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page Type",
+        "labelZh": "页面类型",
+        "en": [
+          "homepage"
+        ],
+        "zh": [
+          "主页"
+        ]
+      }
+    ]
+  },
+  "prm_a5583a091ade1efb9df4aad1073bc787": {
+    "sourceHash": {
+      "en": "sha256:837ed7755d13e3acfaaeae759fdb3a2246a3aa76f3f25d7285e42d89e10cbd63",
+      "zh": "sha256:9a4bbaa99dc1a50ad16b6b277d19f847ae2fd612f765402e77a039e4f5ef6429"
+    },
+    "replacements": [
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "所在地",
+        "en": [
+          "Copenhagen"
+        ],
+        "zh": [
+          "哥本哈根"
+        ]
+      },
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "third-wave coffee shop"
+        ],
+        "zh": [
+          "第三波咖啡馆"
+        ]
+      },
+      {
+        "token": "[VISUAL_MOOD]",
+        "labelEn": "Visual mood",
+        "labelZh": "视觉气质",
+        "en": [
+          "Warm, unhurried, photography-led"
+        ],
+        "zh": [
+          "温暖、从容，以摄影为主"
+        ]
+      }
+    ]
+  },
+  "prm_a66ab9add52f562c9370d0cfeb3ac350": {
+    "sourceHash": {
+      "en": "sha256:f7ebb9741bded88941a32fe3cc07e0dbc3e299dd1a751b694090e2af9fcac481",
+      "zh": "sha256:7006ea39a7eb714ca2fdb94de20e812d9b2f390aeea5898ebc5fbf19389af492"
+    },
+    "replacements": [
+      {
+        "token": "[FIELD]",
+        "labelEn": "Field",
+        "labelZh": "领域",
+        "en": [
+          "[Your Field]"
+        ],
+        "zh": [
+          "[Your Field]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ],
+        "zh": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ]
+      },
+      {
+        "token": "[TARGET_ROLE]",
+        "labelEn": "Target Role",
+        "labelZh": "目标职位",
+        "en": [
+          "[Your Target]"
+        ],
+        "zh": [
+          "[Your Target]"
+        ]
+      },
+      {
+        "token": "[PRACTICE_PROJECTS]",
+        "labelEn": "Practice Projects",
+        "labelZh": "练习项目",
+        "en": [
+          "[Your Practice Work]"
+        ],
+        "zh": [
+          "[Your Practice Work]"
+        ]
+      }
+    ]
+  },
+  "prm_a96fc465582ef65cc59ff744fb2179da": {
+    "sourceHash": {
+      "en": "sha256:9d735a3817e9b5452116c152da6ae81ab8d34f3bcf303d562da66d90bb8aea96",
+      "zh": "sha256:2683788576fa7bb61dd21bd274ea49c11a6dc15a01d1bf68716370e639088c4e"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_TYPE]",
+        "labelEn": "Game type",
+        "labelZh": "游戏类型",
+        "en": [
+          "zombie survival game"
+        ],
+        "zh": [
+          "僵尸生存游戏"
+        ]
+      }
+    ]
+  },
+  "prm_acb549421b022147fbb89474686ed2a6": {
+    "sourceHash": {
+      "en": "sha256:2f05e7ae04f56a609e138f0f84fea651d40dada9156b853121eeec831969b814",
+      "zh": "sha256:9768b590a71d986c2cd461d70d011b9ea895f665788bf824caff2fce4fe059ed"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_SUBJECT]",
+        "labelEn": "Scene Subject",
+        "labelZh": "绘画主题",
+        "en": [
+          "new york skylines"
+        ],
+        "zh": [
+          "new york skylines"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "very realistic"
+        ],
+        "zh": [
+          "非常写实"
+        ]
+      }
+    ]
+  },
+  "prm_ae7d83c56abbb358da6b03df711b007a": {
+    "sourceHash": {
+      "en": "sha256:8140aac3fd87677cdb91d369a1fed799ff2f4ad4b54b20f0e580a4944224bd3e",
+      "zh": "sha256:b26e0a2850d901bb7b7a8ed21a27ff2bcdbfa544f475d6c76199f13176b56b21"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[PROJECT_BUDGET]",
+        "labelEn": "Project budget",
+        "labelZh": "项目预算",
+        "en": [
+          "$10K+"
+        ],
+        "zh": [
+          "$10K+"
+        ]
+      }
+    ]
+  },
+  "prm_b0edad08ed69cd2cd9cbeb9e778b1a61": {
+    "sourceHash": {
+      "en": "sha256:78d90e85d0c50a631d5168707fb38d83f0edf627b2740b86fc8eba9d56ae880a",
+      "zh": "sha256:68342776e742a979128c479b54f2425be3f47a3481d26126d334aa172d4c78f9"
+    },
+    "replacements": [
+      {
+        "token": "[SITE]",
+        "labelEn": "Site",
+        "labelZh": "目标网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE_STYLE]",
+        "labelEn": "Experience Style",
+        "labelZh": "体验风格",
+        "en": [
+          "immersive cinematic journey"
+        ],
+        "zh": [
+          "沉浸式电影旅程"
+        ]
+      }
+    ]
+  },
+  "prm_b38286103cc01374b0a9dcc340139e2e": {
+    "sourceHash": {
+      "en": "sha256:f502df4a0b631e0c5daeb3259ec3f0205a252b2c043ea4dd053f7a3ca4ded881",
+      "zh": "sha256:854dcc2c610e698a49017d61065ddb8a2f35269e5e222157a80a4608aa270d44"
+    },
+    "replacements": [
+      {
+        "token": "[PARTICLE_TEMPLATES]",
+        "labelEn": "Particle templates",
+        "labelZh": "粒子模板",
+        "en": [
+          "hearts/flowers/saturn/Buddha statues/fireworks"
+        ],
+        "zh": [
+          "爱心/花朵/土星/佛像/烟花"
+        ]
+      },
+      {
+        "token": "[INTERFACE_STYLE]",
+        "labelEn": "Interface style",
+        "labelZh": "界面风格",
+        "en": [
+          "simple and modern"
+        ],
+        "zh": [
+          "简洁现代"
+        ]
+      }
+    ]
+  },
+  "prm_b3b186d66645ea7d940f18b07d999262": {
+    "sourceHash": {
+      "en": "sha256:2aec669d987373efe677b18464c147b407bb0cbaee193f208f202ade2a415909",
+      "zh": "sha256:d11da958b30da9d4d26b3893fd67214116b98703a35a4931aa022282f48b6940"
+    },
+    "replacements": [
+      {
+        "token": "[CALCULATOR_TYPE]",
+        "labelEn": "Calculator Type",
+        "labelZh": "计算器类型",
+        "en": [
+          "freelance rate calculator"
+        ],
+        "zh": [
+          "自由职业报价计算器"
+        ]
+      },
+      {
+        "token": "[INPUT_FIELDS]",
+        "labelEn": "Input Fields",
+        "labelZh": "输入项",
+        "en": [
+          "hours, expenses and profit margin"
+        ],
+        "zh": [
+          "工时、费用和利润率"
+        ]
+      }
+    ]
+  },
+  "prm_b418b9244c2bcd742ccf9c33c716980b": {
+    "sourceHash": {
+      "en": "sha256:6c2791c98ac85905945c36ac8f1ac79d10efe2b63e1c92a594fd68cfbd1a22d5",
+      "zh": "sha256:f5a06ae60464ea92f85d9a96ebf71b70dc38bd04b6189ec5bdc286e619cef394"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      }
+    ]
+  },
+  "prm_b79713917105ca067d542603463a62e5": {
+    "sourceHash": {
+      "en": "sha256:b1445647aca393b7d6d498fbf8f2bf6f6ac71b5cb8dad7997267d137c8277944",
+      "zh": "sha256:9c3c5dcc655c5c6cb58bf4a95cba90f11cafcfb3e34afb01c1c0c6cc69bd91ed"
+    },
+    "replacements": [
+      {
+        "token": "[CAMPAIGN_TYPE]",
+        "labelEn": "Campaign Type",
+        "labelZh": "活动类型",
+        "en": [
+          "marketing campaigns"
+        ],
+        "zh": [
+          "营销活动"
+        ]
+      },
+      {
+        "token": "[INPUT_FIELDS]",
+        "labelEn": "Input Fields",
+        "labelZh": "输入项",
+        "en": [
+          "budget and expected conversion rate"
+        ],
+        "zh": [
+          "预算和预期转化率"
+        ]
+      }
+    ]
+  },
+  "prm_b98dd74fb3f6235014b72babf64c7a45": {
+    "sourceHash": {
+      "en": "sha256:c87619a39da6144227662258d06c9ec39c839b8dc4f8a76f7e6627fdb77e7d68",
+      "zh": "sha256:dc7ba765b71cb805d79599d753cde7ef301bcf391abb8a173af237fc357af9e4"
+    },
+    "replacements": [
+      {
+        "token": "[CHARACTER]",
+        "labelEn": "Character",
+        "labelZh": "角色",
+        "en": [
+          "pelican"
+        ],
+        "zh": [
+          "鹈鹕"
+        ]
+      },
+      {
+        "token": "[SCENE_LOCATION]",
+        "labelEn": "Scene location",
+        "labelZh": "场景地点",
+        "en": [
+          "a city"
+        ],
+        "zh": [
+          "城市"
+        ]
+      }
+    ]
+  },
+  "prm_bf669149cab6e954dcfc0bf2500c5db5": {
+    "sourceHash": {
+      "en": "sha256:b482c7bce6c75a704e76a5713b7fef56f0567a05fec25affa8957865bfaa8c69",
+      "zh": "sha256:e9590feb24717e13d2dac16f3214bfcb95b32059989274448976b7f9e0b138ce"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_SUBJECT]",
+        "labelEn": "Scene Subject",
+        "labelZh": "场景主体",
+        "en": [
+          "intricate ship"
+        ],
+        "zh": [
+          "精巧的船"
+        ]
+      },
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual Style",
+        "labelZh": "视觉风格",
+        "en": [
+          "colorful voxels"
+        ],
+        "zh": [
+          "彩色体素"
+        ]
+      }
+    ]
+  },
+  "prm_bf9299700bbb596594f3d7b9ac8a22e3": {
+    "sourceHash": {
+      "en": "sha256:ace17dbb4909da3a8623575115bbe9727c4f704070b344562ab18a274c4c9192",
+      "zh": "sha256:d23aebfbcc3998701354a7e72dbf18b9fae89cf077576a3e86cfe67855471884"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_NAME]",
+        "labelEn": "Product name",
+        "labelZh": "产品名称",
+        "en": [
+          "Ruby Juliet"
+        ],
+        "zh": [
+          "Ruby Juliet"
+        ]
+      }
+    ]
+  },
+  "prm_bfc7e192f57d31afc52066351a3c2155": {
+    "sourceHash": {
+      "en": "sha256:4311ee82b14db814495e53199d7924f08cd4b5ce05aa7c84df63f39f19d9e60f",
+      "zh": "sha256:0c0f59f6d2170aae1120d25c50d901f1f22335a8bd62d92963e41b844449544e"
+    },
+    "replacements": [
+      {
+        "token": "[EXPERIENCE_TITLE]",
+        "labelEn": "Experience Title",
+        "labelZh": "体验名称",
+        "en": [
+          "Gummy Bears"
+        ],
+        "zh": [
+          "Gummy Bears"
+        ]
+      },
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "配色",
+        "en": [
+          "cherry red, orange, lemon yellow, apple green, clear pineapple"
+        ],
+        "zh": [
+          "樱桃红、橙、柠檬黄、苹果绿、透明菠萝色"
+        ]
+      }
+    ]
+  },
+  "prm_c07fd32d1d61364180c44ebd67898e1e": {
+    "sourceHash": {
+      "en": "sha256:09b8936fc20b490b49d3dbe89c90f5ba401c300043d9794b8438688a81a4b6dd",
+      "zh": "sha256:f72ec089aa6eca3b7cd8e32b9575d4802cac315ea4464b8d4c048f8095ef67ed"
+    },
+    "replacements": [
+      {
+        "token": "[PROFESSION]",
+        "labelEn": "Profession",
+        "labelZh": "职业",
+        "en": [
+          "graphic designer"
+        ],
+        "zh": [
+          "平面设计师"
+        ]
+      },
+      {
+        "token": "[CONTACT_FEATURE]",
+        "labelEn": "Contact feature",
+        "labelZh": "联系功能",
+        "en": [
+          "contact form"
+        ],
+        "zh": [
+          "联系表单"
+        ]
+      }
+    ]
+  },
+  "prm_c2c9d99ca1da4ea76db532de41892a46": {
+    "sourceHash": {
+      "en": "sha256:7ad26b6ac516a971bb9ac0d0cfc8c196189b12adde5f2edb2f19f0159c1c4514",
+      "zh": "sha256:197f97c2a1e0837a13a5240ba3e49a5814b37f9e903f23290100d48282c8ebc4"
+    },
+    "replacements": [
+      {
+        "token": "[SITE]",
+        "labelEn": "Site",
+        "labelZh": "目标网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[PLANNING_HORIZON]",
+        "labelEn": "Planning Horizon",
+        "labelZh": "规划周期",
+        "en": [
+          "long-term improvement roadmap"
+        ],
+        "zh": [
+          "长期改进路线图"
+        ]
+      }
+    ]
+  },
+  "prm_c411819301036d393d3bd35959175a22": {
+    "sourceHash": {
+      "en": "sha256:8e87fd675b09a501668cc3f68bfdb997a94773cbc80c850e0ef557b8aae8a5a0",
+      "zh": "sha256:0b98413af0f72c13c644356a66cf73a902c63e51f574f7a14b207d3e9a841b52"
+    },
+    "replacements": [
+      {
+        "token": "[APP_NAME]",
+        "labelEn": "App name",
+        "labelZh": "应用名称",
+        "en": [
+          "ROOM STUDIO"
+        ],
+        "zh": [
+          "ROOM STUDIO"
+        ]
+      },
+      {
+        "token": "[ROOM_TYPE]",
+        "labelEn": "Room type",
+        "labelZh": "房间类型",
+        "en": [
+          "contemporary living room"
+        ],
+        "zh": [
+          "现代客厅"
+        ]
+      }
+    ]
+  },
+  "prm_c60d807cb24f0aca9b9200eddbae427c": {
+    "sourceHash": {
+      "en": "sha256:068668e297398b815367d344b5e2c24914df6bb1a4b86244a87e9af4819097af",
+      "zh": "sha256:828399ce5443aef581de0e1fc4f79c6e59ee99832a1ff4a2789cb93219cbb451"
+    },
+    "replacements": [
+      {
+        "token": "[ANIMAL]",
+        "labelEn": "Animal",
+        "labelZh": "动物主题",
+        "en": [
+          "elephant"
+        ],
+        "zh": [
+          "大象"
+        ]
+      }
+    ]
+  },
+  "prm_c9dcf5adad75dffc88442946c56116ec": {
+    "sourceHash": {
+      "en": "sha256:e2c9af29ddd23499244fc89306001428740761a90d49bf139180a235554a7279",
+      "zh": "sha256:8893d77cf6b9060448980351366995f6c4c5c8134a7043e1cf4d79a1e2ea0abe"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "Foldscape Memories"
+        ],
+        "zh": [
+          "Foldscape Memories"
+        ]
+      },
+      {
+        "token": "[DEVICE_MODEL]",
+        "labelEn": "Device model",
+        "labelZh": "设备型号",
+        "en": [
+          "iPhone Duo"
+        ],
+        "zh": [
+          "iPhone Duo"
+        ]
+      }
+    ]
+  },
+  "prm_cae8f9a4a58e7ae256ace71dc6f23e42": {
+    "sourceHash": {
+      "en": "sha256:7cabf7866ef8c17227585ef1e07e5dddd1d26f2bdbf2abbcf82ea46c3d9f3f3a",
+      "zh": "sha256:67fdda48c9c5c7373d5a12073a39cc0ac0c63fee31845b11aee0d744d9c9bf29"
+    },
+    "replacements": [
+      {
+        "token": "[FRANCHISE]",
+        "labelEn": "Franchise",
+        "labelZh": "作品名称",
+        "en": [
+          "Rick and Morty"
+        ],
+        "zh": [
+          "《瑞克和莫蒂》"
+        ]
+      },
+      {
+        "token": "[VISUAL_THEME]",
+        "labelEn": "Visual Theme",
+        "labelZh": "视觉主题",
+        "en": [
+          "dark night sky theme"
+        ],
+        "zh": [
+          "深色夜空主题"
+        ]
+      }
+    ]
+  },
+  "prm_cb558655ec39cf2578c5af09e0d4d5f1": {
+    "sourceHash": {
+      "en": "sha256:caba2f04e0023147c9106b558e4c3e1f74583f37cf73ce4083efc1b6b710f99a",
+      "zh": "sha256:7ce85c9d934abee8fd33c3cfe0129e01829333edc9eba3c463297979ce1f355b"
+    },
+    "replacements": [
+      {
+        "token": "[TESTED_FEATURE]",
+        "labelEn": "Tested feature",
+        "labelZh": "待验证功能",
+        "en": [
+          "collectibles"
+        ],
+        "zh": [
+          "收集物品"
+        ]
+      },
+      {
+        "token": "[TARGET_VIEWPORT]",
+        "labelEn": "Target viewport",
+        "labelZh": "目标视口",
+        "en": [
+          "mobile viewport"
+        ],
+        "zh": [
+          "移动端视口"
+        ]
+      }
+    ]
+  },
+  "prm_ccf38346a65079ee025e0ee8d05fcb86": {
+    "sourceHash": {
+      "en": "sha256:b1b139582e3974bef9b2eabce28814114e7d4d496f516001bd9d165157bd14e8",
+      "zh": "sha256:5a677a990c0c028850ac8bb37417511ade31f58b3d0ec79dabdfac0419b222a2"
+    },
+    "replacements": [
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职业角色",
+        "en": [
+          "digital creator and AI consultant"
+        ],
+        "zh": [
+          "数字创作者和AI顾问"
+        ]
+      },
+      {
+        "token": "[COLORS]",
+        "labelEn": "Colors",
+        "labelZh": "配色",
+        "en": [
+          "black, white, and neutral"
+        ],
+        "zh": [
+          "黑白中性"
+        ]
+      }
+    ]
+  },
+  "prm_cd31c191b3fd333019bed38a7f54dbeb": {
+    "sourceHash": {
+      "en": "sha256:2a107a615e4704f09910eb1ed79da710a6967203fb47b7f7e78e0c6ec1720af9",
+      "zh": "sha256:726fdfdddb9660f4aaad9f4a96e7e567e85213f4528ff6e315392b2078cb8b0f"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_SPECIALTY]",
+        "labelEn": "Product specialty",
+        "labelZh": "产品领域",
+        "en": [
+          "AI robots"
+        ],
+        "zh": [
+          "AI 机器人"
+        ]
+      },
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "celestial punk"
+        ],
+        "zh": [
+          "天体朋克风格"
+        ]
+      }
+    ]
+  },
+  "prm_cd8742c810ec8d65770e473243f846a8": {
+    "sourceHash": {
+      "en": "sha256:087643a0414b9870d1edc95e659cb4b404b788383f93d0ba64a214a469a9c267",
+      "zh": "sha256:f746fab3c63b16357793b6a5a9cad86d1b58731ebf063daa67aee4a424adab82"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_THEME]",
+        "labelEn": "Scene Theme",
+        "labelZh": "场景主题",
+        "en": [
+          "East-Asian-inspired temple courtyard"
+        ],
+        "zh": [
+          "东亚风格寺庙庭院"
+        ]
+      },
+      {
+        "token": "[TIME_OF_DAY]",
+        "labelEn": "Time Of Day",
+        "labelZh": "时段",
+        "en": [
+          "golden hour"
+        ],
+        "zh": [
+          "黄金时刻"
+        ]
+      }
+    ]
+  },
+  "prm_cfe3639ee9d9dbcc1d37e79295214a7d": {
+    "sourceHash": {
+      "en": "sha256:40fbe29cc59376e7b1026198c0ca65d3abe71c3867ecc48e52d41b8817c37086",
+      "zh": "sha256:d950836b49185f3e1a5cdc931dda0ca1248ec7892a38525630e7f062f0075ba6"
+    },
+    "replacements": [
+      {
+        "token": "[CITY]",
+        "labelEn": "City",
+        "labelZh": "城市",
+        "en": [
+          "San Francisco"
+        ],
+        "zh": [
+          "旧金山"
+        ]
+      },
+      {
+        "token": "[WORLD_FORMAT]",
+        "labelEn": "World format",
+        "labelZh": "世界形式",
+        "en": [
+          "miniature train set"
+        ],
+        "zh": [
+          "微缩火车模型"
+        ]
+      }
+    ]
+  },
+  "prm_d1e832ea439e98f76d7c95bb167e2c90": {
+    "sourceHash": {
+      "en": "sha256:fb39c9f075d47482651f2dd68450cd5fc8071bec932279204f3a94e95cc65b61",
+      "zh": "sha256:abc47afed6fe44781dc4ffd6642a6fc369073a36221cd8d0527c06269eaa5dfc"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_NAME]",
+        "labelEn": "Business Name",
+        "labelZh": "企业名称",
+        "en": [
+          "Ember & Oak"
+        ],
+        "zh": [
+          "Ember & Oak"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "地点",
+        "en": [
+          "Brooklyn"
+        ],
+        "zh": [
+          "布鲁克林"
+        ]
+      }
+    ]
+  },
+  "prm_d29e2da62ee84fe089a7dfa0345199de": {
+    "sourceHash": {
+      "en": "sha256:aa5cb1127bef31fa544dc4bb37676ed7ad9da10812777bbe893835099086bfec",
+      "zh": "sha256:f2e2801b1fb9747d8a504adf6b48a56e5e11024d9ed94f0605c0688fe69f71e5"
+    },
+    "replacements": [
+      {
+        "token": "[STATION_1]",
+        "labelEn": "First station",
+        "labelZh": "第一座车站",
+        "en": [
+          "Saltlight Terminus"
+        ],
+        "zh": [
+          "Saltlight Terminus"
+        ]
+      },
+      {
+        "token": "[STATION_2]",
+        "labelEn": "Second station",
+        "labelZh": "第二座车站",
+        "en": [
+          "Mango Tide"
+        ],
+        "zh": [
+          "Mango Tide"
+        ]
+      }
+    ]
+  },
+  "prm_d3c01fe29b87a5bf51800d78718a1954": {
+    "sourceHash": {
+      "en": "sha256:8948c3f9a0686507b459388b27b9438439a030ebf73dd729c145de8ef6894304",
+      "zh": "sha256:d60bd7fbd9cd33ef0576d2644bdc90a889d55798f4e239ab35dcdf12157d8a80"
+    },
+    "replacements": [
+      {
+        "token": "[DATA_TOPIC]",
+        "labelEn": "Data Topic",
+        "labelZh": "数据主题",
+        "en": [
+          "job market trends"
+        ],
+        "zh": [
+          "就业市场趋势"
+        ]
+      },
+      {
+        "token": "[FILTER_DIMENSIONS]",
+        "labelEn": "Filter Dimensions",
+        "labelZh": "筛选维度",
+        "en": [
+          "industry or location"
+        ],
+        "zh": [
+          "行业或地区"
+        ]
+      }
+    ]
+  },
+  "prm_d4ee13630a71cddfad6fad6b3b9fc505": {
+    "sourceHash": {
+      "en": "sha256:92ad4d5bede095e98d6e7ec3a8fe3611906c573f4e79f45aadc53c62eff0c564",
+      "zh": "sha256:aa51a6547c1884f395c6cfc670100c3672afb9da96a942770c3cf2b3020932ff"
+    },
+    "replacements": [
+      {
+        "token": "[EXPERIENCE_TITLE]",
+        "labelEn": "Experience title",
+        "labelZh": "体验标题",
+        "en": [
+          "Plush Octopus"
+        ],
+        "zh": [
+          "Plush Octopus"
+        ]
+      },
+      {
+        "token": "[DISPLAY_TITLE]",
+        "labelEn": "Display title",
+        "labelZh": "展示标题",
+        "en": [
+          "Plush / Octopus."
+        ],
+        "zh": [
+          "Plush / Octopus."
+        ]
+      },
+      {
+        "token": "[STUDY_LABEL]",
+        "labelEn": "Study label",
+        "labelZh": "研究标签",
+        "en": [
+          "Material Studies / No. 022."
+        ],
+        "zh": [
+          "Material Studies / No. 022."
+        ]
+      }
+    ]
+  },
+  "prm_d6e55d5ee004601c68708f715a13090b": {
+    "sourceHash": {
+      "en": "sha256:65241794e1e47b428fbe1ce4f698bfa084928e812280fac66a749b5a16486729",
+      "zh": "sha256:231b9bc7575836725092f1280d2dca254eb194c3f13240a4db6bb21516a673d8"
+    },
+    "replacements": [
+      {
+        "token": "[VISUAL_MEDIUM]",
+        "labelEn": "Visual Medium",
+        "labelZh": "视觉媒介",
+        "en": [
+          "cinematic images"
+        ],
+        "zh": [
+          "电影感图像"
+        ]
+      },
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page Type",
+        "labelZh": "页面类型",
+        "en": [
+          "premium landing page"
+        ],
+        "zh": [
+          "高端落地页"
+        ]
+      }
+    ]
+  },
+  "prm_d7548e5fbfb04d0e999529d444ed1896": {
+    "sourceHash": {
+      "en": "sha256:f89887830acece723d4bc045bcb4aa585c12471423b8318da99ad9ce79460413",
+      "zh": "sha256:241dc70ffe442b3aebd928a6462432fe7f4368f1290adbcbdb9c3c013340f54b"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand name",
+        "labelZh": "品牌名称",
+        "en": [
+          "TrackSense"
+        ],
+        "zh": [
+          "TrackSense"
+        ]
+      },
+      {
+        "token": "[ACCENT_COLOR]",
+        "labelEn": "Accent color",
+        "labelZh": "强调色",
+        "en": [
+          "#FF4500"
+        ],
+        "zh": [
+          "#FF4500"
+        ]
+      },
+      {
+        "token": "[HERO_HEADLINE]",
+        "labelEn": "Hero headline",
+        "labelZh": "首屏标题",
+        "en": [
+          "MASTER THE TRACK"
+        ],
+        "zh": [
+          "MASTER THE TRACK"
+        ]
+      }
+    ]
+  },
+  "prm_db1952c7b46693da69677d1d5c144287": {
+    "sourceHash": {
+      "en": "sha256:13a9251f1d73866b19f3275a13eef1515bae45b5cc82b7f45d59c10da7fdcced",
+      "zh": "sha256:1be64fce28602c573e5fed87e95405c48d9ea1b0517d41d8fd3df69844625f43"
+    },
+    "replacements": [
+      {
+        "token": "[VISUAL_STYLE]",
+        "labelEn": "Visual style",
+        "labelZh": "视觉风格",
+        "en": [
+          "most beautiful"
+        ],
+        "zh": [
+          "最漂亮"
+        ]
+      },
+      {
+        "token": "[REACTION]",
+        "labelEn": "Reaction",
+        "labelZh": "期待反应",
+        "en": [
+          "WOW!!!"
+        ],
+        "zh": [
+          "WOW!!!"
+        ]
+      }
+    ]
+  },
+  "prm_ddb4ef984068d769d6414a396c28f1d2": {
+    "sourceHash": {
+      "en": "sha256:96b4f365edb51aa5b7f98a3fc9e9b352ce443f2fa6ec8bdb0c51d0e3413cbd5c",
+      "zh": "sha256:66bfb01231c6fe2cda70a6d7436735a328eaf5e02cc6aa4f41c6dc1fbcc437f3"
+    },
+    "replacements": [
+      {
+        "token": "[PORTFOLIO_OWNER]",
+        "labelEn": "Portfolio owner",
+        "labelZh": "作品集主体",
+        "en": [
+          "designer"
+        ],
+        "zh": [
+          "设计师"
+        ]
+      },
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page type",
+        "labelZh": "页面类型",
+        "en": [
+          "portfolio landing page"
+        ],
+        "zh": [
+          "作品集落地页"
+        ]
+      }
+    ]
+  },
+  "prm_e00c6412874d948f7fcba903731b0113": {
+    "sourceHash": {
+      "en": "sha256:ca41ece33994174ad39f7c8aa06d4db2078f56faa53df35a7417c780f175890b",
+      "zh": "sha256:d2720af6d764cd9c4145ff2386ab7952b169b3408a20bbe2108ca04ddeee931e"
+    },
+    "replacements": [
+      {
+        "token": "[REQUESTED_CHANGE]",
+        "labelEn": "Requested Change",
+        "labelZh": "指定修改",
+        "en": [
+          "the change I specifically request"
+        ],
+        "zh": [
+          "我明确要求的修改"
+        ]
+      }
+    ]
+  },
+  "prm_e1431dc8b85179970f8c47bc15ff7359": {
+    "sourceHash": {
+      "en": "sha256:9bd36d0a3ff43dac95a2590671d407af6ab71746d2fe8a79f6e13589117d2665",
+      "zh": "sha256:e7a0407958f5884ef452b9ba64c74808b5c560bf9605a372486b9c0f459282ab"
+    },
+    "replacements": [
+      {
+        "token": "[WEBSITE]",
+        "labelEn": "Website",
+        "labelZh": "网站",
+        "en": [
+          "my website"
+        ],
+        "zh": [
+          "我的网站"
+        ]
+      },
+      {
+        "token": "[CONVERSION_GOAL]",
+        "labelEn": "Conversion goal",
+        "labelZh": "转化目标",
+        "en": [
+          "turns visitors into customers"
+        ],
+        "zh": [
+          "将访客转化为客户"
+        ]
+      }
+    ]
+  },
+  "prm_e2044722a0c226fd0c976e6c748afe85": {
+    "sourceHash": {
+      "en": "sha256:260c87cfa24cf1dfca5f84716df78c40970d76b8f14c9b8b7ae8d598790d21b5",
+      "zh": "sha256:a966de53fc6f761f3896de5d584607bf4160a608cf7e1ee6f0cb8f0c6f919d82"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "tech gadgets business"
+        ],
+        "zh": [
+          "科技配件企业"
+        ]
+      },
+      {
+        "token": "[SITE_TYPE]",
+        "labelEn": "Site Type",
+        "labelZh": "网站类型",
+        "en": [
+          "ecommerce website"
+        ],
+        "zh": [
+          "电商网站"
+        ]
+      }
+    ]
+  },
+  "prm_e4a79c152aaf70ff261e80818506bc6d": {
+    "sourceHash": {
+      "en": "sha256:6df8deef25720cae640ede9c54f8baad7863043106ab0fa28302456a60d5df33",
+      "zh": "sha256:3e07d3eddfb37a623dba3fc13b7fe7716364bc92a0df9d75233753d8c50ac346"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_TYPE]",
+        "labelEn": "Game type",
+        "labelZh": "游戏类型",
+        "en": [
+          "car racing game"
+        ],
+        "zh": [
+          "赛车游戏"
+        ]
+      }
+    ]
+  },
+  "prm_e558aea71e531b599a6df63966c0e176": {
+    "sourceHash": {
+      "en": "sha256:0f47a252990a410dc017c6c1496b3727430294bce4f6bc70a41277de2e01f99e",
+      "zh": "sha256:4e66b2531e06bf75082b1fc7e4c00e3c5f429414fe1416c6d1141bfbb5bc3882"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_SUBJECT]",
+        "labelEn": "Scene Subject",
+        "labelZh": "场景主题",
+        "en": [
+          "pagoda garden"
+        ],
+        "zh": [
+          "宝塔花园"
+        ]
+      },
+      {
+        "token": "[ART_STYLE]",
+        "labelEn": "Art Style",
+        "labelZh": "艺术风格",
+        "en": [
+          "voxel"
+        ],
+        "zh": [
+          "体素"
+        ]
+      }
+    ]
+  },
+  "prm_e646c2e55d24e7b13d2bc41cd6ecca4c": {
+    "sourceHash": {
+      "en": "sha256:32e7ad80d6cf9765e136d6291d8bfff69389db31fc615bbe57cd0d8be792e70c",
+      "zh": "sha256:0d840b38c16441c2830a2940808b90d2eb2a24d32b7ee7e7070010c28d23721f"
+    },
+    "replacements": [
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "目标受众",
+        "en": [
+          "students and mid-career professionals"
+        ],
+        "zh": [
+          "学生和职业中期人士"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语气",
+        "en": [
+          "encouraging and aspirational"
+        ],
+        "zh": [
+          "鼓励且富有愿景"
+        ]
+      }
+    ]
+  },
+  "prm_e72311dd5c54ba88f53a0d341a5bf29f": {
+    "sourceHash": {
+      "en": "sha256:244e28dd23fabb320926436767b1ea4b7f8f59587c3274808a6f96fb6b36d451",
+      "zh": "sha256:367fd6e0690327473a7f05b4b19befb528fd29537ca927b06eb94e6d3408847d"
+    },
+    "replacements": [
+      {
+        "token": "[EVENT_NAME]",
+        "labelEn": "Event Name",
+        "labelZh": "活动名称",
+        "en": [
+          "AI Summit"
+        ],
+        "zh": [
+          "AI峰会"
+        ]
+      },
+      {
+        "token": "[EVENT_DURATION]",
+        "labelEn": "Event Duration",
+        "labelZh": "活动时长",
+        "en": [
+          "2-day"
+        ],
+        "zh": [
+          "持续2天"
+        ]
+      }
+    ]
+  },
+  "prm_e7bd5f4f75f0088af999d49ba83fe249": {
+    "sourceHash": {
+      "en": "sha256:41655a54d82abef6639a8f5d027ac8ea58b12bcd5cf04e7a6b0f08a3ddddf87d",
+      "zh": "sha256:bc5d637d64e77a6faeacccc7a49ea7e0428a05fc66eb832f4665186450aa975b"
+    },
+    "replacements": [
+      {
+        "token": "[HERO_FEATURE]",
+        "labelEn": "Hero feature",
+        "labelZh": "首屏功能",
+        "en": [
+          "an animated hero"
+        ],
+        "zh": [
+          "首屏带有动画"
+        ]
+      }
+    ]
+  },
+  "prm_e988f29b5e8973cc098876a1cf44adc3": {
+    "sourceHash": {
+      "en": "sha256:1b0eae114f7497128333f32e3e0d7f721034917392887fc1167114fb621c5cee",
+      "zh": "sha256:3a05650fa248867cd289265f37e746768b8f73ff98171290895f038d79e55385"
+    },
+    "replacements": [
+      {
+        "token": "[EXPERIENCE_TITLE]",
+        "labelEn": "Experience Title",
+        "labelZh": "体验标题",
+        "en": [
+          "EARTH ATLAS: THE LIVING PLANET."
+        ],
+        "zh": [
+          "EARTH ATLAS: THE LIVING PLANET."
+        ]
+      },
+      {
+        "token": "[INSTITUTION_REFERENCE]",
+        "labelEn": "Institution Reference",
+        "labelZh": "机构参考",
+        "en": [
+          "NASA"
+        ],
+        "zh": [
+          "NASA"
+        ]
+      }
+    ]
+  },
+  "prm_eb34b87ddf5d0e8e22c2bf79535a7d8e": {
+    "sourceHash": {
+      "en": "sha256:fbda24b03f3d6ea90878d42b1b3adee8231420e8525974bf2e24b35c85587bf1",
+      "zh": "sha256:6c8463bf62e5b351d032ee149469c143d9bf2c470f5128d83a2171ff05333f2b"
+    },
+    "replacements": [
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page type",
+        "labelZh": "页面类型",
+        "en": [
+          "[page type]"
+        ],
+        "zh": [
+          "[page type]"
+        ]
+      },
+      {
+        "token": "[TOPIC_KEYWORD]",
+        "labelEn": "Topic or keyword",
+        "labelZh": "主题或关键词",
+        "en": [
+          "[topic/keyword]"
+        ],
+        "zh": [
+          "[topic/keyword]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[audience]"
+        ],
+        "zh": [
+          "[audience]"
+        ]
+      }
+    ]
+  },
+  "prm_eb602ed8549ddf3419ff77a559d01684": {
+    "sourceHash": {
+      "en": "sha256:9bcb65f005362b7014f43a43db5523ffa1a3d2c70f88c914cf8f3edd42cde5c8",
+      "zh": "sha256:50b8161c12cc857579e35f42755d02f34ad581a96b6f3eb4e78fc4dd3d03c5b3"
+    },
+    "replacements": [
+      {
+        "token": "[PRODUCT_NAME]",
+        "labelEn": "Product Name",
+        "labelZh": "产品名称",
+        "en": [
+          "[your product name]"
+        ],
+        "zh": [
+          "[your product name]"
+        ]
+      },
+      {
+        "token": "[PRODUCT_DESCRIPTION]",
+        "labelEn": "Product Description",
+        "labelZh": "产品描述",
+        "en": [
+          "[one-line description of what it does]"
+        ],
+        "zh": [
+          "[one-line description of what it does]"
+        ]
+      },
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[your name]",
+          "[name]"
+        ],
+        "zh": [
+          "[your name]",
+          "[name]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "角色",
+        "en": [
+          "[your role — e.g. product designer / full-stack developer]"
+        ],
+        "zh": [
+          "[your role — e.g. product designer / full-stack developer]"
+        ]
+      },
+      {
+        "token": "[CREATIONS]",
+        "labelEn": "Creations",
+        "labelZh": "创作内容",
+        "en": [
+          "[things]"
+        ],
+        "zh": [
+          "[things]"
+        ]
+      },
+      {
+        "token": "[OUTCOME]",
+        "labelEn": "Outcome",
+        "labelZh": "成果",
+        "en": [
+          "[outcome]"
+        ],
+        "zh": [
+          "[outcome]"
+        ]
+      },
+      {
+        "token": "[BUSINESS_NAME]",
+        "labelEn": "Business Name",
+        "labelZh": "企业名称",
+        "en": [
+          "[business name]"
+        ],
+        "zh": [
+          "[business name]"
+        ]
+      },
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "[business type — e.g. family dental practice / neighborhood coffee shop / plumbing service]"
+        ],
+        "zh": [
+          "[business type — e.g. family dental practice / neighborhood coffee shop / plumbing service]"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "地点",
+        "en": [
+          "[city/neighborhood]"
+        ],
+        "zh": [
+          "[city/neighborhood]"
+        ]
+      },
+      {
+        "token": "[VALUE_PROPOSITION]",
+        "labelEn": "Value Proposition",
+        "labelZh": "价值主张",
+        "en": [
+          "[Welcome line / value prop]"
+        ],
+        "zh": [
+          "[Welcome line / value prop]"
+        ]
+      }
+    ]
+  },
+  "prm_ed9d97eb5c17ef896c1dc972f32196af": {
+    "sourceHash": {
+      "en": "sha256:ca14b6d057c1d958b15996323adaf675542fb0bb8a6fdcd86fdd2a83bf8ab519",
+      "zh": "sha256:b47b7ab2ca1a031d9e82560c947244750c7088aadaba96df3549dc8b4a183a0d"
+    },
+    "replacements": [
+      {
+        "token": "[LEAD_MAGNET]",
+        "labelEn": "Lead magnet",
+        "labelZh": "引流资料",
+        "en": [
+          "[insert your lead magnet]"
+        ],
+        "zh": [
+          "[insert your lead magnet]"
+        ]
+      },
+      {
+        "token": "[DESIGN_REFERENCE]",
+        "labelEn": "Design reference",
+        "labelZh": "设计参考",
+        "en": [
+          "[paste a link or image of a site you love]"
+        ],
+        "zh": [
+          "[paste a link or image of a site you love]"
+        ]
+      },
+      {
+        "token": "[PAGE_COPY]",
+        "labelEn": "Page copy",
+        "labelZh": "页面文案",
+        "en": [
+          "[paste the headline, bullets, and CTA from the Copywriter prompt]"
+        ],
+        "zh": [
+          "[paste the headline, bullets, and CTA from the Copywriter prompt]"
+        ]
+      }
+    ]
+  },
+  "prm_ef43036962486e6212d0556d52ea1a7f": {
+    "sourceHash": {
+      "en": "sha256:1e096304084fa3b74d3da28af4e30094e4acb787da813ad8e9421c9a2547cc17",
+      "zh": "sha256:235363ea8dc976551bdeae0c8975fbacde078338611c0eb8adcbdca71cfb704d"
+    },
+    "replacements": [
+      {
+        "token": "[PORTFOLIO_DISCIPLINE]",
+        "labelEn": "Portfolio Discipline",
+        "labelZh": "作品领域",
+        "en": [
+          "graphic design work"
+        ],
+        "zh": [
+          "平面设计作品"
+        ]
+      },
+      {
+        "token": "[CONTACT_EMAIL]",
+        "labelEn": "Contact Email",
+        "labelZh": "联系邮箱",
+        "en": [
+          "test@gmail.com"
+        ],
+        "zh": [
+          "test@gmail.com"
+        ]
+      },
+      {
+        "token": "[CONTACT_PHONE]",
+        "labelEn": "Contact Phone",
+        "labelZh": "联系电话",
+        "en": [
+          "111-111-111-111"
+        ],
+        "zh": [
+          "111-111-111-111"
+        ]
+      }
+    ]
+  },
+  "prm_efaa179091e286303f3e72b5b34c99c8": {
+    "sourceHash": {
+      "en": "sha256:76a63972324045986efaa81c32b135517e09c1804e754e7f28a8561a8754cbba",
+      "zh": "sha256:6ed94eb119d3712536589dfe231fc2a0013795552b0f4490ed64b1d81384dd15"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_TITLE]",
+        "labelEn": "Game title",
+        "labelZh": "游戏标题",
+        "en": [
+          "Northbound"
+        ],
+        "zh": [
+          "Northbound"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "场景地点",
+        "en": [
+          "Nordic fjord"
+        ],
+        "zh": [
+          "北欧峡湾"
+        ]
+      }
+    ]
+  },
+  "prm_f3d2c6d90d4fa018bb8dab8a254af406": {
+    "sourceHash": {
+      "en": "sha256:3b3b6debe0e4d2e9aa18a102db4522faf99b4af61b5988989ad81def1c6cf4ba",
+      "zh": "sha256:66ba8230e831b9d16c4db9aaec870a1d7c071669ab2593a54997ba9500dbe807"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_NAME]",
+        "labelEn": "Brand Name",
+        "labelZh": "品牌名称",
+        "en": [
+          "Nura Health"
+        ],
+        "zh": [
+          "Nura Health"
+        ]
+      },
+      {
+        "token": "[HERO_IMAGE_URL]",
+        "labelEn": "Hero Image Url",
+        "labelZh": "主视觉图片链接",
+        "en": [
+          "https://t.co/CdQS8ZXQv0"
+        ],
+        "zh": [
+          "https://t.co/CdQS8ZXQv0"
+        ]
+      }
+    ]
+  },
+  "prm_f3d3775541c505b794568cf55bffb591": {
+    "sourceHash": {
+      "en": "sha256:386dc51f0880c69ccba4652a3ba129c0c8552ef629d3abc6391bf02c238db758",
+      "zh": "sha256:dd93ff20e3ce2ae3a2404e09b710268f9b0bdad9cca044a7e23fa2e98da82295"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "[Your Name]"
+        ],
+        "zh": [
+          "[Your Name]"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职位",
+        "en": [
+          "[Your Role]"
+        ],
+        "zh": [
+          "[Your Role]"
+        ]
+      },
+      {
+        "token": "[SKILLS]",
+        "labelEn": "Skills",
+        "labelZh": "技能",
+        "en": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ],
+        "zh": [
+          "[Skill 1, Skill 2, Skill 3]"
+        ]
+      },
+      {
+        "token": "[EXPERIENCE]",
+        "labelEn": "Experience",
+        "labelZh": "经验",
+        "en": [
+          "[Years / Beginner]"
+        ],
+        "zh": [
+          "[Years / Beginner]"
+        ]
+      },
+      {
+        "token": "[PROJECTS]",
+        "labelEn": "Projects",
+        "labelZh": "项目",
+        "en": [
+          "[Brief project details]"
+        ],
+        "zh": [
+          "[Brief project details]"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语调",
+        "en": [
+          "[Confident / Friendly / Professional / Bold]"
+        ],
+        "zh": [
+          "[Confident / Friendly / Professional / Bold]"
+        ]
+      }
+    ]
+  },
+  "prm_f54b861b4244be105410bf077ebed2e0": {
+    "sourceHash": {
+      "en": "sha256:7e20df01dbf40a76aa476641e1508c03cec2f675899ed4d83a576578eb502428",
+      "zh": "sha256:c83db8a4586a6a502d0f99afa7c738de490d70cb9bfd2bdb83191e3f3f5fb347"
+    },
+    "replacements": [
+      {
+        "token": "[PROFESSION]",
+        "labelEn": "Profession",
+        "labelZh": "职业",
+        "en": [
+          "travel and street photographer"
+        ],
+        "zh": [
+          "旅行与街头摄影师"
+        ]
+      },
+      {
+        "token": "[GALLERY_CATEGORIES]",
+        "labelEn": "Gallery Categories",
+        "labelZh": "画廊分类",
+        "en": [
+          "Travel, Street, Cities, People, Landscapes"
+        ],
+        "zh": [
+          "旅行、街头、城市、人物、景观"
+        ]
+      }
+    ]
+  },
+  "prm_f972b73ebe8610d124f9d32cf3464f79": {
+    "sourceHash": {
+      "en": "sha256:c472b64eb99b9569f073dfcaad717890c1efa22e8feedbf436573cc3f835eae8",
+      "zh": "sha256:adb27b7bc020723d229d5ab76cdba3150be66905eb5820e0121d9cbf2ab12011"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business type",
+        "labelZh": "业务类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      },
+      {
+        "token": "[INDUSTRY_LOCATION]",
+        "labelEn": "Industry or location",
+        "labelZh": "行业或地点",
+        "en": [
+          "[industry/location]"
+        ],
+        "zh": [
+          "[industry/location]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[audience]"
+        ],
+        "zh": [
+          "[audience]"
+        ]
+      },
+      {
+        "token": "[GOAL]",
+        "labelEn": "Goal",
+        "labelZh": "目标",
+        "en": [
+          "[sales/leads/bookings/portfolio]"
+        ],
+        "zh": [
+          "[sales/leads/bookings/portfolio]"
+        ]
+      }
+    ]
+  },
+  "prm_fcd98b36f5b881c2e92a0964fa1b973c": {
+    "sourceHash": {
+      "en": "sha256:ae3dad8c46eb72a2a3a0b7f617887ef6192f3ebf49d825b43946ec926d04c2d6",
+      "zh": "sha256:35c7e3c50539fd6658d10eba721b36e099f65e7f1eb13f66e16e840815e2292a"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "[business type]"
+        ],
+        "zh": [
+          "[business type]"
+        ]
+      },
+      {
+        "token": "[TONE]",
+        "labelEn": "Tone",
+        "labelZh": "语气",
+        "en": [
+          "[tone]"
+        ],
+        "zh": [
+          "[tone]"
+        ]
+      },
+      {
+        "token": "[AUDIENCE]",
+        "labelEn": "Audience",
+        "labelZh": "受众",
+        "en": [
+          "[audience]"
+        ],
+        "zh": [
+          "[audience]"
+        ]
+      },
+      {
+        "token": "[GOAL]",
+        "labelEn": "Goal",
+        "labelZh": "目标",
+        "en": [
+          "[goal]"
+        ],
+        "zh": [
+          "[goal]"
+        ]
+      }
+    ]
+  },
+  "prm_fcedf2e60bdb07bb2e92a357fb5ab01d": {
+    "sourceHash": {
+      "en": "sha256:8748bf4369f5910314e696b99c096197f9cc374411ab8148fc5e8ead2f936fe2",
+      "zh": "sha256:620f005741ff0cce5b6c196e8bee61218f86dd04b59ac1e949ccdb7e87c52986"
+    },
+    "replacements": [
+      {
+        "token": "[APPROVED_PLAN]",
+        "labelEn": "Approved plan",
+        "labelZh": "已确认方案",
+        "en": [
+          "my approved website plan"
+        ],
+        "zh": [
+          "我已确认的网站方案"
+        ]
+      }
+    ]
+  },
+  "websitecase_26692472b628d94663d9d10fcba842f7": {
+    "sourceHash": {
+      "en": "sha256:0e090701b1b3b61521f12903e2faea71f9baba8ab6c12bf340601a87a70d1731",
+      "zh": "sha256:0ef8c07410033829a6115077c5296107cc0aedede3e29d1e431a7345154f6264"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_TYPE]",
+        "labelEn": "Game type",
+        "labelZh": "游戏类型",
+        "en": [
+          "fighting game"
+        ],
+        "zh": [
+          "格斗游戏"
+        ]
+      },
+      {
+        "token": "[CHARACTERS]",
+        "labelEn": "Characters",
+        "labelZh": "角色",
+        "en": [
+          "capsule bots"
+        ],
+        "zh": [
+          "胶囊机器人角色"
+        ]
+      }
+    ]
+  },
+  "websitecase_2ff815d60147a01cc67fb94d2eb6da22": {
+    "sourceHash": {
+      "en": "sha256:9e83ea09b17240ad715e63ec5a83cf9292dc4d815267c092e705f66e30c51e3d",
+      "zh": "sha256:f0a8836dfdf1de6a9283d1ebddafaee0dc328efc83efc2c6541e0b4cfdf662bb"
+    },
+    "replacements": [
+      {
+        "token": "[BUSINESS_TYPE]",
+        "labelEn": "Business Type",
+        "labelZh": "企业类型",
+        "en": [
+          "hot air baloon company"
+        ],
+        "zh": [
+          "热气球公司"
+        ]
+      },
+      {
+        "token": "[VISUAL_QUALITY]",
+        "labelEn": "Visual Quality",
+        "labelZh": "视觉水准",
+        "en": [
+          "expert professional"
+        ],
+        "zh": [
+          "专业专家"
+        ]
+      }
+    ]
+  },
+  "websitecase_35a5060ff8f4853fe507a7fca292a4b8": {
+    "sourceHash": {
+      "en": "sha256:072e2ee483d8e1b1380f7a42e02e110b305fd799a81f70fc1239387866f65510",
+      "zh": "sha256:92617cf683fa14aac49cf83381a97f7a5219b52e7dbf7f2a3e3516f9ee72d91a"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_STYLE]",
+        "labelEn": "Site style",
+        "labelZh": "网站风格",
+        "en": [
+          "Awwwards SOTD"
+        ],
+        "zh": [
+          "Awwwards SOTD"
+        ]
+      },
+      {
+        "token": "[STARTER_TEMPLATE]",
+        "labelEn": "Starter template",
+        "labelZh": "起始模板",
+        "en": [
+          "Three.js Blocks"
+        ],
+        "zh": [
+          "Three.js Blocks"
+        ]
+      }
+    ]
+  },
+  "websitecase_3817b9c4939f8de3ec8d7e36e4e69029": {
+    "sourceHash": {
+      "en": "sha256:d578c658b52c122bbc3c0bdeed161a280343c31803b580c956d1c39ad28870d5",
+      "zh": "sha256:a50a03a81f44cfd37890b4b34ddd82e32345a04ec96783be8c15d8bd463de5dd"
+    },
+    "replacements": [
+      {
+        "token": "[PAGE_TYPE]",
+        "labelEn": "Page Type",
+        "labelZh": "页面类型",
+        "en": [
+          "3d landing page"
+        ],
+        "zh": [
+          "3d 落地页"
+        ]
+      },
+      {
+        "token": "[DESIGN_STANDARD]",
+        "labelEn": "Design Standard",
+        "labelZh": "设计标准",
+        "en": [
+          "award winning"
+        ],
+        "zh": [
+          "足以获奖"
+        ]
+      }
+    ]
+  },
+  "websitecase_84b6747412c7ee888e5d5908bb57348f": {
+    "sourceHash": {
+      "en": "sha256:993877b3c28f3365a79ffb3c45719551af050e0478abb088865361a46331a161",
+      "zh": "sha256:993877b3c28f3365a79ffb3c45719551af050e0478abb088865361a46331a161"
+    },
+    "replacements": [
+      {
+        "token": "[SCENE_THEME]",
+        "labelEn": "Scene theme",
+        "labelZh": "场景主题",
+        "en": [
+          "千与千寻的海上小火车场景"
+        ],
+        "zh": [
+          "千与千寻的海上小火车场景"
+        ]
+      },
+      {
+        "token": "[REFERENCE_IMAGE]",
+        "labelEn": "Reference image",
+        "labelZh": "参考图",
+        "en": [
+          "[参考图]"
+        ],
+        "zh": [
+          "[参考图]"
+        ]
+      }
+    ]
+  },
+  "websitecase_d2a82090a90facccb79bc2c9553cf4d3": {
+    "sourceHash": {
+      "en": "sha256:90167c7533dc1e82add8bdc38bf20470cd6216ad2d6c0e303f5a8370352eab4a",
+      "zh": "sha256:638ccd80a642523e1f599a77fedf62bcf9677c09dd4f830d63d67983fe2feeff"
+    },
+    "replacements": [
+      {
+        "token": "[GAME_CONCEPT]",
+        "labelEn": "Game Concept",
+        "labelZh": "游戏概念",
+        "en": [
+          "futuristic hover arena game"
+        ],
+        "zh": [
+          "未来感悬浮竞技场游戏"
+        ]
+      },
+      {
+        "token": "[COLLECTIBLE]",
+        "labelEn": "Collectible",
+        "labelZh": "收集物",
+        "en": [
+          "collectible energy cores"
+        ],
+        "zh": [
+          "可收集能量核心"
+        ]
+      }
+    ]
+  },
+  "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a": {
+    "sourceHash": {
+      "en": "sha256:ef9bda558203f198c01fd0d8c1bfd49dd1584387a7117bf21df5c675edb7b932",
+      "zh": "sha256:7f999ca78a57bac7c07d5ac0a0d26e9ec4b13250849757d315f3f1f5a8869ced"
+    },
+    "replacements": [
+      {
+        "token": "[SITE_TYPE]",
+        "labelEn": "Site type",
+        "labelZh": "网站类型",
+        "en": [
+          "storytelling website"
+        ],
+        "zh": [
+          "讲故事的网站"
+        ]
+      },
+      {
+        "token": "[BACKGROUND_STYLE]",
+        "labelEn": "Background style",
+        "labelZh": "背景风格",
+        "en": [
+          "painted texture"
+        ],
+        "zh": [
+          "绘画纹理"
+        ]
+      }
+    ]
+  }
+}

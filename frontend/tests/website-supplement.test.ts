@@ -44,8 +44,11 @@ it('renders recovered prompt text on the existing case page as well as its L4 re
   expect(entry).toBeDefined();
   if (!entry) throw new Error('Recovered source input missing');
   const html = renderToStaticMarkup(WebsiteCaseDetail({catalog:c,entry}));
-  expect(html).toContain('构建一个讲故事的网站');
-  expect(html).toContain('中文译文');
+  const { websiteEditableTemplate } = await import('@/lib/catalog/website-templates');
+  const template = websiteEditableTemplate(c, entry);
+  expect(template.sourceText).toContain('构建一个讲故事的网站');
+  expect(html).toContain(template.variables[0]!.token);
+  expect(html).toContain('可编辑模板');
   expect(html).not.toContain('No prompt was included');
 });
 

@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
 import { websiteViews, websiteViewEntries } from '@/lib/catalog/website-views';
+import { websiteEditableTemplate } from '@/lib/catalog/website-templates';
 import { WebsiteViewGallery } from '@/components/WebsiteCases';
 
 describe('Website L3 composer', () => {
@@ -20,9 +21,8 @@ describe('Website L3 composer', () => {
       for (const entry of entries) {
         const article = doc.querySelector(`[data-website-case="${entry.id}"]`)!;
         const action = article.querySelector('.acts a');
-        const prompt = catalog.prompts.find(prompt => prompt.id === entry.id || prompt.href === entry.promptHref);
-        if (prompt?.prompt) expect(new URL(action!.getAttribute('href')!).searchParams.get('prompts')).toBe(prompt.prompt);
-        else expect(action?.textContent).toBe(locale === 'en' ? 'Explore this project' : '探索此项目');
+        const prompt = websiteEditableTemplate(catalog, entry);
+        expect(new URL(action!.getAttribute('href')!).searchParams.get('prompts')).toBe(prompt.prompt);
       }
     }
   });

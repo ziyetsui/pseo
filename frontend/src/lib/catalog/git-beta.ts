@@ -1,4 +1,5 @@
 import promptBodyTranslations from '../../data/zh-prompt-bodies.json';
+import websiteTemplates from '../../data/website-placeholder-templates.json';
 import displayCopy from '../../data/localized-case-copy.json';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
@@ -34,7 +35,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {

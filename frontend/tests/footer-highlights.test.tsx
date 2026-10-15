@@ -20,10 +20,10 @@ it.each(['deck','findings','anthology'] as const)('highlights Website variables 
  const body=doc.querySelector(presentation==='deck'?'.prompt':presentation==='findings'?'.verbatim':'.mono')!;
  expect(body.textContent).toBe(text);expect(body.querySelectorAll('.prompt-placeholder').map(n=>n.textContent)).toEqual(['[PRODUCT NAME]']);
 });
-it('uses the same variable tokens in the imported recipe and existing case detail',()=>{
- const p=catalog.prompts.find(p=>p.prompt.includes('[PRODUCT NAME]'))!;
- expect(p.variables.some(v=>v.token==='[PRODUCT NAME]')).toBe(true);
- const row={...catalog.websites![0]!,id:'test-case',promptHref:p.href};
+it('uses the same variable tokens in the imported recipe and existing case detail',async()=>{
+ const {websiteEditableTemplate}=await import('@/lib/catalog/website-templates');
+ const row=catalog.websites!.find(row=>row.id==='prm_92f371524da72b3bcde64de274448347')!;
+ const template=websiteEditableTemplate(catalog,row);
  const doc=parse(renderToStaticMarkup(<WebsiteCaseDetail catalog={catalog} entry={row}/>),{blockTextElements:{script:true,style:true,textarea:true}});
- expect(doc.querySelector('.website-prompt .prompt-placeholder')?.textContent).toBe('[PRODUCT NAME]');
+ expect(doc.querySelectorAll('.prompt-placeholder').map(n=>n.textContent)).toEqual(expect.arrayContaining(template.variables.map(v=>v.token)));
 });
