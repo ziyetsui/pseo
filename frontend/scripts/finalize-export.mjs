@@ -1,5 +1,5 @@
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
-import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
+import { gitBetaReceipt, verifyGitBetaAssets, verifyCreatorAvatarAssets } from './git-beta-receipt.mjs';
 import { readWebsiteViews } from './website-view-output.mjs';
 import { readLibraryIndex, indexHash } from './library-index-output.mjs';
 import { checkIntake } from '../../scripts/lib/case-import.mjs';
@@ -55,7 +55,9 @@ if (mode === 'git-beta') {
   if (createHash('sha256').update(sourceBytes).digest('hex') !== supplement.manifest.sourceSha256) throw new Error('Website supplement source checksum mismatch');
   const previews = JSON.parse(await readFile('src/data/website-previews.json','utf8'));
   await verifyGitBetaAssets(out, previews);
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')));
+  const avatars = JSON.parse(await readFile('src/data/creator-avatars.json','utf8'));
+  await verifyCreatorAvatarAssets(out, avatars);
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars);
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts);
   const localeReceipts=[];
   for(const locale of ['zh-CN','en']){

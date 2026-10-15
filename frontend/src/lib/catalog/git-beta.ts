@@ -1,4 +1,6 @@
 import displayCopy from '../../data/localized-case-copy.json';
+import avatarInput from '../../data/creator-avatars.json';
+import { gitBetaCreatorAvatar } from './creator-avatars';
 import graphInput from '../../../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import previewInput from '../../data/website-previews.json';
 import { createFixtureCatalog } from './fixture';
@@ -31,7 +33,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
     const node = object(value), id = text(node.id);
@@ -61,10 +63,10 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     registries[axis].set(slug, ref); return ref;
   };
   const refs = (id: string, type: string, axis: Axis) => linked(id, type).map(node => reference(node, axis));
-  const creators = new Map<string, Creator>(base.creators.map(creator => [creator.id, { ...creator }]));
+  const creators = new Map<string, Creator>(base.creators.map(creator => [creator.id, { ...creator, avatarUrl: gitBetaCreatorAvatar(creator.handle, creator.avatarUrl) }]));
   for (const node of nodes.values()) if (node.type === 'creator') {
     const id = text(node.id), handle = text(node.handle);
-    creators.set(id, { id, slug: id, label: `@${handle}`, handle: `@${handle}`, href: filterHref(sourceLocale, 'creator', id), url: safeUrl(node.url), avatarUrl: null, count: 0 });
+    creators.set(id, { id, slug: id, label: `@${handle}`, handle: `@${handle}`, href: filterHref(sourceLocale, 'creator', id), url: safeUrl(node.url), avatarUrl: gitBetaCreatorAvatar(handle), count: 0 });
   }
   const prompts: Prompt[] = [...base.prompts];
   for (const node of nodes.values()) if (node.type === 'prompt') {

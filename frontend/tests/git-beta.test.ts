@@ -6,6 +6,11 @@ import { dataMode } from '@/lib/catalog/config';
 
 const catalog = () => createGitBetaCatalog('zh-CN');
 describe('authorized Git beta publication', () => {
+  it('uses confirmed local creator photos without changing creator identity or source links', () => {
+    const creator = catalog().creators.find(creator => creator.handle === '@MrLarus');
+    expect(creator?.avatarUrl).toMatch(/^\/creator-avatars\/mrlarus\.(jpg|png|webp|gif)$/);
+    expect(creator?.url).toBe('https://x.com/MrLarus');
+  });
   it('loads 521 distinct new image prompts and retains all 541 source images', () => {
     const c = catalog();
     expect(c.mode).toBe('git-beta');
@@ -48,3 +53,8 @@ it('binds the Git beta revision to every graph and preview change', async () => 
 });
 
 it('binds the revision to display translations',async()=>{const {gitBetaRevision}=await import('@/lib/catalog/git-beta-revision');expect(gitBetaRevision('base',{}, {}, {title:'first'})).not.toBe(gitBetaRevision('base',{}, {}, {title:'second'}));});
+
+it('binds the revision to creator avatar changes', async () => {
+  const { gitBetaRevision } = await import('@/lib/catalog/git-beta-revision');
+  expect(gitBetaRevision('base', {}, {}, {}, { photo: 'first' })).not.toBe(gitBetaRevision('base', {}, {}, {}, { photo: 'second' }));
+});

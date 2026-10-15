@@ -2,6 +2,15 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+export async function verifyCreatorAvatarAssets(root, avatars) {
+  for (const [handle, avatar] of Object.entries(avatars)) {
+    if (!/^[a-z0-9_]+$/.test(handle) || !new RegExp(`^/creator-avatars/${handle}\\.(jpg|png|webp|gif)$`).test(avatar.src)) throw new Error('Invalid creator avatar path');
+    if (!/^https:\/\/pbs\.twimg\.com\/profile_images\//.test(avatar.sourceUrl) || avatar.profileUrl.toLowerCase() !== `https://x.com/${handle}`) throw new Error('Invalid creator avatar source');
+    const bytes = await readFile(path.join(root, avatar.src.slice(1)));
+    if (createHash('sha256').update(bytes).digest('hex') !== avatar.sha256) throw new Error('Creator avatar checksum mismatch');
+  }
+}
+
 export async function verifyGitBetaAssets(root, previews) {
   for (const preview of Object.values(previews)) {
     if (!/^\/website-previews\/[0-9]+\.(?:jpg|jpeg|png|webp)$/.test(preview.src)) throw new Error('Invalid Website preview path');

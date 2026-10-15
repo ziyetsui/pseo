@@ -77,6 +77,6 @@ describe('collection page parity', () => {
       expect(page.querySelector('#creators .person')?.getAttribute('href')).toBe(creator.url || creator.href);
       expect(page.querySelector('#creators .person')?.text).toContain('1 prompt');
     }
-    if (creator.avatarUrl) expect(html(<DeckReader catalog={source} contentType="image" />).querySelector('.meta img.av')?.getAttribute('src')).toBe(creator.avatarUrl);
+    if (creator.avatarUrl) expect(html(<DeckReader catalog={source} contentType="image" />).querySelector('.meta .av img')?.getAttribute('src')).toBe(creator.avatarUrl);
   });
 });

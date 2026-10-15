@@ -5,6 +5,7 @@ import type { Catalog, Prompt } from "@/lib/catalog/types";
 import { SiteFooter, SiteHeader } from "@/components/Chrome";
 import { RecipeMedia } from "@/components/RecipeMedia";
 import { RecipeText } from "@/components/RecipeText";
+import { CreatorAvatar } from './CreatorAvatar';
 import { generationLabel } from "@/components/generation-label";
 import { isPromptCreator } from "@/lib/catalog/creator-match";
 import { websiteViewsForCase } from "@/lib/catalog/website-views";
@@ -27,7 +28,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
         <h1 lang={sourceLanguage(prompt.title)}>{prompt.title}</h1>
         <p className="dek">{uiText(uiLocale, "Four steps from this page to your own version.")}</p>
         <div className="byline">
-          <span className="av" aria-hidden="true">{creator?.avatarUrl && <img src={creator.avatarUrl} alt="" width={26} height={26} loading="lazy" referrerPolicy="no-referrer" />}</span>
+          <CreatorAvatar handle={creator?.handle || prompt.handle} src={creator?.avatarUrl} size={26} />
           <span>{text(uiLocale, "by ", "作者：")}{prompt.source.url ? <a href={prompt.source.url} target="_blank" rel="noopener noreferrer nofollow"><b>{prompt.handle || uiText(uiLocale, "unattributed")}</b></a> : <b>{prompt.handle || uiText(uiLocale, "unattributed")}</b>}{prompt.source.platform && <>{text(uiLocale, " on ", " · ")}{prompt.source.platform.toLowerCase() === "x" ? "X" : prompt.source.platform}</>}</span>
         </div>
       </div>

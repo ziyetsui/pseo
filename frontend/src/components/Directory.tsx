@@ -1,13 +1,15 @@
 import { interfaceLocale, uiText, promptCount } from '@/lib/i18n/text';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { SiteFooter, SiteHeader } from './Chrome';
+import { CreatorAvatar } from './CreatorAvatar';
+import type { Creator } from '@/lib/catalog/types';
 
-export function Directory({ catalog, title, items, currentHref }: { catalog: Catalog; title: string; items: Ref[]; currentHref?: string }) {
+export function Directory({ catalog, title, items, currentHref }: { catalog: Catalog; title: string; items: (Ref | Creator)[]; currentHref?: string }) {
   const uiLocale = interfaceLocale(catalog);
   return <div className="prototype-hub"><div className="taste">
     <SiteHeader bilingual={catalog.mode === 'git-beta'} currentHref={currentHref ?? `/${catalog.locale}/prompts/${title.toLowerCase().includes('creator') ? 'creators' : 'models'}`} locale={catalog.locale} level="deck" />
     <main id="main" className="wrap"><section className="sec"><p className="eyebrow">{uiText(uiLocale, "The library")}</p><h1 className="tier-index">{uiText(uiLocale, title)}</h1>
-      <div className="tiles" style={{ marginTop: 32 }}>{items.map(item => <a className="tile" href={item.href} target={/^https?:\/\//.test(item.href) ? "_blank" : undefined} rel={/^https?:\/\//.test(item.href) ? "nofollow noopener noreferrer" : undefined} key={item.id}><span className="tb"><h2>{item.label}</h2><p>{promptCount(uiLocale, item.count)}</p></span></a>)}</div>
+      <div className="tiles" style={{ marginTop: 32 }}>{items.map(item => <a className="tile" href={item.href} target={/^https?:\/\//.test(item.href) ? "_blank" : undefined} rel={/^https?:\/\//.test(item.href) ? "nofollow noopener noreferrer" : undefined} key={item.id}><span className="tb">{'handle' in item && <CreatorAvatar handle={item.handle} src={item.avatarUrl} />}<h2>{item.label}</h2><p>{promptCount(uiLocale, item.count)}</p></span></a>)}</div>
       {!items.length && <p className="dek">{uiText(uiLocale, "Nothing has been published here yet.")}</p>}
     </section></main><SiteFooter catalog={catalog} />
   </div></div>;
