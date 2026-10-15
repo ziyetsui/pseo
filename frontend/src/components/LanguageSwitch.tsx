@@ -16,14 +16,17 @@ export function LanguageSwitch({locale,href}:{locale:Locale;href:string}){
   return()=>{document.removeEventListener('pointerdown',closeOutside);document.removeEventListener('keydown',escape);};
  },[]);
  return <details className="language-switch" data-language-picker="" ref={picker}>
-  <summary>Language <span className="language-switch-chevron" aria-hidden="true">▾</span></summary>
+  <summary aria-label={locale==='zh-CN'?'阅读语言：中文':'Reading language: English'} onPointerDown={()=>{if(picker.current)delete picker.current.dataset.keyboard;}} onKeyDown={event=>{if((event.key==='Enter'||event.key===' ')&&picker.current)picker.current.dataset.keyboard='';}}>
+   <span className="language-switch-monogram" aria-hidden="true">Aa</span><span className="language-switch-label" lang={locale}>{locale==='zh-CN'?'中文':'English'}</span><svg className="language-switch-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3.5 5.5 4.5 4.5 4.5-4.5" /></svg>
+  </summary>
   <div className="language-switch-options">
-   {(['en','zh-CN'] as const).map(target=><a key={target} data-language-switch={target!==locale?'':undefined} href={switchLocaleHref(locationHref,target)} hrefLang={target} lang={target} aria-current={target===locale?'page':undefined} onClick={event=>{
+   <p className="language-switch-heading">{locale==='zh-CN'?'阅读语言':'Reading language'}</p>
+   {(['zh-CN','en'] as const).map((target,index)=><a key={target} data-language-switch={target!==locale?'':undefined} href={switchLocaleHref(locationHref,target)} hrefLang={target} lang={target} aria-current={target===locale?'page':undefined} onClick={event=>{
     // Filters can use native pushState: resolve the latest URL at activation too.
     event.currentTarget.href=switchLocaleHref(current(),target);
     try{localStorage.setItem('prompt-library:locale',target);}catch{/* Navigation works if preference storage is unavailable. */}
     if(picker.current)picker.current.open=false;
-   }}><span>{target==='en'?'English':'中文'}</span>{target===locale&&<span aria-hidden="true">✓</span>}</a>)}
+   }}><span className="language-switch-index" aria-hidden="true">0{index+1}</span><span>{target==='en'?'English':'中文'}</span><span className="language-switch-mark" aria-hidden="true">{target===locale?'✓':'↗'}</span></a>)}
   </div>
  </details>;
 }

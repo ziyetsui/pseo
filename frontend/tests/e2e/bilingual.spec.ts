@@ -1,6 +1,22 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const recipe='prompt-portrait-photography-from-above-ana-d-2015726421990056336';
+test('Chinese homepage renders its approved local fonts, including real CJK glyphs', async ({ page, context }) => {
+ await page.goto('/zh-CN/prompts', { waitUntil: 'domcontentloaded' });
+ await expect(page.locator('.argument h1')).toHaveText('早有人写好了。');
+ await page.evaluate(async () => { await document.fonts.ready; });
+ const session = await context.newCDPSession(page);
+ await session.send('DOM.enable');
+ await session.send('CSS.enable');
+ const { root } = await session.send('DOM.getDocument');
+ for (const [selector, family] of [['.argument h1', /YujiSyuku/], ['.argument .body p', /WenKai/], ['.run .u[lang="zh-CN"]', /WenKai/]] as const) {
+  const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+  const { fonts } = await session.send('CSS.getPlatformFontsForNode', { nodeId });
+  expect(fonts.filter(font => font.isCustomFont && font.glyphCount > 0).some(font => family.test(font.postScriptName))).toBe(true);
+  expect(fonts.every(font => font.isCustomFont)).toBe(true);
+ }
+ await session.detach();
+});
 test('both languages render complete interfaces and share exact original prompt text',async({page,request})=>{
  const body:Record<string,string>={};
  for(const locale of ['zh-CN','en']){
@@ -8,7 +24,7 @@ test('both languages render complete interfaces and share exact original prompt 
   await page.goto(`/${locale}/prompts`,{waitUntil:'domcontentloaded'});
   await expect(page.locator('html')).toHaveAttribute('lang',locale);await expect(page.locator('body')).toHaveAttribute('lang',locale);
   await expect(page.locator('.brand')).toHaveText(chinese?'提示词库':'Prompt Library');
-  await expect(page.locator('h1')).toHaveText(chinese?'这条提示词，早已有人写好':'Somebody already wrote this');
+  await expect(page.locator('h1')).toHaveText(chinese?'早有人写好了。':'Somebody already wrote this');
   const titles=page.locator('[data-entry] .u');
   await expect(titles).toHaveCount(36);
   await page.getByRole('button',{name:chinese?'查看更多提示词':'Show more prompts',exact:true}).click();
@@ -66,7 +82,7 @@ test('bilingual layouts fit, remain accessible and switch without JavaScript',as
  await expect(noJS.locator('[data-website-case]')).not.toHaveCount(0);await context.close();
 });
 
-test('language choices stay inside the viewport and close with Escape',async({page})=>{
+test('language choices stay inside the viewport and close with Escape',async({page},info)=>{
  for(const path of ['library-index','models/nano-banana','website/views/tool/three-js']){
  await page.goto(`/en/prompts/${path}`,{waitUntil:'networkidle'});
  const picker=page.locator('[data-language-picker]');
@@ -75,6 +91,9 @@ test('language choices stay inside the viewport and close with Escape',async({pa
  const bounds=await picker.locator('.language-switch-options').boundingBox();
  expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);
  expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+ const accessibility=await new AxeBuilder({page}).include('[data-language-picker]').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+ expect(accessibility.violations.map(violation=>violation.id)).toEqual([]);
+ if(path==='library-index')await page.screenshot({path:info.outputPath('editorial-language-menu.png')});
  await page.keyboard.press('Escape');await expect(picker).not.toHaveAttribute('open');
  await expect(picker.locator('summary')).toBeFocused();
  }
