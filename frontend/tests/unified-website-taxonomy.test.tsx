@@ -1,0 +1,35 @@
+import {describe,it,expect} from 'vitest';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {parse} from 'node-html-parser';
+import {createGitBetaCatalog} from '@/lib/catalog/git-beta';
+import {HubBrowse} from '@/components/Browse';
+import {websiteViews} from '@/lib/catalog/website-views';
+import {gitBetaRevision} from '@/lib/catalog/git-beta-revision';
+import {filterPrompts} from '@/lib/catalog/query';
+import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
+import {catalogPaths} from '@/site/routes';
+import {libraryNavigation} from '@/site/navigation';
+describe('unified Website navigation',()=>{
+ it('binds primary category membership to the exported revision',()=>{expect(gitBetaRevision('base',{},{},{},{},{},{},{a:'web-design'})).not.toBe(gitBetaRevision('base',{},{},{},{},{},{},{a:'creative-coding'}));});
+ for(const locale of ['zh-CN','en'] as const)it(`has one task entry and three complete exclusive purposes in ${locale}`,()=>{
+  const c=createGitBetaCatalog(locale),root=parse(renderToStaticMarkup(<HubBrowse catalog={c}/>));
+  const canonical=root.querySelectorAll(`#tasks a.tile[href="/${locale}/prompts/website"]`);
+  expect(canonical).toHaveLength(1);
+  expect(canonical[0]!.querySelector('h3')!.text).toBe(locale==='zh-CN'?'网站与开发':'Web design & development');
+  expect(canonical[0]!.querySelector('p')!.text).toBe(locale==='zh-CN'?'225 个案例':'225 cases');
+  expect(root.querySelectorAll('#tasks .browse-spotlight')).toHaveLength(0);
+  expect(root.querySelector('#tasks')!.text).not.toContain(locale==='zh-CN'?'创作与开发':'Creation & development');
+  const views=websiteViews(c).filter(v=>v.axis==='use-case');
+  expect(views.map(v=>v.slug).sort()).toEqual(['app-development','creative-coding','web-design']);
+  expect(views.reduce((sum,v)=>sum+v.count,0)).toBe(225);
+  expect(new Set(views.flatMap(v=>v.caseIds)).size).toBe(225);
+  const tasks=libraryNavigation(c).find(g=>g.id==='tasks')!;
+  expect(tasks.entries.filter(e=>e.href===`/${locale}/prompts/website`)).toHaveLength(1);
+  for(const alias of websiteLegacyPaths(locale))expect(catalogPaths(c)).toContain(alias);
+  expect(filterPrompts(c,{useCase:['website-creation']}).map(p=>p.id)).toEqual(filterPrompts(c,{useCase:['website']}).map(p=>p.id));
+  for(const value of ['usecase_bb3cede5977f801eb9bf610879fd8438','usecase_747a8f398395dde8e524d9f983784bd8'])expect(filterPrompts(c,{useCase:[value]})).toHaveLength(174);
+  for(const label of ['Web design & development','网站与开发'])expect(filterPrompts(c,{q:label})).toHaveLength(174);
+  expect(websiteLegacyPaths(locale)).toContain(`/${locale}/prompts/website/views/use-case/web-motion-design`);
+  expect(c.useCases.filter(r=>r.slug==='website')).toHaveLength(1);
+ });
+});

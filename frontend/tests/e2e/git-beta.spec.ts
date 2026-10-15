@@ -6,14 +6,14 @@ test('Website filters wait for hydration before accepting input', async ({ page 
   const gate = new Promise<void>(resolve => { releaseScripts = resolve; });
   await page.route('**/_next/static/**/*.js', async route => { await gate; await route.continue(); });
   try {
-    await page.goto('/en/prompts/website/views/use-case/website-fun', {waitUntil:'commit'});
+    await page.goto('/en/prompts/website/views/use-case/creative-coding', {waitUntil:'commit'});
     await expect(page.getByLabel('Search cases')).toBeDisabled();
     await expect(page.getByRole('button', {name:'Filter',exact:true})).toBeDisabled();
     releaseScripts();
     await expect(page.getByLabel('Search cases')).toBeEnabled();
     await page.getByLabel('Search cases').fill('Halloween pool');
     await page.getByRole('button', {name:'Filter',exact:true}).click();
-    await expect(page.locator('[role="status"]')).toHaveText('1 of 19 website cases');
+    await expect(page.locator('[role="status"]')).toHaveText('1 of 67 website cases');
   } finally { releaseScripts(); }
 });
 
@@ -26,18 +26,18 @@ test('published Git beta exposes real image and Website counts, sources and proj
   expect(receipt.gitBeta.importedWebsites).toBe(59);
   await page.goto('/en/prompts#category');
   await expect(page.locator('#category a.tile').filter({hasText:'Images'}).locator('p')).toHaveText('543 prompts');
-  await expect(page.locator('#category a.tile').filter({hasText:'Website'}).locator('p')).toHaveText('225 cases');
-  await page.locator('#category a.tile').filter({hasText:'Website'}).click();
-  await expect(page.locator('h1')).toHaveText('Website views');
+  await expect(page.locator('#category a.tile').filter({hasText:'Web design & development'}).locator('p')).toHaveText('225 cases');
+  await page.locator('#category a.tile').filter({hasText:'Web design & development'}).click();
+  await expect(page.locator('h1')).toHaveText('Web design & development');
   await expect(page.locator('[data-website-case]')).toHaveCount(0);
-  await expect(page.locator('[data-website-view]')).toHaveCount(30);
+  await expect(page.locator('[data-website-view]')).toHaveCount(27);
   await page.locator('[data-website-view][data-view-axis=all]').click();
   await expect(page.locator('h1')).toHaveText('All website cases');
   await expect(page.locator('[data-website-case]')).toHaveCount(225);
   await page.locator('.website-title-index a[data-case-title]').nth(1).click();
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('a').filter({hasText:'View original source'})).toHaveAttribute('href', /^https:\/\/x.com\//);
-  await expect(page.getByText('No prompt was included', {exact:false})).toBeVisible();
+  await expect(page.getByText('Site-authored template · the collected source did not include prompt text.', {exact:true})).toBeVisible();
   expect((await request.get('/en/prompts/website/not-a-real-case')).status()).toBe(404);
 });
 
@@ -76,8 +76,8 @@ test('case collection remains accessible, responsive and readable without JavaSc
   const noJS = await context.newPage();
   await noJS.goto(`${process.env.FRONTEND_TEST_URL}/en/prompts/website`, {waitUntil:'domcontentloaded'});
   await expect(noJS.locator('[data-website-case]')).toHaveCount(0);
-  await expect(noJS.locator('[data-website-view]')).toHaveCount(30);
-  await expect(noJS.locator('h1')).toHaveText('Website views');
+  await expect(noJS.locator('[data-website-view]')).toHaveCount(27);
+  await expect(noJS.locator('h1')).toHaveText('Web design & development');
   await noJS.goto(`${process.env.FRONTEND_TEST_URL}/en/prompts/website/views/tool/three-js`, {waitUntil:'domcontentloaded'});
   await expect(noJS.locator('[data-website-case]')).toHaveCount(36);
   await context.close();
@@ -86,20 +86,20 @@ test('case collection remains accessible, responsive and readable without JavaSc
 
 test('independent graph view URLs retain their scope through details, filters and history', async ({ page, request }) => {
   await page.goto('/en/prompts/website');
-  await page.locator('[data-website-view][href$="/use-case/website-fun"]').click();
-  await expect(page).toHaveURL(/website\/views\/use-case\/website-fun$/);
-  await expect(page.locator('h1')).toHaveText('Play & exploration');
-  await expect(page.locator('[data-website-case]')).toHaveCount(19);
+  await page.locator('[data-website-view][href$="/use-case/creative-coding"]').click();
+  await expect(page).toHaveURL(/website\/views\/use-case\/creative-coding$/);
+  await expect(page.locator('h1')).toHaveText('Creative coding');
+  await expect(page.locator('[data-website-case]')).toHaveCount(67);
   await page.locator('[data-website-case]').first().locator('a[data-case-title]').click();
-  await page.locator('main').getByRole('link', {name:'Play & exploration · 19 cases',exact:true}).click();
-  await expect(page.locator('[data-website-case]')).toHaveCount(19);
+  await page.locator('main').getByRole('link', {name:'Creative coding · 67 cases',exact:true}).click();
+  await expect(page.locator('[data-website-case]')).toHaveCount(67);
   await page.getByLabel('Search cases').fill('Halloween pool');
   await page.getByRole('button', {name:'Filter',exact:true}).click();
-  await expect(page.locator('[role="status"]')).toHaveText('1 of 19 website cases');
-  await expect(page).toHaveURL(/website-fun\?q=Halloween\+pool/);
+  await expect(page.locator('[role="status"]')).toHaveText('1 of 67 website cases');
+  await expect(page).toHaveURL(/creative-coding\?q=Halloween\+pool/);
   await page.reload();
-  await expect(page.locator('[role="status"]')).toHaveText('1 of 19 website cases');
+  await expect(page.locator('[role="status"]')).toHaveText('1 of 67 website cases');
   await page.goBack();
-  await expect(page.locator('[data-website-case]')).toHaveCount(19);
+  await expect(page.locator('[data-website-case]')).toHaveCount(67);
   expect((await request.get('/en/prompts/website/views/tool/not-a-real-tool')).status()).toBe(404);
 });

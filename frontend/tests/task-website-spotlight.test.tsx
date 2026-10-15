@@ -8,9 +8,9 @@ it.each(['zh-CN','en'] as const)('features a real website case instead of the fi
  const catalog=createGitBetaCatalog(locale);
  const example=websiteEntries(catalog).find(entry=>entry.source.url==='https://x.com/SuzzaneKisia/status/2100085815330435375')!;
  expect(example).toBeDefined();
- const tile=parse(renderToStaticMarkup(<HubBrowse catalog={catalog}/>)).querySelector('#tasks .browse-spotlight')!;
- expect(tile.getAttribute('href')).toBe(example.href);
+ const tile=parse(renderToStaticMarkup(<HubBrowse catalog={catalog}/>)).querySelector(`#tasks .tiles a[href="/${locale}/prompts/website"]`)!;
+ expect(tile.getAttribute('href')).toBe(`/${locale}/prompts/website`);
  expect(tile.querySelector('img')?.getAttribute('src')).toBe(example.cover);
- expect(tile.querySelector('p')?.text).toBe(locale==='zh-CN'?'1 个案例':'1 case');
+ expect(tile.querySelector('p')?.text).toBe(locale==='zh-CN'?'225 个案例':'225 cases');
  expect(tile.querySelector('h3')?.text).toBe(locale==='zh-CN'?'网站与开发':'Web design & development');
 });

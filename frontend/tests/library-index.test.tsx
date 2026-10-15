@@ -30,6 +30,6 @@ describe('shared Footer IA and complete Library index',()=>{
     const claude=groups.find(group=>group.id==='website-model')?.entries.find(entry=>entry.href.endsWith('/claude'));
     expect(claude?.count).toBe(28);expect(claude?.label).toBe('Claude · 28 个案例');
     expect(groups.find(group=>group.id==='website-tool')?.entries).toHaveLength(21);
-    expect(groups.find(group=>group.id==='website-use-case')?.entries).toHaveLength(6);
+    expect(groups.find(group=>group.id==='website-use-case')?.entries).toHaveLength(3);
   });
 });

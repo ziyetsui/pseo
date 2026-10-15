@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-const paths=['models/gpt-image-2','model-families/gpt-image','styles/poster','website/views/all','website/views/tool/three-js','use-cases/posters-typography','website/views/use-case/website-creation'];
+const paths=['models/gpt-image-2','model-families/gpt-image','styles/poster','website/views/all','website/views/tool/three-js','use-cases/posters-typography','website/views/use-case/web-design'];
 for (const path of paths) test(`compact index: ${path}`,async({page})=>{
  test.setTimeout(60000);
  for(const locale of ['en','zh-CN']){

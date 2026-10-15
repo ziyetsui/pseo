@@ -1,3 +1,4 @@
+import {websiteTaskReference} from './website-taxonomy';
 import type { Catalog, Prompt, Ref, WebsiteCase } from './types';
 
 const websiteTasks = new Set(['website', 'web-design', 'web-development', 'web-motion-design']);
@@ -12,7 +13,8 @@ export function websitePrompts(catalog: Catalog): Prompt[] {
 }
 
 export function websiteRef(catalog: Catalog): Ref {
-  return { id: 'navigation:website', slug: 'website', label: catalog.mode==='git-beta'&&catalog.locale==='zh-CN'?'网站':'Website', href: `/${catalog.locale}/prompts/website`, count: websiteEntries(catalog).length };
+  if(catalog.mode==='git-beta')return websiteTaskReference(catalog.locale,websiteEntries(catalog).length);
+  return { id: 'navigation:website', slug: 'website', label: 'Website', href: `/${catalog.locale}/prompts/website`, count: websiteEntries(catalog).length };
 }
 
 /** Cases with and without supplied prompts share navigation, never a fabricated prompt body. */

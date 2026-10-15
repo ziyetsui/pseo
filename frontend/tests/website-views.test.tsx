@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
+import membership from '@/data/website-category-membership.json';
 import graph from '../../docs/intake/2026-10-14/graph.json';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
 import { websiteEditableTemplate } from '@/lib/catalog/website-templates';
@@ -45,7 +46,7 @@ describe('Website graph projections', () => {
   it('projects actual used_for, designed_for and built_with edges to independent views', () => {
     const importedIds = new Set(catalog.websites?.map(entry => entry.id));
     for (const view of views.filter(view => view.axis !== 'all')) {
-      const expected = new Set(graph.edges.filter(edge => edge.type === view.relation && edge.to === view.targetId && importedIds.has(edge.from)).map(edge => edge.from));
+      const expected = new Set(view.axis==='use-case'?Object.entries(membership).filter(([id,slug])=>slug===view.slug&&importedIds.has(id)).map(([id])=>id):graph.edges.filter(edge => edge.type === view.relation && edge.to === view.targetId && importedIds.has(edge.from)).map(edge => edge.from));
       expect(new Set(view.caseIds.filter(id => importedIds.has(id)))).toEqual(expected);
       expect(view.count).toBe(new Set(view.caseIds).size);
       expect(view.count).toBeGreaterThan(0);
@@ -55,7 +56,7 @@ describe('Website graph projections', () => {
     expect(views.find(view => view.axis === 'model' && view.slug === 'claude')?.count).toBe(28);
     expect(views.find(view => view.axis === 'model' && view.slug === 'codex')?.count).toBe(7);
     expect(views.find(view => view.axis === 'tool' && view.slug === 'three-js')?.count).toBe(36);
-    expect(views.find(view => view.axis === 'use-case' && view.slug === 'website-fun')?.count).toBe(19);
+    expect(views.find(view => view.axis === 'use-case' && view.slug === 'creative-coding')?.count).toBe(67);
     expect(new Set(views.map(view => view.href)).size).toBe(views.length);
   });
   it('keeps every case reachable and counts the existing prompt with its genuine relationships', () => {
@@ -69,7 +70,7 @@ describe('Website graph projections', () => {
       expect(related.length).toBeGreaterThan(0);
       for (const view of related) expect(websiteViewEntries(catalog,view).map(item => item.id)).toContain(entry.id);
     }
-    for (const entry of baseline) expect(websiteViewsForCase(catalog,entry.id).filter(view => view.axis === 'use-case').map(view => view.slug).sort()).toEqual(entry.useCases.filter(ref => ref.slug !== 'website').map(ref => ref.slug).sort());
+    for (const entry of baseline) expect(websiteViewsForCase(catalog,entry.id).filter(view => view.axis === 'use-case').map(view => view.slug).sort()).toEqual([membership[entry.id as keyof typeof membership]]);
     for (const entry of baseline) {
       const prompt = catalog.prompts.find(prompt => prompt.id === entry.id)!;
       const detail = parse(renderToStaticMarkup(<Recipe catalog={catalog} prompt={prompt} />));
@@ -81,7 +82,7 @@ describe('Website graph projections', () => {
     expect(directory.querySelectorAll('[data-website-case]')).toHaveLength(0);
     expect(directory.querySelectorAll('[data-website-view]')).toHaveLength(views.length);
     for (const axis of ['model','use-case','tool']) expect(directory.querySelectorAll(`[data-view-axis="${axis}"]`).length).toBeGreaterThan(0);
-    const view = views.find(view => view.slug === 'website-fun')!;
+    const view = views.find(view => view.slug === 'creative-coding')!;
     const scoped = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={view} />));
     expect(scoped.querySelectorAll('form input[disabled], form select[disabled], form button[disabled]')).toHaveLength(4);
     expect(new Set(scoped.querySelectorAll('[data-website-case]').map(element => element.getAttribute('data-website-case')))).toEqual(new Set(view.caseIds));

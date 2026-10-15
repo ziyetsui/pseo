@@ -1,5 +1,5 @@
 /** Independent export-side projection of the already-published baseline relationships. */
-export function websiteValidationGraph(graph, baseline, taxonomies) {
+export function websiteValidationGraph(graph, baseline, taxonomies, membership) {
   const nodes = [...graph.nodes], edges = [...graph.edges];
   const websiteTasks = new Set(['website','web-design','web-development','web-motion-design']);
   const websiteIds = new Set(edges.filter(edge => edge.type === 'used_for' && nodes.some(node => node.id === edge.to && node.slug === 'website')).map(edge => edge.from));
@@ -23,6 +23,13 @@ export function websiteValidationGraph(graph, baseline, taxonomies) {
       if (!existing) nodes.push(ref);
       edges.push({from:prompt.id,to:existing?.id ?? ref.id,type:relation});
     }
+  }
+  if(membership){
+    const categories=['web-design','app-development','creative-coding'];
+    if(Object.keys(membership).length!==websiteIds.size||Object.keys(membership).some(id=>!websiteIds.has(id)||!categories.includes(membership[id])))throw new Error('Invalid Website category membership');
+    for(let i=edges.length-1;i>=0;i--)if(websiteIds.has(edges[i].from)&&edges[i].type==='used_for')edges.splice(i,1);
+    for(const slug of categories)nodes.push({id:`navigation:website-purpose:${slug}`,slug,label:slug,type:'use-case'});
+    for(const [id,slug] of Object.entries(membership))edges.push({from:id,to:`navigation:website-purpose:${slug}`,type:'used_for'});
   }
   return { nodes,edges,websiteIds:[...websiteIds] };
 }
