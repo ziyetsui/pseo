@@ -17,7 +17,7 @@ describe('localized case presentation',()=>{
   const en=createGitBetaCatalog('en'),zh=createGitBetaCatalog('zh-CN');
   const doc=parse(renderToStaticMarkup(<Hub catalog={en} />));
   const titles=doc.querySelectorAll('[data-entry] .u');
-  expect(titles).toHaveLength(36);
+  expect(titles).toHaveLength(54);
   expect(parse(doc.querySelector("noscript")?.innerHTML??"").querySelectorAll("a")).toHaveLength(en.prompts.length);
   expect(titles.every(node=>!/[\u3400-\u9fff]/u.test(node.text))).toBe(true);
   for(const q of ['Halloween pool','万圣节泳池'])expect(filterWebsiteCases(websiteEntries(en),{q}).map(row=>row.id)).toEqual(filterWebsiteCases(websiteEntries(zh),{q}).map(row=>row.id));

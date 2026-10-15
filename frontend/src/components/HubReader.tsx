@@ -10,7 +10,7 @@ import { PromptMedia } from "@/components/PromptMedia";
 import { mountMagnetic } from "@/components/magnetic-motion";
 import { EmptyResults, Filters, PromptWords, SearchForm, usePromptExplorer } from "@/components/Filters";
 
-const INITIAL_VISIBLE_PROMPTS = 36;
+const INITIAL_VISIBLE_PROMPTS = 54;
 
 function MagneticField({ rows , uiLocale = 'en', bilingual = false}: { rows: Prompt[] ; uiLocale?: Locale; bilingual?:boolean }) {
   const ref = useRef<HTMLDivElement>(null);
