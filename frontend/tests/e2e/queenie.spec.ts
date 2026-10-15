@@ -15,7 +15,7 @@ for(const locale of ['en','zh-CN'] as const)test(`Queenie ${locale} image studie
  await entry.click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/image`,{waitUntil:'domcontentloaded'});
  await page.locator('#q').fill('The Day I Gave Up My Corporate Promotion');
  await expect(page.locator('.dc[data-top] h3')).toHaveText(locale==='en'?'The Day I Gave Up My Corporate Promotion':'我放弃职场晋升的那一天');
- await page.locator('.dc[data-top]').scrollIntoViewIfNeeded();await page.screenshot({path:testInfo.outputPath('l2-image-deck.png')});
+ await page.locator('.dc[data-top]').scrollIntoViewIfNeeded();await expect.poll(()=>page.locator('.dc[data-top] .media img').evaluate(img=>(img as HTMLImageElement).complete&&(img as HTMLImageElement).naturalWidth>0)).toBe(true);await page.screenshot({path:testInfo.outputPath('l2-image-deck.png')});
  await page.locator('.dc[data-top] h3 a').click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/${slug}`,{waitUntil:'domcontentloaded'});
  await expect(page.locator('main')).toContainText(locale==='en'?'Reference image by':'参考图作者');
  await expect(page.locator('[data-prompt]')).not.toContainText('[HEADLINE]');
@@ -26,5 +26,5 @@ for(const locale of ['en','zh-CN'] as const)test(`Queenie ${locale} image studie
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:testInfo.outputPath('l4-placeholder-editor.png')});
  const axe=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations.map(v=>v.id)).toEqual([]);
  await page.locator(`main a[href="/${locale}/prompts/use-cases/editorial-covers"]`).first().click({noWaitAfter:true});await page.waitForURL(`**/${locale}/prompts/use-cases/editorial-covers`,{waitUntil:'domcontentloaded'});
- await expect(page.locator('[data-finding=reference]')).toBeVisible();await page.locator('[data-finding=reference]').scrollIntoViewIfNeeded();await page.screenshot({path:testInfo.outputPath('l3-reference-finding.png')});await expect(page.locator(`a[href="/${locale}/prompts/${slug}"]`).first()).toBeAttached();
+ await expect(page.locator('[data-finding=reference]')).toBeVisible();await page.locator('[data-finding=reference]').scrollIntoViewIfNeeded();await expect.poll(()=>page.locator('[data-finding=reference] figure img').evaluate(img=>(img as HTMLImageElement).complete&&(img as HTMLImageElement).naturalWidth>0)).toBe(true);await page.screenshot({path:testInfo.outputPath('l3-reference-finding.png')});await expect(page.locator(`a[href="/${locale}/prompts/${slug}"]`).first()).toBeAttached();
 });

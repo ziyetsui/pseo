@@ -69,3 +69,13 @@ it('keeps image credit separate from prompt authorship and renders reference fin
  const findings=taskFindings([p]).findings;
  expect(findings.some(f=>f.key==='reference')).toBe(true);expect(findings.some(f=>f.key==='author')).toBe(false);
 });
+
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
+import { parse } from 'node-html-parser';
+import { PromptMedia } from '@/components/PromptMedia';
+it('keeps wide reference headlines visible within the existing card frames',()=>{
+ const p=createGitBetaCatalog('en').prompts.find(p=>p.reconstruction)!;
+ const image=parse(renderToStaticMarkup(createElement(PromptMedia,{prompt:p}))).querySelector('img')!;
+ expect(image.getAttribute('style')).toContain('object-fit:contain');
+});

@@ -15,5 +15,5 @@ export function PromptMedia({ prompt, width = 560, height = 560, className, prio
   </span>;
   if (video) return <video className={className} src={video.src} poster={video.poster ?? prompt.img ?? undefined} controls playsInline preload="none" width={width} height={height} onError={() => setFailed(true)} aria-label={video.alt || prompt.title} />;
   // The static export preserves the reference media crop and does not require an image server.
-  return <img className={className} src={prompt.img ?? ''} alt={prompt.media[0]?.alt || text(uiLocale, `A result of the prompt “${prompt.title}”`, `提示词“${prompt.title}”的生成结果`)} width={width} height={height} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} referrerPolicy="no-referrer" onError={() => setFailed(true)} />;
+  return <img style={prompt.reconstruction ? {objectFit:"contain"} : undefined} className={className} src={prompt.img ?? ''} alt={prompt.media[0]?.alt || text(uiLocale, `A result of the prompt “${prompt.title}”`, `提示词“${prompt.title}”的生成结果`)} width={width} height={height} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} referrerPolicy="no-referrer" onError={() => setFailed(true)} />;
 }

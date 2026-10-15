@@ -15,3 +15,5 @@ Validation: deterministic schema, unique IDs/URLs, safe HTTPS allowlist, image/c
 Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical top-level prompt-route .txt and __next._full.txt payloads. Verify every pair before mutation, retain all full/tree/page segments, remove only identical monolithic copies and preserve their URLs with two locale-scoped relative Pages 200 proxies. Validate real Cloudflare-compatible proxy responses and client navigation; never delete accepted pages or media to fit the limit.
 
 Measured full-scale Deck defect: initial browser load requested 2,080 images because all off-deck absolute cards render media. Render media only for the current card and three visible preview cards; retain every card’s text, href, filtering and keyboard traversal. Verify request count and stepping after search/reset.
+
+Visual review: imported wide headline covers must use contain within existing card/Findings frames, preserving all printed text. Apply only to reconstruction images; existing source media crops and page dimensions remain unchanged.
