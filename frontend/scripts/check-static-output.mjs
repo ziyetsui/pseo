@@ -2,6 +2,7 @@ import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { verifyWebsiteViewOutput, websiteValidationGraph } from './website-view-output.mjs';
 import { WIREFRAME_TAXONOMIES } from '../src/data/wireframe/taxonomies.ts';
 import {readLibraryIndex,indexHash,verifyLibraryIndex} from './library-index-output.mjs';
+import { verifyBilingualOutput } from './bilingual-output.mjs';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse } from 'node-html-parser';
@@ -55,6 +56,7 @@ if (manifest.mode !== 'public-api') {
   if (!(await readFile(path.join(root, '_headers'), 'utf8')).includes('X-Robots-Tag: noindex')) throw new Error('Missing preview response noindex');
   if (!(await readFile(path.join(root, 'robots.txt'), 'utf8')).includes('Disallow: /')) throw new Error('Fixture crawl access is not blocked');
   if (manifest.mode === 'git-beta') {
+    verifyBilingualOutput(documents);
     // Presentation titles must follow the English route; raw prompt/source blocks are separate.
     for (const [route, document] of documents) if (route.startsWith('/en/prompts')) {
       for (const node of document.querySelectorAll('.run .u, .allof a, .toc .t, .lop .t, [data-case-title]')) {

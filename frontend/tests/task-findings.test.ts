@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createFixtureCatalog } from '../src/lib/catalog/fixture';
 import { filterPrompts } from '../src/lib/catalog/query';
-import { taskFindings } from '../src/lib/catalog/task-findings';
+import { isStructuredPrompt, taskFindings } from '../src/lib/catalog/task-findings';
 const catalog = createFixtureCatalog('zh-CN');
 describe('Findings count the selected task subset', () => {
   it('uses tagged evidence and keeps every matching record reachable', () => {
@@ -23,5 +23,11 @@ describe('Findings count the selected task subset', () => {
     const singleton = taskFindings([{...minimal,handle:'@author'}]);
     expect(singleton.findings[0]?.heading).toBe('One prompt names its author.');
     expect(singleton.rest).toEqual([]);
+  });
+  it('keeps source-based structure grouping identical after translation', () => {
+    const source = catalog.prompts[0]!;
+    const localized = { ...source, prompt: '中文译文，包含一段普通说明。', originalPrompt: '{"scene":"a studio"}' };
+    expect(isStructuredPrompt(localized)).toBe(true);
+    expect(isStructuredPrompt({ ...localized, originalPrompt: 'A plain instruction.', prompt: '{"场景":"摄影棚"}' })).toBe(false);
   });
 });
