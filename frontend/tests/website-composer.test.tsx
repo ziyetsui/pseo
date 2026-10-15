@@ -14,14 +14,14 @@ describe('Website L3 composer', () => {
       expect(doc.querySelector('.model-signature textarea')?.getAttribute('placeholder')).toBe(locale === 'en' ? 'Describe the website you want to build…' : '描述你想创建的网站…');
       expect(doc.querySelector('.model-signature .website-filters')).toBeNull();
       expect(doc.querySelectorAll('.website-filters')).toHaveLength(1);
-      expect(doc.querySelector('.msh-generate')?.getAttribute('href')).toBe('https://bo.ancher.ai/home');
+      expect(doc.querySelector('.msh-generate')?.getAttribute('href')).toBe('https://app.ancher.ai/?prompts=');
       const entries = websiteViewEntries(catalog, view);
       expect(doc.querySelectorAll('[data-website-case]')).toHaveLength(entries.length);
       for (const entry of entries) {
         const article = doc.querySelector(`[data-website-case="${entry.id}"]`)!;
         const action = article.querySelector('.acts a');
         const prompt = catalog.prompts.find(prompt => prompt.id === entry.id || prompt.href === entry.promptHref);
-        if (prompt?.prompt) expect(action?.getAttribute('href')).toBe(entry.promptHref ?? entry.href);
+        if (prompt?.prompt) expect(new URL(action!.getAttribute('href')!).searchParams.get('prompts')).toBe(prompt.prompt);
         else expect(action?.textContent).toBe(locale === 'en' ? 'Explore this project' : '探索此项目');
       }
     }

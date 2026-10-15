@@ -1,5 +1,4 @@
 /** Weight CTA: passive reading reminder and explicit generation intent are separate. */
-export const BO_URL = "https://bo.video/home";
 export const GATE = {
   depth: 0.45,
   dwellMs: 1200,
