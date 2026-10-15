@@ -8,6 +8,7 @@
 @import "./sign-in-gate.css";
 @import "./website-hierarchy.css";
 @import "./language-switch.css";
+@import "./chinese-typography.css";
 
 * { box-sizing: border-box; }
 html { color-scheme: dark; }
