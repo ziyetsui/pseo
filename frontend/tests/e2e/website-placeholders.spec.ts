@@ -10,7 +10,7 @@ test('website template values update the full prompt and generation link, then r
     const tokens = await page.getByRole('radiogroup').evaluateAll(nodes => nodes.map(node => document.getElementById(node.getAttribute('aria-labelledby')!)!.textContent!));
     expect(tokens.length).toBeGreaterThan(0);
     await expect(page.getByText('Word for word, as published.', { exact: true })).toHaveCount(0);
-    for (const [token, value] of tokens.slice(0, 2).map((token,index)=>[token,`AURORA 王国 ${index}`])) {
+    for (const [token, value] of tokens.slice(0, 2).map((token,index)=>[token,`AURORA 王国 ${index}`] as const)) {
       await page.getByRole('radiogroup', { name: token, exact: true }).getByRole('radio', { name: chinese ? '自定义' : 'Custom', exact: true }).check();
       await page.getByRole('textbox', { name: token, exact: true }).fill(value);
       await expect(body).toContainText(value);
@@ -31,7 +31,7 @@ test('website template remains readable with JavaScript disabled', async ({ brow
   const page = await context.newPage();
   await page.goto(`${process.env.FRONTEND_TEST_URL ?? 'http://127.0.0.1:3000'}/en/prompts/${slug}`, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-prompt]')).toContainText(/\[[A-Z][A-Z0-9_]*\]/);
-  await expect(page.locator('[data-prompt]')).toContainText('Three.js');
+  await expect(page.locator('[data-prompt]')).toContainText('<motion_qa>');
   await expect(page.locator('[data-generation-cta]')).toHaveAttribute('href', /prompts=/);
   await context.close();
 });
