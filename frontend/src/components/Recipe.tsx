@@ -8,6 +8,8 @@ import { RecipeGenerateLink } from './RecipeGenerateLink';
 import { RecipeText } from "@/components/RecipeText";
 import { generationLabel } from "@/components/generation-label";
 import { isPromptCreator } from "@/lib/catalog/creator-match";
+import { websiteEntries } from '@/lib/catalog/website';
+import { websiteEditableTemplate } from '@/lib/catalog/website-templates';
 import { websiteViewsForCase } from "@/lib/catalog/website-views";
 
 const number = (value: number | null) => value === null ? "—" : value.toLocaleString("en-US");
@@ -15,6 +17,8 @@ const number = (value: number | null) => value === null ? "—" : value.toLocale
 /** The Recipe layout is server rendered; only media and placeholder controls hydrate. */
 export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }) {
   const uiLocale = interfaceLocale(catalog);
+  const websiteEntry = catalog.mode === 'git-beta' ? websiteEntries(catalog).find(entry => entry.id === prompt.id || entry.promptHref === prompt.href) : undefined;
+  const editablePrompt = websiteEntry ? websiteEditableTemplate(catalog, websiteEntry) : prompt;
   const creator = catalog.creators.find((item) => isPromptCreator(prompt, item));
   const hasMedia = Boolean(prompt.img || prompt.media.length);
   const websiteViews = websiteViewsForCase(catalog, prompt.id);
@@ -41,7 +45,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
         </div>
       </section>
 
-      <RecipeText showOriginalLanguage={catalog.mode === 'git-beta'} uiLocale={uiLocale} key={`${prompt.id}:${prompt.locale}:${prompt.revision}`} prompt={prompt} />
+      <RecipeText showOriginalLanguage={catalog.mode === 'git-beta'} uiLocale={uiLocale} key={`${prompt.id}:${prompt.locale}:${prompt.revision}`} prompt={editablePrompt} />
 
       <section className="step" aria-labelledby="recipe-run">
         <div className="num" aria-hidden="true">04</div><div>
@@ -54,7 +58,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           {prompt.requiredInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Required inputs")}</span><span>{prompt.requiredInputs.join(", ")}</span></div>}
           {prompt.optionalInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Optional inputs")}</span><span>{prompt.optionalInputs.join(", ")}</span></div>}
           <div className="acts">
-            <RecipeGenerateLink prompt={prompt.prompt}>{generationLabel(prompt.kind, uiLocale)}</RecipeGenerateLink>
+            <RecipeGenerateLink prompt={editablePrompt.prompt}>{generationLabel(prompt.kind, uiLocale)}</RecipeGenerateLink>
             <span className="metrics"><span>{prompt.handle || uiText(uiLocale, "unattributed")}</span><span><b>{number(prompt.likes)}</b>{text(uiLocale, " likes", " 次点赞")}</span><span><b>{number(prompt.saves)}</b>{text(uiLocale, " saves", " 次收藏")}</span>{prompt.highValue && <span className="ok">{uiText(uiLocale, "Popular")}</span>}</span>
           </div>
           <div style={{ marginTop: 20 }}>

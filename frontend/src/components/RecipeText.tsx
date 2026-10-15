@@ -13,7 +13,9 @@ const subscribe = () => () => undefined;
 const clientReady = () => true;
 const serverReady = () => false;
 
-export function RecipeText({ prompt , uiLocale = 'en', showOriginalLanguage = false}: { prompt: Prompt ; uiLocale?: Locale; showOriginalLanguage?:boolean }) {
+type RecipeTextPrompt = Pick<Prompt, "prompt" | "variables" | "language" | "editableTemplate" | "originalPrompt"> & { origin?: "adapted-source" | "site-authored" };
+
+export function RecipeText<T extends RecipeTextPrompt>({ prompt , uiLocale = 'en', showOriginalLanguage = false}: { prompt: T; uiLocale?: Locale; showOriginalLanguage?:boolean }) {
   // Prevent early keystrokes from being discarded before controlled inputs hydrate.
   const ready = useSyncExternalStore(subscribe, clientReady, serverReady);
   const [values, setValues] = useState<Record<string, string>>({});
@@ -65,8 +67,9 @@ export function RecipeText({ prompt , uiLocale = 'en', showOriginalLanguage = fa
       <div className="num" aria-hidden="true">03</div><div>
         <h2 id="recipe-text">{uiText(uiLocale, "Take the text")}</h2>
         <p className="lede">{text(uiLocale, `${resolved.length.toLocaleString("en-US")} characters. Copy the whole thing — the render settings at the end are part of it.`, `${resolved.length.toLocaleString("zh-CN")} 个字符。请复制全部内容，包括末尾的生成参数。`)}</p>
-        {showOriginalLanguage && <p className="eyebrow">{originalLanguage(uiLocale, prompt.language, prompt.originalPrompt !== undefined)}</p>}<div className="payload">
-          <div className="payload-bar"><span className="how">{changed ? uiText(uiLocale, "Your template, with placeholders filled.") : prompt.originalPrompt !== undefined ? text(uiLocale, "Chinese translation", "中文译文") : prompt.editableTemplate ? uiText(uiLocale, "Editable template. Set the placeholders above.") : uiText(uiLocale, "Word for word, as published.")}</span></div>
+        {prompt.origin && <p className="eyebrow">{prompt.origin === 'site-authored' ? text(uiLocale, "Site-authored template · the collected source did not include prompt text.", "站点整理模板 · 收集的来源未提供提示词正文。") : text(uiLocale, "Editable template adapted from this case’s supplied prompt.", "根据此案例所附提示词改编的可编辑模板。")}</p>}
+        {showOriginalLanguage && !prompt.origin && <p className="eyebrow">{originalLanguage(uiLocale, prompt.language, prompt.originalPrompt !== undefined)}</p>}<div className="payload">
+          <div className="payload-bar"><span className="how">{changed ? uiText(uiLocale, "Your template, with placeholders filled.") : prompt.editableTemplate ? uiText(uiLocale, "Editable template. Set the placeholders above.") : prompt.originalPrompt !== undefined ? text(uiLocale, "Chinese translation", "中文译文") : uiText(uiLocale, "Word for word, as published.")}</span></div>
           <div className="payload-body" data-prompt data-lg-row="" data-lg-chars={resolved.length} data-lg-words={promptWords(resolved)} lang={prompt.language}>{parts.map((part, index) => part.token ? <span className="var prompt-placeholder" data-v={part.token} key={index}>{part.text}</span> : part.text)}</div>
         </div>
         {variables.length > 0 && <p className="novar" role="status" aria-live="polite" style={{ marginTop: 10 }}>{remaining.length ? text(uiLocale, `${remaining.length} ${remaining.length === 1 ? "placeholder remains" : "placeholders remain"} unfilled. Replace ${remaining.map((item) => item.token).join(", ")} before running the prompt.`, `还有 ${remaining.length} 个占位符未填写。请在生成前替换 ${remaining.map(item => item.token).join("、")}。`) : uiText(uiLocale, "All placeholders are filled.")}</p>}

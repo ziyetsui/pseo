@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
 import translations from '@/data/zh-prompt-bodies.json';
-import graph from '../../docs/intake/2026-10-14-website-supplement/combined-graph.json';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
 import { placeholderTokens } from '@/lib/catalog/placeholders';
 import { HubReader } from '@/components/HubReader';
@@ -20,13 +19,11 @@ describe('complete Chinese prompt body resource', () => {
   for (const source of en.prompts) {
    const entry = entries[source.id]!;
    const displayed = zh.prompts.find(prompt => prompt.id === source.id)!;
-   const raw = graph.nodes.find(node => node.id === source.id && node.type === 'prompt');
-   const sourceText = raw && 'prompt' in raw && typeof raw.prompt === 'string' ? raw.prompt : source.prompt;
-   expect(entry.sourceHash, source.id).toBe(`sha256:${createHash('sha256').update(sourceText, 'utf8').digest('hex')}`);
-   if (!raw || !source.editableTemplate) expect(displayed.prompt, source.id).toBe(entry.text);
+   expect(entry.sourceHash, source.id).toBe(`sha256:${createHash('sha256').update(source.prompt, 'utf8').digest('hex')}`);
+   expect(displayed.prompt, source.id).toBe(entry.text);
    expect(chinese.test(displayed.prompt), source.id).toBe(true);
    expect(displayed.language, source.id).toBe('zh-CN');
-   expect(displayed.originalPrompt ?? entry.text, source.id).toBe(sourceText);
+   expect(displayed.originalPrompt ?? displayed.prompt, source.id).toBe(source.prompt);
    expect(displayed.originalLanguage ?? displayed.language, source.id).toBe(source.language);
    expect(placeholderTokens(displayed.prompt).sort(), source.id).toEqual(placeholderTokens(source.prompt).sort());
    expect(occurrences(displayed.prompt, /\d+/g), source.id).toEqual(occurrences(source.prompt, /\d+/g));

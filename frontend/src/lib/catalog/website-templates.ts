@@ -1,75 +1,105 @@
 import { createHash } from 'node:crypto';
-import templateInput from '../../data/website-prompt-templates.json';
+import prepared from '@/data/website-placeholder-templates.json';
 import { placeholderTokens } from './placeholders';
-import type { Catalog, Locale, Prompt, Variable } from './types';
-import { websitePrompts } from './website';
+import type { Catalog, Locale, Prompt, Variable, WebsiteCase } from './types';
 
-export interface WebsiteTemplateEdit {
+export interface WebsiteReplacement {
   token: string;
-  en: string;
-  zh: string;
-  occurrence?: number;
+  labelEn: string;
+  labelZh: string;
+  en: string[];
+  zh: string[];
 }
-export interface WebsiteTemplate {
-  sourceHash: string;
-  translationHash: string;
-  edits: WebsiteTemplateEdit[];
+export interface WebsiteTemplateEntry {
+  sourceHash: { en: string; zh: string };
+  replacements: WebsiteReplacement[];
 }
-const templates: Record<string, WebsiteTemplate> = templateInput;
-const hash = (text: string) => `sha256:${createHash('sha256').update(text, 'utf8').digest('hex')}`;
+export type WebsiteTemplateManifest = Record<string, WebsiteTemplateEntry>;
+export interface EditableWebsitePrompt extends Pick<Prompt, 'prompt' | 'variables' | 'language'> {
+  editableTemplate: true;
+  origin: 'adapted-source' | 'site-authored';
+  sourceText: string | null;
+}
+const hash = (value: string) => `sha256:${createHash('sha256').update(value, 'utf8').digest('hex')}`;
+const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
+const strings = (value: unknown): value is string[] => Array.isArray(value) && value.length > 0 && value.every(item => typeof item === 'string' && item.length > 0);
 
-/** Apply reviewed spans once; neither translations nor immutable intake records are rewritten. */
-export function websiteTemplate(prompt: Prompt, locale: Locale, template: WebsiteTemplate): Prompt {
-  if (hash(prompt.prompt) !== (locale === 'en' ? template.sourceHash : template.translationHash))
-    throw new Error(`Stale website template: ${prompt.id}`);
-  const spans: { start: number; end: number; token: string }[] = [];
-  const metadata = new Map<string, Variable>();
-  for (const edit of template.edits) {
-    if (!/^\[[A-Z][A-Z0-9_]*\]$/u.test(edit.token)) throw new Error(`Invalid website token: ${prompt.id}`);
-    const source = locale === 'en' ? edit.en : edit.zh;
-    if (!source) throw new Error(`Empty website edit: ${prompt.id}`);
-    const starts: number[] = [];
-    let start = prompt.prompt.indexOf(source);
-    while (start >= 0) {
-      starts.push(start);
-      start = prompt.prompt.indexOf(source, start + source.length);
-    }
-    if (!starts.length || (edit.occurrence !== undefined && (!Number.isInteger(edit.occurrence) || edit.occurrence < 0 || edit.occurrence >= starts.length)))
-      throw new Error(`Missing website edit: ${prompt.id} ${edit.token}`);
-    for (const [index, start] of starts.entries()) {
-      if (edit.occurrence === undefined || edit.occurrence === index) spans.push({ start, end: start + source.length, token: edit.token });
-    }
-    metadata.set(edit.token, {
-      token: edit.token, label: edit.token.slice(1, -1).replaceAll('_', ' '),
-      defaultValue: source.startsWith('[') || /^<.*>$/u.test(source) || /^\{.*\}$/u.test(source) ? '' : source,
-      options: [], note: null, required: true,
+function readManifest(input: unknown): WebsiteTemplateManifest {
+  if (!record(input)) throw new Error('Invalid Website template manifest');
+  const result: WebsiteTemplateManifest = {};
+  for (const [id, value] of Object.entries(input)) {
+    if (!record(value) || !record(value.sourceHash) || !Array.isArray(value.replacements)) throw new Error(`Invalid Website template entry: ${id}`);
+    const hashes = value.sourceHash;
+    if (!['en', 'zh'].every(locale => /^sha256:[a-f0-9]{64}$/.test(String(hashes[locale])))) throw new Error(`Invalid Website template hash: ${id}`);
+    const replacements: WebsiteReplacement[] = value.replacements.map((rule: unknown) => {
+      if (!record(rule) || typeof rule.token !== 'string' || !/^\[[A-Z][A-Z0-9_]*\]$/.test(rule.token) || typeof rule.labelEn !== 'string' || !rule.labelEn.trim() || typeof rule.labelZh !== 'string' || !rule.labelZh.trim() || !strings(rule.en) || !strings(rule.zh)) throw new Error(`Invalid Website template replacement: ${id}`);
+      return { token: rule.token, labelEn: rule.labelEn, labelZh: rule.labelZh, en: rule.en, zh: rule.zh };
     });
+    if (new Set(replacements.map(rule => rule.token)).size !== replacements.length) throw new Error(`Duplicate Website template variable: ${id}`);
+    result[id] = { sourceHash: { en: String(value.sourceHash.en), zh: String(value.sourceHash.zh) }, replacements };
   }
-  spans.sort((a, b) => a.start - b.start);
-  let position = 0;
-  let text = '';
-  for (const span of spans) {
-    if (span.start < position) throw new Error(`Overlapping website edits: ${prompt.id}`);
-    text += prompt.prompt.slice(position, span.start) + span.token;
-    position = span.end;
-  }
-  text += prompt.prompt.slice(position);
-  const variables = placeholderTokens(text).map(token => metadata.get(token) ?? prompt.variables.find(variable => variable.token === token));
-  if (!variables.length || variables.some(variable => !variable)) throw new Error(`Unreviewed website placeholder: ${prompt.id}`);
-  return { ...prompt, prompt: text, editableTemplate: true, variables: variables.filter((variable): variable is Variable => variable !== undefined) };
+  return result;
 }
+const manifest = readManifest(prepared);
 
-/** All website surfaces and generation links consume this same Git beta catalog. */
-export function editableWebsiteCatalog(catalog: Catalog): Catalog {
-  const websiteIds = new Set(websitePrompts(catalog).map(prompt => prompt.id));
-  const prompts = catalog.prompts.map(prompt => {
-    if (!websiteIds.has(prompt.id)) return prompt;
-    const template = templates[prompt.id];
-    if (!template) {
-      if (prompt.editableTemplate && prompt.variables.length) return prompt;
-      throw new Error(`Missing website template: ${prompt.id}`);
+/** Compare executable JSON shape, allowing only string values to become editable. */
+function jsonShape(value: unknown): unknown {
+  if (typeof value === 'string') return 'string';
+  if (Array.isArray(value)) return value.map(jsonShape);
+  if (record(value)) return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, jsonShape(item)]));
+  return { type: typeof value, value };
+}
+function defaultValue(value: string): string {
+  if (/^\[.*\]$/s.test(value)) return '';
+  const argument = value.replaceAll('\\"', '"').match(/^\{argument\s+name="[^"]*"\s+default="([^"]*)"\}$/s);
+  return argument ? argument[1]! : value;
+}
+const starterFields = [
+  ['WEBSITE_TYPE', 'Website type', '网站类型'], ['BRAND_NAME', 'Brand name', '品牌名称'],
+  ['PROJECT_BRIEF', 'Project brief', '项目需求'], ['TARGET_AUDIENCE', 'Target audience', '目标受众'],
+  ['DESIGN_STYLE', 'Design style', '设计风格'], ['PAGE_SECTIONS', 'Page sections', '页面内容'],
+] as const;
+
+/** Site-authored display templates never change the source catalog or claim author-original wording. */
+export function websiteEditableTemplate(catalog: Catalog, entry: WebsiteCase, definitions: WebsiteTemplateManifest = manifest): EditableWebsitePrompt {
+  if (catalog.mode !== 'git-beta') throw new Error('Website editing templates are limited to owner-authorized Git beta');
+  const locale: Locale = catalog.locale;
+  const source = catalog.prompts.find(prompt => prompt.id === entry.id || prompt.href === entry.promptHref);
+  if (!source) {
+    const prompt = locale === 'zh-CN'
+      ? `为 [BRAND_NAME] 创建一个 [WEBSITE_TYPE]。\n项目需求：[PROJECT_BRIEF]\n目标受众：[TARGET_AUDIENCE]\n设计风格：[DESIGN_STYLE]\n页面内容：[PAGE_SECTIONS]\n\n参考案例：${entry.title}\n${entry.summary}\n参考该案例的视觉方向与交互，结合以上需求创作自己的实现。确保桌面与手机可用，并验证页面交互。`
+      : `Create a [WEBSITE_TYPE] for [BRAND_NAME].\nProject brief: [PROJECT_BRIEF]\nTarget audience: [TARGET_AUDIENCE]\nDesign style: [DESIGN_STYLE]\nPage sections: [PAGE_SECTIONS]\n\nReference case: ${entry.title}\n${entry.summary}\nUse the case's visual direction and interactions as inspiration for your own implementation of the brief above. Support desktop and mobile and verify the page interactions.`;
+    return { prompt, language: locale, editableTemplate: true, origin: 'site-authored', sourceText: null,
+      variables: starterFields.map(([name, en, zh]) => ({ token: `[${name}]`, label: locale === 'zh-CN' ? zh : en, defaultValue: '', options: [], note: null, required: true })) };
+  }
+  const definition = definitions[entry.id];
+  const key = locale === 'zh-CN' ? 'zh' : 'en';
+  if (!definition || definition.sourceHash[key] !== hash(source.prompt)) throw new Error(`Missing or stale Website editing template: ${entry.id}`);
+  const rules = new Map<string, WebsiteReplacement>();
+  const spans = new Map<string, string>();
+  for (const rule of definition.replacements) {
+    rules.set(rule.token, rule);
+    for (const find of rule[key]) {
+      if (!source.prompt.includes(find)) throw new Error(`Missing Website template span: ${entry.id} ${rule.token}`);
+      if (spans.has(find) && spans.get(find) !== rule.token) throw new Error(`Conflicting Website template span: ${entry.id}`);
+      spans.set(find, rule.token);
     }
-    return websiteTemplate(prompt, catalog.locale, template);
+  }
+  // Replace source spans once; inserted variable names never become replacement input.
+  const pattern = [...spans.keys()].sort((a, b) => b.length - a.length).map(value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  const prompt = pattern ? source.prompt.replace(new RegExp(pattern, 'g'), value => spans.get(value)!) : source.prompt;
+  let parsed: unknown;
+  try { parsed = JSON.parse(source.prompt); } catch { /* Prose and code remain in their original format. */ }
+  if (parsed !== undefined) {
+    try { if (JSON.stringify(jsonShape(JSON.parse(prompt))) !== JSON.stringify(jsonShape(parsed))) throw new Error('Changed structure'); }
+    catch { throw new Error(`Changed Website template JSON contract: ${entry.id}`); }
+  }
+  const tokens = placeholderTokens(prompt);
+  if (!tokens.length) throw new Error(`Website template has no editable variables: ${entry.id}`);
+  const variables: Variable[] = tokens.map(token => {
+    const rule = rules.get(token), existing = source.variables.find(variable => variable.token === token);
+    return rule ? { token, label: locale === 'zh-CN' ? rule.labelZh : rule.labelEn, defaultValue: defaultValue(rule[key][0]!), options: [], note: null, required: true }
+      : existing ? { ...existing } : { token, label: token.slice(1, -1).replaceAll('_', ' '), defaultValue: '', options: [], note: null, required: true };
   });
-  return { ...catalog, prompts };
+  return { prompt, variables, language: source.language, editableTemplate: true, origin: 'adapted-source', sourceText: source.prompt };
 }

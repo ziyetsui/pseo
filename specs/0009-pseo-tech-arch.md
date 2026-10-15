@@ -1550,3 +1550,6 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 2026-10-15 Website editable templates：仅 git-beta 在原有 source/translation 校验和 locale 投影之后，应用 `frontend/src/data/website-prompt-templates.json` 的逐 id 双语替换清单。清单固定来源和译文的 SHA-256；缺失、漂移、重叠或无效变量直接构建失败。按原文本偏移一次替换，重复变量同步；为同名 `[INSERT]` 以 occurrence 区分语义。模板清单纳入 catalog revision 和 export receipt；源码、翻译文件、CMS/public-api 和 content mirror 不变。共享 Catalog 的 prompt/variables/ editableTemplate 同时驱动各 Website 展示与 app.ancher.ai 完整正文链接。测试验证中英文覆盖、逐字还原、未改技术约束、填值/重置、生成链接与无 JS 正文。
 
 2026-10-15 Git-beta 双语同步约束：两种 locale 共享目录来源、路由生成与内容身份；依赖正文形态的分类使用原文，避免译文改变分组。静态产物校验成对路由、主体控件结构和归一化站内链接，任一语言单独增删功能或目的地时构建失败。
+
+
+2026-10-15 用户要求全部 Website 案例统一可编辑占位符：Git-beta 的225个案例复用详情变量填写、同名替换、重置和生成链接；174个有来源正文的案例按原文/译文哈希绑定逐条有意义片段改为简短大写变量，51个无正文案例提供明确标注的站点整理模板。中英文变量身份、功能和页面同步，JSON键与非字符串值不改写。来源 catalog/正文与译文资源保持原样，模板为独立展示适配并纳入revision；不能将改编或站点模板冒充作者原文。此用户裁定取代Website无正文仅显示说明的旧规则，范围仅授权Git beta。

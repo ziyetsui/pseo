@@ -19,14 +19,15 @@ describe('real website cases', () => {
     expect(html.querySelectorAll('[data-website-case] img')).toHaveLength(61);
     expect(html.querySelector('h1')?.text).toBe('全部网站案例');
   });
-  it('keeps a missing prompt out of the detail actions and preserves its original source', () => {
+  it('offers a labeled site-authored template and preserves the original source for a case without prompt text', () => {
     const entry = catalog.websites?.find(item => !item.promptHref);
     if (!entry) throw new Error('Missing case test input');
     const html = parse(renderToStaticMarkup(<WebsiteCaseDetail catalog={catalog} entry={entry} />));
     expect(html.querySelector('h1')?.text).toBe(entry.title);
     expect(html.querySelectorAll('a').some(link => link.getAttribute('href') === entry.source.url)).toBe(true);
-    expect(html.querySelector('[data-generation-cta]')).toBeNull();
-    expect(html.text).toContain('来源中未包含提示词');
+    expect(html.querySelector('[data-generation-cta]')).not.toBeNull();
+    expect(html.querySelector('[data-prompt]')).not.toBeNull();
+    expect(html.text).toContain('站点整理模板');
   });
   it('searches real titles and scopes model/purpose filters with an empty result for impossible queries', () => {
     const rows = catalog.websites ?? [];

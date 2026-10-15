@@ -27,7 +27,8 @@ describe('Website prototype levels and navigation', () => {
     const root = html(<WebsiteCaseDetail catalog={catalog} entry={entry} />);
     expect(root.querySelector('.prototype-recipe .v3')).not.toBeNull();
     expect(root.querySelectorAll('.step .num').map(el => el.text)).toEqual(['01','02','03','04']);
-    expect(root.querySelector('[data-generation-cta]')).toBeNull();
+    expect(Boolean(root.querySelector('[data-generation-cta]'))).toBe(true);
+    expect(root.querySelectorAll('.varopts input').length).toBeGreaterThan(0);
   });
   it('keeps Website views in the directory and links to the complete Library index from the footer', () => {
     const root = html(<SiteFooter catalog={catalog} />), links = new Set(root.querySelectorAll('a').map(el=>el.getAttribute('href')));

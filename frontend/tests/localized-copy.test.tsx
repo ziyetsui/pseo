@@ -31,10 +31,7 @@ describe('localized case presentation',()=>{
  it('localizes Chinese titles and prompt bodies while preserving source and graph identities',()=>{
   const zh=createGitBetaCatalog('zh-CN'),en=createGitBetaCatalog('en');
   expect(zh.prompts.find(row=>row.slug==='prompt-portrait-photography-from-above-ana-d-2015726421990056336')?.title).toBe('洛杉矶星光大道俯拍人像');
-  expect(zh.prompts.map(row=>[row.id,row.source,row.variables.map(variable=>variable.token).sort()])).toEqual(en.prompts.map(row=>[row.id,row.source,row.variables.map(variable=>variable.token).sort()]));
-  const coffee=zh.prompts.find(row=>row.slug==='case-7dd3d40264159ae96b96e5610d2f6f6b')!;
-  expect(coffee.originalPrompt).toContain('Ember & Oak');
-  expect(coffee.prompt).toContain('[BRAND_NAME]');
+  expect(zh.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])])).toEqual(en.prompts.map(row=>[row.id,row.originalPrompt ?? row.prompt,row.variables.map(variable=>[variable.token,variable.defaultValue,variable.options])]));
   expect(zh.prompts.some(row=>row.prompt !== row.originalPrompt && row.originalPrompt !== undefined)).toBe(true);
   expect(zh.websiteGraph?.edges).toEqual(en.websiteGraph?.edges);
   expect(zh.prompts.flatMap(row=>row.evidence).every(item=>['合集说明文档','相关来源'].includes(item.type))).toBe(true);

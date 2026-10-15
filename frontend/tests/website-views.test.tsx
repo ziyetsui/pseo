@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { parse } from 'node-html-parser';
 import graph from '../../docs/intake/2026-10-14/graph.json';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
+import { websiteEditableTemplate } from '@/lib/catalog/website-templates';
 import { websiteEntries } from '@/lib/catalog/website';
 import { websiteViews, websiteViewForPath, websiteViewEntries, websiteViewsForCase } from '@/lib/catalog/website-views';
 import { WebsiteGallery, WebsiteViewGallery, WebsiteCaseDetail } from '@/components/WebsiteCases';
@@ -16,7 +17,7 @@ import { siteMetadata } from '@/site/metadata';
 const catalog = createGitBetaCatalog('zh-CN');
 const views = websiteViews(catalog);
 describe('Website graph projections', () => {
-  it('shows real matching example prompts in category decks instead of counts as placeholder bodies', () => {
+  it('shows matching editable example templates in category decks instead of counts as placeholder bodies', () => {
     for (const locale of ['zh-CN', 'en'] as const) {
       const c = createGitBetaCatalog(locale);
       const root = document.createElement('div');
@@ -26,7 +27,7 @@ describe('Website graph projections', () => {
         const body = card.querySelector('pre.prompt');
         if (!body) continue;
         const source = websiteViewEntries(c, view).find(entry => entry.source.url === card.querySelector('.meta a')?.getAttribute('href'))!;
-        const prompt = c.prompts.find(item => item.id === source.id || item.href === source.promptHref)!;
+        const prompt = websiteEditableTemplate(c, source);
         expect(body.textContent).toBe(prompt.prompt);
         expect(body.getAttribute('lang')).toBe(prompt.language);
         expect(card.querySelector('.media img')?.getAttribute('src')).toBe(source.cover);
