@@ -101,5 +101,5 @@ export function websiteEditableTemplate(catalog: Catalog, entry: WebsiteCase, de
     return rule ? { token, label: locale === 'zh-CN' ? rule.labelZh : rule.labelEn, defaultValue: defaultValue(rule[key][0]!), options: [], note: null, required: true }
       : existing ? { ...existing } : { token, label: token.slice(1, -1).replaceAll('_', ' '), defaultValue: '', options: [], note: null, required: true };
   });
-  return { prompt, variables, language: locale, editableTemplate: true, origin: 'adapted-source', sourceText: source.prompt };
+  return { prompt, variables, language: source.language, editableTemplate: true, origin: 'adapted-source', sourceText: source.prompt };
 }

@@ -2362,6 +2362,20 @@
       "repositoryLicense": "MIT; third-party source rights require review"
     },
     {
+      "id": "media_074357a26d34bc2fcfdc4c1922751fdb",
+      "type": "media",
+      "url": "https://video.twimg.com/amplify_video/2074666913116893184/vid/avc1/1662x1018/cx9QSNk2uRjasC7z.mp4?tag=28",
+      "kind": "video",
+      "poster": "https://pbs.twimg.com/amplify_video_thumb/2074666913116893184/img/dAYy3fZsmpOnzvzr.jpg?format=jpg&name=orig",
+      "width": 1280,
+      "height": 784,
+      "localSrc": "/website-videos/2074667244932444479.mp4",
+      "localPoster": "/website-previews/2074667244932444479.jpg",
+      "sourceKind": "video",
+      "alt": "单文件王国历史模拟",
+      "rightsStatus": "review_required"
+    },
+    {
       "id": "media_077d490558ed72256d8d41cdab07f6fa",
       "type": "media",
       "url": "https://pbs.twimg.com/amplify_video_thumb/2105005809797353472/img/RXREwI2mY8RQiW8X.jpg",
@@ -18682,6 +18696,13 @@
       "publishedAt": null,
       "attributionLabel": "@zhgqthomas",
       "promptEvidenceRef": null
+    },
+    {
+      "id": "source_5de3e3787346dfd81dfffa152a6b3388",
+      "type": "source",
+      "url": "https://x.com/emollick/status/2074667244932444479",
+      "platform": "x",
+      "sourceId": "2074667244932444479"
     },
     {
       "id": "source_5e32a11a9712e6bc7f9deb640ba0fbd5",
@@ -42321,6 +42342,16 @@
       "from": "prm_7d46d699adedf29269d0660aa4086291",
       "type": "created_by",
       "to": "creator_02fd98c4aea42d0dccf2df3a414d659e"
+    },
+    {
+      "from": "prm_7d46d699adedf29269d0660aa4086291",
+      "type": "has_example",
+      "to": "media_074357a26d34bc2fcfdc4c1922751fdb"
+    },
+    {
+      "from": "prm_7d46d699adedf29269d0660aa4086291",
+      "type": "related_to",
+      "to": "source_5de3e3787346dfd81dfffa152a6b3388"
     },
     {
       "from": "prm_7d46d699adedf29269d0660aa4086291",

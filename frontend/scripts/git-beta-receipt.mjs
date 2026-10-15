@@ -2,7 +2,12 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-export async function verifyGitBetaAssets(root, previews) {
+export async function verifyGitBetaAssets(root, previews, supplementalMedia = []) {
+  for (const record of supplementalMedia) for (const asset of record.assets ?? []) {
+    if (!/^\/website-(?:videos\/\d+\.mp4|previews\/\d+\.(?:jpg|png|webp))$/.test(asset.src)) throw new Error('Invalid supplemental media path');
+    const bytes = await readFile(path.join(root, asset.src.slice(1)));
+    if (createHash('sha256').update(bytes).digest('hex') !== asset.sha256) throw new Error('Supplemental media checksum mismatch');
+  }
   for (const preview of Object.values(previews)) {
     if (!/^\/website-previews\/[0-9]+\.(?:jpg|jpeg|png|webp)$/.test(preview.src)) throw new Error('Invalid Website preview path');
     const bytes = await readFile(path.join(root, preview.src.slice(1)));
