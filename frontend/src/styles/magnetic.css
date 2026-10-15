@@ -380,7 +380,9 @@
    reduced motion and no-JS readers keep the plain justified paragraph above. Nothing here creates
    a containing block on .run or .item: the peek is position:fixed and must stay viewport-relative. */
 :where(.prototype-magnetic) .m-run[data-field="depth"] .runbox[data-depth] .run{
-  position:relative;overflow:hidden;
+  /* isolation keeps per-title z-index inside the field so titles never paint over the sticky nav;
+     it does not create a containing block, so the fixed peek stays viewport-relative. */
+  position:relative;overflow:hidden;isolation:isolate;
   height:clamp(460px, calc(100svh - 220px), 860px);
   margin-inline:-28px;
   text-align:left;line-height:1.2}
