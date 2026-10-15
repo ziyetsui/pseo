@@ -571,8 +571,10 @@
       "url": "https://video.twimg.com/amplify_video/2074666913116893184/vid/avc1/1662x1018/cx9QSNk2uRjasC7z.mp4?tag=28",
       "kind": "video",
       "poster": "https://pbs.twimg.com/amplify_video_thumb/2074666913116893184/img/dAYy3fZsmpOnzvzr.jpg?format=jpg&name=orig",
-      "width": 1662,
-      "height": 1018,
+      "width": 1280,
+      "height": 784,
+      "localSrc": "/website-videos/2074667244932444479.mp4",
+      "localPoster": "/website-previews/2074667244932444479.jpg",
       "sourceKind": "video",
       "alt": "单文件王国历史模拟",
       "rightsStatus": "review_required"

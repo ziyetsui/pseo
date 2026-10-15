@@ -12,8 +12,8 @@ describe('ANNALS source-thread media', () => {
     expect(prompt.source.url).toBe('https://x.com/emollick/status/2074669101264294069');
     expect(prompt.kind).toBe('other');
     expect(prompt.media).toHaveLength(1);
-    expect(prompt.media[0]).toMatchObject({ kind: 'video', width: 1662, height: 1018 });
-    expect(prompt.media[0]?.src).toContain('/2074666913116893184/');
+    expect(prompt.media[0]).toMatchObject({ kind: 'video', width: 1280, height: 784 });
+    expect(prompt.media[0]?.src).toBe('/website-videos/2074667244932444479.mp4');
     expect(prompt.img).toBe(prompt.media[0]?.poster);
     expect(prompt.evidence.some(row => row.url === 'https://x.com/emollick/status/2074667244932444479')).toBe(true);
     const html = parse(renderToStaticMarkup(<Recipe catalog={catalog} prompt={prompt} />));

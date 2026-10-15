@@ -29,6 +29,12 @@ function safeUrl(value: unknown): string {
   return url.href;
 }
 
+function mediaAsset(value: unknown): string {
+  const path = text(value);
+  if (!/^\/website-(?:videos\/\d+\.mp4|previews\/\d+\.(?:jpg|png|webp))$/u.test(path)) throw new Error('Invalid local source media');
+  return path;
+}
+
 /** Owner-authorized Git beta only. This does not mutate CMS state or the generated mirror. */
 export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
@@ -76,7 +82,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     if (!source) throw new Error('Prompt source required');
     const title = text(node.title), body = text(node.prompt), creator = linked(id, 'created_by')[0];
     const slug = `case-${id.slice(4)}`, href = `/${sourceLocale}/prompts/${slug}`;
-    const image = linked(id, 'has_example').map((item): Media => ({ id: text(item.id), kind: item.kind === 'video' ? 'video' : 'image', src: safeUrl(item.url), alt: optionalText(item.alt) ?? title, width: typeof item.width === 'number' ? item.width : null, height: typeof item.height === 'number' ? item.height : null, poster: item.poster ? safeUrl(item.poster) : null, label: null }));
+    const image = linked(id, 'has_example').map((item): Media => ({ id: text(item.id), kind: item.kind === 'video' ? 'video' : 'image', src: item.localSrc ? mediaAsset(item.localSrc) : safeUrl(item.url), alt: optionalText(item.alt) ?? title, width: typeof item.width === 'number' ? item.width : null, height: typeof item.height === 'number' ? item.height : null, poster: item.localPoster ? mediaAsset(item.localPoster) : item.poster ? safeUrl(item.poster) : null, label: null }));
     const attribution = creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? '';
     const docs = [...linked(id, 'documented_at').map(item => ({ type: 'Collection documentation', url: safeUrl(item.url), confidence: null })), ...linked(id, 'related_to').map(item => ({ type: 'Related source', url: safeUrl(item.url), confidence: null }))];
     prompts.push({

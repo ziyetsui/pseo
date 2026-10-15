@@ -55,7 +55,7 @@ if (mode === 'git-beta') {
   const sourceBytes = await readFile('../docs/intake/2026-10-14-website-supplement/source-records.json');
   if (createHash('sha256').update(sourceBytes).digest('hex') !== supplement.manifest.sourceSha256) throw new Error('Website supplement source checksum mismatch');
   const previews = JSON.parse(await readFile('src/data/website-previews.json','utf8'));
-  await verifyGitBetaAssets(out, previews);
+  await verifyGitBetaAssets(out, previews, JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/media-evidence.json', 'utf8')));
   const avatars = JSON.parse(await readFile('src/data/creator-avatars.json','utf8'));
   await verifyCreatorAvatarAssets(out, avatars);
   const promptBodies = JSON.parse(await readFile('src/data/zh-prompt-bodies.json','utf8'));
