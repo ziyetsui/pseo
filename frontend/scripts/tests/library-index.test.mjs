@@ -26,3 +26,9 @@ test('validates English indexes against English routes and rejects cross-locale 
  assert.throws(()=>readLibraryIndex(document(index),'rev','en'));
  assert.throws(()=>readLibraryIndex(document({...english,routes:index.routes}),'rev','en'));
 });
+test('accepts the authorized five-column 27-link footer and rejects overflow',()=>{
+ const receipt={publishedPrompts:[],publishedWebsites:[],publishedWebsiteViews:[]};
+ const doc=count=>parse(`<footer><nav class="footnav"><a href="${station}"></a>${Array.from({length:count-1},(_,i)=>`<a href="/zh-CN/prompts/example-${i}"></a>`).join('')}</nav></footer>`);
+ assert.doesNotThrow(()=>verifyLibraryIndex(new Map([[href,doc(27)]]),index,receipt));
+ assert.throws(()=>verifyLibraryIndex(new Map([[href,doc(28)]]),index,receipt));
+});
