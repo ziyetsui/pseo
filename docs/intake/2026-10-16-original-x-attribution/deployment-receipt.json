@@ -1,0 +1,69 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/50",
+  "mergedSourceSha": "8570bbcb1cba83d8bc56a82d8e163fd79bb1c21b",
+  "liveUrl": "https://beta.ancher.site/zh-CN/prompts/image",
+  "catalogRevision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d",
+  "deployments": {
+    "canonical_deployment": {
+      "id": "beaac11a-1619-4cd1-91e5-59e0239e546f",
+      "url": "https://beaac11a.pseo-internal-beta-preview.pages.dev",
+      "aliases": [
+        "https://beta.ancher.site"
+      ],
+      "environment": "production",
+      "trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "main",
+          "commit_hash": "8570bbcb1cba83d8bc56a82d8e163fd79bb1c21b",
+          "commit_message": "Merge PR #50: original X attribution for 814 image references",
+          "commit_dirty": false
+        }
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-10-16T06:24:22.559619Z",
+        "status": "success"
+      }
+    },
+    "latest_deployment": {
+      "id": "1e835c73-9593-41a2-a067-55a53d9671e2",
+      "url": "https://1e835c73.pseo-internal-beta-preview.pages.dev",
+      "aliases": [
+        "https://frontend-design.pseo-internal-beta-preview.pages.dev"
+      ],
+      "environment": "preview",
+      "trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "frontend-design",
+          "commit_hash": "8570bbcb1cba83d8bc56a82d8e163fd79bb1c21b",
+          "commit_message": "Merge PR #50: original X attribution for 814 image references",
+          "commit_dirty": false
+        }
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-10-16T06:25:14.356734Z",
+        "status": "success"
+      }
+    }
+  },
+  "liveBrowserTests": {
+    "passed": 8,
+    "durationSeconds": 46.7,
+    "locales": [
+      "en",
+      "zh-CN"
+    ],
+    "viewports": [
+      "desktop",
+      "mobile"
+    ]
+  },
+  "ci": "https://github.com/ziyetsui/pseo/actions/runs/38858682258",
+  "cmsPublication": false,
+  "noindexRetained": true
+}
