@@ -5,16 +5,16 @@ import { footerNavigation } from '@/site/navigation';
 import '@/styles/footer.css';
 
 type Level = 'hub' | 'deck' | 'model' | 'prompt';
-export function SiteHeader({ level, locale, contentType, sectionNavigation = 'local', currentHref, bilingual = false }: { level: Level; locale: Locale; contentType?: 'image' | 'video' | 'website'; sectionNavigation?: 'local' | 'library'; currentHref?: string; bilingual?: boolean }) {
+export function SiteHeader({ level, locale, contentType, sectionNavigation = 'local', currentHref, bilingual = false }: { level: Level; locale: Locale; contentType?: 'image' | 'video' | 'website' | 'article'; sectionNavigation?: 'local' | 'library'; currentHref?: string; bilingual?: boolean }) {
   const uiLocale = bilingual ? locale : 'en';
   const hub = `/${locale}/prompts`;
   const sectionBase = sectionNavigation === 'library' ? hub : '';
   const links: string[][] = level === 'hub'
     ? [['Tasks', `${sectionBase}#tasks`], ['Models', `${sectionBase}#models`], ['Styles', `${sectionBase}#styles`], ['Creators', `${sectionBase}#creators`]]
-    : [['Home', hub], ['Images', `${hub}/image`], ['Videos', `${hub}/video`], ['Website', `${hub}/website`], ['Models', `${hub}#models`]];
+    : [['Home', hub], ['Images', `${hub}/image`], ['Videos', `${hub}/video`], ['Website', `${hub}/website`], ...(bilingual ? [['Articles', `${hub}/articles`]] : []), ['Models', `${hub}#models`]];
   const inner = <>
     <a className="brand" href={hub}>{level === 'deck' || level === 'model' ? <i aria-hidden="true" /> : null}{uiText(uiLocale, 'Prompt Library')}</a>
-    <div className="navlinks">{links.map(([label, href]) => <a key={label} href={href} aria-current={level === 'model' && label === 'Models' || level === 'deck' && contentType && label === (contentType === 'video' ? 'Videos' : contentType === 'website' ? 'Website' : 'Images') ? 'page' : undefined}>{uiText(uiLocale, label ?? '')}</a>)}</div>{bilingual && <LanguageSwitch locale={locale} href={currentHref ?? hub} />}
+    <div className="navlinks">{links.map(([label, href]) => <a key={label} href={href} aria-current={level === 'model' && label === 'Models' || level === 'deck' && contentType && label === (contentType === 'video' ? 'Videos' : contentType === 'website' ? 'Website' : contentType === 'article' ? 'Articles' : 'Images') ? 'page' : undefined}>{label === 'Articles' ? text(uiLocale, 'Articles', '文章') : uiText(uiLocale, label ?? '')}</a>)}</div>{bilingual && <LanguageSwitch locale={locale} href={currentHref ?? hub} />}
   </>;
   return <>
     <a className="skip" href="#main">{uiText(uiLocale, 'Skip to content')}</a>

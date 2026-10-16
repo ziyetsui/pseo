@@ -1559,7 +1559,7 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 
 2026-10-15 用户授权 Queenie 真实图片接入 Git-beta 图片库：按 docs/superpowers/specs/2026-10-15-queenie-image-library.md 固定公开双语数据、真实多图和来源，生成明确标注的参考图重建提示词与语义 placeholder，复用 L1–L4 设计和既有编辑/生成流程。排除开发占位、原视频及不完整记录，不推测模型或伪造作者提示词，保留 noindex；Queenie/CMS/账户/支付数据不修改。
 
-Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical top-level prompt-route .txt and __next._full.txt payloads. Verify every pair before mutation, retain all full/tree/page segments, remove only identical monolithic copies and preserve their URLs with two locale-scoped relative Pages 200 proxies. Validate real Cloudflare-compatible proxy responses and client navigation; never delete accepted pages or media to fit the limit.
+Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical route .txt and __next._full.txt payloads. Verify every pair before mutation, preserve their URLs with relative Pages 200 proxies, and retain all HTML, media, full and page segments. X Article, Website view, use-case, model-family, style, subject, monetization, category, creator-directory, library-index, and locale landing pages use native anchors rather than Next Link; their tree-only prefetch segments may be omitted under the file cap, with bilingual direct-load and navigation smoke required. Other Prompt and Website tree segments stay intact. Never delete accepted pages or media to fit the limit.
 
 2026-10-16 用户要求图片库来源署名替换：全部指向 YouMind 爆款文章中转页的 Queenie 图片记录，逐条读取原文入口并核实 X 帖子 URL/账号，在 Git-beta 的中英文展示中直接署名 X 原作者并链接原帖。使用独立版本化来源映射，原始采集快照与图片/重建模板保持不变；映射必须绑定原记录ID与原sourceUrl，缺失/冲突/非真实原文入口时构建失败，不能猜账号或借用推荐文章链接。内部保留采集来源和证据哈希，公开source.url/handle不再指向YouMind；其他平台真实来源保持原样。映射纳入catalog revision；保持noindex，不改变CMS/权利审核状态。
 
@@ -1567,3 +1567,5 @@ Deployment capacity: current Pages capability is 20,000 files. Next export produ
 
 
 2026-10-16 用户裁定：全站外部 Ancher 生成跳转统一按输出类型构造 `prompts` 参数。图片前置「创建一张关于的图片」，网站前置「创建一个关于的 HTML 网页」，再以两个换行连接完整当前提示词。前缀在跳转边界添加，不改来源或可编辑模板正文；填值、重置和草稿同步到链接。网站任务优先于媒体预览类型，中英文界面使用相同指定中文前缀，视频及其他类型不追加。
+
+2026-10-16 Git beta X Article 案例实现：固定采集快照 `frontend/src/data/x-article-cases.json`，105 个 article-case 节点分别连向已核实作者节点和来源节点，`authored_by` / `sourced_from` 边不得悬空。按同一数据生成双语 L1 分类入口、L2 全部文章、L3 作者集合与 L4 详情静态路由，原文保留原语言；不混入可复制 Prompt 计数和 CMS public snapshot。数据使用独立 `articleCaseRevision` 写入导出回执，保持已审 monetization 与 Prompt catalog revision 不变；页面及 beta 响应 noindex/nofollow。写作 CTA 复用 `generationHref` 的 `prompts` URL 编码合同，仅传提示词与开头节选；任何数据或正文改动都要求新文章 revision、静态导出和线上 smoke。

@@ -10,7 +10,8 @@ const catalog=createGitBetaCatalog('zh-CN');
 it('keeps the footer curated while the index retains every Website technology',()=>{
  const footer=parse(renderToStaticMarkup(<SiteFooter catalog={catalog}/>));
  expect(footer.querySelectorAll('.footnav > div')).toHaveLength(5);
- expect(footer.querySelectorAll('.footnav a')).toHaveLength(27);
+ expect(footer.querySelectorAll('.footnav a')).toHaveLength(28);
+ expect(footer.querySelector('a[href="/zh-CN/prompts/articles"]')).not.toBeNull();
  expect(footer.querySelector('a[href$="/library-index"]')).not.toBeNull();
  expect(libraryIndex(catalog).groups.find(g=>g.id==='website-tool')?.entries).toHaveLength(21);
 });

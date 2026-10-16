@@ -6,6 +6,7 @@ import { modelFamilies } from '@/lib/catalog/model-families';
 import { isPromptCreator } from '@/lib/catalog/creator-match';
 import { websiteEntries,websiteRef } from '@/lib/catalog/website';
 import { websiteViews } from '@/lib/catalog/website-views';
+import { xArticles, xArticleHref, xArticlePath } from '@/lib/catalog/x-articles';
 
 export interface NavigationEntry { id:string; label:string; href:string; count?:number; kind:'prompt'|'case'|'navigation' }
 export interface NavigationGroup { id:string; title:string; entries:NavigationEntry[] }
@@ -44,6 +45,7 @@ export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pr
   add('images',text(uiLocale, 'Image prompts', '图片提示词'),`${hub}/image`,catalog.prompts.some(prompt=>prompt.kind==='image'));
   add('videos',text(uiLocale, 'Video prompts', '视频提示词'),`${hub}/video`,catalog.prompts.some(prompt=>prompt.kind==='video'));
   add('website',catalog.mode==='git-beta'?websiteRef(catalog).label:text(uiLocale, 'Website views', '网站分类'),`${hub}/website`,(catalog.websites?.length??0)>0);
+  add('articles',text(uiLocale, 'X Articles', '爆款文章'),xArticlePath(catalog.locale),catalog.mode==='git-beta',xArticles.length);
   for(const view of views.filter(view=>view.axis==='all'))add(view.id,text(uiLocale,'All website cases','全部网站案例'),view.href,true,view.count);
   add('all',text(uiLocale, 'All prompts', '全部提示词'),hub,catalog.prompts.length>0);
   add('all-models',text(uiLocale, 'All models', '全部模型'),`${hub}/models`,models.length>0);
@@ -59,7 +61,7 @@ export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pro
   const pick=(ids:string[])=>ids.flatMap(id=>browse.filter(entry=>entry.id===id));
   const featured=(id:string,limit:number)=>entries(id).slice(0,limit).map(entry=>({...entry,label:entry.label.replace(/ prompts$|提示词$/u,'')}));
   return [
-    {id:'browse',title:text(locale,'Browse','浏览'),entries:pick(['all','images','videos','website','all-creators','index'])},
+    {id:'browse',title:text(locale,'Browse','浏览'),entries:pick(['all','images','videos','website','articles','all-creators','index'])},
     {id:'models',title:text(locale,'By model','按模型'),entries:[...featured('models',4),...pick(['all-models'])]},
     {id:'tasks',title:text(locale,'By task','按任务'),entries:featured('tasks',5)},
     {id:'styles',title:text(locale,'By style','按风格'),entries:featured('styles',5)},
@@ -73,6 +75,7 @@ export function libraryIndex(catalog:Catalog) {
     {id:'video-details',title:text(interfaceLocale(catalog), 'Video prompts', '视频提示词'),entries:catalog.prompts.filter(prompt=>prompt.kind==='video').map(promptEntry)},
     {id:'other-details',title:text(interfaceLocale(catalog), 'Other supplied prompts', '其他所附提示词'),entries:catalog.prompts.filter(prompt=>!['image','video'].includes(prompt.kind)).map(promptEntry)},
     {id:'website-details',title:text(interfaceLocale(catalog), 'Website cases', '网站案例'),entries:websiteEntries(catalog).map((entry):NavigationEntry=>({id:entry.id,label:entry.title,href:entry.href,kind:'case'}))},
+    ...(catalog.mode==='git-beta'?[{id:'article-details',title:text(interfaceLocale(catalog), 'X Article cases', 'X 文章案例'),entries:xArticles.map((article):NavigationEntry=>({id:article.id,label:article.title,href:xArticleHref(catalog.locale,article),kind:'case'}))}]:[]),
   ].filter(group=>group.entries.length);
   const routes=[...new Set([...groups,...collections].flatMap(group=>group.entries.map(entry=>entry.href)))].sort();
   return {schemaVersion:1,locale:catalog.locale,revision:catalog.revision,groups,collections,routes};

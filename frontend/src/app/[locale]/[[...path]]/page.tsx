@@ -24,6 +24,8 @@ import { catalogPaths, categoryForPath, styleForPath, taskForPath } from '@/site
 import { siteMetadata } from '@/site/metadata';
 import { modelFamilies, modelFamilyForPath } from '@/lib/catalog/model-families';
 import { loadSurfaceSeo } from '@/site/surface-seo';
+import { XArticleDetail, XArticleGallery } from '@/components/XArticleCases';
+import { xArticles, xArticleCreators, xArticleCreatorHref, xArticleHref, xArticlePath } from '@/lib/catalog/x-articles';
 
 type Params = { locale: string; path?: string[] };
 export const dynamicParams = false;
@@ -46,6 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if(money){const ref=money.scenario??money.group;return {...siteMetadata(catalog,path,ref?.label??text(catalog.locale,'Browse by monetization','按变现浏览')),description:ref?.description??text(catalog.locale,'Find creative cases by practical commercial use.','按实际商业用途查找创作案例。')};}
   const websiteCase = catalog.websites?.find(item => item.href === path);
   if (websiteCase) return siteMetadata(catalog, path, websiteCase.title);
+  if (catalog.mode === 'git-beta' && path.startsWith(xArticlePath(catalog.locale))) {
+    const article = xArticles.find(item => xArticleHref(catalog.locale, item) === path);
+    const creator = xArticleCreators.find(item => xArticleCreatorHref(catalog.locale, item.handle) === path);
+    return { title: `${article?.title ?? creator?.name ?? (catalog.locale === 'zh-CN' ? '爆款文章' : 'X Articles')} · ${catalog.locale === 'zh-CN' ? '提示词库' : 'Prompt Library'}`, description: article ? `${article.authorName} · X Article · ${article.likes.toLocaleString(catalog.locale)} likes at capture` : `${creator?.count ?? xArticles.length} verified X Articles, ranked by observed likes.`, robots: { index: false, follow: false } };
+  }
   const prompt = catalog.prompts.find(prompt => prompt.href === path);
   const model = catalog.models.find(model => model.href === path) ?? modelFamilyForPath(catalog, path);
   const task = taskForPath(catalog, path);
@@ -70,6 +77,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const money=monetizationPage(catalog,path);
   if(money)return <MonetizationPage catalog={catalog} {...money}/>;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
+  if (catalog.mode === 'git-beta' && path === xArticlePath(catalog.locale)) return <XArticleGallery catalog={catalog} />;
+  if (catalog.mode === 'git-beta') {
+    const article = xArticles.find(item => xArticleHref(catalog.locale, item) === path);
+    if (article) return <XArticleDetail catalog={catalog} article={article} />;
+    const creator = xArticleCreators.find(item => xArticleCreatorHref(catalog.locale, item.handle) === path);
+    if (creator) return <XArticleGallery catalog={catalog} handle={creator.handle} />;
+  }
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
   if (path === `${hub}/website` && catalog.mode === "git-beta") return <WebsiteGallery catalog={catalog} />;
   const websiteView = websiteViewForPath(catalog, path);
