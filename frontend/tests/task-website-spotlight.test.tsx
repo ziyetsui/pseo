@@ -11,6 +11,6 @@ it.each(['zh-CN','en'] as const)('features a real website case instead of the fi
  const tile=parse(renderToStaticMarkup(<HubBrowse catalog={catalog}/>)).querySelector(`#tasks .tiles a[href="/${locale}/prompts/website"]`)!;
  expect(tile.getAttribute('href')).toBe(`/${locale}/prompts/website`);
  expect(tile.querySelector('img')?.getAttribute('src')).toBe(example.cover);
- expect(tile.querySelector('p')?.text).toBe(locale==='zh-CN'?'225 个案例':'225 cases');
+ expect(tile.querySelector('p')?.text).toBe(locale==='zh-CN'?'224 个案例':'224 cases');
  expect(tile.querySelector('h3')?.text).toBe(locale==='zh-CN'?'网站与开发':'Web design & development');
 });

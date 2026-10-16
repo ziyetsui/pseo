@@ -53,7 +53,7 @@ describe('Website editable template UI', () => {
       const all = websiteViews(catalog).find(view => view.axis === 'all')!;
       const shell = document.createElement('div');
       shell.innerHTML = renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={all} />);
-      expect(shell.querySelectorAll('[data-website-case]')).toHaveLength(225);
+      expect(shell.querySelectorAll('[data-website-case]')).toHaveLength(224);
       for (const entry of entries) {
         const article = shell.querySelector(`[data-website-case="${entry.id}"]`)!;
         expect(article.querySelector('pre.prompt')?.textContent).toBe(websiteEditableTemplate(catalog, entry).prompt);

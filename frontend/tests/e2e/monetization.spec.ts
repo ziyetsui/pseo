@@ -20,6 +20,8 @@ for(const locale of ['zh-CN','en']){
   await page.goBack();await expect(page.locator('h1 span')).toHaveText(zh?'AI 女装带货.':'AI womenswear content.');
   await expect(page.locator('.footnav > div')).toHaveCount(5);await expect(page.locator('.footnav > div').last().locator('a')).toHaveCount(6);
   const other=zh?'en':'zh-CN';await page.locator('.language-switch summary').click();await page.locator(`.language-switch a[hreflang="${other}"]`).click();await expect(page).toHaveURL(new RegExp(`/${other}/prompts/monetization/commerce/womenswear-selling$`));
+  // toHaveURL resolves on the URL change; measure layout only once the new page's styles have loaded.
+  await page.waitForLoadState('load');
   for(const width of [320,375,768,1440]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);if(width===375||width===1440)expect(await page.locator('.footnav').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(width===375?2:5);}
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact??''))).toEqual([]);
  });

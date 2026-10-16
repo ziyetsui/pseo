@@ -565,11 +565,9 @@
     {
       "id": "prm_052f6c4a655687a66d47a1ec7c47f596",
       "sourceUrl": "https://x.com/KavianCoin/status/2109716394862317928",
-      "status": "available",
-      "visualSourceUrl": "https://x.com/KavianCoin/status/2109716394862317928",
-      "media": [
-        "210971639486231792800"
-      ]
+      "status": "no-source-media",
+      "visualSourceUrl": null,
+      "media": []
     },
     {
       "id": "prm_052f8b966b50591e744d11476eecafe6",
@@ -849,11 +847,9 @@
     {
       "id": "prm_3f808154f2bc5f53428592a65c84d42b",
       "sourceUrl": "https://x.com/SirAlexanderrr/status/2107830326588256420",
-      "status": "available",
-      "visualSourceUrl": "https://x.com/SirAlexanderrr/status/2107828162004492376",
-      "media": [
-        "210782816200449237600"
-      ]
+      "status": "no-source-media",
+      "visualSourceUrl": null,
+      "media": []
     },
     {
       "id": "prm_4072e3878508314c8b503c2420b3d58e",
@@ -1112,15 +1108,6 @@
       "visualSourceUrl": "https://x.com/FreeSites_com/status/2101795313237274666",
       "media": [
         "210179531323727466600"
-      ]
-    },
-    {
-      "id": "prm_6f97555db109605911a7e435aec2fa50",
-      "sourceUrl": "https://x.com/AIFrontliner/status/2108518214376296699",
-      "status": "available",
-      "visualSourceUrl": "https://x.com/AIFrontliner/status/2108518201793396891",
-      "media": [
-        "210851820179339689100"
       ]
     },
     {
@@ -1569,13 +1556,6 @@
       "media": []
     },
     {
-      "id": "prm_b98dd74fb3f6235014b72babf64c7a45",
-      "sourceUrl": "https://x.com/addyosmani/status/2102470115283583233",
-      "status": "no-source-media",
-      "visualSourceUrl": null,
-      "media": []
-    },
-    {
       "id": "prm_bf669149cab6e954dcfc0bf2500c5db5",
       "sourceUrl": "https://x.com/vib3coded/status/2110136901285957923",
       "status": "available",
@@ -1927,6 +1907,13 @@
       "media": [
         "210179531323727466600"
       ]
+    },
+    {
+      "id": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "sourceUrl": "https://x.com/awp_Akira/status/2083515342698016969",
+      "status": "no-source-media",
+      "visualSourceUrl": null,
+      "media": []
     }
   ],
   "assets": {
@@ -2845,21 +2832,6 @@
       "parts": null,
       "origin": "x-media"
     },
-    "210971639486231792800": {
-      "kind": "image",
-      "src": "/website-previews/210971639486231792800.jpg",
-      "poster": null,
-      "width": 1672,
-      "height": 941,
-      "sha256": "230fb0a33d5b156476eba303c4deb93a48636df24074d14cb12829e67535a64b",
-      "posterSha256": null,
-      "sourceUrl": "https://pbs.twimg.com/media/HUc3xlaXsAAJWc8.jpg?format=jpg&name=large",
-      "visualSourceUrl": "https://x.com/KavianCoin/status/2109716394862317928",
-      "alt": "AI Business Platform",
-      "part": null,
-      "parts": null,
-      "origin": "x-media"
-    },
     "2108231914230308864": {
       "kind": "video",
       "src": "/website-videos/2108231914230308864.mp4",
@@ -3171,21 +3143,6 @@
       "sourceUrl": "https://pbs.twimg.com/media/HRy13TtbcAANs8O.jpg?format=jpg&name=large",
       "visualSourceUrl": "https://x.com/beastymcbeast/status/2097751540329062864",
       "alt": "Biographical storytelling website",
-      "part": null,
-      "parts": null,
-      "origin": "x-media"
-    },
-    "210782816200449237600": {
-      "kind": "image",
-      "src": "/website-previews/210782816200449237600.jpg",
-      "poster": null,
-      "width": 1290,
-      "height": 1554,
-      "sha256": "8abfaf6a1be93034a4e17da02c35d267261e60437dfcedc568adeda244e55f2d",
-      "posterSha256": null,
-      "sourceUrl": "https://pbs.twimg.com/media/HUCCiQNXkAADesv.jpg?format=jpg&name=large",
-      "visualSourceUrl": "https://x.com/SirAlexanderrr/status/2107828162004492376",
-      "alt": "Dark landing page for an AI agency",
       "part": null,
       "parts": null,
       "origin": "x-media"

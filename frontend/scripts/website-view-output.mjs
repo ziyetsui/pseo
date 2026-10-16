@@ -1,5 +1,5 @@
 /** Independent export-side projection of the already-published baseline relationships. */
-export function websiteValidationGraph(graph, baseline, taxonomies, membership) {
+export function websiteValidationGraph(graph, baseline, taxonomies, membership, baselineModels = []) {
   const nodes = [...graph.nodes], edges = [...graph.edges];
   const websiteTasks = new Set(['website','web-design','web-development','web-motion-design']);
   const websiteIds = new Set(edges.filter(edge => edge.type === 'used_for' && nodes.some(node => node.id === edge.to && node.slug === 'website')).map(edge => edge.from));
@@ -9,6 +9,7 @@ export function websiteValidationGraph(graph, baseline, taxonomies, membership) 
     const alias = nodes.find(node => node.promptOnly && sourceFor(node.id) === source);
     if (alias) websiteIds.delete(alias.id);
   }
+  for (const edge of edges) if (edge.type === 'has_prompt' && websiteIds.has(edge.from)) websiteIds.delete(edge.to);
   const resolve = (axis,label) => {
     const term = taxonomies.find(term => term.axis === axis && [term.label,term.labelZh,...term.aliases].some(alias => alias?.toLowerCase() === label.toLowerCase()));
     const slug = term?.slug ?? label.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]+/gu,'-').replace(/^-|-$/gu,'');
@@ -18,7 +19,7 @@ export function websiteValidationGraph(graph, baseline, taxonomies, membership) 
     const tasks = prompt.uses.map(label => resolve('useCase',label));
     if (!tasks.some(task => websiteTasks.has(task.slug)) || websiteIds.has(prompt.id)) continue;
     websiteIds.add(prompt.id);nodes.push({id:prompt.id,type:'prompt',slug:prompt.slug,label:prompt.title});
-    for (const [relation,refs] of [['used_for',tasks],['designed_for',prompt.models.map(label => resolve('model',label))]]) for (const ref of refs) {
+    for (const [relation,refs] of [['used_for',tasks],['designed_for',[...prompt.models,...baselineModels.filter(update=>update.id===prompt.id).map(update=>update.slug)].map(label => resolve('model',label))]]) for (const ref of refs) {
       const existing = nodes.find(node => node.type === ref.type && node.slug === ref.slug);
       if (!existing) nodes.push(ref);
       edges.push({from:prompt.id,to:existing?.id ?? ref.id,type:relation});

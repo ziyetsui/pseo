@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "creator_833a52498ebeed77e3343ee5d8d69780",
+      "type": "creator",
+      "handle": "liyue_ai",
+      "url": "https://x.com/liyue_ai"
+    },
+    {
+      "id": "creator_9c4e725bfb1d32a930f44ee93cd0c523",
+      "type": "creator",
+      "handle": "awp_Akira",
+      "url": "https://x.com/awp_Akira"
+    },
+    {
+      "id": "creator_e4e6a1ea15e1c0bf890117ae75614901",
+      "type": "creator",
+      "handle": "AYi_AInotes",
+      "url": "https://x.com/AYi_AInotes"
+    },
+    {
+      "id": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "type": "prompt",
+      "title": "Reference-led premium website master prompt",
+      "summary": "A general website template from the cited article, with reference images, a focused brief and a planning pass.",
+      "prompt": "/ui-ux-pro-max\n\nYou are building a premium, agency-quality website. Read the images in the /reference folder first and treat them as the quality bar. Match their typography scale, spacing rhythm, and motion. Do not copy their layouts.\n\nTHE BRIEF\n- Audience: this site is for [who it is for, e.g. wedding photographers charging $3K+ per booking].\n- One goal: every page should push the visitor toward [one single action, e.g. booking a call]. Use one main call to action, repeated, not five competing ones.\n- Sections I want: [list them, e.g. hero, work gallery, about, testimonials, contact].\n- Vibe: [3 words, e.g. dark, cinematic, expensive].\n\nTHE RULES\n- Stack: Astro and Tailwind, static and fast, ready to deploy on Cloudflare Pages, no CMS.\n- Fully responsive, designed for phones first, then desktop.\n- Clean, semantic code with clear file names so it is easy to edit later.\n\nBANNED (never use these)\n- Inter as the display font, purple gradients, emoji used as icons, generic stock-photo placeholders, and centered-everything layouts.\n\nBEFORE YOU BUILD\nAsk me 4 to 6 clarifying questions about fonts, color palette, animation level, and copy tone. Wait for my answers. Then plan the structure, show me the plan, and build it.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "type": "prompt",
+      "title": "Reusable 3D interactive website framework",
+      "summary": "An author-published framework covering a website brief, 3D interactions, page structure and implementation constraints.",
+      "prompt": "高度可复制的「3D 互动网站 Prompt 框架\n\n你是一个顶级3D网页设计师 + 全栈开发者，使用 React + Three.js + Tailwind CSS + Framer Motion（或 Spline 如果需要）构建一个**高性能、生产级**的单页/多页3D互动网站。\n\n**项目概述：**\n- 网站主题/产品：[例如：高端智能冰箱 / AI SaaS 工具 / 时尚鞋履展示 / 个人作品集]\n- 目标用户：[例如：注重设计感的年轻专业人士 / 企业决策者]\n- 核心目标：[例如：展示产品、提升品牌高级感、提高转化率]\n\n**视觉风格与氛围：**\n- 整体审美：[例如：Cyberpunk 未来感 / 极简奢华 / Organic Fluid 流动有机 / Dark Premium]\n- 主色调：[例如：#00FFD1 青色点缀 + 深黑渐变背景]\n- 参考灵感：[列出1-3个类似网站链接，或描述感觉，例如：像 https://t.co/GXjgs1HsjU 的电影级过渡 + 高端产品展示]\n- 氛围要求：高端、沉浸式、现代、科技感强，但保持优雅不夸张\n\n**核心3D元素与交互（必须实现）：**\n- Hero 区：[描述主3D模型，例如：一个可旋转、可变形的3D冰箱模型，鼠标移动时跟随光影，点击不同部位切换内部展示]\n- 其他3D场景：[例如：浮动产品卡片、粒子背景、3D 导航菜单、滚动触发的视差动画]\n- 交互细节：\n  - 鼠标悬停/点击效果\n  - 平滑滚动触发动画（GSAP 或 Framer Motion）\n  - 移动端友好（触摸支持 + 性能优化）\n  - 加载时优雅动画\n\n**页面结构（单页滚动优先）：**\n1. Hero Section（强烈视觉冲击）\n2. 产品/作品展示区（3D 网格或卡片）\n3. 特性/优势区（带3D图标或动画说明）\n4. 客户案例/作品集\n5. CTA / 联系表单（带微交互）\n\n**技术要求（必须严格遵守）：**\n- 使用 Three.js 实现真实3D（非 CSS 3D）\n- 性能优化：60fps、懒加载、模型压缩、移动端适配\n- 完全响应式（手机、平板、桌面完美）\n- SEO 友好 + 快速加载（<2秒）\n- 代码结构清晰、可维护（组件化）\n- 支持后续手动修改\n\n**额外资源（如果有）：**\n- 上传参考视频/图片：[描述或直接上传]\n- 品牌文案：[提供关键标题和描述]\n- 其他要求：[例如：集成支付、暗黑模式切换等]\n\n请一步步思考，先输出整体架构和 prompt 确认，再生成完整代码。确保视觉震撼 + 用户体验优秀 + 商业可用。\n\n把 [ ] 替换成具体内容",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "type": "prompt",
+      "title": "Hanfu showcase from an open-source 3D project",
+      "summary": "Rebuild a referenced 3D showcase for Hanfu, with Chinese UI and a matching visual direction.",
+      "prompt": "请先阅读一下这个Github项目，然后模仿这个项目，帮我做一个3D汉服展示的网站，功能要求与原项目一致，语言改成中文，并重新调整复合汉服审美的UI。",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "source_057dd3ff30d5fd5e8139edd9e57a211c",
+      "type": "source",
+      "url": "https://x.com/liyue_ai/status/2053737547831067073",
+      "platform": "x",
+      "sourceId": "2053737547831067073",
+      "observedAt": "2026-10-15T10:00:00.000Z",
+      "publishedAt": null,
+      "attributionLabel": "@liyue_ai",
+      "promptEvidenceRef": "X full post 2053737547831067073"
+    },
+    {
+      "id": "source_5e61ae3ed8bf439c786a4ba40b0ef03c",
+      "type": "source",
+      "url": "https://x.com/awp_Akira/status/2083515342698016969",
+      "platform": "x",
+      "sourceId": "2083515342698016969",
+      "observedAt": "2026-10-15T10:00:00.000Z",
+      "publishedAt": null,
+      "attributionLabel": "@awp_Akira",
+      "promptEvidenceRef": "raw/article-evidence-TweetResultByRestId-1.json"
+    },
+    {
+      "id": "source_74248f861d68b9343397a37d052c9aec",
+      "type": "source",
+      "url": "https://x.com/AYi_AInotes/status/2050020222652792889",
+      "platform": "x",
+      "sourceId": "2050020222652792889",
+      "observedAt": "2026-10-15T10:00:00.000Z",
+      "publishedAt": null,
+      "attributionLabel": "@AYi_AInotes",
+      "promptEvidenceRef": "X full post 2050020222652792889"
+    },
+    {
+      "id": "usecase_747a8f398395dde8e524d9f983784bd8",
+      "type": "use-case",
+      "slug": "website",
+      "label": "Website"
+    },
+    {
+      "id": "usecase_ac1b6fd942bf92070daa6c267bf7ca4a",
+      "type": "use-case",
+      "slug": "website-creation-development",
+      "label": "Creation & development"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "type": "created_by",
+      "to": "creator_9c4e725bfb1d32a930f44ee93cd0c523"
+    },
+    {
+      "from": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "type": "sourced_from",
+      "to": "source_5e61ae3ed8bf439c786a4ba40b0ef03c"
+    },
+    {
+      "from": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "type": "used_for",
+      "to": "usecase_ac1b6fd942bf92070daa6c267bf7ca4a"
+    },
+    {
+      "from": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "type": "created_by",
+      "to": "creator_e4e6a1ea15e1c0bf890117ae75614901"
+    },
+    {
+      "from": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "type": "sourced_from",
+      "to": "source_74248f861d68b9343397a37d052c9aec"
+    },
+    {
+      "from": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "type": "used_for",
+      "to": "usecase_ac1b6fd942bf92070daa6c267bf7ca4a"
+    },
+    {
+      "from": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "type": "created_by",
+      "to": "creator_833a52498ebeed77e3343ee5d8d69780"
+    },
+    {
+      "from": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "type": "sourced_from",
+      "to": "source_057dd3ff30d5fd5e8139edd9e57a211c"
+    },
+    {
+      "from": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "type": "used_for",
+      "to": "usecase_ac1b6fd942bf92070daa6c267bf7ca4a"
+    },
+    {
+      "from": "source_057dd3ff30d5fd5e8139edd9e57a211c",
+      "type": "published_by",
+      "to": "creator_833a52498ebeed77e3343ee5d8d69780"
+    },
+    {
+      "from": "source_5e61ae3ed8bf439c786a4ba40b0ef03c",
+      "type": "published_by",
+      "to": "creator_9c4e725bfb1d32a930f44ee93cd0c523"
+    },
+    {
+      "from": "source_74248f861d68b9343397a37d052c9aec",
+      "type": "published_by",
+      "to": "creator_e4e6a1ea15e1c0bf890117ae75614901"
+    }
+  ]
+}
