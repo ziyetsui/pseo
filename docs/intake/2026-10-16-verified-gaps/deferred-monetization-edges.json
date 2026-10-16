@@ -1,0 +1,36 @@
+{
+  "revision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d",
+  "reason": "Newly linked source prompts require separate scene review; all other reviewed memberships are preserved.",
+  "edges": [
+    {
+      "contentId": "prm_6f97555db109605911a7e435aec2fa50",
+      "scenarioId": "monetization-scenario:brand-websites",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "WebGL expert, and a conversion strategist.\nDesign and develop a cinematic 3D website for [brand/product] that conveys a premium digital experience.\nCreate the information architecture, visual identity, animation system, 3D interactions, transitions, respo",
+        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      },
+      "sourceRevision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d"
+    },
+    {
+      "contentId": "prm_6f97555db109605911a7e435aec2fa50",
+      "scenarioId": "monetization-scenario:interactive-product-showcases",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "expert, and a conversion strategist.\nDesign and develop a cinematic 3D website for [brand/product] that conveys a premium digital experience.\nCreate the information architecture, visual identity, animation system, 3D interactions, transitions, responsive la",
+        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      },
+      "sourceRevision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d"
+    }
+  ]
+}

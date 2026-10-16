@@ -4369,6 +4369,34 @@
       "evidenceKind": "x-profile",
       "observedAt": "2026-10-15T02:56:33.334942+00:00",
       "imageCheckedAt": "2026-10-15T03:04:38.858043+00:00"
+    },
+    "ayi_ainotes": {
+      "handle": "AYi_AInotes",
+      "userId": "1974653328274714624",
+      "profileUrl": "https://x.com/AYi_AInotes",
+      "imageUrl": "https://pbs.twimg.com/profile_images/1989157446829350912/pW828UwK_normal.jpg",
+      "src": "/creator-avatars/ayi_ainotes-93f65de46d5a.jpg",
+      "sha256": "93f65de46d5a9891ecc1440c44324cc50cdecea871b99823368127d0d7fbd8c7",
+      "width": 48,
+      "height": 48,
+      "evidenceKind": "tweet-author",
+      "sourceTweetUrl": "https://x.com/AYi_AInotes/status/2050020216671715729",
+      "observedAt": "2026-10-15T10:00:00.000Z",
+      "imageCheckedAt": "2026-10-16T15:56:00.000Z"
+    },
+    "awp_akira": {
+      "handle": "awp_Akira",
+      "userId": "2065577325219966976",
+      "profileUrl": "https://x.com/awp_Akira",
+      "imageUrl": "https://pbs.twimg.com/profile_images/2066672641985945600/JS1QwbF2_normal.jpg",
+      "src": "/creator-avatars/awp_akira-dcc0bdd800d2.jpg",
+      "sha256": "dcc0bdd800d2b2fbfe1e3a339f08c425ce9cc310c753492ab9df3a77e06348be",
+      "width": 48,
+      "height": 48,
+      "evidenceKind": "tweet-author",
+      "sourceTweetUrl": "https://x.com/awp_Akira/status/2103021164549312857",
+      "observedAt": "2026-10-15T10:00:00.000Z",
+      "imageCheckedAt": "2026-10-16T15:56:00.000Z"
     }
   },
   "unavailable": {

@@ -52,6 +52,9 @@ if (mode === 'git-beta') {
   checkIntake(intake);
   const supplement = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-14-website-supplement/${name}.json`,'utf8'))])));
   checkIntake(supplement);
+  const verifiedGaps = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-16-verified-gaps/${name}.json`, 'utf8'))])));
+  checkIntake(verifiedGaps);
+  for (const [file, field] of [['source-records','sourceSha256'], ['media-links','mediaSha256']]) if (createHash('sha256').update(await readFile(`../docs/intake/2026-10-16-verified-gaps/${file}.json`)).digest('hex') !== verifiedGaps.manifest[field]) throw new Error('Verified gap source checksum mismatch');
   const combined = JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8'));
   if (createHash('sha256').update(JSON.stringify(combined)).digest('hex') !== supplement.manifest.combinedSha256 || createHash('sha256').update(JSON.stringify(intake.graph)).digest('hex') !== supplement.manifest.originalGraphSha256) throw new Error('Website supplement graph checksum mismatch');
   const sourceBytes = await readFile('../docs/intake/2026-10-14-website-supplement/source-records.json');
@@ -65,9 +68,10 @@ if (mode === 'git-beta') {
   const queenieManifest = JSON.parse(await readFile('../docs/intake/2026-10-15-queenie/manifest.json','utf8'));
   if (createHash('sha256').update(await readFile('src/data/queenie-images.json')).digest('hex') !== queenieManifest.datasetSha256 || createHash('sha256').update(await readFile('../docs/intake/2026-10-15-queenie/source-analysis.json')).digest('hex') !== queenieManifest.analysisSha256) throw new Error('Queenie snapshot checksum mismatch');
   const promptBodies = JSON.parse(await readFile('src/data/zh-prompt-bodies.json','utf8'));
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions);
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')));
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, queenieImages);
+  gitBeta.verifiedGaps = { prompts: verifiedGaps.proposals.length, mediaRecords: verifiedGaps.manifest.acceptedMediaRecords, sourceSha256: verifiedGaps.manifest.sourceSha256, mediaSha256: verifiedGaps.manifest.mediaSha256 };
   const localeReceipts=[];
   for(const locale of ['zh-CN','en']){
     const localHref=href=>href.replace(/^\/zh-CN(?=\/)/,`/${locale}`);

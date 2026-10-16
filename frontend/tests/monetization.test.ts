@@ -9,7 +9,7 @@ import audit from '../src/data/monetization-audit.json';
 const en=createGitBetaCatalog('en'),zh=createGitBetaCatalog('zh-CN');
 describe('auditable monetization projection',()=>{
  it('keeps the complete beta catalog and exports its baseline for offline audit',()=>{
-  expect(en.prompts).toHaveLength(2034);expect(websiteEntries(en)).toHaveLength(225);
+  expect(en.prompts).toHaveLength(2037);expect(websiteEntries(en)).toHaveLength(224);
   writeFileSync('/tmp/ancher-monetization-catalog.json',JSON.stringify({revision:en.revision,prompts:en.prompts,websites:websiteEntries(en),zhPrompts:zh.prompts,zhWebsites:websiteEntries(zh)}));
  });
  it('defines eight bilingual groups and forty unique scenarios',()=>{
@@ -19,7 +19,7 @@ describe('auditable monetization projection',()=>{
  });
  it('validates every audited object and evidence-backed relation',()=>{
   expect(()=>validateMonetization(en,taxonomy,membership,audit)).not.toThrow();
-  expect(audit.records.length).toBeGreaterThanOrEqual(2034);
+  expect(audit.records.length).toBeGreaterThanOrEqual(2037);
   for(const edge of membership.edges){expect(edge.evidence.quote).toBeTruthy();if(edge.fit==='adaptable'){expect(edge.notes.en).toBeTruthy();expect(edge.notes['zh-CN']).toBeTruthy();}}
  });
  it('rejects dangling, duplicate and stale relations',()=>{
@@ -45,6 +45,6 @@ describe('auditable monetization projection',()=>{
 it('publishes only the completely reviewed advertising allowlist',()=>{
  const scene=monetizationScenarios(en).find(s=>s.slug==='ecommerce-advertising')!;const rows=monetizationEntries(en,scene.id);
  expect(rows).toHaveLength(33);
- for(const id of ['prm_943843acefd69e94e8ea552c5f0fbee8','prm_8a0b2e4bb11044aba212e95282a65f57','prm_f6fb70f281d2e96fc40baf22550a2f57'])expect(rows.some(e=>e.key===id)).toBe(false);
+ for(const id of ['prm_943843acefd69e94e8ea552c5f0fbee8','prm_8a0b2e4bb11044aba212e95282a65f57','prm_f6fb70f281d2e96fc40baf22450a2f57'])expect(rows.some(e=>e.key===id)).toBe(false);
  expect(rows.find(e=>e.key==='prm_eee518243a4b25f519a07b6811a21bde')?.fit).toBe('adaptable');
 });

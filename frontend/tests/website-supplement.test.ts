@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { createGitBetaCatalog } from '@/lib/catalog/git-beta';
 import { websiteEntries } from '@/lib/catalog/website';
 
-it('serves the recovered coffee-cup prompt with its actual source without inventing a preview', () => {
+it('serves the recovered coffee-cup prompt with its actual source with the verified original-post preview', () => {
   const c = createGitBetaCatalog('zh-CN');
   const p = c.prompts.find(p => p.source.url === 'https://x.com/aichrislee/status/2104240995613266119');
   expect(p).toBeDefined();
@@ -14,7 +14,8 @@ it('serves the recovered coffee-cup prompt with its actual source without invent
   expect(p?.seo.robots).toBe('noindex,nofollow');
   const entry = websiteEntries(c).find(e => e.id === p?.id);
   expect(entry?.promptHref).toBe(p?.href);
-  expect(entry?.cover).toBe('');
+  expect(entry?.cover).toBe(p?.media[0]?.poster);
+  expect(p?.media[0]?.kind).toBe('video');
 });
 
 it('retains an author continuation in the complete chart-platform prompt', () => {
