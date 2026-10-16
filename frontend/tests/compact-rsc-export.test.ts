@@ -24,7 +24,7 @@ it('fails closed on different payloads before deleting either route',async()=>{
  await expect(compactPromptRsc(root)).rejects.toThrow(/mismatch/);expect(await readFile(path.join(p,'example.txt'),'utf8')).toBe('first');
 });
 it('compacts tree payloads only for routes that use native anchor navigation',async()=>{
- for(const route of ['en','zh-CN/prompts','en/prompts/articles/123','zh-CN/prompts/website/views/example','en/prompts/use-cases/example','zh-CN/prompts/model-families/example','en/prompts/styles/example','zh-CN/prompts/subjects/example','en/prompts/creators','zh-CN/prompts/library-index'])expect(omitsTreeForNativeAnchorRoute(route)).toBe(true);
+ for(const route of ['en','zh-CN/prompts','en/prompts/articles/123','zh-CN/prompts/website/views/example','en/prompts/use-cases/example','zh-CN/prompts/model-families/example','en/prompts/styles/example','zh-CN/prompts/subjects/example','en/prompts/creators','zh-CN/prompts/library-index','en/prompts/monetization/example'])expect(omitsTreeForNativeAnchorRoute(route)).toBe(true);
  for(const route of ['en/prompts/models/example','en/prompts/website/example','en/prompts/creators/example'])expect(omitsTreeForNativeAnchorRoute(route)).toBe(false);
  const root=await mkdtemp(path.join(tmpdir(),'article-rsc-'));
  for(const locale of ['en','zh-CN']){
