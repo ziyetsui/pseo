@@ -1,0 +1,640 @@
+<meta charset="utf-8">
+<title>Ancher Prompt Cloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed prompt stage, mode switch on top, tuning dock bottom-right. Dark-only, matches /prompts. */
+:root {
+  --bg: #0b0c0e;
+  --ink: #c9c7c1;
+  --ink-strong: #f3f1ea;
+  --ink-dim: #6c6b67;
+  --rule: #3a3936;
+  --rule-hot: #8d8a82;
+  --rose: #f07f8c;
+  --gold: #e3b452;
+  --panel: #141518;
+  --panel-line: #24252a;
+  --serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --gutter: clamp(16px, 4.5vw, 88px);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+.wrap { padding-inline: var(--gutter); padding-block: 28px 140px; }
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.count { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.count b { color: var(--ink); font-weight: 500; margin-right: 6px; }
+.modes {
+  display: inline-flex; align-items: center; padding: 3px; max-width: 100%; overflow-x: auto; scrollbar-width: none;
+  border: 1px solid var(--panel-line); border-radius: 999px; background: var(--panel); position: relative;
+}
+.modes::-webkit-scrollbar { display: none; }
+.modes button {
+  position: relative; z-index: 1; flex: none;
+  font: 500 13px/1 var(--serif); color: var(--ink-dim);
+  background: none; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: color 200ms ease, transform 160ms var(--ease-out);
+}
+.modes button[aria-pressed="true"] { color: var(--bg); }
+.modes button:active { transform: scale(0.97); }
+.modes button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.modes .sep { flex: none; width: 1px; height: 16px; background: var(--panel-line); margin-inline: 4px; }
+.modes .tag { flex: none; font: 500 10px/1 var(--mono); letter-spacing: 0.08em; color: var(--gold); padding-inline: 6px 2px; position: relative; z-index: 1; }
+.modes .pill {
+  position: absolute; top: 3px; bottom: 3px; left: 0; border-radius: 999px; background: var(--ink-strong);
+  transition: transform 260ms var(--ease-out), width 260ms var(--ease-out);
+}
+.hint { font-size: 14px; line-height: 1.7; color: var(--ink-dim); margin: 0 0 24px; max-width: 46em; min-height: 3.4em; }
+.hint b { color: var(--ink); font-weight: 500; margin-right: 6px; }
+
+/* prompt item */
+.p {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  font-size: clamp(17px, 1.55vw, 23px); line-height: 1; white-space: nowrap;
+  color: var(--ink); text-decoration: none; cursor: pointer;
+  padding: 8px 0 7px; border-bottom: 1px solid var(--rule);
+  transition: color 180ms ease, border-color 180ms ease, opacity 300ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.p::after { content: "·"; color: var(--ink-dim); font-size: 0.7em; }
+.p.rose { color: var(--rose); border-color: color-mix(in srgb, var(--rose) 45%, transparent); }
+.p.gold { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.p:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .p:hover { color: var(--ink-strong); border-color: var(--rule-hot); }
+}
+.p .in { display: inline-block; transition: transform 160ms var(--ease-out); }
+.p:active .in { transform: scale(0.97); }
+.p mark { background: none; color: var(--gold); }
+
+/* justified wrap (static, drift, develop, gather) */
+.field { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 28px; row-gap: 14px; }
+.field::after { content: ""; flex: 1 0 auto; }
+.slot { display: inline-block; }
+
+/* flow: marquee rows */
+.rows { display: flex; flex-direction: column; gap: 14px; margin-inline: calc(-1 * var(--gutter)); }
+.row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.track { display: flex; gap: 44px; width: max-content; padding-right: 44px; }
+.half { display: flex; gap: 44px; }
+
+/* free space (depth, current) */
+.space {
+  position: relative; overflow: hidden; margin-inline: calc(-1 * var(--gutter));
+  height: clamp(480px, calc(100vh - 200px), 1100px);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+}
+.space canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fly { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.fly::after { content: none; }
+.fly[data-tier="1"] { filter: blur(1px); }
+.fly[data-tier="2"] { filter: blur(2.5px); }
+.fly[data-tier="3"] { filter: blur(5px); }
+.space.depth .fly { transition: color 180ms ease, border-color 180ms ease, filter 450ms ease; }
+.fly.focus { color: var(--ink-strong); border-color: var(--gold); }
+
+/* develop */
+.develop .p { transition: color 180ms ease, border-color 180ms ease; }
+.develop .in { white-space: pre; }
+
+/* gather */
+.search { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 28px; }
+.search input {
+  flex: 1 1 260px; min-width: 0; max-width: 420px;
+  font: 400 18px/1.2 var(--serif); color: var(--ink-strong);
+  background: transparent; border: 0; border-bottom: 1px solid var(--rule-hot); padding: 8px 0; border-radius: 0;
+}
+.search input::placeholder { color: var(--ink-dim); }
+.search input:focus { outline: none; border-color: var(--gold); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: 400 13px/1 var(--serif); color: var(--ink); background: var(--panel); border: 1px solid var(--panel-line);
+  border-radius: 999px; padding: 7px 12px; cursor: pointer; transition: transform 160ms var(--ease-out), border-color 180ms ease, color 180ms ease;
+}
+.chip:active { transform: scale(0.97); }
+.chip[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+.chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.gfield .slot { will-change: transform; }
+.gfield .divider { flex-basis: 100%; font: 400 11px/1 var(--mono); letter-spacing: 0.06em; color: var(--ink-dim); padding-top: 18px; border-top: 1px dashed var(--panel-line); margin-top: 6px; }
+.gfield .p.hit { color: var(--ink-strong); border-color: var(--rule-hot); }
+.gfield .p.miss { opacity: 0.16; }
+
+/* tuning dock */
+.dock {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 5;
+  width: min(260px, calc(100vw - 32px));
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--panel-line); border-radius: 12px; padding: 14px 16px;
+  font-family: var(--mono); font-size: 11px; color: var(--ink-dim);
+  display: grid; gap: 12px;
+}
+.dock h2 { margin: 0; font: 500 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); display: flex; justify-content: space-between; }
+.dock label { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; }
+.dock input[type=range] { grid-column: 1 / -1; width: 100%; accent-color: var(--gold); }
+.dock output { color: var(--ink); font-variant-numeric: tabular-nums; }
+.dock .tune { display: grid; gap: 12px; transition: opacity 200ms ease; }
+.dock[data-off] .tune { opacity: 0.35; pointer-events: none; }
+.dock .toggle { background: none; border: 0; color: var(--ink-dim); font: inherit; cursor: pointer; padding: 0; }
+.dock.min .tune { display: none; }
+
+/* toast */
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 6;
+  transform: translate(-50%, 0); opacity: 1;
+  background: var(--ink-strong); color: var(--bg); font-size: 14px; padding: 10px 16px; border-radius: 999px;
+  transition: transform 300ms var(--ease-out), opacity 300ms var(--ease-out), filter 300ms var(--ease-out);
+  pointer-events: none; max-width: calc(100vw - 32px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toast[data-hidden] { transform: translate(-50%, 12px); opacity: 0; filter: blur(2px); transition-duration: 180ms; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .modes .pill, .toast { transition: opacity 150ms ease; }
+}
+@media (max-width: 560px) {
+  .dock { left: 16px; right: 16px; width: auto; }
+  .field { column-gap: 18px; }
+}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div class="count"><b id="n">728</b>/ 728 条提示词</div>
+    <div class="modes" role="group" aria-label="动效模式">
+      <span class="pill" aria-hidden="true"></span>
+      <button type="button" data-mode="static">静止</button>
+      <button type="button" data-mode="drift">飘动</button>
+      <button type="button" data-mode="flow">流动</button>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="tag" aria-hidden="true">LAB</span>
+      <button type="button" data-mode="depth">景深</button>
+      <button type="button" data-mode="current">洋流</button>
+      <button type="button" data-mode="develop">显影</button>
+      <button type="button" data-mode="gather">磁吸</button>
+    </div>
+  </div>
+  <p class="hint" id="hint"></p>
+  <main id="stage"></main>
+</div>
+
+<aside class="dock" id="dock">
+  <h2>调参 <button class="toggle" id="dockToggle" type="button" aria-expanded="true">收起</button></h2>
+  <div class="tune">
+    <label>速度 <output id="spdOut">1.0×</output><input id="spd" type="range" min="0.2" max="3" step="0.1" value="1"></label>
+    <label>幅度 <output id="ampOut">1.0×</output><input id="amp" type="range" min="0" max="2" step="0.1" value="1"></label>
+    <label>指针影响 <output id="pullOut">1.0×</output><input id="pull" type="range" min="0" max="2" step="0.1" value="1"></label>
+  </div>
+</aside>
+<div class="toast" id="toast" data-hidden role="status" aria-live="polite"></div>
+
+<script>
+const TITLES = `按镜头逐一构建滚动脚本网站|蓝紫色发光二极管灯光下的健身房镜面自拍|从深空到咖啡桌的一镜到底|洛杉矶星光大道俯拍人像|霓虹舞蹈室音乐视频，15 秒|由主角本人拍摄的纽约一日|法医级细节的美人肖像，覆褶眼型|纸艺世界，30 秒电影感短片|圆形底座上的 [地点] 等距微缩场景|采用球队配色的 FIFA 2026 球员海报|《办公室》伪纪录片，会议室场景|七镜头手持观察式蒙太奇|卧室手机录制，午后晚些时候的光线|高端产品推广海报，4:5|韩式卧室夜间视频日记，10 秒|工业场地里的贴脸自拍|冲下悬崖腾空飞出的下坡卡丁车|1970 年代轿车，四镜头街头序列|穿行石板街小镇的手持数码摄像机视频日记|锁定产品与人物身份，仅替换服装|以产品海报呈现的设备规格表|街机摩托车人像，红色短款上衣|蜘蛛侠战衣人像，俏皮表情|采用粗块状 HEIS 字体的合成波海报|根据参考照片制作双重曝光侧脸肖像|法医级细节人像，心形脸|iPhone 拍摄的粉色霓虹公寓人像|祖母绿与金色乳胶服装海王角色扮演|带有 iPhone 5 颗粒感的自然自拍|威尼斯桥上肖像，全景清晰对焦|湖畔蓝调时刻人像，背后是宫殿|冲出邮票边框的国家微缩景观|意大利别墅阳台，细条纹吊带裙|便利店学生，薄荷绿马球衫|网站策略体系|可爱角色设定表|漫画分镜叙事设计|数码相机屏幕怀旧人像|实拍背景涂鸦人物替换|樱花咖啡户外人像|应用界面样机图|VELORA 奢华香水广告海报|黑板上的出师表全文|电商商品展示设计|冠状病毒尺度缩放科学信息图|人工智能业务平台|带着色器的方块世界|食物科学实验网站|巴黎秋季时装插画|大唐玄武门之变的朋友圈|交互网站性能与无障碍优化|豪华社媒破屏商业广告|开源交易图表平台|单组件现代产品落地页|创意树叶拼贴构成的角色画像|作品集高级视觉方向|完整咖啡店网站|层叠纸雕情侣插画|主题海报版式设计|健身品牌力量广告企划|艺术风格数学教育网站|大师级真迹复刻|全自动咖啡机产品展示|建筑空间场景图|封面排版设计图|网站性能与搜索优化|中世纪村庄双精灵冒险者|写实摄影风格图|橙红渐变中的孤独剪影|暗黑极简头像网站视觉设计|四季包装推广活动宫格|体素鹈鹕飞行场景|服务页文案|震撼视觉的深红影棚广角美妆大片|琉璃透明画眉鸟飞舞羊城墨卷|春日花田三联竖版写真拼贴|界面交互设计图|插画艺术创作图|信息图可视化设计|小恶魔莉莉香超任游戏海报|职业网页应用个性化建议|网站交互动效规划|可颂烘焙流程分镜|草莓能量饮料商业广告`.split('|');
+const HOT = { '完整咖啡店网站': 'rose', '主题海报版式设计': 'gold' };
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const rand = (a, b) => a + Math.random() * (b - a);
+const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+const stage = document.getElementById('stage');
+const hint = document.getElementById('hint');
+const dock = document.getElementById('dock');
+const countEl = document.getElementById('n');
+const tune = { spd: 1, amp: 1, pull: 1 };
+let mode = 'depth', raf = 0, cleanup = () => {};
+
+const HINTS = {
+  static: ['现状', '整齐排布，没有动效。'],
+  drift: ['飘动', '每条提示词各自轻微浮动，像水面上的字。指针靠近时会被轻轻推开。'],
+  flow: ['流动', '每行匀速横向流动，相邻行反向。鼠标停在某一行，它会慢慢刹停，移开后再加速。'],
+  depth: ['景深', '提示词从远处朝你飞来，像穿过一片星野。悬停任意一条，镜头对焦到它：其余虚化，整片停住。这是拍摄里的「拉焦」。'],
+  current: ['洋流', '提示词顺着一张看不见的流场漂流，背景细线就是水流。指针是一个漩涡，划过去会卷起附近的词；悬停一条，它会停下，其它的绕开它。'],
+  develop: ['显影', '像 AI 出图的去噪：每条提示词从噪点里一步步生成出来。页面空闲时会随机有几条重新生成；点击任意位置，从那里荡开一圈重新生成。'],
+  gather: ['磁吸', '输入关键词或点一个标签，匹配的提示词滑到最前面并点亮，其余沉下去。'],
+};
+const TUNE_OFF = new Set(['static', 'gather']);
+
+function item(t, i) {
+  const a = document.createElement('a');
+  a.className = 'p' + (HOT[t] && i < 70 ? ' ' + HOT[t] : '');
+  a.href = '#';
+  a.dataset.t = t;
+  a.innerHTML = `<span class="in">${t}</span>`;
+  return a;
+}
+function el(tag, cls) { const e = document.createElement(tag); if (cls) e.className = cls; return e; }
+function field(extra) {
+  const f = el('div', 'field' + (extra ? ' ' + extra : ''));
+  const slots = TITLES.map((t, i) => { const s = el('span', 'slot'); s.appendChild(item(t, i)); f.appendChild(s); return s; });
+  return { f, slots };
+}
+
+/* ---------- 静止 / 飘动 ---------- */
+function buildDrift(on, sig) {
+  const { f, slots } = field();
+  stage.replaceChildren(f);
+  if (!on || reduced) return;
+  const st = slots.map(() => ({ ph: rand(0, 6.28), fx: rand(0.25, 0.5), fy: rand(0.35, 0.65), ox: 0, oy: 0, vx: 0, vy: 0, cx: 0, cy: 0 }));
+  const measure = () => slots.forEach((s, i) => {
+    const r = s.getBoundingClientRect();
+    st[i].cx = r.left + r.width / 2 + scrollX - st[i].ox; st[i].cy = r.top + r.height / 2 + scrollY - st[i].oy;
+  });
+  measure();
+  let px = -1e4, py = -1e4;
+  addEventListener('resize', measure, { signal: sig });
+  if (finePointer) {
+    addEventListener('pointermove', e => { px = e.pageX; py = e.pageY; }, { signal: sig });
+    document.addEventListener('pointerleave', () => { px = py = -1e4; }, { signal: sig });
+  }
+  let last = performance.now(), t = 0;
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt * tune.spd;
+    for (let i = 0; i < slots.length; i++) {
+      const s = st[i];
+      let tx = 0, ty = 0;
+      const dx = s.cx - px, dy = s.cy - py, d = Math.hypot(dx, dy);
+      if (d < 150 && d > 0.1) { const k = 1 - d / 150, f = k * k * 22 * tune.pull; tx = dx / d * f; ty = dy / d * f; }
+      s.vx += ((tx - s.ox) * 120 - s.vx * 16) * dt; s.vy += ((ty - s.oy) * 120 - s.vy * 16) * dt;
+      s.ox += s.vx * dt; s.oy += s.vy * dt;
+      const A = 3.2 * tune.amp;
+      slots[i].style.transform = `translate3d(${(Math.sin(t * s.fx * 2 + s.ph) * A * 0.7 + s.ox).toFixed(2)}px,${(Math.sin(t * s.fy * 2 + s.ph * 1.3) * A + s.oy).toFixed(2)}px,0)`;
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- 流动 ---------- */
+function buildFlow(sig) {
+  const wrap = el('div', 'rows');
+  const per = innerWidth < 560 ? 6 : 8;
+  const rows = [];
+  for (let r = 0, i = 0; i < TITLES.length; r++, i += per) {
+    const chunk = TITLES.slice(i, i + per);
+    while (chunk.length < per) chunk.push(TITLES[(i + chunk.length * 7) % TITLES.length]);
+    const row = el('div', 'row'), track = el('div', 'track');
+    for (let k = 0; k < 2; k++) {
+      const h = el('div', 'half');
+      if (k) h.setAttribute('aria-hidden', 'true');
+      chunk.forEach((t, j) => { const a = item(t, i + j); if (k) a.tabIndex = -1; h.appendChild(a); });
+      track.appendChild(h);
+    }
+    row.appendChild(track); wrap.appendChild(row);
+    rows.push({ row, track, dir: r % 2 ? 1 : -1, base: 16 + ((r * 37) % 19), v: 1, target: 1, x: rand(0, 400), w: 0 });
+  }
+  stage.replaceChildren(wrap);
+  const measure = () => rows.forEach(o => { o.w = o.track.firstChild.getBoundingClientRect().width + 44; });
+  measure();
+  addEventListener('resize', measure, { signal: sig });
+  rows.forEach(o => {
+    if (finePointer) {
+      o.row.addEventListener('pointerenter', () => { o.target = 0; }, { signal: sig });
+      o.row.addEventListener('pointerleave', () => { o.target = 1; }, { signal: sig });
+    }
+    o.row.addEventListener('focusin', () => { o.target = 0; }, { signal: sig });
+    o.row.addEventListener('focusout', () => { o.target = 1; }, { signal: sig });
+  });
+  if (reduced) return;
+  let last = performance.now();
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    for (const o of rows) {
+      o.v += (o.target - o.v) * (1 - Math.exp(-(o.target < o.v ? 7 : 3) * dt));
+      o.x += o.dir * o.base * tune.spd * tune.amp * o.v * dt;
+      const m = ((o.x % o.w) + o.w) % o.w;
+      o.track.style.transform = `translate3d(${(-m).toFixed(2)}px,0,0)`;
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- 景深：穿过星野，悬停拉焦 ---------- */
+function buildDepth(sig) {
+  if (reduced) return buildDrift(false, sig);
+  const box = el('div', 'space depth');
+  const els = TITLES.map((t, i) => { const a = item(t, i); a.classList.add('fly'); box.appendChild(a); return a; });
+  stage.replaceChildren(box);
+  const st = els.map(() => ({ x: rand(-1, 1), y: rand(-1, 1), z: Math.random(), tier: -1, w: 0, h: 0 }));
+  let W = 0, H = 0;
+  const measure = () => {
+    W = box.clientWidth; H = box.clientHeight;
+    els.forEach((e, i) => { st[i].w = e.offsetWidth; st[i].h = e.offsetHeight; });
+  };
+  measure();
+  addEventListener('resize', measure, { signal: sig });
+  let mx = 0, my = 0, smx = 0, smy = 0, hovered = -1, speed = 1, focus = 0.62;
+  if (finePointer) box.addEventListener('pointermove', e => {
+    const r = box.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width * 2 - 1; my = (e.clientY - r.top) / r.height * 2 - 1;
+  }, { signal: sig });
+  els.forEach((e, i) => {
+    const on = () => { hovered = i; e.classList.add('focus'); };
+    const off = () => { if (hovered === i) hovered = -1; e.classList.remove('focus'); };
+    e.addEventListener('pointerenter', on, { signal: sig }); e.addEventListener('pointerleave', off, { signal: sig });
+    e.addEventListener('focus', on, { signal: sig }); e.addEventListener('blur', off, { signal: sig });
+  });
+  let last = performance.now();
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    const k = 1 - Math.exp(-6 * dt);
+    speed += ((hovered < 0 ? 1 : 0) - speed) * k;
+    focus += ((hovered < 0 ? 0.62 : st[hovered].z) - focus) * (1 - Math.exp(-9 * dt));
+    smx += (mx - smx) * (1 - Math.exp(-3 * dt)); smy += (my - smy) * (1 - Math.exp(-3 * dt));
+    for (let i = 0; i < els.length; i++) {
+      const s = st[i];
+      s.z += 0.032 * tune.spd * speed * dt;
+      if (s.z > 1) { s.z -= 1; s.x = rand(-1, 1); s.y = rand(-1, 1); }
+      const z = s.z, zz = z * z;
+      const spread = (0.22 + zz * 1.05) * (0.6 + 0.4 * tune.amp);
+      const sc = 0.32 + zz * 1.45;
+      const px = W / 2 + s.x * W * 0.55 * spread - smx * zz * 70 * tune.pull - s.w * sc / 2;
+      const py = H / 2 + s.y * H * 0.5 * spread - smy * zz * 45 * tune.pull - s.h * sc / 2;
+      const e = els[i];
+      e.style.transform = `translate3d(${px.toFixed(1)}px,${py.toFixed(1)}px,0) scale(${sc.toFixed(3)})`;
+      e.style.opacity = (smooth(0, 0.18, z) * (1 - smooth(0.86, 1, z)) * (0.35 + 0.65 * Math.min(1, z * 1.6))).toFixed(3);
+      e.style.zIndex = (z * 1000) | 0;
+      const dz = Math.abs(z - focus);
+      const tier = i === hovered ? 0 : dz < 0.1 ? 0 : dz < 0.22 ? 1 : dz < 0.38 ? 2 : 3;
+      if (tier !== s.tier) { s.tier = tier; e.dataset.tier = tier; }
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- 洋流：流场漂流 + 指针漩涡 ---------- */
+function buildCurrent(sig) {
+  if (reduced) return buildDrift(false, sig);
+  const box = el('div', 'space current');
+  const cv = el('canvas'); box.appendChild(cv);
+  const ctx = cv.getContext('2d');
+  const els = TITLES.map((t, i) => { const a = item(t, i); a.classList.add('fly'); box.appendChild(a); return a; });
+  stage.replaceChildren(box);
+  const ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim();
+  let W = 0, H = 0, dpr = 1;
+  const st = els.map(() => ({ x: 0, y: 0, w: 0, h: 0, rot: 0, pinned: false }));
+  const measure = (first) => {
+    W = box.clientWidth; H = box.clientHeight; dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    els.forEach((e, i) => {
+      const s = st[i]; s.w = e.offsetWidth; s.h = e.offsetHeight;
+      if (first === true) { s.x = rand(0, W); s.y = rand(20, H - 20); }
+    });
+  };
+  measure(true);
+  addEventListener('resize', measure, { signal: sig });
+  const parts = Array.from({ length: Math.round(W * H / 3200) }, () => ({ x: rand(0, W), y: rand(0, H), age: rand(0, 4) }));
+  let px = -1e4, py = -1e4;
+  if (finePointer) {
+    box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); px = e.clientX - r.left; py = e.clientY - r.top; }, { signal: sig });
+    box.addEventListener('pointerleave', () => { px = py = -1e4; }, { signal: sig });
+  }
+  els.forEach((e, i) => {
+    e.addEventListener('pointerenter', () => { st[i].pinned = true; e.classList.add('focus'); }, { signal: sig });
+    e.addEventListener('pointerleave', () => { st[i].pinned = false; e.classList.remove('focus'); }, { signal: sig });
+  });
+  let t = 0, last = performance.now();
+  const R = 190;
+  const vel = (x, y) => {
+    const a = Math.sin(x * 0.0042 + t * 0.21) * 1.3 + Math.cos(y * 0.0065 - t * 0.17) * 1.1 + Math.sin((x + y) * 0.0021 + t * 0.09);
+    let vx = (Math.cos(a) * 0.75 + 0.55) * 26, vy = Math.sin(a) * 0.75 * 26;
+    const dx = x - px, dy = y - py, d = Math.hypot(dx, dy);
+    if (d < R && d > 1) { const f = (1 - d / R) * 150 * tune.pull; vx += -dy / d * f; vy += dx / d * f; }
+    return [vx * tune.spd, vy * tune.spd];
+  };
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt * tune.spd;
+    // streamlines: fade previous frame, draw short segments
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = 'rgba(0,0,0,0.07)'; ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = ink; ctx.globalAlpha = 0.16; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (const p of parts) {
+      const [vx, vy] = vel(p.x, p.y);
+      const nx = p.x + vx * dt * 1.6, ny = p.y + vy * dt * 1.6;
+      ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny);
+      p.x = nx; p.y = ny; p.age += dt;
+      if (p.age > 4 || p.x > W || p.x < 0 || p.y < 0 || p.y > H) { p.x = rand(-20, W * 0.3); p.y = rand(0, H); p.age = 0; if (Math.random() < 0.6) p.x = rand(0, W); }
+    }
+    ctx.stroke(); ctx.globalAlpha = 1;
+    // words
+    for (let i = 0; i < st.length; i++) {
+      const s = st[i]; if (s.pinned) continue;
+      const [vx, vy] = vel(s.x, s.y);
+      s.x += vx * dt; s.y += vy * dt;
+      const target = Math.max(-0.14, Math.min(0.14, Math.atan2(vy, vx))) * tune.amp;
+      s.rot += (target - s.rot) * (1 - Math.exp(-3 * dt));
+      if (s.x - s.w / 2 > W) s.x = -s.w / 2; else if (s.x + s.w / 2 < 0) s.x = W + s.w / 2;
+      if (s.y > H + 20) s.y = -20; else if (s.y < -20) s.y = H + 20;
+    }
+    // soft separation so words don't stack
+    for (let i = 0; i < st.length; i++) for (let j = i + 1; j < st.length; j++) {
+      const a = st[i], b = st[j];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const ox = (a.w + b.w) / 2 + 18 - Math.abs(dx), oy = 34 - Math.abs(dy);
+      if (ox > 0 && oy > 0) {
+        const push = Math.min(ox, oy) * 3 * dt, sy = dy >= 0 ? 1 : -1;
+        const wa = a.pinned ? 0 : b.pinned ? 2 : 1, wb = b.pinned ? 0 : a.pinned ? 2 : 1;
+        a.y -= sy * push * wa; b.y += sy * push * wb;
+      }
+    }
+    for (let i = 0; i < st.length; i++) {
+      const s = st[i];
+      els[i].style.transform = `translate3d(${(s.x - s.w / 2).toFixed(1)}px,${(s.y - s.h / 2).toFixed(1)}px,0) rotate(${s.rot.toFixed(3)}rad)`;
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- 显影：去噪生成 ---------- */
+function buildDevelop(sig) {
+  const { f, slots } = field('develop');
+  stage.replaceChildren(f);
+  if (reduced) return;
+  const pool = [...new Set(TITLES.join('').replace(/[^一-鿿]/g, ''))];
+  const blocks = '▓▒░▚▞▙▟';
+  const latin = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+  const glyph = c => /[一-鿿]/.test(c) ? (Math.random() < 0.72 ? pool[(Math.random() * pool.length) | 0] : blocks[(Math.random() * blocks.length) | 0])
+    : /[A-Za-z0-9]/.test(c) ? latin[(Math.random() * latin.length) | 0] : c;
+  const st = slots.map(s => {
+    const a = s.firstChild, inn = a.firstChild;
+    return { a, inn, t: a.dataset.t, chars: [...a.dataset.t], start: 0, dur: 0, active: false, lastStep: 0, cx: 0, cy: 0 };
+  });
+  const measure = () => st.forEach(s => {
+    s.inn.style.width = ''; s.inn.textContent = s.t;
+    s.inn.style.width = s.inn.getBoundingClientRect().width + 'px';
+    const r = s.a.getBoundingClientRect(); s.cx = r.left + r.width / 2 + scrollX; s.cy = r.top + r.height / 2 + scrollY;
+  });
+  measure();
+  addEventListener('resize', measure, { signal: sig });
+  const regen = (s, delay, dur) => { const now = performance.now(); s.start = now + delay; s.dur = dur / tune.spd; s.active = true; s.lastStep = 0; };
+  // opening sweep: diagonal wave from top-left
+  const o = f.getBoundingClientRect();
+  st.forEach(s => regen(s, ((s.cx - o.left - scrollX) + (s.cy - o.top - scrollY) * 1.6) * 0.55, 1100));
+  // idle re-generation
+  const idle = setInterval(() => {
+    for (let k = 0; k < 2; k++) { const s = st[(Math.random() * st.length) | 0]; if (!s.active) regen(s, k * 220, 1300); }
+  }, 1500);
+  sig.addEventListener('abort', () => clearInterval(idle));
+  // ripple from click
+  f.addEventListener('pointerdown', e => {
+    const x = e.pageX, y = e.pageY;
+    st.forEach(s => { const d = Math.hypot(s.cx - x, s.cy - y); if (d < 700) regen(s, d * 0.9, 900); });
+  }, { signal: sig });
+  // hover: snap into focus
+  st.forEach(s => s.a.addEventListener('pointerenter', () => {
+    if (s.active) { const now = performance.now(); s.start = Math.min(s.start, now) - s.dur * 0.8; }
+  }, { signal: sig }));
+  const loop = now => {
+    for (const s of st) {
+      if (!s.active) continue;
+      const p = (now - s.start) / s.dur;
+      if (p >= 1) { s.active = false; s.inn.textContent = s.t; s.a.style.opacity = ''; s.a.style.filter = ''; continue; }
+      const n = p < 0 ? 1 : 1 - (1 - Math.pow(1 - p, 3)); // noise level, eased out
+      // step text in discrete "sampling steps" rather than every frame
+      if (now - s.lastStep > 70) {
+        s.lastStep = now;
+        const amt = Math.min(1, n * tune.amp * 1.1);
+        s.inn.textContent = s.chars.map(c => Math.random() < amt ? glyph(c) : c).join('');
+      }
+      s.a.style.opacity = (1 - n * 0.62).toFixed(3);
+      s.a.style.filter = n > 0.03 ? `blur(${(n * 1.8).toFixed(2)}px)` : '';
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* ---------- 磁吸：搜索时的 FLIP 重排 ---------- */
+function buildGather(sig) {
+  const box = el('div');
+  const search = el('div', 'search');
+  search.innerHTML = `<label class="sr" for="q">搜索提示词</label><input id="q" type="search" placeholder="输入关键词，比如 人像" autocomplete="off" spellcheck="false"><div class="chips"></div>`;
+  const input = search.querySelector('input'), chipsEl = search.querySelector('.chips');
+  const CHIPS = ['人像', '海报', '网站', '视频', '微缩', '自拍', '设计', 'iPhone'];
+  const chips = CHIPS.map(c => { const b = el('button', 'chip'); b.type = 'button'; b.textContent = c; b.setAttribute('aria-pressed', 'false'); chipsEl.appendChild(b); return b; });
+  const { f, slots } = field('gfield');
+  const divider = el('div', 'divider'); divider.hidden = true; f.appendChild(divider);
+  box.append(search, f); stage.replaceChildren(box);
+  const all = [...slots, divider];
+
+  const apply = q => {
+    q = q.trim().toLowerCase();
+    const first = new Map(all.map(s => [s, s.getBoundingClientRect()]));
+    const hits = [], rest = [];
+    slots.forEach(s => {
+      const a = s.firstChild, t = a.dataset.t, i = q ? t.toLowerCase().indexOf(q) : -1;
+      const hit = i >= 0;
+      a.classList.toggle('hit', hit); a.classList.toggle('miss', !!q && !hit);
+      a.firstChild.innerHTML = hit ? `${t.slice(0, i)}<mark>${t.slice(i, i + q.length)}</mark>${t.slice(i + q.length)}` : t;
+      (hit ? hits : rest).push(s);
+    });
+    divider.hidden = !q;
+    divider.textContent = hits.length ? `${hits.length} 条匹配 · 其余 ${rest.length} 条` : `没有匹配「${q}」的提示词，换个词试试`;
+    f.append(...hits, divider, ...rest);
+    countEl.textContent = q ? hits.length : 728;
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c.textContent.toLowerCase() === q)));
+    if (reduced) return;
+    const moved = [];
+    all.forEach(s => {
+      if (s.hidden) return;
+      const a = first.get(s), b = s.getBoundingClientRect();
+      if (!a.width) return;
+      const dx = a.left - b.left, dy = a.top - b.top;
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
+      s.style.transition = 'none'; s.style.transform = `translate(${dx}px,${dy}px)`; moved.push(s);
+    });
+    f.offsetHeight; // commit the inverted positions
+    moved.forEach(s => {
+      const rank = hits.indexOf(s);
+      const delay = rank >= 0 ? Math.min(rank, 12) * 22 : 0;
+      s.style.transition = `transform 460ms var(--ease-in-out) ${delay}ms`;
+      s.style.transform = '';
+    });
+  };
+  input.addEventListener('input', () => apply(input.value), { signal: sig });
+  input.addEventListener('keydown', e => { if (e.key === 'Escape') { input.value = ''; apply(''); } }, { signal: sig });
+  chips.forEach(c => c.addEventListener('click', () => {
+    const on = c.getAttribute('aria-pressed') !== 'true';
+    input.value = on ? c.textContent : ''; apply(input.value);
+  }, { signal: sig }));
+  sig.addEventListener('abort', () => { countEl.textContent = 728; });
+}
+
+/* ---------- mode switch ---------- */
+const btns = [...document.querySelectorAll('.modes button')];
+const pill = document.querySelector('.modes .pill');
+function placePill() {
+  const b = btns.find(b => b.dataset.mode === mode);
+  pill.style.width = b.offsetWidth + 'px';
+  pill.style.transform = `translateX(${b.offsetLeft}px)`;
+}
+function setMode(m) {
+  mode = m;
+  cancelAnimationFrame(raf); cleanup();
+  const ac = new AbortController(); cleanup = () => ac.abort();
+  btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  placePill();
+  if (TUNE_OFF.has(m)) dock.dataset.off = ''; else delete dock.dataset.off;
+  const [name, text] = HINTS[m];
+  hint.innerHTML = `<b>${name}</b>${text}` + (reduced && m !== 'static' ? '（系统开启了「减少动态效果」，这里只展示布局。）' : '');
+  const sig = ac.signal;
+  ({ static: () => buildDrift(false, sig), drift: () => buildDrift(true, sig), flow: () => buildFlow(sig),
+     depth: () => buildDepth(sig), current: () => buildCurrent(sig), develop: () => buildDevelop(sig), gather: () => buildGather(sig) })[m]();
+  try { localStorage.setItem('ancher-cloud-mode', m); } catch {}
+}
+btns.forEach(b => b.addEventListener('click', () => { if (b.dataset.mode !== mode) setMode(b.dataset.mode); }));
+addEventListener('resize', placePill);
+
+/* ---------- tuning ---------- */
+for (const k of ['spd', 'amp', 'pull']) {
+  const input = document.getElementById(k), out = document.getElementById(k + 'Out');
+  input.addEventListener('input', () => { tune[k] = +input.value; out.textContent = (+input.value).toFixed(1) + '×'; });
+}
+const dockToggle = document.getElementById('dockToggle');
+dockToggle.addEventListener('click', () => {
+  const min = dock.classList.toggle('min');
+  dockToggle.textContent = min ? '展开' : '收起';
+  dockToggle.setAttribute('aria-expanded', String(!min));
+});
+
+/* ---------- click feedback ---------- */
+const toast = document.getElementById('toast');
+let toastTimer;
+stage.addEventListener('click', e => {
+  const a = e.target.closest('.p'); if (!a) return;
+  e.preventDefault();
+  toast.textContent = '打开提示词：' + a.dataset.t;
+  toast.removeAttribute('data-hidden');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.setAttribute('data-hidden', ''), 1600);
+});
+
+let saved = 'depth';
+try { saved = localStorage.getItem('ancher-cloud-mode') || 'depth'; } catch {}
+if (!HINTS[saved]) saved = 'depth';
+setMode(saved);
+// widths change once the web font lands; rebuild so measurements are right
+document.fonts?.ready.then(() => setMode(mode));
+</script>
