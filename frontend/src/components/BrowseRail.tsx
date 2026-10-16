@@ -1,49 +1,60 @@
 'use client';
-import {useEffect,useRef,useState,type ReactNode} from 'react';
+import {useEffect,useRef,type ReactNode,type SyntheticEvent} from 'react';
 
-type Edges={start:boolean;end:boolean;overflow:boolean};
+/* Cards still to come wait as a deck at the rail's right edge; scrolling deals
+   them out, and the deck's depth shows how much is left. Clicking or focusing a
+   card still in the deck deals it instead of navigating. The cards stay
+   server-rendered links; this only positions them. */
+const PEEK=18,DEPTH=3;
 
-/* Horizontal browse rail: the cards stay server-rendered links, this only adds the
-   edge fades and paging buttons that tell people the row continues to the right. */
-export function BrowseRail({heading,label,prev,next,children}:{heading:ReactNode;label:string;prev:string;next:string;children:ReactNode}){
+function geometry(el:HTMLElement){
+  const tile=el.querySelector<HTMLElement>('.tile');
+  const width=tile?.offsetWidth??0,gap=parseFloat(getComputedStyle(el).columnGap)||0;
+  // The last fully dealt card ends where the deck begins; the deck keeps PEEK × DEPTH px.
+  const limit=el.clientWidth-(parseFloat(getComputedStyle(el).paddingLeft)||0)-PEEK*DEPTH-width;
+  return {step:width+gap,limit};
+}
+
+export function BrowseRail({heading,label,children}:{heading:ReactNode;label:string;children:ReactNode}){
   const track=useRef<HTMLDivElement>(null);
-  const [edges,setEdges]=useState<Edges>({start:true,end:false,overflow:true});
   useEffect(()=>{
     const el=track.current;
     if(!el)return;
     let frame=0;
-    const measure=()=>{
+    // Scroll-linked, so styles are written straight onto the cards once per frame.
+    const layout=()=>{
       frame=0;
-      const max=el.scrollWidth-el.clientWidth;
-      // 2px slack absorbs sub-pixel scroll positions at either end.
-      const state={start:el.scrollLeft<=2,end:el.scrollLeft>=max-2,overflow:max>2};
-      setEdges(current=>current.start===state.start&&current.end===state.end&&current.overflow===state.overflow?current:state);
+      const tiles=el.querySelectorAll<HTMLElement>('.tile');
+      const {step,limit}=geometry(el);
+      tiles.forEach((tile,index)=>{
+        const x=tile.offsetLeft-el.scrollLeft,over=x-limit;
+        tile.style.zIndex=String(tiles.length-index);
+        if(over<=0||!step){tile.style.transform='';tile.style.opacity='';tile.style.removeProperty('--deal');tile.removeAttribute('data-deck');return;}
+        const depth=Math.min(over/step,DEPTH+1),shown=Math.min(depth,DEPTH);
+        tile.style.transform=`translateX(${limit+PEEK*shown-x}px) scale(${1-.045*shown})`;
+        tile.style.opacity=depth>DEPTH?String(Math.max(0,DEPTH+1-depth)):'';
+        tile.style.setProperty('--deal',String(shown/DEPTH));
+        tile.toggleAttribute('data-deck',depth>.35);
+      });
     };
-    const schedule=()=>{if(!frame)frame=requestAnimationFrame(measure);};
-    measure();
+    const schedule=()=>{if(!frame)frame=requestAnimationFrame(layout);};
+    layout();
     el.addEventListener('scroll',schedule,{passive:true});
     const observer=new ResizeObserver(schedule);
     observer.observe(el);
     return()=>{el.removeEventListener('scroll',schedule);observer.disconnect();cancelAnimationFrame(frame);};
   },[]);
-  const page=(direction:1|-1)=>{
-    const el=track.current;
-    if(!el)return;
-    const card=el.querySelector<HTMLElement>('.tile');
-    const gap=parseFloat(getComputedStyle(el).columnGap)||0;
-    const step=card?card.offsetWidth+gap:el.clientWidth*.8;
-    // Page by whole cards that fit the viewport, leaving one card of context.
-    const cards=Math.max(1,Math.floor(el.clientWidth/step)-1);
+  const deal=(event:SyntheticEvent,navigate:boolean)=>{
+    const el=track.current,tile=(event.target as HTMLElement).closest<HTMLElement>('.tile');
+    if(!el||!tile?.hasAttribute('data-deck'))return;
+    if(navigate)event.preventDefault();
     const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollBy({left:direction*cards*step,behavior:reduce?'auto':'smooth'});
+    el.scrollBy({left:tile.offsetLeft-el.scrollLeft-geometry(el).limit,behavior:reduce?'auto':'smooth'});
   };
   return <>
-    <div className="sec-h">{heading}{edges.overflow&&<div className="rail-nav">
-      <button type="button" className="rail-btn" aria-label={prev} disabled={edges.start} onClick={()=>page(-1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></button>
-      <button type="button" className="rail-btn" aria-label={next} disabled={edges.end} onClick={()=>page(1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button>
-    </div>}</div>
-    <div className="rail" data-start={edges.start||undefined} data-end={edges.end||undefined}>
-      <div className="tiles" ref={track} tabIndex={0} role="region" aria-label={label}>{children}</div>
+    <div className="sec-h">{heading}</div>
+    <div className="rail">
+      <div className="tiles" ref={track} tabIndex={0} role="region" aria-label={label} onClick={event=>deal(event,true)} onFocus={event=>deal(event,false)}>{children}</div>
     </div>
   </>;
 }

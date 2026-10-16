@@ -78,6 +78,8 @@
 
 - 2026-09-04 页脚追加裁定：所有页面共用的 Footer 按真实 registry 跳转：模型 → 模型 Anthology，任务 → Task Findings，风格 → Style Plate，Subject → 对应主题列表；All models / All creators → 独立目录页。Footer 是此前 Task / Style 卡片专属入口的明确新增入口；普通 query 筛选链接保持原行为。不得用首页锚点或关键词搜索代替分类目标；已登记但暂时无内容的分类展示真实空状态，不虚构提示词。
 
+- 2026-10-16 L1 Browse 横排裁定（来自 `/proto/browse-rail` 五向比较，用户选 **Stack**）：L1 的 Browse by task / model / style 为单排横向卡片，出血到视口右缘、首卡与标题对齐。尚未发出的卡片在右缘叠成牌堆（每层露 18px、最多 3 层、每层缩小 4.5%、按深度压暗至 55%，第 4 层起淡出），滚动逐张发牌；点击或键盘聚焦牌堆中的卡片先发出该卡而不跳转；末尾预留 54px 使最后一张可完整发出；≤760px 卡片占满除牌堆外的宽度。逻辑在 `src/components/BrowseRail.tsx`（唯一 client 边界，卡片仍是服务端链接），样式在 `src/styles/browse-bands.css`。被否决：Baseline（露半卡 + 边缘渐隐 + ‹ › 按钮，"太普通"）、Scrubber（底部位置条 + `09–12 / 24` 计数）、Grab（鼠标拖拽 + 惯性 + 橡皮筋 + 跟随"拖动"标签）、Index（全部名称两列列出、悬停换大图，不滚动）。
+
 - 2026-09-04 Style 追加裁定：Browse by style 卡片的 L3 落地页采用 `docs/wireframes/proto-l1-editorial.html?v=3` 的 **Plate**（`variants[2]/vpl`）。这是独立于任务 Findings 和模型 Anthology 的风格专属母版；普通 style query refs、任务页内的 style 筛选、L2 和 L4 保持原行为。
 - L3 Style Plate：固定真实 style 集合；沿用 serif 400 标题（34–58px）、88/44px 标题页、三列编号目录（1000px 两列、620px 一列）、78px 条目间距、大图与 268px 旁注交替左右、最多三张媒体并列且完整不裁切、图号/标题/Medium/Credit/Extent/Subject/原文片段/类型 CTA。860px 以下图文上下排列，620px 以下条目间距 48px。目录与正文来自同一有序筛选集合，锚点绑定 immutable id；搜索与其他轴筛选写 URL，清除后仍留在当前 style。缺图采用文字图版或真实失败状态；媒体数量、时长、署名、指标仅显示已有数据。默认 Linear 暗色，不引入 Copy prompt、占位链接、picker 或 iframe。
 

@@ -1,34 +1,20 @@
-/* Browse rails bleed to the viewport edge so the next card peeks out, while the
-   first card stays aligned with the section heading. Inside the wrap container,
-   50vw - 50cqw is the distance from the wrap's content edge to the viewport edge. */
-@property --rail-fade-start{syntax:"<length>";inherits:false;initial-value:0px}
-@property --rail-fade-end{syntax:"<length>";inherits:false;initial-value:0px}
+/* Browse rails bleed to the viewport edge while the first card stays aligned
+   with the section heading. Inside the wrap container, 50vw - 50cqw is the
+   distance from the wrap's content edge to the viewport edge. Cards not yet
+   dealt wait as a deck on the right (BrowseRail); the deck needs PEEK × DEPTH
+   (54px) beyond the last card so the final card can be fully dealt. */
 .prototype-magnetic .browse-band .wrap{container-type:inline-size}
-.prototype-magnetic .browse-band .rail{--rail-gutter:calc(50vw - 50cqw);--rail-fade:clamp(24px,var(--rail-gutter),120px);margin-inline:calc(-1 * var(--rail-gutter))}
+.prototype-magnetic .browse-band .rail{--rail-gutter:calc(50vw - 50cqw);margin-inline:calc(-1 * var(--rail-gutter))}
 .prototype-magnetic .browse-band .tiles{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;
-  padding:2px var(--rail-gutter) 12px;scroll-padding-inline:var(--rail-gutter);
-  --rail-fade-start:0px;--rail-fade-end:var(--rail-fade);
-  mask-image:linear-gradient(to right,transparent,#000 var(--rail-fade-start),#000 calc(100% - var(--rail-fade-end)),transparent);
-  transition:--rail-fade-start 240ms var(--e-emphatic),--rail-fade-end 240ms var(--e-emphatic)}
+  padding:2px calc(var(--rail-gutter) + 54px) 12px var(--rail-gutter);scroll-padding-inline:var(--rail-gutter)}
 .prototype-magnetic .browse-band .tiles::-webkit-scrollbar{display:none}
-.prototype-magnetic .browse-band .rail:not([data-start]) .tiles{--rail-fade-start:var(--rail-fade)}
-.prototype-magnetic .browse-band .rail[data-end] .tiles{--rail-fade-end:0px}
 .prototype-magnetic .browse-band .tiles:focus-visible{outline:2px solid var(--border-strong);outline-offset:-2px}
-.prototype-magnetic .browse-band .tiles .tile{flex:0 0 clamp(220px,22vw,340px);min-width:0;scroll-snap-align:start;
-  transition-property:border-color,transform;transition-duration:var(--t-out),160ms;transition-timing-function:var(--e-out)}
-.prototype-magnetic .browse-band .tiles .tile:active{transform:scale(.98)}
-.prototype-magnetic .browse-band .rail-nav{display:flex;gap:8px;margin-left:auto;align-self:center}
-.prototype-magnetic .browse-band .rail-btn{position:relative;display:grid;place-items:center;width:36px;height:36px;padding:0;border:1px solid var(--border);border-radius:999px;
-  background:transparent;color:var(--foreground);cursor:pointer;
-  transition-property:transform,border-color,opacity;transition-duration:160ms,var(--t-out),var(--t-out);transition-timing-function:var(--e-out)}
-.prototype-magnetic .browse-band .rail-btn::after{content:"";position:absolute;inset:-4px}
-.prototype-magnetic .browse-band .rail-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.prototype-magnetic .browse-band .rail-btn:active:not(:disabled){transform:scale(.94)}
-.prototype-magnetic .browse-band .rail-btn:disabled{opacity:.32;cursor:default}
-@media (hover:hover) and (pointer:fine){.prototype-magnetic .browse-band .rail-btn:hover:not(:disabled){border-color:var(--border-strong)}}
-/* Touch screens swipe the rail directly; the peeking card is the affordance there. */
-@media (hover:none),(pointer:coarse){.prototype-magnetic .browse-band .rail-nav{display:none}}
+.prototype-magnetic .browse-band .tiles .tile{position:relative;flex:0 0 clamp(220px,22vw,340px);min-width:0;scroll-snap-align:start;transform-origin:right center;will-change:transform}
+.prototype-magnetic .browse-band .tiles .tile::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#000;opacity:calc(var(--deal, 0) * .55);pointer-events:none}
+.prototype-magnetic .browse-band .tiles .tile[data-deck]{cursor:e-resize}
+/* `scale` composes with the inline deck transform instead of replacing it. */
+.prototype-magnetic .browse-band .tiles .tile:active{scale:.98;transition:scale 160ms var(--e-out)}
 .prototype-magnetic .browse-band .browse-spotlight{margin-top:24px;width:100%}
 /* Compensate for the leading numeral’s side bearing beside the CJK heading. */
 .prototype-magnetic.chinese-type #tasks .browse-spotlight .tb p{text-indent:-.5px}
-@media(max-width:760px){.prototype-magnetic .browse-band .tiles .tile{flex-basis:78%}.prototype-magnetic .browse-band .browse-spotlight{margin-top:18px}}
+@media(max-width:760px){.prototype-magnetic .browse-band .tiles .tile{flex-basis:100%}.prototype-magnetic .browse-band .browse-spotlight{margin-top:18px}}
