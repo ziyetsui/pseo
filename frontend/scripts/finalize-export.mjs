@@ -80,6 +80,10 @@ if (mode === 'git-beta') {
     const bytes=await readFile(path.join(out,asset.src.slice(1)));
     if(createHash('sha256').update(bytes).digest('hex')!==asset.sha256)throw Error('Reference study asset checksum mismatch');
   }
+  const xArticleBytes=await readFile('src/data/x-article-cases.json');
+  const xArticleCases=JSON.parse(xArticleBytes);
+  if(xArticleCases.length!==105 || new Set(xArticleCases.map(article=>article.id)).size!==105 || xArticleCases.some((article,index)=>article.rank!==index+1||article.rights!=='review_required'||!article.body||!article.title||!Number.isInteger(article.likes)||!article.authorHandle||article.sourceUrl!==`https://x.com/${article.authorHandle}/status/${article.id}`||index>0&&article.likes>xArticleCases[index-1].likes))throw new Error('X Article case dataset invalid');
+  const xArticleCasesHash=createHash('sha256').update(xArticleBytes).digest('hex');
   revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')), websiteVisuals, referenceStudyInput);
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, queenieImages);
@@ -91,10 +95,11 @@ if (mode === 'git-beta') {
   gitBeta.verifiedGaps = { prompts: verifiedGaps.proposals.length, mediaRecords: verifiedGaps.manifest.acceptedMediaRecords, sourceSha256: verifiedGaps.manifest.sourceSha256, mediaSha256: verifiedGaps.manifest.mediaSha256 };
   gitBeta.websiteVisualCases=websiteVisuals.records.filter(row=>row.status==='available'||row.status==='existing').length;
   gitBeta.websiteVisualAssets=Object.keys(websiteVisuals.assets).length;
+  gitBeta.articleCaseRevision=`sha256:${xArticleCasesHash}`;
   const localeReceipts=[];
   for(const locale of ['zh-CN','en']){
     const localHref=href=>href.replace(/^\/zh-CN(?=\/)/,`/${locale}`);
-    const local={locale,publishedPrompts:gitBeta.publishedPrompts.map(item=>({...item,href:localHref(item.href)})),publishedWebsites:gitBeta.publishedWebsites.map(item=>({...item,href:localHref(item.href)}))};
+    const local={locale,publishedPrompts:gitBeta.publishedPrompts.map(item=>({...item,href:localHref(item.href)})),publishedWebsites:gitBeta.publishedWebsites.map(item=>({...item,href:localHref(item.href)})),betaArticleCases:xArticleCases.map(article=>({id:article.id,href:`/${locale}/prompts/articles/${article.id}`,rights:article.rights})),articleGraph:{nodes:xArticleCases.length*2+new Set(xArticleCases.map(article=>article.authorHandle)).size,edges:xArticleCases.length*2}};
     local.publishedWebsiteViews=readWebsiteViews(parse(await readFile(path.join(out,`${locale}/prompts/website.html`),'utf8')));
     const index=readLibraryIndex(parse(await readFile(path.join(out,`${locale}/prompts/library-index.html`),'utf8')),revision,locale);
     const bytes=JSON.stringify(index,null,2)+'\n',indexPath=locale==='zh-CN'?'/library-index.json':'/en/library-index.json';

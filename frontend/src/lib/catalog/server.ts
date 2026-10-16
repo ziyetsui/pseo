@@ -6,11 +6,13 @@ import type { Catalog, Locale } from "./types";
 import { dataMode, publicDataConfig } from "./config";
 export { dataMode } from "./config";
 
+const gitBetaCatalogs: Partial<Record<Locale, Catalog>> = {};
+
 export const loadCatalog = cache(async (locale: Locale = "zh-CN"): Promise<Catalog> => {
   const mode = dataMode();
   if (mode === "git-beta") {
     const { createGitBetaCatalog } = await import("./git-beta");
-    return createGitBetaCatalog(locale);
+    return gitBetaCatalogs[locale] ?? (gitBetaCatalogs[locale] = createGitBetaCatalog(locale));
   }
   if (mode === "visual-fixture") {
     const { createFixtureCatalog } = await import("./fixture");

@@ -5,6 +5,7 @@ const config: NextConfig = {
   trailingSlash: false,
   images: { unoptimized: true },
   reactStrictMode: true,
+  staticPageGenerationTimeout: 180,
   devIndicators: false,
   agentRules: false,
   experimental: { globalNotFound: true },

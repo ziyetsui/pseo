@@ -1,4 +1,5 @@
 import {monetizationPaths} from '@/lib/catalog/monetization';
+import { xArticles, xArticleCreators, xArticleCreatorHref, xArticleHref, xArticlePath } from '@/lib/catalog/x-articles';
 import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
@@ -14,6 +15,7 @@ export function catalogPaths(catalog: Catalog): string[] {
   hrefs.push(...websiteViews(catalog).map(view => view.href));
   if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`);
   hrefs.push(...monetizationPaths(catalog));
+  if (catalog.mode === 'git-beta') hrefs.push(xArticlePath(catalog.locale), ...xArticles.map(article => xArticleHref(catalog.locale, article)), ...xArticleCreators.map(creator => xArticleCreatorHref(catalog.locale, creator.handle)));
   return [...new Set(hrefs.filter(href => (href === `/${catalog.locale}` || href.startsWith(`/${catalog.locale}/`)) && !href.includes('?') && !href.includes('#')))];
 }
 

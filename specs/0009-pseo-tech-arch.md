@@ -1567,3 +1567,5 @@ Deployment capacity: current Pages capability is 20,000 files. Next export produ
 
 
 2026-10-16 用户裁定：全站外部 Ancher 生成跳转统一按输出类型构造 `prompts` 参数。图片前置「创建一张关于的图片」，网站前置「创建一个关于的 HTML 网页」，再以两个换行连接完整当前提示词。前缀在跳转边界添加，不改来源或可编辑模板正文；填值、重置和草稿同步到链接。网站任务优先于媒体预览类型，中英文界面使用相同指定中文前缀，视频及其他类型不追加。
+
+2026-10-16 Git beta X Article 案例实现：固定采集快照 `frontend/src/data/x-article-cases.json`，105 个 article-case 节点分别连向已核实作者节点和来源节点，`authored_by` / `sourced_from` 边不得悬空。按同一数据生成双语 L1 分类入口、L2 全部文章、L3 作者集合与 L4 详情静态路由，原文保留原语言；不混入可复制 Prompt 计数和 CMS public snapshot。数据使用独立 `articleCaseRevision` 写入导出回执，保持已审 monetization 与 Prompt catalog revision 不变；页面及 beta 响应 noindex/nofollow。写作 CTA 复用 `generationHref` 的 `prompts` URL 编码合同，仅传提示词与开头节选；任何数据或正文改动都要求新文章 revision、静态导出和线上 smoke。
