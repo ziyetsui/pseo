@@ -1,5 +1,5 @@
 'use client';
-import { generationHref } from '@/lib/cta/generation-url';
+import { generationHref, generationKind } from '@/lib/cta/generation-url';
 import { CompactIndex } from './CompactIndex';
 import { interfaceLocale, uiText, text, promptCount, sourceLanguage, promptLanguage } from '@/lib/i18n/text';
 
@@ -45,7 +45,7 @@ export function StylePlateReader({ catalog, style, axis = 'style', fits }: { cat
             <dt>{uiText(uiLocale, "Extent")}</dt><dd>{count ? text(uiLocale, `${count} media ${count===1?'item':'items'}`, `${count} 个媒体`) : uiText(uiLocale, "Text only")}{p.likes!==null?text(uiLocale, ` · ${p.likes.toLocaleString('en-US')} likes`, ` · ${p.likes.toLocaleString('zh-CN')} 次点赞`):''}</dd>
             <dt>{uiText(uiLocale, "Subject")}</dt><dd>{p.subjects[0]?.label || p.useCases[0]?.label || uiText(uiLocale, "unclassified")}</dd>
             {fit && <><dt>{text(uiLocale, "Scene", "变现场景")}</dt><dd>{fit.scenes}</dd><dt>{text(uiLocale, "Suitability", "适用方式")}</dt><dd>{fit.fit === 'direct' ? text(uiLocale, "Direct fit", "直接适用") : text(uiLocale, "Adaptation needed", "需要改编")}</dd></>}
-          </dl>{fit?.note && <p className="monet-note">{fit.note}</p>}{catalog.mode === 'git-beta' && <p className="eyebrow">{promptLanguage(uiLocale, p)}</p>}<p className="wall" lang={p.language} data-monetization-prompt={fit ? "" : undefined}><PromptWords text={p.prompt} /></p><div className="rr"><a className="btn pri" href={generationHref(p.prompt)} target="_blank" rel="noopener noreferrer">{generationLabel(p.kind, uiLocale)}</a><a className="btn" href={p.href}>{uiText(uiLocale, "Full record →")}</a></div><a className="plate-index-link" href="#style-index">{uiText(uiLocale, "Back to the index ↑")}</a></figcaption>
+          </dl>{fit?.note && <p className="monet-note">{fit.note}</p>}{catalog.mode === 'git-beta' && <p className="eyebrow">{promptLanguage(uiLocale, p)}</p>}<p className="wall" lang={p.language} data-monetization-prompt={fit ? "" : undefined}><PromptWords text={p.prompt} /></p><div className="rr"><a className="btn pri" href={generationHref(p.prompt, generationKind(p))} target="_blank" rel="noopener noreferrer">{generationLabel(p.kind, uiLocale)}</a><a className="btn" href={p.href}>{uiText(uiLocale, "Full record →")}</a></div><a className="plate-index-link" href="#style-index">{uiText(uiLocale, "Back to the index ↑")}</a></figcaption>
         </figure>;
       })}</section>
     </>}

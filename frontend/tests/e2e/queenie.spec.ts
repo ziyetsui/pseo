@@ -21,7 +21,7 @@ for(const locale of ['en','zh-CN'] as const)test(`Queenie ${locale} image studie
  await expect(page.locator('[data-prompt]')).not.toContainText('[HEADLINE]');
  await page.locator('input[name=placeholder-0]').first().check();await expect(page.locator('[data-prompt]')).not.toContainText('[SUBJECT]');
  const body=await page.locator('[data-prompt]').textContent();
- await expect.poll(async()=>new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(body);
+ await expect.poll(async()=>new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(`创建一张关于的图片\n\n${body}`);
  await page.getByRole('button',{name:locale==='en'?'Reset placeholders':'重置占位符',exact:true}).click();await expect(page.locator('[data-prompt]')).toContainText('[SUBJECT]');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:testInfo.outputPath('l4-placeholder-editor.png')});
  const axe=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations.map(v=>v.id)).toEqual([]);

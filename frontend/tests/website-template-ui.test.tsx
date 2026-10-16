@@ -30,20 +30,20 @@ describe('Website editable template UI', () => {
   });
 
   it('updates repeated tokens and generation text, accepts custom input, and resets', async () => {
-    const { container } = render(<><RecipeText prompt={template} /><RecipeGenerateLink prompt={template.prompt}>Generate website</RecipeGenerateLink></>);
+    const { container } = render(<><RecipeText prompt={template} /><RecipeGenerateLink prompt={template.prompt} kind="website">Generate website</RecipeGenerateLink></>);
     const resolved = () => container.querySelector('[data-prompt]')!.textContent;
     const generated = () => new URL(screen.getByRole('link', { name: 'Generate website' }).getAttribute('href')!).searchParams.get('prompts');
     expect(resolved()).toBe(template.prompt);
     fireEvent.click(screen.getByRole('radio', { name: 'a shop' }));
     expect(resolved()).toBe('Build a shop with a shop.');
-    await waitFor(() => expect(generated()).toBe(resolved()));
+    await waitFor(() => expect(generated()).toBe(`创建一个关于的 HTML 网页\n\n${resolved()}`));
     fireEvent.click(within(screen.getByRole('radiogroup', { name: '[PROJECT]' })).getByRole('radio', { name: 'Custom' }));
     fireEvent.change(screen.getByRole('textbox', { name: '[PROJECT]' }), { target: { value: '我的网站' } });
     expect(resolved()).toBe('Build 我的网站 with 我的网站.');
-    await waitFor(() => expect(generated()).toBe(resolved()));
+    await waitFor(() => expect(generated()).toBe(`创建一个关于的 HTML 网页\n\n${resolved()}`));
     fireEvent.click(screen.getByRole('button', { name: 'Reset placeholders' }));
     expect(resolved()).toBe(template.prompt);
-    await waitFor(() => expect(generated()).toBe(template.prompt));
+    await waitFor(() => expect(generated()).toBe(`创建一个关于的 HTML 网页\n\n${template.prompt}`));
   });
 
   for (const locale of ['en', 'zh-CN'] as const) {

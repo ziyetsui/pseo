@@ -15,14 +15,14 @@ describe('Website L3 composer', () => {
       expect(doc.querySelector('.model-signature textarea')?.getAttribute('placeholder')).toBe(locale === 'en' ? 'Describe the website you want to build…' : '描述你想创建的网站…');
       expect(doc.querySelector('.model-signature .website-filters')).toBeNull();
       expect(doc.querySelectorAll('.website-filters')).toHaveLength(1);
-      expect(doc.querySelector('.msh-generate')?.getAttribute('href')).toBe('https://app.ancher.ai/?prompts=');
+      expect(new URL(doc.querySelector('.msh-generate')!.getAttribute('href')!).searchParams.get('prompts')).toBe('创建一个关于的 HTML 网页');
       const entries = websiteViewEntries(catalog, view);
       expect(doc.querySelectorAll('[data-website-case]')).toHaveLength(entries.length);
       for (const entry of entries) {
         const article = doc.querySelector(`[data-website-case="${entry.id}"]`)!;
         const action = article.querySelector('.acts a');
         const prompt = websiteEditableTemplate(catalog, entry);
-        expect(new URL(action!.getAttribute('href')!).searchParams.get('prompts')).toBe(prompt.prompt);
+        expect(new URL(action!.getAttribute('href')!).searchParams.get('prompts')).toBe(`创建一个关于的 HTML 网页\n\n${prompt.prompt}`);
       }
     }
   });

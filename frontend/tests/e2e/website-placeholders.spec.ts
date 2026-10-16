@@ -15,11 +15,11 @@ test('website template values update the full prompt and generation link, then r
       await page.getByRole('textbox', { name: token, exact: true }).fill(value);
       await expect(body).toContainText(value);
     }
-    await expect.poll(async () => new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(await body.textContent());
+    await expect.poll(async () => new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(`创建一个关于的 HTML 网页\n\n${await body.textContent()}`);
     expect(await body.textContent()).not.toContain(tokens[0]);
     await page.getByRole('button', { name: chinese ? '重置占位符' : 'Reset placeholders', exact: true }).click();
     await expect(body).toHaveText(template!);
-    await expect.poll(async () => new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(template);
+    await expect.poll(async () => new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!).searchParams.get('prompts')).toBe(`创建一个关于的 HTML 网页\n\n${template}`);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
     await page.getByRole('heading', { name: chinese ? '设置占位符' : 'Set the placeholders', exact: true }).scrollIntoViewIfNeeded();
     await page.screenshot({ path: info.outputPath(`${locale}-website-placeholders.png`), animations: 'disabled' });
