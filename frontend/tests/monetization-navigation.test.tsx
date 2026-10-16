@@ -16,8 +16,8 @@ it('adds five shared footer columns and keeps complete scene navigation',()=>{
 });
 it('server-renders meaningful group and scenario pages with original detail URLs',()=>{
  const g=monetizationGroups(c)[0]!,s=monetizationScenarios(c,g.slug)[0]!;
- const group=parse(renderToStaticMarkup(<MonetizationPage catalog={c} group={g}/>));expect(group.querySelector('h1')?.text).toBe(g.label);expect(group.querySelector(`a[href="${s.href}"]`)).not.toBeNull();
- const scene=parse(renderToStaticMarkup(<MonetizationPage catalog={c} scenario={s}/>));expect(scene.querySelector('h1')?.text).toBe(s.label);
+ const group=parse(renderToStaticMarkup(<MonetizationPage catalog={c} group={g}/>));expect(group.querySelector('h1 span')?.text).toBe(`${g.label}.`);expect(group.querySelector(`a[href="${s.href}"]`)).not.toBeNull();
+ const scene=parse(renderToStaticMarkup(<MonetizationPage catalog={c} scenario={s}/>));expect(scene.querySelector('h1 span')?.text).toBe(`${s.label}.`);
  const e=monetizationEntries(c,s.id)[0]!;expect(scene.querySelector(`a[href="${e.href}"]`)).not.toBeNull();
  expect(scene.text).toMatch(/直接适用|需要改编/);
 });
