@@ -1,0 +1,19 @@
+{
+  "fromRevision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d",
+  "toRevision": "sha256:54cf3a4c22e364779da603a1e36464e1c4d83198d4025156d64833c7d4829eaa",
+  "reason": "Website visual resources only; original content inputs, taxonomy, template text, membership evidence and audit decisions unchanged.",
+  "unchangedInputs": {
+    "frontend/src/data/prototype.json": "6b394630e399f3a1ca9ae411a534da40adb464b0eb1dec744ddfece42298cb9b",
+    "frontend/src/data/queenie-images.json": "07bb951b942972e9bf69c2b203ee6ecd0d413f0144f4f592e92eb3cd72a2bc0b",
+    "frontend/src/data/zh-prompt-bodies.json": "887fb130848d0f465b5711ffd1bab5fd447295b2f6f3eef07ddf34385b849cec",
+    "frontend/src/data/website-placeholder-templates.json": "c1a1f79646bad2c8b6563a81dfb7ddd5ed1e06fb4527e60899791c0f612423bf",
+    "frontend/src/data/localized-case-copy.json": "142c92920117bd4edb5e9565ec9e14a2eca7bda9e901c73d68bb8fa2ec515964",
+    "frontend/src/data/website-category-membership.json": "681c3f7f24c6951022bf30a995e7e96de445b87c952c8b2de78e614df98dc558",
+    "docs/intake/2026-10-14-website-supplement/combined-graph.json": "1641e5447e64592ce61f7fb1dde9038e4047c5c9dad5d793edefe9f15f190043",
+    "frontend/src/data/monetization-taxonomy.json": "ffe7da7a2e60c9dbf836180a5cf28070242592a419ac4fd97cf068707c2d6d5a"
+  },
+  "unchangedClassificationSha256": {
+    "monetization-membership": "5f818dca0967e936fdb1a4aaa485fa667a632509c234447d5eb71f6e6b3aa139",
+    "monetization-audit": "e8fb949c58930577f101e01dd944e364bc635a7afa2d192b9591ccca446fc975"
+  }
+}
