@@ -1560,3 +1560,6 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 2026-10-15 用户授权 Queenie 真实图片接入 Git-beta 图片库：按 docs/superpowers/specs/2026-10-15-queenie-image-library.md 固定公开双语数据、真实多图和来源，生成明确标注的参考图重建提示词与语义 placeholder，复用 L1–L4 设计和既有编辑/生成流程。排除开发占位、原视频及不完整记录，不推测模型或伪造作者提示词，保留 noindex；Queenie/CMS/账户/支付数据不修改。
 
 Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical top-level prompt-route .txt and __next._full.txt payloads. Verify every pair before mutation, retain all full/tree/page segments, remove only identical monolithic copies and preserve their URLs with two locale-scoped relative Pages 200 proxies. Validate real Cloudflare-compatible proxy responses and client navigation; never delete accepted pages or media to fit the limit.
+
+
+2026-10-16 用户指定 L1 结果区替换为先前 Artifact 的「洋流」原型（https://claude.ai/artifact/SkdkEH2Ksx3HV3fLDC8PGi，Prompt Cloud buildCurrent）：保留流场方程、背景细线轨迹、190px 指针漩涡、方向微倾和标题软分离；悬停/键盘聚焦/打开的标题固定，其余继续流动并避开。替代上一条景深裁定，不新增模式切换或开发调参面板。中英文同步，真实2034记录/筛选/窗口、fixed peek、来源/生成链接及阅读标记保留。无JS或减少动态效果显示静态段落；不可见或后台时暂停并在卸载时清理。
