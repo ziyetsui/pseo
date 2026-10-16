@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-10-16T07:34:54.710893+00:00",
+  "caseRecords": 225,
+  "availableMediaCases": 161,
+  "existingCoverOnlyCases": 1,
+  "casesWithoutUsableVisuals": 63,
+  "previousCasesWithPreview": 61,
+  "newCasesWithPreview": 101,
+  "originalXAssets": 166,
+  "localAssets": 177,
+  "images": 44,
+  "videoRenditions": 133,
+  "segmentedOriginalVideos": 2,
+  "totalVisualFiles": 310,
+  "datasetSha256": "ee8b83fa15c92eb93d93b0cfcde7cbbed8806d6bd8a9102e206a88e0d16478b8",
+  "rawIntakeChanged": false,
+  "rightsApprovalChanged": false,
+  "publicationMode": "git-beta"
+}

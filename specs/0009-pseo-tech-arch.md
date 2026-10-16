@@ -1562,3 +1562,5 @@ receipt 必须分别以当前实现和新部署证据验收，不能从旧 PR、
 Deployment capacity: current Pages capability is 20,000 files. Next export produces byte-identical top-level prompt-route .txt and __next._full.txt payloads. Verify every pair before mutation, retain all full/tree/page segments, remove only identical monolithic copies and preserve their URLs with two locale-scoped relative Pages 200 proxies. Validate real Cloudflare-compatible proxy responses and client navigation; never delete accepted pages or media to fit the limit.
 
 2026-10-16 用户要求图片库来源署名替换：全部指向 YouMind 爆款文章中转页的 Queenie 图片记录，逐条读取原文入口并核实 X 帖子 URL/账号，在 Git-beta 的中英文展示中直接署名 X 原作者并链接原帖。使用独立版本化来源映射，原始采集快照与图片/重建模板保持不变；映射必须绑定原记录ID与原sourceUrl，缺失/冲突/非真实原文入口时构建失败，不能猜账号或借用推荐文章链接。内部保留采集来源和证据哈希，公开source.url/handle不再指向YouMind；其他平台真实来源保持原样。映射纳入catalog revision；保持noindex，不改变CMS/权利审核状态。
+
+2026-10-16 用户要求补齐现有225个网站案例的真实视觉资源：复核原帖及明确的父帖/引用关系，补充可审计封面、图片与完整演示视频，保留原作者/提示词来源，视觉素材来源另作证据。使用独立版本化视觉映射绑定案例id和sourceUrl，中英文同步复用既有卡片/详情布局；不可获取或纯文字来源如实记录，不用无关配图或生成图冒充案例结果。保留原始采集档案、既有分类/模板和noindex，不变更CMS/rights状态。
