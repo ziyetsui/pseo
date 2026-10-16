@@ -1,0 +1,37 @@
+{
+  "status": "design-baseline-observation-not-implementation-acceptance",
+  "observedAt": "2026-10-16T05:31:24.052306+00:00",
+  "betaUrl": "https://beta.ancher.site/zh-CN/prompts",
+  "observedBetaPromptCount": 2034,
+  "sourceCommit": "2e38b47a6e3690ff1542503211f5b4408df045c0",
+  "graphNodeCounts": {
+    "creator": 368,
+    "media": 604,
+    "model": 3,
+    "prompt": 694,
+    "source": 1397,
+    "style": 19,
+    "subject": 10,
+    "tool": 21,
+    "use-case": 19,
+    "website-case": 58
+  },
+  "queenieRecordCount": 1306,
+  "queenieUseCaseCounts": {
+    "梗图创作": 76,
+    "文章封面": 814,
+    "社交图文": 416
+  },
+  "websiteMembershipEntries": 225,
+  "files": {
+    "frontend/src/lib/catalog/git-beta.ts": "657dc582a725b0a165fb266bd25741373e585a71626a5ef854f17b4246a5d549",
+    "frontend/src/data/queenie-images.json": "07bb951b942972e9bf69c2b203ee6ecd0d413f0144f4f592e92eb3cd72a2bc0b",
+    "frontend/src/data/website-category-membership.json": "681c3f7f24c6951022bf30a995e7e96de445b87c952c8b2de78e614df98dc558",
+    "docs/intake/2026-10-14-website-supplement/combined-graph.json": "1641e5447e64592ce61f7fb1dde9038e4047c5c9dad5d793edefe9f15f190043"
+  },
+  "limitations": [
+    "These are source observations. No mapping audit, route build, implementation tests or deployment has been performed.",
+    "Website entries and prompt entries overlap; do not sum their counts.",
+    "Revalidate against the actual release revision before implementation."
+  ]
+}

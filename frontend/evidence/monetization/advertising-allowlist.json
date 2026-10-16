@@ -1,0 +1,2393 @@
+{
+  "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "reviewedCount": 121,
+  "reviewedUniqueContentCount": 95,
+  "scope": "Entire frozen current membership for the three requested scenes; source full bodies govern, source taxonomy/titles only aid discovery. Every current edge has exactly one explicit judgment.",
+  "judgments": [
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2060203818785370400",
+      "title": "FIFA 2026 player poster in team colours",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Sports-player poster has strong type/image layout, but current purpose is a team/player fan graphic rather than business advertising.",
+      "bodyLength": 2229,
+      "bodySha256": "b885a0ff7de05ba298e17decde54c49b5d512f9608d077cb74d4c35d442f48fc"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "2063871161998745877",
+      "title": "Premium product campaign poster, 4:5",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 421,
+      "bodySha256": "935b9135a0511ad8a7ba470269f9690508bf4f3e739bc2d98ae80520a11e0238"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2063871161998745877",
+      "title": "Premium product campaign poster, 4:5",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 421,
+      "bodySha256": "935b9135a0511ad8a7ba470269f9690508bf4f3e739bc2d98ae80520a11e0238"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2778,
+      "bodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2778,
+      "bodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2778,
+      "bodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2748,
+      "bodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2748,
+      "bodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+      "title": "Luxury screen-breaking social media advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 446,
+      "bodySha256": "dfee6028c13e0a3ca075164b305f3957bf9431d1771dcfa0673410c91f440e2d"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_11a99e0f8c9428a6b174ead90883cd31",
+      "title": "Four-Season Packaging Campaign Grid",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 333,
+      "bodySha256": "b8ddd68d264a91b869604fb07a2ddf6d63c2323c3d4dda9494dcf17110819fcf"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_125a2dc81e52e30a7b6c7c69e8e6e492",
+      "title": "Visually Striking Wide-Angle Beauty Editorial in a Deep Red Studio",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1041,
+      "bodySha256": "ed209267e54d71af572cc657ddbe9ab1bbb8fa13727fe8ddd5f36fc85ce17e82"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_13fee207c1547d404680b709c7553283",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Brand identity system presentation board, not brand campaign poster. Existing identity applications do not independently establish campaign delivery.",
+      "bodyLength": 2826,
+      "bodySha256": "04c5354334ecfb0d79e138658410f567c02409afec8091574581b50229ca3532"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_18f1896640b44008a946b8cb9620ed60",
+      "title": "Strawberry Energy Drink Commercial Advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 796,
+      "bodySha256": "a654bfa971eb9a86ba5c876f576ee7fadf4fdda7612138f7415aa1a84fef9b7d"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_18f1896640b44008a946b8cb9620ed60",
+      "title": "Strawberry Energy Drink Commercial Advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 796,
+      "bodySha256": "a654bfa971eb9a86ba5c876f576ee7fadf4fdda7612138f7415aa1a84fef9b7d"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_1c0d405f9b0240435918710f421975b1",
+      "title": "Full-Body Fashion Portrait in a Minimalist Boutique",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Main target is personal fashion portrait in a boutique; retail background and advertising aesthetic do not establish product advertisement.",
+      "bodyLength": 727,
+      "bodySha256": "7897bd3c7069422ccbc5f461a54332550c4fab06217f5985993c16a8970562b5"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "title": "Scientist collectible toy launch board",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1286,
+      "bodySha256": "20ae42223b0ab2edfe56a5571bbf5dc9ce4f94690a5ae250777e015c3156dd08"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "title": "Scientist collectible toy launch board",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1286,
+      "bodySha256": "20ae42223b0ab2edfe56a5571bbf5dc9ce4f94690a5ae250777e015c3156dd08"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "title": "Brand visual identity sheet",
+      "originalFit": "adaptable",
+      "judgment": "exclude",
+      "reason": "E-commerce landing-page UI mockup/hero section, not a beauty recommendation or brand campaign poster. Product/discount content inside UI does not change output type.",
+      "bodyLength": 1889,
+      "bodySha256": "bd254f3078c559794d34e490a6c92779cce2365e30f4684a5f4eb40970cec3bf"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "title": "Brand visual identity sheet",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "E-commerce landing-page UI mockup/hero section, not a beauty recommendation or brand campaign poster. Product/discount content inside UI does not change output type.",
+      "bodyLength": 1889,
+      "bodySha256": "bd254f3078c559794d34e490a6c92779cce2365e30f4684a5f4eb40970cec3bf"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Real branded lipstick comparison provides positive product recommendation content that can be reformatted as a product ad.",
+      "bodyLength": 1862,
+      "bodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Lipstick recommendation report intentionally applies existing brand style; no actual brand campaign brief. Keep in beauty recommendations; e-commerce use only adaptable.",
+      "bodyLength": 1862,
+      "bodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Real branded lipstick comparison provides positive product recommendation content that can be reformatted as a product ad.",
+      "bodyLength": 1862,
+      "bodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_2172ff2675b281f721966d26a6406ad3",
+      "title": "Beauty Product Advertisement",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 210,
+      "bodySha256": "193cd656d8273c02b107dacb435548b1f09a84a1302bec1d6f75aa0bc246db6b"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_219e2261f2b2371c6992f7ba99d80b44",
+      "title": "Fashion advertising shoot in a minimal coral-colored studio",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1438,
+      "bodySha256": "8260438b879300d67a4fd4b043593a9bf8f7f6a259ba59994629120ca8814fef"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_219e2261f2b2371c6992f7ba99d80b44",
+      "title": "Fashion advertising shoot in a minimal coral-colored studio",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1438,
+      "bodySha256": "8260438b879300d67a4fd4b043593a9bf8f7f6a259ba59994629120ca8814fef"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_23b218bd0e326ed10cd966dc6086649c",
+      "title": "Floating fantasy of agarwood and roses",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Main subject is a perfume bottle with labeled ingredient stack; useful for beauty recommendation, but current output is product photography rather than a recommendation.",
+      "bodyLength": 8051,
+      "bodySha256": "b520ddf278f473e8cbb08b3a22e8ac000709ae094018c7da8b7adffec24f3a12"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_24b47d4a86f93410135dec6680fa5418",
+      "title": "Conceptual typography poster prompt",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "The central positive task is a finished conceptual typography poster with exact headline, so reusable poster design is supported; commercial purpose needs adaptation.",
+      "bodyLength": 2809,
+      "bodySha256": "96d77232f31d8d0d3fe5ddb8062e718eb804b75a7b56b0f07ac9f37f444fbd89"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_2660f3f5132ae7da753822d0bb2b0659",
+      "title": "1990s apartment scene reference board",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Apartment production scene-reference board; production-design term, coffee table and wall poster are incidental. No commercial ad output.",
+      "bodyLength": 1446,
+      "bodySha256": "c5baea05b64e81a1315fb9423b877831002965d5b401e768db153ce9fd296f49"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_27f8f55e812280bf8b4908a9a7652a5c",
+      "title": "Vintage Indonesian catnip advertisement",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Satirical fake catnip-product ad already has headline, product, badges and price structure; real commercial product/copy must replace fictional content.",
+      "bodyLength": 530,
+      "bodySha256": "87d7f954ea9995171d4767acebc84718e82dba5a5b4b5700b965fac715358d5e"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_28f38771ce974113ddc9c599b7cda00a",
+      "title": "Giant Comfortable Clog Campaign",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 968,
+      "bodySha256": "3e3df334d9057e75ccc4647504fe12d8b79275773dad146642537efd683ca31b"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_28f38771ce974113ddc9c599b7cda00a",
+      "title": "Giant Comfortable Clog Campaign",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Positive source target does not establish this scene; no membership inferred from incidental words.",
+      "bodyLength": 968,
+      "bodySha256": "3e3df334d9057e75ccc4647504fe12d8b79275773dad146642537efd683ca31b"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "title": "Interface interaction design",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Explicit skincare advertising quadrant is a positive product target, but the entire output is a four-industry ad grid and needs extraction into a recommendation post.",
+      "bodyLength": 1977,
+      "bodySha256": "081be48c7a1b0669a0d7dd0cab8f2f89ed8e9f1b0a00a169825812a3131f72e5"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Explicit skincare advertising quadrant is a positive product target, but the entire output is a four-industry ad grid and needs extraction into a recommendation post.",
+      "bodyLength": 1977,
+      "bodySha256": "081be48c7a1b0669a0d7dd0cab8f2f89ed8e9f1b0a00a169825812a3131f72e5"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_341f9c7b60121d45048f4b111bda2f66",
+      "title": "Street campaign with a giant game controller",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1423,
+      "bodySha256": "23138bf6289f08b76938347c69e8cc90533f6bb85b9a3de72925bbc6c9da6a56"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_341f9c7b60121d45048f4b111bda2f66",
+      "title": "Street campaign with a giant game controller",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1423,
+      "bodySha256": "23138bf6289f08b76938347c69e8cc90533f6bb85b9a3de72925bbc6c9da6a56"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_38781063654b11c2c57c616170f6e060",
+      "title": "Double-Exposure Fashion Portrait",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Double-exposure personal fashion portrait; luxury campaign LOOK is a style comparison, with no brand, ad headline or principal product target.",
+      "bodyLength": 1371,
+      "bodySha256": "c85e8485dcb871820144322d14b720917a885c11c3f2cc772eddd655ad524f3a"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_3961cd0c2f4907cf2e1442655ba0b251",
+      "title": "Surreal self-gaze campaign",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Conceptual self-reflection portrait has a concrete layered headline composition; reuse as poster design requires replacing conceptual subject and copy with merchandise/offer.",
+      "bodyLength": 1112,
+      "bodySha256": "781fd2d989a581a63897b9640fddcdf65ca7d5cfe224281ae80e9ff6e20ac80e"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_398eef74993feaa7e0e884caf335265e",
+      "title": "NOIR streetwear campaign",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 556,
+      "bodySha256": "355b4407b601254b23cfd541d71d548884bca225f57b6ce39f25f81e56915eb6"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_3b0dc0623bd23bfa25e02614fb7f73ad",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1511,
+      "bodySha256": "afe4c12f0f94a5656984d1133e9afa1f18b3b4a1af8c33506f877c177b2e00d2"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_3d15732df77e5df36bc847b97d95b79d",
+      "title": "Guangdong Super League invitation poster in Chinese street style",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2862,
+      "bodySha256": "b11d385732fe7f8a1b860f58f08e28b7b543c2ad2afe6f34794a4f97296ea393"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_4679151f5802aac051f232ee65227ad7",
+      "title": "Character Design Sheet",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Explicit satirical product-ad grid includes features and prices; actual products and substantiated commercial copy must replace fictional claims.",
+      "bodyLength": 2938,
+      "bodySha256": "17028e7afd2dead7329e5bf29e8175c18358470a3ad9dbb349a7f6f621affde9"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_516069067dc8b3d8fa1b9a904d3dbc89",
+      "title": "Draw a knowledge graph of The Plum in the Golden Vase",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Scientific encyclopedia infographic explicitly unbranded/NO logos; brand-related words occur in exclusions, not commercial goal.",
+      "bodyLength": 4808,
+      "bodySha256": "a0f353f41457571a0a29aedf7e3481f90b5550244bc083751aac5b299dbbb74e"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_534d409ea5bf2f2449a93c7c115cbd3b",
+      "title": "Social Media Interface Screenshot",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Synthetic social-media screenshot with platform UI and invented endorsement/engagement counters; embedded promotional text is not a standalone commerce ad.",
+      "bodyLength": 401,
+      "bodySha256": "8675eab1ff46c23bca17024f987ec0ed815af7d0ab94f98836273196262dd068"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_538bf286070a04553dc7d44dcd1c85e3",
+      "title": "Portrait poster with cute hair clips and text",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Positive output is a graphic image/text composition with large title and hierarchy; actual brand campaign requires brand/product copy and visual replacement.",
+      "bodyLength": 478,
+      "bodySha256": "6d48ba9ec269302d2881202a2665b5f902aa381aea83599d3da33226b74919aa"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_63b530fd6458d760653ba43f07fd71b2",
+      "title": "Low-angle luxury menswear campaign on a chessboard",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1174,
+      "bodySha256": "22a4e88177d365bf7630d2e52131607863b8e8bc2ec204913ef65e20e26eb504"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_662f1907a6d550f8a59db42500752450",
+      "title": "Colorful Button Fashion Campaign",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Female clothing display across deliberate campaign-style frames supports brand-fashion visual adaptation, but no actual brand campaign is specified.",
+      "bodyLength": 1315,
+      "bodySha256": "a60d7c41849c8f9cc8461816eabf6456d2314f6cd9b1adff9bca3a44d4d28237"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_6bb4be1bd758ea4df9e3edebae18c19b",
+      "title": "Urban Sunset Fashion Editorial",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Candid personal street photograph; editorial beauty campaign QUALITY describes makeup rendering, not commercial generation goal.",
+      "bodyLength": 1991,
+      "bodySha256": "6a9ff18dad706e5fa44722b99ae1b6ba36db571dd00a184b7f378b5e7948dffc"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_6f7c87f67007c7d2683e2f845e92d46f",
+      "title": "City typography travel poster",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Actual destination typography poster has strong headline and modular image treatment; use destination/client campaign identity and message.",
+      "bodyLength": 2872,
+      "bodySha256": "439ff30c3c4faf0ee43d80fc94c332ffd9fe4ef50e7664ed67e6c2c3807bcbba"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_71d9e1d0aa123c9ce705c265f46e217f",
+      "title": "Relationship graph infographic",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Popular-science encyclopedia card explicitly says rather than an advertisement and do not make commercial promotional poster.",
+      "bodyLength": 1791,
+      "bodySha256": "d4e6b2893f1eb5bf81663c97bd75b9db755950a17ea52157a0e1b00c2a603cef"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_7524792bbfa0500a0ab0e5c36b9cb470",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1463,
+      "bodySha256": "5920dad88a72defe38e676f8f6a75a0cd0c1846c92ab0822a7cebd374a43f84f"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_7d9598e64366a2ae2e6c65191ce256b4",
+      "title": "Poster Offering Multiple Signature Styles",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Six-style personal signature-selection sheet; brand signature and Apple references are style analogies, not brand campaign target.",
+      "bodyLength": 1267,
+      "bodySha256": "d3ad784c4e28472830fe0e235ca78075f0a2e4fdac0270da05fcbcf0b068c9c1"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_803b1870cfb590e2aeb1dacbff5ba70f",
+      "title": "Transparent Labs Hydrate Fitness Supplement Campaign",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1512,
+      "bodySha256": "1bfb8c70f2277dd001600d55b6cb8bb79c53169ed006f08a8094a90e1dcc289f"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_803b1870cfb590e2aeb1dacbff5ba70f",
+      "title": "Transparent Labs Hydrate Fitness Supplement Campaign",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1512,
+      "bodySha256": "1bfb8c70f2277dd001600d55b6cb8bb79c53169ed006f08a8094a90e1dcc289f"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_81cd7d4b1d161a6d71d86073e9797af6",
+      "title": "Travel and Food Potato Chip Advertising Poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2071,
+      "bodySha256": "590258228bd3e56db6a5281d066413e4697c96478a5e0878b09b1584f3202b92"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_827a04504271469c35cad431d6dcc9f9",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1898,
+      "bodySha256": "1d98d29d19122e830c9cabd770b0cbc6070e57b96d2b36090d1c899c3ffd0c6a"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_83dc68ab48efb3404cbedd29506c2534",
+      "title": "Crystal-Framed Country Travel Advertising Poster",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Actual tourism-campaign-like artwork has country title and tagline; a real travel brand/offer must be supplied.",
+      "bodyLength": 1379,
+      "bodySha256": "302c5401b1ce48af9e4d8e7a4055950b43a703803bcf672a7f3e5d824b7558b6"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "adaptable",
+      "judgment": "exclude",
+      "reason": "Current instantiated subject is milk tea; beauty appears only as optional industry/conditional style branch, not actual beauty product recommendation.",
+      "bodyLength": 3236,
+      "bodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Real positive brand-product concept KV can be adapted to commerce placement, while retaining source restrictions against price/purchase/activity labels and conceptual origin.",
+      "bodyLength": 3236,
+      "bodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Real positive brand-product concept KV can be adapted to commerce placement, while retaining source restrictions against price/purchase/activity labels and conceptual origin.",
+      "bodyLength": 3236,
+      "bodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Cosmetic product is the principal photography subject; adapt to recommendation by adding real usage/suitability and substantiated benefits.",
+      "bodyLength": 2821,
+      "bodySha256": "11699cead5292ea0daa0e0509a36d926daef3a75a56dac30b66994906dc2f8a8"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Cosmetic product is the principal photography subject; adapt to recommendation by adding real usage/suitability and substantiated benefits.",
+      "bodyLength": 2821,
+      "bodySha256": "11699cead5292ea0daa0e0509a36d926daef3a75a56dac30b66994906dc2f8a8"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_8a0b2e4bb11044aba212e95282a65f57",
+      "title": "Relationship graph infographic",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Character relationship map about Demon Slayer; final product means finished graphic, not merchandise. Relational information visualization is the principal task.",
+      "bodyLength": 1887,
+      "bodySha256": "32d52f5f3e4d7ed117a70b72834d647437d218354db210b286c48790d971c8e4"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_9013986d06d355f0dab3cf256ec00d9c",
+      "title": "Refined product advertising reimagined through a street-style lens",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 230,
+      "bodySha256": "54fda801a21462f9392b2825ab5831b7c9c9f41d8afe72dd4d46377148501771"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+      "title": "Custom-Shaped Display Stand for a Local Shop",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1849,
+      "bodySha256": "2aef246f694cf1554f9bc72db1ec3f87df238a4f3832c2a1e50a85763e9a5c34"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_92de0537be571ad66989cda4ae3c12ff",
+      "title": "Neon lollipop advertisement for a fast-moving consumer goods brand",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1741,
+      "bodySha256": "b56926d44a951cee03dcca5022e2d91be02018031c7f3ebb6410ad2176db9483"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_943843acefd69e94e8ea552c5f0fbee8",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "E-commerce livestream UI mockup including chat/coupons/product cards; no standalone ad-poster target.",
+      "bodyLength": 2048,
+      "bodySha256": "819c1bd7d7acc66dc90a9a5d6f3b4de3e712ba1df56d96117b9c9363c040cd55"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_9759c103ad2ce6a4e67793bdc7cd00bf",
+      "title": "Jewelry advertisement poster with a miniature city",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1052,
+      "bodySha256": "33e6dd9ca7bcc158c93642b3350c3b915be951911b4d98b7cb7e932cc0d48363"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_97cef9a1532c1e2a095be0a0eca295cc",
+      "title": "AI productivity ebook marketing microsite",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Marketing website/microsite code target, not commercial poster/image.",
+      "bodyLength": 158,
+      "bodySha256": "06202c09dc442ffc3ac96b772cbde1af3ab19169040dfae8815ee842bd015ebe"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_a275e265b92ed340a2eae516e3409011",
+      "title": "App interface mockup",
+      "originalFit": "adaptable",
+      "judgment": "exclude",
+      "reason": "Positive source target does not establish this scene; no membership inferred from incidental words.",
+      "bodyLength": 2155,
+      "bodySha256": "8ea8b436bdc809748cd4db17a2d8cb16f8c350f8f22806f02dd242a52824c72c"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_a440424beb1a56297c4c289293ac3b41",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "A deliberate promotional poster and web banner are included in the merchandise board; extract those outputs and remove unrelated identity/social-profile panels.",
+      "bodyLength": 2045,
+      "bodySha256": "9f0f61b561d86a673304ac261f8c6f656f6275dd0b1fba5029b7bff9003921b0"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_a440424beb1a56297c4c289293ac3b41",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "A deliberate promotional poster and web banner are included in the merchandise board; extract those outputs and remove unrelated identity/social-profile panels.",
+      "bodyLength": 2045,
+      "bodySha256": "9f0f61b561d86a673304ac261f8c6f656f6275dd0b1fba5029b7bff9003921b0"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_a82b740fdc7ca929f0bc24d3aa10ce02",
+      "title": "Visual board for a matcha brand's touchpoint system",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Full matcha brand identity/touchpoint system, explicitly not a single image; no campaign poster objective.",
+      "bodyLength": 1192,
+      "bodySha256": "b4d29aa655bd4017cfe7c09b2e5ced3cdbb0dae60bb289b8d1996d16e22c0211"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_a9f7ddfff397c42c6c450a65cf8eac22",
+      "title": "Overthinking Surreal Street Campaign",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Conceptual fashion graphic has specific three-level typography and centered subject; reusable poster design supports merchandise/headline replacement.",
+      "bodyLength": 1254,
+      "bodySha256": "66535c65b794b75a6d4169a9e97f3bc86633eeef2e9f182bc56c39a68d4dd10d"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_aa36d038d5e723b9b9531f9fde30f571",
+      "title": "Comic infographic of brand personality",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Internal brand personality/strategy comic infographic. Selling a product is one illustrative brand-behavior panel, not product advertising campaign goal.",
+      "bodyLength": 2454,
+      "bodySha256": "901e975a360bd67005216979dbd0b47d8249299414a3b2055d75b824da87ea65"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_aa36d038d5e723b9b9531f9fde30f571",
+      "title": "Comic infographic of brand personality",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Internal brand personality/strategy comic infographic. Selling a product is one illustrative brand-behavior panel, not product advertising campaign goal.",
+      "bodyLength": 2454,
+      "bodySha256": "901e975a360bd67005216979dbd0b47d8249299414a3b2055d75b824da87ea65"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_ab6ff7955c84d14621f0b9423423bc8d",
+      "title": "Six-panel miniature lemon drink advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 8143,
+      "bodySha256": "fb302b56879b7f824d551b1f7b6d87135fffab5b34635b24301102c65ead3e17"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_ab6ff7955c84d14621f0b9423423bc8d",
+      "title": "Six-panel miniature lemon drink advertisement",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Positive source target does not establish this scene; no membership inferred from incidental words.",
+      "bodyLength": 8143,
+      "bodySha256": "fb302b56879b7f824d551b1f7b6d87135fffab5b34635b24301102c65ead3e17"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_b54dd0f525d467d283035eff5b326708",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Agency case-study website UI mockup with stats, navigation and contact form; campaign case study is topic, not campaign poster deliverable.",
+      "bodyLength": 2697,
+      "bodySha256": "67a499ded6e666230718827bd37970ece3d1f96b96233188db54b84f9a42eb00"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_b5f419a371efbeb6977ae048fcc96840",
+      "title": "French New Wave torn-paper film poster",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Movie-poster composition explicitly includes BRAND NAME / EVENT NAME / DATE fields, providing a positive adaptable campaign-poster template.",
+      "bodyLength": 1163,
+      "bodySha256": "6be0cd8e97a19711c8a4f021bd1c6b6b891bd562c8474e6c2dd3e4de4b84f4c0"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_bccfd6f2f6599dcb1b1da7477fa0f193",
+      "title": "Premium Meat and Seafood Brand Hero Image",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 451,
+      "bodySha256": "885030e1de33f2f837020a0a5893053a330adf31fe8a7364a48556305350dfcb"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_be0142f3c75eb841dc0bab832bb1b757",
+      "title": "Minimalist Chinese-trend poster of a gilded Canton Tower",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Guangzhou city illustration without headline/brand offer; brand poster-level texture is only a quality/style reference.",
+      "bodyLength": 2092,
+      "bodySha256": "561ac0b5377d3ac139ea65f5f8153a67d416e72ca370dc5b539bcd945c4e3fd4"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_c3bfc939d3d4591b41df3be6aca05055",
+      "title": "Interface interaction design",
+      "originalFit": "adaptable",
+      "judgment": "exclude",
+      "reason": "Skincare e-commerce website landing-page mockup, not a beauty recommendation post. Keep website-output classification separate.",
+      "bodyLength": 1833,
+      "bodySha256": "e057fcdae662a5a33dfa4bd70c90909bffa748dac36052c6b7561e8d3a49bfda"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_c4c08f2e133e7b622fa7c038b4ace12c",
+      "title": "Cover layout design",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Actual product-introduction slide has brand, benefits and features; adapt slide ratio, typography and copy to a brand campaign poster.",
+      "bodyLength": 1876,
+      "bodySha256": "4b75b109ec785f5648372c73018d077db2cf1507700bd45c26825880ce033a0e"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_cd27b402fa7ed03e30148ecf9baf65bc",
+      "title": "Themed poster layout design",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1150,
+      "bodySha256": "15bbeb73d7c6e26bd8c39924a54e2e7875daa4c10609b50642a76055149e13fb"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_cd27b402fa7ed03e30148ecf9baf65bc",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Positive source target does not establish this scene; no membership inferred from incidental words.",
+      "bodyLength": 1150,
+      "bodySha256": "15bbeb73d7c6e26bd8c39924a54e2e7875daa4c10609b50642a76055149e13fb"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_cd27b402fa7ed03e30148ecf9baf65bc",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1150,
+      "bodySha256": "15bbeb73d7c6e26bd8c39924a54e2e7875daa4c10609b50642a76055149e13fb"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_ced25f83fa794a6f38b649e1e8239128",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2613,
+      "bodySha256": "62bc70311f013cc79bcac1503b60fd7f34d55bd8de08e635fca4a35cabef2ede"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_d5d6854b61cf41a1aec5e876ad835649",
+      "title": "Tea Pi product promotional poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 10,
+      "bodySha256": "aea6203442d5695bf1077ee66a3b6e4ebc6c7c444cfe4b390ec4d236552ed930"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_d6e55d5ee004601c68708f715a13090b",
+      "title": "High-conversion cinematic landing page",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Conversion-oriented website landing page; product marketing goal does not make its output an image poster.",
+      "bodyLength": 481,
+      "bodySha256": "65241794e1e47b428fbe1ce4f698bfa084928e812280fac66a749b5a16486729"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_d93ee25c2769bd1d4c1ad4b15bac7d64",
+      "title": "Facial aesthetics analysis report",
+      "originalFit": "adaptable",
+      "judgment": "exclude",
+      "reason": "Personal facial aesthetics analysis report; skincare/fashion magazine vibe and branding aesthetic are style only, no actual cosmetic product/brand campaign.",
+      "bodyLength": 1553,
+      "bodySha256": "1fafc9ee7968c7790fc4958dc9dcaafc727ac59426e4acf35178282c96d8fdc0"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_d93ee25c2769bd1d4c1ad4b15bac7d64",
+      "title": "Facial aesthetics analysis report",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Personal facial aesthetics analysis report; skincare/fashion magazine vibe and branding aesthetic are style only, no actual cosmetic product/brand campaign.",
+      "bodyLength": 1553,
+      "bodySha256": "1fafc9ee7968c7790fc4958dc9dcaafc727ac59426e4acf35178282c96d8fdc0"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_de335897971c396c5b9c8af1eb8294ac",
+      "title": "Visual system for enterprise commercial brochures",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Multi-page commercial brochure system, with an explicit warning against single-page generation; not advertising poster output.",
+      "bodyLength": 730,
+      "bodySha256": "740d3366b940f518b79deaeab1ba503d29d93b4f573510fcfc929478bddffdb5"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_de335897971c396c5b9c8af1eb8294ac",
+      "title": "Visual system for enterprise commercial brochures",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Multi-page commercial brochure system, with an explicit warning against single-page generation; not advertising poster output.",
+      "bodyLength": 730,
+      "bodySha256": "740d3366b940f518b79deaeab1ba503d29d93b4f573510fcfc929478bddffdb5"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e0ec0ed069951ccfc0df0d7800ac36ba",
+      "title": "Travel poster with city-name typography and landmarks",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Actual city-name travel poster includes optional tagline and tourism-branding direction; supply destination/client brand campaign brief.",
+      "bodyLength": 1629,
+      "bodySha256": "de3142bcdb72032a85ad3af16aafcf4f6794441346ead952ff6e797266b55bba"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_e203231a68b160bb951c98d1bbeb48f2",
+      "title": "Neon Designer 3D Poster",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Actual designer poster includes motivational headline and clear central character; adapt to product/offer composition and remove unrelated tools.",
+      "bodyLength": 1402,
+      "bodySha256": "39e9b429553521c1db1ee754d8ee462a0adec82a53f3e3d92d484b687eea6d98"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e44a1b422242ffebf90b6f55576c3640",
+      "title": "Illustrated showcase of a single black stocking-and-garter style",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Deliberate eight-item hosiery product showcase includes product title, details and style notes; recast as branded campaign with actual SKU and campaign headline.",
+      "bodyLength": 1236,
+      "bodySha256": "7bf7d3127fddc78f51e36bccdbddef117045a6913d7e21bb66b87e734a3bdafd"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e5c329458f0278c3caa875bbb6371d57",
+      "title": "Snack brand technical breakdown illustration",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 2090,
+      "bodySha256": "5f6474c40ad3c384610e0a6f6648986b494fc5fdb3888a82fb9451a8840ef4d8"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e605b9cb6bb9223d858f75ef4af9e22a",
+      "title": "Logo and brand identity system prompt collection",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Logo concepts, brand strategy, colors and typography system prompt collection; campaign-ad billboard effects are hypothetical application examples.",
+      "bodyLength": 1550,
+      "bodySha256": "f69fa70dc93c603f4babb3ab4cac687b399974eeb9e0512d176f043fb9091bb8"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
+      "title": "Architectural Space Scene",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Skincare advertisement is a deliberate quadrant of the four-industry banner set; isolate it and replace sales pitch with real recommendation content.",
+      "bodyLength": 2914,
+      "bodySha256": "ce18a244b9280c261d437e0b75c0ad7bf9db32b433f7e7ed23a8b2cfbb981a7a"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
+      "title": "Architectural Space Scene",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Skincare advertisement is a deliberate quadrant of the four-industry banner set; isolate it and replace sales pitch with real recommendation content.",
+      "bodyLength": 2914,
+      "bodySha256": "ce18a244b9280c261d437e0b75c0ad7bf9db32b433f7e7ed23a8b2cfbb981a7a"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e6df00a4eca78b63efdf8d3a991446cb",
+      "title": "1980s Claude vintage magazine advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 3543,
+      "bodySha256": "37f1ac0dc54929f7607abea728e5a0210d11d3c9257f3d507ffd376b75ebb35c"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_ebb4b756a6818d5d0505ef8b78896efb",
+      "title": "French dermocosmetics commercial storyboard cover",
+      "originalFit": "adaptable",
+      "judgment": "adaptable",
+      "reason": "Specific sunscreen commercial shows real product reference and application; turn its product-demo material into recommendation content with actual usage context.",
+      "bodyLength": 2996,
+      "bodySha256": "043cc6805a93e9a2e90359eb9795ae7a6feb8d752d337d2d8f4ad53be2aabed9"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_ecdc64a0dd58b5b0145456686065dd0a",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Anime production pitch document with character/environment reference sheets; production is filmmaking, not product promotion. Movie poster is only part of a production board.",
+      "bodyLength": 2841,
+      "bodySha256": "b99fd200c927e7964ec6c2c13a7a42fa43aae4c06794a1c918e8526b91f390f1"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_eda34817c88c5a6ac570ee56ff63ecdf",
+      "title": "Dynamic Soda Splash Commercial Poster Under Vivid Neon Lighting",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 995,
+      "bodySha256": "3a15a62e607971854f683f802471585c973a50b5c0569cbf81733b31839f8279"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_eee518243a4b25f519a07b6811a21bde",
+      "title": "Absurd surreal poster of a middle-aged man in women's clothing",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Positive deliverable is explicitly four movie-poster variations with title/broadcast hierarchy. This supports generic poster-layout adaptation only; production wording is not commerce evidence.",
+      "bodyLength": 505,
+      "bodySha256": "52fd5fc9eb019ca26ea545453080768d0cbe1a2d475655c1c9e13e27362cbab2"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_f1ffc0593d90ac4925b6cc3a9962a73b",
+      "title": "Infographic Visualization Design",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Central output is a conceptual key-visual poster with generated title/subtitle and a variable theme that explicitly permits products; commercial application needs an actual brand/product brief.",
+      "bodyLength": 2413,
+      "bodySha256": "39eadafec753f1a42660053da7eafc8fa7da5a3e3e45e0aa50a8cc58c0d49f40"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_f1ffc0593d90ac4925b6cc3a9962a73b",
+      "title": "Infographic Visualization Design",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Central output is a conceptual key-visual poster with generated title/subtitle and a variable theme that explicitly permits products; commercial application needs an actual brand/product brief.",
+      "bodyLength": 2413,
+      "bodySha256": "39eadafec753f1a42660053da7eafc8fa7da5a3e3e45e0aa50a8cc58c0d49f40"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_f5cde1d981a35f94699b33a31da70178",
+      "title": "High-Converting Summer Citrus Soda Advertisement",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 396,
+      "bodySha256": "1b501e1e1d987438009fb9d9e680699e8bf9d32c7fd4a66f88647b7c313ef84a"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_f684fed9c76e895e138b3a80c011b79b",
+      "title": "Draw a Scientific Encyclopedia Knowledge Map",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Scientific encyclopedia knowledge map explicitly unbranded/NO logos; branding appears in exclusion. No campaign target.",
+      "bodyLength": 6289,
+      "bodySha256": "44f4d0235e5063099b1b95e778a4e8fc040cf3f082f31159e33069600c290a28"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_f6fb70f281d2e96fc40baf22550a2f57",
+      "title": "Apple-style nature education poster",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Nature-science poster featuring animal species. Apple product-launch language is visual analogy, not a commercial product campaign.",
+      "bodyLength": 1582,
+      "bodySha256": "e56949707b8e1563ebdff61fbbf753f7e2c360da6c8f9574731164ec73be0676"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_fcb9269d3772870abe2e163c7a45509b",
+      "title": "Layered brand editorial poster",
+      "originalFit": "direct",
+      "judgment": "direct",
+      "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target.",
+      "bodyLength": 1480,
+      "bodySha256": "0eddbf44a2524ff493fc110ca4ecb2694868072a2596dab36aa84cc18fea881e"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-ai-is-reshaping-advanced-node-resource-allocation-the-three-mwxauf",
+      "title": "AI Is Reshaping Advanced-Node Resource Allocation: The Three-Way Game of Apple, Intel, and TSMC",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Editorial cover about company competition, composed of three logos; logos alone do not establish brand campaign purpose.",
+      "bodyLength": 653,
+      "bodySha256": "dad8a9cb409b524b2f1e3d42b6eb923371eea93502f3a51ef4efd0ff033cdcaf"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-backpack-securities-building-a-more-compliant-more-professio-6b23ak",
+      "title": "Backpack Securities: Building a More Compliant, More Professional All-Round US Stock Trading Platform",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction deliberately specifies a branded horizontal banner; adapt brand/subject/headline from financial editorial composition to actual campaign.",
+      "bodyLength": 622,
+      "bodySha256": "b86d38e0240d97ce66acd7c398ce603c63efb801a24799cf67014141cf7ad7c0"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-claude-code-notebooklm-obsidian-the-super-research-tool-that-ycbhcx",
+      "title": "Claude Code + NotebookLM + Obsidian: The Super Research Tool That Makes You Smarter the More You Use It",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Research-workflow network illustration/tutorial cover; tool/brand labels do not establish commercial campaign deliverable.",
+      "bodyLength": 585,
+      "bodySha256": "2b46133deacddd4fd5f43b5342d1c067680b67af35cc38687d5b5cb0ef2bdabb"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "queenie-developer-monologue-how-familymart-created-the-perfect-salt-hfhnye",
+      "title": "Developer Monologue: How FamilyMart Created the Perfect \"Salt Butter Bread\" Series",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction specifically describes product-promotion mood, a large headline and three bread products; replace with actual bakery SKUs and offer.",
+      "bodyLength": 653,
+      "bodySha256": "6ff1c396aaab42f202aae56510d5e7c33bf668a62b5b687c5ba42296bc605b7c"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-how-a-professional-basketball-player-with-zero-background-us-3emecm",
+      "title": "How a professional basketball player with zero background uses AI to automatically analyze game footage",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Editorial sports-analysis story cover with brand marks; neither marks nor campaign-like lighting establishes advertising purpose.",
+      "bodyLength": 732,
+      "bodySha256": "8740ec3764f55b66fca8da251e9eccfd8c34f69696fdffaa9517e401c3d29b61"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "queenie-how-to-build-a-claude-cowork-plugin-and-create-your-own-ai-e-nktx5q",
+      "title": "How to Build a Claude Cowork Plugin and Create Your Own AI Employee (Full Course)",
+      "originalFit": "direct",
+      "judgment": "exclude",
+      "reason": "Tutorial process illustration; body explicitly says whiteboard demo rather than formal product poster.",
+      "bodyLength": 651,
+      "bodySha256": "316a5d2e67de789823798d69b1394a1fc64acd792456e9c8ec1504697a6424e9"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-introducing-backpack-securities-the-crypto-stock-broker-7apx4c",
+      "title": "Introducing Backpack Securities: The Crypto Stock Broker",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction has an explicit brand-name header and announcement composition; supply actual company announcement and campaign copy.",
+      "bodyLength": 614,
+      "bodySha256": "762a148b58c5ed5a922aed4e66e05e27783ad46d810d1b585b167ceb3b646d0a"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-introducing-the-flex-credit-card-pms53h",
+      "title": "Introducing the Flex Credit Card",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction intentionally combines brand text with a three-dimensional card product hero; actual card details and message need to be supplied.",
+      "bodyLength": 680,
+      "bodySha256": "87e21ccde39c0ee78bf9fb6e0c2102eef9921001fbd55c0e7107cd7388a7fdff"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-tool-not-tutorial-i6s4lv",
+      "title": "Tool, Not Tutorial",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction has brand-name placement and product-launch-like key visual; actual product and release/campaign message must replace generic subject.",
+      "bodyLength": 709,
+      "bodySha256": "1ea626a700118cac2b5ac19ced1463f81c265af310381d7b88fbf9f8496f0b98"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-why-we-need-to-build-an-aggregation-layer-for-prediction-mar-q2sklb",
+      "title": "Why We Need to Build an Aggregation Layer for Prediction Markets",
+      "originalFit": "direct",
+      "judgment": "adaptable",
+      "reason": "Queenie reconstruction deliberately pairs product/control-panel imagery with brand and slogan; replace with actual product and campaign copy.",
+      "bodyLength": 566,
+      "bodySha256": "eed295838ba4e5f9b74fd045e5bb30ac6f31c1ae3d6b9b40ea08791ab7cba9b3"
+    }
+  ],
+  "memberships": [
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2060203818785370400",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Design a hyper-realistic FIFA 2026 football poster",
+        "reason": "Sports-player poster has strong type/image layout, but current purpose is a team/player fan graphic rather than business advertising."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "2063871161998745877",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2063871161998745877",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"promotional banner design set\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"promotional banner design set\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "动态的豪华商业广告海报",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_11a99e0f8c9428a6b174ead90883cd31",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "PHASE 3 - COMPOSITION: each quadrant a full campaign scene with props and environment",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_125a2dc81e52e30a7b6c7c69e8e6e492",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Photorealistic bold beauty campaign using uploaded model as exact identity reference.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_18f1896640b44008a946b8cb9620ed60",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A hyper-realistic commercial advertisement blending energy drink and sports branding.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_18f1896640b44008a946b8cb9620ed60",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A hyper-realistic commercial advertisement blending energy drink and sports branding.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Design a collector-grade launch visual",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Design a collector-grade launch visual",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "基于用户上传自拍与指定口红品牌，生成一张具有品牌调性的“口红推荐报告信息结构图”。",
+        "reason": "Real branded lipstick comparison provides positive product recommendation content that can be reformatted as a product ad."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。"
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "基于用户上传自拍与指定口红品牌，生成一张具有品牌调性的“口红推荐报告信息结构图”。",
+        "reason": "Real branded lipstick comparison provides positive product recommendation content that can be reformatted as a product ad."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_2172ff2675b281f721966d26a6406ad3",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Cute Y2K style affordable cosmetics advertising image designed for Gen Z.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_219e2261f2b2371c6992f7ba99d80b44",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-realistic high-fashion commercial campaign using the uploaded model photo as strict identity reference.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_219e2261f2b2371c6992f7ba99d80b44",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-realistic high-fashion commercial campaign using the uploaded model photo as strict identity reference.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_23b218bd0e326ed10cd966dc6086649c",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"style\": \"超现实商业产品摄影\"",
+        "reason": "Main subject is a perfume bottle with labeled ingredient stack; useful for beauty recommendation, but current output is product photography rather than a recommendation."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_24b47d4a86f93410135dec6680fa5418",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create ONE finished premium conceptual typography poster for the exact title:",
+        "reason": "The central positive task is a finished conceptual typography poster with exact headline, so reusable poster design is supported; commercial purpose needs adaptation."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_27f8f55e812280bf8b4908a9a7652a5c",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra realistic vintage Indonesian catnip advertisement poster",
+        "reason": "Satirical fake catnip-product ad already has headline, product, badges and price structure; real commercial product/copy must replace fictional content."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement. Replace fictional, satirical or movie-specific material and all fabricated claims.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。 替换虚构、讽刺或电影专用内容，以及全部虚构宣称。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_28f38771ce974113ddc9c599b7cda00a",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Hyper-realistic premium product advertisement: an oversized futuristic comfort clog",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"2x2 advertising banner grid\"",
+        "reason": "Explicit skincare advertising quadrant is a positive product target, but the entire output is a four-industry ad grid and needs extraction into a recommendation post."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics. Extract the relevant advertising panel from the multi-panel board.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。 从多面板中单独提取对应广告区域。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"2x2 advertising banner grid\"",
+        "reason": "Explicit skincare advertising quadrant is a positive product target, but the entire output is a four-industry ad grid and needs extraction into a recommendation post."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_341f9c7b60121d45048f4b111bda2f66",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Luxury futuristic streetwear campaign poster",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_341f9c7b60121d45048f4b111bda2f66",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Luxury futuristic streetwear campaign poster",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_3961cd0c2f4907cf2e1442655ba0b251",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Typography integrated into the background:",
+        "reason": "Conceptual self-reflection portrait has a concrete layered headline composition; reuse as poster design requires replacing conceptual subject and copy with merchandise/offer."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_398eef74993feaa7e0e884caf335265e",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a premium, highly realistic 1:1 campaign poster for NOIR, a modern streetwear brand.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_3b0dc0623bd23bfa25e02614fb7f73ad",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"promotional advertisement poster for a bottled green tea beverage\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_3d15732df77e5df36bc847b97d95b79d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "广东省城市足球超级联赛（粤超）邀请函海报设计",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_4679151f5802aac051f232ee65227ad7",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"4-panel satirical product advertisement grid\"",
+        "reason": "Explicit satirical product-ad grid includes features and prices; actual products and substantiated commercial copy must replace fictional claims."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement. Replace fictional, satirical or movie-specific material and all fabricated claims.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。 替换虚构、讽刺或电影专用内容，以及全部虚构宣称。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_538bf286070a04553dc7d44dcd1c85e3",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "顶部使用大号手写感标题",
+        "reason": "Positive output is a graphic image/text composition with large title and hierarchy; actual brand campaign requires brand/product copy and visual replacement."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_63b530fd6458d760653ba43f07fd71b2",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-realistic luxury fashion campaign poster",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_662f1907a6d550f8a59db42500752450",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "high-end commercial fashion look",
+        "reason": "Female clothing display across deliberate campaign-style frames supports brand-fashion visual adaptation, but no actual brand campaign is specified."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_6f7c87f67007c7d2683e2f845e92d46f",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-high-resolution typography travel poster themed around [CITY NAME]. 16:9 poster ratio.",
+        "reason": "Actual destination typography poster has strong headline and modular image treatment; use destination/client campaign identity and message."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_7524792bbfa0500a0ab0e5c36b9cb470",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"exploded view product diagram poster\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_803b1870cfb590e2aeb1dacbff5ba70f",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a striking campaign poster that stops people mid-scroll for Transparent Labs Hydrate.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_803b1870cfb590e2aeb1dacbff5ba70f",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a striking campaign poster that stops people mid-scroll for Transparent Labs Hydrate.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_81cd7d4b1d161a6d71d86073e9797af6",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-detailed premium travel-food advertisement poster for [CITY/COUNTRY]",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_827a04504271469c35cad431d6dcc9f9",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"Japanese promotional landing page poster\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_83dc68ab48efb3404cbedd29506c2534",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a luxurious, dreamy country travel-art collection in the exact visual language of an elegant premium tourism campaign",
+        "reason": "Actual tourism-campaign-like artwork has country title and tagline; a real travel brand/offer must be supplied."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "并生成一张符合该品牌气质的概念 KV 海报。",
+        "reason": "Real positive brand-product concept KV can be adapted to commerce placement, while retaining source restrictions against price/purchase/activity labels and conceptual origin."
+      },
+      "notes": {
+        "en": "Supply the real product and approved campaign headline, adjust the crop for commerce placement, and retain the source concept-ad identity. Keep its explicit restriction against price tags, buying links and activity details; this is a brand/product KV, not a discount sale template.",
+        "zh-CN": "提供实际商品与确认的广告标题，调整为电商投放画幅，并保留概念广告身份。遵守原文不加价格标签、购买链接和活动说明的限制；这是品牌商品 KV，不是折扣促销模板。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "并生成一张符合该品牌气质的概念 KV 海报。",
+        "reason": "Real positive brand-product concept KV can be adapted to commerce placement, while retaining source restrictions against price/purchase/activity labels and conceptual origin."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"style\": \"Ultra-realistic luxury cosmetic product photography\"",
+        "reason": "Cosmetic product is the principal photography subject; adapt to recommendation by adding real usage/suitability and substantiated benefits."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"style\": \"Ultra-realistic luxury cosmetic product photography\"",
+        "reason": "Cosmetic product is the principal photography subject; adapt to recommendation by adding real usage/suitability and substantiated benefits."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_9013986d06d355f0dab3cf256ec00d9c",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Please redesign this product advertisement from the perspective of a professional designer.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "用于展示餐饮门店的新品推荐、招牌产品、套餐促销或品牌活动信息。",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_92de0537be571ad66989cda4ae3c12ff",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Hyper-realistic cinematic FMCG billboard advertising poster for Chupa Chups India",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_9759c103ad2ce6a4e67793bdc7cd00bf",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a hyper-detailed luxury advertising poster in a cinematic miniature-world style.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_a440424beb1a56297c4c289293ac3b41",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"promotional poster\"",
+        "reason": "A deliberate promotional poster and web banner are included in the merchandise board; extract those outputs and remove unrelated identity/social-profile panels."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement. Extract the relevant advertising panel from the multi-panel board.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。 从多面板中单独提取对应广告区域。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_a440424beb1a56297c4c289293ac3b41",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"promotional poster\"",
+        "reason": "A deliberate promotional poster and web banner are included in the merchandise board; extract those outputs and remove unrelated identity/social-profile panels."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Extract the relevant advertising panel from the multi-panel board.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 从多面板中单独提取对应广告区域。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_a9f7ddfff397c42c6c450a65cf8eac22",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Typography integrated into the background:",
+        "reason": "Conceptual fashion graphic has specific three-level typography and centered subject; reusable poster design supports merchandise/headline replacement."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_ab6ff7955c84d14621f0b9423423bc8d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a Cannes-level premium summer beverage campaign poster for a fictional lemon drink brand called \"LIMORA\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_b5f419a371efbeb6977ae048fcc96840",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Add bottom text: \"[BRAND NAME / EVENT NAME / COMING SOON / DATE]\".",
+        "reason": "Movie-poster composition explicitly includes BRAND NAME / EVENT NAME / DATE fields, providing a positive adaptable campaign-poster template."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_bccfd6f2f6599dcb1b1da7477fa0f193",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "品牌标语：[请填写，例如：Steakhouse Quality, Your Table / Restaurant Grade, Home Delivered]",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_c4c08f2e133e7b622fa7c038b4ace12c",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a premium 4:3 presentation cover slide introducing Chronicle, the AI-native presentation platform",
+        "reason": "Actual product-introduction slide has brand, benefits and features; adapt slide ratio, typography and copy to a brand campaign poster."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_cd27b402fa7ed03e30148ecf9baf65bc",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A luxurious cosmetic product advertisement featuring a single elegant glass jar",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_cd27b402fa7ed03e30148ecf9baf65bc",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A luxurious cosmetic product advertisement featuring a single elegant glass jar",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_ced25f83fa794a6f38b649e1e8239128",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"e-commerce product infographic\"",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_d5d6854b61cf41a1aec5e876ad835649",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "帮这个产品生成宣传图",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e0ec0ed069951ccfc0df0d7800ac36ba",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a clean, modern typographic travel poster where the city name itself becomes the composition.",
+        "reason": "Actual city-name travel poster includes optional tagline and tourism-branding direction; supply destination/client brand campaign brief."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_e203231a68b160bb951c98d1bbeb48f2",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create an ultra-detailed 3D stylized creative designer poster",
+        "reason": "Actual designer poster includes motivational headline and clear central character; adapt to product/offer composition and remove unrelated tools."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e44a1b422242ffebf90b6f55576c3640",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "每张图都要突出产品",
+        "reason": "Deliberate eight-item hosiery product showcase includes product title, details and style notes; recast as branded campaign with actual SKU and campaign headline."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e5c329458f0278c3caa875bbb6371d57",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a branded technical infographic of a [SNACK]",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"2x2 grid of Japanese digital advertisement banners\"",
+        "reason": "Skincare advertisement is a deliberate quadrant of the four-industry banner set; isolate it and replace sales pitch with real recommendation content."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics. Extract the relevant advertising panel from the multi-panel board.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。 从多面板中单独提取对应广告区域。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"type\": \"2x2 grid of Japanese digital advertisement banners\"",
+        "reason": "Skincare advertisement is a deliberate quadrant of the four-industry banner set; isolate it and replace sales pitch with real recommendation content."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_e6df00a4eca78b63efdf8d3a991446cb",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A fictional 1980s magazine advertisement poster introducing “Claude” as a revolutionary home AI assistant",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_ebb4b756a6818d5d0505ef8b78896efb",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Ultra-realistic international French pharmacy skincare commercial for La Roche-Posay Anthelios UVMune 400 Hydrating Cream SPF50+.",
+        "reason": "Specific sunscreen commercial shows real product reference and application; turn its product-demo material into recommendation content with actual usage context."
+      },
+      "notes": {
+        "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+        "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_eda34817c88c5a6ac570ee56ff63ecdf",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Three ultra-dynamic soda cans in one vibrant high-end advertising composition",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_eee518243a4b25f519a07b6811a21bde",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A movie poster featuring a seemingly realistic yet subtly bizarre cross-dressing older man, 4 variations.",
+        "reason": "Positive deliverable is explicitly four movie-poster variations with title/broadcast hierarchy. This supports generic poster-layout adaptation only; production wording is not commerce evidence."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement. Replace fictional, satirical or movie-specific material and all fabricated claims.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。 替换虚构、讽刺或电影专用内容，以及全部虚构宣称。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_f1ffc0593d90ac4925b6cc3a9962a73b",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "please automatically generate a top-tier concept poster / infographic-style movie poster centered around",
+        "reason": "Central output is a conceptual key-visual poster with generated title/subtitle and a variable theme that explicitly permits products; commercial application needs an actual brand/product brief."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_f1ffc0593d90ac4925b6cc3a9962a73b",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "please automatically generate a top-tier concept poster / infographic-style movie poster centered around",
+        "reason": "Central output is a conceptual key-visual poster with generated title/subtitle and a variable theme that explicitly permits products; commercial application needs an actual brand/product brief."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_f5cde1d981a35f94699b33a31da70178",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Image generation: Product advertising photo, Seasonal product suitable for summer, Carbonated beverage",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_fcb9269d3772870abe2e163c7a45509b",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Subject pick: independently study [BRAND NAME] and choose the right hero subject.",
+        "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-backpack-securities-building-a-more-compliant-more-professio-6b23ak",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Single horizontal banner, brand text in the upper left, person on the right, building cluster spread horizontally across the bottom",
+        "reason": "Queenie reconstruction deliberately specifies a branded horizontal banner; adapt brand/subject/headline from financial editorial composition to actual campaign."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "queenie-developer-monologue-how-familymart-created-the-perfect-salt-hfhnye",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "A single horizontal poster with a large centered title at the top and three equal-width columns of three breads below.",
+        "reason": "Queenie reconstruction specifically describes product-promotion mood, a large headline and three bread products; replace with actual bakery SKUs and offer."
+      },
+      "notes": {
+        "en": "Replace the source subject with the actual merchandise and rewrite the headline, verified benefits and offer for the brief. Adapt the poster crop and information hierarchy to the target commerce placement. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "将原主体替换为实际商品，按真实委托重写标题、可核实卖点与优惠信息，并调整海报裁切及信息层级以适配电商投放位置。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-introducing-backpack-securities-the-crypto-stock-broker-7apx4c",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Horizontal wide single column, white space at the top for the brand name, and a row of buildings spread horizontally below",
+        "reason": "Queenie reconstruction has an explicit brand-name header and announcement composition; supply actual company announcement and campaign copy."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-introducing-the-flex-credit-card-pms53h",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "brand text on the left, three-dimensional card on the right",
+        "reason": "Queenie reconstruction intentionally combines brand text with a three-dimensional card product hero; actual card details and message need to be supplied."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-tool-not-tutorial-i6s4lv",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "like the key visual of a product launch",
+        "reason": "Queenie reconstruction has brand-name placement and product-launch-like key visual; actual product and release/campaign message must replace generic subject."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "queenie-why-we-need-to-build-an-aggregation-layer-for-prediction-mar-q2sklb",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "with the control panel on the left and the brand and slogan on the right.",
+        "reason": "Queenie reconstruction deliberately pairs product/control-panel imagery with brand and slogan; replace with actual product and campaign copy."
+      },
+      "notes": {
+        "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster. Keep its Queenie reference-reconstruction identity and do not imply an original official advertising prompt.",
+        "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。 保留 Queenie 参考图拆解身份，不宣称为品牌原生官方广告提示词。"
+      }
+    }
+  ],
+  "counts": {
+    "ecommerce-advertising": {
+      "direct": 22,
+      "adaptable": 11
+    },
+    "beauty-recommendations": {
+      "adaptable": 8,
+      "direct": 1
+    },
+    "brand-campaigns": {
+      "adaptable": 17,
+      "direct": 23
+    }
+  },
+  "excludedCounts": {
+    "brand-campaigns": 20,
+    "ecommerce-advertising": 14,
+    "beauty-recommendations": 5
+  },
+  "notes": [
+    "No runtime keyword classifications or imported taxonomy terms were used as membership proof.",
+    "Generic actual poster designs are adaptable only with a concrete commercial bridge; informational charts, science encyclopedias, production documents and UI screenshots remain excluded.",
+    "Fictional/concept commercial advertisements are retained by their explicit advertising target, without claiming an official commissioned campaign or source income.",
+    "This replaces existing memberships only for these three scenes; no repo files modified."
+  ]
+}

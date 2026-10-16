@@ -1,0 +1,2030 @@
+{
+  "revision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "scope": "All provided top-five samples per scene, with shared content bodies inspected once across scenes; 40 scenes covered including zero-member scene. This is sample review, not approval of all unsampled edges.",
+  "sampleCount": 156,
+  "sceneCount": 40,
+  "judgmentCounts": {
+    "keep": 97,
+    "change-to-adaptable": 19,
+    "exclude": 38,
+    "change-to-direct": 1,
+    "needs-review": 1
+  },
+  "judgments": [
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_4248458bb4aa0c821fe653f6bf687a49",
+      "title": "Fashion Catalog E-Commerce Collage",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Full body positively targets female clothing catalog/campaign or dress e-commerce detail output.",
+      "requiredNotes": "",
+      "fullBodyLength": 419,
+      "fullBodySha256": "eb4681679ba7e8d5ace6b24f773dbc34c047594fa2b78fc3825031b686b10cc2"
+    },
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_662f1907a6d550f8a59db42500752450",
+      "title": "Colorful Button Fashion Campaign",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Full body positively targets female clothing catalog/campaign or dress e-commerce detail output.",
+      "requiredNotes": "",
+      "fullBodyLength": 1315,
+      "fullBodySha256": "a60d7c41849c8f9cc8461816eabf6456d2314f6cd9b1adff9bca3a44d4d28237"
+    },
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_b03df27ee24b182141725864815233d0",
+      "title": "Nine-panel swimwear magazine advertisement",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Full body positively targets female clothing catalog/campaign or dress e-commerce detail output.",
+      "requiredNotes": "",
+      "fullBodyLength": 46,
+      "fullBodySha256": "a5e725ac44a15db90c6d86efc2693bdfc9558c84d3f1246939984466190bd924"
+    },
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_c91114493cf814e586c519fe15b1d654",
+      "title": "Fresh Summer Women’s Dress E-Commerce Showcase",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Full body positively targets female clothing catalog/campaign or dress e-commerce detail output.",
+      "requiredNotes": "",
+      "fullBodyLength": 70,
+      "fullBodySha256": "fe98b6324113ab47f08f972b10991526ec821af4fe88e4ff1b289e0d0f1e9be7"
+    },
+    {
+      "scenarioId": "virtual-try-on",
+      "contentId": "2089932434351734933",
+      "title": "Locked product and identity, outfit swapped",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Full body explicitly replaces clothing while preserving a reference person; existing tailored notes correctly explain garment-reference adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 3913,
+      "fullBodySha256": "0071b85ffc616ebbf126984e972f3e74e8c348f02dc0a56ceec97271f52c4002"
+    },
+    {
+      "scenarioId": "virtual-try-on",
+      "contentId": "prm_4967c18e49c48ee40bb2cb38e983afe9",
+      "title": "Paper-Sculpture Collage Countryside Portrait",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Full body explicitly replaces clothing while preserving a reference person; existing tailored notes correctly explain garment-reference adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 3613,
+      "fullBodySha256": "8f0d30b20db7afb247ca1e3fa60d6743985b6e6428061f1c86922651ef1e38d9"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Beauty product is the intended main visual or recommendation report, not incidental portrait makeup; adaptable recommendation-copy treatment is legitimate.",
+      "requiredNotes": "",
+      "fullBodyLength": 2778,
+      "fullBodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "title": "Brand visual identity sheet",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Beauty product is the intended main visual or recommendation report, not incidental portrait makeup; adaptable recommendation-copy treatment is legitimate.",
+      "requiredNotes": "",
+      "fullBodyLength": 1889,
+      "fullBodySha256": "bd254f3078c559794d34e490a6c92779cce2365e30f4684a5f4eb40970cec3bf"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Beauty product is the intended main visual or recommendation report, not incidental portrait makeup; adaptable recommendation-copy treatment is legitimate.",
+      "requiredNotes": "",
+      "fullBodyLength": 1862,
+      "fullBodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_2172ff2675b281f721966d26a6406ad3",
+      "title": "Beauty Product Advertisement",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Beauty product is the intended main visual or recommendation report, not incidental portrait makeup; adaptable recommendation-copy treatment is legitimate.",
+      "requiredNotes": "",
+      "fullBodyLength": 210,
+      "fullBodySha256": "193cd656d8273c02b107dacb435548b1f09a84a1302bec1d6f75aa0bc246db6b"
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_23b218bd0e326ed10cd966dc6086649c",
+      "title": "Floating fantasy of agarwood and roses",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Beauty product is the intended main visual or recommendation report, not incidental portrait makeup; adaptable recommendation-copy treatment is legitimate.",
+      "requiredNotes": "",
+      "fullBodyLength": 8051,
+      "fullBodySha256": "b520ddf278f473e8cbb08b3a22e8ac000709ae094018c7da8b7adffec24f3a12"
+    },
+    {
+      "scenarioId": "product-hero-images",
+      "contentId": "prm_0bb7495c1837a3a0f86606f0119cbca8",
+      "title": "Fully automatic coffee machine product showcase",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Body targets a detail image, launch board or landing-page hero section; merchandise-centered visual supports reuse, but current full deliverable is not a standalone commerce main image.",
+      "requiredNotes": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+      "fullBodyLength": 82,
+      "fullBodySha256": "594db6979d2df93a316d1353e403a77278a16f7b19399bf4ff00b2113b74fd90"
+    },
+    {
+      "scenarioId": "product-hero-images",
+      "contentId": "prm_18f1896640b44008a946b8cb9620ed60",
+      "title": "Strawberry Energy Drink Commercial Advertisement",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Commercial product photography explicitly foregrounds the beverage as principal product visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 796,
+      "fullBodySha256": "a654bfa971eb9a86ba5c876f576ee7fadf4fdda7612138f7415aa1a84fef9b7d"
+    },
+    {
+      "scenarioId": "product-hero-images",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "title": "Scientist collectible toy launch board",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Body targets a detail image, launch board or landing-page hero section; merchandise-centered visual supports reuse, but current full deliverable is not a standalone commerce main image.",
+      "requiredNotes": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+      "fullBodyLength": 1286,
+      "fullBodySha256": "20ae42223b0ab2edfe56a5571bbf5dc9ce4f94690a5ae250777e015c3156dd08"
+    },
+    {
+      "scenarioId": "product-hero-images",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "title": "Brand visual identity sheet",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Body targets a detail image, launch board or landing-page hero section; merchandise-centered visual supports reuse, but current full deliverable is not a standalone commerce main image.",
+      "requiredNotes": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+      "fullBodyLength": 1889,
+      "fullBodySha256": "bd254f3078c559794d34e490a6c92779cce2365e30f4684a5f4eb40970cec3bf"
+    },
+    {
+      "scenarioId": "product-hero-images",
+      "contentId": "prm_2169d5c2e768245b22e20421f52fe9a1",
+      "title": "App interface mockup",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Positive target is mobile livestream UI mockup with host, comments and controls; product card is embedded UI, not a product hero image.",
+      "requiredNotes": "",
+      "fullBodyLength": 1992,
+      "fullBodySha256": "24be3aac6d7b0d857318626c4b3cc9381770a92349bf28f4773d4f23134e8b65"
+    },
+    {
+      "scenarioId": "product-detail-images",
+      "contentId": "prm_8d971b2db8ec7dbfcd861ed8ca72c229",
+      "title": "Taobao product detail page for a Terminator robot",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit product details/views/features output supports this scene.",
+      "requiredNotes": "",
+      "fullBodyLength": 266,
+      "fullBodySha256": "7e41618a4a0a644dca4d97e401b2f6846c47aaf93892150621a2a33babcba97b"
+    },
+    {
+      "scenarioId": "product-detail-images",
+      "contentId": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+      "title": "Custom-Shaped Display Stand for a Local Shop",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Restaurant irregular POP stand; body explicitly says avoid 电商详情页. Use restaurant/promotional scenes instead.",
+      "requiredNotes": "",
+      "fullBodyLength": 1849,
+      "fullBodySha256": "2aef246f694cf1554f9bc72db1ec3f87df238a4f3832c2a1e50a85763e9a5c34"
+    },
+    {
+      "scenarioId": "product-detail-images",
+      "contentId": "prm_a3b9b0b148c3c958b2e48694db0d4db6",
+      "title": "AI Glasses Exploded-View Diagram",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit product details/views/features output supports this scene.",
+      "requiredNotes": "",
+      "fullBodyLength": 37,
+      "fullBodySha256": "442a10fd5d1c120d86b1af871d325971fbe10224bfa1ccb307257c694bc0468c"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "2063871161998745877",
+      "title": "Premium product campaign poster, 4:5",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive target is commercial product advertisement/campaign visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 421,
+      "fullBodySha256": "935b9135a0511ad8a7ba470269f9690508bf4f3e739bc2d98ae80520a11e0238"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive target is commercial product advertisement/campaign visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 2778,
+      "fullBodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive target is commercial product advertisement/campaign visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 2748,
+      "fullBodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_11a99e0f8c9428a6b174ead90883cd31",
+      "title": "Four-Season Packaging Campaign Grid",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive target is commercial product advertisement/campaign visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 333,
+      "fullBodySha256": "b8ddd68d264a91b869604fb07a2ddf6d63c2323c3d4dda9494dcf17110819fcf"
+    },
+    {
+      "scenarioId": "ecommerce-advertising",
+      "contentId": "prm_125a2dc81e52e30a7b6c7c69e8e6e492",
+      "title": "Visually Striking Wide-Angle Beauty Editorial in a Deep Red Studio",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive target is commercial product advertisement/campaign visual.",
+      "requiredNotes": "",
+      "fullBodyLength": 1041,
+      "fullBodySha256": "ed209267e54d71af572cc657ddbe9ab1bbb8fa13727fe8ddd5f36fc85ce17e82"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2060203818785370400",
+      "title": "FIFA 2026 player poster in team colours",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Football player/team fan poster uses World Cup campaign aesthetic; no actual business-brand campaign brief.",
+      "requiredNotes": "Supply actual authorized brand/event campaign headline and positioning; do not imply official FIFA campaign origin.",
+      "fullBodyLength": 2229,
+      "fullBodySha256": "b885a0ff7de05ba298e17decde54c49b5d512f9608d077cb74d4c35d442f48fc"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "2063871161998745877",
+      "title": "Premium product campaign poster, 4:5",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly creates branded campaign/advertising graphic.",
+      "requiredNotes": "",
+      "fullBodyLength": 421,
+      "fullBodySha256": "935b9135a0511ad8a7ba470269f9690508bf4f3e739bc2d98ae80520a11e0238"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
+      "title": "VELORA luxury perfume advertising poster",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly creates branded campaign/advertising graphic.",
+      "requiredNotes": "",
+      "fullBodyLength": 2778,
+      "fullBodySha256": "72447a3e03b53a701c634361d554e5c4590c0194f01636b71886a865ec7eafbe"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly creates branded campaign/advertising graphic.",
+      "requiredNotes": "",
+      "fullBodyLength": 2748,
+      "fullBodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "brand-campaigns",
+      "contentId": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+      "title": "Luxury screen-breaking social media advertisement",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly creates branded campaign/advertising graphic.",
+      "requiredNotes": "",
+      "fullBodyLength": 446,
+      "fullBodySha256": "dfee6028c13e0a3ca075164b305f3957bf9431d1771dcfa0673410c91f440e2d"
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body includes actual offer, limited-time/discount CTA or promotional banner deliverable.",
+      "requiredNotes": "",
+      "fullBodyLength": 2748,
+      "fullBodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+      "title": "Luxury screen-breaking social media advertisement",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "General marketing/thumbnail visual without concrete sale, limited-time offer or event mechanics.",
+      "requiredNotes": "Replace headline with actual campaign, dates, offer and call to action; specify placement.",
+      "fullBodyLength": 446,
+      "fullBodySha256": "dfee6028c13e0a3ca075164b305f3957bf9431d1771dcfa0673410c91f440e2d"
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_14106b75404d3eed0f24e7e023923a3b",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "General marketing/thumbnail visual without concrete sale, limited-time offer or event mechanics.",
+      "requiredNotes": "Replace headline with actual campaign, dates, offer and call to action; specify placement.",
+      "fullBodyLength": 1927,
+      "fullBodySha256": "5288bae491158ee2b4207175900faccd71073671de07dc79b3fa35ad37bd5ea8"
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_16342dd8594ca6582a1595acaceb175d",
+      "title": "Themed poster layout design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body includes actual offer, limited-time/discount CTA or promotional banner deliverable.",
+      "requiredNotes": "",
+      "fullBodyLength": 1918,
+      "fullBodySha256": "4987c54dd9ef37c9c25ba637a13af20ba86003343c061b13a01761451fc8c453"
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "title": "Brand visual identity sheet",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body includes actual offer, limited-time/discount CTA or promotional banner deliverable.",
+      "requiredNotes": "",
+      "fullBodyLength": 1889,
+      "fullBodySha256": "bd254f3078c559794d34e490a6c92779cce2365e30f4684a5f4eb40970cec3bf"
+    },
+    {
+      "scenarioId": "product-launches",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "title": "Scientist collectible toy launch board",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit collector-grade launch visual and product reveal target.",
+      "requiredNotes": "",
+      "fullBodyLength": 1286,
+      "fullBodySha256": "20ae42223b0ab2edfe56a5571bbf5dc9ce4f94690a5ae250777e015c3156dd08"
+    },
+    {
+      "scenarioId": "product-launches",
+      "contentId": "prm_f6fb70f281d2e96fc40baf22550a2f57",
+      "title": "Apple-style nature education poster",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Actual subject is animals/nature-science infographic. Apple launch is only a style reference; no product launch target.",
+      "requiredNotes": "",
+      "fullBodyLength": 1582,
+      "fullBodySha256": "e56949707b8e1563ebdff61fbbf753f7e2c360da6c8f9574731164ec73be0676"
+    },
+    {
+      "scenarioId": "product-launches",
+      "contentId": "queenie-tool-not-tutorial-i6s4lv",
+      "title": "Tool, Not Tutorial",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Reference reconstruction says mood is LIKE product-launch KV; subject is generic open book/robot arms.",
+      "requiredNotes": "Supply actual product and release headline/feature; retain reconstruction disclosure.",
+      "fullBodyLength": 709,
+      "fullBodySha256": "1ea626a700118cac2b5ac19ced1463f81c265af310381d7b88fbf9f8496f0b98"
+    },
+    {
+      "scenarioId": "xiaohongshu-shopping",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Brand-product main visual with explicit Xiaohongshu placement supports tailored shopping adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 3236,
+      "fullBodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "xiaohongshu-shopping",
+      "contentId": "prm_bc2fcf8cfcb7b47d54663ef7b0bad771",
+      "title": "Infographic Visualization Design",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Recipe production flowchart suitable for Xiaohongshu; no product recommendation/sale target. Food knowledge alone does not establish shopping.",
+      "requiredNotes": "",
+      "fullBodyLength": 191,
+      "fullBodySha256": "7cc870adabefe90d24a89cfedfa2cf6a94abd9b75ab315ffca938dc99298c473"
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit WeChat-cover branch or approved editorial-cover source taxonomy; wide composition supports adaptable cover reuse.",
+      "requiredNotes": "",
+      "fullBodyLength": 3236,
+      "fullBodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-1-mac-mini-1-agent-0-employees-this-is-how-you-build-the-fir-zxzsys",
+      "title": "1 Mac Mini. 1 Agent. 0 Employees. This is how you build the first billion-dollar \"one-person company.\"",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Explicit WeChat-cover branch or approved editorial-cover source taxonomy; wide composition supports adaptable cover reuse.",
+      "requiredNotes": "",
+      "fullBodyLength": 700,
+      "fullBodySha256": "7918410f6409bc4b0544ee0667218d754c0670452eacdd9f1d21332810f27a3a"
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-10-ai-concepts-every-developer-must-master-before-writing-an-ttsbfu",
+      "title": "10 AI Concepts Every Developer Must Master Before Writing Any Code",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Explicit WeChat-cover branch or approved editorial-cover source taxonomy; wide composition supports adaptable cover reuse.",
+      "requiredNotes": "",
+      "fullBodyLength": 617,
+      "fullBodySha256": "af973a00a7f2238fc2eb53f93aed03701d620f63fb681a6505339973b4c9acb5"
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-10-claude-code-agents-nobody-told-you-about-build-them-now-5q4a76",
+      "title": "10 Claude Code Agents Nobody Told You About — Build Them Now.",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Explicit WeChat-cover branch or approved editorial-cover source taxonomy; wide composition supports adaptable cover reuse.",
+      "requiredNotes": "",
+      "fullBodyLength": 621,
+      "fullBodySha256": "8a3757196c971f9c2297dbd8f12825de6fa7edcb694f3245f7382118bce7f5e9"
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-10-gemini-prompts-to-help-you-achieve-your-new-year-s-goals-6a6ejl",
+      "title": "10 Gemini Prompts to Help You Achieve Your New Year's Goals",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Explicit WeChat-cover branch or approved editorial-cover source taxonomy; wide composition supports adaptable cover reuse.",
+      "requiredNotes": "",
+      "fullBodyLength": 579,
+      "fullBodySha256": "9ab21d693dfbc3a95fd8ca0c0a0fd49e92fd6c9309adcb48919d0aa76b7a4c6c"
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_626fdb06d4210e4d4c633646cd215f41",
+      "title": "Video cover interface design",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Explicit YouTube thumbnail target supports video covers, but short-video placement/vertical crop is not explicit.",
+      "requiredNotes": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+      "fullBodyLength": 1117,
+      "fullBodySha256": "0921b0f002592bf6c422b15554722550b5bccbc9d121dcc4baec59de4cbed422"
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_b54dd0f525d467d283035eff5b326708",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Agency landing-page UI mockup containing small video thumbnails; overall output is not a video cover.",
+      "requiredNotes": "",
+      "fullBodyLength": 2697,
+      "fullBodySha256": "67a499ded6e666230718827bd37970ece3d1f96b96233188db54b84f9a42eb00"
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_bcabbaefb0e52ec995faf08b80e995c5",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Explicit YouTube thumbnail target supports video covers, but short-video placement/vertical crop is not explicit.",
+      "requiredNotes": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+      "fullBodyLength": 1648,
+      "fullBodySha256": "4d90d3c5c4c4641740f9f520ffcc2472bfc8a47aa44190c4b0ea8c3a2538fbe5"
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_bef96aa60389b40987269e4266517e91",
+      "title": "App interface mockup",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Explicit YouTube thumbnail target supports video covers, but short-video placement/vertical crop is not explicit.",
+      "requiredNotes": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+      "fullBodyLength": 2052,
+      "fullBodySha256": "14f4020283f0f64dff081b52b0d65452c9559e59a74536185b1b8d4348f603bb"
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_dde71efb5291908941b24d5fae1f4676",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Explicit YouTube thumbnail target supports video covers, but short-video placement/vertical crop is not explicit.",
+      "requiredNotes": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+      "fullBodyLength": 1485,
+      "fullBodySha256": "d2f314025c199e685a55cc8c2d3e2d62c81c9a515e62f64c87202e6d3d377066"
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-comic-this-winter-i-m-here-with-you-5j3nw4",
+      "title": "English Healing Comic: This Winter, I'm Here with You",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Comic panel structure and warm relationship content jointly support this scene; Queenie reconstruction must remain disclosed.",
+      "requiredNotes": "",
+      "fullBodyLength": 612,
+      "fullBodySha256": "241c36620f5293618b435b9943619f1c15f34a620fe76d61f873846a3138b78d"
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-mini-comic-you-are-my-best-gift-herrwp",
+      "title": "English Healing Mini Comic: You Are My Best Gift",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Comic panel structure and warm relationship content jointly support this scene; Queenie reconstruction must remain disclosed.",
+      "requiredNotes": "",
+      "fullBodyLength": 638,
+      "fullBodySha256": "dc0581341e2682de3af3f133a8befd2c2bea9c9f7eb528f21624140faeeb967a"
+    },
+    {
+      "scenarioId": "educational-posts",
+      "contentId": "prm_04d689d02a808f8a3d86e2f7f5e2ea5a",
+      "title": "Coronavirus Scale-Zoom Science Infographic",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body generates an informational poster/infographic, suitable for creator-post adaptation; preserve real source claims.",
+      "requiredNotes": "",
+      "fullBodyLength": 1260,
+      "fullBodySha256": "ab758ddfad1f8323d095c0eb6d2f36ce75cd7446d0d23476898103bd3f723b63"
+    },
+    {
+      "scenarioId": "educational-posts",
+      "contentId": "prm_0b21c820ceec4c4090c6fccf796a9235",
+      "title": "Art-inspired mathematics education website",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Actual output is mathematics education website landing page, not educational image/post.",
+      "requiredNotes": "",
+      "fullBodyLength": 125,
+      "fullBodySha256": "46b137761545901b792eea94ac1670edfc314d4471e4d4bb67b30602dc4c0099"
+    },
+    {
+      "scenarioId": "educational-posts",
+      "contentId": "prm_18044cac580c63d2c0471d10eaeb50f8",
+      "title": "Croissant baking process storyboard",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body generates an informational poster/infographic, suitable for creator-post adaptation; preserve real source claims.",
+      "requiredNotes": "",
+      "fullBodyLength": 3122,
+      "fullBodySha256": "e7a6a2a6d628bed2d3c2d607188ef06769f94039d69860de72652ac116be8d85"
+    },
+    {
+      "scenarioId": "educational-posts",
+      "contentId": "prm_1b613e47285767894b13ff03810678cb",
+      "title": "Steampunk Sagittarius anatomical atlas",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body generates an informational poster/infographic, suitable for creator-post adaptation; preserve real source claims.",
+      "requiredNotes": "",
+      "fullBodyLength": 2402,
+      "fullBodySha256": "44e22f8629d4fb7cb30ffe0466094a99d115761ea078edc1ab988d6776a6dae1"
+    },
+    {
+      "scenarioId": "educational-posts",
+      "contentId": "prm_1d7e11e0b8b73c2231ff7abf9b02f9ef",
+      "title": "2×2 visual map of historical events",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body generates an informational poster/infographic, suitable for creator-post adaptation; preserve real source claims.",
+      "requiredNotes": "",
+      "fullBodyLength": 503,
+      "fullBodySha256": "dd22cf7c495d32ec6e3e92fc8358905e4ebff3251f562190bcde604aae7c11d3"
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_090109b66cca11b0c2f47dd19342ce54",
+      "title": "Complete coffee shop website",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Actual deliverable is coffee-shop website, not menu or promotion image. Keep in brand-websites; do not cross image/website delivery only on menu word.",
+      "requiredNotes": "",
+      "fullBodyLength": 150,
+      "fullBodySha256": "483b5a052a84111f0602a1196938959c4da4af37994d86c034892b224fedbfa9"
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Restaurant ad or menu/pricing touchpoint is an explicit designed output.",
+      "requiredNotes": "",
+      "fullBodyLength": 1977,
+      "fullBodySha256": "081be48c7a1b0669a0d7dd0cab8f2f89ed8e9f1b0a00a169825812a3131f72e5"
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_5d0a69786969d9d19c6d44d2812c27be",
+      "title": "Artisan Coffee Shop Booking Website",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Actual deliverable is coffee-shop website, not menu or promotion image. Keep in brand-websites; do not cross image/website delivery only on menu word.",
+      "requiredNotes": "",
+      "fullBodyLength": 157,
+      "fullBodySha256": "d4dc9f09cb0aa36d3191f6026c3daf3fd23fc2053c08eefdddba8fa4077a90be"
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_a82b740fdc7ca929f0bc24d3aa10ce02",
+      "title": "Visual board for a matcha brand's touchpoint system",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Restaurant ad or menu/pricing touchpoint is an explicit designed output.",
+      "requiredNotes": "",
+      "fullBodyLength": 1192,
+      "fullBodySha256": "b4d29aa655bd4017cfe7c09b2e5ced3cdbb0dae60bb289b8d1996d16e22c0211"
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_bf27c9e1b1391060c9d59cce1fd2ddc7",
+      "title": "App interface mockup",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Nike athletic model emerging from Instagram UI; no food, restaurant or menu. Restaurant predicate evidently fired on unrelated menu/UI vocabulary.",
+      "requiredNotes": "",
+      "fullBodyLength": 3357,
+      "fullBodySha256": "23a42db560e71bf00d8a506c049aa40885384f0ff44a98554d25a41872043ca2"
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_0085dad53f52a71871baf7911629c99c",
+      "title": "Cute character design sheet",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Character sheet contains incidental coffee-cup accessory icon; no cafe/bakery target.",
+      "requiredNotes": "",
+      "fullBodyLength": 910,
+      "fullBodySha256": "071afbc828feaf3b32370c9d1a871190d144d06f053cb8d76479e03c6afb5ccc"
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_090109b66cca11b0c2f47dd19342ce54",
+      "title": "Complete coffee shop website",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Actual target is cafe/bakery website, not promotional visual. Keep in brand-websites unless scene definition explicitly allows websites.",
+      "requiredNotes": "",
+      "fullBodyLength": 150,
+      "fullBodySha256": "483b5a052a84111f0602a1196938959c4da4af37994d86c034892b224fedbfa9"
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_18044cac580c63d2c0471d10eaeb50f8",
+      "title": "Croissant baking process storyboard",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Baking process storyboard explicitly centers bakery product, supporting marketing adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 3122,
+      "fullBodySha256": "e7a6a2a6d628bed2d3c2d607188ef06769f94039d69860de72652ac116be8d85"
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_2660f3f5132ae7da753822d0bb2b0659",
+      "title": "1990s apartment scene reference board",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Apartment reference board contains a COFFEE TABLE; no coffee business or bakery target.",
+      "requiredNotes": "",
+      "fullBodyLength": 1446,
+      "fullBodySha256": "c5baea05b64e81a1315fb9423b877831002965d5b401e768db153ce9fd296f49"
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_55a16ede07cff7a35f1a69ed61ca5ce5",
+      "title": "Vintage cake baking website",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Actual target is cafe/bakery website, not promotional visual. Keep in brand-websites unless scene definition explicitly allows websites.",
+      "requiredNotes": "",
+      "fullBodyLength": 174,
+      "fullBodySha256": "b53526e6fca67da5ad723f3eccd3c6f0528e81e24580bc0b06860e0b92f5ea21"
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_426c12f63ca0cdf98e9133ab845b9bc0",
+      "title": "Twelve-Hairstyle Lookbook Featuring the Same Face",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Target is personalized hairstyle/color consultation or hair options; add actual salon service branding and booking CTA.",
+      "requiredNotes": "",
+      "fullBodyLength": 3813,
+      "fullBodySha256": "23e8c4c8b02e8d4d9ce5f210ef481d9452ccc5a253f5adeeb87aa2599144dadc"
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_d1cdce8046f866b7c3a16446431950fc",
+      "title": "Luxury Personal Color Profile Infographic",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Target is personalized hairstyle/color consultation or hair options; add actual salon service branding and booking CTA.",
+      "requiredNotes": "",
+      "fullBodyLength": 2671,
+      "fullBodySha256": "52c80362adc2b5f8c7361dbb9bdb542048259a55cf92917b22c2cb4337888cd8"
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_e1f87155accf30931deff99752364e97",
+      "title": "Long-hair styling analysis infographic",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Target is personalized hairstyle/color consultation or hair options; add actual salon service branding and booking CTA.",
+      "requiredNotes": "",
+      "fullBodyLength": 1148,
+      "fullBodySha256": "c50a0e8f147bf103259ede02caef9e2fd1aacded6ed3b861b22af09ee48cbe4e"
+    },
+    {
+      "scenarioId": "fitness-enrollment",
+      "contentId": "prm_0b1a866af2c429e6987605175d0a438c",
+      "title": "Strength campaign for a fitness brand",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Fitness campaign or training infographic is real positive target; enrollment conversion requires tailored trainer/offer/booking copy.",
+      "requiredNotes": "",
+      "fullBodyLength": 365,
+      "fullBodySha256": "b067a33b6c13bf7f20f11d9bbf89be9e47fe7da1e92369b17bcae621682987a7"
+    },
+    {
+      "scenarioId": "fitness-enrollment",
+      "contentId": "prm_803b1870cfb590e2aeb1dacbff5ba70f",
+      "title": "Transparent Labs Hydrate Fitness Supplement Campaign",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Actual advertised product is a hydration supplement; fitness aesthetic and gym clothing do not establish trainer/gym enrollment purpose.",
+      "requiredNotes": "",
+      "fullBodyLength": 1512,
+      "fullBodySha256": "1bfb8c70f2277dd001600d55b6cb8bb79c53169ed006f08a8094a90e1dcc289f"
+    },
+    {
+      "scenarioId": "fitness-enrollment",
+      "contentId": "prm_fddd6e09b61d71b83e9dc8707ba04ffa",
+      "title": "A Chinese-language fitness infographic",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Fitness campaign or training infographic is real positive target; enrollment conversion requires tailored trainer/offer/booking copy.",
+      "requiredNotes": "",
+      "fullBodyLength": 1518,
+      "fullBodySha256": "e6709ded95157e94bd09696c7e8d4305f928b8be39af094f7dda8ec0c916e930"
+    },
+    {
+      "scenarioId": "travel-marketing",
+      "contentId": "prm_1abef957d8950ac41860e2a1b2f89c17",
+      "title": "Minimalist travel poster series for four cities",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body has destination-focused travel poster or location visualization supporting tourism adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 980,
+      "fullBodySha256": "4e590d6ca18bdf7f3701705240c63e86f7b7d6ddb996609405d80ee32b7fdb4a"
+    },
+    {
+      "scenarioId": "travel-marketing",
+      "contentId": "prm_1bad49c7edc8b7cfa3cfe44b5c64c6b3",
+      "title": "Manhattan Park Watercolor Travel Illustration",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body has destination-focused travel poster or location visualization supporting tourism adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 1203,
+      "fullBodySha256": "2459c90b2604b453a6e7036f64a43400c5cd7930653cb11b9df953327ae94dc8"
+    },
+    {
+      "scenarioId": "travel-marketing",
+      "contentId": "prm_1ff7d5ab84fddc498f422d27832b1023",
+      "title": "Rio travel-ticket paper sculpture poster",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body has destination-focused travel poster or location visualization supporting tourism adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 2622,
+      "fullBodySha256": "d37e97eedf944f43f6c429b7d0ee157a7470477cdc952d8d1337e8c7e4085feb"
+    },
+    {
+      "scenarioId": "travel-marketing",
+      "contentId": "prm_2f4b5e730ac701264706bf0da6e106ae",
+      "title": "Ink-wash postcard from a travel photo",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Body has destination-focused travel poster or location visualization supporting tourism adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 946,
+      "fullBodySha256": "fd14e8226a287ad3250645aa67d30ea0094580c4e9ce311f9ce65edce3248681"
+    },
+    {
+      "scenarioId": "travel-marketing",
+      "contentId": "prm_3179b2f2892c1500afad2f463af29d8a",
+      "title": "Infographic Visualization Design",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Urban infrastructure systems atlas with drainage/power/network layers, not tourism or travel target. City/location vocabulary alone is insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 2920,
+      "fullBodySha256": "078888ddea3008593bd7c9371a3916a5e4fdf624f5fcb9be3ac224f0edba0a43"
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_02aa95c677b6ef3f67a3806c9209744a",
+      "title": "App interface mockup",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "YouTube desktop interface mockup reuses platform/brand logos; does not design a logo.",
+      "requiredNotes": "",
+      "fullBodyLength": 1601,
+      "fullBodySha256": "cc18704d91056784183775ab0409a6427473ef42d3a5e2ba2f0532dcb78dfc25"
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Lipstick recommendation report applies existing brand style; explicitly permits tiny brand text 非logo. No new logo output.",
+      "requiredNotes": "",
+      "fullBodyLength": 1862,
+      "fullBodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_4dc2fe9a72c0ce2a16a6a75fbd5c2aea",
+      "title": "Branded industrial rubber hose form rendering",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Renders an existing original logo/object in rubber tubing; logo artwork treatment, not new identity concept.",
+      "requiredNotes": "Provide an approved logo and produce branded 3D logo artwork; do not imply new-logo identity design.",
+      "fullBodyLength": 844,
+      "fullBodySha256": "dd5b6dfdb9d3c1bab500e1332727f70859d688ed7d8f5262060d5cb65ace5aaa"
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_689e0baad95e78cb3aff0662a86a01f6",
+      "title": "Brand logo design",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Misleading title. Body is basketball selfie with a large existing OpenAI logo on the basketball.",
+      "requiredNotes": "",
+      "fullBodyLength": 480,
+      "fullBodySha256": "dadb33bcf47afcdcad650be3466805b0e64919e9b1b1ed4d75b5602e0d71cd30"
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Brand-inspired KV recognizes and displays existing logo; no logo creation or redesign objective.",
+      "requiredNotes": "",
+      "fullBodyLength": 3236,
+      "fullBodySha256": "cd6089e86cbf0f3e4a9b0223c376b14b453ff5b70628fe9e253d2fb6ba350bc6"
+    },
+    {
+      "scenarioId": "brand-identity",
+      "contentId": "prm_13fee207c1547d404680b709c7553283",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit brand identity system with palette, logo, applications or mascot asset rules.",
+      "requiredNotes": "",
+      "fullBodyLength": 2826,
+      "fullBodySha256": "04c5354334ecfb0d79e138658410f567c02409afec8091574581b50229ca3532"
+    },
+    {
+      "scenarioId": "brand-identity",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "title": "Infographic report recommending branded lipsticks",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Brand style is applied to a lipstick recommendation report; not a brand-identity system deliverable.",
+      "requiredNotes": "",
+      "fullBodyLength": 1862,
+      "fullBodySha256": "279e60c351925e4e53b1fec6d7449f6ac24ef4c30121f35a24affea995311425"
+    },
+    {
+      "scenarioId": "brand-identity",
+      "contentId": "prm_2055371bdfdea50a9cfc5b413124fae2",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit brand identity system with palette, logo, applications or mascot asset rules.",
+      "requiredNotes": "",
+      "fullBodyLength": 3218,
+      "fullBodySha256": "a0778fb0b06fbd8a729bcc198d77f3a8d65468942d7f32563080fb3ccb570d6a"
+    },
+    {
+      "scenarioId": "brand-identity",
+      "contentId": "prm_275aa5c833528e4cfca61ed7e292f22d",
+      "title": "Creative Website Concept",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Website creative strategy includes visual identity as one website ingredient; no stand-alone brand identity system output.",
+      "requiredNotes": "",
+      "fullBodyLength": 444,
+      "fullBodySha256": "724b735f98005368e2bcdd258c1c5e4a2b45da2d00326e252bdb6e762d771bf4"
+    },
+    {
+      "scenarioId": "brand-identity",
+      "contentId": "prm_2abe9346931b058d515af3d25b7c8897",
+      "title": "Indie game showcase community",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Game community website; unique visual identity describes games in background cinematic montage, not commissioned identity system.",
+      "requiredNotes": "",
+      "fullBodyLength": 1668,
+      "fullBodySha256": "c500a599362d948571d89549c6bcd7ce9a16870172a6420a2bc3ec1081d16cd0"
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "2089932434351734933",
+      "title": "Locked product and identity, outfit swapped",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "UGC video reviews existing products/packaging and explicitly locks details and forbids redesign; packaging mention is reference preservation.",
+      "requiredNotes": "",
+      "fullBodyLength": 3913,
+      "fullBodySha256": "0071b85ffc616ebbf126984e972f3e74e8c348f02dc0a56ceec97271f52c4002"
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_11a99e0f8c9428a6b174ead90883cd31",
+      "title": "Four-Season Packaging Campaign Grid",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly includes packaging design in the requested product/launch output.",
+      "requiredNotes": "",
+      "fullBodyLength": 333,
+      "fullBodySha256": "b8ddd68d264a91b869604fb07a2ddf6d63c2323c3d4dda9494dcf17110819fcf"
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_125a2dc81e52e30a7b6c7c69e8e6e492",
+      "title": "Visually Striking Wide-Angle Beauty Editorial in a Deep Red Studio",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Beauty advertising photo with crisp packaging edges; no packaging design target.",
+      "requiredNotes": "",
+      "fullBodyLength": 1041,
+      "fullBodySha256": "ed209267e54d71af572cc657ddbe9ab1bbb8fa13727fe8ddd5f36fc85ce17e82"
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_13fee207c1547d404680b709c7553283",
+      "title": "Interface interaction design",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Brand identity board includes packaging/shopping bag application mockups, not complete package design/structure.",
+      "requiredNotes": "Expand packaging application with real SKU dimensions, dieline, material and mandatory label content.",
+      "fullBodyLength": 2826,
+      "fullBodySha256": "04c5354334ecfb0d79e138658410f567c02409afec8091574581b50229ca3532"
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "title": "Scientist collectible toy launch board",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Body explicitly includes packaging design in the requested product/launch output.",
+      "requiredNotes": "",
+      "fullBodyLength": 1286,
+      "fullBodySha256": "20ae42223b0ab2edfe56a5571bbf5dc9ce4f94690a5ae250777e015c3156dd08"
+    },
+    {
+      "scenarioId": "commercial-brochures",
+      "contentId": "prm_de335897971c396c5b9c8af1eb8294ac",
+      "title": "Visual system for enterprise commercial brochures",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Full commercial brochure system is the explicit generation target.",
+      "requiredNotes": "",
+      "fullBodyLength": 730,
+      "fullBodySha256": "740d3366b940f518b79deaeab1ba503d29d93b4f573510fcfc929478bddffdb5"
+    },
+    {
+      "scenarioId": "commercial-brochures",
+      "contentId": "prm_fba8b7af2bd755dc4edc3c5961a7a42b",
+      "title": "Technical illustrated guide to a luxury mechanical watch",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "One 2x2 watch advertisement/technical insert references brochure style; not full brochure system.",
+      "requiredNotes": "Develop technical insert into brochure pages with real product specifications, editorial structure and brand copy.",
+      "fullBodyLength": 1720,
+      "fullBodySha256": "6d3e3921a99997c14a809410c353805109b728cd420b299ea06ad10ae62cce6d"
+    },
+    {
+      "scenarioId": "commercial-illustration",
+      "contentId": "prm_0085dad53f52a71871baf7911629c99c",
+      "title": "Cute character design sheet",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Actual illustration/character art is explicit output; commercial commission adaptation is appropriate.",
+      "requiredNotes": "",
+      "fullBodyLength": 910,
+      "fullBodySha256": "071afbc828feaf3b32370c9d1a871190d144d06f053cb8d76479e03c6afb5ccc"
+    },
+    {
+      "scenarioId": "commercial-illustration",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Actual illustration/character art is explicit output; commercial commission adaptation is appropriate.",
+      "requiredNotes": "",
+      "fullBodyLength": 2748,
+      "fullBodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "commercial-illustration",
+      "contentId": "prm_06135b34a5f9cea77ad698c25ce94c1c",
+      "title": "Paris autumn fashion illustration",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Actual illustration/character art is explicit output; commercial commission adaptation is appropriate.",
+      "requiredNotes": "",
+      "fullBodyLength": 1027,
+      "fullBodySha256": "722f7574f3095617250c9aff561dee9af90a6a6c89c21ac7a3bb8f7d35a16132"
+    },
+    {
+      "scenarioId": "commercial-illustration",
+      "contentId": "prm_0962970bde9befdd4dff4798dadbdbdb",
+      "title": "Layered paper-cut illustration of a couple",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Actual illustration/character art is explicit output; commercial commission adaptation is appropriate.",
+      "requiredNotes": "",
+      "fullBodyLength": 1834,
+      "fullBodySha256": "8aeb7d32a314c872efbe944c480c3e4a20692a93099d4795650aa0f6b6ef2275"
+    },
+    {
+      "scenarioId": "commercial-illustration",
+      "contentId": "prm_0a6b39849e46da730cd72eee6daa21d9",
+      "title": "Themed poster layout design",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Actual illustration/character art is explicit output; commercial commission adaptation is appropriate.",
+      "requiredNotes": "",
+      "fullBodyLength": 1051,
+      "fullBodySha256": "6efd1d8ee7302e1abc33507ccc2d1c7853d0a7f42a7e8630392444e0677e00a8"
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_1de555e13cde1d7b92077dde4c527b0f",
+      "title": "Online course sales website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly sells a course/product, allows custom ordering or includes commerce/cart functionality.",
+      "requiredNotes": "",
+      "fullBodyLength": 1066,
+      "fullBodySha256": "1215ae3c50ac1395e2998cbf5a8a325de2e632d9e2a5150a82f0255f9b85eea5"
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_2ecd3e1c207641cded894b4e1800a31e",
+      "title": "Botanical wellness ecommerce homepage",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly sells a course/product, allows custom ordering or includes commerce/cart functionality.",
+      "requiredNotes": "",
+      "fullBodyLength": 2312,
+      "fullBodySha256": "4a67e56cdd7c1920b7f94ddf49aa6e8f0e4171e63f3b6d732032dba86e2b0365"
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_4c90aa575ffdface16ab3b96af2df068",
+      "title": "Custom Stationery Store",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly sells a course/product, allows custom ordering or includes commerce/cart functionality.",
+      "requiredNotes": "",
+      "fullBodyLength": 271,
+      "fullBodySha256": "8d476dc1685c03bbab3ae938eb8b2fd11a6967a4ed570a0ae4cf7920816c7be3"
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_6ce3395d08af3d8904f42519926a081f",
+      "title": "Coffee E-Commerce Website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly sells a course/product, allows custom ordering or includes commerce/cart functionality.",
+      "requiredNotes": "",
+      "fullBodyLength": 694,
+      "fullBodySha256": "28a1d37e93462593f2bf12e0764a14f73c476ef81538bbbe1a63e7c2b87315a2"
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_e2044722a0c226fd0c976e6c748afe85",
+      "title": "Tech Accessories E-Commerce Website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly sells a course/product, allows custom ordering or includes commerce/cart functionality.",
+      "requiredNotes": "",
+      "fullBodyLength": 54,
+      "fullBodySha256": "260c87cfa24cf1dfca5f84716df78c40970d76b8f14c9b8b7ae8d598790d21b5"
+    },
+    {
+      "scenarioId": "brand-websites",
+      "contentId": "prm_00772f146164256dd15eb8f062c1fe4d",
+      "title": "Website strategy framework",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Website strategy/sitemap/roadmap output instead of functioning brand website.",
+      "requiredNotes": "Use resulting strategy to implement the website and validate content, responsiveness and interactions.",
+      "fullBodyLength": 444,
+      "fullBodySha256": "a860777e82b0d0a30fb15cdfd90d6a8be3a0ca528bc215c713fabefdf336c5ea"
+    },
+    {
+      "scenarioId": "brand-websites",
+      "contentId": "prm_090109b66cca11b0c2f47dd19342ce54",
+      "title": "Complete coffee shop website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly serves a named business or education brand with its real content.",
+      "requiredNotes": "",
+      "fullBodyLength": 150,
+      "fullBodySha256": "483b5a052a84111f0602a1196938959c4da4af37994d86c034892b224fedbfa9"
+    },
+    {
+      "scenarioId": "brand-websites",
+      "contentId": "prm_1de555e13cde1d7b92077dde4c527b0f",
+      "title": "Online course sales website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Website explicitly serves a named business or education brand with its real content.",
+      "requiredNotes": "",
+      "fullBodyLength": 1066,
+      "fullBodySha256": "1215ae3c50ac1395e2998cbf5a8a325de2e632d9e2a5150a82f0255f9b85eea5"
+    },
+    {
+      "scenarioId": "brand-websites",
+      "contentId": "prm_32a3a7279f3727c8d057f95ecbad964c",
+      "title": "Portfolio website strategy",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Personal portfolio strategy belongs portfolio-websites; personal brand statement alone does not establish brand/company official site.",
+      "requiredNotes": "",
+      "fullBodyLength": 538,
+      "fullBodySha256": "4c6030dcc2b15516af32c05c90fdf5ec11fa506114dd549e399991dc910ea32a"
+    },
+    {
+      "scenarioId": "brand-websites",
+      "contentId": "prm_37afc0000f49d0e195e1b736dc7dda87",
+      "title": "Knowledge-base-powered interactive website",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Generic knowledge-base website with Brand style placeholder; no positive brand/company official website goal.",
+      "requiredNotes": "",
+      "fullBodyLength": 464,
+      "fullBodySha256": "fab848c09d61b58037eb9939b14c188d5397d25df3675024e8b0a925c71b61f8"
+    },
+    {
+      "scenarioId": "sales-landing-pages",
+      "contentId": "prm_0727bd50bcd595107796f4e9d7511a0e",
+      "title": "Single-component modern product landing page",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Sales-oriented product/service page with persuasive CTA or pricing is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 4242,
+      "fullBodySha256": "d5184b14fe2beeba592857c000b57f3762f07a87f4be8317010a2271745a00d7"
+    },
+    {
+      "scenarioId": "sales-landing-pages",
+      "contentId": "prm_0b21c820ceec4c4090c6fccf796a9235",
+      "title": "Art-inspired mathematics education website",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Math education landing page lacks price, offer, conversion target or sales purpose; landing-page label alone is insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 125,
+      "fullBodySha256": "46b137761545901b792eea94ac1670edfc314d4471e4d4bb67b30602dc4c0099"
+    },
+    {
+      "scenarioId": "sales-landing-pages",
+      "contentId": "prm_1bcc9bc2322c1402f5c915dd1bfa4d59",
+      "title": "Single-File Product Landing Page and Deployment Workflow",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Sales-oriented product/service page with persuasive CTA or pricing is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 457,
+      "fullBodySha256": "72f7f88e5e23e0c2697ecc9efb5dc10a1be8093000f6107ee2787366297885cf"
+    },
+    {
+      "scenarioId": "sales-landing-pages",
+      "contentId": "prm_1de555e13cde1d7b92077dde4c527b0f",
+      "title": "Online course sales website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Sales-oriented product/service page with persuasive CTA or pricing is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 1066,
+      "fullBodySha256": "1215ae3c50ac1395e2998cbf5a8a325de2e632d9e2a5150a82f0255f9b85eea5"
+    },
+    {
+      "scenarioId": "sales-landing-pages",
+      "contentId": "prm_2eee6d3826592ab105baf9be4322f1e8",
+      "title": "Cinematic official website for a command-line product",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Product editorial homepage uses subtle newsletter links, without explicit sales offer.",
+      "requiredNotes": "Add real commercial offer, pricing or sales conversion CTA; retain calm visual direction.",
+      "fullBodyLength": 1671,
+      "fullBodySha256": "8be334727311219f1dc0a10a63a0b530d8897a44601697240e92664f625a0a66"
+    },
+    {
+      "scenarioId": "portfolio-websites",
+      "contentId": "prm_20506333c5687eff201784f5d424cb9f",
+      "title": "3D resume structured as game levels",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Responsive interactive personal career/portfolio website is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 884,
+      "fullBodySha256": "f1f5db8b6793293c24d368f7ed0dc019b088e77ef9047f4a2233602fe4482573"
+    },
+    {
+      "scenarioId": "portfolio-websites",
+      "contentId": "prm_32a3a7279f3727c8d057f95ecbad964c",
+      "title": "Portfolio website strategy",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Output is portfolio plan/copy rather than a functioning site.",
+      "requiredNotes": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+      "fullBodyLength": 538,
+      "fullBodySha256": "4c6030dcc2b15516af32c05c90fdf5ec11fa506114dd549e399991dc910ea32a"
+    },
+    {
+      "scenarioId": "portfolio-websites",
+      "contentId": "prm_4b9109cc97ce6f2ed78915cb6cdbf534",
+      "title": "Personal brand portfolio copy",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Output is portfolio plan/copy rather than a functioning site.",
+      "requiredNotes": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+      "fullBodyLength": 428,
+      "fullBodySha256": "7d2121da0bff67c9589ae9790e81477326eeaac1868a180548bb62a962c6fa5b"
+    },
+    {
+      "scenarioId": "portfolio-websites",
+      "contentId": "prm_64a354878b0bde0c886001423572f288",
+      "title": "Client-winning freelancer portfolio",
+      "originalFit": "direct",
+      "verdict": "change-to-adaptable",
+      "reason": "Output is portfolio plan/copy rather than a functioning site.",
+      "requiredNotes": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+      "fullBodyLength": 429,
+      "fullBodySha256": "9eb849d42f1534a8ce5686ee6acb067b849dfba4c56b055e4448152d638a9383"
+    },
+    {
+      "scenarioId": "portfolio-websites",
+      "contentId": "prm_684e741f04bab8b486e4f927ac2b455b",
+      "title": "Portfolio website with a resume",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Responsive interactive personal career/portfolio website is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 409,
+      "fullBodySha256": "c7300c96e1e1f56c2717b1f8e646965b2d2a83459c440fe42eb36ff0484aa7b0"
+    },
+    {
+      "scenarioId": "interactive-product-showcases",
+      "contentId": "prm_06c0bce68939c4b1a3ec8df637dd1814",
+      "title": "Open-Source Trading Chart Platform",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Actual trading chart engine application; explicitly says do not waste time building a marketing interface. Interactivity alone is not product showcase.",
+      "requiredNotes": "",
+      "fullBodyLength": 4313,
+      "fullBodySha256": "25f472062cb32128743e1220ec3bd7156c66b4a124d5a6f02f6cccfb5b051331"
+    },
+    {
+      "scenarioId": "interactive-product-showcases",
+      "contentId": "prm_2ecd3e1c207641cded894b4e1800a31e",
+      "title": "Botanical wellness ecommerce homepage",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Product images/brand-product storytelling with real interactive web presentation is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 2312,
+      "fullBodySha256": "4a67e56cdd7c1920b7f94ddf49aa6e8f0e4171e63f3b6d732032dba86e2b0365"
+    },
+    {
+      "scenarioId": "interactive-product-showcases",
+      "contentId": "prm_37afc0000f49d0e195e1b736dc7dda87",
+      "title": "Knowledge-base-powered interactive website",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "Generic interactive knowledge-base website has no product showcase objective.",
+      "requiredNotes": "",
+      "fullBodyLength": 464,
+      "fullBodySha256": "fab848c09d61b58037eb9939b14c188d5397d25df3675024e8b0a925c71b61f8"
+    },
+    {
+      "scenarioId": "interactive-product-showcases",
+      "contentId": "prm_545322199e8d72a269b77ce50651f1aa",
+      "title": "Beverage Brand Scrollytelling Website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Product images/brand-product storytelling with real interactive web presentation is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 1342,
+      "fullBodySha256": "2b2f9feb3e276f9da19e72c4eb06efbabb95fcf5cfe7d8adea136980f7ab41a5"
+    },
+    {
+      "scenarioId": "interactive-product-showcases",
+      "contentId": "prm_6f97555db109605911a7e435aec2fa50",
+      "title": "Complete cinematic 3D website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Product images/brand-product storytelling with real interactive web presentation is explicit.",
+      "requiredNotes": "",
+      "fullBodyLength": 468,
+      "fullBodySha256": "df29490f003fb6d8c9268c2216313185a58be3a7fe4e315b79e47e1549ccd193"
+    },
+    {
+      "scenarioId": "course-sales",
+      "contentId": "prm_1de555e13cde1d7b92077dde4c527b0f",
+      "title": "Online course sales website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit course sales page, curriculum, instructor, pricing and enrollment CTA.",
+      "requiredNotes": "",
+      "fullBodyLength": 1066,
+      "fullBodySha256": "1215ae3c50ac1395e2998cbf5a8a325de2e632d9e2a5150a82f0255f9b85eea5"
+    },
+    {
+      "scenarioId": "learning-cards",
+      "contentId": "prm_1fe78c26bbf11af661cc14d6e549adac",
+      "title": "Vocabulary breakdown flashcards for young children",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit child vocabulary learning card/poster deliverable.",
+      "requiredNotes": "",
+      "fullBodyLength": 996,
+      "fullBodySha256": "8da9b4e186c2fc8d0a59cfc9588873dae01c43ad6e53d9b8adbed1ea5e39f9e8"
+    },
+    {
+      "scenarioId": "explainers",
+      "contentId": "prm_04d689d02a808f8a3d86e2f7f5e2ea5a",
+      "title": "Coronavirus Scale-Zoom Science Infographic",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit informational visual, sequence, system or cause explanation rather than UI screenshot. Astrology atlas is entertainment, not factual science.",
+      "requiredNotes": "",
+      "fullBodyLength": 1260,
+      "fullBodySha256": "ab758ddfad1f8323d095c0eb6d2f36ce75cd7446d0d23476898103bd3f723b63"
+    },
+    {
+      "scenarioId": "explainers",
+      "contentId": "prm_18044cac580c63d2c0471d10eaeb50f8",
+      "title": "Croissant baking process storyboard",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit informational visual, sequence, system or cause explanation rather than UI screenshot. Astrology atlas is entertainment, not factual science.",
+      "requiredNotes": "",
+      "fullBodyLength": 3122,
+      "fullBodySha256": "e7a6a2a6d628bed2d3c2d607188ef06769f94039d69860de72652ac116be8d85"
+    },
+    {
+      "scenarioId": "explainers",
+      "contentId": "prm_1b613e47285767894b13ff03810678cb",
+      "title": "Steampunk Sagittarius anatomical atlas",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit informational visual, sequence, system or cause explanation rather than UI screenshot. Astrology atlas is entertainment, not factual science.",
+      "requiredNotes": "",
+      "fullBodyLength": 2402,
+      "fullBodySha256": "44e22f8629d4fb7cb30ffe0466094a99d115761ea078edc1ab988d6776a6dae1"
+    },
+    {
+      "scenarioId": "explainers",
+      "contentId": "prm_1d7e11e0b8b73c2231ff7abf9b02f9ef",
+      "title": "2×2 visual map of historical events",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit informational visual, sequence, system or cause explanation rather than UI screenshot. Astrology atlas is entertainment, not factual science.",
+      "requiredNotes": "",
+      "fullBodyLength": 503,
+      "fullBodySha256": "dd22cf7c495d32ec6e3e92fc8358905e4ebff3251f562190bcde604aae7c11d3"
+    },
+    {
+      "scenarioId": "explainers",
+      "contentId": "prm_1dbcc16ca33d64aba2f951a648801823",
+      "title": "Infographic Visualization Design",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Explicit informational visual, sequence, system or cause explanation rather than UI screenshot. Astrology atlas is entertainment, not factual science.",
+      "requiredNotes": "",
+      "fullBodyLength": 2629,
+      "fullBodySha256": "3a6542b2f91148e4ac81a8869a45cedb28e2b438358b2504759e4dd6957321c4"
+    },
+    {
+      "scenarioId": "digital-publications",
+      "contentId": "2060203818785370400",
+      "title": "FIFA 2026 player poster in team colours",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Positive output is standalone poster/portrait/photo collage/infographic, not ebook, issue, publication pages or cover. Editorial/magazine aesthetic and background books are insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 2229,
+      "fullBodySha256": "b885a0ff7de05ba298e17decde54c49b5d512f9608d077cb74d4c35d442f48fc"
+    },
+    {
+      "scenarioId": "digital-publications",
+      "contentId": "2065638647886659855",
+      "title": "Italian villa balcony, pinstripe sundress",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Positive output is standalone poster/portrait/photo collage/infographic, not ebook, issue, publication pages or cover. Editorial/magazine aesthetic and background books are insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 1468,
+      "fullBodySha256": "416a3fa41a11eacdf3982192c169017175a540078dd642d3b3bb932c02b0468d"
+    },
+    {
+      "scenarioId": "digital-publications",
+      "contentId": "prm_00a04108d702a7430b3f2a115d0e0ed5",
+      "title": "Nostalgic portrait on a digital camera screen",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Positive output is standalone poster/portrait/photo collage/infographic, not ebook, issue, publication pages or cover. Editorial/magazine aesthetic and background books are insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 1465,
+      "fullBodySha256": "dd3272d9a0598647999fca4c85265e9cb04fd64c8a16cbe9da82322bb2f85759"
+    },
+    {
+      "scenarioId": "digital-publications",
+      "contentId": "prm_04d689d02a808f8a3d86e2f7f5e2ea5a",
+      "title": "Coronavirus Scale-Zoom Science Infographic",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Positive output is standalone poster/portrait/photo collage/infographic, not ebook, issue, publication pages or cover. Editorial/magazine aesthetic and background books are insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 1260,
+      "fullBodySha256": "ab758ddfad1f8323d095c0eb6d2f36ce75cd7446d0d23476898103bd3f723b63"
+    },
+    {
+      "scenarioId": "digital-publications",
+      "contentId": "prm_12fc02ab3302b304739c0dfe3450b959",
+      "title": "Spring Flower Field Portrait Collage in Three Vertical Panels",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Positive output is standalone poster/portrait/photo collage/infographic, not ebook, issue, publication pages or cover. Editorial/magazine aesthetic and background books are insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 1574,
+      "fullBodySha256": "572fba60175e708533a75b424faa53bee67c52439077acdc380ce26f07b6f086"
+    },
+    {
+      "scenarioId": "lead-magnets",
+      "contentId": "prm_eb602ed8549ddf3419ff77a559d01684",
+      "title": "Landing page templates for software products and local services",
+      "originalFit": "direct",
+      "verdict": "exclude",
+      "reason": "SaaS email signup, portfolio CV download and local booking templates; no free lead-magnet resource offered in exchange for contact. Generic email capture is insufficient.",
+      "requiredNotes": "",
+      "fullBodyLength": 4232,
+      "fullBodySha256": "9bcb65f005362b7014f43a43db5523ffa1a3d2c70f88c914cf8f3edd42cde5c8"
+    },
+    {
+      "scenarioId": "lead-magnets",
+      "contentId": "prm_ed9d97eb5c17ef896c1dc972f32196af",
+      "title": "Single-page lead magnet website",
+      "originalFit": "direct",
+      "verdict": "keep",
+      "reason": "Positive full-body target matches scene.",
+      "requiredNotes": "",
+      "fullBodyLength": 314,
+      "fullBodySha256": "ca14b6d057c1d958b15996323adaf675542fb0bb8a6fdcd86fdd2a83bf8ab519"
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "2015726421990056336",
+      "title": "Overhead portrait on the LA Walk of Fame",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Portrait output supports personalized photo commission; subject/crop/identity adaptation required when no identity-lock input exists.",
+      "requiredNotes": "",
+      "fullBodyLength": 2946,
+      "fullBodySha256": "456a7332664effa90ae423529131c944c62110a3c52eb36b48b3a6fa494db3c4"
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "2060203818785370400",
+      "title": "FIFA 2026 player poster in team colours",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Portrait output supports personalized photo commission; subject/crop/identity adaptation required when no identity-lock input exists.",
+      "requiredNotes": "",
+      "fullBodyLength": 2229,
+      "fullBodySha256": "b885a0ff7de05ba298e17decde54c49b5d512f9608d077cb74d4c35d442f48fc"
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "2018792341192990900",
+      "title": "Spider-Man suit portrait, playful expression",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Portrait output supports personalized photo commission; subject/crop/identity adaptation required when no identity-lock input exists.",
+      "requiredNotes": "",
+      "fullBodyLength": 1789,
+      "fullBodySha256": "928609dee96b87b9fb3e0114d668bbdfd2c81cccb7b384402734780ddbca6ac2"
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "2027628259467313402",
+      "title": "Double-exposure profile from a reference photo",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Portrait output supports personalized photo commission; subject/crop/identity adaptation required when no identity-lock input exists.",
+      "requiredNotes": "",
+      "fullBodyLength": 1196,
+      "fullBodySha256": "2c57c78819da4bb3790230ed5876827d53856dc868c38c579c40ea35b1ba42d4"
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "2032169264963338327",
+      "title": "Pink neon apartment portrait, shot on iPhone",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Portrait output supports personalized photo commission; subject/crop/identity adaptation required when no identity-lock input exists.",
+      "requiredNotes": "",
+      "fullBodyLength": 2170,
+      "fullBodySha256": "33a74141900cfa47e7381dc3ca4ffcd8bebb0d3dbf09c9544444a7806cd43c68"
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "prm_1bad49c7edc8b7cfa3cfe44b5c64c6b3",
+      "title": "Manhattan Park Watercolor Travel Illustration",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Main deliverable is Manhattan park travel illustration; couple is one incidental foreground detail amid many park visitors. No couple commission objective.",
+      "requiredNotes": "",
+      "fullBodyLength": 1203,
+      "fullBodySha256": "2459c90b2604b453a6e7036f64a43400c5cd7930653cb11b9df953327ae94dc8"
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "prm_ba50493f8afe6a48fbec4e31f507f08d",
+      "title": "Couple Portraits in Japanese and Korean Cafes",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Couple relationship/POV or wedding-photo composition is a main subject, supporting personalized keepsake adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 1603,
+      "fullBodySha256": "e3e65fd0ad9bc063bad5c56d87712818bac5c8d27785bca39c5928034a38f59c"
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "prm_decaa70f79b5488b66453f709d3c15b3",
+      "title": "Cinematic summer portrait, holding hands and looking back",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Couple relationship/POV or wedding-photo composition is a main subject, supporting personalized keepsake adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 2394,
+      "fullBodySha256": "4d6d2b87ef17b4929c72ea07b99298199a7227c9048f97c369c702fe40e82b4b"
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
+      "title": "Architectural Space Scene",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Main deliverable is four-industry advertisement grid; couple appears only in travel-offer quadrant, not couple keepsake output.",
+      "requiredNotes": "",
+      "fullBodyLength": 2914,
+      "fullBodySha256": "ce18a244b9280c261d437e0b75c0ad7bf9db32b433f7e7ed23a8b2cfbb981a7a"
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "queenie-the-standards-for-good-looks-were-absolutely-trained-into-me-lazdgy",
+      "title": "My standards for good looks were absolutely trained by my grandparents",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Couple relationship/POV or wedding-photo composition is a main subject, supporting personalized keepsake adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 507,
+      "fullBodySha256": "00705531989098deaa4bd3120af6d616a771f33d8890c875c37e61cf703dd70d"
+    },
+    {
+      "scenarioId": "pet-portraits",
+      "contentId": "prm_4609140d6591dad75f2ca1b32ac56a56",
+      "title": "Raw hand-drawn portrait poster of a duo",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Animal is an explicitly requested subject alongside owner; bespoke pet likeness needs reference adaptation.",
+      "requiredNotes": "",
+      "fullBodyLength": 1044,
+      "fullBodySha256": "cf87fec8f87b0295d6fcdfae05dcbfb90d71f7103bb39131480580b74c0c1e7a"
+    },
+    {
+      "scenarioId": "greeting-cards",
+      "contentId": "prm_66a2612d4eca8bd6ae6cebdbf604a518",
+      "title": "Chibi portrait against a real Christmas street background",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Reference-person chibi portrait in explicit Christmas setting supports adding real holiday greeting/card layout.",
+      "requiredNotes": "",
+      "fullBodyLength": 1290,
+      "fullBodySha256": "1bda7820090044e8dbce63a365deaebe6fd4183846c6faf7770144fbd764c372"
+    },
+    {
+      "scenarioId": "greeting-cards",
+      "contentId": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "title": "Interactive 3D greeting cards",
+      "originalFit": "adaptable",
+      "verdict": "change-to-direct",
+      "reason": "Website case explicitly targets personalized greeting cards; medium is interactive 3D rather than print.",
+      "requiredNotes": "Label as interactive digital greeting card, without implying print-ready output.",
+      "fullBodyLength": 95,
+      "fullBodySha256": "101bcb9fcc9cd8fd8ba4616c241143582596c4b33f1d86d0521786ce857200dc"
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_0085dad53f52a71871baf7911629c99c",
+      "title": "Cute character design sheet",
+      "originalFit": "adaptable",
+      "verdict": "needs-review",
+      "reason": "Character concept sheet, not an explicit print product; retains poster-layout possibility but generic replace-subject notes do not bridge delivery.",
+      "requiredNotes": "If retained, require explicit character-sheet print commission rationale and actual print layout adaptation; otherwise exclude.",
+      "fullBodyLength": 910,
+      "fullBodySha256": "071afbc828feaf3b32370c9d1a871190d144d06f053cb8d76479e03c6afb5ccc"
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_038bb199de88f1535f8b6158ba3f1f60",
+      "title": "Ecommerce product showcase design",
+      "originalFit": "adaptable",
+      "verdict": "exclude",
+      "reason": "Commercial strawberry promotional banner set; illustration style alone does not establish collectible art print product.",
+      "requiredNotes": "",
+      "fullBodyLength": 2748,
+      "fullBodySha256": "9b165cb13618ddbd30fa4737a9d252afed983bd3fa7f32fa7510374c5511f349"
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_06135b34a5f9cea77ad698c25ce94c1c",
+      "title": "Paris autumn fashion illustration",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Main deliverable is standalone illustration suitable for art-poster adaptation; require actual print size/bleed and intended commission.",
+      "requiredNotes": "",
+      "fullBodyLength": 1027,
+      "fullBodySha256": "722f7574f3095617250c9aff561dee9af90a6a6c89c21ac7a3bb8f7d35a16132"
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_0962970bde9befdd4dff4798dadbdbdb",
+      "title": "Layered paper-cut illustration of a couple",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Main deliverable is standalone illustration suitable for art-poster adaptation; require actual print size/bleed and intended commission.",
+      "requiredNotes": "",
+      "fullBodyLength": 1834,
+      "fullBodySha256": "8aeb7d32a314c872efbe944c480c3e4a20692a93099d4795650aa0f6b6ef2275"
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_0a6b39849e46da730cd72eee6daa21d9",
+      "title": "Themed poster layout design",
+      "originalFit": "adaptable",
+      "verdict": "keep",
+      "reason": "Main deliverable is standalone illustration suitable for art-poster adaptation; require actual print size/bleed and intended commission.",
+      "requiredNotes": "",
+      "fullBodyLength": 1051,
+      "fullBodySha256": "6efd1d8ee7302e1abc33507ccc2d1c7853d0a7f42a7e8630392444e0677e00a8"
+    }
+  ],
+  "replacementAllowlist": [
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_e605b9cb6bb9223d858f75ef4af9e22a",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "为我的品牌生成5个完全不同的Logo概念。"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "logo-design",
+      "contentId": "prm_13fee207c1547d404680b709c7553283",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Evolution steps from rough dog sketch to final geometric logo"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_601959195c5147edac4da5c7916ae4b5",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "create an illustration sheet of professional industrial design packaging"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_65e78dbf302e7fefb55a1cfae642d42a",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "■パッケージ（超重要）："
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "packaging-design",
+      "contentId": "prm_11a99e0f8c9428a6b174ead90883cd31",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "[ITEM] in [MATERIAL] packaging, minimal label design"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_426c12f63ca0cdf98e9133ab845b9bc0",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "showing the SAME person from the reference photo with 12 different hairstyles."
+      },
+      "adaptationNotes": "Supply salon/client reference, present hairstyle consultation, add real service brand/booking CTA."
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_e1f87155accf30931deff99752364e97",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a professional \"HAIRSTYLE ANALYSIS\" infographic"
+      },
+      "adaptationNotes": "Replace model and options with actual consultation, add salon and appointment CTA."
+    },
+    {
+      "scenarioId": "beauty-services",
+      "contentId": "prm_d1cdce8046f866b7c3a16446431950fc",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "LUXURY PERSONAL COLOR PROFILE — EDITORIAL LAYOUT"
+      },
+      "adaptationNotes": "Use real consultation inputs and show color-analysis service with booking CTA."
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_16342dd8594ca6582a1595acaceb175d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "2x2 grid of promotional banner ads"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_1da2ae16f0eba4899cf1be2718194c88",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Try it at a discount"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "最大 20%OFF"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "promotional-campaigns",
+      "contentId": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "用于展示餐饮门店的新品推荐、招牌产品、套餐促销或品牌活动信息。"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "product-launches",
+      "contentId": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Design a collector-grade launch visual"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "product-launches",
+      "contentId": "queenie-tool-not-tutorial-i6s4lv",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "like the key visual of a product launch"
+      },
+      "adaptationNotes": "Supply actual launch product/release copy; preserve Queenie reference reconstruction identity."
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_626fdb06d4210e4d4c633646cd215f41",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "YouTube thumbnail"
+      },
+      "adaptationNotes": "Adapt YouTube layout to target short-video ratio, mobile title and safe crop."
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_bcabbaefb0e52ec995faf08b80e995c5",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "YouTube thumbnail"
+      },
+      "adaptationNotes": "Adapt YouTube layout to target short-video ratio, mobile title and safe crop."
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_bef96aa60389b40987269e4266517e91",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "YouTube thumbnail"
+      },
+      "adaptationNotes": "Adapt YouTube layout to target short-video ratio, mobile title and safe crop."
+    },
+    {
+      "scenarioId": "short-video-covers",
+      "contentId": "prm_dde71efb5291908941b24d5fae1f4676",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "YouTube thumbnail"
+      },
+      "adaptationNotes": "Adapt YouTube layout to target short-video ratio, mobile title and safe crop."
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_69daaa9e965fa970b76794411730d0b9",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "生成一张潮菜馆菜单图"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_ec7869e8fc0e81ebcc80f386495cf795",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "重新生成带文本说明的 引人入胜垂涎欲滴的 说明图片"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "餐饮门店的新品推荐、招牌产品、套餐促销或品牌活动信息"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "restaurant-marketing",
+      "contentId": "prm_33282e3d03e119b3640b29d204a66b2d",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "\"industry\": \"restaurant food\""
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_a82b740fdc7ca929f0bc24d3aa10ce02",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "menu cards with pricing ($6.50, $8.90, etc.)"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "品牌名称：{蜜雪冰城}"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "cafe-bakery-marketing",
+      "contentId": "prm_18044cac580c63d2c0471d10eaeb50f8",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER."
+      },
+      "adaptationNotes": "Use bakery brand, actual featured pastry and store/offer CTA."
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-comic-this-winter-i-m-here-with-you-5j3nw4",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "leaning together in the last panel, ending on warm and healing"
+      },
+      "adaptationNotes": ""
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-mini-comic-you-are-my-best-gift-herrwp",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Two panels top and bottom"
+      },
+      "adaptationNotes": "Specify relationship subjects and emotional dialogue; preserve reconstruction identity."
+    },
+    {
+      "scenarioId": "product-ad-videos",
+      "contentId": "2089932434351734933",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "Create an ultra-realistic UGC luxury lifestyle review"
+      },
+      "adaptationNotes": ""
+    }
+  ],
+  "sceneWideRequiredChecks": [
+    "Apply output-medium gate before subject vocabulary: education WEBSITE is not educational POST; coffee WEBSITE is not menu/promotional IMAGE; video reference packaging is not packaging DESIGN.",
+    "logo-design must request new logo concepts/system or explicit approved-logo art adaptation. Existing-logo placement, platform headers and logo in negative text fail.",
+    "packaging-design must actually design packaging/structure/label or expand intentional packaging mockup. Existing product reference locks and lighting descriptions fail.",
+    "promotional-campaigns direct requires actual campaign/offer/event/CTA. General commercial mood can be adaptable with specific notes, not direct.",
+    "product-launches requires launch of product, not Apple-keynote visual style applied to nature.",
+    "short-video-covers must target cover as full deliverable, not thumbnails nested in UI. YouTube thumbnails need short-video crop/format adaptation.",
+    "digital-publications is severely overbroad: editorial/magazine style, books as props and standalone infographics do not establish ebooks/publication deliverables. Reaudit all108.",
+    "interactive-product-showcases requires product-showcase purpose and interaction, not every interactive app/chart/knowledge-base site.",
+    "lead-magnets direct requires an offered downloadable/free resource and lead-capture exchange; SaaS signup/newsletter/CV link alone fails.",
+    "cafe-bakery requires cafe/bakery as principal business or product target. Coffee TABLE and incidental cup are exclusions.",
+    "couple-keepsakes requires couple as principal emotional/personalized subject, not one travel-ad quadrant or incidental park visitor.",
+    "art-prints must have poster/print product rationale; illustration alone should not auto-map banner sets, concept sheets or every image. Reaudit all237.",
+    "Adaptation notes must state actual bridge: crop/layout, personalized reference, real offer/CTA, printed output specifications. Generic replace subject/brand is insufficient for nontrivial medium or purpose changes.",
+    "WeChat cover814 source taxonomy adaptation approved by parent: maintain source reconstruction disclosure and cover crop/readability notes, not infer native platform origin.",
+    "All-scene source evidence spans should contain complete semantic target, not truncated substrings around incidental match words."
+  ]
+}

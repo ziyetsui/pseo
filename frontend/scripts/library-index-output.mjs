@@ -23,7 +23,12 @@ export function verifyLibraryIndex(documents,index,receipt,locale='zh-CN'){
     if(!href.startsWith(`/${locale}/prompts`))continue;
     const links=new Set(document.querySelectorAll('footer a[href]').map(link=>link.getAttribute('href')));
     if(receipt.publishedWebsiteViews.length && !links.has(`/${locale}/prompts/website`))throw new Error(`Website Footer directory missing: ${href}`);
-    if(document.querySelectorAll('footer .footnav a').length>21)throw new Error('Footer navigation exceeds selected navigation limit');
+    if(document.querySelectorAll('footer .footnav a').length>27)throw new Error('Footer navigation exceeds selected navigation limit');
     if(!links.has(`/${locale}/prompts/library-index`))throw new Error('Library index Footer link missing');
   }
+}
+
+export function publishedNavigation(index,locale){
+ const prefix=`/${locale}/prompts`;
+ return [{id:'navigation:library-index',href:`${prefix}/library-index`},...index.routes.filter(href=>href===`${prefix}/monetization`||href.startsWith(`${prefix}/monetization/`)).map(href=>({id:`navigation:${href}`,href}))];
 }
