@@ -38,9 +38,9 @@ import { placeholderTokens } from '@/lib/catalog/placeholders';
 import { promptLanguage } from '@/lib/i18n/text';
 it('makes every admitted Queenie image study reachable through the image library and real task/style routes', () => {
  for (const locale of ['en','zh-CN'] as const) {
-  const c=createGitBetaCatalog(locale), rows=c.prompts.filter(p=>p.reconstruction), paths=new Set(catalogPaths(c));
+  const c=createGitBetaCatalog(locale), rows=c.prompts.filter(p=>p.reconstruction&&p.id.startsWith('queenie-')), paths=new Set(catalogPaths(c));
   expect(rows).toHaveLength(1306);expect(rows.reduce((n,p)=>n+p.media.length,0)).toBe(3321);
-  expect(c.prompts.filter(p=>p.kind==='image')).toHaveLength(1849);
+  expect(c.prompts.filter(p=>p.kind==='image')).toHaveLength(1850);
   for(const p of rows){
    expect(paths.has(p.href)).toBe(true);expect(p.models).toEqual([]);expect(p.creatorRef).toBeNull();
    expect(p.variables.map(v=>v.token).sort()).toEqual(placeholderTokens(p.prompt).sort());

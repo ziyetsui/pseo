@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "sha256:54cf3a4c22e364779da603a1e36464e1c4d83198d4025156d64833c7d4829eaa",
+  "revision": "sha256:051a92e4597452084fd7ee801e07ca35a4e9544d9c2836d98b238f860cac190f",
   "records": [
     {
       "contentId": "2073529429838696592",
@@ -15300,6 +15300,14 @@
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
       "scenarioIds": []
+    },
+    {
+      "contentId": "study-periciacards-7603866348644519190",
+      "status": "mapped",
+      "reason": "Owner-requested, source-verified seven-slide resource guide; adaptable knowledge-product explanation. Original model unknown, reproduction model explicitly labeled.",
+      "scenarioIds": [
+        "monetization-scenario:explainers"
+      ]
     }
   ]
 }

@@ -1,4 +1,6 @@
 import websiteVisualInput from '../../data/website-visuals.json';
+import referenceStudyInput from '../../data/reference-studies.json';
+import {appendReferenceStudies,readReferenceStudies} from './reference-studies';
 import {applyWebsiteVisuals,readWebsiteVisualManifest} from './website-visuals';
 import sourceAttributions from '../../data/queenie-source-attribution.json';
 import { applyOriginalXAttributions } from './source-attribution';
@@ -50,7 +52,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, websiteVisualInput);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, websiteVisualInput, referenceStudyInput);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -152,6 +154,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return applyWebsiteVisuals(appendQueenieCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations), queenieDataset),readWebsiteVisualManifest(websiteVisualInput));
+  return appendReferenceStudies(applyWebsiteVisuals(appendQueenieCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations), queenieDataset),readWebsiteVisualManifest(websiteVisualInput)),readReferenceStudies(referenceStudyInput));
 }

@@ -1,6 +1,7 @@
 import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { compactPromptRsc } from './compact-rsc-export.mjs';
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
+import {readReferenceStudies} from '../src/lib/catalog/reference-studies.ts';
 import { verifyCreatorAvatarAssets } from './creator-avatar-assets.mjs';
 import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { readWebsiteViews } from './website-view-output.mjs';
@@ -70,9 +71,20 @@ if (mode === 'git-beta') {
   const queenieManifest = JSON.parse(await readFile('../docs/intake/2026-10-15-queenie/manifest.json','utf8'));
   if (createHash('sha256').update(await readFile('src/data/queenie-images.json')).digest('hex') !== queenieManifest.datasetSha256 || createHash('sha256').update(await readFile('../docs/intake/2026-10-15-queenie/source-analysis.json')).digest('hex') !== queenieManifest.analysisSha256) throw new Error('Queenie snapshot checksum mismatch');
   const promptBodies = JSON.parse(await readFile('src/data/zh-prompt-bodies.json','utf8'));
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, websiteVisuals);
+  const referenceStudyInput=JSON.parse(await readFile('src/data/reference-studies.json','utf8'));
+  const referenceStudies=readReferenceStudies(referenceStudyInput);
+  for(const row of referenceStudies.records)for(const asset of row.media){
+    const bytes=await readFile(path.join(out,asset.src.slice(1)));
+    if(createHash('sha256').update(bytes).digest('hex')!==asset.sha256)throw Error('Reference study asset checksum mismatch');
+  }
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, websiteVisuals, referenceStudyInput);
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, queenieImages);
+  gitBeta.referenceStudies=referenceStudies.records.length;
+  gitBeta.referenceStudyImages=referenceStudies.records.reduce((n,row)=>n+row.media.length,0);
+  gitBeta.promptCount+=referenceStudies.records.length;gitBeta.imagePrompts+=referenceStudies.records.length;
+  gitBeta.publishedPrompts.push(...referenceStudies.records.map(row=>({id:row.id,href:`/zh-CN/prompts/${row.slug}`})));
+  gitBeta.imageUrls.push(...referenceStudies.records.flatMap(row=>row.media.map(asset=>asset.src)));
   gitBeta.websiteVisualCases=websiteVisuals.records.filter(row=>row.status==='available'||row.status==='existing').length;
   gitBeta.websiteVisualAssets=Object.keys(websiteVisuals.assets).length;
   const localeReceipts=[];

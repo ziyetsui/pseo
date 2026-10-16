@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "study-periciacards-7603866348644519190",
+      "slug": "study-periciacards-digital-detox-carousel",
+      "author": "@periciacards",
+      "sourceUrl": "https://www.tiktok.com/@periciacards/photo/7603866348644519190",
+      "observedAt": "2026-10-16T08:40:00Z",
+      "originalModel": null,
+      "reproductionModel": "gpt-image-2",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "useCases": [
+        "social-carousel"
+      ],
+      "styles": [
+        "anime-illustrated"
+      ],
+      "media": [
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/01.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "a53cc28dbe8f2e7de28a1351efe0c2784c6b8d35804c323b76bb1e49f43741ff"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/02.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "0a00a4ab86bb4f562de0411ce453219bff46ccd352a6480fe2ac0374a096ac01"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/03.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "259848e534d5ceb273983d248e64c89ca1aa02021c202bf54c26a630c665c04c"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/04.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "e8b215dee337526d6f7d39da6ad76455fd94808bec8efdaeb3e3743da0d9c719"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/05.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "70290e4beed4a12ef7a103834579295d4d83d35444503d6e2022eee2feec678c"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/06.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "93bb55b23abb3ba77064213b44afbf9363cede233c119918e8ff9058ff8a80e4"
+        },
+        {
+          "src": "/reference-studies/study-periciacards-digital-detox-carousel/07.jpg",
+          "width": 1440,
+          "height": 1800,
+          "sha256": "6af4e82f96e80a1e5ea4090b390727fe70dd47bc2a6e8255b3d65724b460db39"
+        }
+      ],
+      "copy": {
+        "en": {
+          "title": "Seven-slide digital detox resource guide",
+          "summary": "A seven-slide reference by Pericia Cards with an illustrated cover, five resource cards and a save reminder. Site-authored GPT Image 2 reconstruction; original model unknown. Public counters observed on 16 October 2026: about 1M views, 85.6K likes and 78.6K saves.",
+          "prompt": "Create a cohesive seven-page educational resource recommendation carousel about [TOPIC], for [AUDIENCE]. Deliver seven separate portrait images in a fixed 4:5 ratio, 1440 by 1800 pixels. This is a new editorial design inspired by the structure of a public reference carousel, not the original creator's prompt. Use GPT Image 2 as the reproduction model; the reference creator's model is unknown.\n\nVisual system: bright white background, generous blank margins, heavy rounded black serif headings, quieter medium-gray serif supporting text, grayscale hand-drawn editorial characters, and small color accents reserved for resource icons and supplied screenshots. Use an original illustrated presenter with [PRESENTER_APPEARANCE], consistent on the first and last page. Do not copy an existing creator's mascot. Keep all copy in [OUTPUT_LANGUAGE]. Each page is one complete slide, never a contact sheet.\n\nPage 1 — Cover: the presenter sits at a desk holding a phone, feeling distracted. Under the illustration set [COVER_TITLE] in two or three large centered lines. Add two loose pencil-like underlines and [COVER_SUBTITLE] below. Near the bottom, place five supplied resource icons in a translucent white rounded dock with restrained soft shadows.\n\nPages 2–6 — Five resource cards: use [RESOURCE_LIST] as the only source of resource names, URLs and verified benefits. Assign one resource per page, preserving the supplied order. Each card contains a small rounded URL pill with a globe symbol, one resource icon, a clear resource-name heading, a concise two-line explanation, and a large screenshot inside a white rounded frame. Alternate screenshot-above and screenshot-below layouts to keep the carousel moving. Keep the icon scale, type sizes, spacing and shadow language consistent. Use only supplied, permitted screenshots and icons. If a screenshot is missing, create a clearly illustrative diagram instead of inventing a real product interface.\n\nPage 7 — Save card: show the same presenter smiling and holding a bookmark symbol. Add a large hand-drawn speech bubble with [FINAL_CTA]. Keep it short, friendly and readable.\n\nEditorial requirements: focus on a specific reader problem and explain what each resource is useful for. Do not invent usage statistics, learning outcomes, revenue, testimonials, pricing, free access or affiliate disclosures. Include only claims supplied in [RESOURCE_LIST]. Any affiliate relationship must be stated truthfully in the publishing caption. Render the supplied text accurately, with clean spelling, high contrast and safe margins. No TikTok interface, creator signature, watermark or extra brand identity. Preserve all seven slides as separate files.",
+          "modelNote": "GPT Image 2 — site-authored reproduction; original model unknown"
+        },
+        "zh-CN": {
+          "title": "七页数字减负知识工具推荐图文",
+          "summary": "Pericia Cards的七页参考图文：插画封面、五张资源介绍卡与收藏引导。本站整理GPT Image 2复现模板，原作者模型未知。2026年10月16日公开显示约100万浏览、8.56万点赞、7.86万收藏。",
+          "prompt": "为[AUDIENCE]制作一组围绕[TOPIC]的七页知识工具推荐图文。输出七张独立竖版图片，比例固定为4:5，尺寸1440×1800像素。这是参考公开图文结构编写的全新编辑设计，并非原作者提示词。使用GPT Image 2复现，原作者实际使用的模型未知。\n\n视觉体系：明亮纯白背景、充足留白、圆润厚重的黑色衬线标题、较安静的中灰色衬线说明、灰阶手绘编辑插画。彩色仅用于资源图标和用户提供的截图。设计一位外观为[PRESENTER_APPEARANCE]的原创插画讲解者，在封面和末页保持一致，不复制原作者的角色形象。所有画面文字统一使用[OUTPUT_LANGUAGE]。每张图只放一页完整内容，不输出拼接联系表。\n\n第1页——封面：讲解者坐在桌前拿着手机，呈现分心状态。下方以两到三行居中大标题排出[COVER_TITLE]，加两条松弛的铅笔式下划线，再放[COVER_SUBTITLE]。底部使用半透明白色圆角托盘，整齐放入五个用户提供的资源图标，阴影轻柔克制。\n\n第2至6页——五张资源卡：仅依据[RESOURCE_LIST]中的资源名称、网址和已核实用途，一页介绍一个资源，保持提供的顺序。每页包含带地球符号的小圆角网址胶囊、一个图标、醒目的资源名称、两行简短用途说明，以及白色圆角框内的大幅截图。交替采用截图在上和截图在下的布局，使滑动节奏有变化。统一图标大小、字号、间距和阴影。仅使用用户提供且允许使用的截图与图标；缺少截图时用明确的示意图表达，不伪造真实产品界面。\n\n第7页——收藏引导：同一讲解者微笑并举起书签符号，加入大幅手绘对话气泡，文字为[FINAL_CTA]。语气简短友好，字迹清楚。\n\n编辑要求：聚焦读者的具体问题，说明每项资源适用于什么需求。不得编造使用数据、学习效果、收益、评价、价格、免费权限或联盟关系。仅呈现[RESOURCE_LIST]提供的事实；发布文案中的联盟关系必须真实披露。准确呈现提供的文字，保证拼写、对比度和安全边距。不加入TikTok界面、创作者签名、水印或额外品牌标识。七页分别保存为独立文件。",
+          "modelNote": "GPT Image 2——本站复现模板；原作者模型未知"
+        }
+      }
+    }
+  ]
+}
