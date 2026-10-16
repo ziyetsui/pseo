@@ -1,0 +1,74 @@
+{
+  "name": "pseo-internal-beta-preview",
+  "domains": [
+    "pseo-internal-beta-preview.pages.dev",
+    "beta.ancher.site"
+  ],
+  "production_branch": "main",
+  "canonical_deployment": {
+    "id": "d564b9ab-0916-4143-a4eb-3c7f9748bdaa",
+    "url": "https://d564b9ab.pseo-internal-beta-preview.pages.dev",
+    "aliases": [
+      "https://beta.ancher.site"
+    ],
+    "environment": "production",
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "4583954ab1ae083f138a9d8adb3172d9a16a25c8",
+        "commit_message": "Merge PR #55: original website case visual resources",
+        "commit_dirty": false
+      }
+    },
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-16T08:47:33.468719Z",
+      "status": "success"
+    }
+  },
+  "latest_deployment": {
+    "id": "4c6cee32-6abe-4d81-a281-c1a9e40a51b1",
+    "url": "https://4c6cee32.pseo-internal-beta-preview.pages.dev",
+    "aliases": [
+      "https://frontend-design.pseo-internal-beta-preview.pages.dev"
+    ],
+    "environment": "preview",
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "frontend-design",
+        "commit_hash": "4583954ab1ae083f138a9d8adb3172d9a16a25c8",
+        "commit_message": "Merge PR #55: original website case visual resources",
+        "commit_dirty": false
+      }
+    },
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-16T08:48:14.889567Z",
+      "status": "success"
+    }
+  },
+  "sourceCommit": "4583954ab1ae083f138a9d8adb3172d9a16a25c8",
+  "pullRequest": "https://github.com/ziyetsui/pseo/pull/55",
+  "liveUrl": "https://beta.ancher.site/zh-CN/prompts/website/views/all",
+  "catalogRevision": "sha256:54cf3a4c22e364779da603a1e36464e1c4d83198d4025156d64833c7d4829eaa",
+  "websiteCases": 225,
+  "visualCases": 162,
+  "additionalVisualCases": 101,
+  "unresolvedCases": 63,
+  "visualAssets": 177,
+  "checks": {
+    "frontendTests": 286,
+    "infraTests": 18,
+    "localBrowserTests": 44,
+    "liveBrowserTests": 20,
+    "bilingualWebsitePages": 450,
+    "htmlPages": 4581,
+    "localLinks": 297820,
+    "exportFiles": 19655,
+    "largestFileBytes": 20868197
+  }
+}

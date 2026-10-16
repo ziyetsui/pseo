@@ -7,4 +7,4 @@ Scope: all 225 existing website cases, both languages, existing UI.
 - [x] Capture images and full-duration videos with source hashes, local previews and asset hashes.
 - [x] Bind a validated visual overlay to IDs/source URLs and catalog revision; preserve raw intake and source text.
 - [x] Connect existing cards/detail media rendering; verify source links and no-source fallback.
-- [ ] Run meaningful frontend/infra checks, static export and representative browser paths; review and report coverage/deployment state.
+- [x] Run meaningful frontend/infra checks, static export and representative browser paths; review and report coverage/deployment state.
