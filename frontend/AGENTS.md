@@ -43,10 +43,10 @@
 
 | 层级 | 真实 URL | 导航责任 |
 | --- | --- | --- |
-| L1 Magnetic | `/{locale}/prompts` | 图片/视频分类到 L2，Browse by task 卡片到 L3 Findings，Browse by style 卡片到 L3 Plate，模型到 L3 Anthology，标题打开 Magnetic peek，Generate 到 L4；搜索和四轴筛选可组合 |
+| L1 Magnetic | `/{locale}/prompts` | 图片/视频分类到 L2，Browse by task 卡片到 L3 Plate（任务），Browse by style 卡片到 L3 Plate，模型到 L3 Anthology，标题打开 Magnetic peek，Generate 到 L4；搜索和四轴筛选可组合 |
 | L2 Images Deck | `/{locale}/prompts/image` | 固定 `contentType=image`；模型到 L3、当前 Prompt 到 L4、面包屑回 L1 |
 | L2 Videos Deck | `/{locale}/prompts/video` | 固定 `contentType=video`；同上，所有标题/文案/aria 的类型语义正确 |
-| L3 Task Findings | `/{locale}/prompts/use-cases/{taskSlug}` | 仅 Browse by task 卡片及任务页同类导航；固定真实 useCase，Within 筛选重算统计与示例，单条 CTA 到 L4 |
+| L3 Task Plate | `/{locale}/prompts/use-cases/{taskSlug}` | 2026-10-16 起与 Style Plate 同一母版；固定真实 useCase，编号目录定位图版与旁注，模型/风格/技巧/主题筛选写 URL，单条 CTA 到 L4 |
 | L3 Style Plate | `/{locale}/prompts/styles/{styleSlug}` | 仅 Browse by style 卡片落地页；固定真实 style，编号目录定位图版与旁注，单条 CTA 到 L4 |
 | L3 Anthology | `/{locale}/prompts/models/{modelSlug}` | 固定真实 model；目录到页内对应全文，Full prompt 到 L4；返回真实上层 |
 | L4 Recipe | `/{locale}/prompts/{promptSlug}` | 模型/分类/相关内容通过真实关系返回 L1–L3 或其他 L4；来源跳真实原帖 |
@@ -211,3 +211,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 2026-10-15 用户确认归并重复网站任务入口：Git beta 将创作与开发、网站、网站与开发统一为「网站与开发 / Web design & development」，首页任务区仅一张卡，指向完整225案例集合；内部按网站设计、应用开发、创意编程的明确逐条主分类划分，中英文共用id映射，每案例恰好一个主分类。保留模型和技术关系，来源正文与graph不改写；旧任务/用途页保留同语言跳转，原查询别名兼容。分类映射计入revision并通过独立导出检查，不凭框架关键词自动分类。
 
 2026-10-15 用户裁定 L1 景深：/{locale}/prompts 结果区的磁吸标题段落替换为「景深」星野（用户在 Artifact 原型中选定，明确选择替换而非新增或切换）。标题从远处朝读者飞来，近大远小、按与焦平面的距离分级模糊，指针带轻微视差；悬停或键盘聚焦任意标题即拉焦到它并刹停整片，点击打开原有 fixed peek（锚定在标题下方，打开期间场静止，滚动关闭），六色阅读标记、Escape 回焦、查看更多/收起窗口与 noscript 列表不变。prefers-reduced-motion 与无 JS 保留原连续段落排版。此裁定取代 §7 中 Magnetic 指针吸附参数（220px 场、13px 吸附等）对 L1 结果区的约束；peek 内容、样式、Generate CTA 与中英文同步规则继续有效。实现见 `src/components/depth-motion.ts`。
+
+2026-10-16 用户裁定任务 L3 改用 Plate：Browse by task 卡片（及页脚、Library index、模型页相关推荐等指向 `/{locale}/prompts/use-cases/{taskSlug}` 的入口）的落地页不再使用 Findings，改为与 Browse by style 相同的 Plate 二级页（参考 /zh-CN/prompts/styles/anime-illustrated）：标题页、搜索与筛选栏、编号目录、交替图版与旁注、页底横向缩略图 Browse 导航。固定轴为真实 useCase，筛选轴为模型/风格/技巧/主题；中英文同步。参考图逆向整理条目在旁注中标注「参考图作者 / Reference image」而非 Credit，风格 Plate 同样适用。「网站与开发」卡片仍进入既有225案例集合，不受影响。此裁定取代 §7 中 L3 Findings 对任务页的约束（含移除页尾导航卡的追加要求）；`TaskFindings` 仅保留给非 git-beta 的 `/prompts/website` 聚合页。
