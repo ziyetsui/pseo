@@ -1,3 +1,5 @@
+import sourceAttributions from '../../data/queenie-source-attribution.json';
+import { applyOriginalXAttributions } from './source-attribution';
 import queenieInput from '../../data/queenie-images.json';
 import { appendQueenieCatalog, readQueenieDataset } from './queenie';
 import promptBodyTranslations from '../../data/zh-prompt-bodies.json';
@@ -16,7 +18,7 @@ import { creatorAvatarIndex, creatorHandle } from './creator-avatars';
 import { filterHref, modelHref } from './query';
 import type { Axis, Catalog, Creator, Locale, Media, Prompt, Ref, WebsiteCase, WebsiteGraph } from './types';
 
-const queenieDataset = readQueenieDataset(queenieInput);
+const queenieDataset = applyOriginalXAttributions(readQueenieDataset(queenieInput), sourceAttributions);
 
 type RecordValue = Record<string, unknown>;
 function object(value: unknown): RecordValue {
@@ -46,7 +48,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
