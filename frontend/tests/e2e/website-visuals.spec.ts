@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import visuals from '../../src/data/website-visuals.json';
+import visuals from '../../src/data/website-visuals.json' with {type:'json'};
 const minecraft='prm_052f8b966b50591e744d11476eecafe6';
 const sequence=visuals.records.find(row=>row.media.length===6&&row.media.every(id=>visuals.assets[id as keyof typeof visuals.assets]!.part!==null))!;
 for(const locale of ['en','zh-CN'] as const){
