@@ -6,6 +6,7 @@ import type { Axis, Catalog, Prompt, Ref } from "@/lib/catalog/types";
 import { isStructuredPrompt } from "@/lib/catalog/task-findings";
 import { isPromptCreator } from "@/lib/catalog/creator-match";
 import { PromptMedia } from "@/components/PromptMedia";
+import { BrowseRail } from "@/components/BrowseRail";
 import { styleHref, taskHref } from "@/lib/catalog/query";
 import { modelFamilies, promptsForFamily } from "@/lib/catalog/model-families";
 
@@ -49,15 +50,15 @@ function HubBand({ catalog, axis, id, heading, horizontal = false }: { catalog: 
     if (prompt?.img) { used.add(prompt.img); representatives.set(item.ref.slug, prompt); }
   }
   const items = options.map(({ ref, candidates }) => ({ ref, prompt: representatives.get(ref.slug) ?? (axis === "model" || horizontal && candidates.length > 0 ? candidates[0] : catalog.mode === "public-api" ? catalog.prompts.find(prompt => axisRefs(prompt, axis).some(item => item.slug === ref.slug)) : undefined) })).filter(item => horizontal || item.prompt);
-  const rail = !horizontal && (axis === "useCase" || axis === "style");
+  const rail = !horizontal;
   const illustrated = items.filter(item => item.prompt?.img);
-  const featured = rail ? (axis === "useCase" ? illustrated.find(item => item.ref.slug === "web-motion-design") : undefined) ?? illustrated.at(-1) : undefined;
+  const featured = rail && axis !== "model" ? (axis === "useCase" ? illustrated.find(item => item.ref.slug === "web-motion-design") : undefined) ?? illustrated.at(-1) : undefined;
   const websiteExample = rail && axis === "useCase" && catalog.mode === "git-beta"
     ? websiteEntries(catalog).find(entry => entry.cover && entry.source.url === "https://x.com/SuzzaneKisia/status/2100085815330435375") : undefined;
   if (!items.length) return <section className="sec" id={id}><div className="wrap"><div className="sec-h"><h2>{uiText(uiLocale, heading)}</h2></div><p className="dek">{text(uiLocale, `No published ${axis === "useCase" ? "tasks" : axis === "model" ? "models" : "styles"} to browse yet.`, "暂无已发布的分类。") }</p></div></section>;
-  return <section className={`sec${horizontal ? " browse-row" : ""}${rail ? " browse-band" : ""}`} id={id}><div className="wrap"><div className="sec-h"><h2>{uiText(uiLocale, heading)}</h2></div><div className="tiles" tabIndex={rail ? 0 : undefined} role={rail ? "region" : undefined} aria-label={rail ? uiText(uiLocale, heading) : undefined}>{items.map(({ ref, prompt }) => <a className="tile" href={axis === "useCase" ? catalog.mode === "git-beta" && ref.slug === "website" ? websiteRef(catalog).href : taskHref(catalog.locale, ref.slug) : axis === "style" ? styleHref(catalog.locale, ref.slug) : ref.href} key={ref.id}>
+  return <section className={`sec${horizontal ? " browse-row" : ""}${rail ? " browse-band" : ""}`} id={id}><div className="wrap">{(cards => rail ? <BrowseRail heading={<h2>{uiText(uiLocale, heading)}</h2>} label={uiText(uiLocale, heading)} prev={text(uiLocale, "Previous", "上一组")} next={text(uiLocale, "Next", "下一组")}>{cards}</BrowseRail> : <><div className="sec-h"><h2>{uiText(uiLocale, heading)}</h2></div><div className="tiles">{cards}</div></>)(items.map(({ ref, prompt }) => <a className="tile" href={axis === "useCase" ? catalog.mode === "git-beta" && ref.slug === "website" ? websiteRef(catalog).href : taskHref(catalog.locale, ref.slug) : axis === "style" ? styleHref(catalog.locale, ref.slug) : ref.href} key={ref.id}>
     {<span className="th">{axis === "useCase" && ref.slug === "website" && websiteExample ? <img src={websiteExample.cover} alt={websiteExample.title} width={320} height={200} loading="lazy" /> : prompt ? <PromptMedia uiLocale={uiLocale} prompt={prompt} width={320} height={200} /> : <span className="media-fallback">{uiText(uiLocale, "No preview available.")}</span>}</span>}<span className="tb"><h3 lang={catalog.locale}>{ref.label}</h3><p>{catalog.mode === "git-beta" && axis === "useCase" && ref.slug === "website" ? caseCount(uiLocale,ref.count) : promptCount(uiLocale, ref.count)}</p></span>
-  </a>)}</div>{catalog.mode === "git-beta" && axis === "useCase" ? null : websiteExample ? <a className="tile browse-spotlight" href={websiteExample.href}>
+  </a>))}{catalog.mode === "git-beta" && axis === "useCase" ? null : websiteExample ? <a className="tile browse-spotlight" href={websiteExample.href}>
     <span className="th"><img src={websiteExample.cover} alt={websiteExample.title} width={1440} height={900} loading="lazy" /></span>
     <span className="tb"><h3 lang={catalog.locale}>{text(uiLocale, "Web design & development", "网站与开发")}</h3><p>{caseCount(uiLocale, 1)}</p></span>
   </a> : featured?.prompt && <a className="tile browse-spotlight" href={axis === "useCase" ? taskHref(catalog.locale, featured.ref.slug) : styleHref(catalog.locale, featured.ref.slug)}>
