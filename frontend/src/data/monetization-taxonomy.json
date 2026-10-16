@@ -1,0 +1,623 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "monetization-group:commerce",
+      "slug": "commerce",
+      "labels": {
+        "en": "E-commerce content",
+        "zh-CN": "电商带货"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for e-commerce content.",
+        "zh-CN": "按具体交付用途，查找电商带货相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:advertising",
+      "slug": "advertising",
+      "labels": {
+        "en": "Commercial advertising",
+        "zh-CN": "商业广告"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for commercial advertising.",
+        "zh-CN": "按具体交付用途，查找商业广告相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:creator-content",
+      "slug": "creator-content",
+      "labels": {
+        "en": "Creator content",
+        "zh-CN": "自媒体运营"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for creator content.",
+        "zh-CN": "按具体交付用途，查找自媒体运营相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:local-business",
+      "slug": "local-business",
+      "labels": {
+        "en": "Local business marketing",
+        "zh-CN": "商家获客"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for local business marketing.",
+        "zh-CN": "按具体交付用途，查找商家获客相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:design-services",
+      "slug": "design-services",
+      "labels": {
+        "en": "Brand design services",
+        "zh-CN": "品牌设计接单"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for brand design services.",
+        "zh-CN": "按具体交付用途，查找品牌设计接单相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:web-services",
+      "slug": "web-services",
+      "labels": {
+        "en": "Website development services",
+        "zh-CN": "网站开发接单"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for website development services.",
+        "zh-CN": "按具体交付用途，查找网站开发接单相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:digital-products",
+      "slug": "digital-products",
+      "labels": {
+        "en": "Knowledge and digital products",
+        "zh-CN": "知识与数字产品"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for knowledge and digital products.",
+        "zh-CN": "按具体交付用途，查找知识与数字产品相关的创作案例。"
+      }
+    },
+    {
+      "id": "monetization-group:personalization",
+      "slug": "personalization",
+      "labels": {
+        "en": "Personalized commissions",
+        "zh-CN": "个性化定制"
+      },
+      "descriptions": {
+        "en": "Explore practical creative work for personalized commissions.",
+        "zh-CN": "按具体交付用途，查找个性化定制相关的创作案例。"
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "monetization-scenario:womenswear-selling",
+      "slug": "womenswear-selling",
+      "groupId": "monetization-group:commerce",
+      "labels": {
+        "en": "AI womenswear content",
+        "zh-CN": "AI 女装带货"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for ai womenswear content.",
+        "zh-CN": "为AI 女装带货准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:virtual-try-on",
+      "slug": "virtual-try-on",
+      "groupId": "monetization-group:commerce",
+      "labels": {
+        "en": "Virtual model try-on",
+        "zh-CN": "虚拟模特试穿"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for virtual model try-on.",
+        "zh-CN": "为虚拟模特试穿准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:beauty-recommendations",
+      "slug": "beauty-recommendations",
+      "groupId": "monetization-group:commerce",
+      "labels": {
+        "en": "Beauty recommendations",
+        "zh-CN": "美妆种草"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for beauty recommendations.",
+        "zh-CN": "为美妆种草准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:product-hero-images",
+      "slug": "product-hero-images",
+      "groupId": "monetization-group:commerce",
+      "labels": {
+        "en": "Product hero images",
+        "zh-CN": "商品主图"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for product hero images.",
+        "zh-CN": "为商品主图准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:product-detail-images",
+      "slug": "product-detail-images",
+      "groupId": "monetization-group:commerce",
+      "labels": {
+        "en": "Product detail visuals",
+        "zh-CN": "商品详情与卖点图"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for product detail visuals.",
+        "zh-CN": "为商品详情与卖点图准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:ecommerce-advertising",
+      "slug": "ecommerce-advertising",
+      "groupId": "monetization-group:advertising",
+      "labels": {
+        "en": "E-commerce ad posters",
+        "zh-CN": "电商广告海报"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for e-commerce ad posters.",
+        "zh-CN": "为电商广告海报准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:brand-campaigns",
+      "slug": "brand-campaigns",
+      "groupId": "monetization-group:advertising",
+      "labels": {
+        "en": "Brand campaign posters",
+        "zh-CN": "品牌宣传海报"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for brand campaign posters.",
+        "zh-CN": "为品牌宣传海报准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:promotional-campaigns",
+      "slug": "promotional-campaigns",
+      "groupId": "monetization-group:advertising",
+      "labels": {
+        "en": "Promotional graphics",
+        "zh-CN": "促销活动图"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for promotional graphics.",
+        "zh-CN": "为促销活动图准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:product-launches",
+      "slug": "product-launches",
+      "groupId": "monetization-group:advertising",
+      "labels": {
+        "en": "Product launch visuals",
+        "zh-CN": "产品发布图"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for product launch visuals.",
+        "zh-CN": "为产品发布图准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:product-ad-videos",
+      "slug": "product-ad-videos",
+      "groupId": "monetization-group:advertising",
+      "labels": {
+        "en": "Product ad videos",
+        "zh-CN": "产品广告视频"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for product ad videos.",
+        "zh-CN": "为产品广告视频准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:xiaohongshu-shopping",
+      "slug": "xiaohongshu-shopping",
+      "groupId": "monetization-group:creator-content",
+      "labels": {
+        "en": "Xiaohongshu shopping posts",
+        "zh-CN": "小红书带货图文"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for xiaohongshu shopping posts.",
+        "zh-CN": "为小红书带货图文准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:wechat-covers",
+      "slug": "wechat-covers",
+      "groupId": "monetization-group:creator-content",
+      "labels": {
+        "en": "WeChat article covers",
+        "zh-CN": "公众号封面"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for wechat article covers.",
+        "zh-CN": "为公众号封面准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:short-video-covers",
+      "slug": "short-video-covers",
+      "groupId": "monetization-group:creator-content",
+      "labels": {
+        "en": "Short video covers",
+        "zh-CN": "短视频封面"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for short video covers.",
+        "zh-CN": "为短视频封面准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:relationship-comics",
+      "slug": "relationship-comics",
+      "groupId": "monetization-group:creator-content",
+      "labels": {
+        "en": "Relationship comics",
+        "zh-CN": "漫画情感图文"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for relationship comics.",
+        "zh-CN": "为漫画情感图文准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:educational-posts",
+      "slug": "educational-posts",
+      "groupId": "monetization-group:creator-content",
+      "labels": {
+        "en": "Educational posts",
+        "zh-CN": "知识科普图文"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for educational posts.",
+        "zh-CN": "为知识科普图文准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:restaurant-marketing",
+      "slug": "restaurant-marketing",
+      "groupId": "monetization-group:local-business",
+      "labels": {
+        "en": "Restaurant menus and promotions",
+        "zh-CN": "餐饮菜单与活动图"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for restaurant menus and promotions.",
+        "zh-CN": "为餐饮菜单与活动图准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:cafe-bakery-marketing",
+      "slug": "cafe-bakery-marketing",
+      "groupId": "monetization-group:local-business",
+      "labels": {
+        "en": "Cafe and bakery marketing",
+        "zh-CN": "咖啡烘焙宣传"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for cafe and bakery marketing.",
+        "zh-CN": "为咖啡烘焙宣传准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:beauty-services",
+      "slug": "beauty-services",
+      "groupId": "monetization-group:local-business",
+      "labels": {
+        "en": "Beauty service marketing",
+        "zh-CN": "美业宣传"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for beauty service marketing.",
+        "zh-CN": "为美业宣传准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:fitness-enrollment",
+      "slug": "fitness-enrollment",
+      "groupId": "monetization-group:local-business",
+      "labels": {
+        "en": "Fitness enrollment",
+        "zh-CN": "健身招生"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for fitness enrollment.",
+        "zh-CN": "为健身招生准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:travel-marketing",
+      "slug": "travel-marketing",
+      "groupId": "monetization-group:local-business",
+      "labels": {
+        "en": "Travel marketing",
+        "zh-CN": "文旅推广"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for travel marketing.",
+        "zh-CN": "为文旅推广准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:logo-design",
+      "slug": "logo-design",
+      "groupId": "monetization-group:design-services",
+      "labels": {
+        "en": "Logo design",
+        "zh-CN": "标志设计"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for logo design.",
+        "zh-CN": "为标志设计准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:brand-identity",
+      "slug": "brand-identity",
+      "groupId": "monetization-group:design-services",
+      "labels": {
+        "en": "Brand identity",
+        "zh-CN": "品牌视觉"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for brand identity.",
+        "zh-CN": "为品牌视觉准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:packaging-design",
+      "slug": "packaging-design",
+      "groupId": "monetization-group:design-services",
+      "labels": {
+        "en": "Packaging design",
+        "zh-CN": "产品包装"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for packaging design.",
+        "zh-CN": "为产品包装准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:commercial-brochures",
+      "slug": "commercial-brochures",
+      "groupId": "monetization-group:design-services",
+      "labels": {
+        "en": "Commercial brochures",
+        "zh-CN": "宣传画册"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for commercial brochures.",
+        "zh-CN": "为宣传画册准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:commercial-illustration",
+      "slug": "commercial-illustration",
+      "groupId": "monetization-group:design-services",
+      "labels": {
+        "en": "Commercial illustration",
+        "zh-CN": "商业插画"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for commercial illustration.",
+        "zh-CN": "为商业插画准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:ecommerce-websites",
+      "slug": "ecommerce-websites",
+      "groupId": "monetization-group:web-services",
+      "labels": {
+        "en": "E-commerce websites",
+        "zh-CN": "电商网站"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for e-commerce websites.",
+        "zh-CN": "为电商网站准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:brand-websites",
+      "slug": "brand-websites",
+      "groupId": "monetization-group:web-services",
+      "labels": {
+        "en": "Brand websites",
+        "zh-CN": "品牌官网"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for brand websites.",
+        "zh-CN": "为品牌官网准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:sales-landing-pages",
+      "slug": "sales-landing-pages",
+      "groupId": "monetization-group:web-services",
+      "labels": {
+        "en": "Sales landing pages",
+        "zh-CN": "销售落地页"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for sales landing pages.",
+        "zh-CN": "为销售落地页准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:portfolio-websites",
+      "slug": "portfolio-websites",
+      "groupId": "monetization-group:web-services",
+      "labels": {
+        "en": "Portfolio websites",
+        "zh-CN": "个人作品集"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for portfolio websites.",
+        "zh-CN": "为个人作品集准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:interactive-product-showcases",
+      "slug": "interactive-product-showcases",
+      "groupId": "monetization-group:web-services",
+      "labels": {
+        "en": "Interactive product showcases",
+        "zh-CN": "交互式产品展示"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for interactive product showcases.",
+        "zh-CN": "为交互式产品展示准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:course-sales",
+      "slug": "course-sales",
+      "groupId": "monetization-group:digital-products",
+      "labels": {
+        "en": "Course sales pages",
+        "zh-CN": "课程销售页"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for course sales pages.",
+        "zh-CN": "为课程销售页准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:learning-cards",
+      "slug": "learning-cards",
+      "groupId": "monetization-group:digital-products",
+      "labels": {
+        "en": "Learning cards",
+        "zh-CN": "教学卡片"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for learning cards.",
+        "zh-CN": "为教学卡片准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:explainers",
+      "slug": "explainers",
+      "groupId": "monetization-group:digital-products",
+      "labels": {
+        "en": "Visual explainers",
+        "zh-CN": "信息图解"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for visual explainers.",
+        "zh-CN": "为信息图解准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:digital-publications",
+      "slug": "digital-publications",
+      "groupId": "monetization-group:digital-products",
+      "labels": {
+        "en": "Digital publications",
+        "zh-CN": "电子刊物"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for digital publications.",
+        "zh-CN": "为电子刊物准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:lead-magnets",
+      "slug": "lead-magnets",
+      "groupId": "monetization-group:digital-products",
+      "labels": {
+        "en": "Lead magnets and download pages",
+        "zh-CN": "引流资料与领取页"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for lead magnets and download pages.",
+        "zh-CN": "为引流资料与领取页准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:avatar-portraits",
+      "slug": "avatar-portraits",
+      "groupId": "monetization-group:personalization",
+      "labels": {
+        "en": "Avatar portraits",
+        "zh-CN": "头像写真"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for avatar portraits.",
+        "zh-CN": "为头像写真准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:couple-keepsakes",
+      "slug": "couple-keepsakes",
+      "groupId": "monetization-group:personalization",
+      "labels": {
+        "en": "Couple keepsake illustrations",
+        "zh-CN": "情侣纪念插画"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for couple keepsake illustrations.",
+        "zh-CN": "为情侣纪念插画准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:pet-portraits",
+      "slug": "pet-portraits",
+      "groupId": "monetization-group:personalization",
+      "labels": {
+        "en": "Pet portraits",
+        "zh-CN": "宠物画像"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for pet portraits.",
+        "zh-CN": "为宠物画像准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:greeting-cards",
+      "slug": "greeting-cards",
+      "groupId": "monetization-group:personalization",
+      "labels": {
+        "en": "Greeting cards",
+        "zh-CN": "节日贺卡"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for greeting cards.",
+        "zh-CN": "为节日贺卡准备可复用的创作案例与提示词。"
+      }
+    },
+    {
+      "id": "monetization-scenario:art-prints",
+      "slug": "art-prints",
+      "groupId": "monetization-group:personalization",
+      "labels": {
+        "en": "Art posters and prints",
+        "zh-CN": "文创海报与印刷品"
+      },
+      "descriptions": {
+        "en": "Reference cases and editable prompts for art posters and prints.",
+        "zh-CN": "为文创海报与印刷品准备可复用的创作案例与提示词。"
+      }
+    }
+  ]
+}

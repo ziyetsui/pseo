@@ -1,0 +1,20 @@
+import {it,expect} from 'vitest';
+import {classifyRecord,positiveText} from '../scripts/prepare-monetization.mjs';
+it('does not classify from negative prompt terms or background props',()=>{
+ expect(positiveText('Create a mountain landscape. Negative prompt: womenswear product advertisement')).not.toContain('womenswear');
+ const row={id:'plain',title:'Portrait',prompt:'A person in a cafe. Avoid logos, product advertising, shopping posts.',useCases:[],styles:[],subjects:[]};
+ expect(classifyRecord(row).map((x:{slug:string})=>x.slug)).not.toContain('restaurant-marketing');
+ expect(classifyRecord(row).map((x:{slug:string})=>x.slug)).not.toContain('xiaohongshu-shopping');
+});
+it('needs both narrative relationship and comic format for relationship comics',()=>{
+ expect(classifyRecord({id:'wrong-title',title:'Relationship comic',prompt:'A single cinematic portrait of an elderly swordsman.',useCases:[],styles:[],subjects:[]}).map((x:{slug:string})=>x.slug)).not.toContain('relationship-comics');
+});
+it('recognizes specific garment commerce without tagging every portrait',()=>{
+ const row={id:'dress',title:'Dress product',prompt:'Create an ecommerce catalog showing a summer womenswear dress with a full-body model and product price.',useCases:[],styles:[],subjects:[]};
+ expect(classifyRecord(row).map((x:{slug:string})=>x.slug)).toContain('womenswear-selling');
+});
+it('does not treat location as cat or preserved hairstyle as a salon deliverable',()=>{
+ const row={id:'human',title:'Human portrait',prompt:'Create a portrait at a city location. Preserve the hairstyle and eye color. Technical camera characteristics: smartphone lens.',useCases:[],styles:[],subjects:[]};
+ const slugs=classifyRecord(row).map((x:{slug:string})=>x.slug);
+ expect(slugs).not.toContain('pet-portraits');expect(slugs).not.toContain('beauty-services');expect(slugs).not.toContain('product-detail-images');
+});

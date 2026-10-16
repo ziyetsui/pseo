@@ -213,3 +213,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 2026-10-15 用户裁定 L1 景深：/{locale}/prompts 结果区的磁吸标题段落替换为「景深」星野（用户在 Artifact 原型中选定，明确选择替换而非新增或切换）。标题从远处朝读者飞来，近大远小、按与焦平面的距离分级模糊，指针带轻微视差；悬停或键盘聚焦任意标题即拉焦到它并刹停整片，点击打开原有 fixed peek（锚定在标题下方，打开期间场静止，滚动关闭），六色阅读标记、Escape 回焦、查看更多/收起窗口与 noscript 列表不变。prefers-reduced-motion 与无 JS 保留原连续段落排版。此裁定取代 §7 中 Magnetic 指针吸附参数（220px 场、13px 吸附等）对 L1 结果区的约束；peek 内容、样式、Generate CTA 与中英文同步规则继续有效。实现见 `src/components/depth-motion.ts`。
 
 2026-10-16 用户裁定任务 L3 改用 Plate：Browse by task 卡片（及页脚、Library index、模型页相关推荐等指向 `/{locale}/prompts/use-cases/{taskSlug}` 的入口）的落地页不再使用 Findings，改为与 Browse by style 相同的 Plate 二级页（参考 /zh-CN/prompts/styles/anime-illustrated）：标题页、搜索与筛选栏、编号目录、交替图版与旁注、页底横向缩略图 Browse 导航。固定轴为真实 useCase，筛选轴为模型/风格/技巧/主题；中英文同步。参考图逆向整理条目在旁注中标注「参考图作者 / Reference image」而非 Credit，风格 Plate 同样适用。「网站与开发」卡片仍进入既有225案例集合，不受影响。此裁定取代 §7 中 L3 Findings 对任务页的约束（含移除页尾导航卡的追加要求）；`TaskFindings` 仅保留给非 git-beta 的 `/prompts/website` 聚合页。
+
+
+2026-10-16 用户确认增加按变现场景浏览：独立导航投影，不覆盖任务、模型、风格。首页新增最多8个非空大类，四十候选细分场景按正向证据显式映射，区别直接适用/需要改编，复用原L4，不编造收益。Footer 增为浏览/模型/任务/风格/变现五列，第五列最多5个精选非空场景+完整目录；前四列维持原21项，手机两列，完整索引收录全部有效视图。此项取代此前四列合计21项的总列数限制。保持双语、真实计数、beta noindex、完整正文生成链接。

@@ -1,3 +1,4 @@
+import {MonetizationRelated} from './Monetization';
 import { interfaceLocale, uiText, text, sourceLanguage } from '@/lib/i18n/text';
 import { SignInGate } from "@/components/SignInGate";
 import Link from "next/link";
@@ -71,6 +72,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           </div>
         </div>
       </section>
+    <MonetizationRelated catalog={catalog} contentId={prompt.id}/>
     </div></main>
     <SiteFooter catalog={catalog} level="prompt" /><SignInGate uiLocale={uiLocale} key={`${prompt.id}:${prompt.locale}`} />
   </div></div>;

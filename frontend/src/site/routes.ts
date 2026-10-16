@@ -1,3 +1,4 @@
+import {monetizationPaths} from '@/lib/catalog/monetization';
 import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
@@ -12,6 +13,7 @@ export function catalogPaths(catalog: Catalog): string[] {
   if(catalog.mode==='git-beta')hrefs.push(...websiteLegacyPaths(catalog.locale));
   hrefs.push(...websiteViews(catalog).map(view => view.href));
   if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`);
+  hrefs.push(...monetizationPaths(catalog));
   return [...new Set(hrefs.filter(href => (href === `/${catalog.locale}` || href.startsWith(`/${catalog.locale}/`)) && !href.includes('?') && !href.includes('#')))];
 }
 

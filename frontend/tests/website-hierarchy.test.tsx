@@ -33,7 +33,7 @@ describe('Website prototype levels and navigation', () => {
   it('keeps Website views in the directory and links to the complete Library index from the footer', () => {
     const root = html(<SiteFooter catalog={catalog} />), links = new Set(root.querySelectorAll('a').map(el=>el.getAttribute('href')));
     expect(links.has('/zh-CN/prompts/website')).toBe(true);
-    expect(links.size).toBeLessThanOrEqual(22);
+    expect(links.size).toBeLessThanOrEqual(28);
     expect(links.has('/zh-CN/prompts/library-index')).toBe(true);
     expect(catalogPaths(catalog)).toContain('/zh-CN/prompts/library-index');
   });

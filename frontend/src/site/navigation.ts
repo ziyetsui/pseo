@@ -1,3 +1,4 @@
+import {monetizationGroups,monetizationScenarios} from '@/lib/catalog/monetization';
 import { interfaceLocale, text, caseCount } from '@/lib/i18n/text';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
@@ -36,6 +37,8 @@ export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pr
   if(catalog.mode==='git-beta'){const tasks=groups.find(group=>group.id==='tasks')!;tasks.entries=tasks.entries.map(entry=>entry.href===websiteRef(catalog).href?{...websiteRef(catalog),kind:'case'}:entry);}
   const views=websiteViews(catalog);
   for(const [axis,title] of [['use-case','Website purposes'],['model','Website models'],['tool','Website technologies']] as const) groups.push({id:`website-${axis}`,title:text(uiLocale,title, ({'Website purposes':'网站用途','Website models':'网站模型','Website technologies':'网站技术'} as Record<string,string>)[title] ?? title),entries:views.filter(view=>view.axis===axis).map(view=>({id:view.id,label:`${view.label} · ${caseCount(uiLocale, view.count)}`,href:view.href,count:view.count,kind:'case'}))});
+  const moneyGroups=monetizationGroups(catalog),moneyScenes=monetizationScenarios(catalog);
+  if(moneyGroups.length)groups.push({id:'monetization',title:text(uiLocale,'By monetization','按变现'),entries:[{id:'monetization:index',label:text(uiLocale,'All monetization scenes','全部变现场景'),href:`/${catalog.locale}/prompts/monetization`,kind:'navigation'},...[...moneyGroups,...moneyScenes].map(item=>({id:item.id,label:item.label,href:item.href,count:item.count,kind:'navigation' as const}))]});
   const browse:NavigationEntry[]=[];
   const add=(id:string,label:string,href:string,available:boolean,count?:number)=>{if(available)browse.push({id,label,href,count,kind:'navigation'});};
   add('images',text(uiLocale, 'Image prompts', '图片提示词'),`${hub}/image`,catalog.prompts.some(prompt=>prompt.kind==='image'));
@@ -60,6 +63,7 @@ export function footerNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pro
     {id:'models',title:text(locale,'By model','按模型'),entries:[...featured('models',4),...pick(['all-models'])]},
     {id:'tasks',title:text(locale,'By task','按任务'),entries:featured('tasks',5)},
     {id:'styles',title:text(locale,'By style','按风格'),entries:featured('styles',5)},
+    ...(monetizationGroups(catalog).length?[{id:'monetization',title:text(locale,'By monetization','按变现'),entries:[...monetizationScenarios(catalog).slice().sort((a,b)=>{const priority=['womenswear-selling','ecommerce-advertising','ecommerce-websites','relationship-comics','wechat-covers'];const rank=(slug:string)=>{const i=priority.indexOf(slug);return i<0?100:i;};return rank(a.slug)-rank(b.slug);}).slice(0,5).map(s=>({id:s.id,label:s.label,href:s.href,count:s.count,kind:'navigation' as const})),{id:'monetization:index',label:text(locale,'All monetization scenes','全部变现场景'),href:`/${catalog.locale}/prompts/monetization`,kind:'navigation' as const}]}]:[]),
   ].filter(group=>group.entries.length);
 }
 export function libraryIndex(catalog:Catalog) {

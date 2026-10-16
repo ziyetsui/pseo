@@ -1,3 +1,5 @@
+import {MonetizationPage} from '@/components/Monetization';
+import {monetizationPage} from '@/lib/catalog/monetization';
 import {interfaceLocale,text} from '@/lib/i18n/text';
 import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/components/WebsiteCases';
 import { LibraryIndex } from '@/components/LibraryIndex';
@@ -40,6 +42,8 @@ async function resolve(params: Params) {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { catalog, path } = await resolve(await params);
+  const money=monetizationPage(catalog,path);
+  if(money){const ref=money.scenario??money.group;return {...siteMetadata(catalog,path,ref?.label??text(catalog.locale,'Browse by monetization','按变现浏览')),description:ref?.description??text(catalog.locale,'Find creative cases by practical commercial use.','按实际商业用途查找创作案例。')};}
   const websiteCase = catalog.websites?.find(item => item.href === path);
   if (websiteCase) return siteMetadata(catalog, path, websiteCase.title);
   const prompt = catalog.prompts.find(prompt => prompt.href === path);
@@ -63,6 +67,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const hub = `/${catalog.locale}/prompts`;
   if(catalog.mode==='git-beta'&&websiteLegacyPaths(catalog.locale).includes(path))return <><meta httpEquiv="refresh" content={`0;url=${hub}/website`} /><div className="prototype-recipe"><div className="v3"><SiteHeader bilingual currentHref={path} level="prompt" locale={catalog.locale} /><main id="main" className="wrap"><h1>{websiteRef(catalog).label}</h1><p>{text(catalog.locale,'These categories now share one collection.','这些分类已归并为同一个案例集合。')}</p><a href={`${hub}/website`}>{text(catalog.locale,'Explore web design & development →','探索网站与开发 →')}</a></main><SiteFooter catalog={catalog} /></div></div></>;
   if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return <LibraryIndex catalog={catalog} />;
+  const money=monetizationPage(catalog,path);
+  if(money)return <MonetizationPage catalog={catalog} {...money}/>;
   if (path === hub || path === `/${catalog.locale}`) return <Hub catalog={catalog} />;
   if (path === `${hub}/image` || path === `${hub}/video`) return <Deck catalog={catalog} contentType={path.endsWith('/video') ? 'video' : 'image'} />;
   if (path === `${hub}/website` && catalog.mode === "git-beta") return <WebsiteGallery catalog={catalog} />;
