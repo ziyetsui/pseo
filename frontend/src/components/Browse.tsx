@@ -42,7 +42,10 @@ function HubBand({ catalog, axis, id, heading, horizontal = false }: { catalog: 
     : entries(catalog.prompts, axis).map(ref => axis === "useCase" && catalog.mode === "git-beta" && ref.slug === "website" ? websiteRef(catalog) : ref).map(ref => ({ ref, candidates: catalog.prompts.filter(prompt => prompt.img && axisRefs(prompt, axis).some(item => item.slug === ref.slug)) }));
   // The reference gives scarce image sets first choice so every real category can retain a unique print.
   for (const item of [...options].sort((a, b) => a.candidates.length - b.candidates.length)) {
-    const prompt = item.candidates.find(prompt => prompt.img && !used.has(prompt.img));
+    const preferred = catalog.mode === "git-beta" && axis === "useCase" && item.ref.slug === "social-carousel"
+      ? item.candidates.find(prompt => prompt.id === "queenie-a-touch-of-green-from-the-summer-breeze-midjourney-aegmhy")
+      : undefined;
+    const prompt = preferred ?? item.candidates.find(prompt => prompt.img && !used.has(prompt.img));
     if (prompt?.img) { used.add(prompt.img); representatives.set(item.ref.slug, prompt); }
   }
   const items = options.map(({ ref, candidates }) => ({ ref, prompt: representatives.get(ref.slug) ?? (axis === "model" || horizontal && candidates.length > 0 ? candidates[0] : catalog.mode === "public-api" ? catalog.prompts.find(prompt => axisRefs(prompt, axis).some(item => item.slug === ref.slug)) : undefined) })).filter(item => horizontal || item.prompt);
