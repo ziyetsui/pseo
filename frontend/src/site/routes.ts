@@ -1,4 +1,5 @@
 import {monetizationPaths} from '@/lib/catalog/monetization';
+import {xhsCurationHref} from '@/data/xhs-curation';
 import {websiteLegacyPaths} from '@/lib/catalog/website-taxonomy';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
@@ -12,7 +13,7 @@ export function catalogPaths(catalog: Catalog): string[] {
   hrefs.push(...modelFamilies(catalog).map(family => family.href));
   if(catalog.mode==='git-beta')hrefs.push(...websiteLegacyPaths(catalog.locale));
   hrefs.push(...websiteViews(catalog).map(view => view.href));
-  if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`);
+  if (catalog.mode === 'git-beta') hrefs.push(`${hub}/library-index`,xhsCurationHref(catalog.locale));
   hrefs.push(...monetizationPaths(catalog));
   return [...new Set(hrefs.filter(href => (href === `/${catalog.locale}` || href.startsWith(`/${catalog.locale}/`)) && !href.includes('?') && !href.includes('#')))];
 }
