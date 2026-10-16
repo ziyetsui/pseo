@@ -46,6 +46,5 @@ test('empty styles and single-prompt tasks use the correct shared states', async
     await page.goto(`/zh-CN/prompts/use-cases/${slug}`);
     await expect(page.locator('.ctrl [role="status"]')).toContainText('1 of 1');
     await expect(page.locator('main')).not.toContainText('the 1 prompts');
-    await expect(page.locator('main #tasks .tiles, main #models .tiles')).toHaveCount(0);
   }
 });

@@ -5,7 +5,7 @@ test("bracket templates appear across hub, both decks, task and style", async ({
     ["/zh-CN/prompts", ".exp .txt"],
     ["/zh-CN/prompts/image", ".dc[data-top] .prompt"],
     ["/zh-CN/prompts/video", ".dc[data-top] .prompt"],
-    ["/zh-CN/prompts/use-cases/beauty", ".verbatim"],
+    ["/zh-CN/prompts/use-cases/beauty", ".wall"],
     ["/zh-CN/prompts/styles/photorealistic", ".wall"],
   ] as const) {
     await page.goto(path);

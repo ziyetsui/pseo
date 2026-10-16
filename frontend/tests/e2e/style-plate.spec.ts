@@ -28,7 +28,7 @@ test('style filters restore history and cannot escape the current style',async({
  await page.locator('.empty button').click();await expect(page.locator('.plate')).toHaveCount(27);
  await page.goto(`${path}?style=missing-style`);await expect(page.locator('.empty')).toBeVisible();
  await page.locator('.empty button').click();await expect(page.locator('.plate')).toHaveCount(27);
- await page.goto('/zh-CN/prompts/use-cases/beauty');await expect(page.locator('.prototype-task-findings')).toBeVisible();
+ await page.goto('/zh-CN/prompts/use-cases/beauty');await expect(page.locator('.prototype-task-plate')).toBeVisible();
  await page.goto('/zh-CN/prompts/models/nano-banana-pro');await expect(page.locator('.prototype-anthology')).toBeVisible();
  await page.goto('/zh-CN/prompts?style=photorealistic');await expect(page.locator('.prototype-style-plate')).toHaveCount(0);
  expect((await page.goto('/zh-CN/prompts/styles/missing-style'))?.status()).toBe(404);

@@ -89,7 +89,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const family = modelFamilyForPath(catalog, path);
   if (family) return <Anthology catalog={catalog} model={family} family={family} />;
   const task = taskForPath(catalog, path);
-  if (task) return <TaskFindings catalog={catalog} task={task} />;
+  if (task) return <StylePlate catalog={catalog} style={task} axis="useCase" />;
   const style = styleForPath(catalog, path);
   if (style) return <StylePlate catalog={catalog} style={style} />;
   const category = categoryForPath(catalog, path);
