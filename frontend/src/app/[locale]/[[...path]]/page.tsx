@@ -1,4 +1,6 @@
 import {MonetizationPage} from '@/components/Monetization';
+import {XhsCurationPage} from '@/components/XhsCuration';
+import {xhsCurationHref} from '@/data/xhs-curation';
 import {monetizationPage} from '@/lib/catalog/monetization';
 import {interfaceLocale,text} from '@/lib/i18n/text';
 import { WebsiteGallery, WebsiteCaseDetail, WebsiteViewGallery } from '@/components/WebsiteCases';
@@ -42,6 +44,7 @@ async function resolve(params: Params) {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { catalog, path } = await resolve(await params);
+  if(catalog.mode==='git-beta'&&path===xhsCurationHref(catalog.locale))return {title:catalog.locale==='zh-CN'?'珍珠奶茶精选案例 · 提示词库':'珍珠奶茶 creator cases · Prompt Library',description:catalog.locale==='zh-CN'?'图文、视频、电商主图与详情页等八类小红书案例，各类精选一条。':'Eight Xiaohongshu creator cases, one per image, video and commerce format.',robots:{index:false,follow:false}};
   const money=monetizationPage(catalog,path);
   if(money){const ref=money.scenario??money.group;return {...siteMetadata(catalog,path,ref?.label??text(catalog.locale,'Browse by monetization','按变现浏览')),description:ref?.description??text(catalog.locale,'Find creative cases by practical commercial use.','按实际商业用途查找创作案例。')};}
   const websiteCase = catalog.websites?.find(item => item.href === path);
@@ -65,6 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { catalog, path } = await resolve(await params);
   const hub = `/${catalog.locale}/prompts`;
+  if(catalog.mode==='git-beta'&&path===xhsCurationHref(catalog.locale))return <XhsCurationPage catalog={catalog}/>;
   if(catalog.mode==='git-beta'&&websiteLegacyPaths(catalog.locale).includes(path))return <><meta httpEquiv="refresh" content={`0;url=${hub}/website`} /><div className="prototype-recipe"><div className="v3"><SiteHeader bilingual currentHref={path} level="prompt" locale={catalog.locale} /><main id="main" className="wrap"><h1>{websiteRef(catalog).label}</h1><p>{text(catalog.locale,'These categories now share one collection.','这些分类已归并为同一个案例集合。')}</p><a href={`${hub}/website`}>{text(catalog.locale,'Explore web design & development →','探索网站与开发 →')}</a></main><SiteFooter catalog={catalog} /></div></div></>;
   if (path === `${hub}/library-index` && catalog.mode === 'git-beta') return <LibraryIndex catalog={catalog} />;
   const money=monetizationPage(catalog,path);

@@ -1,4 +1,5 @@
 import {monetizationGroups,monetizationScenarios} from '@/lib/catalog/monetization';
+import {xhsCurationHref} from '@/data/xhs-curation';
 import { interfaceLocale, text, caseCount } from '@/lib/i18n/text';
 import type { Catalog, Ref } from '@/lib/catalog/types';
 import { styleHref, subjectHref, taskHref } from '@/lib/catalog/query';
@@ -49,6 +50,7 @@ export function libraryNavigation(catalog:Catalog,level:'hub'|'deck'|'model'|'pr
   add('all-models',text(uiLocale, 'All models', '全部模型'),`${hub}/models`,models.length>0);
   add('all-creators',text(uiLocale, 'All creators', '全部创作者'),`${hub}/creators`,catalog.creators.some(creator=>catalog.prompts.some(prompt=>isPromptCreator(prompt,creator))));
   add('index',text(uiLocale, 'Library index', '提示词库目录'),`${hub}/library-index`,catalog.mode==='git-beta');
+  add('xhs-curation',text(uiLocale,'珍珠奶茶 creator cases','珍珠奶茶精选案例'),xhsCurationHref(catalog.locale),catalog.mode==='git-beta',8);
   groups.push({id:'browse',title:text(interfaceLocale(catalog), 'Browse', '浏览'),entries:browse});
   return groups.filter(group=>group.entries.length);
 }
