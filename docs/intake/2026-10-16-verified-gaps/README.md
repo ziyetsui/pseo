@@ -7,6 +7,7 @@ The owner authorized import, merge and deployment on 2026-10-16 after reviewing 
 - 109 existing prompt records receive 126 original media attachments. Full videos use the verified official X CDN URL; original posters and dimensions remain attached. Parent/reply/reference provenance is recorded separately, without replacing prompt attribution.
 - 50 promotional/context-only images and 13 unresolved visual gaps remain excluded. Creator claims are not treated as independent proof of authorship or model performance.
 - Two additional active creators have same-post author-verified X avatars. Two explicit author statements add the Claude family without inventing a model version.
+- Git-beta pages omit the cross-site Referer header so the official X CDN can serve video playback. This extends the existing no-referrer behavior on images; public-api and isolated visual-fixture policy remain unchanged.
 - English preserves source text, Chinese uses hash-bound display translations, and both languages share the existing editable Website templates and routes.
 - Existing monetization memberships are retained except two associations affected by the newly linked prompts, which are archived in `deferred-monetization-edges.json` for separate review. New/changed entries stay `review`; no new monetization claims are published.
 
