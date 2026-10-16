@@ -1,4 +1,6 @@
 import verifiedGapUpdates from '../../data/verified-gap-updates.json';
+import websiteVisualInput from '../../data/website-visuals.json';
+import {applyWebsiteVisuals,readWebsiteVisualManifest} from './website-visuals';
 import sourceAttributions from '../../data/queenie-source-attribution.json';
 import { applyOriginalXAttributions } from './source-attribution';
 import queenieInput from '../../data/queenie-images.json';
@@ -49,7 +51,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, verifiedGapUpdates);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, verifiedGapUpdates, websiteVisualInput);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -128,7 +130,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     if (!/^\/website-previews\/[0-9]+\.(?:jpg|jpeg|png|webp)$/u.test(cover)) throw new Error('Invalid Website preview asset');
     const slug = id, creator = linked(id, 'created_by')[0];
     const target = (type: string) => { const ref = linked(id,type)[0]; return ref ? safeUrl(ref.url) : null; };
-    websites.push({ id, slug, href: `/${sourceLocale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover,
+    websites.push({ id, slug, href: `/${sourceLocale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover, media:prompts.find(prompt=>prompt.id===id)?.media??[],
       attribution: creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? 'Source', source: { url: safeUrl(source.url), platform: text(source.platform) },
       models: refs(id,'designed_for','model'), useCases: refs(id,'used_for','useCase'), tools: linked(id,'built_with').map(item => text(item.label)),
       demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: (prompts.find(prompt => linked(id,'has_prompt').some(ref => ref.id === prompt.id)) ?? prompts.find(prompt => prompt.id === id) ?? prompts.find(prompt => linked(prompt.id,'sourced_from').some(ref => ref.id === source.id)))?.href ?? null,
@@ -160,6 +162,6 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
       websiteGraph.edges.push({ from: entry.id, to, type });
     }
   }
-  return appendQueenieCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
-    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations), queenieDataset);
+  return applyWebsiteVisuals(appendQueenieCatalog(localizedGitCatalog({ ...base, mode: 'git-beta', revision, observedAt: [...nodes.values()].filter(node => node.type === 'source' && typeof node.observedAt === 'string').map(node => text(node.observedAt)).sort().at(-1) ?? base.observedAt, prompts, websites, websiteGraph,
+    models: [...registries.model.values()], useCases: [...registries.useCase.values()], styles: [...registries.style.values()], subjects: [...registries.subject.values()], techniques: [...registries.technique.values()], creators: [...creators.values()] },locale,promptBodyTranslations), queenieDataset),readWebsiteVisualManifest(websiteVisualInput));
 }

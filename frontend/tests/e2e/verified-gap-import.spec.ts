@@ -20,7 +20,7 @@ test('new source-backed templates work in both languages and preserve the genera
 test('recovered video loads and plays without changing prompt attribution',async({page},info)=>{
  await page.goto('/en/prompts/case-7dd3d40264159ae96b96e5610d2f6f6b',{waitUntil:'domcontentloaded'});
  await expect(page.locator('meta[name=referrer]')).toHaveAttribute('content','no-referrer');
- const video=page.locator('.shots video').first();await expect(video).toHaveAttribute('src',/^https:\/\/video\.twimg\.com\//);
+ const video=page.locator('.shots video').first();await expect(video).toHaveAttribute('src',/^(https:\/\/video\.twimg\.com\/|\/website-videos\/)/);
  await expect(video).toHaveAttribute('controls','');
  await video.evaluate(async node=>{const v=node as HTMLVideoElement;v.muted=true;await v.play();});
  await expect.poll(()=>video.evaluate(node=>(node as HTMLVideoElement).currentTime),{timeout:20000}).toBeGreaterThan(0);

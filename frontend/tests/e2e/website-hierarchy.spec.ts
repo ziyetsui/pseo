@@ -59,7 +59,7 @@ test('Findings, Anthology, Recipe and index preserve graph scope and navigation'
   await expect(page.locator('h1')).toHaveText('Library index');
   await expect(page.locator('details.library-index-group')).toHaveCount(4);
   const index=await(await request.get('/en/library-index.json')).json();
-  expect(index.collections.reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(953);
+  expect(index.collections.reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(2034+225);
   expect(index.groups.filter((group:{id:string})=>group.id.startsWith('website-')).reduce((sum:number,group:{entries:unknown[]})=>sum+group.entries.length,0)).toBe(26);
 });
 

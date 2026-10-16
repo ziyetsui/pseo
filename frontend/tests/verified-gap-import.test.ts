@@ -2,6 +2,7 @@ import {describe,it,expect} from 'vitest';
 import {createGitBetaCatalog} from '@/lib/catalog/git-beta';
 import {websiteEntries} from '@/lib/catalog/website';
 import {websiteEditableTemplate} from '@/lib/catalog/website-templates';
+import visuals from '@/data/website-visuals.json';
 import mediaLinks from '../../docs/intake/2026-10-16-verified-gaps/media-links.json';
 import caseLinks from '../../docs/intake/2026-10-16-verified-gaps/case-prompt-links.json';
 import sourceRecords from '../../docs/intake/2026-10-16-verified-gaps/source-records.json';
@@ -13,7 +14,7 @@ describe('verified source gap publication',()=>{
    const prompt=catalog.prompts.find(row=>row.id===update.id)!;
    expect(prompt,update.id).toBeDefined();
    expect(prompt.source.url).toBe(update.promptSource);
-   expect(prompt.media.map(item=>item.src)).toEqual(expect.arrayContaining(update.media.map(item=>item.url)));
+   expect(prompt.media.map(item=>Object.values(visuals.assets).find(a=>a.src===item.src)?.sourceUrl??item.src)).toEqual(expect.arrayContaining(update.media.map(item=>item.url)));
    if(update.mediaSource!==update.promptSource)expect(prompt.evidence.some(item=>item.url===update.mediaSource)).toBe(true);
   }
   expect(mediaLinks).toHaveLength(109);
