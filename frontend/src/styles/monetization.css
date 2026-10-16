@@ -3,3 +3,15 @@
 .monet-prompt{white-space:pre-wrap;overflow-wrap:anywhere;max-height:32rem;overflow:auto;padding:16px;background:rgba(127,127,127,.07);font-size:13px;line-height:1.7}.monet-prompt-details summary{min-height:44px;cursor:pointer;padding:12px 0}.monet-credit{font-size:13px;color:var(--muted,#aaa)}
 
 .monetization .monet-breadcrumb,.monetization .monet-credit,.monetization .monet-note,.monetization .monet-description{color:#b8b8ba}.monetization .monet-breadcrumb a{color:inherit}
+
+/* Group and scene pages use the task Plate; only the breadcrumb, scene chips and fit evidence are added. */
+.prototype-monetization-plate .monet-breadcrumb{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-bottom:28px;font:12px/1.5 var(--font-mono);color:var(--faint)}
+.prototype-monetization-plate .monet-breadcrumb a{color:inherit;text-decoration:none}
+@media (hover:hover) and (pointer:fine){.prototype-monetization-plate .monet-breadcrumb a:hover{color:var(--foreground)}}
+.prototype-monetization-plate .monet-scenes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:28px auto 0;max-width:860px}
+.prototype-monetization-plate .monet-scenes .chip{text-decoration:none}
+.prototype-monetization-plate .monet-scenes .chip[aria-current="page"]{color:var(--background);background:var(--foreground);border-color:var(--foreground)}
+.prototype-monetization-plate .monet-note{margin:0 0 14px;color:var(--muted-fg);font-size:13px;line-height:1.6}
+.prototype-monetization-plate .monet-others{padding-block:24px 48px}
+.prototype-monetization-plate .monet-others ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;color:var(--faint)}
+.prototype-monetization-plate .monet-others a{color:var(--foreground)}
