@@ -1,4 +1,4 @@
-import {PROMPT_RSC_REWRITES} from './compact-rsc-export.mjs';
+import {PROMPT_RSC_REWRITES,omitsTreeForNativeAnchorRoute} from './compact-rsc-export.mjs';
 import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { verifyWebsiteViewOutput, websiteValidationGraph } from './website-view-output.mjs';
@@ -74,8 +74,12 @@ if (manifest.mode !== 'public-api') {
     const articleBytes=await readFile('src/data/x-article-cases.json');
     const articleCases=JSON.parse(articleBytes);
     if(receipt.articleCaseRevision!==`sha256:${createHash('sha256').update(articleBytes).digest('hex')}`)throw new Error('X Article snapshot revision mismatch');
-    const creatorCount=new Set(articleCases.map(article=>article.authorHandle)).size;
-    if(receipt.rscExport?.treeRemoved!==2*(articleCases.length+creatorCount+1))throw new Error('Article RSC compaction incomplete');
+    const nativeAnchorRoutes=[...allPaths].filter(route=>omitsTreeForNativeAnchorRoute(route.slice(1)));
+    if(receipt.rscExport?.treeRemoved!==nativeAnchorRoutes.length)throw new Error('Native-anchor RSC compaction incomplete');
+    for(const href of nativeAnchorRoutes){
+      const directory=path.join(root,href.slice(1));
+      if(!assetFiles.has(path.join(directory,'__next._full.txt'))||assetFiles.has(path.join(directory,'__next._tree.txt'))||![...assetFiles].some(file=>file.startsWith(`${directory}/__next.`)&&file.endsWith('.__PAGE__.txt')))throw new Error(`Native-anchor RSC export invalid: ${href}`);
+    }
     const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES, JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')).baselineModels);
     if(!Array.isArray(receipt.locales)||JSON.stringify(receipt.locales.map(item=>item.locale).sort())!==JSON.stringify(['en','zh-CN']))throw new Error('Bilingual locale receipt missing');
     const published=[];
