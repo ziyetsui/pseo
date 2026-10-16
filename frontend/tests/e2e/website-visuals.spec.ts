@@ -27,7 +27,7 @@ for(const locale of ['en','zh-CN'] as const){
   await expect(page.locator(`main .nomedia a[href="/${locale}/prompts/website"]`)).toBeAttached();
  });
  test(`all complete video parts remain reachable on ${locale}`,async({page})=>{
-  await page.goto(`/${locale}/prompts/case-${sequence.id.slice(4)}`,{waitUntil:'domcontentloaded'});
+  await page.goto(`/${locale}/prompts/website/${sequence.id}`,{waitUntil:'domcontentloaded'});
   await expect(page.locator('main video')).toHaveCount(6);
   for(let i=0;i<6;i++)await expect(page.locator('main video').nth(i)).toHaveAttribute('aria-label',new RegExp(locale==='en'?`Part ${i+1} of 6`:`第 ${i+1} / 6 段`));
  });
