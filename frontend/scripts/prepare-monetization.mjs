@@ -3,7 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 export function positiveText(value=''){
- return value.split(/negative\s*prompt\s*[:：]|负面提示词\s*[:：]|禁止项\s*[:：]/iu)[0]
+ return value.split(/["\x27]?negative[_\s-]*prompt["\x27]?\s*[:：]|负面提示词\s*[:：]|禁止项\s*[:：]/iu)[0]
   .split(/\n|(?<=[.!?。])\s+/u).filter(line=>!/^\s*(?:[-*]\s*)?(?:do not|don't|avoid|no\s|不要|禁止|避免)/iu.test(line))
   .map(line=>line.split(/\b(?:avoid|do not|don't)\b|不要|禁止|避免/iu)[0]).join('\n');
 }
@@ -56,6 +56,12 @@ export function classifyRecord(row){
  const result=[];
  for(const [slug,a,b,fit,kind] of rules){
   if(kind==='video'&&row.kind!=='video'||kind==='website'&&!website)continue;
+  const uiMockup=/(?:interface mockup|ui_layout|screenshot|界面截图|直播.{0,12}界面)/iu.test(goal.slice(0,900));
+  if(uiMockup&&['beauty-recommendations','ecommerce-advertising','avatar-portraits','brand-campaigns'].includes(slug))continue;
+  if(slug==='beauty-recommendations'&&/(?:mirror selfie|bathroom|自拍|浴室)/iu.test(goal.slice(0,400))&&!/(?:advert|campaign|广告|宣传)/iu.test(goal.slice(0,400)))continue;
+  if(slug==='sales-landing-pages'&&!/(?:sales|conversion|pricing|purchase|product|course|booking|销售|转化|购买|产品|课程|预约|注册)/iu.test(goal.slice(0,700)))continue;
+  if(slug==='avatar-portraits'&&!/(?:\bportrait\b|\bavatar\b|\bheadshot\b|人像|肖像|头像|写真)/iu.test(goal))continue;
+
   if(!a.test(goal)||b&&!b.test(goal))continue;
   if(slug==='beauty-services'&&!/(?:hairstyle analysis|hair(?:style|cut).{0,25}(?:chart|lookbook|guide)|personal colo[u]?r|面部美学分析|发型.{0,12}(?:分析|图鉴)|个人色彩)/iu.test(goal+' '+row.title))continue;
   if(slug==='pet-portraits'&&!/(?:pet portrait|宠物.{0,10}(?:画像|肖像)|\b(?:dog|cat) portrait\b|(?:小狗|猫咪).{0,8}(?:肖像|插画))/iu.test(goal))continue;

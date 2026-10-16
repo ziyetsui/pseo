@@ -468,21 +468,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_0727bd50bcd595107796f4e9d7511a0e",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Please create a single-file React component (App.jsx) using Tailwind CSS for a modern landing page.\nYou must follow these exact structural, timing, and styling specifications to ensure the layout is perfectly identical to the design:\n\n**1.\nGlobal Styles & An",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_090109b66cca11b0c2f47dd19342ce54",
       "scenarioId": "monetization-scenario:brand-websites",
       "fit": "direct",
@@ -1354,21 +1339,6 @@
     },
     {
       "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
-      "scenarioId": "monetization-scenario:beauty-recommendations",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "所有人脸保持一致，仅唇色变化，真实试色效果（lip color try-on）",
-        "reason": "Explicit branded lipstick swatches on consistent faces."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
       "scenarioId": "monetization-scenario:ecommerce-advertising",
       "fit": "direct",
       "evidence": {
@@ -1390,6 +1360,21 @@
         "field": "prompt",
         "quote": "一、系统角色\n你是一个专业美妆顾问 + 人脸分析系统 + 品牌视觉设计系统。\n你的任务是：基于用户上传自拍与指定口红品牌，生成一张具有品牌调性的“口红推荐报告信息结构图”。\n\n二、输入参数\n用户图像：{用户自拍}\n品牌：{口红品牌，如 Dior / YSL / Armani / Chanel / TF}\n风格偏好（可选）：{通勤 / 温柔 / 气场 / 氛围感 / 显白优先}\n推",
         "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+      },
+      "notes": {
+        "en": "",
+        "zh-CN": ""
+      },
+      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
+    },
+    {
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "scenarioId": "monetization-scenario:beauty-recommendations",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "quote": "所有人脸保持一致，仅唇色变化，真实试色效果（lip color try-on）",
+        "reason": "Explicit branded lipstick swatches on consistent faces."
       },
       "notes": {
         "en": "",
@@ -1514,36 +1499,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_2169d5c2e768245b22e20421f52fe9a1",
-      "scenarioId": "monetization-scenario:ecommerce-advertising",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "5，体重120斤，穿多大码？\",\n        \"@***: 主播身上这款有货吗？\",\n        \"晴***: 已拍，坐等收货！\"\n      ]\n    },\n    \"product_card\": {\n      \"position\": \"bottom-right\",\n      \"thumbnail\": \"miniature of the host\",\n      \"title\": \"{argument name=\\\"product title\\\" default=\\\"【小雨睡衣】春季新款家居服",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_2169d5c2e768245b22e20421f52fe9a1",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "    \"stats\": \"12.8万本场点赞\",\n        \"button\": \"关注\"\n      },\n      \"viewer_info\": {\n        \"avatars_count\": 3,\n        \"total_viewers\": \"1.2万\"\n      }\n    },\n    \"floating_tags\": {\n      \"count\": 2,\n      \"labels\": [\"带货总榜第3名\", \"人气榜\"]\n    },\n    \"widgets\": {\n",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -1878,36 +1833,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_2b5d95ec9577976cc60928e429c93467",
-      "scenarioId": "monetization-scenario:ecommerce-advertising",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "透气速干\", \"弹力舒适\", \"运动百搭\"]\n      },\n      {\n        \"position\": \"mid right\",\n        \"type\": \"product card active\",\n        \"badge\": \"正在讲解\",\n        \"image\": \"white polo and skirt flat lay\",\n        \"title\": \"{argument name=\\\"product name\\\" default=\\\"运动POLO衫套装\\",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_2b5d95ec9577976cc60928e429c93467",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "light grey studio background\"\n  },\n  \"layout\": {\n    \"header\": {\n      \"left\": {\n        \"avatar\": \"female portrait\",\n        \"name\": \"{argument name=\\\"host name\\\" default=\\\"小鹿运动优选\\\"}\",\n        \"stats\": \"12.8万本场点赞\",\n        \"button\": \"关注\",\n        \"badge\":",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_2ec9530b73f5294438b33bcb0948e38c",
       "scenarioId": "monetization-scenario:educational-posts",
       "fit": "adaptable",
@@ -1994,21 +1919,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_2eee6d3826592ab105baf9be4322f1e8",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Create a cinematic, editorial, near-black landing page for Gateflow CLI using the project info from this repo (read the README and key files first): <github repo>.\nThe site must use full-viewport (100vh) section sn",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Add real commercial offer, pricing or sales conversion CTA; retain calm visual direction.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“销售落地页”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -2283,21 +2193,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_36746ac3df56afb102fb9a7a77d7e12e",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Create a responsive landing page in HTML and CSS for a [business type].\nInclude a hero section, features, testimonials, and contact CTA.\nUse clean beginner-friendly code, clear class names, an",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_3677504574a59f76419f7bc7df98ec5a",
       "scenarioId": "monetization-scenario:commercial-illustration",
       "fit": "adaptable",
@@ -2463,36 +2358,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_3cab81ced0cd0b54a5f5fcaf31098f3c",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A landing page for a comic blog web page that is fun, comic style, retro, yellow and black, visual aesthetic style, dark romantic, blink-and-you-miss-it detail",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_3cb1d4b5f38636cef5f6c9b6edcc7831",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Design a mobile app landing page.\nUse Blueprint MCP",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_3cc58e62457d4b1b9524f73c9878daa5",
       "scenarioId": "monetization-scenario:avatar-portraits",
       "fit": "adaptable",
@@ -2613,21 +2478,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_414ab3308f9c71150e5e4b56f4b666e3",
-      "scenarioId": "monetization-scenario:beauty-recommendations",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "nostalgic early-2000s digital camera look.\n\nThe bathroom counter is cluttered with luxury cosmetics, skincare products, jewelry, a smartphone, and everyday personal items, adding a lived-in editorial feel.\nReflections of neon-lit skyscrapers and hotel window",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_4248458bb4aa0c821fe653f6bf687a49",
       "scenarioId": "monetization-scenario:womenswear-selling",
       "fit": "direct",
@@ -2714,21 +2564,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
         "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_45027e5681fa99fd31e782bb3b3f0822",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "te it with similar design and functionality.\nCreate a similar-looking modern form builder landing page.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -3078,21 +2913,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_52b1a92daf89746a86d58dfd2cc78e12",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "にした物語の主人公。日英クォーターの若き武将。\\\"}\",\n      \"badge\": \"設定資料\"\n    },\n    \"right_side\": {\n      \"main_portrait\": \"large full-body standing pose, confident smile\",\n      \"background_elements\": {\n        \"emblem\": \"six-coin crest\",\n        \"quote\": \"{argument name=\\\"catch",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_534d409ea5bf2f2449a93c7c115cbd3b",
       "scenarioId": "monetization-scenario:ecommerce-advertising",
       "fit": "direct",
@@ -3198,21 +3018,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_55a16ede07cff7a35f1a69ed61ca5ce5",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A landing page for a cake bakery website, hip, trendy, bold colors, popular Retro Style, an bold saturation innovator, whimsical animation, by David Hockney, color by Fauvist",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_55b40d5a06c08f467f8941b9a260a830",
       "scenarioId": "monetization-scenario:commercial-illustration",
       "fit": "adaptable",
@@ -3224,21 +3029,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
         "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_55f265da8d16dbc588e706468da4ba21",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ts\": \"75.8万本场点赞\",\n        \"follow_button\": \"关注\"\n      },\n      \"viewer_stats\": {\n        \"avatars_count\": 3,\n        \"text\": \"10万+\",\n        \"close_button\": \"X\"\n      },\n      \"tags\": [\n        \"带货总榜第1名\",\n        \"更多直播 >\"\n      ]\n    },\n    \"product_card\":",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -3534,21 +3324,6 @@
       "evidence": {
         "field": "prompt",
         "quote": "Ultra-realistic luxury fashion campaign poster shot from a dramatic low-angle perspective across a glossy chessboard table.\nA stylish young male model with sharp facial features, textured curly hair,",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_644602041483aa2ed9fd86c71a5edf94",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "create a minimalistic black/white landing page for an analytics saas called \"BUZZ\".\nanimate the hero seciton with a background video",
         "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
       },
       "notes": {
@@ -3874,21 +3649,6 @@
     },
     {
       "contentId": "prm_6cccef7bbc070dcade3fda075437825e",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Create a high-end designer portfolio landing page UI design, featuring a trendy glassmorphism aesthetic.\nFrosted glass cards with soft blurred backgrounds, floating 3D abstract geometric shapes in vivid irides",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_6cccef7bbc070dcade3fda075437825e",
       "scenarioId": "monetization-scenario:portfolio-websites",
       "fit": "direct",
       "evidence": {
@@ -4159,21 +3919,6 @@
     },
     {
       "contentId": "prm_6fd510cbde884638b7d6dbdb8e0653be",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "I need a designer portfolio landing page that features interactive elements, animations, and a fully responsive design.\nImpress me with your creativity.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_6fd510cbde884638b7d6dbdb8e0653be",
       "scenarioId": "monetization-scenario:portfolio-websites",
       "fit": "direct",
       "evidence": {
@@ -4383,21 +4128,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_78349af8423264beb8d90a27135e17ff",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Create a modern, responsive landing page for a SaaS tool that helps creators repurpose long-form videos.\nInclude a hero section, feature list, testimonial section, and a CTA button.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_7929bd774a637aec49b9900bb0ef5d69",
       "scenarioId": "monetization-scenario:commercial-illustration",
       "fit": "adaptable",
@@ -4424,21 +4154,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_7c0573091c8ba844e7c77d7584cae4c1",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "EOPLE WILL LOVE IT.\",\n        \"center_text\": \"THE RONAN FARROW INTERVIEW\",\n        \"inset_portraits\": {\n          \"count\": 2,\n          \"labels\": [\"HARVEY WEINSTEIN EXPOSED\", \"LESLIE MOONVES EXPOSED\"]\n        },\n        \"info_boxes\": {\n          \"count\": 3,\n",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -4489,21 +4204,6 @@
     },
     {
       "contentId": "prm_7f5c9e159ec342a17bc6b159e503c175",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A landing page for a photography portfolio website, multi exposure, dark cyan and light amber, leica, image, portraitures, golden light",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_7f5c9e159ec342a17bc6b159e503c175",
       "scenarioId": "monetization-scenario:portfolio-websites",
       "fit": "direct",
       "evidence": {
@@ -4514,21 +4214,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_7f5c9e159ec342a17bc6b159e503c175",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "a photography portfolio website, multi exposure, dark cyan and light amber, leica, image, portraitures, golden light",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -4803,21 +4488,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_893985a3f6ec37bd268151343b5ed1e5",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Now create a 3d model with three.js and webgl2 and landing page to show above in single html",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
       "scenarioId": "monetization-scenario:beauty-recommendations",
       "fit": "adaptable",
@@ -4934,21 +4604,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_8c516690bf8ce1b4757c4fb8565bc448",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "统状态栏 UI，包括时间、电量、信号、网络等图标，让整张图看起来像手机截图。画面底部叠加一块宽大的半透明 galgame 风格对话框，对话框左侧放一个与画面人物对应的动漫或 Q 版头像；对话框右侧排版文字：第一行用较大字体显示与前面相同的角色名字，下面一到两行显示一段适合这个角色人设的、温柔治愈风格的简体中文台词，由你自动创作。再在对话框下方加一条操作栏，仿照 galgame UI。整体风格高清、细节丰富、光线柔和、二次元与真人写真自然融合。\n\n[English]\nGenerate a portra",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -5343,21 +4998,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_9488de34c3c8f101763e343bbe175434",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "make a award winning 3d landing page without any external sources go as detailed as you can and as creative as you can",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_94db99961548b80b31affa07ca830c92",
       "scenarioId": "monetization-scenario:commercial-illustration",
       "fit": "adaptable",
@@ -5384,36 +5024,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
         "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_954b81d007f47e00b35759eba9c08905",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "s\n\nStyle: ultra-realistic fantasy realism mixed with luxury casino art, Renaissance royal portraiture, and modern cinematic concept art.\n\nLighting: dramatic chiaroscuro, volumetric god rays, rich contrast, glowing metallic highlights, subtle magical energy a",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_95ea769827f40e44860f78355d61b16c",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Generate avatars of various emperors from the {argument name=\"dynasty\" default=\"Ming Dynasty\"} based on the style of the uploaded image, with their posthumous names and person",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -5579,21 +5189,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
         "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_9e6bfbb979ac354fcbf219344db06f1f",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "I want you to scan the [at]app folder  this is the landing page for our website  I want to add blogs to it which will be hosted on /blog  Each blog will have its own page  And the /blog will show the list of all blogs When ",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -6393,21 +5988,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_bef96aa60389b40987269e4266517e91",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ion\": \"mid-left\",\n        \"header\": \"← 스레드\",\n        \"post_count\": 3,\n        \"details\": \"avatars, Korean text, interaction icons for like, comment, repost\"\n      },\n      {\n        \"type\": \"live chat mockup\",\n        \"position\": \"right edge\",\n        \"mes",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_bf27c9e1b1391060c9d59cce1fd2ddc7",
       "scenarioId": "monetization-scenario:avatar-portraits",
       "fit": "adaptable",
@@ -6753,21 +6333,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_cd31c191b3fd333019bed38a7f54dbeb",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A landing page for a SaaS company that specializes in AI robots, celestial punk, oversized objects, film",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_cde703d8b48add466c87cb9a1f8c6545",
       "scenarioId": "monetization-scenario:commercial-illustration",
       "fit": "adaptable",
@@ -6978,21 +6543,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_d1e832ea439e98f76d7c95bb167e2c90",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A landing page for a small coffee shop in Brooklyn called Ember & Oak, cozy and modern vibe",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_d2e7a44ffa99bb59e751423df1190727",
       "scenarioId": "monetization-scenario:educational-posts",
       "fit": "adaptable",
@@ -7089,21 +6639,6 @@
       "evidence": {
         "field": "prompt",
         "quote": "Act as a creative director and copywriter specialized in conversion.\nCreate a premium landing page that combines cinematic images with persuasive messages.\nInclude a main interactive section (hero), product narrative, feature demonstrations, social proof, pr",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_d7548e5fbfb04d0e999529d444ed1896",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "e” (vertical, center or sidebar) that visually links sections.\n\nPage Component Structure\n\nLanding Page Sections\nHero.tsx: Canvas-powered RacingBackground (3D perspective: rapidly moving track, alternating kerbs, speed particles, “camera shake”).\nMassive, upperca",
         "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
       },
       "notes": {
@@ -7229,21 +6764,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
         "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_ddb4ef984068d769d6414a396c28f1d2",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "I need a designer portfolio landing page design.\nYou should use interactive elements, animations, and a fully responsive design.\nAmaze me with your creativity.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -7998,21 +7518,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_ecdc64a0dd58b5b0145456686065dd0a",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": " in dark tactical jacket and cargo pants.\nIncludes front, back, and side full-body views, headshots, and detailed callouts for gloves, boots, backpack, and radio.\"\n      }\n    },\n    {\n      \"title\": \"{argument name=\\\"female character name\\\" default=\\\"大城 真那 ",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_ed9d97eb5c17ef896c1dc972f32196af",
       "scenarioId": "monetization-scenario:lead-magnets",
       "fit": "direct",
@@ -8313,21 +7818,6 @@
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
     {
-      "contentId": "prm_f3d2c6d90d4fa018bb8dab8a254af406",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ad Frontend Engineer.\nObjective: Architect a high-fidelity, cinematic \"1:1 Pixel Perfect\" landing page for Nura Health.\nAesthetic Identity: \"High-End Organic Tech\" / \"Clinical Boutique.\" The site should feel like a bridge between a biological research lab and an",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
       "contentId": "prm_f3d3775541c505b794568cf55bffb591",
       "scenarioId": "monetization-scenario:portfolio-websites",
       "fit": "direct",
@@ -8369,21 +7859,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_f490ea1c18998f568661321504a58898",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "\n  \"layout\": {\n    \"columns\": 7,\n    \"column_elements\": [\n      \"day_header\",\n      \"main_portrait\",\n      \"4_detail_thumbnails\",\n      \"outfit_specs\",\n      \"keywords_colors\",\n      \"3_color_swatches\",\n      \"star_ratings\",\n      \"fabric_price\",\n      \"4_se",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -8564,21 +8039,6 @@
       "notes": {
         "en": "",
         "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "prm_f8ad01d1ce993fb351d7742c0e2b4884",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ckground, four stacked horizontal rounded rectangles containing black and white cinematic portraits of the same young woman wearing sunglasses in different stylish poses.\nForeground features a full-color high-quality cutout of the woman on the left side, wea",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -13054,21 +12514,6 @@
     },
     {
       "contentId": "queenie-final-selected-members-introduction-y7a74e",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ground with red main title centered, white subheading diagonally arranged, a row of small avatars at the bottom.\nColour palette: [PALETTE].\nVisual treatment and mood: Dark, tense, competitive, like a survival-show elimination battle.\nSet the main headline ",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-final-selected-members-introduction-y7a74e",
       "scenarioId": "monetization-scenario:wechat-covers",
       "fit": "adaptable",
       "evidence": {
@@ -13904,21 +13349,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
         "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-hermes-agent-masterclass-the-complete-course-from-zero-to-fu-s36ywq",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "d right: left text, right terminal screenshot, each about half the width, with a circular avatar embedded in the right column Colour palette: [PALETTE].\nVisual treatment and mood: Professional, hardcore, nighttime development atmosphere, with a touch of ro",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -19144,21 +18574,6 @@
     },
     {
       "contentId": "queenie-now-or-future-analyzing-the-yudai-yamamoto-trade-with-data-w2g6nn",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "olumns left, center, and right, connected by a blue two-way arrow in the middle, with two portraits stacked vertically on the right Colour palette: [PALETTE].\nVisual treatment and mood: Objective, calm infographic style, with a white background and clear tex",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-now-or-future-analyzing-the-yudai-yamamoto-trade-with-data-w2g6nn",
       "scenarioId": "monetization-scenario:wechat-covers",
       "fit": "adaptable",
       "evidence": {
@@ -21349,21 +20764,6 @@
     },
     {
       "contentId": "queenie-the-decline-of-the-bourgeois-christian-world-5w7tqq",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "position: Layered top and bottom: a horizontal title band at the top, with left and right portraits and a central emblem arranged in a symmetrical three-point layout below.\nColour palette: [PALETTE].\nVisual treatment and mood: Calm, scholarly, with the nosta",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-the-decline-of-the-bourgeois-christian-world-5w7tqq",
       "scenarioId": "monetization-scenario:wechat-covers",
       "fit": "adaptable",
       "evidence": {
@@ -21764,21 +21164,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
         "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-the-peshwa-century-how-pune-turned-self-rule-into-subcontine-yvo6ih",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": " one original image inspired by the reference.\nSubject: [SUBJECT].\nComposition: Top: four portraits plus map and chronology; middle: mounted figure centered; bottom: four equal-width image-text boxes Colour palette: [PALETTE].\nVisual treatment and mood: A so",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -23464,21 +22849,6 @@
     },
     {
       "contentId": "queenie-why-elon-musk-is-suing-the-ai-empire-he-helped-found-tu6lhi",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "ge inspired by the reference.\nSubject: [SUBJECT].\nComposition: Left-right symmetrical two portraits flanking a centered logo, single horizontal frame Colour palette: [PALETTE].\nVisual treatment and mood: Tense futuristic-tech standoff, undercurrents surging ",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-why-elon-musk-is-suing-the-ai-empire-he-helped-found-tu6lhi",
       "scenarioId": "monetization-scenario:wechat-covers",
       "fit": "adaptable",
       "evidence": {
@@ -23684,21 +23054,6 @@
       "notes": {
         "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
         "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "queenie-why-professionalization-is-no-longer-a-core-competitive-adva-c3agsb",
-      "scenarioId": "monetization-scenario:avatar-portraits",
-      "fit": "adaptable",
-      "evidence": {
-        "field": "prompt",
-        "quote": "d by the reference.\nSubject: [SUBJECT].\nComposition: Three equal-width vertical half-body portraits arranged side by side horizontally, filling the entire frame Colour palette: [PALETTE].\nVisual treatment and mood: Calm, academic, sketch-like contemplative f",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
-        "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
       },
       "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
     },
@@ -24459,36 +23814,6 @@
       "evidence": {
         "field": "prompt",
         "quote": "Claude Code skills combine image generation and Three.js to create personalized greeting cards.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "A third-party tutorial summary connecting references, a brand system and an interactive landing page.",
-        "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-      },
-      "notes": {
-        "en": "",
-        "zh-CN": ""
-      },
-      "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6"
-    },
-    {
-      "contentId": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
-      "scenarioId": "monetization-scenario:sales-landing-pages",
-      "fit": "direct",
-      "evidence": {
-        "field": "prompt",
-        "quote": "Interactive 3D landing page and a coded launch film; author explicitly says it took multiple prompts.",
         "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
       },
       "notes": {

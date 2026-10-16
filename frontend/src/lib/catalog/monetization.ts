@@ -2,6 +2,7 @@ import taxonomy from '@/data/monetization-taxonomy.json';
 import membership from '@/data/monetization-membership.json';
 import audit from '@/data/monetization-audit.json';
 import {websiteEntries} from './website';
+import {websiteEditableTemplate} from './website-templates';
 import type {Catalog,Locale} from './types';
 
 type Copy=Record<Locale,string>;
@@ -12,15 +13,16 @@ type Edge={contentId:string;scenarioId:string;fit:string;evidence:{field:string;
 type Membership={version:number;revision:string;edges:Edge[]};
 type Audit={version:number;revision:string;records:{contentId:string;status:string;reason:string;scenarioIds:string[]}[]};
 export type MonetizationRef={id:string;slug:string;label:string;description:string;href:string;count:number;cover:string;groupId?:string};
-export type MonetizationEntry={id:string;key:string;title:string;summary:string;href:string;cover:string;kind:string;models:{slug:string;label:string}[];sourceUrl:string;fit:'direct'|'adaptable';notes:string};
+export type MonetizationEntry={id:string;key:string;title:string;summary:string;href:string;cover:string;kind:string;models:{slug:string;label:string}[];sourceUrl:string;prompt:string;language:string;attribution:string;reconstruction:boolean;siteAuthored:boolean;fit:'direct'|'adaptable';notes:string};
 const root=(c:Catalog)=>`/${c.locale}/prompts/monetization`;
 function contents(c:Catalog){
  const rows=new Map<string,MonetizationEntry>();const aliases=new Map<string,string>();
- for(const p of c.prompts)rows.set(p.id,{id:p.id,key:p.id,title:p.title,summary:p.summary,href:p.href,cover:p.img??'',kind:p.kind,models:p.models.map(m=>({slug:m.slug,label:m.label})),sourceUrl:p.source.url,fit:'direct',notes:''});
+ for(const p of c.prompts)rows.set(p.id,{id:p.id,key:p.id,title:p.title,summary:p.summary,href:p.href,cover:p.img??'',kind:p.kind,models:p.models.map(m=>({slug:m.slug,label:m.label})),sourceUrl:p.source.url,prompt:p.prompt,language:p.language,attribution:p.handle,reconstruction:!!p.reconstruction,siteAuthored:false,fit:'direct',notes:''});
  const byHref=new Map(c.prompts.map(p=>[p.href,p.id]));
  for(const w of websiteEntries(c)){
   const key=w.promptHref&&byHref.get(w.promptHref)||w.id;aliases.set(w.id,key);
-  rows.set(key,{id:w.id,key,title:w.title,summary:w.summary,href:w.href,cover:w.cover,kind:'website',models:w.models.map(m=>({slug:m.slug,label:m.label})),sourceUrl:w.source.url,fit:'direct',notes:''});
+  const template=websiteEditableTemplate(c,w);
+  rows.set(key,{id:w.id,key,title:w.title,summary:w.summary,href:w.href,cover:w.cover,kind:'website',models:w.models.map(m=>({slug:m.slug,label:m.label})),sourceUrl:w.source.url,prompt:template.prompt,language:template.language,attribution:w.attribution,reconstruction:false,siteAuthored:template.origin==='site-authored',fit:'direct',notes:''});
  }
  return {rows,aliases};
 }

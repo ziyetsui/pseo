@@ -1,8 +1,8 @@
 {
   "revision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
   "logicalContent": 2085,
-  "mapped": 1284,
-  "edges": 1633,
+  "mapped": 1257,
+  "edges": 1588,
   "scenes": [
     {
       "slug": "womenswear-selling",
@@ -105,7 +105,7 @@
     {
       "slug": "beauty-recommendations",
       "label": "美妆种草",
-      "count": 15,
+      "count": 14,
       "samples": [
         {
           "id": "prm_0336f324d253f11fa3458a14123a40d6",
@@ -280,7 +280,7 @@
     {
       "slug": "ecommerce-advertising",
       "label": "电商广告海报",
-      "count": 49,
+      "count": 47,
       "samples": [
         {
           "id": "2063871161998745877",
@@ -1554,22 +1554,8 @@
     {
       "slug": "sales-landing-pages",
       "label": "销售落地页",
-      "count": 28,
+      "count": 6,
       "samples": [
-        {
-          "id": "prm_0727bd50bcd595107796f4e9d7511a0e",
-          "title": "Single-component modern product landing page",
-          "fit": "direct",
-          "evidence": {
-            "field": "prompt",
-            "quote": "Please create a single-file React component (App.jsx) using Tailwind CSS for a modern landing page.\nYou must follow these exact structural, timing, and styling specifications to ensure the layout is perfectly identical to the design:\n\n**1.\nGlobal Styles & An",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-          },
-          "notes": {
-            "en": "",
-            "zh-CN": ""
-          }
-        },
         {
           "id": "prm_1bcc9bc2322c1402f5c915dd1bfa4d59",
           "title": "Single-File Product Landing Page and Deployment Workflow",
@@ -1599,26 +1585,40 @@
           }
         },
         {
-          "id": "prm_2eee6d3826592ab105baf9be4322f1e8",
-          "title": "Cinematic official website for a command-line product",
-          "fit": "adaptable",
-          "evidence": {
-            "field": "prompt",
-            "quote": "Create a cinematic, editorial, near-black landing page for Gateflow CLI using the project info from this repo (read the README and key files first): <github repo>.\nThe site must use full-viewport (100vh) section sn",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-          },
-          "notes": {
-            "en": "Add real commercial offer, pricing or sales conversion CTA; retain calm visual direction.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“销售落地页”所需的输出规格。"
-          }
-        },
-        {
-          "id": "prm_36746ac3df56afb102fb9a7a77d7e12e",
-          "title": "Responsive Landing Page Code",
+          "id": "prm_3f808154f2bc5f53428592a65c84d42b",
+          "title": "Dark landing page for an AI agency",
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "Create a responsive landing page in HTML and CSS for a [business type].\nInclude a hero section, features, testimonials, and contact CTA.\nUse clean beginner-friendly code, clear class names, an",
+            "quote": "Build a modern dark-themed landing page for my AI agency.\nInclude a hero section, pricing cards, testimonials, FAQs, contact form, and mobile responsiveness.\nUse blue and purple gradients with smooth",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_545322199e8d72a269b77ce50651f1aa",
+          "title": "Beverage Brand Scrollytelling Website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Hey Opus, let’s create a beautiful, scroll-driven animated landing page for reFresh, inspired by the motion and storytelling in this reference: https://t.co/IwQo3op6rF.\n\nYou have access to Higgsfield, and I’ve attached product imag",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_d6e55d5ee004601c68708f715a13090b",
+          "title": "High-conversion cinematic landing page",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Act as a creative director and copywriter specialized in conversion.\nCreate a premium landing page that combines cinematic images with persuasive messages.\nInclude a main interactive section (hero), product narrative, feature demonstrations, social proof, pr",
             "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
           },
           "notes": {
@@ -1903,7 +1903,7 @@
     {
       "slug": "avatar-portraits",
       "label": "头像写真",
-      "count": 156,
+      "count": 136,
       "samples": [
         {
           "id": "2015726421990056336",

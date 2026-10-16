@@ -18,3 +18,14 @@ it('does not treat location as cat or preserved hairstyle as a salon deliverable
  const slugs=classifyRecord(row).map((x:{slug:string})=>x.slug);
  expect(slugs).not.toContain('pet-portraits');expect(slugs).not.toContain('beauty-services');expect(slugs).not.toContain('product-detail-images');
 });
+it('excludes real background-cosmetics, livestream UI and non-sales comic blog cases',async()=>{
+ const {createGitBetaCatalog}=await import('../src/lib/catalog/git-beta');const c=createGitBetaCatalog('en');
+ for(const [id,slugs]of [
+  ['prm_414ab3308f9c71150e5e4b56f4b666e3',['beauty-recommendations']],
+  ['prm_2169d5c2e768245b22e20421f52fe9a1',['ecommerce-advertising','avatar-portraits']],
+  ['prm_3cab81ced0cd0b54a5f5fcaf31098f3c',['sales-landing-pages']],
+ ] as const){const row=c.prompts.find(p=>p.id===id)!;for(const slug of slugs)expect(classifyRecord(row).map(e=>e.slug)).not.toContain(slug);}
+});
+it('ignores JSON negative_prompt properties as well as prose negatives',()=>{
+ expect(positiveText('{"prompt":"a mountain landscape","negative_prompt":"womenswear product advertisement"}')).not.toContain('womenswear');
+});

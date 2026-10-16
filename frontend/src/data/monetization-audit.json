@@ -371,11 +371,9 @@
     },
     {
       "contentId": "prm_0727bd50bcd595107796f4e9d7511a0e",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_07fbf594306eb242db1aa9d779999914",
@@ -823,9 +821,9 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
         "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns"
+        "monetization-scenario:brand-campaigns",
+        "monetization-scenario:beauty-recommendations"
       ]
     },
     {
@@ -885,12 +883,9 @@
     },
     {
       "contentId": "prm_2169d5c2e768245b22e20421f52fe9a1",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_2172ff2675b281f721966d26a6406ad3",
@@ -1105,12 +1100,9 @@
     },
     {
       "contentId": "prm_2b5d95ec9577976cc60928e429c93467",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_2bc63420accc12489801261be1e60d1d",
@@ -1158,11 +1150,9 @@
     },
     {
       "contentId": "prm_2eee6d3826592ab105baf9be4322f1e8",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_2ef1bc677c1df9801bad2ba25326ada7",
@@ -1320,11 +1310,9 @@
     },
     {
       "contentId": "prm_36746ac3df56afb102fb9a7a77d7e12e",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_3677504574a59f76419f7bc7df98ec5a",
@@ -1449,11 +1437,9 @@
     },
     {
       "contentId": "prm_3cab81ced0cd0b54a5f5fcaf31098f3c",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_3caee6db7fff86523631e7ce97d58b2e",
@@ -1463,11 +1449,9 @@
     },
     {
       "contentId": "prm_3cb1d4b5f38636cef5f6c9b6edcc7831",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_3cbba61a98e101da466cdc0c48dbeb9b",
@@ -1550,11 +1534,9 @@
     },
     {
       "contentId": "prm_414ab3308f9c71150e5e4b56f4b666e3",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:beauty-recommendations"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_41fefb3165d469a64fa5758b5d9bbaef",
@@ -1629,11 +1611,9 @@
     },
     {
       "contentId": "prm_45027e5681fa99fd31e782bb3b3f0822",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_4609140d6591dad75f2ca1b32ac56a56",
@@ -1879,11 +1859,9 @@
     },
     {
       "contentId": "prm_52b1a92daf89746a86d58dfd2cc78e12",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_52cbb6b887e82f04ff5b8c498bfc6b63",
@@ -1940,11 +1918,9 @@
     },
     {
       "contentId": "prm_55a16ede07cff7a35f1a69ed61ca5ce5",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_55b40d5a06c08f467f8941b9a260a830",
@@ -1956,11 +1932,9 @@
     },
     {
       "contentId": "prm_55f265da8d16dbc588e706468da4ba21",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_55fec1c20a019e3dfb1458aaf18a8ac6",
@@ -2206,11 +2180,9 @@
     },
     {
       "contentId": "prm_644602041483aa2ed9fd86c71a5edf94",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_644ed03701eabfb0bb756e69db0371e7",
@@ -2408,7 +2380,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:sales-landing-pages",
         "monetization-scenario:portfolio-websites"
       ]
     },
@@ -2489,7 +2460,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:sales-landing-pages",
         "monetization-scenario:portfolio-websites"
       ]
     },
@@ -2606,11 +2576,9 @@
     },
     {
       "contentId": "prm_78349af8423264beb8d90a27135e17ff",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_78387d67524f48c74dc0e501a4592a55",
@@ -2666,11 +2634,9 @@
     },
     {
       "contentId": "prm_7c0573091c8ba844e7c77d7584cae4c1",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_7cb9477ad4a86166ad265bd2aaffa3b7",
@@ -2731,9 +2697,7 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:sales-landing-pages",
-        "monetization-scenario:portfolio-websites",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:portfolio-websites"
       ]
     },
     {
@@ -2922,11 +2886,9 @@
     },
     {
       "contentId": "prm_893985a3f6ec37bd268151343b5ed1e5",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_896e5fb5d16119e1d7c2230548133e6d",
@@ -2978,11 +2940,9 @@
     },
     {
       "contentId": "prm_8c516690bf8ce1b4757c4fb8565bc448",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_8c539cbf61913e1dafffa92dac7f5bc2",
@@ -3173,11 +3133,9 @@
     },
     {
       "contentId": "prm_9488de34c3c8f101763e343bbe175434",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_94db99961548b80b31affa07ca830c92",
@@ -3204,17 +3162,14 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:commercial-illustration",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:commercial-illustration"
       ]
     },
     {
       "contentId": "prm_95ea769827f40e44860f78355d61b16c",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_9620a85bbc7991b2dcb4c3abec25741f",
@@ -3412,11 +3367,9 @@
     },
     {
       "contentId": "prm_9e6bfbb979ac354fcbf219344db06f1f",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_9e7aae7b02298ef959258eedb3de8b00",
@@ -4008,8 +3961,7 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:short-video-covers",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:short-video-covers"
       ]
     },
     {
@@ -4295,11 +4247,9 @@
     },
     {
       "contentId": "prm_cd31c191b3fd333019bed38a7f54dbeb",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_cd8742c810ec8d65770e473243f846a8",
@@ -4403,11 +4353,9 @@
     },
     {
       "contentId": "prm_d1e832ea439e98f76d7c95bb167e2c90",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_d2315b1c0b26d1672585a1f84c50706c",
@@ -4499,11 +4447,9 @@
     },
     {
       "contentId": "prm_d7548e5fbfb04d0e999529d444ed1896",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_d86ad5e5f413c97c526bc5e558803e75",
@@ -4606,7 +4552,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:sales-landing-pages",
         "monetization-scenario:portfolio-websites"
       ]
     },
@@ -4982,8 +4927,7 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -5109,11 +5053,9 @@
     },
     {
       "contentId": "prm_f3d2c6d90d4fa018bb8dab8a254af406",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_f3d3775541c505b794568cf55bffb591",
@@ -5135,8 +5077,7 @@
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
         "monetization-scenario:educational-posts",
-        "monetization-scenario:explainers",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:explainers"
       ]
     },
     {
@@ -5194,11 +5135,9 @@
     },
     {
       "contentId": "prm_f8ad01d1ce993fb351d7742c0e2b4884",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_f8b183565ca5f0cc4ae812d61ee3bd7d",
@@ -8176,7 +8115,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -8789,7 +8727,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -11655,7 +11592,6 @@
       "scenarioIds": [
         "monetization-scenario:educational-posts",
         "monetization-scenario:explainers",
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -13140,7 +13076,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -13385,7 +13320,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -14549,7 +14483,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -14641,7 +14574,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:avatar-portraits",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -15361,11 +15293,9 @@
     },
     {
       "contentId": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
@@ -15375,11 +15305,9 @@
     },
     {
       "contentId": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:sales-landing-pages"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",

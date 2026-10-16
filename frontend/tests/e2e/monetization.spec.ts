@@ -23,12 +23,14 @@ for(const locale of ['zh-CN','en']){
   await page.getByRole('button',{name:zh?'清除筛选':'Clear filters',exact:true}).click();await expect(page).not.toHaveURL(/fit=/);
   await expect(page.locator('.footnav > div')).toHaveCount(5);await expect(page.locator('.footnav > div').last().locator('a')).toHaveCount(6);
   const other=zh?'en':'zh-CN';await page.locator('.language-switch summary').click();await page.locator(`.language-switch a[hreflang="${other}"]`).click();await expect(page).toHaveURL(new RegExp(`/${other}/prompts/monetization/commerce/womenswear-selling$`));
-  for(const width of [320,375,768,1440]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
+  for(const width of [320,375,768,1440]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);if(width===375||width===1440)expect(await page.locator('.footnav').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(width===375?2:5);}
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact??''))).toEqual([]);
  });
  test(`${locale} adaptable cases and website scenes retain source navigation`,async({page})=>{
   await page.goto(`/${locale}/prompts/monetization/creator-content/wechat-covers?fit=adaptable`);
   await expect(page.locator('.monet-filters select').nth(2)).toHaveValue('adaptable');await expect(page.locator('.monet-note').first()).toBeVisible();
+  await page.getByRole('button',{name:locale==='zh-CN'?/查看更多/:/Show more/}).click();
+  const later=page.locator('[data-monetization-case] h2 a').nth(27);await later.click();await page.goBack();await expect(page.locator('[data-monetization-case]')).toHaveCount(48);
   await page.goto(`/${locale}/prompts/monetization/web-services/ecommerce-websites`);
   const href=await page.locator('[data-monetization-case] h2 a').first().getAttribute('href');
   expect(href).toMatch(/\/(?:website\/|case-)/);await page.locator('[data-monetization-case] h2 a').first().click();await expect(page.locator('.monet-related')).toBeVisible();

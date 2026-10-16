@@ -1,3 +1,4 @@
+import {monetizationPage} from '@/lib/catalog/monetization';
 import { interfaceLocale, text, promptCount, caseCount } from '@/lib/i18n/text';
 import { websiteEntries, websitePrompts } from '@/lib/catalog/website';
 import { websiteViewForPath, websiteViews } from '@/lib/catalog/website-views';
@@ -60,6 +61,8 @@ export function siteMetadata(catalog: Catalog, path: string, title: string, prom
     else if (path === `/${catalog.locale}/blog`) copy = { title: '笔记', description: '提示词库发布的文章与笔记，保留原始来源署名。' };
     else copy = { title: '图片与视频提示词', description: `按模型、任务和风格探索 ${promptCount('zh-CN', catalog.prompts.length)}，阅读原始指令、查看结果并访问来源。` };
   }
+  const money=monetizationPage(catalog,path);
+  if(money){const ref=money.scenario??money.group;copy={title:ref?.label??text(catalog.locale,'Browse by monetization','按变现浏览'),description:ref?.description??text(catalog.locale,'Find creative cases by practical commercial use.','按实际商业用途查找创作案例。')};}
   const resolvedTitle = !visual && seo?.title ? seo.title : `${copy.title} · ${text(interfaceLocale(catalog), 'Prompt Library', '提示词库')}`;
   const description = seo?.description || copy.description;
   const robots = path === `/${catalog.locale}/prompts/website` ? 'noindex,nofollow' : surface?.robots ?? seo?.robots;

@@ -26,3 +26,17 @@ it('connects homepage and details while hiding an unavailable projection',()=>{
  const e=monetizationEntries(c)[0]!;expect(renderToStaticMarkup(<MonetizationRelated catalog={c} contentId={e.id}/>)).toContain('/monetization/');
  expect(renderToStaticMarkup(<MonetizationBand catalog={createFixtureCatalog('zh-CN')}/>)).toBe('');
 });
+it('preserves exact scene-specific prompt text and source context in initial HTML',()=>{
+ const scene=monetizationScenarios(c).find(s=>s.slug==='wechat-covers')!;const entry=monetizationEntries(c,scene.id)[0]!;
+ const doc=parse(renderToStaticMarkup(<MonetizationPage catalog={c} scenario={scene}/>));
+ expect(doc.querySelector('[data-monetization-prompt]')?.textContent).toBe(entry.prompt);
+ expect(entry.prompt).toBeTruthy();expect(doc.text).toContain(entry.attribution);
+});
+it('gives each directory, group and scene matching bilingual page and share metadata',async()=>{
+ const {siteMetadata}=await import('../src/site/metadata');
+ for(const locale of ['zh-CN','en'] as const){const cat=createGitBetaCatalog(locale);const group=monetizationGroups(cat)[0]!,scene=monetizationScenarios(cat)[0]!;
+  for(const [path,label]of [[`/${locale}/prompts/monetization`,locale==='en'?'Browse by monetization':'按变现浏览'],[group.href,group.label],[scene.href,scene.label]]){
+   const m=siteMetadata(cat,path!,label!);expect(String(m.title)).toContain(label);expect(m.openGraph?.title).toEqual(m.title);expect(m.twitter?.title).toEqual(m.title);
+  }
+ }
+});
