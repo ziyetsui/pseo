@@ -1,4 +1,5 @@
 /** Offline candidate extraction only. Published views read explicit, versioned edges. */
+import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -56,7 +57,7 @@ export function classifyRecord(row){
  const result=[];
  for(const [slug,a,b,fit,kind] of rules){
   if(kind==='video'&&row.kind!=='video'||kind==='website'&&!website)continue;
-  const uiMockup=/(?:interface mockup|ui_layout|screenshot|界面截图|直播.{0,12}界面)/iu.test(goal.slice(0,900));
+  const uiMockup=/(?:(?:interface|ui) mockup|ui_layout|screenshot|界面截图|直播.{0,12}界面)/iu.test(goal.slice(0,900));
   if(uiMockup&&['beauty-recommendations','ecommerce-advertising','avatar-portraits','brand-campaigns'].includes(slug))continue;
   if(slug==='beauty-recommendations'&&/(?:mirror selfie|bathroom|自拍|浴室)/iu.test(goal.slice(0,400))&&!/(?:advert|campaign|广告|宣传)/iu.test(goal.slice(0,400)))continue;
   if(slug==='sales-landing-pages'&&!/(?:sales|conversion|pricing|purchase|product|course|booking|销售|转化|购买|产品|课程|预约|注册)/iu.test(goal.slice(0,700)))continue;
@@ -78,7 +79,8 @@ export function classifyRecord(row){
  if(tags.some(t=>t.slug==='editorial-covers'))result.push({slug:'wechat-covers',fit:'adaptable',evidence:{field:'useCases',quote:'editorial-covers',reason:'Existing article-cover classification supports an adapted editorial cover, not a native WeChat template.'}});
  return result;
 }
-function prepare(input,review,sampleReview){
+function prepare(input,review,sampleReview,advertisingReview){
+ if(!advertisingReview||advertisingReview.reviewedCount!==advertisingReview.judgments?.length)throw Error('Complete advertising review is required before generating published members');
  const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');const tax=JSON.parse(readFileSync(path.join(root,'src/data/monetization-taxonomy.json'),'utf8'));
  const prompts=new Map(input.prompts.map(p=>[p.id,p]));const byHref=new Map(input.prompts.map(p=>[p.href,p]));const aliases=new Map();const content=new Map(prompts);
  for(const w of input.websites){const p=byHref.get(w.promptHref);const key=p?.id??w.id;aliases.set(w.id,key);if(!content.has(key))content.set(key,{...w,prompt:w.summary,kind:'other',img:w.cover});}
@@ -88,6 +90,10 @@ function prepare(input,review,sampleReview){
  const curatedScenes=new Set(['womenswear-selling','virtual-try-on','product-hero-images','product-detail-images','promotional-campaigns','product-launches','product-ad-videos','xiaohongshu-shopping','short-video-covers','relationship-comics','restaurant-marketing','cafe-bakery-marketing','beauty-services','logo-design','brand-identity','packaging-design','commercial-brochures','ecommerce-websites','interactive-product-showcases','digital-publications','couple-keepsakes','pet-portraits','greeting-cards','art-prints']);
  const approved=new Set((sampleReview?.judgments??[]).filter(j=>['keep','change-to-adaptable','change-to-direct'].includes(j.verdict)).map(j=>(aliases.get(j.contentId)??j.contentId)+':'+j.scenarioId));
  for(const m of sampleReview?.replacementAllowlist??[]){const key=aliases.get(m.contentId)??m.contentId;approved.add(key+':'+m.scenarioId);const list=manual.get(key)??[];list.push({scenarioId:m.scenarioId,fit:m.fit,evidence:{field:m.evidence.field,excerpt:m.evidence.quote,reason:'Independent review confirmed the positive target in the complete source body.'},adaptationNotes:m.adaptationNotes});manual.set(key,list);}
+ const reviewedScenes=new Set(['ecommerce-advertising','beauty-recommendations','brand-campaigns']);
+ const finalAds=new Map();
+ for(const j of advertisingReview?.judgments??[]){const key=aliases.get(j.contentId)??j.contentId;const row=content.get(key);if(!row||createHash('sha256').update(row.prompt??row.summary??'').digest('hex')!==j.bodySha256)throw Error('Reviewed advertising body changed: '+j.contentId);}
+ for(const m of advertisingReview?.memberships??[]){const key=aliases.get(m.contentId)??m.contentId;const list=finalAds.get(key)??[];list.push(m);finalAds.set(key,list);}
  const wrongComic=new Set(['prm_009963122d9aa7088958596831061900','prm_4ad36c7c4c1ca068200e3a0a24106c7e','prm_6b3f1a9c8b7954e9c15b44814e329eb9']);
  for(const [id,row]of content){
   const found=new Map(classifyRecord(row).filter(e=>!(e.slug==='relationship-comics'&&wrongComic.has(id))).map(e=>[e.slug,e]));
@@ -101,9 +107,11 @@ function prepare(input,review,sampleReview){
    if(judgment?.verdict==='change-to-adaptable'){item.fit='adaptable';item.manualNotes=judgment.requiredNotes;}
    if(judgment?.verdict==='change-to-direct')item.fit='direct';
   }
+  for(const slug of reviewedScenes)found.delete(slug);
+  for(const m of finalAds.get(id)??[])found.set(m.scenarioId,{slug:m.scenarioId,fit:m.fit,evidence:m.evidence,manualNotes:m.notes.en,manualZh:m.notes['zh-CN']});
   for(const item of found.values()){
    const scene=sceneBySlug.get(item.slug);if(!scene)throw Error('Unknown scenario '+item.slug);
-   const zhNote=item.slug==='wechat-covers'?'按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。':item.slug==='xiaohongshu-shopping'?'替换为真实商品、使用场景和真实卖点，按小红书图文版式重新排版。':item.slug==='virtual-try-on'?'提供实际服装参考并核对服装细节；此案例展示换装思路，不保证商品细节一致。':`将主体、品牌或文案替换为实际委托内容，并调整为“${scene.labels['zh-CN']}”所需的输出规格。`;
+   const zhNote=item.manualZh||(item.slug==='wechat-covers'?'按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。':item.slug==='xiaohongshu-shopping'?'替换为真实商品、使用场景和真实卖点，按小红书图文版式重新排版。':item.slug==='virtual-try-on'?'提供实际服装参考并核对服装细节；此案例展示换装思路，不保证商品细节一致。':`将主体、品牌或文案替换为实际委托内容，并调整为“${scene.labels['zh-CN']}”所需的输出规格。`);
    const enNote=item.manualNotes||`Replace the subject, brand or copy for the actual brief and adapt the format for ${scene.labels.en.toLowerCase()}.`;
    edges.push({contentId:id,scenarioId:scene.id,fit:item.fit,evidence:item.evidence,notes:{en:item.fit==='adaptable'?enNote:'','zh-CN':item.fit==='adaptable'?zhNote:''},sourceRevision:input.revision});
   }
@@ -116,5 +124,5 @@ function prepare(input,review,sampleReview){
  console.log(JSON.stringify({revision:input.revision,logicalContent:content.size,mapped:records.filter(r=>r.status==='mapped').length,edges:edges.length,scenes:counts.map(({slug,label,count})=>({slug,label,count}))},null,2));
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- const input=JSON.parse(readFileSync(process.argv[2],'utf8'));const review=process.argv[3]?JSON.parse(readFileSync(process.argv[3],'utf8')):null;const sampleReview=process.argv[4]?JSON.parse(readFileSync(process.argv[4],'utf8')):null;prepare(input,review,sampleReview);
+ const input=JSON.parse(readFileSync(process.argv[2],'utf8'));const review=process.argv[3]?JSON.parse(readFileSync(process.argv[3],'utf8')):null;const sampleReview=process.argv[4]?JSON.parse(readFileSync(process.argv[4],'utf8')):null;const advertisingReview=process.argv[5]?JSON.parse(readFileSync(process.argv[5],'utf8')):null;prepare(input,review,sampleReview,advertisingReview);
 }

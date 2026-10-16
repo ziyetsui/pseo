@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "revision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d",
   "records": [
     {
       "contentId": "2073529429838696592",
@@ -63,8 +63,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -272,21 +272,19 @@
     },
     {
       "contentId": "prm_02aa95c677b6ef3f67a3806c9209744a",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_0336f324d253f11fa3458a14123a40d6",
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
+        "monetization-scenario:avatar-portraits",
         "monetization-scenario:beauty-recommendations",
         "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -300,10 +298,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:promotional-campaigns",
-        "monetization-scenario:commercial-illustration"
+        "monetization-scenario:commercial-illustration",
+        "monetization-scenario:ecommerce-advertising",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -359,8 +357,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:promotional-campaigns"
+        "monetization-scenario:promotional-campaigns",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -500,8 +498,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:packaging-design"
+        "monetization-scenario:packaging-design",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -555,7 +553,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:brand-identity",
         "monetization-scenario:packaging-design",
         "monetization-scenario:logo-design"
@@ -707,11 +704,9 @@
     },
     {
       "contentId": "prm_1c0d405f9b0240435918710f421975b1",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_1c37e5ce7a5b1af949c8b47ec7c69746",
@@ -725,10 +720,10 @@
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
         "monetization-scenario:product-hero-images",
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:product-launches",
-        "monetization-scenario:packaging-design"
+        "monetization-scenario:packaging-design",
+        "monetization-scenario:ecommerce-advertising",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -769,9 +764,7 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
         "monetization-scenario:product-hero-images",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:promotional-campaigns"
       ]
     },
@@ -822,7 +815,6 @@
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
         "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:beauty-recommendations"
       ]
     },
@@ -940,8 +932,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -963,11 +955,9 @@
     },
     {
       "contentId": "prm_2660f3f5132ae7da753822d0bb2b0659",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_266970dd4ad3815bce67960e9dbf79ae",
@@ -1053,8 +1043,7 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns"
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -1251,10 +1240,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:restaurant-marketing",
-        "monetization-scenario:promotional-campaigns"
+        "monetization-scenario:promotional-campaigns",
+        "monetization-scenario:beauty-recommendations",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -1360,7 +1349,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:avatar-portraits"
       ]
     },
@@ -1375,8 +1363,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -1813,7 +1801,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:commercial-illustration",
         "monetization-scenario:explainers"
@@ -1871,20 +1858,18 @@
     },
     {
       "contentId": "prm_534d409ea5bf2f2449a93c7c115cbd3b",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_538bf286070a04553dc7d44dcd1c85e3",
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:commercial-illustration",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -2355,11 +2340,9 @@
     },
     {
       "contentId": "prm_6bb4be1bd758ea4df9e3edebae18c19b",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:brand-campaigns"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_6c94e365797d783dae6f3252d13da801",
@@ -2433,11 +2416,11 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:travel-marketing",
         "monetization-scenario:commercial-illustration",
-        "monetization-scenario:explainers"
+        "monetization-scenario:explainers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -2505,7 +2488,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:educational-posts",
         "monetization-scenario:commercial-illustration",
         "monetization-scenario:explainers"
@@ -2658,11 +2640,9 @@
     },
     {
       "contentId": "prm_7d9598e64366a2ae2e6c65191ce256b4",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:brand-campaigns"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_7db06ce385df50e39062d8dafa2cbcde",
@@ -2742,8 +2722,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:travel-marketing"
+        "monetization-scenario:travel-marketing",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -2783,8 +2763,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:commercial-illustration"
+        "monetization-scenario:commercial-illustration",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -2816,12 +2796,11 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:xiaohongshu-shopping",
         "monetization-scenario:wechat-covers",
-        "monetization-scenario:cafe-bakery-marketing"
+        "monetization-scenario:cafe-bakery-marketing",
+        "monetization-scenario:ecommerce-advertising",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -2918,7 +2897,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:educational-posts",
         "monetization-scenario:commercial-illustration",
         "monetization-scenario:explainers"
@@ -3042,11 +3020,9 @@
     },
     {
       "contentId": "prm_907dc454e15bd8de6dc022dd8857a3b4",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_90c9e323516ea9fcd05885d4756a82c9",
@@ -3063,10 +3039,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:avatar-portraits",
         "monetization-scenario:promotional-campaigns",
-        "monetization-scenario:restaurant-marketing"
+        "monetization-scenario:restaurant-marketing",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -3096,8 +3072,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -3119,11 +3095,9 @@
     },
     {
       "contentId": "prm_943843acefd69e94e8ea552c5f0fbee8",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_9463e1340ffcecd0894e161c42b1c035",
@@ -3211,11 +3185,9 @@
     },
     {
       "contentId": "prm_97cef9a1532c1e2a095be0a0eca295cc",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_97f958b6be0d431e6d33143849f74460",
@@ -3421,11 +3393,9 @@
     },
     {
       "contentId": "prm_a275e265b92ed340a2eae516e3409011",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:beauty-recommendations"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_a28a073846d3c4ed9ba88d86e88d1af7",
@@ -3472,10 +3442,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:commercial-illustration",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:ecommerce-advertising",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -3579,7 +3549,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:restaurant-marketing",
         "monetization-scenario:cafe-bakery-marketing"
       ]
@@ -3601,8 +3570,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -3610,8 +3579,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:explainers"
       ]
@@ -3659,9 +3626,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:travel-marketing"
+        "monetization-scenario:travel-marketing",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -3802,11 +3768,9 @@
     },
     {
       "contentId": "prm_b54dd0f525d467d283035eff5b326708",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:brand-campaigns"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_b586a9288e9871968f76da00d64d8ce5",
@@ -3829,8 +3793,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -3944,7 +3908,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:commercial-illustration"
       ]
     },
@@ -4078,11 +4041,9 @@
     },
     {
       "contentId": "prm_c3bfc939d3d4591b41df3be6aca05055",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:beauty-recommendations"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_c411819301036d393d3bd35959175a22",
@@ -4155,11 +4116,9 @@
     },
     {
       "contentId": "prm_c728705b1d892d07143b58fbafe78c9c",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:avatar-portraits"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_c752da85c2b641d83ff6184f9feff49d",
@@ -4241,7 +4200,6 @@
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
         "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:brand-campaigns"
       ]
     },
@@ -4284,9 +4242,9 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
-        "monetization-scenario:explainers"
+        "monetization-scenario:explainers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -4435,7 +4393,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:sales-landing-pages"
       ]
     },
@@ -4482,8 +4439,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:explainers",
         "monetization-scenario:avatar-portraits"
@@ -4578,8 +4533,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:commercial-brochures"
       ]
     },
@@ -4641,9 +4594,9 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:travel-marketing",
-        "monetization-scenario:commercial-illustration"
+        "monetization-scenario:commercial-illustration",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -4744,10 +4697,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:commercial-illustration",
-        "monetization-scenario:explainers"
+        "monetization-scenario:explainers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -4761,7 +4714,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:logo-design"
       ]
     },
@@ -4776,9 +4728,9 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
+        "monetization-scenario:avatar-portraits",
         "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -4895,8 +4847,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:beauty-recommendations",
-        "monetization-scenario:avatar-portraits"
+        "monetization-scenario:avatar-portraits",
+        "monetization-scenario:beauty-recommendations"
       ]
     },
     {
@@ -4924,11 +4876,9 @@
     },
     {
       "contentId": "prm_ecdc64a0dd58b5b0145456686065dd0a",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising"
-      ]
+      "status": "unrelated",
+      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_ed8d38002bbe153f1b2fe684245ab77a",
@@ -5036,10 +4986,10 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
-        "monetization-scenario:explainers"
+        "monetization-scenario:explainers",
+        "monetization-scenario:ecommerce-advertising",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -5108,7 +5058,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:educational-posts",
         "monetization-scenario:commercial-illustration",
         "monetization-scenario:explainers"
@@ -5119,7 +5068,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:educational-posts",
         "monetization-scenario:explainers"
       ]
@@ -6398,7 +6346,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -6724,8 +6671,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -7274,7 +7221,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -7703,8 +7649,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:ecommerce-advertising"
       ]
     },
     {
@@ -8847,7 +8793,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:wechat-covers"
       ]
     },
@@ -9176,7 +9121,6 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:commercial-illustration",
         "monetization-scenario:wechat-covers"
       ]
@@ -10494,8 +10438,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -10519,8 +10463,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -13770,9 +13714,9 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
         "monetization-scenario:product-launches",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {
@@ -14614,8 +14558,8 @@
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
       "scenarioIds": [
-        "monetization-scenario:brand-campaigns",
-        "monetization-scenario:wechat-covers"
+        "monetization-scenario:wechat-covers",
+        "monetization-scenario:brand-campaigns"
       ]
     },
     {

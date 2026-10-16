@@ -42,3 +42,9 @@ describe('auditable monetization projection',()=>{
   expect(monetizationEntries(en,scene.id).map(e=>e.key)).toEqual(monetizationEntries(zh,scene.id).map(e=>e.key));
  });
 });
+it('publishes only the completely reviewed advertising allowlist',()=>{
+ const scene=monetizationScenarios(en).find(s=>s.slug==='ecommerce-advertising')!;const rows=monetizationEntries(en,scene.id);
+ expect(rows).toHaveLength(33);
+ for(const id of ['prm_943843acefd69e94e8ea552c5f0fbee8','prm_8a0b2e4bb11044aba212e95282a65f57','prm_f6fb70f281d2e96fc40baf22550a2f57'])expect(rows.some(e=>e.key===id)).toBe(false);
+ expect(rows.find(e=>e.key==='prm_eee518243a4b25f519a07b6811a21bde')?.fit).toBe('adaptable');
+});

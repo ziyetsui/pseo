@@ -1,8 +1,8 @@
 {
-  "revision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "revision": "sha256:c46e51d0049c9eee2bad342189c1c71c2d55a2aa7a3eb761b267bd746189c46d",
   "logicalContent": 2085,
-  "mapped": 1257,
-  "edges": 1588,
+  "mapped": 1243,
+  "edges": 1546,
   "scenes": [
     {
       "slug": "womenswear-selling",
@@ -105,7 +105,7 @@
     {
       "slug": "beauty-recommendations",
       "label": "美妆种草",
-      "count": 14,
+      "count": 9,
       "samples": [
         {
           "id": "prm_0336f324d253f11fa3458a14123a40d6",
@@ -113,26 +113,12 @@
           "fit": "adaptable",
           "evidence": {
             "field": "prompt",
-            "quote": "{\n  \"image_type\": \"luxury perfume advertisement poster\",\n  \"resolution\": \"4K ultra HD (4096x5120)\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaig",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
-            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
-          }
-        },
-        {
-          "id": "prm_1da2ae16f0eba4899cf1be2718194c88",
-          "title": "Brand visual identity sheet",
-          "fit": "adaptable",
-          "evidence": {
-            "field": "prompt",
-            "quote": "\"brand\": \"{argument name=\\\"brand name\\\" default=\\\"CLEAR RESET\\\"}\",\n  \"theme\": \"refreshing skincare, clean aesthetic, water bubbles background\",\n  \"color_palette\": [\"white\", \"{argument name=\\\"primary color\\\" default=\\\"teal\\\"}\", \"light blue\"],\n  \"layout\": {\n  ",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
-          },
-          "notes": {
-            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+            "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+            "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
           }
         },
         {
@@ -141,8 +127,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "所有人脸保持一致，仅唇色变化，真实试色效果（lip color try-on）",
-            "reason": "Explicit branded lipstick swatches on consistent faces."
+            "quote": "基于用户上传自拍与指定口红品牌，生成一张具有品牌调性的“口红推荐报告信息结构图”。",
+            "reason": "Real branded lipstick comparison provides positive product recommendation content that can be reformatted as a product ad."
           },
           "notes": {
             "en": "",
@@ -155,12 +141,12 @@
           "fit": "adaptable",
           "evidence": {
             "field": "prompt",
-            "quote": "[中文]\n为Z世代设计的可爱Y2K风格的平价化妆品广告图像。使用鲜艳的配色，包括荧光色。纵横比为3:4。\n\n[English]\nCute Y2K style affordable cosmetics advertising image designed for Gen Z.\nUsing vibrant color schemes, including neon colors.\nAspect ratio is 3:4.",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "Cute Y2K style affordable cosmetics advertising image designed for Gen Z.",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
-            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+            "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+            "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
           }
         },
         {
@@ -169,12 +155,26 @@
           "fit": "adaptable",
           "evidence": {
             "field": "prompt",
-            "quote": "辉光\",\n        \"atmosphere\": \"薄雾增强光线漫射\"\n      }\n    },\n    \"main_subject\": {\n      \"type\": \"香水瓶\",\n      \"position\": \"中心前景\",\n      \"placement\": \"置于华丽木桌之上\",\n      \"material\": {\n        \"bottle\": \"透明清玻璃\",\n        \"cap\": \"黄金金属矩形瓶盖\",\n        \"liquid\": \"淡金香水液体",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"style\": \"超现实商业产品摄影\"",
+            "reason": "Main subject is a perfume bottle with labeled ingredient stack; useful for beauty recommendation, but current output is product photography rather than a recommendation."
           },
           "notes": {
-            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+            "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics.",
+            "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。"
+          }
+        },
+        {
+          "id": "prm_33282e3d03e119b3640b29d204a66b2d",
+          "title": "Interface interaction design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "\"type\": \"2x2 advertising banner grid\"",
+            "reason": "Explicit skincare advertising quadrant is a positive product target, but the entire output is a four-industry ad grid and needs extraction into a recommendation post."
+          },
+          "notes": {
+            "en": "Use the actual cosmetic product and verified usage context. Add suitability, application or comparison notes as recommendation content; do not inherit invented benefit claims or statistics. Extract the relevant advertising panel from the multi-panel board.",
+            "zh-CN": "使用实际美妆产品及可核实的使用情境，补充适用人群、使用方法或对比说明，改为种草推荐内容；不沿用虚构功效、统计数据。 从多面板中单独提取对应广告区域。"
           }
         }
       ]
@@ -280,7 +280,7 @@
     {
       "slug": "ecommerce-advertising",
       "label": "电商广告海报",
-      "count": 47,
+      "count": 33,
       "samples": [
         {
           "id": "2063871161998745877",
@@ -288,8 +288,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.\nProduct: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH / BEAUTY / FOOD / DRINK] Main subject: A ",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -302,8 +302,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "{\n  \"image_type\": \"luxury perfume advertisement poster\",\n  \"resolution\": \"4K ultra HD (4096x5120)\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaig",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -316,8 +316,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "rl with brown side ponytail and bunny ears, wearing a pastel blue and pink jacket\\\"}\",\n  \"product\": \"{argument name=\\\"product\\\" default=\\\"fresh red strawberries\\\"}\",\n  \"layout\": {\n    \"sections\": [\n      {\n        \"type\": \"large landscape banner\",\n        \"",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"type\": \"promotional banner design set\"",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -330,8 +330,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "PHASE 1 - PRODUCT: [ITEM] in [MATERIAL] packaging, minimal label design\nPHASE 2 - GRID: 2x2 seasonal grid, four distinct brand worlds\nPHASE 3 - COMPOSITION: each quadrant a full",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "PHASE 3 - COMPOSITION: each quadrant a full campaign scene with props and environment",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -344,8 +344,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "[中文]\n照片级真实感的大胆美妆宣传活动，使用上传的模特作为精确的身份参考。不做面部改变，不做平滑处理。\n场景：深红色饱和的摄影棚环境，具有高对比度的地板图案或光滑表面。\n产品：产品被握持或放置在极其靠近镜头的位置，由于透视关系显得巨大。\n模特姿势：俏皮或自信的微笑，手臂完全伸向相机，手指因广角镜头而略微变形。透过太阳镜的强烈眼神交流或自然凝视。\n相机：超广角 20–28mm 美学，动态前景夸张，浅至中等景深。\n灯光：强有力的商业照明，具有清晰的高光和反射，锐利的包装边缘，充满活力的调色。超",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "Photorealistic bold beauty campaign using uploaded model as exact identity reference.",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -357,7 +357,7 @@
     {
       "slug": "brand-campaigns",
       "label": "品牌宣传海报",
-      "count": 60,
+      "count": 40,
       "samples": [
         {
           "id": "2060203818785370400",
@@ -365,12 +365,12 @@
           "fit": "adaptable",
           "evidence": {
             "field": "prompt",
-            "quote": "football poster inspired by premium sports editorial photography and minimalist World Cup branding.\nCreate a centered composition of a football player sitting confidently on a geometric block inside a clean studio-style environment.\nThe player faces forwa",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "Design a hyper-realistic FIFA 2026 football poster",
+            "reason": "Sports-player poster has strong type/image layout, but current purpose is a team/player fan graphic rather than business advertising."
           },
           "notes": {
-            "en": "Supply actual authorized brand/event campaign headline and positioning; do not imply official FIFA campaign origin.",
-            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“品牌宣传海报”所需的输出规格。"
+            "en": "Supply the actual brand, product or event and campaign message. Replace the original subject/headline, apply approved identity assets, and adapt the layout for a finished campaign poster.",
+            "zh-CN": "提供实际品牌、产品或活动与宣传信息，替换原主体及标题，应用已确认的品牌资产，并调整版式为完整宣传海报。"
           }
         },
         {
@@ -379,8 +379,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.\nProduct: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH / BEAUTY / FOOD / DRINK] Main subject: A confident",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -393,8 +393,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": ")\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaign (Tom Ford, Dior inspired)\",\n    \"tone\": \"dark luxury, sensual, elegant, powerful\",\n    \"color_grading\": \"deep black shadows with rich golden highlights and war",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"image_type\": \"luxury perfume advertisement poster\"",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -407,8 +407,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "{\n  \"type\": \"promotional banner design set\",\n  \"theme\": \"strawberry advertisement campaign\",\n  \"style\": \"anime illustration, bright, cheerful, commercial graphic design\",\n  \"color_palette\": \"{argument name=\\\"primary color theme\\\" default=\\\"pastel pin",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "\"type\": \"promotional banner design set\"",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -421,8 +421,8 @@
           "fit": "direct",
           "evidence": {
             "field": "prompt",
-            "quote": "制透视戏剧性地穿过数字显示屏，踏入现实。\n\n构图在前台强调她白色豪华运动鞋，带有纹理口香糖鞋底，通过电影般的广角镜头失真和浅景深增强。漂浮的闪亮3D社交媒体图标、金色几何元素和豪华品牌图形环绕着她，营造出高端影响者营销美学。\n\n明亮的摄影棚灯光营造出充满活力的优质促销氛围，金属金色手机边缘的丰富反射与哑光织物质地形成对比。主导的橙色、白色和金色调色板传递出超现代豪华X / Twitter 广告氛围。干净的白色背景上带有大胆的编辑排版、优质软件品牌元素、优雅的UI图形、漂浮的互动图标以及时尚的二维码区",
-            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+            "quote": "动态的豪华商业广告海报",
+            "reason": "Full source explicitly requests the commercial product/brand advertising deliverable shown in the quoted positive target."
           },
           "notes": {
             "en": "",
@@ -1903,7 +1903,7 @@
     {
       "slug": "avatar-portraits",
       "label": "头像写真",
-      "count": 136,
+      "count": 133,
       "samples": [
         {
           "id": "2015726421990056336",
