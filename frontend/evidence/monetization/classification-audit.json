@@ -1,0 +1,2135 @@
+{
+  "revision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "logicalContent": 2085,
+  "mapped": 1284,
+  "edges": 1633,
+  "scenes": [
+    {
+      "slug": "womenswear-selling",
+      "label": "AI 女装带货",
+      "count": 4,
+      "samples": [
+        {
+          "id": "prm_4248458bb4aa0c821fe653f6bf687a49",
+          "title": "Fashion Catalog E-Commerce Collage",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Stylish fashion catalog shoot blending streetwear and luxury branding. Female model wearing burgundy slim-fit top and ivory tailored pants",
+            "reason": "Explicit female model catalog and shopping aesthetic."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_662f1907a6d550f8a59db42500752450",
+          "title": "Colorful Button Fashion Campaign",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "high-end commercial fashion look",
+            "reason": "Commercial fashion campaign with female models and outfit variations."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_b03df27ee24b182141725864815233d0",
+          "title": "Nine-panel swimwear magazine advertisement",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "泳装时尚杂志广告页面，日本成熟模特",
+            "reason": "Swimwear magazine advertising and nine-grid female model clothing presentation."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_c91114493cf814e586c519fe15b1d654",
+          "title": "Fresh Summer Women’s Dress E-Commerce Showcase",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n夏季女裙电商详情图\n\n[English]\nSummer women's dress e-commerce detail image",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "virtual-try-on",
+      "label": "虚拟模特试穿",
+      "count": 2,
+      "samples": [
+        {
+          "id": "2089932434351734933",
+          "title": "Locked product and identity, outfit swapped",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Change her outfit to a fitted sleeveless [TOP_COLOR] top with clean [SHORTS_COLOR] shorts and keep the outfit identical in every shot.",
+            "reason": "Explicit outfit replacement. Main locked products are sunglasses/earbuds rather than apparel."
+          },
+          "notes": {
+            "en": "Make clothing the target product; supply exact garment details and visual references.",
+            "zh-CN": "提供实际服装参考并核对服装细节；此案例展示换装思路，不保证商品细节一致。"
+          }
+        },
+        {
+          "id": "prm_4967c18e49c48ee40bb2cb38e983afe9",
+          "title": "Paper-Sculpture Collage Countryside Portrait",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Change the outfit completely from the original reference while keeping it fully modest and elegant:",
+            "reason": "Explicit identity-preserving outfit replacement, but not a supplied garment SKU."
+          },
+          "notes": {
+            "en": "Supply actual garment references, preserve garment details, and simplify scenic backdrop.",
+            "zh-CN": "提供实际服装参考并核对服装细节；此案例展示换装思路，不保证商品细节一致。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "beauty-recommendations",
+      "label": "美妆种草",
+      "count": 15,
+      "samples": [
+        {
+          "id": "prm_0336f324d253f11fa3458a14123a40d6",
+          "title": "VELORA luxury perfume advertising poster",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"image_type\": \"luxury perfume advertisement poster\",\n  \"resolution\": \"4K ultra HD (4096x5120)\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaig",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1da2ae16f0eba4899cf1be2718194c88",
+          "title": "Brand visual identity sheet",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "\"brand\": \"{argument name=\\\"brand name\\\" default=\\\"CLEAR RESET\\\"}\",\n  \"theme\": \"refreshing skincare, clean aesthetic, water bubbles background\",\n  \"color_palette\": [\"white\", \"{argument name=\\\"primary color\\\" default=\\\"teal\\\"}\", \"light blue\"],\n  \"layout\": {\n  ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1f81b93f264675775f8fcf078fb89b68",
+          "title": "Infographic report recommending branded lipsticks",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "所有人脸保持一致，仅唇色变化，真实试色效果（lip color try-on）",
+            "reason": "Explicit branded lipstick swatches on consistent faces."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_2172ff2675b281f721966d26a6406ad3",
+          "title": "Beauty Product Advertisement",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n为Z世代设计的可爱Y2K风格的平价化妆品广告图像。使用鲜艳的配色，包括荧光色。纵横比为3:4。\n\n[English]\nCute Y2K style affordable cosmetics advertising image designed for Gen Z.\nUsing vibrant color schemes, including neon colors.\nAspect ratio is 3:4.",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_23b218bd0e326ed10cd966dc6086649c",
+          "title": "Floating fantasy of agarwood and roses",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "辉光\",\n        \"atmosphere\": \"薄雾增强光线漫射\"\n      }\n    },\n    \"main_subject\": {\n      \"type\": \"香水瓶\",\n      \"position\": \"中心前景\",\n      \"placement\": \"置于华丽木桌之上\",\n      \"material\": {\n        \"bottle\": \"透明清玻璃\",\n        \"cap\": \"黄金金属矩形瓶盖\",\n        \"liquid\": \"淡金香水液体",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for beauty recommendations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美妆种草”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "product-hero-images",
+      "label": "商品主图",
+      "count": 4,
+      "samples": [
+        {
+          "id": "prm_0bb7495c1837a3a0f86606f0119cbca8",
+          "title": "Fully automatic coffee machine product showcase",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n全自动咖啡机电商详情图\n\n[English]\nFully automatic coffee machine e-commerce detail image",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商品主图”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_18f1896640b44008a946b8cb9620ed60",
+          "title": "Strawberry Energy Drink Commercial Advertisement",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "ing typography behind the subject.\nUltra-detailed, high contrast, sharp focus, commercial product photography style, 8K resolution, advertising poster aesthetic, energetic, powerful, refreshing mood.",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+          "title": "Scientist collectible toy launch board",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "able, neat, and “unboxable.”  Visual Style: Hype-culture collectible reveal meets premium e-commerce launch campaign.\nClean, glossy, tactile, designer-toy sophistication with a playful but expensive sensibility.\nComposition Guidelines: Hero figure remains domi",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商品主图”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1da2ae16f0eba4899cf1be2718194c88",
+          "title": "Brand visual identity sheet",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"e-commerce landing page hero section\",\n  \"brand\": \"{argument name=\\\"brand name\\\" default=\\\"CLEAR RESET\\\"}\",\n  \"theme\": \"refreshing skincare, clean aesthetic, water bubble",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Extract one merchandise hero, remove grid/detail/navigation elements and match marketplace main-image requirements.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商品主图”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "product-detail-images",
+      "label": "商品详情与卖点图",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_8d971b2db8ec7dbfcd861ed8ca72c229",
+          "title": "Taobao product detail page for a Terminator robot",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n生成图片:\nT-800机器人的淘宝商品详情页，展示:\n机器人的正面侧面背面三视图，\n产品价格，\n产品细节，\n功能和使用场景等\n\n[English]\nGenerate image:\nTaobao product detail page of a T-800 robot, showing:\nfront, side, and back three-view draw",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_a3b9b0b148c3c958b2e48694db0d4db6",
+          "title": "AI Glasses Exploded-View Diagram",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "生成一张AI眼镜的爆炸视图，包含每个组件的名称以及这款产品的几大核心卖点。",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ecommerce-advertising",
+      "label": "电商广告海报",
+      "count": 49,
+      "samples": [
+        {
+          "id": "2063871161998745877",
+          "title": "Premium product campaign poster, 4:5",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.\nProduct: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH / BEAUTY / FOOD / DRINK] Main subject: A ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_0336f324d253f11fa3458a14123a40d6",
+          "title": "VELORA luxury perfume advertising poster",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"image_type\": \"luxury perfume advertisement poster\",\n  \"resolution\": \"4K ultra HD (4096x5120)\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaig",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_038bb199de88f1535f8b6158ba3f1f60",
+          "title": "Ecommerce product showcase design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "rl with brown side ponytail and bunny ears, wearing a pastel blue and pink jacket\\\"}\",\n  \"product\": \"{argument name=\\\"product\\\" default=\\\"fresh red strawberries\\\"}\",\n  \"layout\": {\n    \"sections\": [\n      {\n        \"type\": \"large landscape banner\",\n        \"",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_11a99e0f8c9428a6b174ead90883cd31",
+          "title": "Four-Season Packaging Campaign Grid",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "PHASE 1 - PRODUCT: [ITEM] in [MATERIAL] packaging, minimal label design\nPHASE 2 - GRID: 2x2 seasonal grid, four distinct brand worlds\nPHASE 3 - COMPOSITION: each quadrant a full",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_125a2dc81e52e30a7b6c7c69e8e6e492",
+          "title": "Visually Striking Wide-Angle Beauty Editorial in a Deep Red Studio",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n照片级真实感的大胆美妆宣传活动，使用上传的模特作为精确的身份参考。不做面部改变，不做平滑处理。\n场景：深红色饱和的摄影棚环境，具有高对比度的地板图案或光滑表面。\n产品：产品被握持或放置在极其靠近镜头的位置，由于透视关系显得巨大。\n模特姿势：俏皮或自信的微笑，手臂完全伸向相机，手指因广角镜头而略微变形。透过太阳镜的强烈眼神交流或自然凝视。\n相机：超广角 20–28mm 美学，动态前景夸张，浅至中等景深。\n灯光：强有力的商业照明，具有清晰的高光和反射，锐利的包装边缘，充满活力的调色。超",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brand-campaigns",
+      "label": "品牌宣传海报",
+      "count": 60,
+      "samples": [
+        {
+          "id": "2060203818785370400",
+          "title": "FIFA 2026 player poster in team colours",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "football poster inspired by premium sports editorial photography and minimalist World Cup branding.\nCreate a centered composition of a football player sitting confidently on a geometric block inside a clean studio-style environment.\nThe player faces forwa",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Supply actual authorized brand/event campaign headline and positioning; do not imply official FIFA campaign origin.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“品牌宣传海报”所需的输出规格。"
+          }
+        },
+        {
+          "id": "2063871161998745877",
+          "title": "Premium product campaign poster, 4:5",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a photorealistic premium product campaign poster in a 4:5 vertical aspect ratio.\nProduct: [PRODUCT NAME] Brand style: [BRAND / PREMIUM / LUXURY / TECH / BEAUTY / FOOD / DRINK] Main subject: A confident",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_0336f324d253f11fa3458a14123a40d6",
+          "title": "VELORA luxury perfume advertising poster",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": ")\",\n  \"aspect_ratio\": \"portrait (4:5)\",\n  \"style\": {\n    \"aesthetic\": \"high-end fragrance campaign (Tom Ford, Dior inspired)\",\n    \"tone\": \"dark luxury, sensual, elegant, powerful\",\n    \"color_grading\": \"deep black shadows with rich golden highlights and war",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_038bb199de88f1535f8b6158ba3f1f60",
+          "title": "Ecommerce product showcase design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"promotional banner design set\",\n  \"theme\": \"strawberry advertisement campaign\",\n  \"style\": \"anime illustration, bright, cheerful, commercial graphic design\",\n  \"color_palette\": \"{argument name=\\\"primary color theme\\\" default=\\\"pastel pin",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+          "title": "Luxury screen-breaking social media advertisement",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "制透视戏剧性地穿过数字显示屏，踏入现实。\n\n构图在前台强调她白色豪华运动鞋，带有纹理口香糖鞋底，通过电影般的广角镜头失真和浅景深增强。漂浮的闪亮3D社交媒体图标、金色几何元素和豪华品牌图形环绕着她，营造出高端影响者营销美学。\n\n明亮的摄影棚灯光营造出充满活力的优质促销氛围，金属金色手机边缘的丰富反射与哑光织物质地形成对比。主导的橙色、白色和金色调色板传递出超现代豪华X / Twitter 广告氛围。干净的白色背景上带有大胆的编辑排版、优质软件品牌元素、优雅的UI图形、漂浮的互动图标以及时尚的二维码区",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "promotional-campaigns",
+      "label": "促销活动图",
+      "count": 7,
+      "samples": [
+        {
+          "id": "prm_038bb199de88f1535f8b6158ba3f1f60",
+          "title": "Ecommerce product showcase design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"promotional banner design set\",\n  \"theme\": \"strawberry advertisement campaign\",\n  \"style\": \"anime illustration, bright, cheerful, commercial graphic design\",\n  \"color_pa",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_06746d25ec0b11c85d8cdea4015bb28e",
+          "title": "Luxury screen-breaking social media advertisement",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "口香糖鞋底，通过电影般的广角镜头失真和浅景深增强。漂浮的闪亮3D社交媒体图标、金色几何元素和豪华品牌图形环绕着她，营造出高端影响者营销美学。\n\n明亮的摄影棚灯光营造出充满活力的优质促销氛围，金属金色手机边缘的丰富反射与哑光织物质地形成对比。主导的橙色、白色和金色调色板传递出超现代豪华X / Twitter 广告氛围。干净的白色背景上带有大胆的编辑排版、优质软件品牌元素、优雅的UI图形、漂浮的互动图标以及时尚的二维码区域。\n\n超现实8K品质、电影般的阴影、精致的商业艺术指导、豪华女性能量、时尚营销美学",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace headline with actual campaign, dates, offer and call to action; specify placement.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“促销活动图”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_14106b75404d3eed0f24e7e023923a3b",
+          "title": "Themed poster layout design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"promotional banner thumbnail\",\n  \"style\": \"vibrant neon, cosmic galaxy background, anime illustration style, high-density Japanese typography, glowing text effects\",\n  \"",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace headline with actual campaign, dates, offer and call to action; specify placement.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“促销活动图”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_16342dd8594ca6582a1595acaceb175d",
+          "title": "Themed poster layout design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "2x2 grid of promotional banner ads",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1da2ae16f0eba4899cf1be2718194c88",
+          "title": "Brand visual identity sheet",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Try it at a discount",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "product-launches",
+      "label": "产品发布图",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+          "title": "Scientist collectible toy launch board",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Design a collector-grade launch visual",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "queenie-tool-not-tutorial-i6s4lv",
+          "title": "Tool, Not Tutorial",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "like the key visual of a product launch",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Supply actual product and release headline/feature; retain reconstruction disclosure.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“产品发布图”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "product-ad-videos",
+      "label": "产品广告视频",
+      "count": 1,
+      "samples": [
+        {
+          "id": "2089932434351734933",
+          "title": "Locked product and identity, outfit swapped",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create an ultra-realistic UGC luxury lifestyle review",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "xiaohongshu-shopping",
+      "label": "小红书带货图文",
+      "count": 1,
+      "samples": [
+        {
+          "id": "prm_8629e33f89d0bd5612f59824ccc986ec",
+          "title": "Branded Milk Tea Key Visual Concept Poster",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "主推产品：{奶茶}",
+            "reason": "Brand/product social KV explicitly for Xiaohongshu; excludes prices and links, so shopping narrative needs adaptation."
+          },
+          "notes": {
+            "en": "Replace with actual merchandise, add substantiated recommendation or selling points; preserve source conceptual-ad identity.",
+            "zh-CN": "替换为真实商品、使用场景和真实卖点，按小红书图文版式重新排版。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "wechat-covers",
+      "label": "公众号封面",
+      "count": 815,
+      "samples": [
+        {
+          "id": "prm_8629e33f89d0bd5612f59824ccc986ec",
+          "title": "Branded Milk Tea Key Visual Concept Poster",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "适合公众号封面或宽幅视觉",
+            "reason": "Explicit 2.35:1 WeChat-cover branch, although current example defaults to 9:16."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "queenie-1-mac-mini-1-agent-0-employees-this-is-how-you-build-the-fir-zxzsys",
+          "title": "1 Mac Mini. 1 Agent. 0 Employees. This is how you build the first billion-dollar \"one-person company.\"",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "useCases",
+            "quote": "editorial-covers",
+            "reason": "Existing article-cover classification supports an adapted editorial cover, not a native WeChat template."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
+            "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
+          }
+        },
+        {
+          "id": "queenie-10-ai-concepts-every-developer-must-master-before-writing-an-ttsbfu",
+          "title": "10 AI Concepts Every Developer Must Master Before Writing Any Code",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "useCases",
+            "quote": "editorial-covers",
+            "reason": "Existing article-cover classification supports an adapted editorial cover, not a native WeChat template."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
+            "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
+          }
+        },
+        {
+          "id": "queenie-10-claude-code-agents-nobody-told-you-about-build-them-now-5q4a76",
+          "title": "10 Claude Code Agents Nobody Told You About — Build Them Now.",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "useCases",
+            "quote": "editorial-covers",
+            "reason": "Existing article-cover classification supports an adapted editorial cover, not a native WeChat template."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
+            "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
+          }
+        },
+        {
+          "id": "queenie-10-gemini-prompts-to-help-you-achieve-your-new-year-s-goals-6a6ejl",
+          "title": "10 Gemini Prompts to Help You Achieve Your New Year's Goals",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "useCases",
+            "quote": "editorial-covers",
+            "reason": "Existing article-cover classification supports an adapted editorial cover, not a native WeChat template."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for wechat article covers.",
+            "zh-CN": "按公众号封面尺寸调整构图、标题和留白，使用与文章一致的主题。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "short-video-covers",
+      "label": "短视频封面",
+      "count": 4,
+      "samples": [
+        {
+          "id": "prm_626fdb06d4210e4d4c633646cd215f41",
+          "title": "Video cover interface design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "YouTube thumbnail",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“短视频封面”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_bcabbaefb0e52ec995faf08b80e995c5",
+          "title": "Interface interaction design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "YouTube thumbnail",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“短视频封面”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_bef96aa60389b40987269e4266517e91",
+          "title": "App interface mockup",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "YouTube thumbnail",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“短视频封面”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_dde71efb5291908941b24d5fae1f4676",
+          "title": "Interface interaction design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "YouTube thumbnail",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Adapt to chosen short-video cover ratio, safe crop and mobile title hierarchy.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“短视频封面”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "relationship-comics",
+      "label": "漫画情感图文",
+      "count": 2,
+      "samples": [
+        {
+          "id": "queenie-english-healing-comic-this-winter-i-m-here-with-you-5j3nw4",
+          "title": "English Healing Comic: This Winter, I'm Here with You",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "leaning together in the last panel, ending on warm and healing",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "queenie-english-healing-mini-comic-you-are-my-best-gift-herrwp",
+          "title": "English Healing Mini Comic: You Are My Best Gift",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Two panels top and bottom",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Specify relationship subjects and emotional dialogue; preserve reconstruction identity.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“漫画情感图文”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "educational-posts",
+      "label": "知识科普图文",
+      "count": 73,
+      "samples": [
+        {
+          "id": "prm_04d689d02a808f8a3d86e2f7f5e2ea5a",
+          "title": "Coronavirus Scale-Zoom Science Infographic",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "instructions> [SUBJECT]=Coronavirus.\nA hyper-realistic 3D zoom-sequence infographic generated from a single input: [SUBJECT].\nThe system auto-detects scale layers from atomic/subcomponent to full contextual view.\nLayout Structure (CRITICAL) 6–",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for educational posts.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“知识科普图文”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_18044cac580c63d2c0471d10eaeb50f8",
+          "title": "Croissant baking process storyboard",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER.\nWide 16:9 layout, white background, black borders, bold black typography, premium Pixar 3D stylized rendering, brigh",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for educational posts.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“知识科普图文”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1b613e47285767894b13ff03810678cb",
+          "title": "Steampunk Sagittarius anatomical atlas",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n（Steampunk Scientific Illustrator）你是一位专业复古蒸汽朋克解剖图谱设计师，擅长星座机械结构科普海报。根据用户指定的【{constellation_name}】，生成一张复古蒸汽朋克风格星座解剖图谱海报：顶部标题栏为“{constellation_name}解剖图谱”或“ANATOMIA {constellation_en}”，采用复古丝带横幅设计；背景为做旧羊皮纸/泛黄旧纸张纹理，带自然污渍与折痕，营造复古科学",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for educational posts.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“知识科普图文”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1d7e11e0b8b73c2231ff7abf9b02f9ef",
+          "title": "2×2 visual map of historical events",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "t =\n  ( 3D_Diorama_Map_Of_[HISTORICAL_EVENT]_In_[CITY] * 1.2 )\n  + ( First-Person_Account_Infographic_UI_From_The_Perspective_Of_[ROLE] * 1.5 )\n  + ( Period-Accurate_Studio_Background_With_[ERA]_Artifacts * 1.0 )\n  + ( Newspaper_Headline_Generator_Widget_With_Y",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for educational posts.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“知识科普图文”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1dbcc16ca33d64aba2f951a648801823",
+          "title": "Infographic Visualization Design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"comprehensive medical infographic\",\n  \"style\": \"highly detailed 3D medical illustration, clinical white background, clean typography\",\n  \"header\": {\n    \"title_cn\": \"{argument name=\\\"main title",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for educational posts.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“知识科普图文”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "restaurant-marketing",
+      "label": "餐饮菜单与活动图",
+      "count": 5,
+      "samples": [
+        {
+          "id": "prm_33282e3d03e119b3640b29d204a66b2d",
+          "title": "Interface interaction design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "\"industry\": \"restaurant food\"",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_69daaa9e965fa970b76794411730d0b9",
+          "title": "Beautiful Chaoshan restaurant menu design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "生成一张潮菜馆菜单图",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_91a07747e3e35b1bb94ff7d7cc472c33",
+          "title": "Custom-Shaped Display Stand for a Local Shop",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "餐饮门店的新品推荐、招牌产品、套餐促销或品牌活动信息",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_a82b740fdc7ca929f0bc24d3aa10ce02",
+          "title": "Visual board for a matcha brand's touchpoint system",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "ing boxes (minimalist design)\n– tote bags (premium lifestyle)\n– labels, stickers, seals\n– menu cards with pricing ($6.50, $8.90, etc.)\n– small typography everywhere\n– subtle imperfections (realism)\n\nDESIGN LANGUAGE:\n\n– modern minimalist typography\n– Japa",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_ec7869e8fc0e81ebcc80f386495cf795",
+          "title": "Indian restaurant menu makeover promotional image",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "重新生成带文本说明的 引人入胜垂涎欲滴的 说明图片",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cafe-bakery-marketing",
+      "label": "咖啡烘焙宣传",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_18044cac580c63d2c0471d10eaeb50f8",
+          "title": "Croissant baking process storyboard",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER.",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Use bakery brand, actual featured pastry and store/offer CTA.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“咖啡烘焙宣传”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_8629e33f89d0bd5612f59824ccc986ec",
+          "title": "Branded Milk Tea Key Visual Concept Poster",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "品牌名称：{蜜雪冰城}",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_a82b740fdc7ca929f0bc24d3aa10ce02",
+          "title": "Visual board for a matcha brand's touchpoint system",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "menu cards with pricing ($6.50, $8.90, etc.)",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "beauty-services",
+      "label": "美业宣传",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_426c12f63ca0cdf98e9133ab845b9bc0",
+          "title": "Twelve-Hairstyle Lookbook Featuring the Same Face",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "showing the SAME person from the reference photo with 12 different hairstyles.",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Supply salon/client reference, present hairstyle consultation, add real service brand/booking CTA.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美业宣传”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_d1cdce8046f866b7c3a16446431950fc",
+          "title": "Luxury Personal Color Profile Infographic",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "LUXURY PERSONAL COLOR PROFILE — EDITORIAL LAYOUT",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Use real consultation inputs and show color-analysis service with booking CTA.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美业宣传”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_e1f87155accf30931deff99752364e97",
+          "title": "Long-hair styling analysis infographic",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a professional \"HAIRSTYLE ANALYSIS\" infographic",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "Replace model and options with actual consultation, add salon and appointment CTA.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“美业宣传”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "fitness-enrollment",
+      "label": "健身招生",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_0b1a866af2c429e6987605175d0a438c",
+          "title": "Strength campaign for a fitness brand",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Cinematic fitness campaign, oversized dumbbell placed diagonally like a statement prop, female model in red performance wear and white shorts seated on one side of the dumbbell,",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for fitness enrollment.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“健身招生”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_fddd6e09b61d71b83e9dc8707ba04ffa",
+          "title": "A Chinese-language fitness infographic",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "请生成一张中文健身信息图，主题为：【xxx】。\n\n要求这张图既专业又实用，适合普通成年人作为训练参考。默认对象为无严重伤病的健康成年人；如果没有额外说明，默认训练目标为“增肌 + 基础力量提升”，默认训练水平为“新手到中级之间”，默认训练场景为“普通健身房”，默认单次训练时长控制在 40–60 分钟内。\n\n请根据【训练主题】自动判断输出",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for fitness enrollment.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“健身招生”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "travel-marketing",
+      "label": "文旅推广",
+      "count": 25,
+      "samples": [
+        {
+          "id": "prm_1abef957d8950ac41860e2a1b2f89c17",
+          "title": "Minimalist travel poster series for four cities",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Minimalist flat travel poster illustration series of iconic destinations around the world, clean vector art style, Scandinavian color palette, soft pastel tones, calm atmospheric sce",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for travel marketing.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文旅推广”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1bad49c7edc8b7cfa3cfe44b5c64c6b3",
+          "title": "Manhattan Park Watercolor Travel Illustration",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a vertical editorial travel illustration inspired by vintage European travel posters, featuring a peaceful summer afternoon in a grand city park with a recognizable Manhattan-style skylin",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for travel marketing.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文旅推广”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1ff7d5ab84fddc498f422d27832b1023",
+          "title": "Rio travel-ticket paper sculpture poster",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a highly detailed, photorealistic miniature travel-poster diorama inspired by Rio de Janeiro, arranged as a handcrafted 3D paper scene on a warm ivory, slightly textured background.\n\nIn the foreground, a realis",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for travel marketing.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文旅推广”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_2f4b5e730ac701264706bf0da6e106ae",
+          "title": "Ink-wash postcard from a travel photo",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a dreamy watercolor travel illustration style from the attached photo.\nUse hand-painted urban sketchbook aesthetic, delicate ink linework mixed with soft watercolor washes, highly detail",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for travel marketing.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文旅推广”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_3f233fdc75934d160eb0425a0c30f193",
+          "title": "Guided Popular Science Picture Book",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "页。画面需要让观者像被带着参观一个复杂系统一样，边看边理解主题背后的运行逻辑、空间结构、流程关系和关键知识点。\n\n【基础设定】\n主题：【填写主题，例如发射场的一天 / 一个集装箱的旅行 / 地铁站里的秘密路线 / 下潜到深海的一小时 / 机场如何运转 / 医院急诊系统 / 智慧农场 / 消防站出警流程】\n画幅比例：【4:3 横版】\n主色调：【根据主题自动匹配，整体保持明亮、清爽、儿童友好】\n风格方向：【现代儿童科普绘本 / 场景导览式图解 / 高完成度数字插画】\n\n【核心表达】\n请围绕【主题】设计一",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for travel marketing.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文旅推广”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "logo-design",
+      "label": "标志设计",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_13fee207c1547d404680b709c7553283",
+          "title": "Interface interaction design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Evolution steps from rough dog sketch to final geometric logo",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_4dc2fe9a72c0ce2a16a6a75fbd5c2aea",
+          "title": "Branded industrial rubber hose form rendering",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create an ultra-detailed hyper-realistic 3D render of {Object} , formed from thick industrial rubber tubing bent into the exact shape of the design, flexible yet dense structure, smooth rounded contours, subtle matte finish, realistic elastomer texture, faint molded seam lines, soft tension at each curve, authentic material compression and stretch behavior, slightly grippy surface quality, engineered object realism, colored using the authentic official brand color palette of [brand], faithful brand-matching hues applied across the tubing, accurate color blocking that follows the original logo design, premium studio product photography aesthetic, isolated on a pure white seamless background, soft diffused studio lighting, realistic contact shadow, ma",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Provide an approved logo and produce branded 3D logo artwork; do not imply new-logo identity design.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“标志设计”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_e605b9cb6bb9223d858f75ef4af9e22a",
+          "title": "Logo and brand identity system prompt collection",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "为我的品牌生成5个完全不同的Logo概念。",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brand-identity",
+      "label": "品牌视觉",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_13fee207c1547d404680b709c7553283",
+          "title": "Interface interaction design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"brand identity system presentation board\",\n  \"header\": {\n    \"title\": \"品牌视觉识别系统 BRAND IDENTITY SYSTEM\",\n    \"slogan\": \"爱它·懂它·陪伴它\"\n  },\n  \"main_logo\": {\n    \"text\": \"{argument",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_2055371bdfdea50a9cfc5b413124fae2",
+          "title": "Interface interaction design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"18-panel brand identity and character design document\",\n  \"brand\": {\n    \"name\": \"{argument name=\\\"brand name\\\" default=\\\"沐阳 MUYANG TEA\\\"}\",\n    \"industry\": \"{argument name=\\\"industry",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "packaging-design",
+      "label": "产品包装",
+      "count": 5,
+      "samples": [
+        {
+          "id": "prm_11a99e0f8c9428a6b174ead90883cd31",
+          "title": "Four-Season Packaging Campaign Grid",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[ITEM] in [MATERIAL] packaging, minimal label design",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_13fee207c1547d404680b709c7553283",
+          "title": "Interface interaction design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "       \"名片 正反面\",\n          \"信纸信封\",\n          \"APP图标\",\n          \"网站页眉 / 网站图标\",\n          \"产品包装 / 购物袋\",\n          \"店面门头 / 标识牌\"\n        ],\n        \"description\": \"Mockups of business cards, envelopes, app icons, website header with a dog, paper shopping ba",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Expand packaging application with real SKU dimensions, dieline, material and mandatory label content.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“产品包装”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_1cb7618dbb6fb2112a593ba93ec818fd",
+          "title": "Scientist collectible toy launch board",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "hown in pristine hero form along with interchangeable accessories, alternate expressions, packaging design, scale references, sticker details, rarity indicators, and close-up material highlights.\nThe object should feel like a luxury drop, somewhere between ar",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_601959195c5147edac4da5c7916ae4b5",
+          "title": "Penguin-shaped packaging structure board",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "create an illustration sheet of professional industrial design packaging",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_65e78dbf302e7fefb55a1cfae642d42a",
+          "title": "Retro Japanese mini eraser packaging",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "■パッケージ（超重要）：",
+            "reason": "Independent review confirmed the positive target in the complete source body."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "commercial-brochures",
+      "label": "宣传画册",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_de335897971c396c5b9c8af1eb8294ac",
+          "title": "Visual system for enterprise commercial brochures",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "请生成一套企业级商用画册视觉方案，主题为【品牌名称】的【行业 / 产品 / 解决方案】宣传画册。\n\n整体风格：高端、专业、具有强视觉冲击力；\n\n画册内容包括：\n1、封面与封底\n2、企业介绍与品牌理念\n3、核心产品与技术优势\n4、应用场景与解决方案\n5、客户案例与合作方式\n6、全册系统预览图\n\n要求：\n版式要有设计感，图片、标题、数据、图标、留",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_fba8b7af2bd755dc4edc3c5961a7a42b",
+          "title": "Technical illustrated guide to a luxury mechanical watch",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "old gears, alligator leather\",\n            \"graphic_parent\": \"Swiss manufacture technical brochure with elegant data panels\",\n            \"atmosphere_parent\": \"Crisp daylight studio, pure white background, subtle reflection on polished surfaces\"\n        }\n  ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Develop technical insert into brochure pages with real product specifications, editorial structure and brand copy.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“宣传画册”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "commercial-illustration",
+      "label": "商业插画",
+      "count": 231,
+      "samples": [
+        {
+          "id": "prm_0085dad53f52a71871baf7911629c99c",
+          "title": "Cute character design sheet",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "r design sheet inspired by the uploaded image.\n\nStyle: warm, soft, semi-realistic cartoon illustration with a cozy Japanese kawaii vibe (pastel tones, smooth shading, clean lineart).\n\nMake it a clean character concept poster layout including:\n\nOne large main fem",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_038bb199de88f1535f8b6158ba3f1f60",
+          "title": "Ecommerce product showcase design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "nal banner design set\",\n  \"theme\": \"strawberry advertisement campaign\",\n  \"style\": \"anime illustration, bright, cheerful, commercial graphic design\",\n  \"color_palette\": \"{argument name=\\\"primary color theme\\\" default=\\\"pastel pink and vibrant red\\\"}\",\n  \"charact",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_06135b34a5f9cea77ad698c25ce94c1c",
+          "title": "Paris autumn fashion illustration",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Full-body fashion illustration of a young woman walking down a Parisian street in autumn, wearing a long camel wool coat draped open over a black ribbed turtleneck sweater and high-waisted w",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_0962970bde9befdd4dff4798dadbdbdb",
+          "title": "Layered paper-cut illustration of a couple",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"style\": \"layered paper-cut illustration, papercraft diorama, handcrafted aesthetic\",\n  \"technique\": {\n    \"layering\": \"multiple stacked paper layers with soft drop shadows between each layer\",\n    \"d",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_0a6b39849e46da730cd72eee6daa21d9",
+          "title": "Themed poster layout design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "A humorous 3D cartoon illustration of a therapy session in a cozy office.\nOn the left, a {argument name=\"patient character\" default=\"sad anthropomorphic avocado half missing its pit\"} sits on a ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for commercial illustration.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“商业插画”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ecommerce-websites",
+      "label": "电商网站",
+      "count": 5,
+      "samples": [
+        {
+          "id": "prm_1de555e13cde1d7b92077dde4c527b0f",
+          "title": "Online course sales website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "ese pages: Sales page, Curriculum page, Instructor page, Testimonials page, FAQ page, and Checkout/CTA page mockup.\nThe sales page should include a hero with a powerful course promise, who this course is for, pain points section, transformation section, curr",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_2ecd3e1c207641cded894b4e1800a31e",
+          "title": "Botanical wellness ecommerce homepage",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "bold prices and functional add-to-cart buttons",
+            "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_4c90aa575ffdface16ab3b96af2df068",
+          "title": "Custom Stationery Store",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Develop a website where users can design and order customized stationery sets.",
+            "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_6ce3395d08af3d8904f42519926a081f",
+          "title": "Coffee E-Commerce Website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Sell high-quality coffee beans and simple coffee equipment.",
+            "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_e2044722a0c226fd0c976e6c748afe85",
+          "title": "Tech Accessories E-Commerce Website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Make an ecommerce website for a tech gadgets business.",
+            "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brand-websites",
+      "label": "品牌官网",
+      "count": 22,
+      "samples": [
+        {
+          "id": "prm_00772f146164256dd15eb8f062c1fe4d",
+          "title": "Website strategy framework",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "ld-class creative director, award-winning web designer, UX strategist, conversion expert, brand consultant, and senior front-end developer.\nBuild a complete operating system for creating a world-class website from scratch.\nAnalyze my brand, audience, goal",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Use resulting strategy to implement the website and validate content, responsiveness and interactions.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“品牌官网”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_090109b66cca11b0c2f47dd19342ce54",
+          "title": "Complete coffee shop website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": " for a coffee shop with a homepage, menu, story, opening hours, contact section, cohesive branding, and production-ready code.",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1de555e13cde1d7b92077dde4c527b0f",
+          "title": "Online course sales website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "n, guarantee section, FAQ, and final CTA.\nThe design should feel like a premium education brand, with a clear structure, persuasive layout, module cards, bonus callout boxes, and mobile responsive design.\nWrite the full sales copy and make it helpful, spe",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_39ac956f6c604aec2fbcfb221d647620",
+          "title": "Advanced Website Design System",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "vior, and accessibility standards.\nEnsure that every visual decision reinforces a premium brand identity.\nRestriction: create a scalable, consistent, and easy-to-maintain system.",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_4a7e127b0b103a8cc39fcf891f5c064e",
+          "title": "Website homepage structure",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a homepage structure for a [business type] website.\nInclude a hero section, trust section, services section, testimonials, FAQ, and CTA.\nThe tone should be [friendly/professional/modern].\nExplain ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sales-landing-pages",
+      "label": "销售落地页",
+      "count": 28,
+      "samples": [
+        {
+          "id": "prm_0727bd50bcd595107796f4e9d7511a0e",
+          "title": "Single-component modern product landing page",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Please create a single-file React component (App.jsx) using Tailwind CSS for a modern landing page.\nYou must follow these exact structural, timing, and styling specifications to ensure the layout is perfectly identical to the design:\n\n**1.\nGlobal Styles & An",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1bcc9bc2322c1402f5c915dd1bfa4d59",
+          "title": "Single-File Product Landing Page and Deployment Workflow",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Build a modern, responsive landing page for [PRODUCT NAME].\n\nStyle: dark theme, bold hero with a gradient headline, 3 feature cards, pricing section, testimonials, and footer with social links.\n\nUse ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1de555e13cde1d7b92077dde4c527b0f",
+          "title": "Online course sales website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a complete sales page website for an online course called [Course Name].\nThe course teaches [topic] to [target audience] so they can achieve [main result].\nCourse details: Instructo",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_2eee6d3826592ab105baf9be4322f1e8",
+          "title": "Cinematic official website for a command-line product",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a cinematic, editorial, near-black landing page for Gateflow CLI using the project info from this repo (read the README and key files first): <github repo>.\nThe site must use full-viewport (100vh) section sn",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Add real commercial offer, pricing or sales conversion CTA; retain calm visual direction.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“销售落地页”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_36746ac3df56afb102fb9a7a77d7e12e",
+          "title": "Responsive Landing Page Code",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a responsive landing page in HTML and CSS for a [business type].\nInclude a hero section, features, testimonials, and contact CTA.\nUse clean beginner-friendly code, clear class names, an",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "portfolio-websites",
+      "label": "个人作品集",
+      "count": 22,
+      "samples": [
+        {
+          "id": "prm_20506333c5687eff201784f5d424cb9f",
+          "title": "3D resume structured as game levels",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a highly interactive 3D portfolio website that functions as a scrolling resume where my career journey unfolds like a video game level.\nAs users scroll, they progress through immersive 3D envir",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_32a3a7279f3727c8d057f95ecbad964c",
+          "title": "Portfolio website strategy",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Act as a portfolio strategist.\nHelp me plan a professional portfolio website for my target role.\nMy details:\nName: [Your Name]\nTarget role: [Your Role]\nExperience level: [Beginne",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“个人作品集”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_4b9109cc97ce6f2ed78915cb6cdbf534",
+          "title": "Personal brand portfolio copy",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Act as a personal brand strategist.\nWrite my portfolio website in my unique voice.\nName: [Your Name]\nWhat I do: [Your Work]\nWho I help: [Audience]\nPersonality: [Funny / Bold / Calm / Friendly / Premium]\nMy story: [",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“个人作品集”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_64a354878b0bde0c886001423572f288",
+          "title": "Client-winning freelancer portfolio",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Act as a freelance strategist.\nCreate a portfolio website that helps me get clients.\nService: [Your Service]\nTarget clients: [Client Type]\nSkills: [Skill 1, Skill 2, Skill 3]\nOffer: [Your Offer]\nProjects: [Sam",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Implement the portfolio using this plan/copy, then verify links, project content and contact flow.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“个人作品集”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_684e741f04bab8b486e4f927ac2b455b",
+          "title": "Portfolio website with a resume",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a portfolio website with a resume section.\nDetails:\nName: [Your Name]\nRole: [Your Role]\nEmail: [Email]\nLocation: [Location]\nSummary: [Short Summary]\nExperience: [Job Title",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "interactive-product-showcases",
+      "label": "交互式产品展示",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_2ecd3e1c207641cded894b4e1800a31e",
+          "title": "Botanical wellness ecommerce homepage",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "e Glow, Green Ritual and Golden Hour.”,\n“best_sellers”: “Warm cream background with three product cards, jar images, descriptions, bold prices and functional add-to-cart buttons.\nInclude carousel arrows and staggered scroll animations.”,\n“footer”: “Dark bro",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_545322199e8d72a269b77ce50651f1aa",
+          "title": "Beverage Brand Scrollytelling Website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "his reference: https://t.co/IwQo3op6rF.\n\nYou have access to Higgsfield, and I’ve attached product images for you to work with.\nUse those images and Higgsfield to develop a distinctive visual concept, including any additional imagery or motion assets that wo",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_6f97555db109605911a7e435aec2fa50",
+          "title": "Complete cinematic 3D website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "expert, and a conversion strategist.\nDesign and develop a cinematic 3D website for [brand/product] that conveys a premium digital experience.\nCreate the information architecture, visual identity, animation system, 3D interactions, transitions, responsive la",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "course-sales",
+      "label": "课程销售页",
+      "count": 1,
+      "samples": [
+        {
+          "id": "prm_1de555e13cde1d7b92077dde4c527b0f",
+          "title": "Online course sales website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a complete sales page website for an online course called [Course Name].\nThe course teaches [topic] to [target audience] so they can achieve [main result].\nCourse details: Instructor: [Instructor Name], Skill l",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "learning-cards",
+      "label": "教学卡片",
+      "count": 1,
+      "samples": [
+        {
+          "id": "prm_1fe78c26bbf11af661cc14d6e549adac",
+          "title": "Vocabulary breakdown flashcards for young children",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "tional vocabulary poster for preschool/kindergarten children, inspired by a simple visual learning card.\n\nFeature [FRUIT] as the main large realistic object on the left, and show a [PART / SLICE / SEGMENT] of the same fruit on the right.\nConnect the two with a pl",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "explainers",
+      "label": "信息图解",
+      "count": 63,
+      "samples": [
+        {
+          "id": "prm_04d689d02a808f8a3d86e2f7f5e2ea5a",
+          "title": "Coronavirus Scale-Zoom Science Infographic",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "instructions> [SUBJECT]=Coronavirus.\nA hyper-realistic 3D zoom-sequence infographic generated from a single input: [SUBJECT].\nThe system auto-detects scale layers from atomic/subcomponent to full contextual view.\nLayout Structure (CRITICAL) 6–",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_18044cac580c63d2c0471d10eaeb50f8",
+          "title": "Croissant baking process storyboard",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER.\nWide 16:9 layout, white background, black borders, bold black typography, premium Pixar 3D stylized rendering, brigh",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1b613e47285767894b13ff03810678cb",
+          "title": "Steampunk Sagittarius anatomical atlas",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "[中文]\n（Steampunk Scientific Illustrator）你是一位专业复古蒸汽朋克解剖图谱设计师，擅长星座机械结构科普海报。根据用户指定的【{constellation_name}】，生成一张复古蒸汽朋克风格星座解剖图谱海报：顶部标题栏为“{constellation_name}解剖图谱”或“ANATOMIA {constellation_en}”，采用复古丝带横幅设计；背景为做旧羊皮纸/泛黄旧纸张纹理，带",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1d7e11e0b8b73c2231ff7abf9b02f9ef",
+          "title": "2×2 visual map of historical events",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "t =\n  ( 3D_Diorama_Map_Of_[HISTORICAL_EVENT]_In_[CITY] * 1.2 )\n  + ( First-Person_Account_Infographic_UI_From_The_Perspective_Of_[ROLE] * 1.5 )\n  + ( Period-Accurate_Studio_Background_With_[ERA]_Artifacts * 1.0 )\n  + ( Newspaper_Headline_Generator_Widget_With_Y",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        },
+        {
+          "id": "prm_1dbcc16ca33d64aba2f951a648801823",
+          "title": "Infographic Visualization Design",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"type\": \"comprehensive medical infographic\",\n  \"style\": \"highly detailed 3D medical illustration, clinical white background, clean typography\",\n  \"header\": {\n    \"title_cn\": \"{argument name=\\\"main title",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "digital-publications",
+      "label": "电子刊物",
+      "count": 0,
+      "samples": []
+    },
+    {
+      "slug": "lead-magnets",
+      "label": "引流资料与领取页",
+      "count": 1,
+      "samples": [
+        {
+          "id": "prm_ed9d97eb5c17ef896c1dc972f32196af",
+          "title": "Single-page lead magnet website",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Build me a visually stunning one-page site for [insert your lead magnet].\nFollow the design style of [paste a link or image of a site you love].\nUse this copy: [paste the headline, bullets, and CTA from the Copywriter prompt].\nOpti",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "avatar-portraits",
+      "label": "头像写真",
+      "count": 156,
+      "samples": [
+        {
+          "id": "2015726421990056336",
+          "title": "Overhead portrait on the LA Walk of Fame",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{ \"prompt\": \"Portrait photography from above, [SUBJECT] with long brown shoulder length ponytail hair, looking up directly at camera, both hands resting resting kneels, sitting or k",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
+          }
+        },
+        {
+          "id": "2060203818785370400",
+          "title": "FIFA 2026 player poster in team colours",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "dern FIFA World Cup campaign aesthetic, Nike/Adidas football editorial, cinematic athlete portrait, ultra-clean sports branding, realistic football photography.\nTEXTURES: realistic jersey fabric, soft paper grain, stadium-inspired haze, glossy lighting refle",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
+          }
+        },
+        {
+          "id": "2018792341192990900",
+          "title": "Spider-Man suit portrait, playful expression",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{ \"prompt_description\": \"Ultra Photorealistic Candid Portrait of a Superhero\", \"subject\": { \"appearance\": \"Young woman with shoulder-length red hair pulled back, fair skin, light freckles.\", \"expression\": \"[EXPRESSION], l",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
+          }
+        },
+        {
+          "id": "2027628259467313402",
+          "title": "Double-exposure profile from a reference photo",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "le (same haircut and hair texture) to create an ultra-realistic cinematic double exposure portrait of me in a clean left-facing side profile, sharp jawline and natural facial structure clearly defined.\nThe outer silhouette is dark and well-contoured against ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
+          }
+        },
+        {
+          "id": "2032169264963338327",
+          "title": "Pink neon apartment portrait, shot on iPhone",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "nk neon LED lights on the ceiling, with soft ambient fill”, “style”: “cinematic low-angle portrait, detailed character study”, “aspect_ratio”: “9:16” }, “scene”: { “location”: “A modern luxury apartment living room with a textured white sofa and neutral wall",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for avatar portraits.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“头像写真”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "couple-keepsakes",
+      "label": "情侣纪念插画",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_ba50493f8afe6a48fbec4e31f507f08d",
+          "title": "Couple Portraits in Japanese and Korean Cafes",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "a cute young [Japanese/Korean] couple sitting together naturally",
+            "reason": "Couple scene with heart doodles; photographic rather than identity-based illustration."
+          },
+          "notes": {
+            "en": "Supply consented couple reference, preserve likenesses, and convert to keepsake illustration treatment.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“情侣纪念插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_decaa70f79b5488b66453f709d3c15b3",
+          "title": "Cinematic summer portrait, holding hands and looking back",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "omeone behind her; only their hand appears in the lower-left corner — like a first-person couple's POV snapshot.\nShe glances back at the camera while her body stays in a forward walking motion, posture elegant and natural, clearly a candid captured moment ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for couple keepsake illustrations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“情侣纪念插画”所需的输出规格。"
+          }
+        },
+        {
+          "id": "queenie-the-standards-for-good-looks-were-absolutely-trained-into-me-lazdgy",
+          "title": "My standards for good looks were absolutely trained by my grandparents",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "t above.\nColour palette: [PALETTE].\nVisual treatment and mood: The temperament of a retro wedding photo under soft studio light, restrained, formal and quiet.\nMatch the reference aspect ratio (4:3).\nKeep the layout coherent and ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for couple keepsake illustrations.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“情侣纪念插画”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "pet-portraits",
+      "label": "宠物画像",
+      "count": 1,
+      "samples": [
+        {
+          "id": "prm_4609140d6591dad75f2ca1b32ac56a56",
+          "title": "Raw hand-drawn portrait poster of a duo",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "accompanied closely by [ANIMAL]",
+            "reason": "Explicit illustrated human/animal duo poster with animal foreground and print texture."
+          },
+          "notes": {
+            "en": "Supply pet reference; preserve pet markings and likeness; make pet focal subject or retain owner-and-pet keepsake format.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“宠物画像”所需的输出规格。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "greeting-cards",
+      "label": "节日贺卡",
+      "count": 2,
+      "samples": [
+        {
+          "id": "prm_66a2612d4eca8bd6ae6cebdbf604a518",
+          "title": "Chibi portrait against a real Christmas street background",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "festive Christmas decorations",
+            "reason": "Personalized portrait in festive Christmas scene, no greeting/card itself."
+          },
+          "notes": {
+            "en": "Add personalized holiday greeting and adjust to card trim/bleed format.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“节日贺卡”所需的输出规格。"
+          }
+        },
+        {
+          "id": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+          "title": "Interactive 3D greeting cards",
+          "fit": "direct",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Claude Code skills combine image generation and Three.js to create personalized greeting cards.",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "",
+            "zh-CN": ""
+          }
+        }
+      ]
+    },
+    {
+      "slug": "art-prints",
+      "label": "文创海报与印刷品",
+      "count": 3,
+      "samples": [
+        {
+          "id": "prm_06135b34a5f9cea77ad698c25ce94c1c",
+          "title": "Paris autumn fashion illustration",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "Full-body fashion illustration of a young woman walking down a Parisian street in autumn, wearing a long camel wool coat draped open over a black ribbed turtleneck sweater and high-waisted w",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for art posters and prints.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文创海报与印刷品”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_0962970bde9befdd4dff4798dadbdbdb",
+          "title": "Layered paper-cut illustration of a couple",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "{\n  \"style\": \"layered paper-cut illustration, papercraft diorama, handcrafted aesthetic\",\n  \"technique\": {\n    \"layering\": \"multiple stacked paper layers with soft drop shadows between each layer\",\n    \"d",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for art posters and prints.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文创海报与印刷品”所需的输出规格。"
+          }
+        },
+        {
+          "id": "prm_0a6b39849e46da730cd72eee6daa21d9",
+          "title": "Themed poster layout design",
+          "fit": "adaptable",
+          "evidence": {
+            "field": "prompt",
+            "quote": "A humorous 3D cartoon illustration of a therapy session in a cozy office.\nOn the left, a {argument name=\"patient character\" default=\"sad anthropomorphic avocado half missing its pit\"} sits on a ",
+            "reason": "Positive generation target explicitly describes this deliverable; commercial adaptation is labeled separately."
+          },
+          "notes": {
+            "en": "Replace the subject, brand or copy for the actual brief and adapt the format for art posters and prints.",
+            "zh-CN": "将主体、品牌或文案替换为实际委托内容，并调整为“文创海报与印刷品”所需的输出规格。"
+          }
+        }
+      ]
+    }
+  ]
+}
