@@ -39,9 +39,9 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
 
       <section className="step" aria-labelledby="recipe-result">
         <div className="num" aria-hidden="true">01</div><div>
-          <h2 id="recipe-result">{uiText(uiLocale, "See what it makes")}</h2>
-          <p className="lede">{hasMedia ? prompt.reconstruction ? text(uiLocale, "Reference images used to study this composition. The template below is a reconstruction, not the original author’s prompt.", "用于拆解构图的参考图片。下方提示词为逆向整理，并非原作者提示词。") : catalog.mode === "git-beta" ? text(uiLocale, "Examples collected with this prompt. Follow the original source for attribution and context.", "随提示词收集的示例。请查看原始来源，了解署名和背景。") : text(uiLocale, "This is the author's own result, straight from the post it was published in.", "这是作者发布的原始生成结果。") : text(uiLocale, "The author published no image with this one, so there is nothing honest to show here.", "作者未随提示词发布图片，因此此处暂无结果可展示。")}</p>
-          <RecipeMedia uiLocale={uiLocale} prompt={prompt} />
+          <h2 id="recipe-result">{websiteEntry ? text(uiLocale,"Visual references","视觉参考") : uiText(uiLocale, "See what it makes")}</h2>
+          <p className="lede">{websiteEntry && hasMedia ? text(uiLocale,"Images, videos and demo screenshots linked to this case’s sources.","本案例来源关联的图片、视频及演示网站截图。") : hasMedia ? prompt.reconstruction ? text(uiLocale, "Reference images used to study this composition. The template below is a reconstruction, not the original author’s prompt.", "用于拆解构图的参考图片。下方提示词为逆向整理，并非原作者提示词。") : catalog.mode === "git-beta" ? text(uiLocale, "Examples collected with this prompt. Follow the original source for attribution and context.", "随提示词收集的示例。请查看原始来源，了解署名和背景。") : text(uiLocale, "This is the author's own result, straight from the post it was published in.", "这是作者发布的原始生成结果。") : text(uiLocale, "The author published no image with this one, so there is nothing honest to show here.", "作者未随提示词发布图片，因此此处暂无结果可展示。")}</p>
+          <RecipeMedia website={Boolean(websiteEntry)} uiLocale={uiLocale} prompt={prompt} />
         </div>
       </section>
 

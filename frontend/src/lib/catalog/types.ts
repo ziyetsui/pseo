@@ -117,6 +117,7 @@ export interface WebsiteCase {
   title: string;
   summary: string;
   cover: string;
+  media: Media[];
   attribution: string;
   source: { url: string; platform: string };
   models: Ref[];
