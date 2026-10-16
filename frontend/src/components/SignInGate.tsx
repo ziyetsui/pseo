@@ -166,7 +166,7 @@ export function SignInGate({ uiLocale = 'en' }: { uiLocale?: Locale } = {}) {
         <p className="sign-in-gate-unit">{message.intent ? uiText(uiLocale, "Your prompt") : uiText(uiLocale, "Ready to explore")}</p>
         <h2 className="sign-in-gate-sub" id="sign-in-gate-heading">{num(message.chars)}{text(uiLocale, " characters", " 个字符")}{message.words > 0 && <> · <b>{num(message.words)}{text(uiLocale, " words", " 个词")}</b></>}.<br />{text(uiLocale, "Take the next step in Ancher.", "前往 Ancher，开始创作。")}</h2>
         <div className="sign-in-gate-acts">
-          <a className="sign-in-gate-btn" href={message.href ?? generationHref(document.querySelector<HTMLTextAreaElement>("#gen4")?.value ?? document.querySelector("[data-prompt]")?.textContent ?? "")} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>{text(uiLocale, "Continue to Ancher ↗", "前往 Ancher ↗")}</a>
+          <a className="sign-in-gate-btn" href={message.href ?? document.querySelector<HTMLAnchorElement>('a[data-generation-cta]')?.href ?? generationHref(document.querySelector<HTMLTextAreaElement>("#gen4")?.value ?? document.querySelector("[data-prompt]")?.textContent ?? "")} target="_blank" rel="noopener noreferrer" onClick={() => close(GATE.quietAfterClickDays)}>{text(uiLocale, "Continue to Ancher ↗", "前往 Ancher ↗")}</a>
           <button className="sign-in-gate-alt" type="button" onClick={() => close()}>{uiText(uiLocale, "Keep exploring")}</button>
         </div>
         <p className="sign-in-gate-fact">{text(uiLocale, "Your prompt opens in Ancher in a new tab.", "将在新标签页打开 Ancher，并带入你的提示词。")}</p>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Catalog, Prompt } from "@/lib/catalog/types";
 import { SiteFooter, SiteHeader } from "@/components/Chrome";
 import { RecipeMedia } from "@/components/RecipeMedia";
+import { generationKind } from '@/lib/cta/generation-url';
 import { RecipeGenerateLink } from './RecipeGenerateLink';
 import { RecipeText } from "@/components/RecipeText";
 import { generationLabel } from "@/components/generation-label";
@@ -59,7 +60,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           {prompt.requiredInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Required inputs")}</span><span>{prompt.requiredInputs.join(", ")}</span></div>}
           {prompt.optionalInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Optional inputs")}</span><span>{prompt.optionalInputs.join(", ")}</span></div>}
           <div className="acts">
-            <RecipeGenerateLink prompt={editablePrompt.prompt}>{generationLabel(prompt.kind, uiLocale)}</RecipeGenerateLink>
+            <RecipeGenerateLink prompt={editablePrompt.prompt} kind={websiteEntry ? 'website' : generationKind(prompt)}>{generationLabel(prompt.kind, uiLocale)}</RecipeGenerateLink>
             <span className="metrics"><span>{prompt.handle || uiText(uiLocale, "unattributed")}</span><span><b>{number(prompt.likes)}</b>{text(uiLocale, " likes", " 次点赞")}</span><span><b>{number(prompt.saves)}</b>{text(uiLocale, " saves", " 次收藏")}</span>{prompt.highValue && <span className="ok">{uiText(uiLocale, "Popular")}</span>}</span>
           </div>
           <div style={{ marginTop: 20 }}>

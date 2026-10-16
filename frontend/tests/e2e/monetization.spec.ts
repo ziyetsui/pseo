@@ -16,7 +16,7 @@ for(const locale of ['zh-CN','en']){
   await detail.click();await expect(page).toHaveURL(new RegExp(`${href}$`));
   await expect(page.locator('.monet-related')).toBeVisible();
   const text=await page.locator('[data-prompt]').textContent();const generation=page.locator('[data-generation-cta]').first();
-  await expect.poll(async()=>new URL((await generation.getAttribute('href'))!).searchParams.get('prompts')).toBe(text);
+  await expect.poll(async()=>new URL((await generation.getAttribute('href'))!).searchParams.get('prompts')).toBe(`创建一张关于的图片\n\n${text}`);
   await page.goBack();await expect(page.locator('h1 span')).toHaveText(zh?'AI 女装带货.':'AI womenswear content.');
   await expect(page.locator('.footnav > div')).toHaveCount(5);await expect(page.locator('.footnav > div').last().locator('a')).toHaveCount(6);
   const other=zh?'en':'zh-CN';await page.locator('.language-switch summary').click();await page.locator(`.language-switch a[hreflang="${other}"]`).click();await expect(page).toHaveURL(new RegExp(`/${other}/prompts/monetization/commerce/womenswear-selling$`));
