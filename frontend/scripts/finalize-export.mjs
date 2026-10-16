@@ -61,10 +61,11 @@ if (mode === 'git-beta') {
   const avatars = JSON.parse(await readFile('src/data/creator-avatars.json','utf8'));
   await verifyCreatorAvatarAssets(out, avatars);
   const queenieImages = JSON.parse(await readFile('src/data/queenie-images.json','utf8'));
+  const sourceAttributions = JSON.parse(await readFile('src/data/queenie-source-attribution.json','utf8'));
   const queenieManifest = JSON.parse(await readFile('../docs/intake/2026-10-15-queenie/manifest.json','utf8'));
   if (createHash('sha256').update(await readFile('src/data/queenie-images.json')).digest('hex') !== queenieManifest.datasetSha256 || createHash('sha256').update(await readFile('../docs/intake/2026-10-15-queenie/source-analysis.json')).digest('hex') !== queenieManifest.analysisSha256) throw new Error('Queenie snapshot checksum mismatch');
   const promptBodies = JSON.parse(await readFile('src/data/zh-prompt-bodies.json','utf8'));
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages);
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions);
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, queenieImages);
   const localeReceipts=[];
