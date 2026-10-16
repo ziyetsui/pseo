@@ -1,4 +1,5 @@
 import {RecipeMedia} from './RecipeMedia';
+import {MonetizationRelated} from './Monetization';
 import { interfaceLocale, uiText, text, caseCount, sourceLanguage } from '@/lib/i18n/text';
 import type { Catalog, WebsiteCase, WebsiteView, Ref } from '@/lib/catalog/types';
 import { RecipeText } from './RecipeText';
@@ -35,5 +36,6 @@ export function WebsiteCaseDetail({ catalog, entry }: { catalog: Catalog; entry:
     <section className="step" aria-labelledby="website-result"><div className="num" aria-hidden="true">01</div><div><h2 id="website-result">{text(uiLocale,"Visual references","视觉参考")}</h2><p className="lede">{text(uiLocale,"Images, videos and demo screenshots linked to this case’s sources.","本案例来源关联的图片、视频及演示网站截图。")}</p><RecipeMedia website uiLocale={uiLocale} prompt={{id:entry.id,title:entry.title,locale:catalog.locale,img:entry.cover,media:entry.media}} /></div></section>
     <RecipeText prompt={prompt} uiLocale={uiLocale} showOriginalLanguage />
     <section className="step" aria-labelledby="website-run"><div className="num" aria-hidden="true">04</div><div><h2 id="website-run">{uiText(uiLocale, "Run it")}</h2><p className="lede">{uiText(uiLocale, "Explore the creator’s project using the links supplied with the source.")}</p><div className="acts"><RecipeGenerateLink prompt={prompt.prompt}>{text(uiLocale, "Generate website", "生成网站")}</RecipeGenerateLink><a className="btn" href={entry.source.url} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "View original source ↗")}</a>{entry.demoUrl&&<a className="btn" href={entry.demoUrl} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "Open demo ↗")}</a>}{entry.codeUrl&&<a className="btn" href={entry.codeUrl} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "View code ↗")}</a>}</div><div className="kv"><span>{uiText(uiLocale, "Related views")}</span><span>{views.map((view,index)=><span key={view.id}>{index>0&&' · '}<a href={view.href}>{view.label} · {caseCount(uiLocale, view.count)}</a></span>)}</span></div>{entry.relatedSources.map(url=><div className="kv" key={url}><span>{uiText(uiLocale, "Related source")}</span><a href={url} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "Related source post ↗")}</a></div>)}</div></section>
+    <MonetizationRelated catalog={catalog} contentId={entry.id}/>
   </div></main><SiteFooter catalog={catalog} level="prompt" /></div></div>;
 }

@@ -1,3 +1,8 @@
 /* Selected destinations in the footer; the complete taxonomy stays in Library index. */
-.foot .footnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 48px;max-width:none}
+.foot .footnav{display:grid;--footer-columns:4;grid-template-columns:repeat(var(--footer-columns),minmax(0,1fr));gap:32px 48px;max-width:none}
 @media(max-width:760px){.foot .footnav{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}}
+
+@media(min-width:761px) and (max-width:1100px){.foot .footnav{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}}
+.foot .footnav>div{min-width:0}.foot .footnav a{overflow-wrap:anywhere}
+
+.foot .footnav:has(>div:nth-child(5)){--footer-columns:5}

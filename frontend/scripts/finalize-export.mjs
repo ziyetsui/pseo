@@ -4,7 +4,7 @@ import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
 import { verifyCreatorAvatarAssets } from './creator-avatar-assets.mjs';
 import { gitBetaReceipt, verifyGitBetaAssets } from './git-beta-receipt.mjs';
 import { readWebsiteViews } from './website-view-output.mjs';
-import { readLibraryIndex, indexHash } from './library-index-output.mjs';
+import { readLibraryIndex, publishedNavigation, indexHash } from './library-index-output.mjs';
 import { checkIntake } from '../../scripts/lib/case-import.mjs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -83,7 +83,7 @@ if (mode === 'git-beta') {
     const index=readLibraryIndex(parse(await readFile(path.join(out,`${locale}/prompts/library-index.html`),'utf8')),revision,locale);
     const bytes=JSON.stringify(index,null,2)+'\n',indexPath=locale==='zh-CN'?'/library-index.json':'/en/library-index.json';
     await writeFile(path.join(out,indexPath),bytes);
-    local.publishedNavigation=[{id:'navigation:library-index',href:`/${locale}/prompts/library-index`}];
+    local.publishedNavigation=publishedNavigation(index,locale);
     local.navigationIndex={path:indexPath,sha256:indexHash(bytes),routes:index.routes.length};
     localeReceipts.push(local);
   }

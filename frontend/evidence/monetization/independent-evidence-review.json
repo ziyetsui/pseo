@@ -1,0 +1,359 @@
+{
+  "sourceRevision": "sha256:2cd248b9ae3c3979a9406e924111908ea37624b1e86dbbfa16af6d2b4632dcb6",
+  "scope": "Focused independent positive-evidence review; representative seeds only, not a full-catalog membership audit.",
+  "memberships": [
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_4248458bb4aa0c821fe653f6bf687a49",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Stylish fashion catalog shoot blending streetwear and luxury branding. Female model wearing burgundy slim-fit top and ivory tailored pants",
+        "reason": "Explicit female model catalog and shopping aesthetic."
+      },
+      "adaptationNotes": "",
+      "title": "Fashion Catalog E-Commerce Collage",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_662f1907a6d550f8a59db42500752450",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "high-end commercial fashion look",
+        "reason": "Commercial fashion campaign with female models and outfit variations."
+      },
+      "adaptationNotes": "",
+      "title": "Colorful Button Fashion Campaign",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "womenswear-selling",
+      "contentId": "prm_b03df27ee24b182141725864815233d0",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "泳装时尚杂志广告页面，日本成熟模特",
+        "reason": "Swimwear magazine advertising and nine-grid female model clothing presentation."
+      },
+      "adaptationNotes": "",
+      "title": "Nine-panel swimwear magazine advertisement",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "virtual-try-on",
+      "contentId": "prm_4967c18e49c48ee40bb2cb38e983afe9",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Change the outfit completely from the original reference while keeping it fully modest and elegant:",
+        "reason": "Explicit identity-preserving outfit replacement, but not a supplied garment SKU."
+      },
+      "adaptationNotes": "Supply actual garment references, preserve garment details, and simplify scenic backdrop.",
+      "title": "Paper-Sculpture Collage Countryside Portrait",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "virtual-try-on",
+      "contentId": "2089932434351734933",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Change her outfit to a fitted sleeveless [TOP_COLOR] top with clean [SHORTS_COLOR] shorts and keep the outfit identical in every shot.",
+        "reason": "Explicit outfit replacement. Main locked products are sunglasses/earbuds rather than apparel."
+      },
+      "adaptationNotes": "Make clothing the target product; supply exact garment details and visual references.",
+      "title": "Locked product and identity, outfit swapped",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "beauty-recommendations",
+      "contentId": "prm_1f81b93f264675775f8fcf078fb89b68",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "所有人脸保持一致，仅唇色变化，真实试色效果（lip color try-on）",
+        "reason": "Explicit branded lipstick swatches on consistent faces."
+      },
+      "adaptationNotes": "",
+      "title": "Infographic report recommending branded lipsticks",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-comic-this-winter-i-m-here-with-you-5j3nw4",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Four equal single panels arranged in 2 rows and 2 columns",
+        "reason": "Title states being together; body has a sequential warm relationship ending with leaning together."
+      },
+      "adaptationNotes": "",
+      "title": "English Healing Comic: This Winter, I'm Here with You",
+      "isQueenieReconstruction": true
+    },
+    {
+      "scenarioId": "relationship-comics",
+      "contentId": "queenie-english-healing-mini-comic-you-are-my-best-gift-herrwp",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Two panels top and bottom, each about half the height",
+        "reason": "Two-panel warm comic; relationship primarily established by title."
+      },
+      "adaptationNotes": "Specify couple/companionship subjects and emotional dialogue; retain reconstruction disclosure.",
+      "title": "English Healing Mini Comic: You Are My Best Gift",
+      "isQueenieReconstruction": true
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "适合公众号封面或宽幅视觉",
+        "reason": "Explicit 2.35:1 WeChat-cover branch, although current example defaults to 9:16."
+      },
+      "adaptationNotes": "",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-a-complete-guide-to-building-a-wechat-official-account-from-ls7vfb",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "A composite structure of a horizontal four-step flowchart paired with case-study walls on the left and right",
+        "reason": "Explicit editorial text/image structure and wide approximately 2.5:1 reference ratio, suitable as cover layout."
+      },
+      "adaptationNotes": "Replace article title/subject, keep mobile-safe readable type, adjust crop to WeChat placement; preserve reconstruction identity.",
+      "title": "A Complete Guide to Building a WeChat Official Account from 0 to 1 (with SOP and Prompts)",
+      "isQueenieReconstruction": true
+    },
+    {
+      "scenarioId": "wechat-covers",
+      "contentId": "queenie-open-sourcing-a-skill-completely-solve-the-image-problem-for-nqsndx",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Two columns with text on the left and image on the right; left side stacks text, right side collages multiple images",
+        "reason": "Explicit editorial text/image structure and wide approximately 2.5:1 reference ratio, suitable as cover layout."
+      },
+      "adaptationNotes": "Replace article title/subject, keep mobile-safe readable type, adjust crop to WeChat placement; preserve reconstruction identity.",
+      "title": "Open-Sourcing a Skill: Completely Solve the Image Problem for Xiaohongshu and WeChat",
+      "isQueenieReconstruction": true
+    },
+    {
+      "scenarioId": "xiaohongshu-shopping",
+      "contentId": "prm_8629e33f89d0bd5612f59824ccc986ec",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "主推产品：{奶茶}",
+        "reason": "Brand/product social KV explicitly for Xiaohongshu; excludes prices and links, so shopping narrative needs adaptation."
+      },
+      "adaptationNotes": "Replace with actual merchandise, add substantiated recommendation or selling points; preserve source conceptual-ad identity.",
+      "title": "Branded Milk Tea Key Visual Concept Poster",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "prm_ef1ed034dbd56b9edf1fcdd97407ecfd",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Transform the person into an adorable hand-drawn 2D children’s storybook character, while keeping their identity immediately recognizable.",
+        "reason": "Uploaded-photo identity-preserving square portrait."
+      },
+      "adaptationNotes": "",
+      "title": "Hand-drawn children's storybook avatar",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "prm_fc661d14d30e34fc4072d0e7caf08795",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Transform the input photo into a high-end stylized 3D collectible figure.",
+        "reason": "Personalized photo-to-character commission."
+      },
+      "adaptationNotes": "",
+      "title": "Premium 3D collectible toy avatar",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "avatar-portraits",
+      "contentId": "prm_66a2612d4eca8bd6ae6cebdbf604a518",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Transform the person into a cute, hand-drawn anime/chibi character while preserving the original person’s recognizable facial features, hairstyle, outfit, pose, and accessories.",
+        "reason": "Explicit photo-preserving chibi commission."
+      },
+      "adaptationNotes": "",
+      "title": "Chibi portrait against a real Christmas street background",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "couple-keepsakes",
+      "contentId": "prm_ba50493f8afe6a48fbec4e31f507f08d",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "a cute young [Japanese/Korean] couple sitting together naturally",
+        "reason": "Couple scene with heart doodles; photographic rather than identity-based illustration."
+      },
+      "adaptationNotes": "Supply consented couple reference, preserve likenesses, and convert to keepsake illustration treatment.",
+      "title": "Couple Portraits in Japanese and Korean Cafes",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "pet-portraits",
+      "contentId": "prm_4609140d6591dad75f2ca1b32ac56a56",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "accompanied closely by [ANIMAL]",
+        "reason": "Explicit illustrated human/animal duo poster with animal foreground and print texture."
+      },
+      "adaptationNotes": "Supply pet reference; preserve pet markings and likeness; make pet focal subject or retain owner-and-pet keepsake format.",
+      "title": "Raw hand-drawn portrait poster of a duo",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "greeting-cards",
+      "contentId": "prm_66a2612d4eca8bd6ae6cebdbf604a518",
+      "fit": "adaptable",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "festive Christmas decorations",
+        "reason": "Personalized portrait in festive Christmas scene, no greeting/card itself."
+      },
+      "adaptationNotes": "Add personalized holiday greeting and adjust to card trim/bleed format.",
+      "title": "Chibi portrait against a real Christmas street background",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_c050e6feea853fd1b173bb67491754cf",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "collectible art print",
+        "reason": "Explicit collectible poster/art print output."
+      },
+      "adaptationNotes": "",
+      "title": "Dreamy futuristic city editorial art poster",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "art-prints",
+      "contentId": "prm_2f4b5e730ac701264706bf0da6e106ae",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "premium art print quality",
+        "reason": "Photo-to-watercolor postcard and print-ready art concept."
+      },
+      "adaptationNotes": "",
+      "title": "Ink-wash postcard from a travel photo",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_2ecd3e1c207641cded894b4e1800a31e",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "bold prices and functional add-to-cart buttons",
+        "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+      },
+      "adaptationNotes": "",
+      "title": "Botanical wellness ecommerce homepage",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_6ce3395d08af3d8904f42519926a081f",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Sell high-quality coffee beans and simple coffee equipment.",
+        "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+      },
+      "adaptationNotes": "",
+      "title": "Coffee E-Commerce Website",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_4c90aa575ffdface16ab3b96af2df068",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Develop a website where users can design and order customized stationery sets.",
+        "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+      },
+      "adaptationNotes": "",
+      "title": "Custom Stationery Store",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "prm_e2044722a0c226fd0c976e6c748afe85",
+      "fit": "direct",
+      "evidence": {
+        "field": "prompt",
+        "excerpt": "Make an ecommerce website for a tech gadgets business.",
+        "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+      },
+      "adaptationNotes": "",
+      "title": "Tech Accessories E-Commerce Website",
+      "isQueenieReconstruction": false
+    },
+    {
+      "scenarioId": "ecommerce-websites",
+      "contentId": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "fit": "direct",
+      "evidence": {
+        "field": "summary",
+        "excerpt": "A 3D ecommerce site for a sustainable clothing brand",
+        "reason": "Explicit store/products/order/cart sales target; normalize prompt-backed website to prompt ID."
+      },
+      "adaptationNotes": "",
+      "title": "Sustainable fashion 3D store",
+      "isQueenieReconstruction": false
+    }
+  ],
+  "pitfalls": [
+    "Do not promote keyword hits directly: pet matches competition/petite/petals unless word boundaries or Chinese semantics are used.",
+    "prm_009963122d9aa7088958596831061900 titled Comic storyboard actually targets cosplay selfies; prm_4ad36c7c4c1ca068200e3a0a24106c7e is a single swordsman image; prm_6b3f1a9c8b7954e9c15b44814e329eb9 is an object collage. None supports relationship-comics.",
+    "prm_0962970bde9befdd4dff4798dadbdbdb title says couple, but JSON body specifies general character style without people/couple identity. Requires media review rather than direct personalized couple classification.",
+    "prm_8629e33f89d0bd5612f59824ccc986ec explicitly excludes price tags, purchase links and promotion details; do not classify promotional-campaigns based on negative section. Brand-campaigns is direct; shopping is adaptable.",
+    "Xiaohongshu/WeChat UI screenshots, profile cards and platform logos are not shopping posts/article covers. Recipe infographic and sleep guide are educational, not automatically shopping.",
+    "Beauty portraits and lipstick try-on do not establish apparel try-on. Women merely present in a photo do not establish womenswear-selling.",
+    "Queenie templates are reference reconstruction, with editable generic SUBJECT/HEADLINE; preserve that identity. Title often gives subject, body gives layout; generic layout alone does not prove sales purpose.",
+    "Website titles/3D technology do not establish ecommerce. Explicit shop/order/product/cart goal does. promptHref must resolve to exact existing prompt href before alias normalization."
+  ],
+  "unsupportedDirectScenes": [
+    {
+      "scenarioId": "pet-portraits",
+      "reason": "No explicit pet-photo-to-pet-portrait candidate found; owner/animal poster is adaptable only."
+    },
+    {
+      "scenarioId": "greeting-cards",
+      "reason": "No explicit greeting-card output found; Christmas portrait and general postcard outputs are adaptable only."
+    },
+    {
+      "scenarioId": "fitness-enrollment",
+      "reason": "Fitness posters/infographics found but no explicit enrollment/admission CTA found in focused scan; only adaptable with enrollment copy."
+    },
+    {
+      "scenarioId": "beauty-services",
+      "reason": "Cozy hair salon illustration supports service theme but lacks explicit promotional output; adaptable only with salon brand and appointment CTA."
+    }
+  ]
+}

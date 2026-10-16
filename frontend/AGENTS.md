@@ -216,6 +216,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 2026-10-16 用户裁定任务 L3 改用 Plate：Browse by task 卡片（及页脚、Library index、模型页相关推荐等指向 `/{locale}/prompts/use-cases/{taskSlug}` 的入口）的落地页不再使用 Findings，改为与 Browse by style 相同的 Plate 二级页（参考 /zh-CN/prompts/styles/anime-illustrated）：标题页、搜索与筛选栏、编号目录、交替图版与旁注、页底横向缩略图 Browse 导航。固定轴为真实 useCase，筛选轴为模型/风格/技巧/主题；中英文同步。参考图逆向整理条目在旁注中标注「参考图作者 / Reference image」而非 Credit，风格 Plate 同样适用。「网站与开发」卡片仍进入既有225案例集合，不受影响。此裁定取代 §7 中 L3 Findings 对任务页的约束（含移除页尾导航卡的追加要求）；`TaskFindings` 仅保留给非 git-beta 的 `/prompts/website` 聚合页。
 
+
+2026-10-16 用户确认增加按变现场景浏览：独立导航投影，不覆盖任务、模型、风格。首页新增最多8个非空大类，四十候选细分场景按正向证据显式映射，区别直接适用/需要改编，复用原L4，不编造收益。Footer 增为浏览/模型/任务/风格/变现五列，第五列最多5个精选非空场景+完整目录；前四列维持原21项，手机两列，完整索引收录全部有效视图。此项取代此前四列合计21项的总列数限制。保持双语、真实计数、beta noindex、完整正文生成链接。
 2026-10-16 用户要求图片库来源署名替换：全部指向 YouMind 爆款文章中转页的 Queenie 图片记录，逐条读取原文入口并核实 X 帖子 URL/账号，在 Git-beta 的中英文展示中直接署名 X 原作者并链接原帖。使用独立版本化来源映射，原始采集快照与图片/重建模板保持不变；映射必须绑定原记录ID与原sourceUrl，缺失/冲突/非真实原文入口时构建失败，不能猜账号或借用推荐文章链接。内部保留采集来源和证据哈希，公开source.url/handle不再指向YouMind；其他平台真实来源保持原样。映射纳入catalog revision；保持noindex，不改变CMS/权利审核状态。
 
 2026-10-16 用户要求补齐现有225个网站案例的真实视觉资源：复核原帖及明确的父帖/引用关系，补充可审计封面、图片与完整演示视频，保留原作者/提示词来源，视觉素材来源另作证据。使用独立版本化视觉映射绑定案例id和sourceUrl，中英文同步复用既有卡片/详情布局；不可获取或纯文字来源如实记录，不用无关配图或生成图冒充案例结果。保留原始采集档案、既有分类/模板和noindex，不变更CMS/rights状态。
