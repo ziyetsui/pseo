@@ -14,7 +14,7 @@ describe('shared Footer IA and complete Library index',()=>{
     for(const row of [...catalog.prompts,...websiteEntries(catalog),...websiteViews(catalog)])expect(index.routes).toContain(row.href);
     expect(new Set(index.routes).size).toBe(index.routes.length);
     expect(index.routes.every(href=>paths.has(href)&&!href.includes('?'))).toBe(true);
-    expect(index.collections.find(group=>group.id==='website-details')?.entries).toHaveLength(225);
+    expect(index.collections.find(group=>group.id==='website-details')?.entries).toHaveLength(224);
     expect(index.groups).toEqual(libraryNavigation(catalog));
   });
   it('renders the exact machine-readable route index and escapes source titles safely',()=>{
@@ -28,7 +28,7 @@ describe('shared Footer IA and complete Library index',()=>{
   it('uses exact graph case counts and never labels case-only projects as prompts',()=>{
     const groups=libraryNavigation(catalog);
     const claude=groups.find(group=>group.id==='website-model')?.entries.find(entry=>entry.href.endsWith('/claude'));
-    expect(claude?.count).toBe(28);expect(claude?.label).toBe('Claude · 28 个案例');
+    expect(claude?.count).toBe(30);expect(claude?.label).toBe('Claude · 30 个案例');
     expect(groups.find(group=>group.id==='website-tool')?.entries).toHaveLength(21);
     expect(groups.find(group=>group.id==='website-use-case')?.entries).toHaveLength(3);
   });

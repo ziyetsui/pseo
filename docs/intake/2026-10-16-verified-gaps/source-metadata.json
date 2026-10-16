@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-10-15T10:00:00.000Z",
+  "authorization": "2026-10-16 owner import, merge and deploy verified gaps",
+  "researchReport": "ancher-x-3d-websites/docs/pseo/gap-verification-2026-10-15/逐条核实报告.md",
+  "baselineRecords": 259,
+  "verifiedSources": 248,
+  "acceptedMediaRecords": 109,
+  "excludedContextImages": 50,
+  "unresolvedMedia": 13,
+  "cmsAccepted": 0,
+  "rightsStatus": "review_required",
+  "upstreamCommit": "836f48223308816d8066d6355f8a819d66798612"
+}

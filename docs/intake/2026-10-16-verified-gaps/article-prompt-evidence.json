@@ -1,0 +1,7 @@
+{
+  "source": "https://x.com/awp_Akira/status/2083515342698016969",
+  "articleId": "2082263675193143297",
+  "entityType": "MARKDOWN",
+  "text": "/ui-ux-pro-max\n\nYou are building a premium, agency-quality website. Read the images in the /reference folder first and treat them as the quality bar. Match their typography scale, spacing rhythm, and motion. Do not copy their layouts.\n\nTHE BRIEF\n- Audience: this site is for [who it is for, e.g. wedding photographers charging $3K+ per booking].\n- One goal: every page should push the visitor toward [one single action, e.g. booking a call]. Use one main call to action, repeated, not five competing ones.\n- Sections I want: [list them, e.g. hero, work gallery, about, testimonials, contact].\n- Vibe: [3 words, e.g. dark, cinematic, expensive].\n\nTHE RULES\n- Stack: Astro and Tailwind, static and fast, ready to deploy on Cloudflare Pages, no CMS.\n- Fully responsive, designed for phones first, then desktop.\n- Clean, semantic code with clear file names so it is easy to edit later.\n\nBANNED (never use these)\n- Inter as the display font, purple gradients, emoji used as icons, generic stock-photo placeholders, and centered-everything layouts.\n\nBEFORE YOU BUILD\nAsk me 4 to 6 clarifying questions about fonts, color palette, animation level, and copy tone. Wait for my answers. Then plan the structure, show me the plan, and build it.",
+  "extraction": "TweetResultByRestId article.content_state.entityMap MARKDOWN entity"
+}

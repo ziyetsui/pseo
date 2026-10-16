@@ -1,19 +1,20 @@
 {
   "observedAt": "2026-10-16T07:34:54.710893+00:00",
-  "caseRecords": 225,
-  "availableMediaCases": 161,
+  "caseRecords": 224,
+  "availableMediaCases": 158,
   "existingCoverOnlyCases": 1,
-  "casesWithoutUsableVisuals": 63,
+  "casesWithoutUsableVisuals": 65,
   "previousCasesWithPreview": 61,
   "newCasesWithPreview": 101,
   "originalXAssets": 166,
-  "localAssets": 177,
-  "images": 44,
+  "localAssets": 175,
+  "images": 42,
   "videoRenditions": 133,
   "segmentedOriginalVideos": 2,
-  "totalVisualFiles": 310,
-  "datasetSha256": "ee8b83fa15c92eb93d93b0cfcde7cbbed8806d6bd8a9102e206a88e0d16478b8",
+  "totalVisualFiles": 308,
+  "datasetSha256": "927fd585df2c17eaeb4b5a1db802147ae8762a695d3456dd829200461cf437bb",
   "rawIntakeChanged": false,
   "rightsApprovalChanged": false,
-  "publicationMode": "git-beta"
+  "publicationMode": "git-beta",
+  "integrationNote": "Combined with verified gaps: two prompt aliases deduplicated, one generic article template added, and Mercor earnings/Kavian AI marketing covers excluded as non-output imagery. Original capture evidence remains unchanged."
 }

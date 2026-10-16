@@ -1,0 +1,26 @@
+{
+  "Hanfu showcase from an open-source 3D project": {
+    "en": "Hanfu showcase from an open-source 3D project",
+    "zh-CN": "开源项目改造的三维汉服展示"
+  },
+  "Rebuild a referenced 3D showcase for Hanfu, with Chinese UI and a matching visual direction.": {
+    "en": "Rebuild a referenced 3D showcase for Hanfu, with Chinese UI and a matching visual direction.",
+    "zh-CN": "参考开源三维展示项目，改造为汉服主题，使用中文界面及相应视觉风格。"
+  },
+  "Reusable 3D interactive website framework": {
+    "en": "Reusable 3D interactive website framework",
+    "zh-CN": "可复用三维互动网站框架"
+  },
+  "An author-published framework covering a website brief, 3D interactions, page structure and implementation constraints.": {
+    "en": "An author-published framework covering a website brief, 3D interactions, page structure and implementation constraints.",
+    "zh-CN": "作者公开的通用框架，包含网站需求、三维交互、页面结构与实现要求。"
+  },
+  "Reference-led premium website master prompt": {
+    "en": "Reference-led premium website master prompt",
+    "zh-CN": "参考图驱动的精品网站主提示词"
+  },
+  "A general website template from the cited article, with reference images, a focused brief and a planning pass.": {
+    "en": "A general website template from the cited article, with reference images, a focused brief and a planning pass.",
+    "zh-CN": "引用文章中的通用建站模板，包含参考图、明确需求及先规划再实现的流程。"
+  }
+}

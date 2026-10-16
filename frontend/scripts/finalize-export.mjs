@@ -53,6 +53,9 @@ if (mode === 'git-beta') {
   checkIntake(intake);
   const supplement = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-14-website-supplement/${name}.json`,'utf8'))])));
   checkIntake(supplement);
+  const verifiedGaps = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-16-verified-gaps/${name}.json`, 'utf8'))])));
+  checkIntake(verifiedGaps);
+  for (const [file, field] of [['source-records','sourceSha256'], ['media-links','mediaSha256']]) if (createHash('sha256').update(await readFile(`../docs/intake/2026-10-16-verified-gaps/${file}.json`)).digest('hex') !== verifiedGaps.manifest[field]) throw new Error('Verified gap source checksum mismatch');
   const combined = JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8'));
   if (createHash('sha256').update(JSON.stringify(combined)).digest('hex') !== supplement.manifest.combinedSha256 || createHash('sha256').update(JSON.stringify(intake.graph)).digest('hex') !== supplement.manifest.originalGraphSha256) throw new Error('Website supplement graph checksum mismatch');
   const sourceBytes = await readFile('../docs/intake/2026-10-14-website-supplement/source-records.json');
@@ -77,7 +80,7 @@ if (mode === 'git-beta') {
     const bytes=await readFile(path.join(out,asset.src.slice(1)));
     if(createHash('sha256').update(bytes).digest('hex')!==asset.sha256)throw Error('Reference study asset checksum mismatch');
   }
-  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, websiteVisuals, referenceStudyInput);
+  revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')), websiteVisuals, referenceStudyInput);
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
   gitBeta = gitBetaReceipt(combined, [...intake.reviews, ...supplement.reviews], JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, queenieImages);
   gitBeta.referenceStudies=referenceStudies.records.length;
@@ -85,6 +88,7 @@ if (mode === 'git-beta') {
   gitBeta.promptCount+=referenceStudies.records.length;gitBeta.imagePrompts+=referenceStudies.records.length;
   gitBeta.publishedPrompts.push(...referenceStudies.records.map(row=>({id:row.id,href:`/zh-CN/prompts/${row.slug}`})));
   gitBeta.imageUrls.push(...referenceStudies.records.flatMap(row=>row.media.map(asset=>asset.src)));
+  gitBeta.verifiedGaps = { prompts: verifiedGaps.proposals.length, mediaRecords: verifiedGaps.manifest.acceptedMediaRecords, sourceSha256: verifiedGaps.manifest.sourceSha256, mediaSha256: verifiedGaps.manifest.mediaSha256 };
   gitBeta.websiteVisualCases=websiteVisuals.records.filter(row=>row.status==='available'||row.status==='existing').length;
   gitBeta.websiteVisualAssets=Object.keys(websiteVisuals.assets).length;
   const localeReceipts=[];

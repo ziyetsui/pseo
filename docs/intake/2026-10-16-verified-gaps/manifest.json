@@ -1,0 +1,19 @@
+{
+  "websitesProcessed": 3,
+  "imagesProcessed": 0,
+  "duplicates": 0,
+  "conflicts": 0,
+  "categoryMappings": [],
+  "state": "proposal_ready",
+  "cmsAccepted": 0,
+  "public": 0,
+  "mirrorSynced": false,
+  "deployed": false,
+  "nodes": 11,
+  "edges": 15,
+  "proposals": 3,
+  "acceptedMediaRecords": 109,
+  "sourceSha256": "fa8367412ed0f62001c15c3210044ff0b3ed177cd5df7af8ef538c83e9d5923f",
+  "mediaSha256": "c06ba2c968e26614703b59e550233b1f9dcdbbfcbce00c8bf0a69a47f33fa8f2",
+  "combinedSha256": "a452694a3959ab204c238ea62129ec4a631db4edd61860cfee49fb8859a22465"
+}

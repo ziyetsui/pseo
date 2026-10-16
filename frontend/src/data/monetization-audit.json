@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "sha256:051a92e4597452084fd7ee801e07ca35a4e9544d9c2836d98b238f860cac190f",
+  "revision": "sha256:a9342308292689dddad698ddd1c2d4ab8efd2cc686ef586df32a3a3e7286395a",
   "records": [
     {
       "contentId": "2073529429838696592",
@@ -377,6 +377,12 @@
       "contentId": "prm_07fbf594306eb242db1aa9d779999914",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
+    },
+    {
+      "contentId": "prm_0863daa8f94f827ef322d4f5c2f53f65",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -1787,6 +1793,12 @@
       "scenarioIds": []
     },
     {
+      "contentId": "prm_50820d5184ef58128c42f55ae04f06cb",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
+    },
+    {
       "contentId": "prm_50d8c00c2beedda9cc822e5b62f0c70d",
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
@@ -2425,12 +2437,9 @@
     },
     {
       "contentId": "prm_6f97555db109605911a7e435aec2fa50",
-      "status": "mapped",
-      "reason": "Positive deliverable evidence recorded on each relationship.",
-      "scenarioIds": [
-        "monetization-scenario:brand-websites",
-        "monetization-scenario:interactive-product-showcases"
-      ]
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_6fd3571093c85acfdbc8402f81a51140",
@@ -3835,8 +3844,8 @@
     },
     {
       "contentId": "prm_b98dd74fb3f6235014b72babf64c7a45",
-      "status": "unrelated",
-      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -4130,6 +4139,12 @@
       "contentId": "prm_c7db23b7cd949e8343607596c85abadb",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
+    },
+    {
+      "contentId": "prm_c8f74fb527c78a8f4ec9e60c5de3b92c",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -14994,12 +15009,6 @@
       ]
     },
     {
-      "contentId": "websitecase_02d86f2fa113eb9997f84e003cc46976",
-      "status": "unrelated",
-      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
-      "scenarioIds": []
-    },
-    {
       "contentId": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
@@ -15013,12 +15022,6 @@
     },
     {
       "contentId": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
-      "status": "unrelated",
-      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
-      "scenarioIds": []
-    },
-    {
-      "contentId": "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
       "scenarioIds": []
@@ -15158,12 +15161,6 @@
       "scenarioIds": []
     },
     {
-      "contentId": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
-      "status": "unrelated",
-      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
-      "scenarioIds": []
-    },
-    {
       "contentId": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
@@ -15219,12 +15216,6 @@
     },
     {
       "contentId": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
-      "status": "unrelated",
-      "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
-      "scenarioIds": []
-    },
-    {
-      "contentId": "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
       "scenarioIds": []
