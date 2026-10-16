@@ -27,3 +27,8 @@ export function verifyLibraryIndex(documents,index,receipt,locale='zh-CN'){
     if(!links.has(`/${locale}/prompts/library-index`))throw new Error('Library index Footer link missing');
   }
 }
+
+export function publishedNavigation(index,locale){
+ const prefix=`/${locale}/prompts`;
+ return [{id:'navigation:library-index',href:`${prefix}/library-index`},...index.routes.filter(href=>href===`${prefix}/monetization`||href.startsWith(`${prefix}/monetization/`)).map(href=>({id:`navigation:${href}`,href}))];
+}
