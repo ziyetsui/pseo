@@ -8,7 +8,7 @@ const title=(c:Catalog)=>c.locale==='zh-CN'?'按变现浏览':'Browse by monetiz
 function Card({item,zh}:{item:MonetizationRef;zh:boolean}){return <a className="tile" href={item.href} data-monetization-group={item.id}><span className="th">{item.cover?<img src={item.cover} alt={item.label} width={640} height={400} loading="lazy"/>:<span className="media-fallback">{zh?'暂无预览':'No preview supplied'}</span>}</span><span className="tb"><h3>{item.label}</h3><p>{item.count} {zh?'个案例':'cases'}</p></span></a>;}
 export function MonetizationBand({catalog:c}:{catalog:Catalog}){
  const groups=monetizationGroups(c);if(!groups.length)return null;const zh=c.locale==='zh-CN';
- return <section className="sec browse-band monetization" id="monetization"><div className="wrap"><BrowseRail heading={<h2>{title(c)}</h2>} label={title(c)} prev={zh?'上一组':'Previous'} next={zh?'下一组':'Next'}>{groups.map(g=><Card item={g} zh={zh} key={g.id}/>)}</BrowseRail><p className="monet-all"><a href={`/${c.locale}/prompts/monetization`}>{zh?'查看全部变现场景 →':'Explore all monetization scenes →'}</a></p></div></section>;
+ return <section className="sec browse-band monetization" id="monetization"><div className="wrap"><BrowseRail heading={<h2>{title(c)}</h2>} label={title(c)}>{groups.map(g=><Card item={g} zh={zh} key={g.id}/>)}</BrowseRail><p className="monet-all"><a href={`/${c.locale}/prompts/monetization`}>{zh?'查看全部变现场景 →':'Explore all monetization scenes →'}</a></p></div></section>;
 }
 export function MonetizationPage({catalog:c,group,scenario}:{catalog:Catalog;group?:MonetizationRef;scenario?:MonetizationRef}){
  const zh=c.locale==='zh-CN',root=`/${c.locale}/prompts/monetization`,parent=scenario?monetizationGroups(c).find(g=>g.id===scenario.groupId):null;
