@@ -2452,25 +2452,6 @@
       }
     ]
   },
-  "prm_6f97555db109605911a7e435aec2fa50": {
-    "sourceHash": {
-      "en": "sha256:df29490f003fb6d8c9268c2216313185a58be3a7fe4e315b79e47e1549ccd193",
-      "zh": "sha256:54a564af1e5d2be0265046d4eede49cd13f9e2b46c1af1f4b557993c1e846aad"
-    },
-    "replacements": [
-      {
-        "token": "[BRAND_PRODUCT]",
-        "labelEn": "Brand or product",
-        "labelZh": "品牌或产品",
-        "en": [
-          "[brand/product]"
-        ],
-        "zh": [
-          "[brand/product]"
-        ]
-      }
-    ]
-  },
   "prm_6fd3571093c85acfdbc8402f81a51140": {
     "sourceHash": {
       "en": "sha256:03c7994d767188bfa5f77e22e347139ee0ec23d4c570b151253b5301608262bc",
@@ -4245,36 +4226,6 @@
       }
     ]
   },
-  "prm_b98dd74fb3f6235014b72babf64c7a45": {
-    "sourceHash": {
-      "en": "sha256:c87619a39da6144227662258d06c9ec39c839b8dc4f8a76f7e6627fdb77e7d68",
-      "zh": "sha256:dc7ba765b71cb805d79599d753cde7ef301bcf391abb8a173af237fc357af9e4"
-    },
-    "replacements": [
-      {
-        "token": "[CHARACTER]",
-        "labelEn": "Character",
-        "labelZh": "角色",
-        "en": [
-          "pelican"
-        ],
-        "zh": [
-          "鹈鹕"
-        ]
-      },
-      {
-        "token": "[SCENE_LOCATION]",
-        "labelEn": "Scene location",
-        "labelZh": "场景地点",
-        "en": [
-          "a city"
-        ],
-        "zh": [
-          "城市"
-        ]
-      }
-    ]
-  },
   "prm_bf669149cab6e954dcfc0bf2500c5db5": {
     "sourceHash": {
       "en": "sha256:b482c7bce6c75a704e76a5713b7fef56f0567a05fec25affa8957865bfaa8c69",
@@ -5908,6 +5859,167 @@
         ],
         "zh": [
           "绘画纹理"
+        ]
+      }
+    ]
+  },
+  "prm_0863daa8f94f827ef322d4f5c2f53f65": {
+    "sourceHash": {
+      "en": "sha256:af6ae9b9d9333dfe09a961aaee5f980149b152f1fdcf2bc141f5305a1e1e4e29",
+      "zh": "sha256:163b5b6a2443d7eb14df5d0febd0c0f2a3049520f059c6c062f9771bc7c5c07c"
+    },
+    "replacements": [
+      {
+        "token": "[TARGET_AUDIENCE]",
+        "labelEn": "Target audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[who it is for, e.g. wedding photographers charging $3K+ per booking]"
+        ],
+        "zh": [
+          "[who it is for, e.g. wedding photographers charging $3K+ per booking]"
+        ]
+      },
+      {
+        "token": "[PRIMARY_ACTION]",
+        "labelEn": "Primary action",
+        "labelZh": "主要行动",
+        "en": [
+          "[one single action, e.g. booking a call]"
+        ],
+        "zh": [
+          "[one single action, e.g. booking a call]"
+        ]
+      },
+      {
+        "token": "[PAGE_SECTIONS]",
+        "labelEn": "Page sections",
+        "labelZh": "页面区块",
+        "en": [
+          "[list them, e.g. hero, work gallery, about, testimonials, contact]"
+        ],
+        "zh": [
+          "[list them, e.g. hero, work gallery, about, testimonials, contact]"
+        ]
+      },
+      {
+        "token": "[DESIGN_MOOD]",
+        "labelEn": "Design mood",
+        "labelZh": "设计氛围",
+        "en": [
+          "[3 words, e.g. dark, cinematic, expensive]"
+        ],
+        "zh": [
+          "[3 words, e.g. dark, cinematic, expensive]"
+        ]
+      }
+    ]
+  },
+  "websitecase_02d86f2fa113eb9997f84e003cc46976": {
+    "sourceHash": {
+      "en": "sha256:faf9ccfe8c13eca9b315da41fabd5dcf59cf516f198a2aef43566bf7c753ca83",
+      "zh": "sha256:faf9ccfe8c13eca9b315da41fabd5dcf59cf516f198a2aef43566bf7c753ca83"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_TYPE]",
+        "labelEn": "Project type",
+        "labelZh": "项目类型",
+        "en": [
+          "3D汉服展示的网站"
+        ],
+        "zh": [
+          "3D汉服展示的网站"
+        ]
+      }
+    ]
+  },
+  "websitecase_d1fa3dd7c9cb24b20ed194159048bad2": {
+    "sourceHash": {
+      "en": "sha256:351049b59c9d2b380679197791cde15eba6f6d5c342f14b3560e7590e7fe199d",
+      "zh": "sha256:351049b59c9d2b380679197791cde15eba6f6d5c342f14b3560e7590e7fe199d"
+    },
+    "replacements": [
+      {
+        "token": "[PROJECT_THEME]",
+        "labelEn": "Project theme",
+        "labelZh": "项目主题",
+        "en": [
+          "[例如：高端智能冰箱 / AI SaaS 工具 / 时尚鞋履展示 / 个人作品集]"
+        ],
+        "zh": [
+          "[例如：高端智能冰箱 / AI SaaS 工具 / 时尚鞋履展示 / 个人作品集]"
+        ]
+      },
+      {
+        "token": "[TARGET_AUDIENCE]",
+        "labelEn": "Target audience",
+        "labelZh": "目标受众",
+        "en": [
+          "[例如：注重设计感的年轻专业人士 / 企业决策者]"
+        ],
+        "zh": [
+          "[例如：注重设计感的年轻专业人士 / 企业决策者]"
+        ]
+      },
+      {
+        "token": "[PROJECT_GOAL]",
+        "labelEn": "Project goal",
+        "labelZh": "项目目标",
+        "en": [
+          "[例如：展示产品、提升品牌高级感、提高转化率]"
+        ],
+        "zh": [
+          "[例如：展示产品、提升品牌高级感、提高转化率]"
+        ]
+      }
+    ]
+  },
+  "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4": {
+    "sourceHash": {
+      "en": "sha256:df29490f003fb6d8c9268c2216313185a58be3a7fe4e315b79e47e1549ccd193",
+      "zh": "sha256:54a564af1e5d2be0265046d4eede49cd13f9e2b46c1af1f4b557993c1e846aad"
+    },
+    "replacements": [
+      {
+        "token": "[BRAND_PRODUCT]",
+        "labelEn": "Brand or product",
+        "labelZh": "品牌或产品",
+        "en": [
+          "[brand/product]"
+        ],
+        "zh": [
+          "[brand/product]"
+        ]
+      }
+    ]
+  },
+  "websitecase_8d4989527f74fe9dc33e77f013f2b86a": {
+    "sourceHash": {
+      "en": "sha256:c87619a39da6144227662258d06c9ec39c839b8dc4f8a76f7e6627fdb77e7d68",
+      "zh": "sha256:dc7ba765b71cb805d79599d753cde7ef301bcf391abb8a173af237fc357af9e4"
+    },
+    "replacements": [
+      {
+        "token": "[CHARACTER]",
+        "labelEn": "Character",
+        "labelZh": "角色",
+        "en": [
+          "pelican"
+        ],
+        "zh": [
+          "鹈鹕"
+        ]
+      },
+      {
+        "token": "[SCENE_LOCATION]",
+        "labelEn": "Scene location",
+        "labelZh": "场景地点",
+        "en": [
+          "a city"
+        ],
+        "zh": [
+          "城市"
         ]
       }
     ]

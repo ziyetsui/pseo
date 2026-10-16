@@ -1,0 +1,26 @@
+{
+  "baselineMedia": [
+    {
+      "id": "2019109812341207229",
+      "source": "https://x.com/higgsfield_ai/status/2019109812341207229",
+      "mediaSource": "https://x.com/higgsfield_ai/status/2019109800408412378",
+      "media": [
+        {
+          "id": "media_49ac4bfed21d1b84bba1c3f563e6549e",
+          "kind": "video",
+          "url": "https://video.twimg.com/amplify_video/2019109740874461185/vid/avc1/1280x720/VbgzI73feqcrsGWz.mp4?tag=14",
+          "poster": "https://pbs.twimg.com/amplify_video_thumb/2019109740874461185/img/34rSzhOHn0nDtquh.jpg",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    }
+  ],
+  "baselineModels": [
+    {
+      "id": "2073529429838696592",
+      "slug": "claude",
+      "evidence": "https://x.com/zeuuss_01/status/2073529429838696592"
+    }
+  ]
+}

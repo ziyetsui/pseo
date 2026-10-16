@@ -1,0 +1,34 @@
+[
+  {
+    "id": "prm_3f808154f2bc5f53428592a65c84d42b",
+    "promptSource": "https://x.com/SirAlexanderrr/status/2107830326588256420",
+    "mediaSource": "https://x.com/SirAlexanderrr/status/2107828162004492376",
+    "relationship": "同作者上文附件可用",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://pbs.twimg.com/media/HUCCiQNXkAADesv.jpg",
+        "poster": null,
+        "width": 1290,
+        "height": 1554
+      }
+    ],
+    "exclusionReason": "Parent attachment is a Mercor/Outlier earnings promotion, not the agency website output."
+  },
+  {
+    "id": "prm_97f958b6be0d431e6d33143849f74460",
+    "promptSource": "https://x.com/livebyai/status/2108910714169778277",
+    "mediaSource": "https://x.com/livebyai/status/2108910706527776872",
+    "relationship": "同作者上文附件可用",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://pbs.twimg.com/media/HURbBoTakAEXgZE.jpg",
+        "poster": null,
+        "width": 1080,
+        "height": 1350
+      }
+    ],
+    "exclusionReason": "Attachment belongs to a native Rork Max habit-tracker application, not the website task."
+  }
+]

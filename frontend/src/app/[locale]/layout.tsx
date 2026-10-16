@@ -5,7 +5,10 @@ import "@/styles/globals.css";
 import { siteIcons } from '@/site/icons';
 import {dataMode} from '@/lib/catalog/config';
 
-export const metadata: Metadata = { title: "Prompt Library", description: "Original prompts, their results, and the people who wrote them.", icons: siteIcons };
+/** X's video CDN rejects cross-site Referer headers; images already omit them per element. */
+export function generateMetadata(): Metadata {
+  return { title: "Prompt Library", description: "Original prompts, their results, and the people who wrote them.", icons: siteIcons, ...(dataMode() === 'git-beta' ? { referrer: 'no-referrer' as const } : {}) };
+}
 
 /** Explicit bilingual beta; legacy prototype UI remains a separate English scope. */
 export default async function LocaleLayout({ children, params }: { children: ReactNode; params: Promise<{ locale: string }> }) {

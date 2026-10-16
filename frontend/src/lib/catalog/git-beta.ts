@@ -1,3 +1,4 @@
+import verifiedGapUpdates from '../../data/verified-gap-updates.json';
 import websiteVisualInput from '../../data/website-visuals.json';
 import {applyWebsiteVisuals,readWebsiteVisualManifest} from './website-visuals';
 import sourceAttributions from '../../data/queenie-source-attribution.json';
@@ -50,7 +51,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
   if (locale !== 'zh-CN' && locale !== 'en') throw new Error('Unsupported library locale');
   const base = createFixtureCatalog('zh-CN'), graph = object(graphInput), previews = object(previewInput);
   const sourceLocale = 'zh-CN';
-  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, websiteVisualInput);
+  const revision = gitBetaRevision(base.revision, graphInput, previewInput, displayCopy, avatarInput, promptBodyTranslations, websiteTemplates, websiteCategories, queenieInput, sourceAttributions, verifiedGapUpdates, websiteVisualInput);
   const avatars = creatorAvatarIndex(avatarInput);
   const nodes = new Map<string, RecordValue>();
   for (const value of array(graph.nodes)) {
@@ -86,7 +87,16 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     const id = text(node.id), handle = text(node.handle);
     creators.set(id, { id, slug: id, label: `@${handle}`, handle: `@${handle}`, href: filterHref(sourceLocale, 'creator', id), url: safeUrl(node.url), avatarUrl: null, count: 0 });
   }
-  const prompts: Prompt[] = [...base.prompts];
+  const prompts: Prompt[] = base.prompts.map(prompt => {
+    const update = verifiedGapUpdates.baselineMedia.find(row => row.id === prompt.id);
+    if (update && update.source !== prompt.source.url) throw new Error('Verified baseline media source mismatch');
+    const media: Media[] = update ? update.media.map(item => ({ id: item.id, kind: item.kind === 'video' ? 'video' : 'image', src: safeUrl(item.url), poster: item.poster ? safeUrl(item.poster) : null, width: item.width ?? null, height: item.height ?? null, alt: prompt.title, label: null })) : prompt.media;
+    const modelUpdate = verifiedGapUpdates.baselineModels.find(row => row.id === prompt.id);
+    const modelNode = modelUpdate ? [...nodes.values()].find(node => node.type === 'model' && node.slug === modelUpdate.slug) : null;
+    const model = modelUpdate ? registries.model.get(modelUpdate.slug) ?? (modelNode ? reference(modelNode, 'model') : null) : null;
+    if (modelUpdate && (!model || modelUpdate.evidence !== prompt.source.url)) throw new Error('Verified baseline model source mismatch');
+    return { ...prompt, media, img: media.find(item => item.kind === 'image')?.src ?? media.find(item => item.kind === 'video')?.poster ?? prompt.img, models: model && !prompt.models.some(item => item.id === model.id) ? [...prompt.models, model] : prompt.models, evidence: update ? [...prompt.evidence, { type: 'Related source', url: update.mediaSource, confidence: null }] : prompt.evidence };
+  });
   for (const node of nodes.values()) if (node.type === 'prompt') {
     const id = text(node.id), source = linked(id, 'sourced_from')[0];
     if (!source) throw new Error('Prompt source required');
@@ -123,7 +133,7 @@ export function createGitBetaCatalog(locale: Locale): Catalog {
     websites.push({ id, slug, href: `/${sourceLocale}/prompts/website/${slug}`, title: text(node.title), summary: optionalText(node.summary) ?? '', cover, media:prompts.find(prompt=>prompt.id===id)?.media??[],
       attribution: creator ? `@${text(creator.handle)}` : optionalText(source.attributionLabel) ?? 'Source', source: { url: safeUrl(source.url), platform: text(source.platform) },
       models: refs(id,'designed_for','model'), useCases: refs(id,'used_for','useCase'), tools: linked(id,'built_with').map(item => text(item.label)),
-      demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: (prompts.find(prompt => prompt.id === id) ?? prompts.find(prompt => linked(prompt.id,'sourced_from').some(ref => ref.id === source.id)))?.href ?? null,
+      demoUrl: target('has_demo'), codeUrl: target('has_code'), promptHref: (prompts.find(prompt => linked(id,'has_prompt').some(ref => ref.id === prompt.id)) ?? prompts.find(prompt => prompt.id === id) ?? prompts.find(prompt => linked(prompt.id,'sourced_from').some(ref => ref.id === source.id)))?.href ?? null,
       relatedSources: linked(id,'related_to').map(item => safeUrl(item.url)),
     });
   }
