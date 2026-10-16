@@ -1,0 +1,93 @@
+{
+  "sourceUrl": "https://www.tiktok.com/@periciacards/photo/7603866348644519190",
+  "accountUrl": "https://www.tiktok.com/@periciacards",
+  "observedAt": "2026-10-16T08:40:00Z",
+  "selection": {
+    "method": "TikTok public profile Popular sort",
+    "rank": 1,
+    "comparisonScope": "31 initially rendered Popular posts; this post also has the highest displayed views in that set",
+    "notClaimed": "Private analytics, conversions, revenue and lifetime exhaustive ranking were not available"
+  },
+  "metrics": {
+    "views": {
+      "display": "1M",
+      "approximate": true
+    },
+    "likes": {
+      "display": "85.6K",
+      "approximate": true
+    },
+    "comments": {
+      "display": "144",
+      "approximate": false
+    },
+    "saves": {
+      "display": "78.6K",
+      "approximate": true
+    }
+  },
+  "referenceTitle": "What I reach for instead of TikTok",
+  "slides": [
+    {
+      "page": 1,
+      "subject": "Illustrated cover",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/01.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "a53cc28dbe8f2e7de28a1351efe0c2784c6b8d35804c323b76bb1e49f43741ff"
+    },
+    {
+      "page": 2,
+      "subject": "Neal.fun",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/02.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "0a00a4ab86bb4f562de0411ce453219bff46ccd352a6480fe2ac0374a096ac01"
+    },
+    {
+      "page": 3,
+      "subject": "Radio Garden",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/03.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "259848e534d5ceb273983d248e64c89ca1aa02021c202bf54c26a630c665c04c"
+    },
+    {
+      "page": 4,
+      "subject": "Periplus",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/04.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "e8b215dee337526d6f7d39da6ad76455fd94808bec8efdaeb3e3743da0d9c719"
+    },
+    {
+      "page": 5,
+      "subject": "Radiooooo",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/05.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "70290e4beed4a12ef7a103834579295d4d83d35444503d6e2022eee2feec678c"
+    },
+    {
+      "page": 6,
+      "subject": "Window Swap",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/06.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "93bb55b23abb3ba77064213b44afbf9363cede233c119918e8ff9058ff8a80e4"
+    },
+    {
+      "page": 7,
+      "subject": "Save reminder",
+      "src": "/reference-studies/study-periciacards-digital-detox-carousel/07.jpg",
+      "width": 1440,
+      "height": 1800,
+      "sha256": "6af4e82f96e80a1e5ea4090b390727fe70dd47bc2a6e8255b3d65724b460db39"
+    }
+  ],
+  "sourcePrompt": null,
+  "sourceModel": null,
+  "templateOrigin": "site-authored reconstruction",
+  "rightsStatus": "review_required",
+  "cmsPublication": false
+}

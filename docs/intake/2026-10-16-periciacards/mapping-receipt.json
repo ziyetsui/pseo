@@ -1,0 +1,12 @@
+{
+  "revision": "sha256:a9342308292689dddad698ddd1c2d4ab8efd2cc686ef586df32a3a3e7286395a",
+  "baseCommit": "36478f1d7c63cb314be15cd120b57dd91726c876",
+  "originalEdgesPreserved": 1544,
+  "newEdges": 1,
+  "mappedContent": 1243,
+  "logicalContent": 2085,
+  "caseId": "study-periciacards-7603866348644519190",
+  "scenarioId": "monetization-scenario:explainers",
+  "groupSlug": "digital-products",
+  "fit": "adaptable"
+}

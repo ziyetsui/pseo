@@ -44,6 +44,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           <h2 id="recipe-result">{websiteEntry ? text(uiLocale,"Visual references","视觉参考") : uiText(uiLocale, "See what it makes")}</h2>
           <p className="lede">{websiteEntry && hasMedia ? text(uiLocale,"Images, videos and demo screenshots linked to this case’s sources.","本案例来源关联的图片、视频及演示网站截图。") : hasMedia ? prompt.reconstruction ? text(uiLocale, "Reference images used to study this composition. The template below is a reconstruction, not the original author’s prompt.", "用于拆解构图的参考图片。下方提示词为逆向整理，并非原作者提示词。") : catalog.mode === "git-beta" ? text(uiLocale, "Examples collected with this prompt. Follow the original source for attribution and context.", "随提示词收集的示例。请查看原始来源，了解署名和背景。") : text(uiLocale, "This is the author's own result, straight from the post it was published in.", "这是作者发布的原始生成结果。") : text(uiLocale, "The author published no image with this one, so there is nothing honest to show here.", "作者未随提示词发布图片，因此此处暂无结果可展示。")}</p>
           <RecipeMedia website={Boolean(websiteEntry)} uiLocale={uiLocale} prompt={prompt} />
+          {prompt.reconstruction && prompt.models.length > 0 && <p className="lede">{prompt.summary}</p>}
         </div>
       </section>
 
@@ -54,7 +55,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           <h2 id="recipe-run">{uiText(uiLocale, "Run it")}</h2>
           <p className="lede">{text(uiLocale, "Continue in Ancher with your completed prompt.", "将填好的提示词带入 Ancher，继续创作。")}</p>
           <div className="runrow">
-            <div><b>{uiText(uiLocale, "Model")}</b><p>{prompt.models.length ? prompt.models.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>) : text(uiLocale, "None named — try the one you have", "未注明模型，可尝试你已有的模型")}</p></div>
+            <div><b>{prompt.reconstruction && prompt.models.length > 0 ? text(uiLocale,"Reproduction model","复现模型") : uiText(uiLocale, "Model")}</b><p>{prompt.models.length ? prompt.models.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>) : text(uiLocale, "None named — try the one you have", "未注明模型，可尝试你已有的模型")}</p></div>
             <div><b>{uiText(uiLocale, "What to expect")}</b><p>{uiText(uiLocale, "Run four at once; how far the result drifts varies a lot.")}</p></div>
           </div>
           {prompt.requiredInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Required inputs")}</span><span>{prompt.requiredInputs.join(", ")}</span></div>}

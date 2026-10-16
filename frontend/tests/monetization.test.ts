@@ -9,7 +9,7 @@ import audit from '../src/data/monetization-audit.json';
 const en=createGitBetaCatalog('en'),zh=createGitBetaCatalog('zh-CN');
 describe('auditable monetization projection',()=>{
  it('keeps the complete beta catalog and exports its baseline for offline audit',()=>{
-  expect(en.prompts).toHaveLength(2037);expect(websiteEntries(en)).toHaveLength(224);
+  expect(en.prompts).toHaveLength(2038);expect(websiteEntries(en)).toHaveLength(224);
   writeFileSync('/tmp/ancher-monetization-catalog.json',JSON.stringify({revision:en.revision,prompts:en.prompts,websites:websiteEntries(en),zhPrompts:zh.prompts,zhWebsites:websiteEntries(zh)}));
  });
  it('defines eight bilingual groups and forty unique scenarios',()=>{
@@ -19,7 +19,7 @@ describe('auditable monetization projection',()=>{
  });
  it('validates every audited object and evidence-backed relation',()=>{
   expect(()=>validateMonetization(en,taxonomy,membership,audit)).not.toThrow();
-  expect(audit.records.length).toBeGreaterThanOrEqual(2037);
+  expect(audit.records.length).toBeGreaterThanOrEqual(2038);
   for(const edge of membership.edges){expect(edge.evidence.quote).toBeTruthy();if(edge.fit==='adaptable'){expect(edge.notes.en).toBeTruthy();expect(edge.notes['zh-CN']).toBeTruthy();}}
  });
  it('rejects dangling, duplicate and stale relations',()=>{
