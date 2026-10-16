@@ -20,3 +20,22 @@ it('fails closed on different payloads before deleting either route',async()=>{
  await writeFile(path.join(p,'example.txt'),'first');await writeFile(path.join(p,'example/__next._full.txt'),'second');
  await expect(compactPromptRsc(root)).rejects.toThrow(/mismatch/);expect(await readFile(path.join(p,'example.txt'),'utf8')).toBe('first');
 });
+it('keeps article HTML and full/page segments while compacting native-link tree payloads',async()=>{
+ const root=await mkdtemp(path.join(tmpdir(),'article-rsc-'));
+ for(const locale of ['en','zh-CN']){
+  const parent=path.join(root,locale,'prompts','articles'),detail=path.join(parent,'123');
+  await mkdir(detail,{recursive:true});
+  await writeFile(path.join(parent,'123.html'),'<main><h1>Article</h1></main>');
+  await writeFile(path.join(parent,'123.txt'),'full article RSC');
+  await writeFile(path.join(detail,'__next._full.txt'),'full article RSC');
+  await writeFile(path.join(detail,'__next._tree.txt'),'tree');
+  await writeFile(path.join(detail,'__next.$d$locale.$oc$path.__PAGE__.txt'),'page');
+ }
+ const result=await compactPromptRsc(root);
+ expect(result.removed).toBe(2);expect(result.treeRemoved).toBe(2);
+ expect(result.rewrites).toContain('/en/prompts/articles/:slug.txt /en/prompts/articles/:slug/__next._full.txt 200');
+ await expect(access(path.join(root,'en/prompts/articles/123.txt'))).rejects.toThrow();
+ await expect(access(path.join(root,'en/prompts/articles/123/__next._tree.txt'))).rejects.toThrow();
+ expect(await readFile(path.join(root,'en/prompts/articles/123/__next._full.txt'),'utf8')).toBe('full article RSC');
+ expect(await readFile(path.join(root,'en/prompts/articles/123/__next.$d$locale.$oc$path.__PAGE__.txt'),'utf8')).toBe('page');
+});

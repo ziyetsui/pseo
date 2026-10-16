@@ -29,7 +29,7 @@ export function XArticleGallery({ catalog, handle }: { catalog: Catalog; handle?
   const rows = authoredIds ? xArticles.filter(article => authoredIds.has(article.id)) : xArticles;
   const creator = xArticleCreators.find(item => item.handle === handle);
   const currentHref = handle ? xArticleCreatorHref(catalog.locale, handle) : xArticlePath(catalog.locale);
-  return <div className="xa-shell"><SiteHeader level="deck" locale={catalog.locale} currentHref={currentHref} bilingual contentType="article" />
+  return <div className="xa-shell prototype-deck"><SiteHeader level="deck" locale={catalog.locale} currentHref={currentHref} bilingual contentType="article" />
     <main id="main" className="xa-main"><header className="xa-index-head">
       <p className="xa-kicker">{copy(catalog.locale, 'X ARTICLE CASES / SORTED BY LIKES', 'X 爆款文章案例 / 按点赞数排序')}</p>
       <h1>{creator ? creator.name : copy(catalog.locale, 'Writing that travelled', '被广泛传播的文章')}</h1>
@@ -67,7 +67,7 @@ function ArticleBlock({ value }: { value: string }) {
 export function XArticleDetail({ catalog, article }: { catalog: Catalog; article: XArticleCase }) {
   const locale = catalog.locale;
   const paragraphs = article.body.split(/\n\s*\n/u).map(item => item.trim()).filter(Boolean);
-  return <div className="xa-shell"><SiteHeader level="prompt" locale={locale} currentHref={xArticleHref(locale, article)} bilingual />
+  return <div className="xa-shell prototype-recipe"><SiteHeader level="prompt" locale={locale} currentHref={xArticleHref(locale, article)} bilingual />
     <main id="main" className="xa-main xa-detail">
       <nav className="xa-crumb" aria-label={copy(locale, 'Article navigation', '文章导航')}><a href={xArticlePath(locale)}>{copy(locale, 'Articles', '爆款文章')}</a><span>/</span><span>#{String(article.rank).padStart(3, '0')}</span></nav>
       <header className="xa-detail-hero"><ArticlePoster article={article} /><div className="xa-hero-aside">

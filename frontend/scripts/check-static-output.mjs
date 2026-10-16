@@ -15,7 +15,10 @@ async function files(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   return (await Promise.all(entries.map(entry => entry.isDirectory() ? files(path.join(directory, entry.name)) : path.join(directory, entry.name)))).flat();
 }
-const htmlFiles = (await files(root)).filter(file => file.endsWith('.html'));
+const outputFiles=await files(root);
+if(outputFiles.length>20000)throw new Error(`Pages asset limit exceeded: ${outputFiles.length}`);
+const assetFiles=new Set(outputFiles);
+const htmlFiles = outputFiles.filter(file => file.endsWith('.html'));
 if (htmlFiles.length < 3) throw new Error('Static route output is incomplete');
 let links = 0;
 const routeForFile = file => ('/' + path.relative(root, file).replace(/\.html$/, '').replace(/(^|\/)index$/, '')).replace(/\/$/, '') || '/';
@@ -71,6 +74,8 @@ if (manifest.mode !== 'public-api') {
     const articleBytes=await readFile('src/data/x-article-cases.json');
     const articleCases=JSON.parse(articleBytes);
     if(receipt.articleCaseRevision!==`sha256:${createHash('sha256').update(articleBytes).digest('hex')}`)throw new Error('X Article snapshot revision mismatch');
+    const creatorCount=new Set(articleCases.map(article=>article.authorHandle)).size;
+    if(receipt.rscExport?.treeRemoved!==2*(articleCases.length+creatorCount+1))throw new Error('Article RSC compaction incomplete');
     const viewGraph = websiteValidationGraph(JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8')), JSON.parse(await readFile('src/data/prototype.json','utf8')).prompts, WIREFRAME_TAXONOMIES, JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')).baselineModels);
     if(!Array.isArray(receipt.locales)||JSON.stringify(receipt.locales.map(item=>item.locale).sort())!==JSON.stringify(['en','zh-CN']))throw new Error('Bilingual locale receipt missing');
     const published=[];
@@ -86,12 +91,16 @@ if (manifest.mode !== 'public-api') {
         const detail=documents.get(href);
         if(entry?.href!==href||entry.rights!=='review_required'||!detail?.querySelector(`a[href="${article.sourceUrl}"]`)||!detail.querySelector('article'))throw new Error(`X Article detail or source missing: ${href}`);
       }
+      for(const href of [...local.betaArticleCases,...local.betaArticleNavigation].map(item=>item.href)){
+        const directory=path.join(root,href.slice(1));
+        if(!assetFiles.has(path.join(directory,'__next._full.txt'))||assetFiles.has(path.join(directory,'__next._tree.txt'))||![...assetFiles].some(file=>file.startsWith(`${directory}/__next.`)&&file.endsWith('.__PAGE__.txt')))throw new Error(`Article RSC export invalid: ${href}`);
+      }
       published.push(...local.publishedPrompts,...local.publishedWebsites,...local.publishedWebsiteViews,...local.publishedNavigation,...local.betaArticleCases,...local.betaArticleNavigation);
     }
     const allowed = new Set(published.map(item=>item.href));
     const redirects=['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>({alias,target:`/${locale}/prompts/website`})));
     const redirectBytes=await readFile(path.join(root,'_redirects'),'utf8');
-    if(redirectBytes!==[...redirects.map(({alias,target})=>`${alias} ${target} 301`),...PROMPT_RSC_REWRITES].join('\n')+'\n')throw new Error('Website alias redirect contract mismatch');
+    if(!PROMPT_RSC_REWRITES.every(rule=>receipt.rscExport.rewrites.includes(rule))||receipt.rscExport.rewrites.length>100||redirectBytes!==[...redirects.map(({alias,target})=>`${alias} ${target} 301`),...receipt.rscExport.rewrites].join('\n')+'\n')throw new Error('Website alias or RSC proxy contract mismatch');
     for(const {alias,target} of redirects){
       if(!allPaths.has(alias)||!allPaths.has(target)||documents.get(alias).querySelector('meta[http-equiv="refresh"]')?.getAttribute('content')!==`0;url=${target}`)throw new Error(`Website alias fallback missing: ${alias}`);
       allowed.add(alias);
