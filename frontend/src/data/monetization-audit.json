@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "sha256:a9342308292689dddad698ddd1c2d4ab8efd2cc686ef586df32a3a3e7286395a",
+  "revision": "sha256:757915387d63e8afe295a6665c878be1c20c57273dfba69e16c23237e90b365c",
   "records": [
     {
       "contentId": "2073529429838696592",
@@ -329,6 +329,12 @@
       "contentId": "prm_0577f01a2ab30c8810d6683805480c9b",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
+    },
+    {
+      "contentId": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -1707,6 +1713,12 @@
       ]
     },
     {
+      "contentId": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
+    },
+    {
       "contentId": "prm_4a8ddd6f5ac0a8ce23715dc7e6ae1570",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
@@ -1790,6 +1802,12 @@
       "contentId": "prm_5024317a3af5db607a91844c92cc0c52",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
+    },
+    {
+      "contentId": "prm_506b994c594f45c7de401e42d495d100",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -3736,6 +3754,12 @@
       ]
     },
     {
+      "contentId": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
+    },
+    {
       "contentId": "prm_b3442583fde7488c8ef4f4cb0317072d",
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
@@ -4055,6 +4079,12 @@
       "scenarioIds": []
     },
     {
+      "contentId": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
+    },
+    {
       "contentId": "prm_c411819301036d393d3bd35959175a22",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
@@ -4099,6 +4129,12 @@
       "contentId": "prm_c60d807cb24f0aca9b9200eddbae427c",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
+      "scenarioIds": []
+    },
+    {
+      "contentId": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
       "scenarioIds": []
     },
     {
@@ -4739,6 +4775,12 @@
       "scenarioIds": []
     },
     {
+      "contentId": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
+    },
+    {
       "contentId": "prm_e6cf5c9844b279a8d46be7f653fac020",
       "status": "mapped",
       "reason": "Positive deliverable evidence recorded on each relationship.",
@@ -5006,6 +5048,12 @@
         "monetization-scenario:ecommerce-advertising",
         "monetization-scenario:brand-campaigns"
       ]
+    },
+    {
+      "contentId": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "status": "review",
+      "reason": "Verified source import or newly linked case; no commercial scene membership has been approved in this update.",
+      "scenarioIds": []
     },
     {
       "contentId": "prm_f3a80e567dc1548899a3fda6e783c6a1",
@@ -15009,6 +15057,14 @@
       ]
     },
     {
+      "contentId": "study-periciacards-7603866348644519190",
+      "status": "mapped",
+      "reason": "Owner-requested, source-verified seven-slide resource guide; adaptable knowledge-product explanation. Original model unknown, reproduction model explicitly labeled.",
+      "scenarioIds": [
+        "monetization-scenario:explainers"
+      ]
+    },
+    {
       "contentId": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
@@ -15291,14 +15347,6 @@
       "status": "unrelated",
       "reason": "No sufficiently specific positive target supports the current commercial scenes; no forced mapping.",
       "scenarioIds": []
-    },
-    {
-      "contentId": "study-periciacards-7603866348644519190",
-      "status": "mapped",
-      "reason": "Owner-requested, source-verified seven-slide resource guide; adaptable knowledge-product explanation. Original model unknown, reproduction model explicitly labeled.",
-      "scenarioIds": [
-        "monetization-scenario:explainers"
-      ]
     }
   ]
 }

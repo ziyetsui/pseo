@@ -9,9 +9,9 @@ const hash=(text:string)=>`sha256:${createHash('sha256').update(text).digest('he
 describe('complete Website editable template contract',()=>{
  it('covers every Website case in both locales with matching editable variables while keeping sources immutable',()=>{
   const en=createGitBetaCatalog('en'),zh=createGitBetaCatalog('zh-CN');
-  const rows=websiteEntries(en);expect(rows).toHaveLength(224);
+  const rows=websiteEntries(en);expect(rows).toHaveLength(232);
   const sourceIds=rows.filter(entry=>en.prompts.some(prompt=>prompt.id===entry.id||prompt.href===entry.promptHref)).map(entry=>entry.id);
-  expect(Object.keys(definitions).sort()).toEqual(sourceIds.sort());expect(sourceIds).toHaveLength(177);
+  expect(Object.keys(definitions).sort()).toEqual(sourceIds.sort());expect(sourceIds).toHaveLength(185);
   for(const entry of rows){
    const other=websiteEntries(zh).find(item=>item.id===entry.id)!;
    const before=en.prompts.find(prompt=>prompt.id===entry.id||prompt.href===entry.promptHref)?.prompt;

@@ -13,7 +13,7 @@ it('keeps the footer curated while the index retains every Website technology',(
  expect(footer.querySelectorAll('.footnav a')).toHaveLength(28);
  expect(footer.querySelector('a[href="/zh-CN/prompts/articles"]')).not.toBeNull();
  expect(footer.querySelector('a[href$="/library-index"]')).not.toBeNull();
- expect(libraryIndex(catalog).groups.find(g=>g.id==='website-tool')?.entries).toHaveLength(21);
+ expect(libraryIndex(catalog).groups.find(g=>g.id==='website-tool')?.entries).toHaveLength(33);
 });
 it.each(['deck','findings','anthology'] as const)('highlights Website variables in %s without changing the source text',presentation=>{
  const row=catalog.websites![0]!;const text='Build [PRODUCT NAME].\nPalette: ["red", "blue"].';

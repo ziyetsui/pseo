@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "1",
+  "data": {
+    "id": "1500596162545741825",
+    "name": "Joseph",
+    "screenName": "josephweb3",
+    "bio": "Creating and executing marketing strategies → Marketing Lead @OpenGradient | Founded @getswenai | Prev @animocabrands | I craft AI videos for marketing - DM me",
+    "location": "",
+    "url": "",
+    "followers": 9052,
+    "following": 3102,
+    "tweets": 113128,
+    "likes": 113776,
+    "verified": true,
+    "profileImageUrl": "https://pbs.twimg.com/profile_images/2090387437109542912/n9tPZcUg_normal.jpg",
+    "createdAt": "Sun Mar 06 22:16:33 +0000 2022",
+    "createdAtISO": "2022-03-06T22:16:33+00:00"
+  }
+}

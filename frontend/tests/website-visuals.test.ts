@@ -27,7 +27,7 @@ it('rejects missing media, duplicate records and external local-asset paths',()=
 it('preserves image prompts and source authorship outside the website collection',()=>{
  const catalog=createGitBetaCatalog('en');const image=catalog.prompts.find(p=>p.id==='queenie-1-mac-mini-1-agent-0-employees-this-is-how-you-build-the-fir-zxzsys')!;
  expect(image.handle).toBe('@MyWestLord');expect(image.source.url).toBe('https://x.com/MyWestLord/status/2063321372789465409');expect(image.media.every(m=>!m.src.startsWith('/website-'))).toBe(true);
- expect(websiteEntries(catalog)).toHaveLength(224);
+ expect(websiteEntries(catalog)).toHaveLength(232);
 });
 
 it('keeps all long-video segments in order',()=>{

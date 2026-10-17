@@ -6023,5 +6023,256 @@
         ]
       }
     ]
+  },
+  "prm_c634a0454d9a96ac189676a31ab2d48c": {
+    "sourceHash": {
+      "en": "sha256:94c3ea00e1a1024068279d2b4e770ad838039f13db2527e3805edc63a07103cf",
+      "zh": "sha256:d2edcb46852eda31f29593243005f6a7ecba6822c709b86f49a0d0693feafbeb"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "Michael Smith"
+        ],
+        "zh": [
+          "Michael Smith"
+        ]
+      },
+      {
+        "token": "[LOCATION]",
+        "labelEn": "Location",
+        "labelZh": "所在地",
+        "en": [
+          "Chicago"
+        ],
+        "zh": [
+          "Chicago"
+        ]
+      },
+      {
+        "token": "[EMAIL]",
+        "labelEn": "Contact email",
+        "labelZh": "联系邮箱",
+        "en": [
+          "hello@michaelsmith.com"
+        ],
+        "zh": [
+          "hello@michaelsmith.com"
+        ]
+      }
+    ]
+  },
+  "prm_c40f38e72fa902a647e00859ffd993f3": {
+    "sourceHash": {
+      "en": "sha256:66292e717ea26eedb37cc9c88d4e5120a5e1ebb4f89c10d3ca080a0e2356d1c2",
+      "zh": "sha256:a9cabf1f8993a07d3a1134031178fba179afae707908da1a322ed984e22468ad"
+    },
+    "replacements": [
+      {
+        "token": "[COLOR_SCHEME]",
+        "labelEn": "Color scheme",
+        "labelZh": "配色",
+        "en": [
+          "black and pink"
+        ],
+        "zh": [
+          "黑色与粉色"
+        ]
+      },
+      {
+        "token": "[IMAGE_SOURCE]",
+        "labelEn": "Image source",
+        "labelZh": "图片来源",
+        "en": [
+          "imgix"
+        ],
+        "zh": [
+          "imgix"
+        ]
+      }
+    ]
+  },
+  "prm_057b1ee7d4b4fcc1828565c083bbb0d7": {
+    "sourceHash": {
+      "en": "sha256:bc7c2310c9118257e6291f1304208afec5eb2977b9c023f3ef620ddecebfc541",
+      "zh": "sha256:113304ef9051101187fc94a60743b9281acfe829144a865bd5617c172d077b43"
+    },
+    "replacements": [
+      {
+        "token": "[NAME]",
+        "labelEn": "Name",
+        "labelZh": "姓名",
+        "en": [
+          "Finn"
+        ],
+        "zh": [
+          "Finn"
+        ]
+      },
+      {
+        "token": "[ROLE]",
+        "labelEn": "Role",
+        "labelZh": "职业",
+        "en": [
+          "creative designer"
+        ],
+        "zh": [
+          "创意设计师"
+        ]
+      },
+      {
+        "token": "[EMAIL]",
+        "labelEn": "Contact email",
+        "labelZh": "联系邮箱",
+        "en": [
+          "finna4264@gmail.com"
+        ],
+        "zh": [
+          "finna4264@gmail.com"
+        ]
+      },
+      {
+        "token": "[X_HANDLE]",
+        "labelEn": "X handle",
+        "labelZh": "X 账号",
+        "en": [
+          "@ finn"
+        ],
+        "zh": [
+          "@ finn"
+        ]
+      }
+    ]
+  },
+  "prm_f22bdd76c585224df1cb5f55f81ecc78": {
+    "sourceHash": {
+      "en": "sha256:1d06a57858fdb307fae23d43a0e72820bbd7257db6da421d9af2b8d2e0ad0c9e",
+      "zh": "sha256:a59f05690a5ebe0925589eea0bb7b930ba1763e8e9e76af69b0644bb40b21bcf"
+    },
+    "replacements": [
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "ultra minimalism"
+        ],
+        "zh": [
+          "超极简主义"
+        ]
+      },
+      {
+        "token": "[COLOR_SCHEME]",
+        "labelEn": "Color scheme",
+        "labelZh": "配色",
+        "en": [
+          "black-and-white"
+        ],
+        "zh": [
+          "黑白"
+        ]
+      }
+    ]
+  },
+  "prm_b1b9b478fa7333680ae218c42e1e70bf": {
+    "sourceHash": {
+      "en": "sha256:29cf8b6b9db832e8dc29794fad230903e3dfb5b61c52c1df95ece47de6ea7ec4",
+      "zh": "sha256:0febdb8f4f6720e8f3cd9dc540f691d4fdba1811df982ed1f6a2bca87367c134"
+    },
+    "replacements": [
+      {
+        "token": "[DESIGN_STYLE]",
+        "labelEn": "Design style",
+        "labelZh": "设计风格",
+        "en": [
+          "Neumorphism UI"
+        ],
+        "zh": [
+          "新拟物界面"
+        ]
+      },
+      {
+        "token": "[COLOR_PALETTE]",
+        "labelEn": "Color palette",
+        "labelZh": "色板",
+        "en": [
+          "whites, off-whites, light grays, charcoal grays, and blacks"
+        ],
+        "zh": [
+          "白色、米白色、浅灰色、炭灰色与黑色"
+        ]
+      }
+    ]
+  },
+  "prm_e69191dfe5f7e2ce6d4313f648b52a32": {
+    "sourceHash": {
+      "en": "sha256:6562ece371a81fd02ba510916a24493bf79ed18da943195758979989337b4c6d",
+      "zh": "sha256:0aa803bc36184c7e83e4ddb9a4d1f423114cadfe477cab8300d2a1098f7f5ae7"
+    },
+    "replacements": [
+      {
+        "token": "[REFERENCE_MATERIALS]",
+        "labelEn": "Reference materials",
+        "labelZh": "参考资料",
+        "en": [
+          "the attached materials"
+        ],
+        "zh": [
+          "附加资料"
+        ]
+      },
+      {
+        "token": "[DIRECTIONS]",
+        "labelEn": "Design directions",
+        "labelZh": "设计方向",
+        "en": [
+          "3 distinct directions"
+        ],
+        "zh": [
+          "3 种不同设计方向"
+        ]
+      }
+    ]
+  },
+  "prm_4a8109c2ab07cb35a7fc749d781d4648": {
+    "sourceHash": {
+      "en": "sha256:b811ae0c0b0c8bf860293772a4e81fbd84d0287bf8865441d5be22314008cd09",
+      "zh": "sha256:ecc2b0dd4f5b886fb755ea6cff4ba1efb2d2b7423ad435aa48cde6da2be22eaa"
+    },
+    "replacements": [
+      {
+        "token": "[DESIGN_REFERENCE]",
+        "labelEn": "Design reference",
+        "labelZh": "设计参考",
+        "en": [
+          "bruno-simon like"
+        ],
+        "zh": [
+          "布鲁诺·西蒙风格"
+        ]
+      }
+    ]
+  },
+  "prm_506b994c594f45c7de401e42d495d100": {
+    "sourceHash": {
+      "en": "sha256:692ec1208302f729db92b2dba1c84ee49845aea8c7717306265e5c13d820f779",
+      "zh": "sha256:30bd54ca934fb548a5e2498ec557d713da264ca177698e21ceb03f42e60d9f74"
+    },
+    "replacements": [
+      {
+        "token": "[X_HANDLE]",
+        "labelEn": "X handle",
+        "labelZh": "X 账号",
+        "en": [
+          "@josephweb3"
+        ],
+        "zh": [
+          "@josephweb3"
+        ]
+      }
+    ]
   }
 }

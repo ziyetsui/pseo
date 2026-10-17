@@ -1,0 +1,66 @@
+{
+  "Animated dark portfolio with a parallax gallery": {
+    "en": "Animated dark portfolio with a parallax gallery",
+    "zh-CN": "暗色动画作品集与视差画廊"
+  },
+  "Build a dark portfolio with a video hero, selected projects, a journal and a scroll-driven gallery. Prepare the project images listed in the source.": {
+    "en": "Build a dark portfolio with a video hero, selected projects, a journal and a scroll-driven gallery. Prepare the project images listed in the source.",
+    "zh-CN": "构建包含视频首屏、精选项目、日志和滚动视差画廊的暗色作品集。需准备来源列出的项目图片。"
+  },
+  "Black-and-pink flashlight portfolio": {
+    "en": "Black-and-pink flashlight portfolio",
+    "zh-CN": "黑粉色手电筒交互作品集"
+  },
+  "Explore projects with a cursor-following spotlight, a warp transition and scrolling folders.": {
+    "en": "Explore projects with a cursor-following spotlight, a warp transition and scrolling folders.",
+    "zh-CN": "通过跟随光标的聚光灯、穿梭转场和滚动文件夹探索项目。"
+  },
+  "Lightweight Three.js portfolio for a creative designer": {
+    "en": "Lightweight Three.js portfolio for a creative designer",
+    "zh-CN": "创意设计师的轻量三维作品集"
+  },
+  "A dark portfolio with a lightweight interactive 3D hero and Work, About and Contact sections.": {
+    "en": "A dark portfolio with a lightweight interactive 3D hero and Work, About and Contact sections.",
+    "zh-CN": "暗色作品集，包含轻量三维交互首屏，以及作品、关于和联系部分。"
+  },
+  "Black-and-white editorial portfolio": {
+    "en": "Black-and-white editorial portfolio",
+    "zh-CN": "黑白极简编辑式作品集"
+  },
+  "An ultra-minimal portfolio built with Replit, focused on typography, whitespace and selected work.": {
+    "en": "An ultra-minimal portfolio built with Replit, focused on typography, whitespace and selected work.",
+    "zh-CN": "使用 Replit 构建的超极简作品集，聚焦排版、留白和精选作品。"
+  },
+  "Neumorphic portfolio with floating 3D cards": {
+    "en": "Neumorphic portfolio with floating 3D cards",
+    "zh-CN": "新拟物界面与漂浮三维卡片作品集"
+  },
+  "A Replit-built portfolio with soft extruded surfaces, a monochrome palette and depth-based interactions.": {
+    "en": "A Replit-built portfolio with soft extruded surfaces, a monochrome palette and depth-based interactions.",
+    "zh-CN": "使用 Replit 构建的作品集，采用柔和凸起表面、单色配色与深度交互。"
+  },
+  "Reference-led portfolio direction and build workflow": {
+    "en": "Reference-led portfolio direction and build workflow",
+    "zh-CN": "从参考资料到作品集设计与构建"
+  },
+  "Attach references, a resume and a portrait; compare three design directions, then build the selected direction. The original thread documents an optional Higgsfield hero film.": {
+    "en": "Attach references, a resume and a portrait; compare three design directions, then build the selected direction. The original thread documents an optional Higgsfield hero film.",
+    "zh-CN": "附上参考资料、履历和人像，比较三种设计方向后构建所选方案。原帖另介绍可选的 Higgsfield 首屏人物影片流程。"
+  },
+  "Drivable 3D portfolio inspired by Bruno Simon": {
+    "en": "Drivable 3D portfolio inspired by Bruno Simon",
+    "zh-CN": "布鲁诺·西蒙风格的驾驶式三维作品集"
+  },
+  "The author shares a one-line instruction and a drivable 3D portfolio demo. A detailed project brief is not published.": {
+    "en": "The author shares a one-line instruction and a drivable 3D portfolio demo. A detailed project brief is not published.",
+    "zh-CN": "作者公开了一句话指令和可驾驶的三维作品集演示，未公开详细项目需求。"
+  },
+  "Portfolio from an X profile": {
+    "en": "Portfolio from an X profile",
+    "zh-CN": "根据 X 个人资料生成作品集"
+  },
+  "A one-line instruction to build a portfolio from an X profile, demonstrated with OpenGradient and two models. No detailed layout brief is published.": {
+    "en": "A one-line instruction to build a portfolio from an X profile, demonstrated with OpenGradient and two models. No detailed layout brief is published.",
+    "zh-CN": "根据 X 个人资料生成作品集的一句话指令，作者使用 OpenGradient 和两个模型演示，未公开详细布局需求。"
+  }
+}

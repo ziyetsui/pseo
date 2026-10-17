@@ -55,6 +55,9 @@ if (mode === 'git-beta') {
   checkIntake(supplement);
   const verifiedGaps = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-16-verified-gaps/${name}.json`, 'utf8'))])));
   checkIntake(verifiedGaps);
+  const portfolio = Object.fromEntries(await Promise.all(['graph','reviews','manifest','proposals'].map(async name => [name, JSON.parse(await readFile(`../docs/intake/2026-10-16-portfolio/${name}.json`, 'utf8'))])));
+  checkIntake(portfolio);
+  for (const [file, field] of [['source-records','sourceSha256'], ['media','mediaSha256']]) if (createHash('sha256').update(await readFile(`../docs/intake/2026-10-16-portfolio/${file}.json`)).digest('hex') !== portfolio.manifest[field]) throw new Error('Portfolio source checksum mismatch');
   for (const [file, field] of [['source-records','sourceSha256'], ['media-links','mediaSha256']]) if (createHash('sha256').update(await readFile(`../docs/intake/2026-10-16-verified-gaps/${file}.json`)).digest('hex') !== verifiedGaps.manifest[field]) throw new Error('Verified gap source checksum mismatch');
   const combined = JSON.parse(await readFile('../docs/intake/2026-10-14-website-supplement/combined-graph.json','utf8'));
   if (createHash('sha256').update(JSON.stringify(combined)).digest('hex') !== supplement.manifest.combinedSha256 || createHash('sha256').update(JSON.stringify(intake.graph)).digest('hex') !== supplement.manifest.originalGraphSha256) throw new Error('Website supplement graph checksum mismatch');
@@ -93,6 +96,7 @@ if (mode === 'git-beta') {
   gitBeta.publishedPrompts.push(...referenceStudies.records.map(row=>({id:row.id,href:`/zh-CN/prompts/${row.slug}`})));
   gitBeta.imageUrls.push(...referenceStudies.records.flatMap(row=>row.media.map(asset=>asset.src)));
   gitBeta.verifiedGaps = { prompts: verifiedGaps.proposals.length, mediaRecords: verifiedGaps.manifest.acceptedMediaRecords, sourceSha256: verifiedGaps.manifest.sourceSha256, mediaSha256: verifiedGaps.manifest.mediaSha256 };
+  gitBeta.portfolio = { prompts: portfolio.proposals.length, retainedExisting: portfolio.manifest.existingRecords, mediaRecords: portfolio.manifest.mediaRecords, sourceSha256: portfolio.manifest.sourceSha256, mediaSha256: portfolio.manifest.mediaSha256 };
   gitBeta.websiteVisualCases=websiteVisuals.records.filter(row=>row.status==='available'||row.status==='existing').length;
   gitBeta.websiteVisualAssets=Object.keys(websiteVisuals.assets).length;
   gitBeta.articleCaseRevision=`sha256:${xArticleCasesHash}`;

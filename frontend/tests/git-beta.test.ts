@@ -21,7 +21,7 @@ describe('authorized Git beta publication', () => {
     expect(c.websites?.filter(w => w.promptHref)).toHaveLength(12);
     expect(c.websites?.filter(w => !w.promptHref)).toHaveLength(47);
     expect(c.websites?.every(w => w.cover && w.source.url && catalogPaths(c).includes(w.href))).toBe(true);
-    expect(websiteRef(c).count).toBe(224);
+    expect(websiteRef(c).count).toBe(232);
     expect(new Set(c.websites?.map(w => w.id)).size).toBe(59);
   });
   it('preserves all 13 image categories and keeps attribution evidence distinct from X handles', () => {

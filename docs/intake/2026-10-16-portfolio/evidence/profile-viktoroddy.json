@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "1",
+  "data": {
+    "id": "893369654768529408",
+    "name": "Viktor Oddy",
+    "screenName": "viktoroddy",
+    "bio": "🚀 | Founder @ Design Rocket, https://t.co/PLT5623Ayg\n🤖 | Grab 600+ AI Prompts & Websites",
+    "location": "",
+    "url": "https://motionsites.ai/",
+    "followers": 73832,
+    "following": 105,
+    "tweets": 1709,
+    "likes": 2162,
+    "verified": true,
+    "profileImageUrl": "https://pbs.twimg.com/profile_images/2095368366693466112/1vPxOkT8_normal.jpg",
+    "createdAt": "Fri Aug 04 07:14:58 +0000 2017",
+    "createdAtISO": "2017-08-04T07:14:58+00:00"
+  }
+}

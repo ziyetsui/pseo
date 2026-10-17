@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "1",
+  "data": {
+    "id": "2015352675219701760",
+    "name": "Kimi Product",
+    "screenName": "KimiProduct",
+    "bio": "Kimi's Official Product Account. Model updates are on @Kimi_Moonshot\nSharing the latest updates, features, and use cases to help you master the Kimi ecosystem.",
+    "location": "",
+    "url": "",
+    "followers": 18710,
+    "following": 5,
+    "tweets": 102,
+    "likes": 49,
+    "verified": false,
+    "profileImageUrl": "https://pbs.twimg.com/profile_images/2089693761467256832/lPgDVNsX_normal.jpg",
+    "createdAt": "Sun Jan 25 09:16:16 +0000 2026",
+    "createdAtISO": "2026-01-25T09:16:16+00:00"
+  }
+}

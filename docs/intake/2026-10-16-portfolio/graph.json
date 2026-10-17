@@ -1,0 +1,719 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "creator_375888a30d78ffee2c6d1072724e0ba9",
+      "type": "creator",
+      "handle": "k2sbhai",
+      "url": "https://x.com/k2sbhai"
+    },
+    {
+      "id": "creator_5e53bba798b8b58683a9c6c3d5250411",
+      "type": "creator",
+      "handle": "josephweb3",
+      "url": "https://x.com/josephweb3"
+    },
+    {
+      "id": "creator_5fb1c4e1bd80983843a4c31d9e1d4641",
+      "type": "creator",
+      "handle": "dammyayans",
+      "url": "https://x.com/dammyayans"
+    },
+    {
+      "id": "creator_99b49098bcff1ab1a4bd63167b08cad8",
+      "type": "creator",
+      "handle": "Bhavani_00007",
+      "url": "https://x.com/Bhavani_00007"
+    },
+    {
+      "id": "creator_aaab74bf6c5a96d415ccb0ef41593607",
+      "type": "creator",
+      "handle": "KimiProduct",
+      "url": "https://x.com/KimiProduct"
+    },
+    {
+      "id": "creator_b3756ec40f1b3e6d592c5727725b906e",
+      "type": "creator",
+      "handle": "viktoroddy",
+      "url": "https://x.com/viktoroddy"
+    },
+    {
+      "id": "creator_f9b07ec05bd31496913e85d3292b34e2",
+      "type": "creator",
+      "handle": "shushant_l",
+      "url": "https://x.com/shushant_l"
+    },
+    {
+      "id": "model_2bf548d8056029c73e6e28132d19a3a2",
+      "type": "model",
+      "slug": "glm",
+      "label": "GLM"
+    },
+    {
+      "id": "model_6f7ac1823da81d2e52d1a1549ee69c85",
+      "type": "model",
+      "slug": "deepseek",
+      "label": "DeepSeek"
+    },
+    {
+      "id": "model_c857d09db23e6822e3600bc06ad8d58f",
+      "type": "model",
+      "slug": "claude",
+      "label": "Claude"
+    },
+    {
+      "id": "model_e1517be14d06cdb72af7bb52a289a0d5",
+      "type": "model",
+      "slug": "minimax",
+      "label": "MiniMax"
+    },
+    {
+      "id": "model_e4f9c522e1c89280e9561b825f4f24fe",
+      "type": "model",
+      "slug": "kimi",
+      "label": "Kimi"
+    },
+    {
+      "id": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "prompt",
+      "title": "Lightweight Three.js portfolio for a creative designer",
+      "summary": "A dark portfolio with a lightweight interactive 3D hero and Work, About and Contact sections.",
+      "prompt": "Build a polished single-page 3D portfolio for Finn (creative designer) using Vite + vanilla Three.js + CSS. Dark elegant look, accent colour, interactive but light 3D hero, sections Hero Work About Contact (finna4264@gmail.com, X @ finn).",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "prompt",
+      "title": "Drivable 3D portfolio inspired by Bruno Simon",
+      "summary": "The author shares a one-line instruction and a drivable 3D portfolio demo. A detailed project brief is not published.",
+      "prompt": "build me a bruno-simon like 3D portfolio from scratch.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "prompt",
+      "title": "Portfolio from an X profile",
+      "summary": "A one-line instruction to build a portfolio from an X profile, demonstrated with OpenGradient and two models. No detailed layout brief is published.",
+      "prompt": "build a portfolio using my X profile @josephweb3",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "type": "prompt",
+      "title": "Neumorphic portfolio with floating 3D cards",
+      "summary": "A Replit-built portfolio with soft extruded surfaces, a monochrome palette and depth-based interactions.",
+      "prompt": "Build a premium futuristic portfolio website with a clean Neumorphism UI, featuring soft extruded surfaces, subtle depth, realistic shadows, rounded components, and a monochromatic color palette with no gradients whatsoever. Use a sophisticated combination of whites, off-whites, light grays, charcoal grays, and blacks only. Include smooth 3D elements such as floating cards, interactive geometric objects, layered panels, depth-based hover effects, and animated iconography. Add fluid micro-interactions, scroll-triggered animations, parallax movement, page transitions, loading animations, and immersive motion design throughout the experience. Structure the site with a hero section, about section, skills showcase, project gallery, testimonials, experience timeline, blog preview, and contact section. Prioritize a minimalist aesthetic, strong typography, spacious layouts, glass-free surfaces, high-end product design inspiration, excellent responsiveness, and modern performance-focused UX that feels innovative, elegant, interactive, and visually striking.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "prompt",
+      "title": "Black-and-pink flashlight portfolio",
+      "summary": "Explore projects with a cursor-following spotlight, a warp transition and scrolling folders.",
+      "prompt": "You're a UI/UX designer who loves illustration and animation, I want to create a portfolio website featuring a black and pink color scheme with unique interactions.\n\nThe homepage utilizes a mouse-follow \"flashlight\" effect: the area around the cursor reveals pink illustrations, while the rest remains black. Upon clicking, the interface zooms in with a \"warp\" transition to a pink background where folders of various colors scroll slowly. Clicking a folder navigates to the corresponding project detail page. Use real UI images instead of placeholders (sourced from imgix).\n\nThe final delivery should be a single HTML+CSS+JS document, responsive across all devices.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "prompt",
+      "title": "Animated dark portfolio with a parallax gallery",
+      "summary": "Build a dark portfolio with a video hero, selected projects, a journal and a scroll-driven gallery. Prepare the project images listed in the source.",
+      "prompt": "**Build a single-page dark portfolio landing page using React + Vite + Tailwind CSS + TypeScript + GSAP + Framer Motion + hls.js.**\n\n---\n\n## Global Design System\n\n### Fonts\nGoogle Fonts import: `Inter` (300–700) and `Instrument Serif` (italic, 400).\n- `--font-body: 'Inter', sans-serif` → Tailwind `font-body`\n- `--font-display: 'Instrument Serif', serif` → Tailwind `font-display`\n\n### CSS Custom Properties (HSL, no `hsl()` wrapper — Tailwind adds it)\n```css\n--bg: 0 0% 4%;          /* #0a0a0a */\n--surface: 0 0% 8%;     /* #141414 */\n--text: 0 0% 96%;       /* #f5f5f5 */\n--muted: 0 0% 53%;      /* #888888 */\n--stroke: 0 0% 12%;     /* #1f1f1f */\n--accent: 0 0% 96%;\n```\n\n### Tailwind Custom Colors\n```ts\nbg: \"hsl(var(--bg))\",\nsurface: \"hsl(var(--surface))\",\n\"text-primary\": \"hsl(var(--text))\",\nmuted: \"hsl(var(--muted))\",\nstroke: \"hsl(var(--stroke))\",\n```\n\n### Accent Gradient\n`linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)` — used on logo ring, hover borders, progress bars. CSS utility class `.accent-gradient`.\n\n### Custom Animations (in index.css)\n- `@keyframes scroll-down` — translateY(-100%) → translateY(200%), 1.5s ease-in-out infinite\n- `@keyframes role-fade-in` — opacity 0 + translateY(8px) → opacity 1 + translateY(0), 0.4s ease-out\n- `@keyframes gradient-shift` — background-position 0% 50% → 100% 50% → 0% 50%, 6s ease infinite (for animated gradient borders)\n\n### Forced dark theme — no light mode toggle. `body` gets `bg-bg text-text-primary`.\n\n---\n\n## Page Structure (Index.tsx)\n\n```\n\n  {isLoading &&  setIsLoading(false)} />}\n\n```\n\n---\n\n## Section 1: Loading Screen\n\nFull-screen overlay (`fixed inset-0 z-[9999] bg-bg`). Uses `requestAnimationFrame` counter from 000→100 over 2700ms.\n\n- **Top-left**: \"Portfolio\" label — `text-xs text-muted uppercase tracking-[0.3em]`. Animates y:-20→0, opacity 0→1.\n- **Center**: Rotating words [\"Design\", \"Create\", \"Inspire\"] cycling every 900ms. `AnimatePresence mode=\"wait\"` with y:20→0→-20 transitions. `text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary/80`.\n- **Bottom-right**: Counter display — `text-6xl md:text-8xl lg:text-9xl font-display text-text-primary tabular-nums`. Shows `String(count).padStart(3, \"0\")`.\n- **Bottom progress bar**: `h-[3px] bg-stroke/50`, inner div with `.accent-gradient`, `scaleX(count/100)` transform, `box-shadow: 0 0 8px rgba(137, 170, 204, 0.35)`.\n- On complete (count reaches 100): 400ms delay then calls `onComplete`.\n\n---\n\n## Section 2: Hero\n\nFull-viewport section with background HLS video and centered content.\n\n### Background Video\n- HLS source: `https://t.co/BHPaFrMqIp`\n- Uses `hls.js` — if `Hls.isSupported()`, create HLS instance; else if native HLS support, set `video.src` directly.\n- Video: `autoPlay muted loop playsInline`, absolutely positioned and centered with `min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2`.\n- Dark overlay: `bg-black/20`\n- Bottom fade: `h-48 bg-gradient-to-t from-bg to-transparent`\n\n### Navbar (fixed, floats at top center)\n`fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4`.\n\nInner pill: `inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface px-2 py-2`. Gets `shadow-md shadow-black/10` when `scrollY > 100`.\n\nContents (left to right):\n1. **Logo**: 9×9 circle with accent gradient border (reverses direction on hover). Inner `bg-bg` circle with \"JA\" in `font-display italic text-[13px]`. Scales 110% on hover.\n2. **Divider**: `w-px h-5 bg-stroke mx-1` (hidden on mobile)\n3. **Nav links**: [\"Home\", \"Work\", \"Resume\"] — `text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2`. Active: `text-text-primary bg-stroke/50`. Inactive: `text-muted hover:text-text-primary hover:bg-stroke/50`.\n4. **Divider**\n5. **\"Say hi\" button**: Same size as nav links. On hover, shows accent gradient border behind (using absolute span with `inset: -2px`). Inner content wrapped in `bg-surface rounded-full backdrop-blur-md`. Includes \"↗\" arrow.\n\n### Hero Content (centered, z-10)\n- **Eyebrow**: `text-xs text-muted uppercase tracking-[0.3em] mb-8` — \"COLLECTION '26\". Class `blur-in`.\n- **Name**: `text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6` — \"Michael Smith\". Class `name-reveal`.\n- **Role line**: \"A {role} lives in Chicago.\" — roles cycle every 2s through [\"Creative\", \"Fullstack\", \"Founder\", \"Scholar\"]. Role word uses `font-display italic text-text-primary animate-role-fade-in inline-block` with `key={roleIndex}` for re-triggering animation.\n- **Description**: `text-sm md:text-base text-muted max-w-md mb-12` — \"Designing seamless digital interactions by focusing on the unique nuances which bring systems to life.\"\n- **CTA Buttons** (inline-flex gap-4):\n  - \"See Works\": Solid button. Default: `bg-text-primary text-bg`. Hover: `bg-bg text-text-primary` with accent gradient border ring.\n  - \"Reach out...\": Outlined button. Default: `border-2 border-stroke bg-bg text-text-primary`. Hover: `border-transparent` with accent gradient border ring.\n  - Both: `rounded-full text-sm px-7 py-3.5 hover:scale-105`.\n\n### GSAP Entrance\nTimeline with `ease: \"power3.out\"`:\n- `.name-reveal`: opacity 0→1, y 50→0, duration 1.2s, delay 0.1s\n- `.blur-in`: opacity 0→1, filter blur(10px)→blur(0px), y 20→0, duration 1s, stagger 0.1, delay 0.3s\n\n### Scroll Indicator\nBottom-center, `text-xs text-muted uppercase tracking-[0.2em]` \"SCROLL\" label above a `w-px h-10 bg-stroke` line with animated highlight using `.animate-scroll-down`.\n\n---\n\n## Section 3: Selected Works\n\n`bg-bg py-12 md:py-16`. Inner: `max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16`.\n\n### Header\nFramer Motion `whileInView` — opacity 0→1, y 30→0, duration 1s, ease [0.25,0.1,0.25,1], viewport once margin \"-100px\".\n- Eyebrow: `w-8 h-px bg-stroke` + \"Selected Work\" `text-xs text-muted uppercase tracking-[0.3em]`\n- Heading: \"Featured *projects*\" — italic word in `font-display italic`\n- Subtext: \"A selection of projects I've worked on, from concept to launch.\"\n- \"View all work\" button (desktop only, hidden md:inline-flex) — rounded-full with gradient hover border ring + right arrow\n\n### Bento Grid\n`grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6`. Column spans alternate: 7/5/5/7.\n\n4 project cards:\n```ts\n[\n  { slug: \"automotive-motion\", title: \"Automotive Motion\", image: \"/projects/wireframe.png\", gradient: \"from-violet-500 via-fuchsia-400/60 via-indigo-500/60 to-transparent\" },\n  { slug: \"urban-architecture\", title: \"Urban Architecture\", image: \"/projects/building.png\", gradient: \"from-sky-500 via-blue-400/60 to-transparent\" },\n  { slug: \"human-perspective\", title: \"Human Perspective\", image: \"/projects/person.png\", gradient: \"from-emerald-500 via-emerald-300/60 via-teal-500/60 to-transparent\" },\n  { slug: \"brand-identity\", title: \"Brand Identity\", image: \"/projects/branding.png\", gradient: \"from-amber-500 via-amber-300/60 via-orange-500/60 to-transparent\" },\n]\n```\n\nEach card: `bg-surface border border-stroke rounded-3xl` with aspect ratios `[4/3, 4/3 md:h-full, 4/3 md:h-full, 4/3]`. Contains:\n- Background image with `object-cover group-hover:scale-105`\n- Halftone overlay: `radial-gradient(circle, #000 1px, transparent 1px)` at 4×4px, `opacity-20 mix-blend-multiply`\n- Hover: `bg-bg/70 opacity-0→1` + `backdrop-blur-lg`\n- Hover label: pill with animated gradient border, white bg, \"View — *Title*\" (title in `font-display italic`)\n\nFramer Motion: each card staggers with `delay: i * 0.1`.\n\n---\n\n## Section 4: Journal\n\n`bg-bg py-16 md:py-24`. Same header pattern (eyebrow + \"Recent *thoughts*\" + subtext + \"View all\" button).\n\n4 journal entries displayed as horizontal pills (`rounded-[40px] sm:rounded-full`):\n```ts\n[\n  { title: \"The Future of Generative Art in 2026\", image: \"/explorations/planet.jpeg\", readTime: \"6 min read\", date: \"Feb 13, 2026\" },\n  { title: \"Designing for the Next Billion Users\", image: \"/explorations/cubes.jpeg\", readTime: \"5 min read\", date: \"Feb 06, 2026\" },\n  { title: \"The Psychology of Minimalist Motion\", image: \"/explorations/ascii.jpeg\", readTime: \"6 min read\", date: \"Feb 03, 2026\" },\n  { title: \"The Importance of Mobile-First Design\", image: \"/explorations/smoke.jpeg\", readTime: \"5 min read\", date: \"Jan 31, 2026\" },\n]\n```\n\nEach entry: `flex items-center gap-6 p-4 bg-surface/30 hover:bg-surface border border-stroke`. Contains:\n- Circular image (100×100px, `rounded-full overflow-hidden`, hover: `scale-110`, border transitions)\n- Title: `text-lg md:text-2xl font-medium`, `group-hover:translate-x-1`\n- Dotted line separator (desktop): `flex-grow h-px bg-stroke/30`\n- Read time + dot + date\n- Arrow circle: `w-10 h-10 rounded-full border border-stroke`, hover: fills `bg-text-primary text-bg`\n\nFramer Motion: alternating x:-20/+20 entrance per entry.\n\n---\n\n## Section 5: Explorations (Parallax Gallery)\n\n`min-h-[300vh]` section for scroll-driven parallax.\n\n### Layer 1: Pinned Center (z-10)\n`h-screen` div pinned with GSAP `ScrollTrigger.create({ pin: contentRef, pinSpacing: false })`.\n- Eyebrow: \"Explorations\"\n- Heading: \"Visual *playground*\"\n- Subtext: \"A space for creative experiments, motion studies, and visual explorations.\"\n- Dribbble button: pink icon (#ea4c89) + \"View on Dribbble\" + NE arrow. Gradient hover border ring.\n\n### Layer 2: Parallax Columns (z-20, absolute)\n`grid grid-cols-2 gap-12 md:gap-40` inside `max-w-[1400px]`.\n\n6 items split into 2 columns (even→left, odd→right):\n```ts\n[\n  { id: 1, title: \"Celestial Planets\", category: \"3D Visualization\", image: \"/explorations/planet.jpeg\" },\n  { id: 2, title: \"ASCII Art Study\", category: \"Generative Art\", image: \"/explorations/ascii.jpeg\" },\n  { id: 3, title: \"Atmospheric Smoke\", category: \"Visual Effects\", image: \"/explorations/smoke.jpeg\" },\n  { id: 4, title: \"Abstract Cylinder\", category: \"3D Rendering\", image: \"/explorations/cylinder.jpeg\" },\n  { id: 5, title: \"Organic Waves\", category: \"Motion Design\", image: \"/explorations/wave.jpeg\" },\n  { id: 6, title: \"Geometric Cubes\", category: \"3D Composition\", image: \"/explorations/cubes.jpeg\" },\n]\n```\n\n- Left column: `y: \"10vh\" → \"-120vh\"`, scrub 1, spacer `h-[20vh]`\n- Right column: `y: \"40vh\" → \"-100vh\"`, scrub 1.5, spacer `h-[40vh]`\n- Cards: `aspect-square max-w-[320px]`, rotation `(id%2===0 ? 1 : -1) * (1.5 + id%3)` degrees\n- Each card: outer border frame at `-inset-4 rounded-[40px]`, blue tint `bg-blue-500/10 mix-blend-overlay`, halftone texture, hover gradient + content reveal\n- Clicking opens lightbox: `fixed z-[100] bg-black/95`, image at `aspect-[16/10]`, Framer Motion scale 0.9→1, close on backdrop click or Escape key\n\n---\n\n## Section 6: Stats\n\n`bg-bg py-16 md:py-24`. Same header pattern (eyebrow \"Stats & Facts\" + \"Making an *impact*\" + long subtext).\n\n3-column grid (`sm:grid-cols-2 lg:grid-cols-3`, 3rd card gets `sm:col-span-2 lg:col-span-1`):\n```ts\n[\n  { number: \"20+\", label: \"Years Experience\", sublabel: \"In the web design industry field.\" },\n  { number: \"95+\", label: \"Projects Done\", sublabel: \"Around worldwide in last five years.\" },\n  { number: \"200%\", label: \"Satisfied Clients\", sublabel: \"With a great experience and results.\" },\n]\n```\n\nEach: large number `text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-medium tracking-tighter` → `h-px bg-stroke` divider → label (`text-xl md:text-2xl font-bold`) + sublabel (`text-sm text-muted`). Staggered Framer Motion entrance.\n\n---\n\n## Section 7: Contact / Footer\n\n`bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden`.\n\n### Background Video\nSame HLS source as hero, but **flipped vertically** (`scale-y-[-1]`). Heavier overlay: `bg-black/60`. Top fade `h-32` + bottom fade `h-24`.\n\n### GSAP Marquee\n\"BUILDING THE FUTURE • \" repeated 10×. `text-5xl md:text-7xl lg:text-8xl font-display italic text-text-primary/10`. GSAP `xPercent: -50`, duration 40, ease \"none\", repeat -1.\n\n### CTA\n- Subtext: \"Have a project in mind? I'm always open to new ideas and collaborations.\"\n- Email button: `mailto:hello@michaelsmith.com` — `px-8 py-4 bg-bg border-2 border-stroke rounded-full` with gradient hover border ring. `whileTap={{ scale: 0.97 }}`. NE arrow icon.\n\n### Footer Bar\n`border-t border-stroke pt-8 flex flex-col md:flex-row items-center justify-between`.\n- Left: Social links [Twitter, LinkedIn, Dribbble, GitHub] — `text-sm text-muted hover:text-text-primary hover:-translate-y-0.5`\n- Right: Green pulsing dot (`animate-ping bg-green-400` + solid `bg-green-500`) + \"Available for projects\"\n\n---\n\n## Required Assets (in `/public/`)\n- `/projects/wireframe.png`, `/projects/building.png`, `/projects/person.png`, `/projects/branding.png`\n- `/explorations/planet.jpeg`, `/explorations/ascii.jpeg`, `/explorations/smoke.jpeg`, `/explorations/cylinder.jpeg`, `/explorations/wave.jpeg`, `/explorations/cubes.jpeg`\n\n## Dependencies\n`gsap`, `framer-motion`, `hls.js`, `react-router-dom`, `tailwindcss-animate`\n\nAdd smooth scroll nav\nAdd page transitions",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "prompt",
+      "title": "Reference-led portfolio direction and build workflow",
+      "summary": "Attach references, a resume and a portrait; compare three design directions, then build the selected direction. The original thread documents an optional Higgsfield hero film.",
+      "prompt": "Create a design direction artifact for this portfolio using the attached materials. Show me 3 distinct directions with font options, colour palettes, and motion ideas.\n\nExplain why each direction fits and what the trade-offs are. Include font previews and colour swatches so I can compare.\n\nDon’t build the website yet.\n\nI’ve selected my options in the artifact. Build the website using those choices.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "type": "prompt",
+      "title": "Black-and-white editorial portfolio",
+      "summary": "An ultra-minimal portfolio built with Replit, focused on typography, whitespace and selected work.",
+      "prompt": "Build a premium personal portfolio website in an ultra minimalism style with a clean black-and-white color palette only, using no gradients, no glassmorphism, and no decorative effects. Focus on extreme simplicity, generous whitespace, strong typography, precise alignment, and a sophisticated editorial aesthetic. Include a hero section with name, title, and short introduction, followed by selected projects, skills, testimonials, about section, and contact section. Use subtle micro-interactions, smooth scrolling, monochrome imagery, minimalist icons, and elegant hover states. Prioritize readability, visual hierarchy, and a luxury modern feel inspired by high-end design studios, with a fully responsive layout, fast loading performance, and a timeless, distraction-free user experience.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow",
+      "promptOnly": true,
+      "betaEligible": true
+    },
+    {
+      "id": "source_0390c4d13103bac1be7470473563aa81",
+      "type": "source",
+      "url": "https://x.com/KimiProduct/status/2016202580582707412",
+      "platform": "x",
+      "sourceId": "2016202580582707412",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-01-27T17:32:09+00:00",
+      "attributionLabel": "KimiProduct",
+      "promptEvidenceRef": "evidence/2016202580582707412.json"
+    },
+    {
+      "id": "source_039475583b73e96f67d94d4a0c7ab1e5",
+      "type": "source",
+      "url": "https://x.com/k2sbhai/status/2097359658453512334",
+      "platform": "x",
+      "sourceId": "2097359658453512334"
+    },
+    {
+      "id": "source_089e4038d639846f7ffb78d0bebe22ef",
+      "type": "source",
+      "url": "https://x.com/viktoroddy/status/2029146101715259900",
+      "platform": "x",
+      "sourceId": "2029146101715259900"
+    },
+    {
+      "id": "source_26fb5a2b4bc8f9f6fdccb7ee245ce82e",
+      "type": "source",
+      "url": "https://x.com/Bhavani_00007/status/2082786318271254822",
+      "platform": "x",
+      "sourceId": "2082786318271254822",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-07-30T11:12:09+00:00",
+      "attributionLabel": "Bhavani_00007",
+      "promptEvidenceRef": "evidence/2082786318271254822.json"
+    },
+    {
+      "id": "source_36b800161507a469818af9dc8040f009",
+      "type": "source",
+      "url": "https://x.com/dammyayans/status/2110400404043227149",
+      "platform": "x",
+      "sourceId": "2110400404043227149",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-10-14T16:00:40+00:00",
+      "attributionLabel": "dammyayans",
+      "promptEvidenceRef": "evidence/2110400404043227149.json"
+    },
+    {
+      "id": "source_3b6a23e23d7d9d03459d426c7fb078eb",
+      "type": "source",
+      "url": "https://x.com/viktoroddy/status/2029146227305263600",
+      "platform": "x",
+      "sourceId": "2029146227305263600",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-03-04T10:45:34+00:00",
+      "attributionLabel": "viktoroddy",
+      "promptEvidenceRef": "evidence/2029146227305263600.json"
+    },
+    {
+      "id": "source_56f86e0ca1a935ea2343e35451933528",
+      "type": "source",
+      "url": "https://x.com/dammyayans/status/2110400384027984309",
+      "platform": "x",
+      "sourceId": "2110400384027984309"
+    },
+    {
+      "id": "source_7a61fd8dff37ae98ee229aaa93d75b1b",
+      "type": "source",
+      "url": "https://x.com/dammyayans/status/2110400428802191674",
+      "platform": "x",
+      "sourceId": "2110400428802191674"
+    },
+    {
+      "id": "source_b18b845964df09f6bf0b4471b8e5e34a",
+      "type": "source",
+      "url": "https://x.com/josephweb3/status/2077680692801286365",
+      "platform": "x",
+      "sourceId": "2077680692801286365",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-07-16T09:04:13+00:00",
+      "attributionLabel": "josephweb3",
+      "promptEvidenceRef": "evidence/2077680692801286365.json"
+    },
+    {
+      "id": "source_d496381f49b273aef315eaa53030c2ad",
+      "type": "source",
+      "url": "https://x.com/k2sbhai/status/2097360204811977193",
+      "platform": "x",
+      "sourceId": "2097360204811977193",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-09-08T16:23:34+00:00",
+      "attributionLabel": "k2sbhai",
+      "promptEvidenceRef": "evidence/2097360204811977193.json"
+    },
+    {
+      "id": "source_e0bfb0c1d9ea7fb7a74d1ca8d0d82854",
+      "type": "source",
+      "url": "https://x.com/shushant_l/status/2067215788654940307",
+      "platform": "x",
+      "sourceId": "2067215788654940307",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-06-17T12:00:25+00:00",
+      "attributionLabel": "shushant_l",
+      "promptEvidenceRef": "evidence/2067215788654940307.json"
+    },
+    {
+      "id": "source_e629b290fe318a9de342154883bc07f7",
+      "type": "source",
+      "url": "https://x.com/dammyayans/status/2110400423840395571",
+      "platform": "x",
+      "sourceId": "2110400423840395571"
+    },
+    {
+      "id": "source_f46ddda497ed6406cb980985e3481622",
+      "type": "source",
+      "url": "https://x.com/shushant_l/status/2066853400298533296",
+      "platform": "x",
+      "sourceId": "2066853400298533296",
+      "observedAt": "2026-10-17T06:53:43.500Z",
+      "publishedAt": "2026-06-16T12:00:25+00:00",
+      "attributionLabel": "shushant_l",
+      "promptEvidenceRef": "evidence/2066853400298533296.json"
+    },
+    {
+      "id": "tool_09fa0ad0367bea5191d38052cac2faf6",
+      "type": "tool",
+      "slug": "three-js",
+      "label": "Three.js"
+    },
+    {
+      "id": "tool_275976081ce1abf67779eb3c388b5e14",
+      "type": "tool",
+      "slug": "react",
+      "label": "React"
+    },
+    {
+      "id": "tool_28e174396028f226b3bead259d197492",
+      "type": "tool",
+      "slug": "claude-code",
+      "label": "Claude Code"
+    },
+    {
+      "id": "tool_36e64f19f57a05c8cd5b6bf7eff72703",
+      "type": "tool",
+      "slug": "css",
+      "label": "CSS"
+    },
+    {
+      "id": "tool_50b2676afbe30c833f43fedf384f1153",
+      "type": "tool",
+      "slug": "higgsfield",
+      "label": "Higgsfield"
+    },
+    {
+      "id": "tool_53b69ef92c836777382b9551b7f44ec0",
+      "type": "tool",
+      "slug": "replit",
+      "label": "Replit"
+    },
+    {
+      "id": "tool_5809dff7bdcf27a2f73df567bb90b02f",
+      "type": "tool",
+      "slug": "framer-motion",
+      "label": "Framer Motion"
+    },
+    {
+      "id": "tool_63444d1b63e316c78a258436399fdce1",
+      "type": "tool",
+      "slug": "opengradient",
+      "label": "OpenGradient"
+    },
+    {
+      "id": "tool_8465240d4c18d5b6f40a6af2bdbd2b5f",
+      "type": "tool",
+      "slug": "hls-js",
+      "label": "hls.js"
+    },
+    {
+      "id": "tool_969545dde1584d88227517c6a0c969eb",
+      "type": "tool",
+      "slug": "typescript",
+      "label": "TypeScript"
+    },
+    {
+      "id": "tool_aadc8234320cc2d8c643c5b3de03c2c5",
+      "type": "tool",
+      "slug": "tailwind-css",
+      "label": "Tailwind CSS"
+    },
+    {
+      "id": "tool_b16efac145e9242cfb05d739a8509ac7",
+      "type": "tool",
+      "slug": "vite",
+      "label": "Vite"
+    },
+    {
+      "id": "tool_b3087547f4b048f9e99005a7ce862004",
+      "type": "tool",
+      "slug": "gsap",
+      "label": "GSAP"
+    },
+    {
+      "id": "tool_e5e239560bc125a20ff2ac1fea50915b",
+      "type": "tool",
+      "slug": "html",
+      "label": "HTML"
+    },
+    {
+      "id": "tool_eda71746c01c3f465ffd02b6da15a651",
+      "type": "tool",
+      "slug": "javascript",
+      "label": "JavaScript"
+    },
+    {
+      "id": "usecase_747a8f398395dde8e524d9f983784bd8",
+      "type": "use-case",
+      "slug": "website",
+      "label": "Website"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "built_with",
+      "to": "tool_36e64f19f57a05c8cd5b6bf7eff72703"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "built_with",
+      "to": "tool_b16efac145e9242cfb05d739a8509ac7"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "created_by",
+      "to": "creator_375888a30d78ffee2c6d1072724e0ba9"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "designed_for",
+      "to": "model_6f7ac1823da81d2e52d1a1549ee69c85"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "related_to",
+      "to": "source_039475583b73e96f67d94d4a0c7ab1e5"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "sourced_from",
+      "to": "source_d496381f49b273aef315eaa53030c2ad"
+    },
+    {
+      "from": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "built_with",
+      "to": "tool_28e174396028f226b3bead259d197492"
+    },
+    {
+      "from": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "created_by",
+      "to": "creator_99b49098bcff1ab1a4bd63167b08cad8"
+    },
+    {
+      "from": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "designed_for",
+      "to": "model_e1517be14d06cdb72af7bb52a289a0d5"
+    },
+    {
+      "from": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "sourced_from",
+      "to": "source_26fb5a2b4bc8f9f6fdccb7ee245ce82e"
+    },
+    {
+      "from": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "built_with",
+      "to": "tool_63444d1b63e316c78a258436399fdce1"
+    },
+    {
+      "from": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "created_by",
+      "to": "creator_5e53bba798b8b58683a9c6c3d5250411"
+    },
+    {
+      "from": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "designed_for",
+      "to": "model_2bf548d8056029c73e6e28132d19a3a2"
+    },
+    {
+      "from": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "sourced_from",
+      "to": "source_b18b845964df09f6bf0b4471b8e5e34a"
+    },
+    {
+      "from": "prm_506b994c594f45c7de401e42d495d100",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "type": "built_with",
+      "to": "tool_53b69ef92c836777382b9551b7f44ec0"
+    },
+    {
+      "from": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "type": "created_by",
+      "to": "creator_f9b07ec05bd31496913e85d3292b34e2"
+    },
+    {
+      "from": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "type": "sourced_from",
+      "to": "source_e0bfb0c1d9ea7fb7a74d1ca8d0d82854"
+    },
+    {
+      "from": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "built_with",
+      "to": "tool_36e64f19f57a05c8cd5b6bf7eff72703"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "built_with",
+      "to": "tool_e5e239560bc125a20ff2ac1fea50915b"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "built_with",
+      "to": "tool_eda71746c01c3f465ffd02b6da15a651"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "created_by",
+      "to": "creator_aaab74bf6c5a96d415ccb0ef41593607"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "designed_for",
+      "to": "model_e4f9c522e1c89280e9561b825f4f24fe"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "sourced_from",
+      "to": "source_0390c4d13103bac1be7470473563aa81"
+    },
+    {
+      "from": "prm_c40f38e72fa902a647e00859ffd993f3",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_275976081ce1abf67779eb3c388b5e14"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_5809dff7bdcf27a2f73df567bb90b02f"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_8465240d4c18d5b6f40a6af2bdbd2b5f"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_969545dde1584d88227517c6a0c969eb"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_aadc8234320cc2d8c643c5b3de03c2c5"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_b16efac145e9242cfb05d739a8509ac7"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "created_by",
+      "to": "creator_b3756ec40f1b3e6d592c5727725b906e"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "related_to",
+      "to": "source_089e4038d639846f7ffb78d0bebe22ef"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "sourced_from",
+      "to": "source_3b6a23e23d7d9d03459d426c7fb078eb"
+    },
+    {
+      "from": "prm_c634a0454d9a96ac189676a31ab2d48c",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "built_with",
+      "to": "tool_275976081ce1abf67779eb3c388b5e14"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "built_with",
+      "to": "tool_28e174396028f226b3bead259d197492"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "built_with",
+      "to": "tool_50b2676afbe30c833f43fedf384f1153"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "built_with",
+      "to": "tool_aadc8234320cc2d8c643c5b3de03c2c5"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "built_with",
+      "to": "tool_b16efac145e9242cfb05d739a8509ac7"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "created_by",
+      "to": "creator_5fb1c4e1bd80983843a4c31d9e1d4641"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "related_to",
+      "to": "source_56f86e0ca1a935ea2343e35451933528"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "related_to",
+      "to": "source_7a61fd8dff37ae98ee229aaa93d75b1b"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "related_to",
+      "to": "source_e629b290fe318a9de342154883bc07f7"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "sourced_from",
+      "to": "source_36b800161507a469818af9dc8040f009"
+    },
+    {
+      "from": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "type": "built_with",
+      "to": "tool_53b69ef92c836777382b9551b7f44ec0"
+    },
+    {
+      "from": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "type": "created_by",
+      "to": "creator_f9b07ec05bd31496913e85d3292b34e2"
+    },
+    {
+      "from": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "type": "sourced_from",
+      "to": "source_f46ddda497ed6406cb980985e3481622"
+    },
+    {
+      "from": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "source_0390c4d13103bac1be7470473563aa81",
+      "type": "published_by",
+      "to": "creator_aaab74bf6c5a96d415ccb0ef41593607"
+    },
+    {
+      "from": "source_26fb5a2b4bc8f9f6fdccb7ee245ce82e",
+      "type": "published_by",
+      "to": "creator_99b49098bcff1ab1a4bd63167b08cad8"
+    },
+    {
+      "from": "source_36b800161507a469818af9dc8040f009",
+      "type": "published_by",
+      "to": "creator_5fb1c4e1bd80983843a4c31d9e1d4641"
+    },
+    {
+      "from": "source_3b6a23e23d7d9d03459d426c7fb078eb",
+      "type": "published_by",
+      "to": "creator_b3756ec40f1b3e6d592c5727725b906e"
+    },
+    {
+      "from": "source_b18b845964df09f6bf0b4471b8e5e34a",
+      "type": "published_by",
+      "to": "creator_5e53bba798b8b58683a9c6c3d5250411"
+    },
+    {
+      "from": "source_d496381f49b273aef315eaa53030c2ad",
+      "type": "published_by",
+      "to": "creator_375888a30d78ffee2c6d1072724e0ba9"
+    },
+    {
+      "from": "source_e0bfb0c1d9ea7fb7a74d1ca8d0d82854",
+      "type": "published_by",
+      "to": "creator_f9b07ec05bd31496913e85d3292b34e2"
+    },
+    {
+      "from": "source_f46ddda497ed6406cb980985e3481622",
+      "type": "published_by",
+      "to": "creator_f9b07ec05bd31496913e85d3292b34e2"
+    }
+  ]
+}

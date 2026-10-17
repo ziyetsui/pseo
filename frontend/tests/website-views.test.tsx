@@ -53,18 +53,18 @@ describe('Website graph projections', () => {
       expect(catalogPaths(catalog)).toContain(view.href);
       expect(websiteViewForPath(catalog,view.href)).toEqual(view);
     }
-    expect(views.find(view => view.axis === 'model' && view.slug === 'claude')?.count).toBe(30);
+    expect(views.find(view => view.axis === 'model' && view.slug === 'claude')?.count).toBe(32);
     expect(views.find(view => view.axis === 'model' && view.slug === 'codex')?.count).toBe(7);
-    expect(views.find(view => view.axis === 'tool' && view.slug === 'three-js')?.count).toBe(36);
-    expect(views.find(view => view.axis === 'use-case' && view.slug === 'creative-coding')?.count).toBe(66);
+    expect(views.find(view => view.axis === 'tool' && view.slug === 'three-js')?.count).toBe(37);
+    expect(views.find(view => view.axis === 'use-case' && view.slug === 'creative-coding')?.count).toBe(69);
     expect(new Set(views.map(view => view.href)).size).toBe(views.length);
   });
   it('keeps every case reachable and counts the existing prompt with its genuine relationships', () => {
     const all = views.find(view => view.axis === 'all')!;
-    expect(websiteViewEntries(catalog,all)).toHaveLength(224);
+    expect(websiteViewEntries(catalog,all)).toHaveLength(232);
     const importedIds = new Set(catalog.websites?.map(entry => entry.id));
     const baseline = websiteEntries(catalog).filter(entry => !importedIds.has(entry.id));
-    expect(baseline).toHaveLength(165);
+    expect(baseline).toHaveLength(173);
     for (const entry of websiteEntries(catalog)) {
       const related = websiteViewsForCase(catalog,entry.id);
       expect(related.length).toBeGreaterThan(0);

@@ -1,7 +1,6 @@
 import {MonetizationRelated} from './Monetization';
 import { interfaceLocale, uiText, text, sourceLanguage } from '@/lib/i18n/text';
 import { SignInGate } from "@/components/SignInGate";
-import Link from "next/link";
 import type { Catalog, Prompt } from "@/lib/catalog/types";
 import { SiteFooter, SiteHeader } from "@/components/Chrome";
 import { RecipeMedia } from "@/components/RecipeMedia";
@@ -55,7 +54,7 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
           <h2 id="recipe-run">{uiText(uiLocale, "Run it")}</h2>
           <p className="lede">{text(uiLocale, "Continue in Ancher with your completed prompt.", "将填好的提示词带入 Ancher，继续创作。")}</p>
           <div className="runrow">
-            <div><b>{prompt.reconstruction && prompt.models.length > 0 ? text(uiLocale,"Reproduction model","复现模型") : uiText(uiLocale, "Model")}</b><p>{prompt.models.length ? prompt.models.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>) : text(uiLocale, "None named — try the one you have", "未注明模型，可尝试你已有的模型")}</p></div>
+            <div><b>{prompt.reconstruction && prompt.models.length > 0 ? text(uiLocale,"Reproduction model","复现模型") : uiText(uiLocale, "Model")}</b><p>{prompt.models.length ? prompt.models.map((item, index) => <span key={item.id}>{index > 0 && ", "}<a href={item.href}>{item.label}</a></span>) : text(uiLocale, "None named — try the one you have", "未注明模型，可尝试你已有的模型")}</p></div>
             <div><b>{uiText(uiLocale, "What to expect")}</b><p>{uiText(uiLocale, "Run four at once; how far the result drifts varies a lot.")}</p></div>
           </div>
           {prompt.requiredInputs.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Required inputs")}</span><span>{prompt.requiredInputs.join(", ")}</span></div>}
@@ -68,9 +67,9 @@ export function Recipe({ catalog, prompt }: { catalog: Catalog; prompt: Prompt }
             {prompt.source.url && <div className="kv"><span>{uiText(uiLocale, "Source")}</span><a href={prompt.source.url} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "View the original source ↗")}</a></div>}
             {prompt.evidence.map((item, index) => <div className="kv" key={`${item.type}:${item.url}:${index}`}><span>{text(uiLocale, "Evidence", "依据")} · {item.type}</span>{item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">{uiText(uiLocale, "View evidence ↗")}</a> : <span>{uiText(uiLocale, "No public evidence link")}</span>}</div>)}
             {prompt.source.observedAt && <div className="kv"><span>{uiText(uiLocale, "Observed")}</span><time dateTime={prompt.source.observedAt}>{new Date(prompt.source.observedAt).toLocaleDateString(uiLocale, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" })}</time></div>}
-            {prompt.useCases.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Use case")}</span><span>{prompt.useCases.map((item, index) => <span key={item.id}>{index > 0 && ", "}<Link href={item.href}>{item.label}</Link></span>)}</span></div>}
-            {websiteViews.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Related Website views")}</span><span>{websiteViews.map((view, index) => <span key={view.id}>{index > 0 && " · "}<Link href={view.href}>{view.label}</Link></span>)}</span></div>}
-            {related.length > 0 && <div className="kv"><span>{uiText(uiLocale, "More with this model")}</span><span>{related.map((item, index) => <span key={item.id}>{index > 0 && " · "}<Link href={item.href}>{item.title}</Link></span>)}</span></div>}
+            {prompt.useCases.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Use case")}</span><span>{prompt.useCases.map((item, index) => <span key={item.id}>{index > 0 && ", "}<a href={item.href}>{item.label}</a></span>)}</span></div>}
+            {websiteViews.length > 0 && <div className="kv"><span>{uiText(uiLocale, "Related Website views")}</span><span>{websiteViews.map((view, index) => <span key={view.id}>{index > 0 && " · "}<a href={view.href}>{view.label}</a></span>)}</span></div>}
+            {related.length > 0 && <div className="kv"><span>{uiText(uiLocale, "More with this model")}</span><span>{related.map((item, index) => <span key={item.id}>{index > 0 && " · "}<a href={item.href}>{item.title}</a></span>)}</span></div>}
           </div>
         </div>
       </section>

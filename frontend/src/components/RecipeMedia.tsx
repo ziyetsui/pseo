@@ -2,7 +2,6 @@
 import { uiText, text } from '@/lib/i18n/text';
 import type { Locale } from '@/lib/catalog/types';
 
-import Link from "next/link";
 import { useState } from "react";
 import type { Media, Prompt } from "@/lib/catalog/types";
 
@@ -21,7 +20,7 @@ export function RecipeMedia({ prompt, website = false , uiLocale = 'en'}: { prom
   if (!primary) return <div className="nomedia">
     <b>{website ? text(uiLocale,"No visual preview supplied by the source","来源未提供视觉预览") : uiText(uiLocale, "No image was published with this prompt")}</b>
     <p>{website ? text(uiLocale,"Follow the original source for the author’s notes.","可通过原始来源查看作者的说明。") : uiText(uiLocale, "The author posted the words on their own. Showing a picture made by something else would credit the wrong render.")}</p>
-    <Link className="btn" href={`/${prompt.locale}/prompts/${website ? "website" : "image"}`}>{website ? text(uiLocale,"Browse website cases →","浏览网站案例 →") : uiText(uiLocale, "Browse prompts that have results →")}</Link>
+    <a className="btn" href={`/${prompt.locale}/prompts/${website ? "website" : "image"}`}>{website ? text(uiLocale,"Browse website cases →","浏览网站案例 →") : uiText(uiLocale, "Browse prompts that have results →")}</a>
   </div>;
   return <div className="shots">
     <SourceMedia uiLocale={uiLocale} key={primary.id} media={primary} primary reference={prompt.reconstruction || website} intrinsic={website} />

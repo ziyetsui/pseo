@@ -21,7 +21,7 @@ describe('real X creator avatars', () => {
   it('uses the same account images in both languages without changing creator identity or counts', () => {
     const en = createGitBetaCatalog('en'), zh = createGitBetaCatalog('zh-CN');
     expect(en.creators.map(c => [c.id, c.handle, c.count, c.avatarUrl])).toEqual(zh.creators.map(c => [c.id, c.handle, c.count, c.avatarUrl]));
-    expect(en.creators.filter(c => c.count > 0)).toHaveLength(349);
+    expect(en.creators.filter(c => c.count > 0)).toHaveLength(354);
     expect(en.creators.every(c => c.avatarUrl === null || c.avatarUrl.startsWith('/creator-avatars/'))).toBe(true);
   });
 

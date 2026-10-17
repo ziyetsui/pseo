@@ -28,22 +28,22 @@ test('Deck buttons and keyboard select one active project with bounded controls'
   await expect(next).toBeEnabled();await expect(previous).toBeDisabled();
   await expect(deck.locator('.dc:not([inert])')).toHaveCount(1);
   const first=await deck.locator('[data-top] h3').textContent();
-  await next.click();await expect(page.locator('.dkpos')).toHaveText('2 of 224');
+  await next.click();await expect(page.locator('.dkpos')).toHaveText('2 of 232');
   expect(await deck.locator('[data-top] h3').textContent()).not.toBe(first);
   await deck.focus();await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('.dkpos')).toHaveText('1 of 224');
+  await expect(page.locator('.dkpos')).toHaveText('1 of 232');
   await page.keyboard.press('ArrowLeft');await expect(previous).toBeDisabled();
-  await expect(page.locator('.website-title-index a')).toHaveCount(224);
+  await expect(page.locator('.website-title-index a')).toHaveCount(232);
   await deck.focus();
-  for(let index=0;index<224;index++)await page.keyboard.press('ArrowRight');
-  await expect(page.locator('.dkpos')).toHaveText('224 of 224');await expect(next).toBeDisabled();
+  for(let index=0;index<232;index++)await page.keyboard.press('ArrowRight');
+  await expect(page.locator('.dkpos')).toHaveText('232 of 232');await expect(next).toBeDisabled();
   await expect(deck.locator('.dc:not([inert])')).toHaveCount(1);
 });
 
 test('Findings, Anthology, Recipe and index preserve graph scope and navigation',async({page,request})=>{
   await page.goto('/en/prompts/website/views/use-case/creative-coding',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.prototype-task-findings .finding')).not.toHaveCount(0);
-  await expect(page.locator('[data-website-case]')).toHaveCount(66);
+  await expect(page.locator('[data-website-case]')).toHaveCount(69);
   const contrast=await page.locator('.website-view-tabs [aria-current=page]').evaluate(el=>{const css=getComputedStyle(el);return {text:css.color,background:css.backgroundColor};});
   expect(contrast.text).not.toBe(contrast.background);
   await page.goto('/en/prompts/website/views/tool/three-js',{waitUntil:'domcontentloaded'});

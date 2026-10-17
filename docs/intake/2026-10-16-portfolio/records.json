@@ -1,0 +1,74 @@
+[
+  {
+    "id": "prm_c634a0454d9a96ac189676a31ab2d48c",
+    "sourceId": "2029146227305263600",
+    "casePostId": "2029146101715259900",
+    "sourceUrl": "https://x.com/viktoroddy/status/2029146227305263600",
+    "visualSourceUrl": "https://x.com/viktoroddy/status/2029146101715259900",
+    "promptLevel": "详细提示词",
+    "href": "/zh-CN/prompts/case-c634a0454d9a96ac189676a31ab2d48c"
+  },
+  {
+    "id": "prm_c40f38e72fa902a647e00859ffd993f3",
+    "sourceId": "2016202580582707412",
+    "casePostId": "2016202580582707412",
+    "sourceUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "visualSourceUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "promptLevel": "具体构建指令",
+    "href": "/zh-CN/prompts/case-c40f38e72fa902a647e00859ffd993f3"
+  },
+  {
+    "id": "prm_057b1ee7d4b4fcc1828565c083bbb0d7",
+    "sourceId": "2097360204811977193",
+    "casePostId": "2097359658453512334",
+    "sourceUrl": "https://x.com/k2sbhai/status/2097360204811977193",
+    "visualSourceUrl": "https://x.com/k2sbhai/status/2097359658453512334",
+    "promptLevel": "具体构建指令",
+    "href": "/zh-CN/prompts/case-057b1ee7d4b4fcc1828565c083bbb0d7"
+  },
+  {
+    "id": "prm_f22bdd76c585224df1cb5f55f81ecc78",
+    "sourceId": "2066853400298533296",
+    "casePostId": "2066853400298533296",
+    "sourceUrl": "https://x.com/shushant_l/status/2066853400298533296",
+    "visualSourceUrl": "https://x.com/shushant_l/status/2066853400298533296",
+    "promptLevel": "详细提示词",
+    "href": "/zh-CN/prompts/case-f22bdd76c585224df1cb5f55f81ecc78"
+  },
+  {
+    "id": "prm_b1b9b478fa7333680ae218c42e1e70bf",
+    "sourceId": "2067215788654940307",
+    "casePostId": "2067215788654940307",
+    "sourceUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "visualSourceUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "promptLevel": "详细提示词",
+    "href": "/zh-CN/prompts/case-b1b9b478fa7333680ae218c42e1e70bf"
+  },
+  {
+    "id": "prm_e69191dfe5f7e2ce6d4313f648b52a32",
+    "sourceId": "2110400404043227149",
+    "casePostId": "2110400384027984309",
+    "sourceUrl": "https://x.com/dammyayans/status/2110400404043227149",
+    "visualSourceUrl": "https://x.com/dammyayans/status/2110400384027984309",
+    "promptLevel": "公开分步流程",
+    "href": "/zh-CN/prompts/case-e69191dfe5f7e2ce6d4313f648b52a32"
+  },
+  {
+    "id": "prm_4a8109c2ab07cb35a7fc749d781d4648",
+    "sourceId": "2082786318271254822",
+    "casePostId": "2082786318271254822",
+    "sourceUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "visualSourceUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "promptLevel": "仅一句话",
+    "href": "/zh-CN/prompts/case-4a8109c2ab07cb35a7fc749d781d4648"
+  },
+  {
+    "id": "prm_506b994c594f45c7de401e42d495d100",
+    "sourceId": "2077680692801286365",
+    "casePostId": "2077680692801286365",
+    "sourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "visualSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "promptLevel": "仅一句话",
+    "href": "/zh-CN/prompts/case-506b994c594f45c7de401e42d495d100"
+  }
+]

@@ -1,0 +1,47 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+import {buildIntake,checkIntake,validateGraph} from './lib/case-import.mjs';
+const root=resolve(import.meta.dirname,'..'),dir=`${root}/docs/intake/2026-10-16-portfolio`;
+const read=async path=>JSON.parse(await readFile(path,'utf8'));
+const write=(path,data)=>writeFile(path,JSON.stringify(data,null,2)+'\n');
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const rows=await read(`${dir}/source-records.json`),metadata=await read(`${dir}/source-metadata.json`),media=await read(`${dir}/media.json`);
+const batch=buildIntake({websites:rows,gallery:{cases:[]},observedAt:metadata.observedAt,upstreamCommit:metadata.upstreamCommit});
+if(batch.proposals.length!==8||batch.reviews.some(row=>row.reasons.includes('proposal_contract_blocked')))throw Error('Portfolio intake contract rejected');
+const graph={schemaVersion:1,nodes:batch.nodes.map(node=>node.type==='prompt'?{...node,promptOnly:true,betaEligible:true}:node),edges:batch.edges};
+const combined=await read(`${root}/docs/intake/2026-10-14-website-supplement/combined-graph.json`);
+const nodes=new Map(combined.nodes.map(node=>[node.id,node])),edges=new Map(combined.edges.map(edge=>[`${edge.from}:${edge.type}:${edge.to}`,edge]));
+const ownedPrompts=new Set(graph.nodes.filter(node=>node.type==='prompt').map(node=>node.id));
+const managedRelations=new Set(['sourced_from','created_by','used_for','designed_for','built_with','related_to']);
+for(const [key,edge] of edges)if(ownedPrompts.has(edge.from)&&managedRelations.has(edge.type))edges.delete(key);
+for(const node of graph.nodes){const previous=nodes.get(node.id);nodes.set(node.id,node.type==='source'&&previous?{...previous,...node,publishedAt:node.publishedAt??previous.publishedAt}:node);}
+for(const edge of graph.edges)edges.set(`${edge.from}:${edge.type}:${edge.to}`,edge);
+const copy=await read(`${root}/frontend/src/data/localized-case-copy.json`),translations=await read(`${root}/frontend/src/data/zh-prompt-bodies.json`),templates=await read(`${root}/frontend/src/data/website-placeholder-templates.json`),categories=await read(`${root}/frontend/src/data/website-category-membership.json`),visuals=await read(`${root}/frontend/src/data/website-visuals.json`),avatars=await read(`${root}/frontend/src/data/creator-avatars.json`);
+const zh=await read(`${dir}/translations-by-source.json`),rules=await read(`${dir}/template-rules-by-source.json`);
+Object.assign(copy,await read(`${dir}/display-copy.json`));
+const receipts=[];
+for(const row of rows){
+ const source=graph.nodes.find(node=>node.type==='source'&&node.sourceId===row.id),prompt=graph.nodes.find(node=>node.type==='prompt'&&graph.edges.some(edge=>edge.from===node.id&&edge.type==='sourced_from'&&edge.to===source.id));
+ if(!prompt||prompt.prompt!==row.prompt||!zh[row.id])throw Error('Missing source instruction/translation');
+ const duplicate=[...nodes.values()].find(node=>node.type==='prompt'&&node.id!==prompt.id&&node.prompt.trim()===prompt.prompt.trim());if(duplicate)throw Error('Portfolio prompt already exists under another identity');
+ translations[prompt.id]={sourceHash:`sha256:${hash(prompt.prompt)}`,text:zh[row.id]};
+ templates[prompt.id]={sourceHash:{en:`sha256:${hash(prompt.prompt)}`,zh:`sha256:${hash(zh[row.id])}`},replacements:rules[row.id].map(([token,labelEn,labelZh,en,zh])=>({token:`[${token}]`,labelEn,labelZh,en:[en],zh:[zh]}))};
+ categories[prompt.id]=row.category;
+ const visual=media.find(value=>value.casePostId===row.case_post_id);if(!visual)throw Error('Missing source demonstration');
+ Object.assign(visuals.assets,visual.assets);
+ const record={id:prompt.id,sourceUrl:row.post_url,status:'available',visualSourceUrl:visual.visualSourceUrl,media:visual.media};
+ const existing=visuals.records.findIndex(value=>value.id===prompt.id);if(existing===-1)visuals.records.push(record);else visuals.records[existing]=record;
+ receipts.push({id:prompt.id,sourceId:row.id,casePostId:row.case_post_id,sourceUrl:row.post_url,visualSourceUrl:visual.visualSourceUrl,promptLevel:row.prompt_level,href:`/zh-CN/prompts/case-${prompt.id.slice(4)}`});
+}
+Object.assign(avatars.profiles,await read(`${dir}/creator-avatars.json`));
+for(const handle of Object.keys(await read(`${dir}/creator-avatars.json`)))delete avatars.unavailable[handle];
+visuals.observedAt=metadata.observedAt;
+const merged={schemaVersion:1,nodes:[...nodes.values()].sort((a,b)=>a.id.localeCompare(b.id)),edges:[...edges.values()].sort((a,b)=>`${a.from}:${a.type}:${a.to}`.localeCompare(`${b.from}:${b.type}:${b.to}`))};validateGraph(merged);
+const manifest={...batch.manifest,observedAt:metadata.observedAt,nodes:graph.nodes.length,edges:graph.edges.length,proposals:batch.proposals.length,existingRecords:1,mediaRecords:media.length,sourceSha256:hash(await readFile(`${dir}/source-records.json`)),mediaSha256:hash(await readFile(`${dir}/media.json`))};
+checkIntake({graph,proposals:batch.proposals,reviews:batch.reviews,manifest});
+for(const [name,data] of Object.entries({graph,proposals:batch.proposals,reviews:batch.reviews,manifest,records:receipts}))await write(`${dir}/${name}.json`,data);
+await write(`${root}/docs/intake/2026-10-14-website-supplement/combined-graph.json`,merged);
+const supplement=await read(`${root}/docs/intake/2026-10-14-website-supplement/manifest.json`);supplement.combinedSha256=hash(JSON.stringify(merged));await write(`${root}/docs/intake/2026-10-14-website-supplement/manifest.json`,supplement);
+for(const [name,data] of Object.entries({'localized-case-copy':copy,'zh-prompt-bodies':translations,'website-placeholder-templates':templates,'website-category-membership':categories,'website-visuals':visuals,'creator-avatars':avatars}))await write(`${root}/frontend/src/data/${name}.json`,data);
+console.log({newPrompts:receipts.length,existingRecords:1,sourceMedia:media.length,records:receipts});

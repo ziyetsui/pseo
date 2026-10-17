@@ -8,7 +8,7 @@ test('new source-backed templates work in both languages and preserve the genera
   await page.getByRole('textbox',{name:'[PROJECT_TYPE]',exact:true}).fill('3D ceramic collection');
   await expect(body).toContainText('3D ceramic collection');
   const url=new URL((await page.locator('[data-generation-cta]').getAttribute('href'))!);
-  expect(url.origin).toBe('https://app.ancher.ai');expect(url.searchParams.get('prompts')).toBe(await body.textContent());
+  expect(url.origin).toBe('https://app.ancher.ai');expect(url.searchParams.get('prompts')).toBe('创建一个关于的 HTML 网页\n\n'+await body.textContent());
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   await page.screenshot({path:info.outputPath(`${locale}-hanfu-import.png`),animations:'disabled'});
   await page.goto(`/${locale}/prompts/case-0863daa8f94f827ef322d4f5c2f53f65`,{waitUntil:'domcontentloaded'});
