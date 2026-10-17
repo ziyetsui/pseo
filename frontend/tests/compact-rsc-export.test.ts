@@ -57,9 +57,9 @@ it('keeps catalog navigation native so omitted tree-only payloads cannot be requ
   const source=ts.createSourceFile(file,await readFile(file,'utf8'),ts.ScriptTarget.Latest,true,file.endsWith('.tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);
   for(const statement of source.statements){
    if(!ts.isImportDeclaration(statement)||!ts.isStringLiteral(statement.moduleSpecifier))continue;
-   const module=statement.moduleSpecifier.text;
-   expect(['next/link','next/router'],file).not.toContain(module);
-   if(module==='next/navigation'){
+   const importSource=statement.moduleSpecifier.text;
+   expect(['next/link','next/router'],file).not.toContain(importSource);
+   if(importSource==='next/navigation'){
     const bindings=statement.importClause?.namedBindings;
     if(bindings&&ts.isNamedImports(bindings))expect(bindings.elements.map(e=>e.propertyName?.text??e.name.text),file).not.toContain('useRouter');
    }
