@@ -25,3 +25,14 @@ for(const record of records)test(`portfolio ${record.sourceId} edits and plays i
   if(record.sourceId==='2016202580582707412'||record.sourceId==='2029146227305263600')await page.screenshot({path:info.outputPath(`${locale}-${record.sourceId}.png`),animations:'disabled'});
  }
 });
+for(const locale of ['en','zh-CN'])test(`catalog navigation uses complete document requests on ${locale}`,async({page})=>{
+ const navigations:string[]=[],missingTransport:string[]=[];
+ page.on('request',request=>{if(request.isNavigationRequest()&&request.frame()===page.mainFrame())navigations.push(request.url());});
+ page.on('response',response=>{if(response.url().includes('__next.')&&response.status()>=400)missingTransport.push(response.url());});
+ await page.goto(`/${locale}/prompts/case-c40f38e72fa902a647e00859ffd993f3`);
+ await page.locator(`a[href="/${locale}/prompts/models/kimi"]`).first().click();
+ await expect(page).toHaveURL(new RegExp(`/${locale}/prompts/models/kimi$`));
+ await page.getByRole('link',{name:locale==='en'?'Website':'网站',exact:true}).first().click();
+ await expect(page).toHaveURL(new RegExp(`/${locale}/prompts/website$`));
+ expect(navigations).toHaveLength(3);expect(missingTransport).toEqual([]);
+});

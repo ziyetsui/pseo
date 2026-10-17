@@ -1,11 +1,11 @@
 import {readFile,writeFile,readdir,unlink,access} from 'node:fs/promises';
 import path from 'node:path';
 export const PROMPT_RSC_REWRITES = ['en','zh-CN'].map(locale=>`/${locale}/prompts/:slug.txt /${locale}/prompts/:slug/__next._full.txt 200`);
-export function omitsTreeForNativeAnchorRoute(relative){return /^(?:en|zh-CN)$/u.test(relative)||/^(?:en|zh-CN)\/prompts$/u.test(relative)||/^(?:en|zh-CN)\/prompts\/(?:articles(?:\/|$)|website\/views(?:\/|$)|use-cases(?:\/|$)|model-families(?:\/|$)|styles(?:\/|$)|subjects(?:\/|$)|monetization(?:\/|$))/u.test(relative)||/^(?:en|zh-CN)\/prompts\/(?:creators|library-index)$/u.test(relative);}
+export function omitsTreeForNativeAnchorRoute(relative){return /^(?:en|zh-CN)(?:\/prompts(?:\/.*)?)?$/u.test(relative);}
 
 async function exists(file){try{await access(file);return true;}catch{return false;}}
 
-/** Remove byte-identical route aliases. Selected article, case, taxonomy, and landing pages
+/** Remove byte-identical route aliases. All catalog pages
  * use native anchor navigation, so their tree-only prefetch files can be omitted. */
 export async function compactPromptRsc(root) {
   const duplicates=[],treeSegments=[];
