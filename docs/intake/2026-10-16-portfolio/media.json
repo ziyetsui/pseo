@@ -1,0 +1,298 @@
+[
+  {
+    "casePostId": "2029146101715259900",
+    "promptSourceUrl": "https://x.com/viktoroddy/status/2029146227305263600",
+    "visualSourceUrl": "https://x.com/viktoroddy/status/2029146101715259900",
+    "media": [
+      "2029146101715259900"
+    ],
+    "assets": {
+      "2029146101715259900": {
+        "kind": "video",
+        "src": "/website-videos/2029146101715259900.mp4",
+        "poster": "/website-previews/2029146101715259900.jpg",
+        "width": 1526,
+        "height": 1080,
+        "sha256": "db9d0655440d006db2477cb60e1a67b9d73ea86a9a60e7d929d9bab9bd062c08",
+        "posterSha256": "2f1244a0e7558d6ebdf270f1b2beb188c9cde4734c667f9474fed752a0ffd21b",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2029145861851365382/vid/avc1/1526x1080/TwAUyyJzWiIe-7uY.mp4?tag=21",
+        "visualSourceUrl": "https://x.com/viktoroddy/status/2029146101715259900",
+        "alt": "暗色动画作品集",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2029145861851365382/vid/avc1/1526x1080/TwAUyyJzWiIe-7uY.mp4?tag=21",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2029145861851365382/img/-YFvqeTwumVWVKpD.jpg",
+      "bytes": 4311716,
+      "duration": 24.0,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2016202580582707412",
+    "promptSourceUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "visualSourceUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "media": [
+      "2016202580582707412"
+    ],
+    "assets": {
+      "2016202580582707412": {
+        "kind": "video",
+        "src": "/website-videos/2016202580582707412.mp4",
+        "poster": "/website-previews/2016202580582707412.jpg",
+        "width": 2704,
+        "height": 1756,
+        "sha256": "fba2967fa88c09b5db5f708e9a4dc3bae1f0c707f512f0b74e4e6b1b78d9b654",
+        "posterSha256": "5e24e7af2e7cec9550d01f6161f30b95cee4dd843b7bfbe724be7e725138cbfd",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/2704x1756/1FzdOy88TUpW8bll.mp4?tag=21",
+        "visualSourceUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+        "alt": "黑粉色手电筒交互",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/2704x1756/1FzdOy88TUpW8bll.mp4?tag=21",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2016201577019719680/img/r5727sQsZx3-w6s6.jpg",
+      "bytes": 4130317,
+      "duration": 16.233333,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2097359658453512334",
+    "promptSourceUrl": "https://x.com/k2sbhai/status/2097360204811977193",
+    "visualSourceUrl": "https://x.com/k2sbhai/status/2097359658453512334",
+    "media": [
+      "2097359658453512334"
+    ],
+    "assets": {
+      "2097359658453512334": {
+        "kind": "video",
+        "src": "/website-videos/2097359658453512334.mp4",
+        "poster": "/website-previews/2097359658453512334.jpg",
+        "width": 1072,
+        "height": 2120,
+        "sha256": "66b8f9db4bf4d241049e090050aadb934a0ff7c553a5640a77d3896f1e856df0",
+        "posterSha256": "cec256f732b15851550b266e8f03c627a9cf360ae732712989b1be03e80ad4fb",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2097359305947389952/vid/avc1/1072x2120/KW0ECZ0E48nh73MF.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/k2sbhai/status/2097359658453512334",
+        "alt": "轻量 Three.js 作品集",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2097359305947389952/vid/avc1/1072x2120/KW0ECZ0E48nh73MF.mp4?tag=29",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2097359305947389952/img/3Yv0WLAe7IfCPWcc.jpg",
+      "bytes": 9124850,
+      "duration": 13.717333,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2066853400298533296",
+    "promptSourceUrl": "https://x.com/shushant_l/status/2066853400298533296",
+    "visualSourceUrl": "https://x.com/shushant_l/status/2066853400298533296",
+    "media": [
+      "2066853400298533296"
+    ],
+    "assets": {
+      "2066853400298533296": {
+        "kind": "video",
+        "src": "/website-videos/2066853400298533296.mp4",
+        "poster": "/website-previews/2066853400298533296.jpg",
+        "width": 1614,
+        "height": 720,
+        "sha256": "15839425afdb848a5eeff38bfc775fae8fd8ba4d7833b40ec4d712d095eb5d26",
+        "posterSha256": "ea3c05680aae8d58295b085511573bc714c31882e0a3d565304d72725cab2d8c",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2066853347026780160/vid/avc1/1614x720/nE6qt3txfYArNn2J.mp4?tag=14",
+        "visualSourceUrl": "https://x.com/shushant_l/status/2066853400298533296",
+        "alt": "黑白极简编辑式作品集",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2066853347026780160/vid/avc1/1614x720/nE6qt3txfYArNn2J.mp4?tag=14",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2066853347026780160/img/hw_Cy6lJ9MdT5J1j.jpg",
+      "bytes": 1443881,
+      "duration": 21.226667,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2067215788654940307",
+    "promptSourceUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "visualSourceUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "media": [
+      "2067215788654940307"
+    ],
+    "assets": {
+      "2067215788654940307": {
+        "kind": "video",
+        "src": "/website-videos/2067215788654940307.mp4",
+        "poster": "/website-previews/2067215788654940307.jpg",
+        "width": 1614,
+        "height": 720,
+        "sha256": "461e454e966a8441b0794824893e96adf470ba08f29cae6bd2972b33fe2cf4b5",
+        "posterSha256": "4c75ef8b174fdfebdbbd9e40e8adb9086df881e0490ccb6375ff8fe2ddca8a79",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/1614x720/rd-kNvTB7yc949p8.mp4?tag=14",
+        "visualSourceUrl": "https://x.com/shushant_l/status/2067215788654940307",
+        "alt": "新拟物作品集",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/1614x720/rd-kNvTB7yc949p8.mp4?tag=14",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2067215732929384448/img/EzZGBc5yQWcs7ewN.jpg",
+      "bytes": 2476975,
+      "duration": 37.781333,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2110400384027984309",
+    "promptSourceUrl": "https://x.com/dammyayans/status/2110400404043227149",
+    "visualSourceUrl": "https://x.com/dammyayans/status/2110400384027984309",
+    "media": [
+      "2110400384027984309"
+    ],
+    "assets": {
+      "2110400384027984309": {
+        "kind": "video",
+        "src": "/website-videos/2110400384027984309.mp4",
+        "poster": "/website-previews/2110400384027984309.jpg",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "d1b74754ded669764845a7e38fe7b138f39c8531f234109e220a108d318226f9",
+        "posterSha256": "4dcf0e7bf4047405df87abbc91abe9a4e33db5146f7f6a4275a0d2004b3f3bb6",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2110400329791553536/vid/avc1/1920x1080/OBNJaYMO2Yzbo6tf.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/dammyayans/status/2110400384027984309",
+        "alt": "设计方向 → 电影感人物作品集",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2110400329791553536/vid/avc1/1920x1080/OBNJaYMO2Yzbo6tf.mp4?tag=29",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2110400329791553536/img/G1Y19WE7igvmRTKI.jpg",
+      "bytes": 5566196,
+      "duration": 12.566667,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2082786318271254822",
+    "promptSourceUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "visualSourceUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "media": [
+      "2082786318271254822"
+    ],
+    "assets": {
+      "2082786318271254822": {
+        "kind": "video",
+        "src": "/website-videos/2082786318271254822.mp4",
+        "poster": "/website-previews/2082786318271254822.jpg",
+        "width": 1378,
+        "height": 1080,
+        "sha256": "8ac1564e20eed3dec3bac7f6fe9dd2f0ac31141bb7aa7dce134744d69807cab4",
+        "posterSha256": "101a005ac3d4ee723cd743dfcdd11fa901e464f0aa8973c784b8a40beaf4c55b",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/1378x1080/dngbI4MAn4EDtYvb.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+        "alt": "Bruno Simon 风格驾驶式 3D",
+        "part": null,
+        "parts": null,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/1378x1080/dngbI4MAn4EDtYvb.mp4?tag=29",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2082786201547968512/img/R9UYiA9Ugd6AROAl.jpg",
+      "bytes": 8676000,
+      "duration": 39.357823,
+      "parts": 1,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  },
+  {
+    "casePostId": "2077680692801286365",
+    "promptSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "visualSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "media": [
+      "2077680692801286365001",
+      "2077680692801286365002",
+      "2077680692801286365003"
+    ],
+    "assets": {
+      "2077680692801286365001": {
+        "kind": "video",
+        "src": "/website-videos/2077680692801286365001.mp4",
+        "poster": "/website-previews/2077680692801286365001.jpg",
+        "width": 3840,
+        "height": 2160,
+        "sha256": "ef76566185fa4fc96f61c7ef94e62c26a7f8fca8766c8c004c94ba56bd765dc0",
+        "posterSha256": "6f1d0431003e6f161a1ed2008fc7a6bf275514c44ede7f73901ad0c13da482a9",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+        "alt": "由 X 个人资料生成作品集",
+        "part": 1,
+        "parts": 3,
+        "origin": "x-media"
+      },
+      "2077680692801286365002": {
+        "kind": "video",
+        "src": "/website-videos/2077680692801286365002.mp4",
+        "poster": "/website-previews/2077680692801286365002.jpg",
+        "width": 3840,
+        "height": 2160,
+        "sha256": "673b205cddb013662a6d2a529f9be7b4439e47d0d9524ea1f6dc13da347c07cb",
+        "posterSha256": "6f1d0431003e6f161a1ed2008fc7a6bf275514c44ede7f73901ad0c13da482a9",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+        "alt": "由 X 个人资料生成作品集",
+        "part": 2,
+        "parts": 3,
+        "origin": "x-media"
+      },
+      "2077680692801286365003": {
+        "kind": "video",
+        "src": "/website-videos/2077680692801286365003.mp4",
+        "poster": "/website-previews/2077680692801286365003.jpg",
+        "width": 3840,
+        "height": 2160,
+        "sha256": "ff68c3af29df676dfdf05001ce960d5af58287eac90dc149acf2ac175de16cb4",
+        "posterSha256": "6f1d0431003e6f161a1ed2008fc7a6bf275514c44ede7f73901ad0c13da482a9",
+        "sourceUrl": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+        "visualSourceUrl": "https://x.com/josephweb3/status/2077680692801286365",
+        "alt": "由 X 个人资料生成作品集",
+        "part": 3,
+        "parts": 3,
+        "origin": "x-media"
+      }
+    },
+    "verification": {
+      "sourceUrl": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+      "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2077680001785470976/img/kYW6Nknth8xlCHXo.jpg",
+      "bytes": 44257365,
+      "duration": 65.851791,
+      "parts": 3,
+      "checkedAt": "2026-10-17T07:07:36.446610+00:00"
+    }
+  }
+]

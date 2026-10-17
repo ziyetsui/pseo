@@ -12,8 +12,8 @@ const allEn = createGitBetaCatalog('en'), en = {...allEn,prompts:allEn.prompts.f
 const chinese = /\p{Script=Han}/u;
 const occurrences = (value: string, pattern: RegExp) => (value.match(pattern) ?? []).sort();
 describe('complete Chinese prompt body resource', () => {
- it('covers precisely all 731 source records with exact UTF-8 hashes and Chinese body text', () => {
-  expect(en.prompts).toHaveLength(731);
+ it('covers precisely all 739 source records with exact UTF-8 hashes and Chinese body text', () => {
+  expect(en.prompts).toHaveLength(739);
   expect(Object.keys(translations).sort()).toEqual(en.prompts.map(prompt => prompt.id).sort());
   const entries: Record<string, { sourceHash: string; text: string }> = translations;
   for (const source of en.prompts) {

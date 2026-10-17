@@ -1,0 +1,117 @@
+{
+  "case": {
+    "id": "2110400384027984309",
+    "title": "设计方向 → 电影感人物作品集",
+    "author": "dammyayans",
+    "toolAsReportedByAuthor": "Claude Code + Higgsfield",
+    "promptLevel": "公开分步流程",
+    "caseUrl": "https://x.com/dammyayans/status/2110400384027984309",
+    "promptUrl": "https://x.com/dammyayans/status/2110400404043227149",
+    "summary": "先附履历、照片和参考图，生成 3 个设计方向，确定字体/颜色/动效后执行。第二条构建指令在 2110400428802191674；含人物视频转滚动帧序列流程。",
+    "promptSourceText": "2. Give Claude your research. Don’t build yet.\n\nAttach your screenshots/references, resume, photo, and any other relevant documents. Add a colour preference if you have one (e.g. pink). It’s optional.\n\nYou can decide to be specific about what you like in each reference: the contact row, the crossing tapes, how the portrait moves, etc.\n\nThen ask Claude to create a design direction artifact first.\n\nExample prompt:\n\n“Create a design direction artifact for this portfolio using the attached materials. Show me 3 distinct directions with font options, colour palettes, and motion ideas.\n\nExplain why each direction fits and what the trade-offs are. Include font previews and colour swatches so I can compare.\n\nDon’t build the website yet.”",
+    "media": [
+      "https://video.twimg.com/amplify_video/2110400329791553536/vid/avc1/480x270/fwSmEJk5HAXVHoui.mp4?tag=29"
+    ],
+    "posters": [
+      "https://pbs.twimg.com/amplify_video_thumb/2110400329791553536/img/G1Y19WE7igvmRTKI.jpg"
+    ],
+    "verifiedAt": "2026-10-16T09:49:39.720596+00:00"
+  },
+  "promptPosts": [
+    {
+      "id": "2110400404043227149",
+      "author": "dammyayans",
+      "bio": "",
+      "text": "2. Give Claude your research. Don’t build yet.\n\nAttach your screenshots/references, resume, photo, and any other relevant documents. Add a colour preference if you have one (e.g. pink). It’s optional.\n\nYou can decide to be specific about what you like in each reference: the contact row, the crossing tapes, how the portrait moves, etc.\n\nThen ask Claude to create a design direction artifact first.\n\nExample prompt:\n\n“Create a design direction artifact for this portfolio using the attached materials. Show me 3 distinct directions with font options, colour palettes, and motion ideas.\n\nExplain why each direction fits and what the trade-offs are. Include font previews and colour swatches so I can compare.\n\nDon’t build the website yet.”",
+      "created_at": "Wed Oct 14 16:00:40 +0000 2026",
+      "likes": 0,
+      "views": "55",
+      "url": "https://x.com/i/status/2110400404043227149",
+      "has_media": false,
+      "media_urls": [],
+      "media_posters": [],
+      "card": null,
+      "quoted_tweet": null
+    },
+    {
+      "id": "2110400428802191674",
+      "author": "dammyayans",
+      "bio": "Helped by God | Software Engineer | Building products | Build With Me",
+      "text": "5. Now, build.\n\nTell Claude:\n\n“I’ve selected my options in the artifact. Build the website using those choices.”\n\nFor this portfolio, I used React + Vite + Tailwind CSS.\n\nThe first iteration is just your starting point. Review it, tweak what doesn’t work, and keep refining until you’re happy with the result.",
+      "likes": 0,
+      "retweets": 0,
+      "in_reply_to": "2110400423840395571",
+      "created_at": "Wed Oct 14 16:00:46 +0000 2026",
+      "url": "https://x.com/dammyayans/status/2110400428802191674",
+      "has_media": false,
+      "media_urls": [],
+      "media_posters": [],
+      "card": null,
+      "quoted_tweet": null
+    }
+  ],
+  "apiMedia": {
+    "id": "2110400384027984309",
+    "text": "Built a portfolio website for a brand designer.\n\nNo Figma design. No creative direction.\n\nJust her photo and resume.\n\nUsed Claude Code to build and Higgsfied to create the cinematic hero film.\n\nI’ve walked a few friends through this process, so I thought I’d share it here too.\n\nIf you’ve been wanting to build websites with AI but don’t know where to start, or you’re tired of getting terrible designs, this is for you 👇",
+    "author": {
+      "id": "1181640998092513282",
+      "name": "Dammy Ayans",
+      "screenName": "dammyayans",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2090770259980521472/uC2FC8bg_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 6,
+      "retweets": 0,
+      "replies": 4,
+      "quotes": 0,
+      "views": 227,
+      "bookmarks": 2
+    },
+    "createdAt": "Wed Oct 14 16:00:35 +0000 2026",
+    "createdAtLocal": "2026-10-15 00:00",
+    "createdAtISO": "2026-10-14T16:00:35+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2110400329791553536/vid/avc1/1920x1080/OBNJaYMO2Yzbo6tf.mp4?tag=29",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "apiPrompt": {
+    "id": "2110400404043227149",
+    "text": "2. Give Claude your research. Don’t build yet.\n\nAttach your screenshots/references, resume, photo, and any other relevant documents. Add a colour preference if you have one (e.g. pink). It’s optional.\n\nYou can decide to be specific about what you like in each reference: the contact row, the crossing tapes, how the portrait moves, etc.\n\nThen ask Claude to create a design direction artifact first.\n\nExample prompt:\n\n“Create a design direction artifact for this portfolio using the attached materials. Show me 3 distinct directions with font options, colour palettes, and motion ideas.\n\nExplain why each direction fits and what the trade-offs are. Include font previews and colour swatches so I can compare.\n\nDon’t build the website yet.”",
+    "author": {
+      "id": "1181640998092513282",
+      "name": "Dammy Ayans",
+      "screenName": "dammyayans",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2090770259980521472/uC2FC8bg_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 0,
+      "retweets": 0,
+      "replies": 1,
+      "quotes": 0,
+      "views": 61,
+      "bookmarks": 0
+    },
+    "createdAt": "Wed Oct 14 16:00:40 +0000 2026",
+    "createdAtLocal": "2026-10-15 00:00",
+    "createdAtISO": "2026-10-14T16:00:40+00:00",
+    "media": [],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "note": "Instruction spans selected verbatim; promotional/context framing excluded. Workflow concatenates two explicit author instructions."
+}

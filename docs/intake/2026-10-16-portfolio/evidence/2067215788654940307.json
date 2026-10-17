@@ -1,0 +1,112 @@
+{
+  "case": {
+    "id": "2067215788654940307",
+    "title": "新拟物作品集",
+    "author": "shushant_l",
+    "toolAsReportedByAuthor": "Replit",
+    "promptLevel": "详细提示词",
+    "caseUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "promptUrl": "https://x.com/shushant_l/status/2067215788654940307",
+    "summary": "柔和凸起表面、单色、浮动卡片、微交互；Hero/关于/技能/项目/评价/经历/博客/联系。",
+    "promptSourceText": "Here's how to create your personal portfolio website in Neumorphism style.\n\nUse this prompt: Build a premium futuristic portfolio website with a clean Neumorphism UI, featuring soft extruded surfaces, subtle depth, realistic shadows, rounded components, and a monochromatic color palette with no gradients whatsoever. Use a sophisticated combination of whites, off-whites, light grays, charcoal grays, and blacks only. Include smooth 3D elements such as floating cards, interactive geometric objects, layered panels, depth-based hover effects, and animated iconography. Add fluid micro-interactions, scroll-triggered animations, parallax movement, page transitions, loading animations, and immersive motion design throughout the experience. Structure the site with a hero section, about section, skills showcase, project gallery, testimonials, experience timeline, blog preview, and contact section. Prioritize a minimalist aesthetic, strong typography, spacious layouts, glass-free surfaces, high-end product design inspiration, excellent responsiveness, and modern performance-focused UX that feels innovative, elegant, interactive, and visually striking.\n\nNote: Customise this prompt to your use case.\n\nI've buit it with Replit, and you can also build it with Replit, or else you can also build it with any other AI model, LLM, or AI tool.",
+    "media": [
+      "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/604x270/zTW5ITluPZk1wDww.mp4?tag=14"
+    ],
+    "posters": [
+      "https://pbs.twimg.com/amplify_video_thumb/2067215732929384448/img/EzZGBc5yQWcs7ewN.jpg"
+    ],
+    "verifiedAt": "2026-10-16T09:49:39.720594+00:00"
+  },
+  "promptPosts": [
+    {
+      "id": "2067215788654940307",
+      "author": "shushant_l",
+      "bio": "",
+      "text": "Here's how to create your personal portfolio website in Neumorphism style.\n\nUse this prompt: Build a premium futuristic portfolio website with a clean Neumorphism UI, featuring soft extruded surfaces, subtle depth, realistic shadows, rounded components, and a monochromatic color palette with no gradients whatsoever. Use a sophisticated combination of whites, off-whites, light grays, charcoal grays, and blacks only. Include smooth 3D elements such as floating cards, interactive geometric objects, layered panels, depth-based hover effects, and animated iconography. Add fluid micro-interactions, scroll-triggered animations, parallax movement, page transitions, loading animations, and immersive motion design throughout the experience. Structure the site with a hero section, about section, skills showcase, project gallery, testimonials, experience timeline, blog preview, and contact section. Prioritize a minimalist aesthetic, strong typography, spacious layouts, glass-free surfaces, high-end product design inspiration, excellent responsiveness, and modern performance-focused UX that feels innovative, elegant, interactive, and visually striking.\n\nNote: Customise this prompt to your use case.\n\nI've buit it with Replit, and you can also build it with Replit, or else you can also build it with any other AI model, LLM, or AI tool.",
+      "created_at": "Wed Jun 17 12:00:25 +0000 2026",
+      "likes": 22,
+      "views": "1007",
+      "url": "https://x.com/i/status/2067215788654940307",
+      "has_media": true,
+      "media_urls": [
+        "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/604x270/zTW5ITluPZk1wDww.mp4?tag=14"
+      ],
+      "media_posters": [
+        "https://pbs.twimg.com/amplify_video_thumb/2067215732929384448/img/EzZGBc5yQWcs7ewN.jpg"
+      ],
+      "card": null,
+      "quoted_tweet": null
+    }
+  ],
+  "apiMedia": {
+    "id": "2067215788654940307",
+    "text": "Here's how to create your personal portfolio website in Neumorphism style.\n\nUse this prompt: Build a premium futuristic portfolio website with a clean Neumorphism UI, featuring soft extruded surfaces, subtle depth, realistic shadows, rounded components, and a monochromatic color palette with no gradients whatsoever. Use a sophisticated combination of whites, off-whites, light grays, charcoal grays, and blacks only. Include smooth 3D elements such as floating cards, interactive geometric objects, layered panels, depth-based hover effects, and animated iconography. Add fluid micro-interactions, scroll-triggered animations, parallax movement, page transitions, loading animations, and immersive motion design throughout the experience. Structure the site with a hero section, about section, skills showcase, project gallery, testimonials, experience timeline, blog preview, and contact section. Prioritize a minimalist aesthetic, strong typography, spacious layouts, glass-free surfaces, high-end product design inspiration, excellent responsiveness, and modern performance-focused UX that feels innovative, elegant, interactive, and visually striking.\n\nNote: Customise this prompt to your use case.\n\nI've buit it with Replit, and you can also build it with Replit, or else you can also build it with any other AI model, LLM, or AI tool.",
+    "author": {
+      "id": "1583398220",
+      "name": "Shushant Lakhyani",
+      "screenName": "shushant_l",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/1797851483578535936/DnWgXmpL_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 22,
+      "retweets": 6,
+      "replies": 3,
+      "quotes": 0,
+      "views": 1007,
+      "bookmarks": 17
+    },
+    "createdAt": "Wed Jun 17 12:00:25 +0000 2026",
+    "createdAtLocal": "2026-06-17 20:00",
+    "createdAtISO": "2026-06-17T12:00:25+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/1614x720/rd-kNvTB7yc949p8.mp4?tag=14",
+        "width": 1920,
+        "height": 856
+      }
+    ],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "apiPrompt": {
+    "id": "2067215788654940307",
+    "text": "Here's how to create your personal portfolio website in Neumorphism style.\n\nUse this prompt: Build a premium futuristic portfolio website with a clean Neumorphism UI, featuring soft extruded surfaces, subtle depth, realistic shadows, rounded components, and a monochromatic color palette with no gradients whatsoever. Use a sophisticated combination of whites, off-whites, light grays, charcoal grays, and blacks only. Include smooth 3D elements such as floating cards, interactive geometric objects, layered panels, depth-based hover effects, and animated iconography. Add fluid micro-interactions, scroll-triggered animations, parallax movement, page transitions, loading animations, and immersive motion design throughout the experience. Structure the site with a hero section, about section, skills showcase, project gallery, testimonials, experience timeline, blog preview, and contact section. Prioritize a minimalist aesthetic, strong typography, spacious layouts, glass-free surfaces, high-end product design inspiration, excellent responsiveness, and modern performance-focused UX that feels innovative, elegant, interactive, and visually striking.\n\nNote: Customise this prompt to your use case.\n\nI've buit it with Replit, and you can also build it with Replit, or else you can also build it with any other AI model, LLM, or AI tool.",
+    "author": {
+      "id": "1583398220",
+      "name": "Shushant Lakhyani",
+      "screenName": "shushant_l",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/1797851483578535936/DnWgXmpL_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 22,
+      "retweets": 6,
+      "replies": 3,
+      "quotes": 0,
+      "views": 1007,
+      "bookmarks": 17
+    },
+    "createdAt": "Wed Jun 17 12:00:25 +0000 2026",
+    "createdAtLocal": "2026-06-17 20:00",
+    "createdAtISO": "2026-06-17T12:00:25+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2067215732929384448/vid/avc1/1614x720/rd-kNvTB7yc949p8.mp4?tag=14",
+        "width": 1920,
+        "height": 856
+      }
+    ],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "note": "Instruction spans selected verbatim; promotional/context framing excluded. Workflow concatenates two explicit author instructions."
+}

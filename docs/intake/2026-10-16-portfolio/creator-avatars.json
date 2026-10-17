@@ -1,0 +1,67 @@
+{
+  "viktoroddy": {
+    "handle": "viktoroddy",
+    "userId": "893369654768529408",
+    "profileUrl": "https://x.com/viktoroddy",
+    "imageUrl": "https://pbs.twimg.com/profile_images/2095368366693466112/1vPxOkT8_normal.jpg",
+    "src": "/creator-avatars/viktoroddy-e7ba857b0ca7.jpg",
+    "sha256": "e7ba857b0ca7f5ea512e24c251244d5740207c34e1fd2cb84ad26ea457862d20",
+    "width": 48,
+    "height": 48,
+    "evidenceKind": "x-profile",
+    "observedAt": "2026-10-17T07:07:52.273420+00:00",
+    "imageCheckedAt": "2026-10-17T07:07:52.273420+00:00"
+  },
+  "kimiproduct": {
+    "handle": "KimiProduct",
+    "userId": "2015352675219701760",
+    "profileUrl": "https://x.com/KimiProduct",
+    "imageUrl": "https://pbs.twimg.com/profile_images/2089693761467256832/lPgDVNsX_normal.jpg",
+    "src": "/creator-avatars/kimiproduct-d85d962ff5b9.jpg",
+    "sha256": "d85d962ff5b91eda431789af12847686f88e132eee92894471ac31f62c000cda",
+    "width": 48,
+    "height": 48,
+    "evidenceKind": "x-profile",
+    "observedAt": "2026-10-17T07:07:52.273420+00:00",
+    "imageCheckedAt": "2026-10-17T07:07:52.273420+00:00"
+  },
+  "dammyayans": {
+    "handle": "dammyayans",
+    "userId": "1181640998092513282",
+    "profileUrl": "https://x.com/dammyayans",
+    "imageUrl": "https://pbs.twimg.com/profile_images/2090770259980521472/uC2FC8bg_normal.jpg",
+    "src": "/creator-avatars/dammyayans-9bd15a88956b.jpg",
+    "sha256": "9bd15a88956b94dc5f6ef22ce08aa46ab764939e7a1569a42b547e4745f9bcdb",
+    "width": 48,
+    "height": 48,
+    "evidenceKind": "x-profile",
+    "observedAt": "2026-10-17T07:07:52.273420+00:00",
+    "imageCheckedAt": "2026-10-17T07:07:52.273420+00:00"
+  },
+  "bhavani_00007": {
+    "handle": "Bhavani_00007",
+    "userId": "1857824397685567492",
+    "profileUrl": "https://x.com/Bhavani_00007",
+    "imageUrl": "https://pbs.twimg.com/profile_images/1980236068583559168/dEO9pxtO_normal.jpg",
+    "src": "/creator-avatars/bhavani_00007-d0cc8ff04493.jpg",
+    "sha256": "d0cc8ff04493d1c8bbc23e5e35e2ae61df322b77b9ef1e0d4577aef47b729ae0",
+    "width": 48,
+    "height": 48,
+    "evidenceKind": "x-profile",
+    "observedAt": "2026-10-17T07:07:52.273420+00:00",
+    "imageCheckedAt": "2026-10-17T07:07:52.273420+00:00"
+  },
+  "josephweb3": {
+    "handle": "josephweb3",
+    "userId": "1500596162545741825",
+    "profileUrl": "https://x.com/josephweb3",
+    "imageUrl": "https://pbs.twimg.com/profile_images/2090387437109542912/n9tPZcUg_normal.jpg",
+    "src": "/creator-avatars/josephweb3-5d78e958415d.jpg",
+    "sha256": "5d78e958415d4cedec7b107bd11a022a5dfada3cc466fce30f13fcce16f91343",
+    "width": 48,
+    "height": 48,
+    "evidenceKind": "x-profile",
+    "observedAt": "2026-10-17T07:07:52.273420+00:00",
+    "imageCheckedAt": "2026-10-17T07:07:52.273420+00:00"
+  }
+}

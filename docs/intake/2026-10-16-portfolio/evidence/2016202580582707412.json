@@ -1,0 +1,116 @@
+{
+  "case": {
+    "id": "2016202580582707412",
+    "title": "黑粉色手电筒交互",
+    "author": "KimiProduct",
+    "toolAsReportedByAuthor": "Kimi K2.5 Agent",
+    "promptLevel": "具体构建指令",
+    "caseUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "promptUrl": "https://x.com/KimiProduct/status/2016202580582707412",
+    "summary": "光标照亮粉色插画，点击穿梭进入文件夹项目页；要求单文件 HTML/CSS/JS 与响应式。",
+    "promptSourceText": "One-shot coding result from Kimi K2.5 「agent mode」, flashlight effect on the website is super cool.\n\nhttps://t.co/jP4BoHXfmI\n\nPrompt:\nYou're a UI/UX designer who loves illustration and animation, I want to create a portfolio website featuring a black and pink color scheme with unique interactions.\n\nThe homepage utilizes a mouse-follow \"flashlight\" effect: the area around the cursor reveals pink illustrations, while the rest remains black. Upon clicking, the interface zooms in with a \"warp\" transition to a pink background where folders of various colors scroll slowly. Clicking a folder navigates to the corresponding project detail page. Use real UI images instead of placeholders (sourced from imgix).\n\nThe final delivery should be a single HTML+CSS+JS document, responsive across all devices.",
+    "media": [
+      "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/414x270/pdBgIzzwefGxM1jP.mp4?tag=21"
+    ],
+    "posters": [
+      "https://pbs.twimg.com/amplify_video_thumb/2016201577019719680/img/r5727sQsZx3-w6s6.jpg"
+    ],
+    "verifiedAt": "2026-10-16T09:49:39.720586+00:00"
+  },
+  "promptPosts": [
+    {
+      "id": "2016202580582707412",
+      "author": "KimiProduct",
+      "bio": "",
+      "text": "One-shot coding result from Kimi K2.5 「agent mode」, flashlight effect on the website is super cool.\n\nhttps://t.co/jP4BoHXfmI\n\nPrompt:\nYou're a UI/UX designer who loves illustration and animation, I want to create a portfolio website featuring a black and pink color scheme with unique interactions.\n\nThe homepage utilizes a mouse-follow \"flashlight\" effect: the area around the cursor reveals pink illustrations, while the rest remains black. Upon clicking, the interface zooms in with a \"warp\" transition to a pink background where folders of various colors scroll slowly. Clicking a folder navigates to the corresponding project detail page. Use real UI images instead of placeholders (sourced from imgix).\n\nThe final delivery should be a single HTML+CSS+JS document, responsive across all devices.",
+      "created_at": "Tue Jan 27 17:32:09 +0000 2026",
+      "likes": 271,
+      "views": "12031",
+      "url": "https://x.com/i/status/2016202580582707412",
+      "has_media": true,
+      "media_urls": [
+        "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/414x270/pdBgIzzwefGxM1jP.mp4?tag=21"
+      ],
+      "media_posters": [
+        "https://pbs.twimg.com/amplify_video_thumb/2016201577019719680/img/r5727sQsZx3-w6s6.jpg"
+      ],
+      "card": null,
+      "quoted_tweet": null
+    }
+  ],
+  "apiMedia": {
+    "id": "2016202580582707412",
+    "text": "One-shot coding result from Kimi K2.5 「agent mode」, flashlight effect on the website is super cool.\n\nhttps://t.co/jP4BoHXfmI\n\nPrompt:\nYou're a UI/UX designer who loves illustration and animation, I want to create a portfolio website featuring a black and pink color scheme with unique interactions.\n\nThe homepage utilizes a mouse-follow \"flashlight\" effect: the area around the cursor reveals pink illustrations, while the rest remains black. Upon clicking, the interface zooms in with a \"warp\" transition to a pink background where folders of various colors scroll slowly. Clicking a folder navigates to the corresponding project detail page. Use real UI images instead of placeholders (sourced from imgix).\n\nThe final delivery should be a single HTML+CSS+JS document, responsive across all devices.",
+    "author": {
+      "id": "2015352675219701760",
+      "name": "Kimi Product",
+      "screenName": "KimiProduct",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2089693761467256832/lPgDVNsX_normal.jpg",
+      "verified": false
+    },
+    "metrics": {
+      "likes": 271,
+      "retweets": 14,
+      "replies": 5,
+      "quotes": 1,
+      "views": 12034,
+      "bookmarks": 118
+    },
+    "createdAt": "Tue Jan 27 17:32:09 +0000 2026",
+    "createdAtLocal": "2026-01-28 01:32",
+    "createdAtISO": "2026-01-27T17:32:09+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/2704x1756/1FzdOy88TUpW8bll.mp4?tag=21",
+        "width": 2704,
+        "height": 1756
+      }
+    ],
+    "urls": [
+      "https://rixnk2wvf4up2.beta-ok.kimi.link/"
+    ],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "apiPrompt": {
+    "id": "2016202580582707412",
+    "text": "One-shot coding result from Kimi K2.5 「agent mode」, flashlight effect on the website is super cool.\n\nhttps://t.co/jP4BoHXfmI\n\nPrompt:\nYou're a UI/UX designer who loves illustration and animation, I want to create a portfolio website featuring a black and pink color scheme with unique interactions.\n\nThe homepage utilizes a mouse-follow \"flashlight\" effect: the area around the cursor reveals pink illustrations, while the rest remains black. Upon clicking, the interface zooms in with a \"warp\" transition to a pink background where folders of various colors scroll slowly. Clicking a folder navigates to the corresponding project detail page. Use real UI images instead of placeholders (sourced from imgix).\n\nThe final delivery should be a single HTML+CSS+JS document, responsive across all devices.",
+    "author": {
+      "id": "2015352675219701760",
+      "name": "Kimi Product",
+      "screenName": "KimiProduct",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2089693761467256832/lPgDVNsX_normal.jpg",
+      "verified": false
+    },
+    "metrics": {
+      "likes": 271,
+      "retweets": 14,
+      "replies": 5,
+      "quotes": 1,
+      "views": 12034,
+      "bookmarks": 118
+    },
+    "createdAt": "Tue Jan 27 17:32:09 +0000 2026",
+    "createdAtLocal": "2026-01-28 01:32",
+    "createdAtISO": "2026-01-27T17:32:09+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2016201577019719680/vid/avc1/2704x1756/1FzdOy88TUpW8bll.mp4?tag=21",
+        "width": 2704,
+        "height": 1756
+      }
+    ],
+    "urls": [
+      "https://rixnk2wvf4up2.beta-ok.kimi.link/"
+    ],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "note": "Instruction spans selected verbatim; promotional/context framing excluded. Workflow concatenates two explicit author instructions."
+}

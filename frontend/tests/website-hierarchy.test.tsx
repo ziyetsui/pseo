@@ -12,7 +12,7 @@ describe('Website prototype levels and navigation', () => {
   it('uses Deck for Website entry while retaining independent view navigation', () => {
     const root = html(<WebsiteGallery catalog={catalog} />);
     expect(root.querySelector('.prototype-deck .v4 .deck')).not.toBeNull();
-    expect(root.querySelectorAll('[data-website-view]')).toHaveLength(27);
+    expect(root.querySelectorAll('[data-website-view]')).toHaveLength(43);
     expect(root.querySelectorAll('[data-website-case]')).toHaveLength(0);
   });
   it('uses Findings for purposes and Signature/Anthology for models and technologies', () => {

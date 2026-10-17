@@ -1,0 +1,137 @@
+{
+  "2029146227305263600": [
+    [
+      "NAME",
+      "Name",
+      "姓名",
+      "Michael Smith",
+      "Michael Smith"
+    ],
+    [
+      "LOCATION",
+      "Location",
+      "所在地",
+      "Chicago",
+      "Chicago"
+    ],
+    [
+      "EMAIL",
+      "Contact email",
+      "联系邮箱",
+      "hello@michaelsmith.com",
+      "hello@michaelsmith.com"
+    ]
+  ],
+  "2016202580582707412": [
+    [
+      "COLOR_SCHEME",
+      "Color scheme",
+      "配色",
+      "black and pink",
+      "黑色与粉色"
+    ],
+    [
+      "IMAGE_SOURCE",
+      "Image source",
+      "图片来源",
+      "imgix",
+      "imgix"
+    ]
+  ],
+  "2097360204811977193": [
+    [
+      "NAME",
+      "Name",
+      "姓名",
+      "Finn",
+      "Finn"
+    ],
+    [
+      "ROLE",
+      "Role",
+      "职业",
+      "creative designer",
+      "创意设计师"
+    ],
+    [
+      "EMAIL",
+      "Contact email",
+      "联系邮箱",
+      "finna4264@gmail.com",
+      "finna4264@gmail.com"
+    ],
+    [
+      "X_HANDLE",
+      "X handle",
+      "X 账号",
+      "@ finn",
+      "@ finn"
+    ]
+  ],
+  "2066853400298533296": [
+    [
+      "DESIGN_STYLE",
+      "Design style",
+      "设计风格",
+      "ultra minimalism",
+      "超极简主义"
+    ],
+    [
+      "COLOR_SCHEME",
+      "Color scheme",
+      "配色",
+      "black-and-white",
+      "黑白"
+    ]
+  ],
+  "2067215788654940307": [
+    [
+      "DESIGN_STYLE",
+      "Design style",
+      "设计风格",
+      "Neumorphism UI",
+      "新拟物界面"
+    ],
+    [
+      "COLOR_PALETTE",
+      "Color palette",
+      "色板",
+      "whites, off-whites, light grays, charcoal grays, and blacks",
+      "白色、米白色、浅灰色、炭灰色与黑色"
+    ]
+  ],
+  "2110400404043227149": [
+    [
+      "REFERENCE_MATERIALS",
+      "Reference materials",
+      "参考资料",
+      "the attached materials",
+      "附加资料"
+    ],
+    [
+      "DIRECTIONS",
+      "Design directions",
+      "设计方向",
+      "3 distinct directions",
+      "3 种不同设计方向"
+    ]
+  ],
+  "2082786318271254822": [
+    [
+      "DESIGN_REFERENCE",
+      "Design reference",
+      "设计参考",
+      "bruno-simon like",
+      "布鲁诺·西蒙风格"
+    ]
+  ],
+  "2077680692801286365": [
+    [
+      "X_HANDLE",
+      "X handle",
+      "X 账号",
+      "@josephweb3",
+      "@josephweb3"
+    ]
+  ]
+}

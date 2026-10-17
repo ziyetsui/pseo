@@ -15,7 +15,7 @@ describe('real website cases', () => {
   });
   it('server-renders all entries with real previews and honest missing-preview states', () => {
     const html = parse(renderToStaticMarkup(<WebsiteViewGallery catalog={catalog} view={websiteViews(catalog)[0]!} />));
-    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(224);
+    expect(html.querySelectorAll('[data-website-case]')).toHaveLength(232);
     expect(html.querySelectorAll('[data-website-case] img').length).toBeGreaterThan(61);
     for(const card of html.querySelectorAll('[data-website-case]')) expect(card.querySelector('img') || card.querySelector('.media-fallback')).not.toBeNull();
     expect(html.querySelector('h1')?.text).toBe('全部网站案例');

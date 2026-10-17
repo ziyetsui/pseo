@@ -1,0 +1,116 @@
+{
+  "case": {
+    "id": "2077680692801286365",
+    "title": "由 X 个人资料生成作品集",
+    "author": "josephweb3",
+    "toolAsReportedByAuthor": "OpenGradient / 作者标注 Fable 5、GLM 5.2",
+    "promptLevel": "仅一句话",
+    "caseUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "promptUrl": "https://x.com/josephweb3/status/2077680692801286365",
+    "summary": "作者公开指令：根据自己的 X profile 构建 portfolio。演示比较两个模型；没有细化布局或动效要求。",
+    "promptSourceText": "i tested falbe 5 vs GLM 5.2 using 1 prompt:\n\n- build a portfolio using my X profile @josephweb3 \n\ni used @opengradient agent feature\n\ntry it yourself for FREE\n→ https://t.co/6KratZ63xr\n\nwatch the video below 👇 https://t.co/j2KRUgdqD1",
+    "media": [
+      "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/480x270/d5cQ-QpwFf94bKzo.mp4?tag=29"
+    ],
+    "posters": [
+      "https://pbs.twimg.com/amplify_video_thumb/2077680001785470976/img/kYW6Nknth8xlCHXo.jpg"
+    ],
+    "verifiedAt": "2026-10-16T09:49:39.720599+00:00"
+  },
+  "promptPosts": [
+    {
+      "id": "2077680692801286365",
+      "author": "josephweb3",
+      "bio": "Creating and executing marketing strategies → Marketing Lead @OpenGradient | Founded @getswenai | Prev @animocabrands | I craft AI videos for marketing - DM me",
+      "text": "i tested falbe 5 vs GLM 5.2 using 1 prompt:\n\n- build a portfolio using my X profile @josephweb3 \n\ni used @opengradient agent feature\n\ntry it yourself for FREE\n→ https://t.co/6KratZ63xr\n\nwatch the video below 👇 https://t.co/j2KRUgdqD1",
+      "likes": 168,
+      "retweets": 7,
+      "created_at": "Thu Jul 16 09:04:13 +0000 2026",
+      "url": "https://x.com/josephweb3/status/2077680692801286365",
+      "has_media": true,
+      "media_urls": [
+        "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/480x270/d5cQ-QpwFf94bKzo.mp4?tag=29"
+      ],
+      "media_posters": [
+        "https://pbs.twimg.com/amplify_video_thumb/2077680001785470976/img/kYW6Nknth8xlCHXo.jpg"
+      ],
+      "card": null,
+      "quoted_tweet": null
+    }
+  ],
+  "apiMedia": {
+    "id": "2077680692801286365",
+    "text": "i tested falbe 5 vs GLM 5.2 using 1 prompt:\n\n- build a portfolio using my X profile @josephweb3 \n\ni used @opengradient agent feature\n\ntry it yourself for FREE\n→ https://t.co/6KratZ63xr\n\nwatch the video below 👇 https://t.co/j2KRUgdqD1",
+    "author": {
+      "id": "1500596162545741825",
+      "name": "Joseph",
+      "screenName": "josephweb3",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2090387437109542912/n9tPZcUg_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 168,
+      "retweets": 7,
+      "replies": 89,
+      "quotes": 2,
+      "views": 11759,
+      "bookmarks": 14
+    },
+    "createdAt": "Thu Jul 16 09:04:13 +0000 2026",
+    "createdAtLocal": "2026-07-16 17:04",
+    "createdAtISO": "2026-07-16T09:04:13+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+        "width": 3840,
+        "height": 2160
+      }
+    ],
+    "urls": [
+      "https://chat.opengradient.ai/agent"
+    ],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "apiPrompt": {
+    "id": "2077680692801286365",
+    "text": "i tested falbe 5 vs GLM 5.2 using 1 prompt:\n\n- build a portfolio using my X profile @josephweb3 \n\ni used @opengradient agent feature\n\ntry it yourself for FREE\n→ https://t.co/6KratZ63xr\n\nwatch the video below 👇 https://t.co/j2KRUgdqD1",
+    "author": {
+      "id": "1500596162545741825",
+      "name": "Joseph",
+      "screenName": "josephweb3",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/2090387437109542912/n9tPZcUg_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 168,
+      "retweets": 7,
+      "replies": 89,
+      "quotes": 2,
+      "views": 11759,
+      "bookmarks": 14
+    },
+    "createdAt": "Thu Jul 16 09:04:13 +0000 2026",
+    "createdAtLocal": "2026-07-16 17:04",
+    "createdAtISO": "2026-07-16T09:04:13+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2077680001785470976/vid/avc1/3840x2160/1_pP1UNX6dxhqhp4.mp4?tag=29",
+        "width": 3840,
+        "height": 2160
+      }
+    ],
+    "urls": [
+      "https://chat.opengradient.ai/agent"
+    ],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "note": "Instruction spans selected verbatim; promotional/context framing excluded. Workflow concatenates two explicit author instructions."
+}

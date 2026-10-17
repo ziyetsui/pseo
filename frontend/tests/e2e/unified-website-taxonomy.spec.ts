@@ -5,7 +5,7 @@ test('one Website task entry opens three complete categories and legacy routes r
   const task=page.locator(`#tasks a.tile[href="/${locale}/prompts/website"]`);
   await expect(task).toHaveCount(1);
   await expect(task.locator('h3')).toHaveText(locale==='zh-CN'?'网站与开发':'Web design & development');
-  await expect(task.locator('p')).toHaveText(locale==='zh-CN'?'224 个案例':'224 cases');
+  await expect(task.locator('p')).toHaveText(locale==='zh-CN'?'232 个案例':'232 cases');
   await expect(page.locator('#tasks .browse-spotlight')).toHaveCount(0);
   await page.locator('#tasks').scrollIntoViewIfNeeded();
   await page.screenshot({path:info.outputPath(`${locale}-unified-task.png`),animations:'disabled'});

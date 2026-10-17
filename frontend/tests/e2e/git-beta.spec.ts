@@ -26,14 +26,14 @@ test('published Git beta exposes real image and Website counts, sources and proj
   expect(receipt.gitBeta.importedWebsites).toBe(59);
   await page.goto('/en/prompts#category');
   await expect(page.locator('#category a.tile').filter({hasText:'Images'}).locator('p')).toHaveText(`${receipt.gitBeta.imagePrompts} prompts`);
-  await expect(page.locator('#category a.tile').filter({hasText:'Web design & development'}).locator('p')).toHaveText('224 cases');
+  await expect(page.locator('#category a.tile').filter({hasText:'Web design & development'}).locator('p')).toHaveText('232 cases');
   await page.locator('#category a.tile').filter({hasText:'Web design & development'}).click();
   await expect(page.locator('h1')).toHaveText('Web design & development');
   await expect(page.locator('[data-website-case]')).toHaveCount(0);
   await expect(page.locator('[data-website-view]')).toHaveCount(27);
   await page.locator('[data-website-view][data-view-axis=all]').click();
   await expect(page.locator('h1')).toHaveText('All website cases');
-  await expect(page.locator('[data-website-case]')).toHaveCount(224);
+  await expect(page.locator('[data-website-case]')).toHaveCount(232);
   await page.locator('.website-title-index a[data-case-title]').nth(1).click();
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('a').filter({hasText:'View original source'})).toHaveAttribute('href', /^https:\/\/x.com\//);
@@ -45,22 +45,22 @@ test('Website search and model filters survive reload and browser history', asyn
   await page.goto('/en/prompts/website/views/all');
   await page.getByLabel('Search cases').fill('Halloween pool');
   await page.getByRole('button', {name:'Filter',exact:true}).click();
-  await expect(page.locator('[role="status"]')).toHaveText('1 of 224 website cases');
+  await expect(page.locator('[role="status"]')).toHaveText('1 of 232 website cases');
   await expect(page).toHaveURL(/q=Halloween\+pool/);
   await expect(page.getByRole('button', {name:'Filter',exact:true})).toBeFocused();
   await page.reload();
-  await expect(page.locator('[role="status"]')).toHaveText('1 of 224 website cases');
+  await expect(page.locator('[role="status"]')).toHaveText('1 of 232 website cases');
   await page.goBack();
-  await expect(page.locator('[role="status"]')).toHaveText('224 of 224 website cases');
+  await expect(page.locator('[role="status"]')).toHaveText('232 of 232 website cases');
   await page.getByRole('combobox', {name:'Model',exact:true}).selectOption('claude');
   await page.getByRole('button', {name:'Filter',exact:true}).click();
   await expect(page).toHaveURL(/model=claude/);
-  await expect(page.locator('[role="status"]')).not.toHaveText('224 of 224 website cases');
+  await expect(page.locator('[role="status"]')).not.toHaveText('232 of 232 website cases');
   await page.getByLabel('Search cases').fill('no-real-case-can-match-this');
   await page.getByRole('button', {name:'Filter',exact:true}).click();
   await expect(page.getByRole('heading',{name:'No website case matches those filters.'})).toBeVisible();
   await page.getByRole('link',{name:'Browse all cases',exact:true}).click();
-  await expect(page.locator('[data-website-case]')).toHaveCount(224);
+  await expect(page.locator('[data-website-case]')).toHaveCount(232);
 });
 
 test('case collection remains accessible, responsive and readable without JavaScript', async ({ page, browser }, testInfo) => {

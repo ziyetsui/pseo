@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "schema_version": "1",
+  "data": {
+    "id": "1181640998092513282",
+    "name": "Dammy Ayans",
+    "screenName": "dammyayans",
+    "bio": "Helped by God | Software Engineer | Building products | Build With Me",
+    "location": "",
+    "url": "",
+    "followers": 252,
+    "following": 475,
+    "tweets": 248,
+    "likes": 1796,
+    "verified": true,
+    "profileImageUrl": "https://pbs.twimg.com/profile_images/2090770259980521472/uC2FC8bg_normal.jpg",
+    "createdAt": "Tue Oct 08 18:42:34 +0000 2019",
+    "createdAtISO": "2019-10-08T18:42:34+00:00"
+  }
+}

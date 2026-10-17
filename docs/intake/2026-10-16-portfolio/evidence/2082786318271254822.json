@@ -1,0 +1,112 @@
+{
+  "case": {
+    "id": "2082786318271254822",
+    "title": "Bruno Simon 风格驾驶式 3D",
+    "author": "Bhavani_00007",
+    "toolAsReportedByAuthor": "Claude Code + MiniMax M3",
+    "promptLevel": "仅一句话",
+    "caseUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "promptUrl": "https://x.com/Bhavani_00007/status/2082786318271254822",
+    "summary": "作者公开的是一句让模型从零制作 Bruno Simon 风格 3D portfolio 的指令；没有更详细的完整 brief。",
+    "promptSourceText": "I used MiniMax M3 to build this 🤯\n\nGave it one prompt: build me a bruno-simon like 3D portfolio from scratch.\n\nIt wired physics, a drivable car, full portfolio sections, and even a self-driving tour mode, all on its own.\n\nThis shows how well M3 handles long, multi-part builds without losing track of the overall structure, exactly what its 1M context window is built for.\n\nAlso, the MiniMax Token Plan quota covers image, speech, music, and video generation, all sharing one usage pool. Kinda interesting.\n\nA build this complex barely made a dent in the token budget.\n\nThe result is insane.",
+    "media": [
+      "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/344x270/5q-IiqaweonhoQh1.mp4?tag=29"
+    ],
+    "posters": [
+      "https://pbs.twimg.com/amplify_video_thumb/2082786201547968512/img/R9UYiA9Ugd6AROAl.jpg"
+    ],
+    "verifiedAt": "2026-10-16T09:49:39.720598+00:00"
+  },
+  "promptPosts": [
+    {
+      "id": "2082786318271254822",
+      "author": "Bhavani_00007",
+      "bio": "",
+      "text": "I used MiniMax M3 to build this 🤯\n\nGave it one prompt: build me a bruno-simon like 3D portfolio from scratch.\n\nIt wired physics, a drivable car, full portfolio sections, and even a self-driving tour mode, all on its own.\n\nThis shows how well M3 handles long, multi-part builds without losing track of the overall structure, exactly what its 1M context window is built for.\n\nAlso, the MiniMax Token Plan quota covers image, speech, music, and video generation, all sharing one usage pool. Kinda interesting.\n\nA build this complex barely made a dent in the token budget.\n\nThe result is insane.",
+      "created_at": "Thu Jul 30 11:12:09 +0000 2026",
+      "likes": 46,
+      "views": "2157",
+      "url": "https://x.com/i/status/2082786318271254822",
+      "has_media": true,
+      "media_urls": [
+        "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/344x270/5q-IiqaweonhoQh1.mp4?tag=29"
+      ],
+      "media_posters": [
+        "https://pbs.twimg.com/amplify_video_thumb/2082786201547968512/img/R9UYiA9Ugd6AROAl.jpg"
+      ],
+      "card": null,
+      "quoted_tweet": null
+    }
+  ],
+  "apiMedia": {
+    "id": "2082786318271254822",
+    "text": "I used MiniMax M3 to build this 🤯\n\nGave it one prompt: build me a bruno-simon like 3D portfolio from scratch.\n\nIt wired physics, a drivable car, full portfolio sections, and even a self-driving tour mode, all on its own.\n\nThis shows how well M3 handles long, multi-part builds without losing track of the overall structure, exactly what its 1M context window is built for.\n\nAlso, the MiniMax Token Plan quota covers image, speech, music, and video generation, all sharing one usage pool. Kinda interesting.\n\nA build this complex barely made a dent in the token budget.\n\nThe result is insane.",
+    "author": {
+      "id": "1857824397685567492",
+      "name": "Bhavy☄️",
+      "screenName": "Bhavani_00007",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/1980236068583559168/dEO9pxtO_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 46,
+      "retweets": 1,
+      "replies": 36,
+      "quotes": 0,
+      "views": 2157,
+      "bookmarks": 8
+    },
+    "createdAt": "Thu Jul 30 11:12:09 +0000 2026",
+    "createdAtLocal": "2026-07-30 19:12",
+    "createdAtISO": "2026-07-30T11:12:09+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/1378x1080/dngbI4MAn4EDtYvb.mp4?tag=29",
+        "width": 1378,
+        "height": 1080
+      }
+    ],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "apiPrompt": {
+    "id": "2082786318271254822",
+    "text": "I used MiniMax M3 to build this 🤯\n\nGave it one prompt: build me a bruno-simon like 3D portfolio from scratch.\n\nIt wired physics, a drivable car, full portfolio sections, and even a self-driving tour mode, all on its own.\n\nThis shows how well M3 handles long, multi-part builds without losing track of the overall structure, exactly what its 1M context window is built for.\n\nAlso, the MiniMax Token Plan quota covers image, speech, music, and video generation, all sharing one usage pool. Kinda interesting.\n\nA build this complex barely made a dent in the token budget.\n\nThe result is insane.",
+    "author": {
+      "id": "1857824397685567492",
+      "name": "Bhavy☄️",
+      "screenName": "Bhavani_00007",
+      "profileImageUrl": "https://pbs.twimg.com/profile_images/1980236068583559168/dEO9pxtO_normal.jpg",
+      "verified": true
+    },
+    "metrics": {
+      "likes": 46,
+      "retweets": 1,
+      "replies": 36,
+      "quotes": 0,
+      "views": 2157,
+      "bookmarks": 8
+    },
+    "createdAt": "Thu Jul 30 11:12:09 +0000 2026",
+    "createdAtLocal": "2026-07-30 19:12",
+    "createdAtISO": "2026-07-30T11:12:09+00:00",
+    "media": [
+      {
+        "type": "video",
+        "url": "https://video.twimg.com/amplify_video/2082786201547968512/vid/avc1/1378x1080/dngbI4MAn4EDtYvb.mp4?tag=29",
+        "width": 1378,
+        "height": 1080
+      }
+    ],
+    "urls": [],
+    "isRetweet": false,
+    "retweetedBy": null,
+    "lang": "en",
+    "score": null
+  },
+  "note": "Instruction spans selected verbatim; promotional/context framing excluded. Workflow concatenates two explicit author instructions."
+}
