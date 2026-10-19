@@ -1,7 +1,9 @@
 import rows from '@/data/x-article-cases.json';
+import covers from '@/data/x-article-covers.json';
 import type { Locale } from './types';
 
 export interface XArticleCase {
+  cover: XArticleCover | null;
   id: string;
   rank: number;
   title: string;
@@ -19,7 +21,15 @@ export interface XArticleCase {
   rights: 'review_required';
 }
 
-export const xArticles: XArticleCase[] = rows as XArticleCase[];
+export interface XArticleCover {
+  src: string;
+  sourceImageUrl: string;
+  width: number;
+  height: number;
+  sha256: string;
+}
+const coverAssets: Record<string, XArticleCover> = covers.assets;
+export const xArticles: XArticleCase[] = rows.map(article => ({ ...article, rights: 'review_required', cover: coverAssets[article.id] ?? null }));
 export const xArticlePath = (locale: Locale) => `/${locale}/prompts/articles`;
 export const xArticleHref = (locale: Locale, article: XArticleCase) => `${xArticlePath(locale)}/${article.id}`;
 export const xArticleCreatorHref = (locale: Locale, handle: string) => `${xArticlePath(locale)}/creators/${handle}`;

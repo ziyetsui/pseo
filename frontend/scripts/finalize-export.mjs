@@ -1,3 +1,4 @@
+import { verifyXArticleCovers } from './x-article-covers.mjs';
 import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { compactPromptRsc } from './compact-rsc-export.mjs';
 import { gitBetaRevision } from '../src/lib/catalog/git-beta-revision.ts';
@@ -86,6 +87,8 @@ if (mode === 'git-beta') {
   const xArticleBytes=await readFile('src/data/x-article-cases.json');
   const xArticleCases=JSON.parse(xArticleBytes);
   if(xArticleCases.length!==105 || new Set(xArticleCases.map(article=>article.id)).size!==105 || xArticleCases.some((article,index)=>article.rank!==index+1||article.rights!=='review_required'||!article.body||!article.title||!Number.isInteger(article.likes)||!article.authorHandle||article.sourceUrl!==`https://x.com/${article.authorHandle}/status/${article.id}`||index>0&&article.likes>xArticleCases[index-1].likes))throw new Error('X Article case dataset invalid');
+  const xArticleCoverBytes=await readFile('src/data/x-article-covers.json');
+  const xArticleCoverCount=await verifyXArticleCovers(out, JSON.parse(xArticleCoverBytes), xArticleCases);
   const xArticleCasesHash=createHash('sha256').update(xArticleBytes).digest('hex');
   revision = gitBetaRevision(revision, combined, previews, JSON.parse(await readFile('src/data/localized-case-copy.json','utf8')), avatars, promptBodies, JSON.parse(await readFile('src/data/website-placeholder-templates.json','utf8')), JSON.parse(await readFile('src/data/website-category-membership.json','utf8')), queenieImages, sourceAttributions, JSON.parse(await readFile('src/data/verified-gap-updates.json','utf8')), websiteVisuals, referenceStudyInput);
   await writeFile(path.join(out,'_redirects'),['zh-CN','en'].flatMap(locale=>websiteLegacyPaths(locale).map(alias=>`${alias} /${locale}/prompts/website 301`)).join('\n')+'\n');
@@ -99,6 +102,8 @@ if (mode === 'git-beta') {
   gitBeta.portfolio = { prompts: portfolio.proposals.length, retainedExisting: portfolio.manifest.existingRecords, mediaRecords: portfolio.manifest.mediaRecords, sourceSha256: portfolio.manifest.sourceSha256, mediaSha256: portfolio.manifest.mediaSha256 };
   gitBeta.websiteVisualCases=websiteVisuals.records.filter(row=>row.status==='available'||row.status==='existing').length;
   gitBeta.websiteVisualAssets=Object.keys(websiteVisuals.assets).length;
+  gitBeta.articleCoverRevision=`sha256:${createHash('sha256').update(xArticleCoverBytes).digest('hex')}`;
+  gitBeta.articleCoverCount=xArticleCoverCount;
   gitBeta.articleCaseRevision=`sha256:${xArticleCasesHash}`;
   const localeReceipts=[];
   for(const locale of ['zh-CN','en']){

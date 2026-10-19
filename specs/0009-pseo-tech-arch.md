@@ -1573,3 +1573,5 @@ Deployment capacity: current Pages capability is 20,000 files. Next export produ
 2026-10-17 Portfolio Git-beta 补充：`docs/intake/2026-10-16-portfolio` 保存原帖/reply/media 证据、八份 draft proposals 和导入清单；`scripts/import-portfolio.mjs` 复用现有 intake 合同、内容图及独立展示 manifest。已有滚动简历 immutable id 保持不变；source、译文、模板、头像及视频分别绑定哈希，导出 receipt 记录八条新增与一条去重保留。模型仅使用作者明确披露的系列，建站工具不推断为语言模型。
 
 2026-10-17 Pages 导出容量：目录增长超过 20,000 文件时，沿用既有原生链接方案，将 Recipe 内剩余模型/关系链接、无媒体回退和 404 返回改为原生锚点；所有 catalog 路由可省略仅服务客户端预取的 tree-only RSC 文件。完整 HTML、full/page RSC 与别名兼容 rewrite 保留，目录内容和媒体不裁减；静态校验与浏览器文档导航检查共同验证。
+
+2026-10-19 X Article 原始封面：从 twitter-cli 同一原帖响应的 article.article_results.result.cover_media.media_info.original_img_url 提取，保存于 public/x-article-covers/{tweetId}.{ext}。独立 x-article-covers.json 清单记录原始 CDN URL、尺寸、SHA-256 与无封面 ID；三类页面通过共享 ArticlePoster 读取，同步两种 locale。导出和静态检查验证完整 105 条分类、文件哈希与每类页面的图片，回执单列 articleCoverRevision / articleCoverCount，不改既有正文 revision 或 CMS/rights 状态。

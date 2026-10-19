@@ -1,3 +1,4 @@
+import { verifyXArticleCovers } from './x-article-covers.mjs';
 import {PROMPT_RSC_REWRITES,omitsTreeForNativeAnchorRoute} from './compact-rsc-export.mjs';
 import {websiteLegacyPaths} from '../src/lib/catalog/website-taxonomy-routes.ts';
 import { verifyGitBetaAssets } from './git-beta-receipt.mjs';
@@ -73,6 +74,9 @@ if (manifest.mode !== 'public-api') {
     if (!receipt || receipt.authorization !== '2026-10-14-owner-direct-git-beta' || receipt.cmsPublication !== false) throw new Error('Missing Git beta authorization receipt');
     const articleBytes=await readFile('src/data/x-article-cases.json');
     const articleCases=JSON.parse(articleBytes);
+    const coverBytes=await readFile('src/data/x-article-covers.json');
+    const covers=JSON.parse(coverBytes);
+    if(receipt.articleCoverRevision!==`sha256:${createHash('sha256').update(coverBytes).digest('hex')}` || receipt.articleCoverCount!==await verifyXArticleCovers(root,covers,articleCases))throw Error('X Article cover snapshot mismatch');
     if(receipt.articleCaseRevision!==`sha256:${createHash('sha256').update(articleBytes).digest('hex')}`)throw new Error('X Article snapshot revision mismatch');
     const nativeAnchorRoutes=[...allPaths].filter(route=>omitsTreeForNativeAnchorRoute(route.slice(1)));
     if(receipt.rscExport?.treeRemoved!==nativeAnchorRoutes.length)throw new Error('Native-anchor RSC compaction incomplete');
@@ -93,6 +97,8 @@ if (manifest.mode !== 'public-api') {
       for(const article of articleCases){
         const href=`/${locale}/prompts/articles/${article.id}`,entry=local.betaArticleCases.find(item=>item.id===article.id);
         const detail=documents.get(href);
+        const cover=covers.assets[article.id];
+        if(cover)for(const page of [detail,documents.get(`/${locale}/prompts/articles`),documents.get(`/${locale}/prompts/articles/creators/${article.authorHandle}`)])if(!page?.querySelector(`img[src="${cover.src}"]`))throw Error(`X Article original cover missing: ${href}`);
         if(entry?.href!==href||entry.rights!=='review_required'||!detail?.querySelector(`a[href="${article.sourceUrl}"]`)||!detail.querySelector('article'))throw new Error(`X Article detail or source missing: ${href}`);
       }
       for(const href of [...local.betaArticleCases,...local.betaArticleNavigation].map(item=>item.href)){
