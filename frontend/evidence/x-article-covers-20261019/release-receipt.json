@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-19T08:44:58.548024+00:00",
+  "site": "https://beta.ancher.site/zh-CN/prompts/articles",
+  "pr": "https://github.com/ziyetsui/pseo/pull/63",
+  "codeCommit": "8acb465",
+  "productionDeployment": "https://03e17160.pseo-internal-beta-preview.pages.dev",
+  "betaAliasDeployment": "https://fb73fcfd.pseo-internal-beta-preview.pages.dev",
+  "covers": 95,
+  "noOriginalCover": 10,
+  "liveImageHashesVerified": 95,
+  "liveBrowserChecksPassed": 12,
+  "localBrowserChecksPassed": 12,
+  "frontendTestsPassed": 316,
+  "allPRChecksPassed": true,
+  "coverRevision": "sha256:5d38824fe2e725ed7701fd8b0a59448d0ab2d890eb94d87850a62721a54a73fd",
+  "cmsChanged": false,
+  "mirrorChanged": false,
+  "noindex": true,
+  "deploymentNote": "Original upload completed 16001/16005 files; one four-file request repeatedly timed out. Conservatively retried all 16 files belonging to four-file buckets individually using a temporary CLI copy, conditioned on identical artifact and missing-key counts. Original CLI remained unchanged. Normal CLI subsequently confirmed all 16005 assets already uploaded and deployed the same artifact to frontend-design."
+}
