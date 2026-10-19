@@ -22,6 +22,10 @@
 .xa-poster{aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(22px,4vw,55px);background:radial-gradient(circle at 82% 15%,#d9bd9d 0,transparent 33%),linear-gradient(135deg,#eee1ca 0%,#c5a98b 100%);color:#302921;overflow:hidden}
 .xa-poster-top,.xa-poster-bottom{display:flex;justify-content:space-between;gap:12px;font:600 12px var(--font-mono,monospace);letter-spacing:.08em}
 .xa-poster strong{max-width:85%;font-family:Georgia,"Noto Serif",serif;font-size:clamp(38px,4vw,78px);font-weight:400;line-height:1.04;letter-spacing:-.045em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.xa-cover{background:#121315;overflow:hidden}
+.xa-cover img{display:block;width:100%;height:auto}
+.xa-cover-small{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.xa-cover-small img{width:100%;height:100%;object-fit:contain}
 .xa-poster-small{padding:24px;aspect-ratio:16/10}
 .xa-poster-small strong{font-size:clamp(22px,2.5vw,42px)}
 .xa-poster-small .xa-poster-top,.xa-poster-small .xa-poster-bottom{font-size:9px}

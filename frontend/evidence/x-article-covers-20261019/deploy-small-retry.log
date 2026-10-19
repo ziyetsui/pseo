@@ -1,0 +1,27 @@
+
+ ⛅️ wrangler 4.151.0 (update available 4.151.1)
+───────────────────────────────────────────────
+Uploading... (848/16005)
+Retrying 16 files individually; all other immutable files were uploaded by the preceding run.
+Uploading... (15990/16005)
+Uploading... (15991/16005)
+Uploading... (15992/16005)
+Uploading... (15993/16005)
+Uploading... (15994/16005)
+Uploading... (15995/16005)
+Uploading... (15996/16005)
+Uploading... (15997/16005)
+Uploading... (15998/16005)
+Uploading... (15999/16005)
+Uploading... (16000/16005)
+Uploading... (16001/16005)
+Uploading... (16002/16005)
+Uploading... (16003/16005)
+Uploading... (16004/16005)
+Uploading... (16005/16005)
+✨ Success! Uploaded 15157 files (848 already uploaded) (32.40 sec)
+
+✨ Uploading _headers
+✨ Uploading _redirects
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://03e17160.pseo-internal-beta-preview.pages.dev

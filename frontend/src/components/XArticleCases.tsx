@@ -1,4 +1,5 @@
 import '@/styles/x-articles.css';
+import Image from 'next/image';
 import { SiteFooter, SiteHeader } from './Chrome';
 import { generationHref } from '@/lib/cta/generation-url';
 import { xArticles, xArticleCreators, xArticleCreatorHref, xArticleGraph, xArticleHref, xArticlePath, xArticleTextLanguage, type XArticleCase } from '@/lib/catalog/x-articles';
@@ -9,6 +10,9 @@ const compact = (value: number, locale: string) => new Intl.NumberFormat(locale,
 const date = (value: string, locale: string) => new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(value));
 
 function ArticlePoster({ article, compactMode = false }: { article: XArticleCase; compactMode?: boolean }) {
+  if (article.cover) return <div className={`xa-cover${compactMode ? ' xa-cover-small' : ''}`}>
+    <Image src={article.cover.src} width={article.cover.width} height={article.cover.height} alt="" unoptimized loading={compactMode && article.rank > 3 ? 'lazy' : 'eager'} />
+  </div>;
   return <div className={`xa-poster${compactMode ? ' xa-poster-small' : ''}`} aria-hidden="true">
     <span className="xa-poster-top">X / ARTICLE <span>№ {String(article.rank).padStart(3, '0')}</span></span>
     <strong lang={xArticleTextLanguage(article)}>{article.title}</strong>

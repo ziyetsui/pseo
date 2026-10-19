@@ -1,0 +1,29 @@
+
+Running 12 tests using 3 workers
+
+(node:37414) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37415) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN/2010751592346030461 (2.2s)
+  ✓   2 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN/creators/thedankoe (2.3s)
+  ✓   5 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en/creators/thedankoe (3.8s)
+  ✓   6 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en/2010751592346030461 (1.8s)
+(node:37436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   4 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en (48.4s)
+(node:37730) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN/creators/thedankoe (4.3s)
+  ✓   9 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN/2010751592346030461 (2.0s)
+  ✓   7 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN (51.7s)
+  ✓   1 [desktop] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers zh-CN (1.0m)
+(node:37780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en/creators/thedankoe (1.7s)
+  ✓  12 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en/2010751592346030461 (2.0s)
+  ✓  10 [mobile] › tests/e2e/x-article-covers.spec.ts:4:5 › original article covers en (55.5s)
+
+  12 passed (1.9m)

@@ -1,0 +1,26 @@
+✔ validates the three honest fixture Articles as draft/noindex and excludes them from every public surface (47.35675ms)
+✔ a reviewed published Article produces complete derived Blog projections without declared counts (28.027ms)
+✔ missing and stale Article translations fail the publication gate instead of falling back (36.75075ms)
+✔ Article immutable paths, localized slugs, Markdown links, and citations fail closed (16.81325ms)
+✔ published Article projections rebuild byte-for-byte deterministically (31.227917ms)
+✔ supported locales are independent and only the configured locale is published (15.05325ms)
+✔ draft Prompt and taxonomy records may keep publication.publishedAt null (17.903041ms)
+✔ taxonomy sourceRef accepts only wireframes or owner evidence issues (0.356875ms)
+✔ static indexes, feeds, and sitemap are deterministic and reciprocal (19.400875ms)
+✔ taxonomy locale, slug, and route drift fail closed (13.645833ms)
+✔ surface targets and complete L1-L4 coverage fail closed (17.059667ms)
+✔ a missing published locale fails closed (14.196833ms)
+✔ a removal snapshot may contain zero public Prompts while preserving safe locale outputs (17.567ms)
+✔ Prompt body drift and stale translation are rejected (14.760333ms)
+✔ editing the source locale requires a new content hash and translation review (15.355208ms)
+✔ unknown fields, duplicate localized slugs, and broken links are rejected (16.499416ms)
+✔ Preview package applies noindex in HTML, headers, and robots (30.764166ms)
+✔ Preview package fails closed when frontend omits a published route (11.299959ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.344041
