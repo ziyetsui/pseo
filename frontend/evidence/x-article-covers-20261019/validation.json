@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "8acb465",
+  "sourceArticles": 105,
+  "covers": 95,
+  "noOriginalCover": 10,
+  "exactSourceIdsAndTitlesVerified": 105,
+  "frontendTests": 316,
+  "infrastructureTests": 18,
+  "browserChecks": 12,
+  "htmlPages": 5011,
+  "localLinks": 328573,
+  "lintErrors": 0,
+  "existingLintWarnings": 19,
+  "coverRevision": "sha256:5d38824fe2e725ed7701fd8b0a59448d0ab2d890eb94d87850a62721a54a73fd",
+  "cmsChanged": false,
+  "mirrorChanged": false,
+  "noindex": true
+}

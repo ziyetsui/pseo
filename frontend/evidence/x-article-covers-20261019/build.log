@@ -1,0 +1,38 @@
+$ next build --webpack && node scripts/finalize-export.mjs
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 11ms
+- Experiments (use with caution):
+  ✓ globalNotFound
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.3s
+  Running TypeScript ...
+  Finished TypeScript in 4.6s ...
+  Collecting page data using 10 workers ...
+  Generating static pages using 10 workers (0/5012) ...
+  Generating static pages using 10 workers (1253/5012) 
+  Generating static pages using 10 workers (2506/5012) 
+  Generating static pages using 10 workers (3759/5012) 
+✓ Generating static pages using 10 workers (5012/5012) in 37.0s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[locale]/[[...path]]
+│ ├ ● /zh-CN/prompts
+│ ├ ● /zh-CN
+│ ├ ● /zh-CN/prompts/image
+│ └ ● [+5001 more paths]
+├ ○ /proto/hub-credit
+├ ○ /proto/model-credit
+├ ○ /proto/model-hero
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+Export finalized: git-beta, sha256:757915387d63e8afe295a6665c878be1c20c57273dfba69e16c23237e90b365c, 0 verified feeds
