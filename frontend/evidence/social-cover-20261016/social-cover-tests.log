@@ -1,0 +1,10 @@
+$ vitest run
+
+ RUN  v4.1.11 /private/tmp/ancher-queenie-import-20261015/frontend
+
+
+ Test Files  54 passed (54)
+      Tests  253 passed (253)
+   Start at  10:27:57
+   Duration  23.04s (transform 61.00s, setup 0ms, import 201.31s, tests 78.31s, environment 8.60s)
+

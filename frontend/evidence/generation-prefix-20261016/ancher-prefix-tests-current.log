@@ -1,0 +1,10 @@
+$ vitest run --maxWorkers=2
+
+ RUN  v4.1.11 /private/tmp/ancher-generation-prefix-20261016/frontend
+
+
+ Test Files  64 passed (64)
+      Tests  301 passed (301)
+   Start at  14:56:03
+   Duration  25.12s (transform 6.20s, setup 0ms, import 23.90s, tests 19.39s, environment 2.80s)
+

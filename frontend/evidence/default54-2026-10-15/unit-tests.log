@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /private/tmp/ancher-browse-bands-20261015/frontend
+
+
+ Test Files  38 passed (38)
+      Tests  200 passed (200)
+   Start at  11:40:33
+   Duration  3.08s (transform 10.79s, setup 0ms, import 21.58s, tests 10.36s, environment 1.93s)
+

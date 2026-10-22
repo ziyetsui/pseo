@@ -1,0 +1,59 @@
+$ FRONTEND_DATA_MODE=git-beta pnpm build
+$ next build --webpack && node scripts/finalize-export.mjs
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 380ms
+- Experiments (use with caution):
+  ✓ globalNotFound
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.6s
+  Running TypeScript ...
+  Finished TypeScript in 9.6s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/4590) ...
+  Generating static pages using 2 workers (32/4590) 
+  Generating static pages using 2 workers (73/4590) 
+  Generating static pages using 2 workers (137/4590) 
+  Generating static pages using 2 workers (273/4590) 
+  Generating static pages using 2 workers (513/4590) 
+  Generating static pages using 2 workers (785/4590) 
+  Generating static pages using 2 workers (1147/4590) 
+  Generating static pages using 2 workers (1729/4590) 
+  Generating static pages using 2 workers (2017/4590) 
+  Generating static pages using 2 workers (2113/4590) 
+  Generating static pages using 2 workers (2193/4590) 
+  Generating static pages using 2 workers (2289/4590) 
+  Generating static pages using 2 workers (2294/4590) 
+  Generating static pages using 2 workers (2401/4590) 
+  Generating static pages using 2 workers (2489/4590) 
+  Generating static pages using 2 workers (2585/4590) 
+  Generating static pages using 2 workers (2697/4590) 
+  Generating static pages using 2 workers (2809/4590) 
+  Generating static pages using 2 workers (2897/4590) 
+  Generating static pages using 2 workers (3169/4590) 
+  Generating static pages using 2 workers (3442/4590) 
+  Generating static pages using 2 workers (3889/4590) 
+  Generating static pages using 2 workers (4137/4590) 
+✓ Generating static pages using 2 workers (4590/4590) in 23.4min
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[locale]/[[...path]]
+│ ├ ● /zh-CN/prompts
+│ ├ ● /zh-CN
+│ ├ ● /zh-CN/prompts/image
+│ └ ● [+4579 more paths]
+├ ○ /proto/hub-credit
+├ ○ /proto/model-credit
+├ ○ /proto/model-hero
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+Export finalized: git-beta, sha256:20d5499822f5de96a23e278d99ef9c1e7fbc3fd70020cc16280b9b7d3d388d1c, 0 verified feeds

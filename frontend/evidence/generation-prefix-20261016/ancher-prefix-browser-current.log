@@ -1,0 +1,23 @@
+
+Running 8 tests using 3 workers
+
+(node:9252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9253) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9251) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [desktop] › tests/e2e/website-placeholders.spec.ts:4:1 › website template values update the full prompt and generation link, then reset (1.3s)
+  ✓  4 [desktop] › tests/e2e/website-placeholders.spec.ts:29:1 › website template remains readable with JavaScript disabled (169ms)
+(node:9269) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/e2e/generation-prefix.spec.ts:4:3 › en image handoff keeps the instruction after fill, reset and intent dialog (3.4s)
+(node:9276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 [mobile] › tests/e2e/generation-prefix.spec.ts:4:3 › zh-CN image handoff keeps the instruction after fill, reset and intent dialog (3.2s)
+  ✓  7 [mobile] › tests/e2e/website-placeholders.spec.ts:4:1 › website template values update the full prompt and generation link, then reset (622ms)
+  ✓  8 [mobile] › tests/e2e/website-placeholders.spec.ts:29:1 › website template remains readable with JavaScript disabled (150ms)
+  ✓  2 [desktop] › tests/e2e/generation-prefix.spec.ts:4:3 › zh-CN image handoff keeps the instruction after fill, reset and intent dialog (8.4s)
+  ✓  5 [mobile] › tests/e2e/generation-prefix.spec.ts:4:3 › en image handoff keeps the instruction after fill, reset and intent dialog (8.9s)
+
+  8 passed (11.4s)

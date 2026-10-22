@@ -1,0 +1,2 @@
+$ node scripts/check-static-output.mjs
+Static checks passed: 4589 HTML pages, 298485 local links, mode=git-beta, revision=sha256:20d5499822f5de96a23e278d99ef9c1e7fbc3fd70020cc16280b9b7d3d388d1c

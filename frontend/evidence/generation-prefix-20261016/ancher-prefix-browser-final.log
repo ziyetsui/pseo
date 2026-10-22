@@ -1,0 +1,25 @@
+
+Running 8 tests using 3 workers
+
+(node:81018) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:81016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:81017) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/e2e/website-placeholders.spec.ts:4:1 › website template values update the full prompt and generation link, then reset (1.3s)
+  ✓  4 [desktop] › tests/e2e/website-placeholders.spec.ts:29:1 › website template remains readable with JavaScript disabled (154ms)
+(node:81072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [mobile] › tests/e2e/generation-prefix.spec.ts:4:3 › en image handoff keeps the instruction after fill, reset and intent dialog (2.8s)
+  ✓  2 [desktop] › tests/e2e/generation-prefix.spec.ts:4:3 › zh-CN image handoff keeps the instruction after fill, reset and intent dialog (4.8s)
+(node:81119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [desktop] › tests/e2e/generation-prefix.spec.ts:4:3 › en image handoff keeps the instruction after fill, reset and intent dialog (5.7s)
+(node:81125) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [mobile] › tests/e2e/website-placeholders.spec.ts:4:1 › website template values update the full prompt and generation link, then reset (782ms)
+  ✓  8 [mobile] › tests/e2e/website-placeholders.spec.ts:29:1 › website template remains readable with JavaScript disabled (152ms)
+  ✓  6 [mobile] › tests/e2e/generation-prefix.spec.ts:4:3 › zh-CN image handoff keeps the instruction after fill, reset and intent dialog (3.2s)
+
+  8 passed (8.9s)

@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:50851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › frontend/tests/e2e/queenie.spec.ts:4:45 › Queenie en image studies use the existing L1–L4 and placeholder flows (5.7s)
+  ✓  2 [desktop] › frontend/tests/e2e/queenie.spec.ts:4:45 › Queenie zh-CN image studies use the existing L1–L4 and placeholder flows (4.9s)
+(node:51017) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [mobile] › frontend/tests/e2e/queenie.spec.ts:4:45 › Queenie en image studies use the existing L1–L4 and placeholder flows (6.3s)
+  ✓  4 [mobile] › frontend/tests/e2e/queenie.spec.ts:4:45 › Queenie zh-CN image studies use the existing L1–L4 and placeholder flows (5.1s)
+
+  4 passed (23.5s)
