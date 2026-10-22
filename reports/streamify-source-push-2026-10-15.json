@@ -1,0 +1,15 @@
+{
+  "source": "ed9abfe1df4f376c5c9ab08031af84654c093035",
+  "previousTarget": "cdbdb8f72bf17fcf441cc30663b874ffba696c7f",
+  "commit": "05e879486959c608b3756fa706718f21b4696bd7",
+  "tree": "a62486239016618e90e52a683f48502df3dc938a",
+  "sourceFiles": 1683,
+  "targetFiles": 6,
+  "importedFiles": 1688,
+  "targetBranch": "feat/prompts-ci",
+  "allSourceFilesMatchExceptCombinedGitignore": true,
+  "targetScaffoldPreserved": true,
+  "previousImport": "dbfa63e3af91e550dbf3f6fadf671a96df646aff",
+  "remoteVerified": true,
+  "remoteFileCount": 1688
+}

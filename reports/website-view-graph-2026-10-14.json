@@ -1,0 +1,2189 @@
+{
+  "revision": "sha256:9da87b45eb6c852c5c56f0565df464e529c6d27f027ed903a222312fe678263a",
+  "websiteIds": [
+    "prm_92f371524da72b3bcde64de274448347",
+    "websitecase_02d86f2fa113eb9997f84e003cc46976",
+    "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+    "websitecase_0e5f419ff6d22d90873c157366862fef",
+    "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+    "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4",
+    "websitecase_2210e675aeb9320b08b76fdccf5db0f2",
+    "websitecase_25e690d675e3e8bfa17fab1faef01727",
+    "websitecase_26692472b628d94663d9d10fcba842f7",
+    "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+    "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+    "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+    "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+    "websitecase_3817b9c4939f8de3ec8d7e36e4e69029",
+    "websitecase_467b77b650f720a41047a38545283eb2",
+    "websitecase_488564f136d639bb0a782fc5ab6aa459",
+    "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+    "websitecase_4fb1736304d856b1976ca530f541ebd2",
+    "websitecase_51eee9522ce39ac5822103cceb838ba7",
+    "websitecase_53f83cf7d108bff434a420a8b99b802b",
+    "websitecase_575eefe39c382d875d3d2d96b9bb54cb",
+    "websitecase_5956461555e6bbf77d3ff9e2925ca691",
+    "websitecase_5a774626d2f2f78627457c0514972288",
+    "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+    "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+    "websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+    "websitecase_7758f67f6fe822b0e231dc3b3d4c163d",
+    "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+    "websitecase_7df846c5a61c9d891bdbfecb96975652",
+    "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+    "websitecase_8492258c0c1dc9ec6904d852139de17b",
+    "websitecase_84b6747412c7ee888e5d5908bb57348f",
+    "websitecase_89320d65d949fe49dfa52b30d045b270",
+    "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+    "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+    "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+    "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+    "websitecase_a1a30601caadf1c0365f97182f7aeece",
+    "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+    "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+    "websitecase_b637f9a67422b97d6a959f6050c5ad1e",
+    "websitecase_c15f824a711941410022991810f2503f",
+    "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+    "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+    "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
+    "websitecase_d2a82090a90facccb79bc2c9553cf4d3",
+    "websitecase_db3c4859453098b310c3fca793af9383",
+    "websitecase_e1d7d48f9c608ff61d380d75bb954514",
+    "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+    "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
+    "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+    "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+    "websitecase_ebb87f572125d883f7d100307e1f3131",
+    "websitecase_ee794b398dbd5a398815a8668f1d1339",
+    "websitecase_ef8b8f07e6b21a886343a9770f788c60",
+    "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+    "websitecase_f447d3677bf778aa70b9be5714da07f5",
+    "websitecase_f5c2ef7b6c55867edb64ab1660e5056b",
+    "websitecase_fe37e7e1dfaab38af300a27b2b4a5eec",
+    "2073529429838696592"
+  ],
+  "nodes": [
+    {
+      "id": "model_57de4cf40144bdf7d00010f2f5557a7d",
+      "type": "model",
+      "slug": "codex",
+      "label": "Codex"
+    },
+    {
+      "id": "model_c857d09db23e6822e3600bc06ad8d58f",
+      "type": "model",
+      "slug": "claude",
+      "label": "Claude"
+    },
+    {
+      "id": "prm_92f371524da72b3bcde64de274448347",
+      "type": "prompt",
+      "title": "Studio-level 3D website brief",
+      "summary": "A detailed prompt covering Three.js scenes, scroll chapters, references and motion verification.",
+      "prompt": "this is the only prompt you need to one-shot a studio-level 3d website with claude opus 5.5\n\n------------------------------\n\n<role>\nyou are a principal real-time graphics engineer and technical director. you build scroll-driven websites in raw three.js to the standard of an award-winning studio: a custom hdr render pipeline, chapters composited from their own render targets, shader-driven transitions, procedural scenes with baked light, camera flights keyed to scroll, and one motion clock that holds the dom and webgl on the same frame. you work from a reference you mean to beat, never one you mean to copy. you turn its frames into a bar anyone can inspect, break the page into elements that can be judged alone, and put each one through builder and critic rounds until it clears that bar. you prove the result with frame-perfect 60fps films and optical-flow motion analysis, not adjectives. you estimate cost before you spend, and you report only what you measured.\n</role>\n\n<brief>\n- concept: [what the site is for, the brand name (yours, never the reference's), and the one-line story it tells as you scroll]\n- reference to beat: [a url or a screen recording of a site whose motion you love, plus how far to go, like \"the first 3 sections\"]\n- style: [describe it, or \"interview me\"]\n- sections and copy: [your list and words, or \"write it\"]\n- 3d: [models you own (glb), \"procedural\", or \"generate\"]\n- image budget: [gpt image 2.5 on replicate, the most you'll spend in total]\n- targets: [desktop first or mobile too, and the slowest machine it has to hold 60fps on]\n- no-go list: [brands, marks, people or topics to avoid]\n- extras: [a 60fps film of the full scroll, a side-by-side against the reference, or both]\n\nif any of this is empty, interview me in one message (questions below), read the plan back with the element list and a cost estimate, then keep going until everything in deliverables is done.\n</brief>\n\n<interview>\nask only what the brief left open, all in one message:\n- what should someone feel in the first three seconds? three words\n- what should it look like it was made in: oil painting, fashion editorial, product cgi, claymation, risograph print, chrome and glass, film still, something else?\n- one site, film or artwork whose look you love, and one you'd hate to be mistaken for\n- the palette, or \"pick for me\"\n- how loud should the motion be: calm editorial, cinematic or maximal?\n- the one moment people should screen-record. what happens on screen?\n- what does the brand sell or say, and what should the visitor do at the end?\nthen render three style frames (the hero moment in three different directions) with reference crops as input images, show them side by side with one line each, and let me pick before building anything. the pick becomes the art bible.\n</interview>\n\n<setup>\n- three.js only: vendored, es modules with an importmap, no build step, no frameworks\n- replicate for every image (gpt image 2.5 with input_images), playwright for captures and films, ffmpeg for frames, contact sheets and encodes, opencv for motion checks\n- a threaded local server that answers byte-range requests. video seeking breaks without them, and the stock python server drops connections under parallel captures\n- api keys live in environment variables only, never in a file or printed\n- one project folder: the site, tools/, and workbench/ (reference frames, every round, scores and the live progress page)\n</setup>\n\n<reference>\n- read every frame of the reference recording (record the live site yourself only if i say so). extract frames, make a contact sheet per section and name the states that matter: intro, hero settled, each transition beat, each pinned chapter\n- those named frames are the bar. every element is judged against its own crop of them\n- the reference is for measuring, never copying: no logos, wordmarks, product photos or code from it. my brand name goes everywhere\n- every image generation gets reference crops as input_images plus a stated twist. text-only prompts come out generic, and copies come out as copies\n- cut each image into the layers the motion needs (background plate, each figure, each prop as its own cutout) so parallax and transitions can move them separately\n</reference>\n\n<build>\n- one smooth scroll value drives everything. native scroll sets a target and a damped value follows it. the dom is translated by that value and every webgl scene reads the same one, so text and pictures never drift apart\n- a fixed full-screen canvas sits behind the dom text. each chapter renders into its own render target, and one composite pass does the transitions in hdr (half-float targets, a bloom pyramid, a filmic shoulder, dither)\n- every scroll-driven number lives in one timeline file in viewport heights, keyed to the reference frames, so pacing is tuned in one place\n- pins get soft corners, easing in and out over at least 0.1 viewport heights. a hard clamp stops dead then launches at full speed, and that reads as a jump\n- camera paths are splines with keys far enough apart that acceleration stays gentle. check pitch, position and screen speed numerically before rendering, and never stack two direction changes within a few hundredths of a viewport height\n- heavy chapters build ahead of need in idle time, never inside a frame: compileAsync, one texture upload per frame, images decoded off-thread, procedural textures baked once\n- each chapter is isolated, so a crash disables that chapter, not the page. debug hooks only respond to url flags\n- expose window.__app (ready, layout, named states, goto) so the capture tools can drive the page\n- in glsl, never call smoothstep with edges that can cross, and never divide by a value that can reach zero. on metal either one blanks a whole layer for a frame\n- respect prefers-reduced-motion with an instant scroll and still frames\n</build>\n\n<the_loop>\nevery piece of work goes through the same loop, one element at a time, never the whole page at once:\n- set a bar you can point at: the reference crops for that element. never \"make it amazing\"\n- split the page into the smallest pieces a critic can judge alone: each image, each effect, each transition, each section, the chrome\n- each element gets a builder and a critic, always separate agents. the critic starts with fresh context every round, so it judges what is on screen, not what the builder meant\n- the critic never reads the builder's summary. it captures the real page at the named states from a frozen snapshot (so a builder editing mid-review can't skew it), puts its frames beside the reference crops, scores 1 to 10 against the bar and names the single biggest remaining gap\n- the builder fixes that gap and nothing else, backs up the previous round and hands back\n- no fixed round count and no deadlines. stop when the element meets or beats the bar, when two rounds in a row gain less than half a point, when i say stop, or when the budget is spent\n- if an element is stuck for two rounds, don't push the same approach harder. start a new builder on a new architecture (in the run this prompt comes from, the hardest transition sat at 4/10 until a rebuild around hdr light and bloom)\n- keep a live progress page in workbench/ with every round's frames, scores and named gap, so i can watch it evolve and anyone (or any agent after a crash or usage limit) can pick up from disk\n- once the builders are done, run one fresh smoothing agent over the whole page for consistency across the seams between elements\n</the_loop>\n\n<motion_qa>\nrecord a frame-perfect film of the full scroll and measure it, because a page that feels fine live can still hitch:\n- playwright with the fake clock installed and paused (pause_at), so time only moves when the recorder says: exactly one 16 ms animation frame per video frame. left running, the clock drifts with real time and doubles animation speed\n- seek every waapi/css animation and every video element to the same virtual time each frame, and force preserveDrawingBuffer on webgl\n- feed the scroll as an exact fractional value with a synthetic scroll event, only on frames where it moves. constant scroll events keep smooth-scroll libraries in their \"scrolling\" state and can freeze intros\n- record at the device pixel ratio the site is viewed at (3072x1728 for a 2x laptop screen, 1920x1080 at minimum) at 60fps: png frames piped into x264 at crf 12-14, yuv420p, faststart. hold 6 seconds on the intro, scroll at about 0.75 viewport heights a second, slow to about 0.4 through the signature moments, with speed ramps at least half a viewport long\n- then run an optical-flow jump scan: flag any frame whose motion changes by more than 3x the local median, look at each one, and fix the cause (hard pins, camera whips, one-frame shader blanks) or write down why it's intended\n- do a fast low-res pass first to find problems, and render at full quality only once it's clean\n</motion_qa>\n\n<compare>\nif i asked for the side-by-side:\n- record the reference with the same recorder, warm its cache first, and map its scroll to ours through matched story beats on a monotone curve, so the same beat lands on the same frame in both films\n- where the reference has sections we didn't build, cut across them with a hidden warm-up so nothing loads on camera\n- build a player: two videos side by side with a small logo and name over each, on one simple background. keep them in sync by nudging playback rate (seeking during playback stalls), run every animation on a steady clock rather than on video frames, and animate with transforms and opacity only\n- when the comparison ends, slide the reference out as a held frame and grow ours to full screen in one continuous move\n- serve the player and a full-screen page of our film alone on their own local servers, each with a clean link\n</compare>\n\n<honesty>\n- only state scores, frame rates and timings you measured, and mark anything you estimated\n- say what failed and show the output when something breaks\n- check image credit before queueing a batch, and stop to ask if it runs out\n- never record or scrape the live reference site, or publish anything, without my ok\n</honesty>\n\n<deliverables>\n- the site, runnable with one command\n- the art bible: the chosen style frame, plus every generated asset with its prompt\n- workbench/ with every element's rounds, scores and final verdict\n- the 60fps film at full resolution, plus the side-by-side player if asked for\n- a short note: what beats the reference, what's still below it and which builder should fix it, and the total spend\n</deliverables>",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "tool_09fa0ad0367bea5191d38052cac2faf6",
+      "type": "tool",
+      "slug": "three-js",
+      "label": "Three.js"
+    },
+    {
+      "id": "tool_167dcdd5665cd9368fb66a114e7fa010",
+      "type": "tool",
+      "slug": "stlflix",
+      "label": "STLFlix"
+    },
+    {
+      "id": "tool_1b4391de2f9ae2d2b7ea7304028986e2",
+      "type": "tool",
+      "slug": "scroll-animation",
+      "label": "Scroll animation"
+    },
+    {
+      "id": "tool_437af6e7df1dec98c56ccba90d855c13",
+      "type": "tool",
+      "slug": "real-time-3d",
+      "label": "Real-time 3D"
+    },
+    {
+      "id": "tool_44c8cf4ce06117624c595080c2de52d9",
+      "type": "tool",
+      "slug": "tailwind",
+      "label": "Tailwind"
+    },
+    {
+      "id": "tool_5207e65b9266db04ccd3654f40fe5782",
+      "type": "tool",
+      "slug": "webgl",
+      "label": "WebGL"
+    },
+    {
+      "id": "tool_5809dff7bdcf27a2f73df567bb90b02f",
+      "type": "tool",
+      "slug": "framer-motion",
+      "label": "Framer Motion"
+    },
+    {
+      "id": "tool_5a80e4ba8e6d04259aafa4166f6bc6b1",
+      "type": "tool",
+      "slug": "blender",
+      "label": "Blender"
+    },
+    {
+      "id": "tool_6b70e2d592dd17196b7940574ee89f31",
+      "type": "tool",
+      "slug": "drei",
+      "label": "Drei"
+    },
+    {
+      "id": "tool_74e1186e412a3807b8bf1feba02e60a1",
+      "type": "tool",
+      "slug": "spline",
+      "label": "Spline"
+    },
+    {
+      "id": "tool_7c0379cdaaf30176ef71f17149dabd05",
+      "type": "tool",
+      "slug": "next-js",
+      "label": "Next.js"
+    },
+    {
+      "id": "tool_89d04a3022a579eded1c426babbecd3e",
+      "type": "tool",
+      "slug": "webgpu",
+      "label": "WebGPU"
+    },
+    {
+      "id": "tool_8bc31540bd104a36b11b1061925e19e4",
+      "type": "tool",
+      "slug": "glb",
+      "label": "GLB"
+    },
+    {
+      "id": "tool_a55c4ae8934e84328f5da4b96e9dc5dd",
+      "type": "tool",
+      "slug": "hyper3d-rodin",
+      "label": "Hyper3D Rodin"
+    },
+    {
+      "id": "tool_a5bc3c18b24ddaa627bb70846675c5cc",
+      "type": "tool",
+      "slug": "scrolltrigger",
+      "label": "ScrollTrigger"
+    },
+    {
+      "id": "tool_aacb9f5922d8d660677333c66d3fa63a",
+      "type": "tool",
+      "slug": "shopify-api",
+      "label": "Shopify API"
+    },
+    {
+      "id": "tool_ab856c459fc576367237442b36637edf",
+      "type": "tool",
+      "slug": "react-three-fiber",
+      "label": "React Three Fiber"
+    },
+    {
+      "id": "tool_b3087547f4b048f9e99005a7ce862004",
+      "type": "tool",
+      "slug": "gsap",
+      "label": "GSAP"
+    },
+    {
+      "id": "tool_b9a4c6153a6ebc9f52c324c1bb46d3a3",
+      "type": "tool",
+      "slug": "lenis",
+      "label": "Lenis"
+    },
+    {
+      "id": "tool_e10e3e55806f46c18fa31963d0a29fde",
+      "type": "tool",
+      "slug": "rive",
+      "label": "Rive"
+    },
+    {
+      "id": "tool_e6437192197d07a93d5e9a69f34b06ae",
+      "type": "tool",
+      "slug": "3d-configurator",
+      "label": "3D configurator"
+    },
+    {
+      "id": "usecase_118df0a59fd381997eaae6e8395bfa02",
+      "type": "use-case",
+      "slug": "website-business",
+      "label": "Business & conversion"
+    },
+    {
+      "id": "usecase_4d3d68144cedaecfac31d69d1adbd9b5",
+      "type": "use-case",
+      "slug": "website-fun",
+      "label": "Play & exploration"
+    },
+    {
+      "id": "usecase_5e1e9bbc63eeb6e8293fface9f607b19",
+      "type": "use-case",
+      "slug": "website-productivity",
+      "label": "Productivity"
+    },
+    {
+      "id": "usecase_747a8f398395dde8e524d9f983784bd8",
+      "type": "use-case",
+      "slug": "website",
+      "label": "Website"
+    },
+    {
+      "id": "usecase_bb3cede5977f801eb9bf610879fd8438",
+      "type": "use-case",
+      "slug": "website-creation",
+      "label": "Creation & development"
+    },
+    {
+      "id": "usecase_ef22aafd0c07b31e7eee9e35f9aa6659",
+      "type": "use-case",
+      "slug": "website-learning",
+      "label": "Learning & understanding"
+    },
+    {
+      "id": "websitecase_02d86f2fa113eb9997f84e003cc46976",
+      "type": "website-case",
+      "title": "Hanfu 3D showcase remake",
+      "summary": "A Chinese clothing showcase recreated from an open-source project with generated GLB assets.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "website-case",
+      "title": "Samsy cyberpunk portfolio",
+      "summary": "A third-party post links a first-person interactive portfolio and describes its graphics stack.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_0e5f419ff6d22d90873c157366862fef",
+      "type": "website-case",
+      "title": "Opus vs Astra — same landing page",
+      "summary": "Author compares real-time 3D and scroll animation from the same landing-page task.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "website-case",
+      "title": "Shaders, Rive and generated models",
+      "summary": "Interactive scenes combine Claude-authored shaders, Tripo models, Flux images and Rive UI.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4",
+      "type": "website-case",
+      "title": "Seven website prompts",
+      "summary": "A tutorial thread offering prompts for an animated 3D website.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_2210e675aeb9320b08b76fdccf5db0f2",
+      "type": "website-case",
+      "title": "Cinematic katana scene",
+      "summary": "A third-party post attributes a 3D katana website to Claude and quotes an earlier NowoAi post.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "website-case",
+      "title": "Cinematic road portfolio",
+      "summary": "A portfolio combines R3F, GSAP ScrollTrigger, mouse parallax and vignette effects.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_26692472b628d94663d9d10fcba842f7",
+      "type": "website-case",
+      "title": "Capsule fighters — conflicting claims",
+      "summary": "The main post implies one-shot Claude generation, while replies also claim manual creation. Attribution needs resolution.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "website-case",
+      "title": "R3F, Drei and scroll workflow",
+      "summary": "A practical Claude workflow keeps text in the DOM and coordinates 3D scenes with scroll animations.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+      "type": "website-case",
+      "title": "Real-time Three.js water",
+      "summary": "An author-shared browser water scene built with Sonnet and Bolt.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+      "type": "website-case",
+      "title": "Hot-air-balloon landing page",
+      "summary": "A one-prompt 3D website experiment for a balloon company.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+      "type": "website-case",
+      "title": "Three.js Blocks template CLI",
+      "summary": "A template workflow for generating 3D websites and browser experiences.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_3817b9c4939f8de3ec8d7e36e4e69029",
+      "type": "website-case",
+      "title": "Sonnet vs MiniMax landing page",
+      "summary": "A same-prompt comparison asks both models to create a detailed 3D landing page.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_467b77b650f720a41047a38545283eb2",
+      "type": "website-case",
+      "title": "Scroll-built architecture claim",
+      "summary": "A third-party description of a building assembled through scroll-linked 3D animation; original creator remains unresolved.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_488564f136d639bb0a782fc5ab6aa459",
+      "type": "website-case",
+      "title": "Flying through a hurricane",
+      "summary": "A playable browser scene built with Three.js and Opus.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "website-case",
+      "title": "Cryptopolis immersive game site",
+      "summary": "An immersive site for Cryptopolis Game with real-time 3D elements and scroll animation. Its original short link now redirects to the game homepage, so the original experience is not confirmed live.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_4fb1736304d856b1976ca530f541ebd2",
+      "type": "website-case",
+      "title": "Explore Claude’s mind",
+      "summary": "Author asks Opus to create a 3D website exploring its own mind.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_51eee9522ce39ac5822103cceb838ba7",
+      "type": "website-case",
+      "title": "Moonlit swamp",
+      "summary": "A Three.js scene with water reflections, explicitly attributed to Astra Ultra Code.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "website-case",
+      "title": "ClaudeTree / SpeedThree",
+      "summary": "A procedural tree experiment in Three.js WebGPU, with Fable and GPT collaborating through Codex.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_575eefe39c382d875d3d2d96b9bb54cb",
+      "type": "website-case",
+      "title": "Water materials — Japanese attribution",
+      "summary": "A Japanese quote links ScottieFox’s open-source Three.js water and attributes the work to Opus.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_5956461555e6bbf77d3ff9e2925ca691",
+      "type": "website-case",
+      "title": "Graphics agent skills release",
+      "summary": "A Codex-compatible skills release with procedural sand, cloth, fur and ocean examples.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_5a774626d2f2f78627457c0514972288",
+      "type": "website-case",
+      "title": "Industrial warehouse dashboard",
+      "summary": "An interactive 3D warehouse for monitoring and assigning tasks.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "website-case",
+      "title": "Fabric studio landing page",
+      "summary": "A workflow for floating spheres, an animated fabric sculpture and mouse interaction.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "website-case",
+      "title": "Cinematic scroll and parallax",
+      "summary": "Claude-assisted scene planning combines layered images, Three.js and scroll-controlled camera motion.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "type": "website-case",
+      "title": "Codex plugin product workflow",
+      "summary": "A claimed 3D website workflow using a Codex plugin and ManycoreTech’s asset model.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_7758f67f6fe822b0e231dc3b3d4c163d",
+      "type": "website-case",
+      "title": "Sketchfab and Pinterest tutorial",
+      "summary": "A nine-minute workflow for an interactive 3D website using Claude Code and reference assets.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "website-case",
+      "title": "Synthesia in Canvas, WebGL and Three.js",
+      "summary": "Three implementations of an interactive piano visualizer, pair-programmed with Claude.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "type": "website-case",
+      "title": "Interactive 3D greeting cards",
+      "summary": "Claude Code skills combine image generation and Three.js to create personalized greeting cards.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+      "type": "website-case",
+      "title": "Pieter’s 1995 computer room",
+      "summary": "A walkable computer room with a working browser, DOOM and IRC.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_8492258c0c1dc9ec6904d852139de17b",
+      "type": "website-case",
+      "title": "Grok website test with a Codex comparison",
+      "summary": "Author reports a completed Grok website; the quoted Codex failure concerns an email system, a different task.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_84b6747412c7ee888e5d5908bb57348f",
+      "type": "website-case",
+      "title": "Spirited Away sea train",
+      "summary": "An interactive train-and-ocean scene prompted with a reference image and Opus.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "website-case",
+      "title": "Halloween pool party",
+      "summary": "A browser scene with ghosts, lanterns and a skeleton, built using Claude, Codex and Blender.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+      "type": "website-case",
+      "title": "Pelican riding a bicycle",
+      "summary": "A Three.js experiment from the Opus launch; related reply describes it as one-shot.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+      "type": "website-case",
+      "title": "Blender tutorial to a web world",
+      "summary": "A baking workflow converts a Blender scene into a 3D website; author explains why scene assets are not open-source.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "website-case",
+      "title": "Hand-tracked 3D skeleton",
+      "summary": "Real-time hand tracking drives a Three.js hand and gesture interactions.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "website-case",
+      "title": "Thailand Venue 3D",
+      "summary": "Explore event venues and seating in a 3D browser experience.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_a1a30601caadf1c0365f97182f7aeece",
+      "type": "website-case",
+      "title": "Neural-network learning scene",
+      "summary": "An interactive 3D explanation with hover details to help understand neural-network architectures.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "website-case",
+      "title": "Sustainable fashion 3D store",
+      "summary": "A 3D ecommerce site for a sustainable clothing brand, built with React Three Fiber and Shopify API according to the author.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+      "type": "website-case",
+      "title": "Robot showroom from a photo",
+      "summary": "GPT-6 generates a textured robot through Hyper3D Rodin MCP; Codex builds the interactive showroom.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_b637f9a67422b97d6a959f6050c5ad1e",
+      "type": "website-case",
+      "title": "Responsive Three.js website preview",
+      "summary": "An author shares a work-in-progress preview of a responsive 3D website.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_c15f824a711941410022991810f2503f",
+      "type": "website-case",
+      "title": "Igloo website prompting discussion",
+      "summary": "A third-party post describes scene, scroll and reference layers. Client and revenue claims remain unverified.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+      "type": "website-case",
+      "title": "ITom’s hand-drawn portfolio",
+      "summary": "A featured developer portfolio combines WebGL experiments, React projects and GSAP animation.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "website-case",
+      "title": "ISO-GLOW 3D demos",
+      "summary": "Twelve playable demos with orbit controls, isometric snapping and GLB styling workflows.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
+      "type": "website-case",
+      "title": "Reusable 3D interaction prompt",
+      "summary": "A Chinese-language workflow combines Emergent and Claude to build a reference-led interactive prototype.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_d2a82090a90facccb79bc2c9553cf4d3",
+      "type": "website-case",
+      "title": "Browser-game skills for Claude and Codex",
+      "summary": "A tutorial links a skills repository and explains a playable Three.js prototyping workflow.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_db3c4859453098b310c3fca793af9383",
+      "type": "website-case",
+      "title": "Portfolio shared in a reply",
+      "summary": "A reply shares a recently made 3D website and states it used Claude.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
+      "type": "website-case",
+      "title": "Mobbin-to-Three.js workflow",
+      "summary": "A third-party tutorial summary connecting references, a brand system and an interactive landing page.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "website-case",
+      "title": "3D web experience skill",
+      "summary": "A Claude Code skill demonstration focused on scenes, interactions and WebGL constraints.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
+      "type": "website-case",
+      "title": "Moods — AI companion launch",
+      "summary": "Interactive 3D landing page and a coded launch film; author explicitly says it took multiple prompts.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+      "type": "website-case",
+      "title": "Interactive 3D portfolio",
+      "summary": "Author reports a Fable-built portfolio and shares a prompt for interactive characters.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+      "type": "website-case",
+      "title": "Energy drink vs burger — conflicting project",
+      "summary": "The post describes energy cans but quotes a burger scene; retain both descriptions as an unresolved project mismatch.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_ebb87f572125d883f7d100307e1f3131",
+      "type": "website-case",
+      "title": "Spiral 3D website",
+      "summary": "A visual website experiment tagged with Three.js.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_ee794b398dbd5a398815a8668f1d1339",
+      "type": "website-case",
+      "title": "Cyberpunk sports car",
+      "summary": "A Three.js driving scene prompted with Claude Fable.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_ef8b8f07e6b21a886343a9770f788c60",
+      "type": "website-case",
+      "title": "Codex Micro hardware concept",
+      "summary": "A 3D product website inspired by Codex Micro hardware. The hardware name does not establish a Codex model workflow.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "website-case",
+      "title": "Scroll-driven storytelling website",
+      "summary": "A workflow combines reactive painted backgrounds, Three.js, GSAP ScrollTrigger and Lenis.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_f447d3677bf778aa70b9be5714da07f5",
+      "type": "website-case",
+      "title": "3D print product configurator",
+      "summary": "A browser configurator for printable products. The author says it became the platform’s top-downloaded configurator within two weeks; that commercial claim is author-reported, not independently verified.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_f5c2ef7b6c55867edb64ab1660e5056b",
+      "type": "website-case",
+      "title": "Three.js landing-page tutorial",
+      "summary": "A third-party post describes a forty-minute Claude Code tutorial.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "websitecase_fe37e7e1dfaab38af300a27b2b4a5eec",
+      "type": "website-case",
+      "title": "Original robot website submission",
+      "summary": "Original author submission traced from the Japanese attribution; the post itself does not state a model.",
+      "state": "draft",
+      "rightsStatus": "review_required",
+      "robots": "noindex,nofollow"
+    },
+    {
+      "id": "2073529429838696592",
+      "type": "prompt",
+      "slug": "concept-scroll-read-this-brief-script-the-sc-2073529429838696592",
+      "label": "Scroll-scripted site build, shot by shot"
+    },
+    {
+      "id": "useCase:web-motion-design",
+      "slug": "web-motion-design",
+      "label": "Web & motion design",
+      "type": "use-case"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "built_with",
+      "to": "tool_74e1186e412a3807b8bf1feba02e60a1"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "built_with",
+      "to": "tool_8bc31540bd104a36b11b1061925e19e4"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "prm_92f371524da72b3bcde64de274448347",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_02d86f2fa113eb9997f84e003cc46976",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_02d86f2fa113eb9997f84e003cc46976",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "built_with",
+      "to": "tool_89d04a3022a579eded1c426babbecd3e"
+    },
+    {
+      "from": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_0a4516bc2d6a98c8525a55d8576ffb24",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_0e5f419ff6d22d90873c157366862fef",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_0e5f419ff6d22d90873c157366862fef",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_0e5f419ff6d22d90873c157366862fef",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "built_with",
+      "to": "tool_e10e3e55806f46c18fa31963d0a29fde"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_13e13fd840cbbc2ed3545b022f3d68a3",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_19bdaa2bd35a36d45aaa08c5567f39b4",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_2210e675aeb9320b08b76fdccf5db0f2",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_2210e675aeb9320b08b76fdccf5db0f2",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "built_with",
+      "to": "tool_a5bc3c18b24ddaa627bb70846675c5cc"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_25e690d675e3e8bfa17fab1faef01727",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_26692472b628d94663d9d10fcba842f7",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_26692472b628d94663d9d10fcba842f7",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_26692472b628d94663d9d10fcba842f7",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_26692472b628d94663d9d10fcba842f7",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "built_with",
+      "to": "tool_6b70e2d592dd17196b7940574ee89f31"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "built_with",
+      "to": "tool_a5bc3c18b24ddaa627bb70846675c5cc"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "built_with",
+      "to": "tool_b9a4c6153a6ebc9f52c324c1bb46d3a3"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_290ff0612d4a8d3aa00ad94747c48fbb",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_2b995c09eabc749028bc0ebb4d41a107",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_2ff815d60147a01cc67fb94d2eb6da22",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_35a5060ff8f4853fe507a7fca292a4b8",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_3817b9c4939f8de3ec8d7e36e4e69029",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_3817b9c4939f8de3ec8d7e36e4e69029",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_3817b9c4939f8de3ec8d7e36e4e69029",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_467b77b650f720a41047a38545283eb2",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_467b77b650f720a41047a38545283eb2",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_467b77b650f720a41047a38545283eb2",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_467b77b650f720a41047a38545283eb2",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_488564f136d639bb0a782fc5ab6aa459",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_488564f136d639bb0a782fc5ab6aa459",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_488564f136d639bb0a782fc5ab6aa459",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_488564f136d639bb0a782fc5ab6aa459",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "built_with",
+      "to": "tool_1b4391de2f9ae2d2b7ea7304028986e2"
+    },
+    {
+      "from": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "built_with",
+      "to": "tool_437af6e7df1dec98c56ccba90d855c13"
+    },
+    {
+      "from": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_4ab6259f68f4fca74576e1f7fceb5644",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_4fb1736304d856b1976ca530f541ebd2",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_4fb1736304d856b1976ca530f541ebd2",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_4fb1736304d856b1976ca530f541ebd2",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_51eee9522ce39ac5822103cceb838ba7",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_51eee9522ce39ac5822103cceb838ba7",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_51eee9522ce39ac5822103cceb838ba7",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "built_with",
+      "to": "tool_89d04a3022a579eded1c426babbecd3e"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_53f83cf7d108bff434a420a8b99b802b",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_575eefe39c382d875d3d2d96b9bb54cb",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_575eefe39c382d875d3d2d96b9bb54cb",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_575eefe39c382d875d3d2d96b9bb54cb",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_5956461555e6bbf77d3ff9e2925ca691",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_5956461555e6bbf77d3ff9e2925ca691",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_5956461555e6bbf77d3ff9e2925ca691",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_5a774626d2f2f78627457c0514972288",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_5a774626d2f2f78627457c0514972288",
+      "type": "used_for",
+      "to": "usecase_5e1e9bbc63eeb6e8293fface9f607b19"
+    },
+    {
+      "from": "websitecase_5a774626d2f2f78627457c0514972288",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "built_with",
+      "to": "tool_44c8cf4ce06117624c595080c2de52d9"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "built_with",
+      "to": "tool_5809dff7bdcf27a2f73df567bb90b02f"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "built_with",
+      "to": "tool_7c0379cdaaf30176ef71f17149dabd05"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_5c59ce1de03f5b908f8331b56c09744d",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "built_with",
+      "to": "tool_a5bc3c18b24ddaa627bb70846675c5cc"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_5f3f119fb7c2363831d5f3c8c22ea055",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_7758f67f6fe822b0e231dc3b3d4c163d",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_7758f67f6fe822b0e231dc3b3d4c163d",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_7758f67f6fe822b0e231dc3b3d4c163d",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_7adb19a4f470bbea339a21bc6692f51b",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_7df846c5a61c9d891bdbfecb96975652",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_82adc3444d3dd17cd2d610887e7b3cd1",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_8492258c0c1dc9ec6904d852139de17b",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_8492258c0c1dc9ec6904d852139de17b",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_84b6747412c7ee888e5d5908bb57348f",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_84b6747412c7ee888e5d5908bb57348f",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_84b6747412c7ee888e5d5908bb57348f",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "built_with",
+      "to": "tool_5a80e4ba8e6d04259aafa4166f6bc6b1"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_89320d65d949fe49dfa52b30d045b270",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_8d4989527f74fe9dc33e77f013f2b86a",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+      "type": "built_with",
+      "to": "tool_5a80e4ba8e6d04259aafa4166f6bc6b1"
+    },
+    {
+      "from": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_8d5df3f3ac66b9db26c34b6c7c94a7c9",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "used_for",
+      "to": "usecase_5e1e9bbc63eeb6e8293fface9f607b19"
+    },
+    {
+      "from": "websitecase_9313cc8a4f7fdcf04558562b868c7f7d",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "built_with",
+      "to": "tool_5a80e4ba8e6d04259aafa4166f6bc6b1"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "used_for",
+      "to": "usecase_5e1e9bbc63eeb6e8293fface9f607b19"
+    },
+    {
+      "from": "websitecase_9a526fd6dc6c106fa9bd54d97c32295d",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_a1a30601caadf1c0365f97182f7aeece",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_a1a30601caadf1c0365f97182f7aeece",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_a1a30601caadf1c0365f97182f7aeece",
+      "type": "used_for",
+      "to": "usecase_ef22aafd0c07b31e7eee9e35f9aa6659"
+    },
+    {
+      "from": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "built_with",
+      "to": "tool_7c0379cdaaf30176ef71f17149dabd05"
+    },
+    {
+      "from": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "built_with",
+      "to": "tool_aacb9f5922d8d660677333c66d3fa63a"
+    },
+    {
+      "from": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "built_with",
+      "to": "tool_ab856c459fc576367237442b36637edf"
+    },
+    {
+      "from": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_b00e9d0eb7c63d568202f36243998dfa",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+      "type": "built_with",
+      "to": "tool_a55c4ae8934e84328f5da4b96e9dc5dd"
+    },
+    {
+      "from": "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+      "type": "designed_for",
+      "to": "model_57de4cf40144bdf7d00010f2f5557a7d"
+    },
+    {
+      "from": "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_b0fdca2c7cbce959a9ea839bc8af0a64",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_b637f9a67422b97d6a959f6050c5ad1e",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_b637f9a67422b97d6a959f6050c5ad1e",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_b637f9a67422b97d6a959f6050c5ad1e",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_c15f824a711941410022991810f2503f",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_c15f824a711941410022991810f2503f",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_c15f824a711941410022991810f2503f",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_c8c0f9c5ac4ba20cdd8ed27e48a761fe",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "built_with",
+      "to": "tool_8bc31540bd104a36b11b1061925e19e4"
+    },
+    {
+      "from": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_cb4c95fcf052d64f5d87217223f2ff3d",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_d1fa3dd7c9cb24b20ed194159048bad2",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_d2a82090a90facccb79bc2c9553cf4d3",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_d2a82090a90facccb79bc2c9553cf4d3",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_d2a82090a90facccb79bc2c9553cf4d3",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_db3c4859453098b310c3fca793af9383",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_db3c4859453098b310c3fca793af9383",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_db3c4859453098b310c3fca793af9383",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_e1d7d48f9c608ff61d380d75bb954514",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_e3bc74bbe3bca3ba2c9a26287a9967f1",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_e5fdb37c7cd9d1a5ae833d27c48be675",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_e69e9fbe1622ea13d4ee420c9160fb39",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+      "type": "built_with",
+      "to": "tool_5207e65b9266db04ccd3654f40fe5782"
+    },
+    {
+      "from": "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_e8a9075e121a347dc7a7c6e34361fab0",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_ebb87f572125d883f7d100307e1f3131",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_ebb87f572125d883f7d100307e1f3131",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_ebb87f572125d883f7d100307e1f3131",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_ee794b398dbd5a398815a8668f1d1339",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_ee794b398dbd5a398815a8668f1d1339",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_ee794b398dbd5a398815a8668f1d1339",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_ee794b398dbd5a398815a8668f1d1339",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_ef8b8f07e6b21a886343a9770f788c60",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_ef8b8f07e6b21a886343a9770f788c60",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "built_with",
+      "to": "tool_a5bc3c18b24ddaa627bb70846675c5cc"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "built_with",
+      "to": "tool_b3087547f4b048f9e99005a7ce862004"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "built_with",
+      "to": "tool_b9a4c6153a6ebc9f52c324c1bb46d3a3"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "designed_for",
+      "to": "model_c857d09db23e6822e3600bc06ad8d58f"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_f3b0c636bc44341a3ec50ac8f8bf572a",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_f447d3677bf778aa70b9be5714da07f5",
+      "type": "built_with",
+      "to": "tool_167dcdd5665cd9368fb66a114e7fa010"
+    },
+    {
+      "from": "websitecase_f447d3677bf778aa70b9be5714da07f5",
+      "type": "built_with",
+      "to": "tool_e6437192197d07a93d5e9a69f34b06ae"
+    },
+    {
+      "from": "websitecase_f447d3677bf778aa70b9be5714da07f5",
+      "type": "used_for",
+      "to": "usecase_118df0a59fd381997eaae6e8395bfa02"
+    },
+    {
+      "from": "websitecase_f447d3677bf778aa70b9be5714da07f5",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_f5c2ef7b6c55867edb64ab1660e5056b",
+      "type": "built_with",
+      "to": "tool_09fa0ad0367bea5191d38052cac2faf6"
+    },
+    {
+      "from": "websitecase_f5c2ef7b6c55867edb64ab1660e5056b",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "websitecase_f5c2ef7b6c55867edb64ab1660e5056b",
+      "type": "used_for",
+      "to": "usecase_bb3cede5977f801eb9bf610879fd8438"
+    },
+    {
+      "from": "websitecase_fe37e7e1dfaab38af300a27b2b4a5eec",
+      "type": "used_for",
+      "to": "usecase_4d3d68144cedaecfac31d69d1adbd9b5"
+    },
+    {
+      "from": "websitecase_fe37e7e1dfaab38af300a27b2b4a5eec",
+      "type": "used_for",
+      "to": "usecase_747a8f398395dde8e524d9f983784bd8"
+    },
+    {
+      "from": "2073529429838696592",
+      "to": "useCase:web-motion-design",
+      "type": "used_for"
+    }
+  ],
+  "views": [
+    {
+      "id": "website-view:use-case:usecase_bb3cede5977f801eb9bf610879fd8438",
+      "href": "/zh-CN/prompts/website/views/use-case/website-creation",
+      "axis": "use-case",
+      "targetId": "usecase_bb3cede5977f801eb9bf610879fd8438",
+      "count": 19
+    },
+    {
+      "id": "website-view:use-case:usecase_4d3d68144cedaecfac31d69d1adbd9b5",
+      "href": "/zh-CN/prompts/website/views/use-case/website-fun",
+      "axis": "use-case",
+      "targetId": "usecase_4d3d68144cedaecfac31d69d1adbd9b5",
+      "count": 19
+    },
+    {
+      "id": "website-view:use-case:usecase_118df0a59fd381997eaae6e8395bfa02",
+      "href": "/zh-CN/prompts/website/views/use-case/website-business",
+      "axis": "use-case",
+      "targetId": "usecase_118df0a59fd381997eaae6e8395bfa02",
+      "count": 17
+    },
+    {
+      "id": "website-view:use-case:usecase_5e1e9bbc63eeb6e8293fface9f607b19",
+      "href": "/zh-CN/prompts/website/views/use-case/website-productivity",
+      "axis": "use-case",
+      "targetId": "usecase_5e1e9bbc63eeb6e8293fface9f607b19",
+      "count": 3
+    },
+    {
+      "id": "website-view:use-case:usecase_ef22aafd0c07b31e7eee9e35f9aa6659",
+      "href": "/zh-CN/prompts/website/views/use-case/website-learning",
+      "axis": "use-case",
+      "targetId": "usecase_ef22aafd0c07b31e7eee9e35f9aa6659",
+      "count": 1
+    },
+    {
+      "id": "website-view:use-case:useCase:web-motion-design",
+      "href": "/zh-CN/prompts/website/views/use-case/web-motion-design",
+      "axis": "use-case",
+      "targetId": "useCase:web-motion-design",
+      "count": 1
+    },
+    {
+      "id": "website-view:model:model_c857d09db23e6822e3600bc06ad8d58f",
+      "href": "/zh-CN/prompts/website/views/model/claude",
+      "axis": "model",
+      "targetId": "model_c857d09db23e6822e3600bc06ad8d58f",
+      "count": 28
+    },
+    {
+      "id": "website-view:model:model_57de4cf40144bdf7d00010f2f5557a7d",
+      "href": "/zh-CN/prompts/website/views/model/codex",
+      "axis": "model",
+      "targetId": "model_57de4cf40144bdf7d00010f2f5557a7d",
+      "count": 7
+    },
+    {
+      "id": "website-view:tool:tool_09fa0ad0367bea5191d38052cac2faf6",
+      "href": "/zh-CN/prompts/website/views/tool/three-js",
+      "axis": "tool",
+      "targetId": "tool_09fa0ad0367bea5191d38052cac2faf6",
+      "count": 36
+    },
+    {
+      "id": "website-view:tool:tool_5207e65b9266db04ccd3654f40fe5782",
+      "href": "/zh-CN/prompts/website/views/tool/webgl",
+      "axis": "tool",
+      "targetId": "tool_5207e65b9266db04ccd3654f40fe5782",
+      "count": 11
+    },
+    {
+      "id": "website-view:tool:tool_ab856c459fc576367237442b36637edf",
+      "href": "/zh-CN/prompts/website/views/tool/react-three-fiber",
+      "axis": "tool",
+      "targetId": "tool_ab856c459fc576367237442b36637edf",
+      "count": 6
+    },
+    {
+      "id": "website-view:tool:tool_b3087547f4b048f9e99005a7ce862004",
+      "href": "/zh-CN/prompts/website/views/tool/gsap",
+      "axis": "tool",
+      "targetId": "tool_b3087547f4b048f9e99005a7ce862004",
+      "count": 5
+    },
+    {
+      "id": "website-view:tool:tool_a5bc3c18b24ddaa627bb70846675c5cc",
+      "href": "/zh-CN/prompts/website/views/tool/scrolltrigger",
+      "axis": "tool",
+      "targetId": "tool_a5bc3c18b24ddaa627bb70846675c5cc",
+      "count": 4
+    },
+    {
+      "id": "website-view:tool:tool_5a80e4ba8e6d04259aafa4166f6bc6b1",
+      "href": "/zh-CN/prompts/website/views/tool/blender",
+      "axis": "tool",
+      "targetId": "tool_5a80e4ba8e6d04259aafa4166f6bc6b1",
+      "count": 3
+    },
+    {
+      "id": "website-view:tool:tool_8bc31540bd104a36b11b1061925e19e4",
+      "href": "/zh-CN/prompts/website/views/tool/glb",
+      "axis": "tool",
+      "targetId": "tool_8bc31540bd104a36b11b1061925e19e4",
+      "count": 2
+    },
+    {
+      "id": "website-view:tool:tool_b9a4c6153a6ebc9f52c324c1bb46d3a3",
+      "href": "/zh-CN/prompts/website/views/tool/lenis",
+      "axis": "tool",
+      "targetId": "tool_b9a4c6153a6ebc9f52c324c1bb46d3a3",
+      "count": 2
+    },
+    {
+      "id": "website-view:tool:tool_7c0379cdaaf30176ef71f17149dabd05",
+      "href": "/zh-CN/prompts/website/views/tool/next-js",
+      "axis": "tool",
+      "targetId": "tool_7c0379cdaaf30176ef71f17149dabd05",
+      "count": 2
+    },
+    {
+      "id": "website-view:tool:tool_89d04a3022a579eded1c426babbecd3e",
+      "href": "/zh-CN/prompts/website/views/tool/webgpu",
+      "axis": "tool",
+      "targetId": "tool_89d04a3022a579eded1c426babbecd3e",
+      "count": 2
+    },
+    {
+      "id": "website-view:tool:tool_e6437192197d07a93d5e9a69f34b06ae",
+      "href": "/zh-CN/prompts/website/views/tool/3d-configurator",
+      "axis": "tool",
+      "targetId": "tool_e6437192197d07a93d5e9a69f34b06ae",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_6b70e2d592dd17196b7940574ee89f31",
+      "href": "/zh-CN/prompts/website/views/tool/drei",
+      "axis": "tool",
+      "targetId": "tool_6b70e2d592dd17196b7940574ee89f31",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_5809dff7bdcf27a2f73df567bb90b02f",
+      "href": "/zh-CN/prompts/website/views/tool/framer-motion",
+      "axis": "tool",
+      "targetId": "tool_5809dff7bdcf27a2f73df567bb90b02f",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_a55c4ae8934e84328f5da4b96e9dc5dd",
+      "href": "/zh-CN/prompts/website/views/tool/hyper3d-rodin",
+      "axis": "tool",
+      "targetId": "tool_a55c4ae8934e84328f5da4b96e9dc5dd",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_437af6e7df1dec98c56ccba90d855c13",
+      "href": "/zh-CN/prompts/website/views/tool/real-time-3d",
+      "axis": "tool",
+      "targetId": "tool_437af6e7df1dec98c56ccba90d855c13",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_e10e3e55806f46c18fa31963d0a29fde",
+      "href": "/zh-CN/prompts/website/views/tool/rive",
+      "axis": "tool",
+      "targetId": "tool_e10e3e55806f46c18fa31963d0a29fde",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_1b4391de2f9ae2d2b7ea7304028986e2",
+      "href": "/zh-CN/prompts/website/views/tool/scroll-animation",
+      "axis": "tool",
+      "targetId": "tool_1b4391de2f9ae2d2b7ea7304028986e2",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_aacb9f5922d8d660677333c66d3fa63a",
+      "href": "/zh-CN/prompts/website/views/tool/shopify-api",
+      "axis": "tool",
+      "targetId": "tool_aacb9f5922d8d660677333c66d3fa63a",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_74e1186e412a3807b8bf1feba02e60a1",
+      "href": "/zh-CN/prompts/website/views/tool/spline",
+      "axis": "tool",
+      "targetId": "tool_74e1186e412a3807b8bf1feba02e60a1",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_167dcdd5665cd9368fb66a114e7fa010",
+      "href": "/zh-CN/prompts/website/views/tool/stlflix",
+      "axis": "tool",
+      "targetId": "tool_167dcdd5665cd9368fb66a114e7fa010",
+      "count": 1
+    },
+    {
+      "id": "website-view:tool:tool_44c8cf4ce06117624c595080c2de52d9",
+      "href": "/zh-CN/prompts/website/views/tool/tailwind",
+      "axis": "tool",
+      "targetId": "tool_44c8cf4ce06117624c595080c2de52d9",
+      "count": 1
+    },
+    {
+      "id": "website-view:all",
+      "href": "/zh-CN/prompts/website/views/all",
+      "axis": "all",
+      "targetId": null,
+      "count": 60
+    }
+  ]
+}

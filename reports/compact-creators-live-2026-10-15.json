@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-15T02:30:07.659Z",
+  "origin": "https://beta.ancher.site",
+  "checks": [
+    {
+      "href": "/en/prompts",
+      "initialAuthors": 8,
+      "totalAuthors": 347
+    },
+    {
+      "href": "/en/prompts/models/gpt-image-2",
+      "initialAuthors": 8,
+      "totalAuthors": 239
+    },
+    {
+      "href": "/en/prompts/use-cases/photography-realism",
+      "initialAuthors": 8,
+      "totalAuthors": 53
+    },
+    {
+      "href": "/zh-CN/prompts",
+      "initialAuthors": 8,
+      "totalAuthors": 347
+    },
+    {
+      "href": "/zh-CN/prompts/models/gpt-image-2",
+      "initialAuthors": 8,
+      "totalAuthors": 239
+    },
+    {
+      "href": "/zh-CN/prompts/use-cases/photography-realism",
+      "initialAuthors": 8,
+      "totalAuthors": 53
+    }
+  ]
+}

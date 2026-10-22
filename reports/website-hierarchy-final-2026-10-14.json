@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-14T09:37:03.217Z",
+  "origin": "https://beta.ancher.site",
+  "source": "0126294bfe8523cef3b3caadf200d31ed7de71cb",
+  "revision": "sha256:7ca99d569485b235a84be5a7008b8d8c50e35af5f602739b59d9dda19d81e450",
+  "styles": [
+    "/_next/static/css/233cc52eaa228110.css",
+    "/_next/static/css/5c10d635751084ad.css",
+    "/_next/static/css/d33bb003191fbe21.css"
+  ],
+  "purposeCases": 19,
+  "websiteViews": 30,
+  "indexRoutes": 719,
+  "deployments": [
+    {
+      "Id": "e584fbc9-fda7-448c-bf05-fbec2745ee4b",
+      "Environment": "Preview",
+      "Branch": "frontend-design",
+      "Source": "0126294",
+      "Deployment": "https://e584fbc9.pseo-internal-beta-preview.pages.dev",
+      "Status": "31 seconds ago",
+      "Build": "https://dash.cloudflare.com/9e27095eb80b9e4ffd09d8b590759311/pages/view/pseo-internal-beta-preview/e584fbc9-fda7-448c-bf05-fbec2745ee4b"
+    },
+    {
+      "Id": "82fe63b5-bd64-4902-956c-c8550893a32d",
+      "Environment": "Production",
+      "Branch": "main",
+      "Source": "0126294",
+      "Deployment": "https://82fe63b5.pseo-internal-beta-preview.pages.dev",
+      "Status": "1 minute ago",
+      "Build": "https://dash.cloudflare.com/9e27095eb80b9e4ffd09d8b590759311/pages/view/pseo-internal-beta-preview/82fe63b5-bd64-4902-956c-c8550893a32d"
+    }
+  ],
+  "retries": 0
+}

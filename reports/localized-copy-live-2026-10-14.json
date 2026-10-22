@@ -1,0 +1,457 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-14T12:36:16.490Z",
+  "origin": "https://beta.ancher.site",
+  "revision": "sha256:d723aee24f6879b216f579dbf820c415372c501bbe52c1a153c115dce5aa72df",
+  "locales": 2,
+  "viewsPerLocale": 30,
+  "casesPerLocale": 225,
+  "directoryRoutesPerLocale": 891,
+  "checks": [
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts",
+      "title": "这条提示词，早已有人写好",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/image",
+      "title": "图片提示词",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/video",
+      "title": "视频提示词",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/library-index",
+      "title": "提示词库目录",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website",
+      "title": "网站分类",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/website-creation",
+      "title": "创作与开发",
+      "cases": 184
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/website-fun",
+      "title": "互动与探索",
+      "cases": 19
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/website-business",
+      "title": "商业与转化",
+      "cases": 17
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/website-productivity",
+      "title": "效率工具",
+      "cases": 3
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/website-learning",
+      "title": "学习与理解",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/use-case/web-motion-design",
+      "title": "网页与动效设计",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/model/claude",
+      "title": "Claude",
+      "cases": 28
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/model/codex",
+      "title": "Codex",
+      "cases": 7
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/three-js",
+      "title": "Three.js",
+      "cases": 36
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/webgl",
+      "title": "WebGL",
+      "cases": 11
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/react-three-fiber",
+      "title": "React Three Fiber",
+      "cases": 6
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/gsap",
+      "title": "GSAP",
+      "cases": 5
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/scrolltrigger",
+      "title": "ScrollTrigger",
+      "cases": 4
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/blender",
+      "title": "Blender",
+      "cases": 3
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/glb",
+      "title": "GLB",
+      "cases": 2
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/lenis",
+      "title": "Lenis",
+      "cases": 2
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/next-js",
+      "title": "Next.js",
+      "cases": 2
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/webgpu",
+      "title": "WebGPU",
+      "cases": 2
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/drei",
+      "title": "Drei",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/framer-motion",
+      "title": "Framer Motion",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/hyper3d-rodin",
+      "title": "Hyper3D Rodin",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/rive",
+      "title": "Rive",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/shopify-api",
+      "title": "Shopify API",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/spline",
+      "title": "Spline",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/stlflix",
+      "title": "STLFlix",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/tailwind",
+      "title": "Tailwind",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/3d-configurator",
+      "title": "三维配置器",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/real-time-3d",
+      "title": "实时三维",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/tool/scroll-animation",
+      "title": "滚动动画",
+      "cases": 1
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/views/all",
+      "title": "全部网站案例",
+      "cases": 225
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/concept-scroll-read-this-brief-script-the-sc-2073529429838696592",
+      "title": "按镜头逐一构建滚动脚本网站",
+      "cases": 0
+    },
+    {
+      "locale": "zh-CN",
+      "href": "/zh-CN/prompts/website/prm_92f371524da72b3bcde64de274448347",
+      "title": "专业工作室级三维网站需求说明",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts",
+      "title": "Somebody already wrote this",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/image",
+      "title": "Image prompts",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/video",
+      "title": "Video prompts",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/library-index",
+      "title": "Library index",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website",
+      "title": "Website views",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/website-creation",
+      "title": "Creation & development",
+      "cases": 184
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/website-fun",
+      "title": "Play & exploration",
+      "cases": 19
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/website-business",
+      "title": "Business & conversion",
+      "cases": 17
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/website-productivity",
+      "title": "Productivity",
+      "cases": 3
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/website-learning",
+      "title": "Learning & understanding",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/use-case/web-motion-design",
+      "title": "Web & motion design",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/model/claude",
+      "title": "Claude",
+      "cases": 28
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/model/codex",
+      "title": "Codex",
+      "cases": 7
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/three-js",
+      "title": "Three.js",
+      "cases": 36
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/webgl",
+      "title": "WebGL",
+      "cases": 11
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/react-three-fiber",
+      "title": "React Three Fiber",
+      "cases": 6
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/gsap",
+      "title": "GSAP",
+      "cases": 5
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/scrolltrigger",
+      "title": "ScrollTrigger",
+      "cases": 4
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/blender",
+      "title": "Blender",
+      "cases": 3
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/glb",
+      "title": "GLB",
+      "cases": 2
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/lenis",
+      "title": "Lenis",
+      "cases": 2
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/next-js",
+      "title": "Next.js",
+      "cases": 2
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/webgpu",
+      "title": "WebGPU",
+      "cases": 2
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/3d-configurator",
+      "title": "3D configurator",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/drei",
+      "title": "Drei",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/framer-motion",
+      "title": "Framer Motion",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/hyper3d-rodin",
+      "title": "Hyper3D Rodin",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/real-time-3d",
+      "title": "Real-time 3D",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/rive",
+      "title": "Rive",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/scroll-animation",
+      "title": "Scroll animation",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/shopify-api",
+      "title": "Shopify API",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/spline",
+      "title": "Spline",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/stlflix",
+      "title": "STLFlix",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/tool/tailwind",
+      "title": "Tailwind",
+      "cases": 1
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/views/all",
+      "title": "All website cases",
+      "cases": 225
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/concept-scroll-read-this-brief-script-the-sc-2073529429838696592",
+      "title": "Scroll-scripted site build, shot by shot",
+      "cases": 0
+    },
+    {
+      "locale": "en",
+      "href": "/en/prompts/website/prm_92f371524da72b3bcde64de274448347",
+      "title": "Studio-level 3D website brief",
+      "cases": 0
+    }
+  ],
+  "retries": 0
+}
