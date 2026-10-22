@@ -1,0 +1,25 @@
+
+Running 12 tests using 2 workers
+
+(node:62496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62495) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:29:2 › zh-CN adaptable cases and website scenes retain source navigation (2.4s)
+  ✓   2 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:4:2 › zh-CN four levels, filters and five footer columns (3.6s)
+  ✓   3 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:39:2 › zh-CN no-JavaScript directory and unknown parent routes (2.6s)
+  ✓   4 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:4:2 › en four levels, filters and five footer columns (1.9s)
+  ✓   5 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:29:2 › en adaptable cases and website scenes retain source navigation (1.0s)
+(node:62689) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [desktop] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:39:2 › en no-JavaScript directory and unknown parent routes (2.6s)
+(node:62740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:4:2 › zh-CN four levels, filters and five footer columns (1.9s)
+  ✓   8 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:29:2 › zh-CN adaptable cases and website scenes retain source navigation (932ms)
+  ✓  10 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:4:2 › en four levels, filters and five footer columns (1.7s)
+  ✓  11 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:29:2 › en adaptable cases and website scenes retain source navigation (817ms)
+  ✓   9 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:39:2 › zh-CN no-JavaScript directory and unknown parent routes (3.8s)
+  ✓  12 [mobile] › ../../Users/ziye/Developer/ancher pseo monetization/frontend/tests/e2e/monetization.spec.ts:39:2 › en no-JavaScript directory and unknown parent routes (3.5s)
+
+  12 passed (20.1s)
