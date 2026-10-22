@@ -1,0 +1,50 @@
+{
+  "origin": "https://beta.ancher.site",
+  "observedAt": "2026-10-14T11:16:00.032Z",
+  "checks": [
+    {
+      "path": "/zh-CN/prompts/image",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    },
+    {
+      "path": "/zh-CN/prompts/website/views/all",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    },
+    {
+      "path": "/zh-CN/prompts/case-1bcc9bc2322c1402f5c915dd1bfa4d59",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    },
+    {
+      "path": "/en/prompts/image",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    },
+    {
+      "path": "/en/prompts/website/views/all",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    },
+    {
+      "path": "/en/prompts/case-1bcc9bc2322c1402f5c915dd1bfa4d59",
+      "status": 200,
+      "footerLinks": 21,
+      "footerGroups": 4,
+      "highlightsVerified": true
+    }
+  ],
+  "revision": "sha256:67403c0a302b0a7c7abf1a4a288a7ae20968127dab76b8eef3d70186bfce9492",
+  "passed": true
+}

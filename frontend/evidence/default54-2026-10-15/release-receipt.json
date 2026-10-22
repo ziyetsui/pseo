@@ -1,0 +1,15 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/23",
+  "mergeCommit": "1cd77819e84ef97cae14514725a2856050f5f794",
+  "deployedIntegrationCommit": "8c29dececf42c7a2bb50d96e83ada2b6e97a35aa",
+  "productionDeployment": "https://9855b63f.pseo-internal-beta-preview.pages.dev",
+  "previewDeployment": "https://b7bb60b0.pseo-internal-beta-preview.pages.dev",
+  "site": "https://beta.ancher.site/zh-CN/prompts",
+  "tests": 200,
+  "ciGates": "all four passed",
+  "live": "en and zh-CN at 1440 and 375: 54 initial, 72 expanded, 54 collapsed, no document overflow",
+  "robots": "noindex, nofollow",
+  "cmsPublication": false,
+  "mirrorModified": false,
+  "note": "Older own upload stopped to preserve subsequent merged spotlight and model-name updates. Verified the latest integration deployment online."
+}

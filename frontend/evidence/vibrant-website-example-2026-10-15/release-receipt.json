@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-15T04:43:13.475073+00:00",
+  "pr": "https://github.com/ziyetsui/pseo/pull/27",
+  "state": "merged",
+  "deployedCommit": "2966e5c0b9adb8bc7b28e41d624b931d32ac3a0b",
+  "sourceTreeMatchesVerifiedHead": true,
+  "revision": "sha256:29662ed384bec9fca2fa0c41feee0a67d47ef5a38baad050925bd59bca039223",
+  "deployments": {
+    "main": "https://1c9ea09f.pseo-internal-beta-preview.pages.dev",
+    "frontend-design": "https://7d0a8fd4.pseo-internal-beta-preview.pages.dev",
+    "live": "https://beta.ancher.site/zh-CN/prompts#tasks"
+  },
+  "validation": {
+    "CI": "all passed",
+    "unitTests": 202,
+    "staticPages": 1825,
+    "staticLinks": 121932,
+    "liveSmoke": {
+      "origin": "https://beta.ancher.site",
+      "results": [
+        {
+          "locale": "zh-CN",
+          "width": 1440,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/zh-CN/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+          "cover": "2100085815330435375.jpg"
+        },
+        {
+          "locale": "en",
+          "width": 1440,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/en/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+          "cover": "2100085815330435375.jpg"
+        },
+        {
+          "locale": "zh-CN",
+          "width": 375,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/zh-CN/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+          "cover": "2100085815330435375.jpg"
+        },
+        {
+          "locale": "en",
+          "width": 375,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/en/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+          "cover": "2100085815330435375.jpg"
+        }
+      ]
+    }
+  },
+  "publication": "Engineering Beta deployment only; no CMS public, content mirror, DNS or Access change."
+}

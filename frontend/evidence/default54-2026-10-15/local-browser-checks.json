@@ -1,0 +1,34 @@
+{
+  "base": "http://127.0.0.1:3018",
+  "checks": [
+    {
+      "locale": "en",
+      "width": 1440,
+      "initial": 54,
+      "expanded": 72,
+      "collapsed": 54
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "initial": 54,
+      "expanded": 72,
+      "collapsed": 54
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "initial": 54,
+      "expanded": 72,
+      "collapsed": 54
+    },
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "initial": 54,
+      "expanded": 72,
+      "collapsed": 54
+    }
+  ],
+  "passed": true
+}

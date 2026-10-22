@@ -24,7 +24,11 @@ describe('explicit bilingual library',()=>{
  it('preserves route, query and fragment without rewriting external sources',()=>{
   expect(switchLocaleHref('/zh-CN/prompts/website/views/tool/three-js?q=pool&model=claude#toc','en')).toBe('/en/prompts/website/views/tool/three-js?q=pool&model=claude#toc');
   expect(()=>switchLocaleHref('https://x.com/test','en')).toThrow();
-  const link=parse(renderToStaticMarkup(<LanguageSwitch locale="zh-CN" href="/zh-CN/prompts/image" />)).querySelector('a')!;
+  const picker=parse(renderToStaticMarkup(<LanguageSwitch locale="zh-CN" href="/zh-CN/prompts/image" />));
+  expect(picker.querySelector('summary')?.text).toContain('Language');
+  expect(picker.querySelector('a[aria-current="page"]')?.text).toContain('中文');
+  expect(picker.querySelectorAll('a')).toHaveLength(2);
+  const link=picker.querySelector('a[hreflang="en"]')!;
   expect(link.getAttribute('href')).toBe('/en/prompts/image');expect(link.getAttribute('hreflang')).toBe('en');
  });
  it('server-renders Chinese and English interface copy with genuine same-page language links',()=>{

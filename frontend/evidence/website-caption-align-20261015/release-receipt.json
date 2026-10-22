@@ -1,0 +1,112 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/32",
+  "mergeCommit": "be4031ec0d2ad21b4904f48884acd960ad7f3680",
+  "catalogRevision": "sha256:1f54e482d66842b8c304495ea7133eb57f959aabaff8c470ede5f54df9033a8d",
+  "mainDeployment": "https://e21e5401.pseo-internal-beta-preview.pages.dev",
+  "betaDeployment": "https://e334c44e.pseo-internal-beta-preview.pages.dev",
+  "tests": 221,
+  "testFiles": 44,
+  "staticPages": 1825,
+  "localLinks": 121970,
+  "liveChecks": [
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "heading": "网站与开发",
+      "count": "1 个案例",
+      "indent": "-0.5px",
+      "cover": "/website-previews/2100085815330435375.jpg",
+      "href": "/zh-CN/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "before": [
+        {
+          "start": 30,
+          "end": 58,
+          "min": 30
+        },
+        {
+          "start": 81,
+          "end": 101,
+          "min": 31
+        }
+      ],
+      "after": [
+        {
+          "start": 30,
+          "end": 58,
+          "min": 30
+        },
+        {
+          "start": 81,
+          "end": 101,
+          "min": 30
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "heading": "Web design & development",
+      "count": "1 case",
+      "indent": "0px",
+      "cover": "/website-previews/2100085815330435375.jpg",
+      "href": "/en/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7"
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "heading": "网站与开发",
+      "count": "1 个案例",
+      "indent": "-0.5px",
+      "cover": "/website-previews/2100085815330435375.jpg",
+      "href": "/zh-CN/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+      "before": [
+        {
+          "start": 0,
+          "end": 1,
+          "min": 727
+        },
+        {
+          "start": 32,
+          "end": 60,
+          "min": 30
+        },
+        {
+          "start": 81,
+          "end": 101,
+          "min": 31
+        }
+      ],
+      "after": [
+        {
+          "start": 0,
+          "end": 1,
+          "min": 727
+        },
+        {
+          "start": 32,
+          "end": 60,
+          "min": 30
+        },
+        {
+          "start": 81,
+          "end": 101,
+          "min": 30
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "heading": "Web design & development",
+      "count": "1 case",
+      "indent": "0px",
+      "cover": "/website-previews/2100085815330435375.jpg",
+      "href": "/en/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7"
+    }
+  ],
+  "caseLink": {
+    "url": "https://beta.ancher.site/zh-CN/prompts/website/websitecase_73370015b086bbe9f2ed9d576f3b24a7",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  }
+}

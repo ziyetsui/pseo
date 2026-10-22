@@ -1,0 +1,38 @@
+{
+  "base": "https://beta.ancher.site",
+  "checks": [
+    {
+      "locale": "en",
+      "viewportWidth": 1440,
+      "videoPlays": true,
+      "width": 1280,
+      "height": 784,
+      "duration": 112.49
+    },
+    {
+      "locale": "en",
+      "viewportWidth": 375,
+      "videoPlays": true,
+      "width": 1280,
+      "height": 784,
+      "duration": 112.49
+    },
+    {
+      "locale": "zh-CN",
+      "viewportWidth": 1440,
+      "videoPlays": true,
+      "width": 1280,
+      "height": 784,
+      "duration": 112.49
+    },
+    {
+      "locale": "zh-CN",
+      "viewportWidth": 375,
+      "videoPlays": true,
+      "width": 1280,
+      "height": 784,
+      "duration": 112.49
+    }
+  ],
+  "passed": true
+}

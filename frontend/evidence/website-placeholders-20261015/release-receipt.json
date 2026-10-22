@@ -1,0 +1,85 @@
+{
+  "recordedAt": "2026-10-15T08:12:44.412Z",
+  "pr": "https://github.com/ziyetsui/pseo/pull/39",
+  "mergeCommit": "debdf8b5aef9ef6559efb7a3ef654d0682675ee1",
+  "tests": 234,
+  "browserChecks": 6,
+  "staticPages": 1825,
+  "localLinks": 115826,
+  "revision": "sha256:47ead1744de1d6de9499694b74cd4ad9b91894f3d8a52f991f8717b76e91ecf6",
+  "checks": [
+    {
+      "url": "https://beta.ancher.site/en/prompts/case-7d46d699adedf29269d0660aa4086291",
+      "status": 200,
+      "variables": [
+        "[PROJECT_NAME]",
+        "[KINGDOM_NAME]",
+        "[SECOND_KINGDOM_NAME]",
+        "[PANEL_COLOR]",
+        "[TEXT_COLOR]",
+        "[ACCENT_COLOR]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/zh-CN/prompts/case-7d46d699adedf29269d0660aa4086291",
+      "status": 200,
+      "variables": [
+        "[PROJECT_NAME]",
+        "[KINGDOM_NAME]",
+        "[SECOND_KINGDOM_NAME]",
+        "[PANEL_COLOR]",
+        "[TEXT_COLOR]",
+        "[ACCENT_COLOR]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/en/prompts/case-7dd3d40264159ae96b96e5610d2f6f6b",
+      "status": 200,
+      "variables": [
+        "[BRAND_NAME]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/zh-CN/prompts/case-7dd3d40264159ae96b96e5610d2f6f6b",
+      "status": 200,
+      "variables": [
+        "[BRAND_NAME]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/en/prompts/case-d29e2da62ee84fe089a7dfa0345199de",
+      "status": 200,
+      "variables": [
+        "[WORLD_REFERENCE]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/zh-CN/prompts/case-d29e2da62ee84fe089a7dfa0345199de",
+      "status": 200,
+      "variables": [
+        "[WORLD_REFERENCE]"
+      ],
+      "fullPromptGenerationMatches": true,
+      "noindex": true
+    }
+  ],
+  "production": "https://6db01296.pseo-internal-beta-preview.pages.dev",
+  "betaAliasDeployment": "https://85f0487e.pseo-internal-beta-preview.pages.dev",
+  "preview": "https://9a2aaa27.pseo-internal-beta-preview.pages.dev",
+  "liveBrowser": {
+    "fill": true,
+    "reset": true,
+    "generationMatches": true,
+    "controls": 6
+  }
+}

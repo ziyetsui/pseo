@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "locale": "en",
+      "width": 1440,
+      "id": "tasks",
+      "cardCount": 21,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "id": "styles",
+      "cardCount": 24,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "id": "tasks",
+      "cardCount": 21,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "id": "styles",
+      "cardCount": 24,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "id": "tasks",
+      "cardCount": 21,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "id": "styles",
+      "cardCount": 24,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "id": "tasks",
+      "cardCount": 21,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "id": "styles",
+      "cardCount": 24,
+      "singleRow": true,
+      "widePreview": true,
+      "keyboardScroll": true
+    }
+  ],
+  "noJavaScript": true,
+  "passed": true
+}

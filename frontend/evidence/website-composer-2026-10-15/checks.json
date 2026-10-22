@@ -1,0 +1,45 @@
+{
+  "base": "http://127.0.0.1:3018",
+  "checks": [
+    {
+      "locale": "en",
+      "width": 1440,
+      "composer": true,
+      "persistence": true,
+      "refill": true,
+      "highlight": true,
+      "axe": true
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "composer": true,
+      "persistence": true,
+      "refill": true,
+      "highlight": true,
+      "axe": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "composer": true,
+      "persistence": true,
+      "refill": true,
+      "highlight": true,
+      "axe": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "composer": true,
+      "persistence": true,
+      "refill": true,
+      "highlight": true,
+      "axe": true
+    }
+  ],
+  "isolatedDraft": true,
+  "technologyPage": true,
+  "seedancePreserved": true,
+  "passed": true
+}

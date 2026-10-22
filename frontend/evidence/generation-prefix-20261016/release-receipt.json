@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-17T11:01:52.254642+00:00",
+  "pr": "https://github.com/ziyetsui/pseo/pull/59",
+  "featureMergeCommit": "1502910d0c7aad1a5bc4f7371b6a69da6f51abd6",
+  "deployedCommit": "15f0da6132350ac24b5507c4589ae1144f4b1924",
+  "revision": "sha256:a9342308292689dddad698ddd1c2d4ab8efd2cc686ef586df32a3a3e7286395a",
+  "unitTests": 301,
+  "localBrowserChecks": 8,
+  "liveBrowserChecks": 4,
+  "staticHTMLPages": 4955,
+  "localLinks": 323223,
+  "betaDeployment": "https://aaaa3f16.pseo-internal-beta-preview.pages.dev",
+  "productionSlot": "https://6112330d.pseo-internal-beta-preview.pages.dev",
+  "site": "https://beta.ancher.site",
+  "cmsChanged": false,
+  "liveHTTPChecks": [
+    {
+      "url": "https://beta.ancher.site/en/prompts/queenie-the-day-i-gave-up-my-corporate-promotion-xhud3l",
+      "status": 200,
+      "prefix": "创建一张关于的图片",
+      "fullPromptMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/en/prompts/case-7d46d699adedf29269d0660aa4086291",
+      "status": 200,
+      "prefix": "创建一个关于的 HTML 网页",
+      "fullPromptMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/zh-CN/prompts/queenie-the-day-i-gave-up-my-corporate-promotion-xhud3l",
+      "status": 200,
+      "prefix": "创建一张关于的图片",
+      "fullPromptMatches": true,
+      "noindex": true
+    },
+    {
+      "url": "https://beta.ancher.site/zh-CN/prompts/case-7d46d699adedf29269d0660aa4086291",
+      "status": 200,
+      "prefix": "创建一个关于的 HTML 网页",
+      "fullPromptMatches": true,
+      "noindex": true
+    }
+  ]
+}

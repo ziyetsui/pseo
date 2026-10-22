@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-10-15T04:21:56.604506+00:00",
+  "pr": "https://github.com/ziyetsui/pseo/pull/24",
+  "state": "merged",
+  "deployedCommit": "8c29dececf42c7a2bb50d96e83ada2b6e97a35aa",
+  "revision": "sha256:29662ed384bec9fca2fa0c41feee0a67d47ef5a38baad050925bd59bca039223",
+  "deployments": {
+    "main": "https://9855b63f.pseo-internal-beta-preview.pages.dev",
+    "frontend-design": "https://b7bb60b0.pseo-internal-beta-preview.pages.dev",
+    "live": "https://beta.ancher.site/zh-CN/prompts#tasks"
+  },
+  "validation": {
+    "CI": "PR24 and PR25 passed",
+    "unitTests": 202,
+    "rootContracts": 39,
+    "staticPages": 1825,
+    "staticLinks": 121932,
+    "liveSmoke": {
+      "origin": "https://beta.ancher.site",
+      "results": [
+        {
+          "locale": "zh-CN",
+          "width": 1440,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/zh-CN/prompts/website/websitecase_0e5f419ff6d22d90873c157366862fef",
+          "cover": "2108181607396126979.jpg"
+        },
+        {
+          "locale": "en",
+          "width": 1440,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/en/prompts/website/websitecase_0e5f419ff6d22d90873c157366862fef",
+          "cover": "2108181607396126979.jpg"
+        },
+        {
+          "locale": "zh-CN",
+          "width": 375,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/zh-CN/prompts/website/websitecase_0e5f419ff6d22d90873c157366862fef",
+          "cover": "2108181607396126979.jpg"
+        },
+        {
+          "locale": "en",
+          "width": 375,
+          "homeStatus": 200,
+          "detailStatus": 200,
+          "href": "/en/prompts/website/websitecase_0e5f419ff6d22d90873c157366862fef",
+          "cover": "2108181607396126979.jpg"
+        }
+      ]
+    }
+  },
+  "preservedUpdates": [
+    "homepage default 54 titles",
+    "uppercase model display names"
+  ],
+  "publication": "Engineering Beta deployment only; no CMS public or content mirror state change; no DNS/Access changes"
+}

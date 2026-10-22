@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-15T07:35:29.903Z",
+  "pr": "https://github.com/ziyetsui/pseo/pull/36",
+  "mergeCommit": "24055d8e6e8c8d2a150dba6420477ec4024dd969",
+  "production": "https://5b63dd86.pseo-internal-beta-preview.pages.dev",
+  "betaAlias": "https://2bccfd6e.pseo-internal-beta-preview.pages.dev",
+  "tests": 225,
+  "staticPages": 1825,
+  "localLinks": 115810,
+  "checks": [
+    {
+      "locale": "zh-CN",
+      "url": "https://beta.ancher.site/zh-CN/prompts/website",
+      "status": 200,
+      "axes": [
+        "model",
+        "use-case",
+        "tool",
+        "all"
+      ]
+    },
+    {
+      "locale": "en",
+      "url": "https://beta.ancher.site/en/prompts/website",
+      "status": 200,
+      "axes": [
+        "model",
+        "use-case",
+        "tool",
+        "all"
+      ]
+    }
+  ]
+}

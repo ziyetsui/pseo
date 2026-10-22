@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-14T12:49:10.034603+00:00",
+  "pr": "https://github.com/ziyetsui/pseo/pull/16",
+  "state": "merged",
+  "commit": "ee1c5a54142cdf26641328fbc9fcf5a37f947d05",
+  "sourceTreeMatchesVerifiedHead": true,
+  "revision": "sha256:d723aee24f6879b216f579dbf820c415372c501bbe52c1a153c115dce5aa72df",
+  "deployments": {
+    "main": "https://2e8f136c.pseo-internal-beta-preview.pages.dev",
+    "frontend-design": "https://d29d6ccf.pseo-internal-beta-preview.pages.dev",
+    "live": "https://beta.ancher.site/en/prompts"
+  },
+  "validation": {
+    "githubCI": "all passed",
+    "unitTests": 186,
+    "contractTests": 39,
+    "releaseBrowserTests": 8,
+    "staticPages": 1825,
+    "localLinks": 121742,
+    "review": "approved after mobile model/tool alignment fix",
+    "liveSmoke": [
+      "375px library-index: current language, English to Chinese, route/anchor, Escape and bounds passed",
+      "375px Nano Banana model: current language, English to Chinese, route/anchor, Escape and bounds passed",
+      "375px Three.js tool: HTTP 200, menu right edge 347 < 375, Escape and Chinese route with #main passed"
+    ]
+  },
+  "notes": [
+    "Online image loading delayed navigation-completion waits; isolated tool-page smoke passed after full load.",
+    "Local release artifact passed all eight desktop/mobile bilingual and menu cases, including no-JavaScript navigation.",
+    "No CMS public/mirror content state or DNS/Access configuration changed."
+  ]
+}

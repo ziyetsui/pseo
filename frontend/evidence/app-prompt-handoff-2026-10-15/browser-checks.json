@@ -1,0 +1,42 @@
+{
+  "base": "http://127.0.0.1:3018",
+  "checks": [
+    {
+      "locale": "en",
+      "width": 1440,
+      "composers": 3,
+      "dialogAndPopup": true,
+      "fullText": true,
+      "card": true,
+      "filledRecipe": true
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "composers": 3,
+      "dialogAndPopup": true,
+      "fullText": true,
+      "card": true,
+      "filledRecipe": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 1440,
+      "composers": 3,
+      "dialogAndPopup": true,
+      "fullText": true,
+      "card": true,
+      "filledRecipe": true
+    },
+    {
+      "locale": "zh-CN",
+      "width": 375,
+      "composers": 3,
+      "dialogAndPopup": true,
+      "fullText": true,
+      "card": true,
+      "filledRecipe": true
+    }
+  ],
+  "passed": true
+}

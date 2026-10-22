@@ -1,0 +1,32 @@
+{
+  "pullRequest": "https://github.com/ziyetsui/pseo/pull/12",
+  "commit": "706d45351ec776bcf22c90b263d1b17d45e66fd0",
+  "betaDeployed": true,
+  "cmsSnapshotChanged": false,
+  "mirrorChanged": false,
+  "noindex": true,
+  "productionUrl": "https://50fa265c.pseo-internal-beta-preview.pages.dev",
+  "previewUrl": "https://cd71645d.pseo-internal-beta-preview.pages.dev",
+  "groups": [
+    "Browse",
+    "By model",
+    "By task",
+    "By style"
+  ],
+  "links": 21,
+  "checks": {
+    "unitTests": 181,
+    "exportScriptTests": 10,
+    "desktopMobileBilingualBrowserTests": 8,
+    "typecheck": "passed",
+    "lint": "0 errors; 20 existing image warnings",
+    "staticPages": 1825,
+    "localLinks": 123473,
+    "engineeringAndPreviewCI": "passed",
+    "CodeRabbit": "review skipped, not counted as review",
+    "committedBuildInputsChecked": 393,
+    "buildInputMismatches": 0,
+    "liveRoutesVerified": 6
+  },
+  "layout": "4 desktop columns; 2 mobile columns. Full taxonomy stays in Library index."
+}

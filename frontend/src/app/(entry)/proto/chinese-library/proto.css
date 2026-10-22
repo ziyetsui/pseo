@@ -1,0 +1,39 @@
+@import url('./fonts.css');
+@import url('./wenkai-titles.css');
+
+/* Confirmed 静·文楷: keep the original Magnetic design and interaction. */
+.chinese-type { min-height:100vh; }
+.chinese-type .prototype-magnetic {
+  --type-cjk:"Type Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --type-display:"Type Noto Serif SC","Songti SC",STSong,serif;
+  --font-sans:"InterVariable",var(--type-cjk);
+  --font-serif:Georgia,var(--type-display);
+}
+.chinese-type .vme .argument h1 {
+  font-family:"Type Yuji Syuku",var(--type-display);
+  font-size:clamp(42px,7.7vw,112px);
+  font-weight:400;
+  letter-spacing:.035em;
+  line-height:1.35;
+  max-width:10em;
+  text-wrap:balance;
+}
+.chinese-type :is(.vme .argument .body p,.formnote) {
+  font-family:"InterVariable","Type WenKai","Kaiti SC",STKaiti,var(--font-sans);
+  font-size:18px;
+  font-weight:400;
+  line-height:1.95;
+  letter-spacing:.015em;
+  line-break:strict;
+}
+.chinese-type .vme .argument .body em { font-family:var(--type-display); font-style:normal; }
+.chinese-type :is(.sec-h h2,.tile h3,.tb p,.eyebrow,.foot h3,.footlegal,.meta.count) { font-family:var(--font-sans); }
+.chinese-type .tile h3 { line-height:1.5; font-weight:500; }
+.chinese-type .m-run .run { line-height:2; }
+.chinese-type .m-run .run .u[lang="zh-CN"] { font-family:Georgia,"Type WenKai","Kaiti SC",STKaiti,serif; }
+.chinese-type .hub-search input { font-size:16px; }
+@media(max-width:700px) {
+  .chinese-type .vme .argument h1 { font-size:clamp(34px,8.8vw,58px); }
+  .chinese-type .vme .argument .body p { font-size:16px; }
+  .chinese-type .vme .argument .body { max-width:410px; }
+}

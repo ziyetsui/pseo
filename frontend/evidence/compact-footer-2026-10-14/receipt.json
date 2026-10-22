@@ -1,0 +1,29 @@
+{
+  "pullRequest": "https://github.com/ziyetsui/pseo/pull/11",
+  "commit": "507b6c5f5e4ce144fa3bb982d7e04a0e9db42937",
+  "betaDeployed": true,
+  "cmsSnapshotChanged": false,
+  "mirrorChanged": false,
+  "noindex": true,
+  "productionUrl": "https://564b4893.pseo-internal-beta-preview.pages.dev",
+  "previewUrl": "https://c67970e1.pseo-internal-beta-preview.pages.dev",
+  "contentRevision": "sha256:67403c0a302b0a7c7abf1a4a288a7ae20968127dab76b8eef3d70186bfce9492",
+  "checks": {
+    "unitTests": 181,
+    "browserTests": 24,
+    "exportScriptTests": 10,
+    "typecheck": "passed",
+    "lint": "0 errors, 20 existing image warnings",
+    "htmlPages": 1825,
+    "localLinks": 98007,
+    "githubEngineeringAndPreviewGates": "passed",
+    "CodeRabbit": "review skipped, not counted as review",
+    "trackedReleaseSourceByteComparison": "matched",
+    "liveBilingualFooterAndHighlightRoutes": 6
+  },
+  "changes": [
+    "Two footer groups, seven populated navigation links; complete classification retained in Library index.",
+    "Website prompt display uses existing explicit uppercase bracket-variable highlights, including spaced tokens.",
+    "Preserved latest bilingual interface, locale switching, exact source prompt text and JSON arrays."
+  ]
+}

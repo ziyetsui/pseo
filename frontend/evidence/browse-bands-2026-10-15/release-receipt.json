@@ -1,0 +1,16 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/18",
+  "mergeCommit": "dbc3bc8f600731cbaf92361b5620e1a57ad14573",
+  "production": "https://beta.ancher.site",
+  "deployment": "https://c12b35f6.pseo-internal-beta-preview.pages.dev",
+  "preview": "https://dc625839.pseo-internal-beta-preview.pages.dev",
+  "revision": "sha256:d723aee24f6879b216f579dbf820c415372c501bbe52c1a153c115dce5aa72df",
+  "unitTests": 194,
+  "browserChecks": 8,
+  "localAxe": "passed tasks and styles",
+  "htmlPages": 1825,
+  "localLinks": 121842,
+  "robots": "noindex, nofollow",
+  "cmsPublication": false,
+  "liveGeometry": "passed en and zh-CN at 1440 and 375; keyboard scroll and no-JavaScript verified"
+}

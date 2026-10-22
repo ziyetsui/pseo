@@ -1,0 +1,25 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/38",
+  "commit": "8668eb0a941faa68baeb06d765b7fc2ea35bd3d2",
+  "production": "https://73b3becb.pseo-internal-beta-preview.pages.dev",
+  "preview": "https://3ff547ab.pseo-internal-beta-preview.pages.dev",
+  "revision": "sha256:4d8f536aff2c96e84817deac17c773095f743b6ec0ccf04a085da80bfa2af382",
+  "frontendTests": 236,
+  "ciGates": "all four passed",
+  "livePlayback": "en/zh-CN, 1440/375, 1280x784, 112.49 seconds; controls, source links, no missing-media state verified",
+  "intake": "passed; unchanged public/CMS/mirror state",
+  "robots": "noindex, nofollow",
+  "cmsPublication": false,
+  "mirrorModified": false,
+  "inventory": {
+    "recordsWithGaps": 259,
+    "fields": {
+      "模型": 202,
+      "简介": 33,
+      "用途分类": 12,
+      "视觉资源": 172,
+      "提示词": 51
+    },
+    "csvSha256": "42845590e575985af68f8002993b27b2d85d3e1a50a2e6f155ee1c4546748eb4"
+  }
+}

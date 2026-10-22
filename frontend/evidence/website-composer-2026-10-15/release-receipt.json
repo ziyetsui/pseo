@@ -1,0 +1,17 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/31",
+  "mergeCommit": "5ef863dc92febab76ec380dda790ffb88cd6565b",
+  "deployedIntegration": "be4031ec0d2ad21b4904f48884acd960ad7f3680",
+  "production": "https://ec150d30.pseo-internal-beta-preview.pages.dev",
+  "preview": "https://f23c68e2.pseo-internal-beta-preview.pages.dev",
+  "livePage": "https://beta.ancher.site/zh-CN/prompts/website/views/model/claude",
+  "revision": "sha256:1f54e482d66842b8c304495ea7133eb57f959aabaff8c470ede5f54df9033a8d",
+  "unitTests": 221,
+  "ciGates": "all four passed",
+  "staticPages": 1825,
+  "localLinks": 121970,
+  "liveBrowser": "Both locales, desktop/mobile: edit, persist, refill, focus, highlighting, scoped Axe passed. Codex draft isolation, technology page and Seedance composer checked.",
+  "robots": "noindex, nofollow",
+  "cmsPublication": false,
+  "mirrorModified": false
+}

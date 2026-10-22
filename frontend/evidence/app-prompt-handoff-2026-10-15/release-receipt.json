@@ -1,0 +1,17 @@
+{
+  "pr": "https://github.com/ziyetsui/pseo/pull/35",
+  "commit": "3c63200cd39a227a304c1e5938b7a980f54db5ed",
+  "production": "https://0ad6c753.pseo-internal-beta-preview.pages.dev",
+  "preview": "https://04fc8d65.pseo-internal-beta-preview.pages.dev",
+  "site": "https://beta.ancher.site",
+  "tests": 225,
+  "ci": "all four engineering gates passed",
+  "typecheck": "passed",
+  "lint": "0 errors, 18 image warnings",
+  "staticPages": 1825,
+  "localLinks": 115810,
+  "live": "Both locales and desktop/mobile: three composers, dialog exact href, intercepted popup URL, full card text and filled Recipe text passed. External app requests intercepted; no real generation submitted.",
+  "noindex": true,
+  "cmsPublication": false,
+  "mirrorModified": false
+}
